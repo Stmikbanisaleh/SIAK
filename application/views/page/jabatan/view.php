@@ -12,49 +12,26 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Edit Data <?= $page_name; ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
 			</div>
 			<form class="form-horizontal" role="form" id="formTambah">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-							
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jabatan </label>
-									<div class="col-sm-6">
-										<input type="text" id="id" name="id" id="form-field-1" placeholder="Kode Jabatan" class="form-control" />
-									</div>
-								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
-									<div class="col-sm-9">
+									<div class="col-sm-6">
 										<input type="text" id="nama" name="nama" placeholder="Nama Jabatan" class="form-control" />
 									</div>
 								</div>
-								
-							      <!-- <div class="form-group">
-							        <label for="formGroupExampleInput">Name</label>
-							        <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Please enter name">
-							      </div>
-							 
-							      <div class="form-group">
-							        <label for="email">Email Id</label>
-							        <input type="text" name="email" class="form-control" id="email" placeholder="Please enter email id">
-							      </div>   
-							 
-							      <div class="form-group">
-							        <label for="mobile_number">Mobile Number</label>
-							        <input type="text" name="mobile_number" class="form-control" id="mobile_number" placeholder="Please enter mobile number" maxlength="10">
-							      </div> -->
-							 
-							      <!-- <div class="form-group">
-							       <button type="submit" id="send_form" class="btn btn-success">Submit</button>
-							      </div>
-							    
-							 -->
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
+									<div class="col-sm-6">
+										<input type="text" id="keterangan" name="keterangan" placeholder="Keterangan" class="form-control" />
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -88,39 +65,19 @@
 							
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jabatan </label>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
 									<div class="col-sm-6">
-										<input type="text" id="e_id" name="e_id" id="form-field-1" placeholder="Kode Jabatan" class="form-control" />
+										<input type="hidden" id="e_id" name="e_id"/>
+										<input type="text" id="e_nama" name="e_nama"  placeholder="Nama Jabatan" class="form-control" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
 									<div class="col-sm-9">
-										<input type="text" id="e_nama" name="e_nama" placeholder="Nama Jabatan" class="form-control" />
+										<input type="text" id="e_keterangan" name="e_keterangan" placeholder="Keterangan Jabatan" class="form-control" />
 									</div>
 								</div>
-								
-							      <!-- <div class="form-group">
-							        <label for="formGroupExampleInput">Name</label>
-							        <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Please enter name">
-							      </div>
-							 
-							      <div class="form-group">
-							        <label for="email">Email Id</label>
-							        <input type="text" name="email" class="form-control" id="email" placeholder="Please enter email id">
-							      </div>   
-							 
-							      <div class="form-group">
-							        <label for="mobile_number">Mobile Number</label>
-							        <input type="text" name="mobile_number" class="form-control" id="mobile_number" placeholder="Please enter mobile number" maxlength="10">
-							      </div> -->
-							 
-							      <!-- <div class="form-group">
-							       <button type="submit" id="send_form" class="btn btn-success">Submit</button>
-							      </div>
-							    
-							 -->
 						</div>
 					</div>
 				</div>
@@ -151,8 +108,8 @@
 	<thead>
 		<tr>
 			<th class="col-md-1">No</th>
-			<th>Kode Jabatan</th>
 			<th>Nama Jabatan</th>
+			<th>Keterangan</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -204,7 +161,7 @@
 		    submitHandler: function(form) {
 		      $('#btn_simpan').html('Sending..');
 		      $.ajax({
-		        url: "<?php echo base_url('jabatan/simpan_jabatan') ?>",
+		        url: "<?php echo base_url('jabatan/simpan') ?>",
 		        type: "POST",
 		        data: $('#formTambah').serialize(),
 		        dataType: "json",
@@ -217,7 +174,7 @@
 						show_data();
 						$('#modalTambah').modal('hide');
 					}else if(response == 401){
-						swalIdDouble('Kode Jabatan Sudah digunakan!');
+						swalIdDouble('Nama Jabatan Sudah digunakan!');
 					}else{
 						swalInputFailed();
 					}
@@ -245,9 +202,6 @@ if ($("#formEdit").length > 0) {
 	    },
 	    messages: {
 	        
-			e_id: {
-				required: "Kode jabatan harus diisi!"
-			},
 			e_nama: {
 				required: "Nama jabatan harus diisi!"
 			},
@@ -256,7 +210,7 @@ if ($("#formEdit").length > 0) {
 	    submitHandler: function(form) {
 	      $('#btn_edit').html('Sending..');
 	      $.ajax({
-	        url: "<?php echo base_url('jabatan/update_jabatan') ?>",
+	        url: "<?php echo base_url('jabatan/update') ?>",
 	        type: "POST",
 	        data: $('#formEdit').serialize(),
 	        dataType: "json",
@@ -269,7 +223,7 @@ if ($("#formEdit").length > 0) {
 					show_data();
 					$('#modalEdit').modal('hide');
 				}else if(response == 401){
-					swalIdDouble('Kode Jabatan Sudah digunakan!');
+					swalIdDouble('Nama Jabatan Sudah digunakan!');
 				}else{
 					swalEditFailed();
 				}
@@ -289,7 +243,7 @@ if ($("#formEdit").length > 0) {
 	function show_data() {
 		$.ajax({
 			type: 'ajax',
-			url: '<?php echo site_url('jabatan/tampil_jabatan') ?>',
+			url: '<?php echo site_url('jabatan/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -299,13 +253,13 @@ if ($("#formEdit").length > 0) {
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td class="text-center">' + data[i].id + '</td>' +
-						'<td>' + data[i].nama + '</td>' +
+						'<td>' + data[i].NAMAJABATAN + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
 						'<td class="text-center">' +
-						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">'+
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">'+
 							'<i class="ace-icon fa fa-pencil bigger-120"></i>'+
 						'</button> &nbsp'+
-						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">'+
+						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">'+
 							'<i class="ace-icon fa fa-trash-o bigger-120"></i>'+
 						'</button>'+
 						'</td>' +
@@ -349,8 +303,10 @@ if ($("#formEdit").length > 0) {
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id);
-				$('#e_nama').val(data[0].nama);
+				$('#e_id').val(data[0].ID);
+				$('#e_nama').val(data[0].NAMAJABATAN);
+				$('#e_keterangan').val(data[0].KET);
+
 			}
 		});
 	});
@@ -370,7 +326,7 @@ if ($("#formEdit").length > 0) {
 		  if (result.value) {
 		  	$.ajax({
 				type: "POST",
-				url: "<?php echo base_url('jabatan/delete_jabatan') ?>",
+				url: "<?php echo base_url('jabatan/delete') ?>",
 				async: true,
 				dataType: "JSON",
 				data: {

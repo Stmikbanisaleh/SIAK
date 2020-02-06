@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ruangan extends CI_Controller {
+class Tahun_akad1 extends CI_Controller {
 
     function __construct(){
         parent::__construct();      
-        $this->load->model('model_ruangan');
+        $this->load->model('model_tahun_akademik');
 
     }
 
@@ -16,16 +16,16 @@ class Ruangan extends CI_Controller {
 
 	public function index() {
         $data = array(
-                    'page_content'  => 'ruangan/view',
-                    'ribbon'        => '<li class="active">Ruangan</li>',
-                    'page_name'     => 'Ruangan'
+                    'page_content'  => 'tahun_akademik/view',
+                    'ribbon'        => '<li class="active">Tahun Akademik 1</li>',
+                    'page_name'     => 'Tahun Akademik 1'
                 );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()
     {
-        $my_data = $this->model_ruangan->viewOrdering('msruang','id','asc')->result();
+        $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk','id','asc')->result();
         echo json_encode($my_data);
     }
 
@@ -34,7 +34,7 @@ class Ruangan extends CI_Controller {
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_ruangan->view_where('msruang',$data)->result();
+        $my_data = $this->model_tahun_akademik->view_where('tbakadmk',$data)->result();
         echo json_encode($my_data);
     }
 
@@ -43,7 +43,7 @@ class Ruangan extends CI_Controller {
         $data_id = array(
             'RUANG'  => $this->input->post('ruang'),
         );
-        $count_id = $this->model_ruangan->view_count('msruang', $data_id);
+        $count_id = $this->model_tahun_akademik->view_count('tbakadmk', $data_id);
         if($count_id<1){
             $data = array(
                 'RUANG'  => $this->input->post('ruang'),
@@ -57,7 +57,7 @@ class Ruangan extends CI_Controller {
                 'STATUS'  => $this->input->post('aktif'),
                 'createdAt' => date('Y-m-d H:i:s'),
             );
-            $action = $this->model_ruangan->insert($data,'msruang');
+            $action = $this->model_tahun_akademik->insert($data,'tbakadmk');
             echo json_encode($action);
         }else{
             echo json_encode(401);
@@ -82,7 +82,7 @@ class Ruangan extends CI_Controller {
             'STATUS'  => $this->input->post('e_aktif'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_ruangan->update($data_id,$data,'msruang');
+        $action = $this->model_tahun_akademik->update($data_id,$data,'tbakadmk');
         echo json_encode($action);
         
     }
@@ -95,7 +95,7 @@ class Ruangan extends CI_Controller {
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_ruangan->update($data_id,$data,'msruang');
+        $action = $this->model_tahun_akademik->update($data_id,$data,'tbakadmk');
         echo json_encode($action);
         
     }

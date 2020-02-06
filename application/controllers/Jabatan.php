@@ -25,7 +25,7 @@ class Jabatan extends CI_Controller {
 
     public function tampil()
     {
-        $my_data = $this->model_jabatan->viewOrdering('jabatan','id','asc')->result();
+        $my_data = $this->model_jabatan->viewOrdering('msjabatan','id','asc')->result();
         echo json_encode($my_data);
     }
 
@@ -34,23 +34,24 @@ class Jabatan extends CI_Controller {
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_jabatan->view_where('jabatan',$data)->result();
+        $my_data = $this->model_jabatan->view_where('msjabatan',$data)->result();
         echo json_encode($my_data);
     }
 
     public function simpan()
     {
         $data_id = array(
-            'nama'  => $this->input->post('nama')
+            'NAMAJABATAN'  => $this->input->post('nama')
         );
-        $count_id = $this->model_jabatan->view_count('jabatan', $data_id);
+        $count_id = $this->model_jabatan->view_count('msjabatan', $data_id);
         if($count_id<1){
             $data = array(
                 'id'  => $this->input->post('id'),
-                'nama'  => $this->input->post('nama'),
+                'NAMAJABATAN'  => $this->input->post('nama'),
+                'KET'  => $this->input->post('keterangan'),
                 'createdAt' => date('Y-m-d H:i:s'),
             );
-            $action = $this->model_jabatan->insert($data,'jabatan');
+            $action = $this->model_jabatan->insert($data,'msjabatan');
             echo json_encode($action);
         }else{
             echo json_encode(401);
@@ -61,13 +62,14 @@ class Jabatan extends CI_Controller {
     public function update()
     {
         $data_id = array(
-            'id'  => $this->input->post('e_id')
+            'ID'  => $this->input->post('e_id')
         );
         $data = array(
-            'nama'  => $this->input->post('e_nama'),
+            'NAMAJABATAN'  => $this->input->post('e_nama'),
+            'KET'  => $this->input->post('e_keterangan'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jabatan->update($data_id,$data,'jabatan');
+        $action = $this->model_jabatan->update($data_id,$data,'msjabatan');
         echo json_encode($action);
         
     }
@@ -75,12 +77,12 @@ class Jabatan extends CI_Controller {
     public function delete()
     {
         $data_id = array(
-            'id'  => $this->input->post('id')
+            'ID'  => $this->input->post('id')
         );
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_jabatan->update($data_id,$data,'jabatan');
+        $action = $this->model_jabatan->update($data_id,$data,'msjabatan');
         echo json_encode($action);
         
     }

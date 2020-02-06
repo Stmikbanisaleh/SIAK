@@ -43,12 +43,130 @@
 
 		<b class="arrow"></b>
 	</li>
-
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
 			<i class="menu-icon glyphicon glyphicon-download"></i>
 			<span class="menu-text">
-				Master User
+				Setting
+			</span>
+
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+
+		<b class="arrow"></b>
+
+		<ul class="submenu">
+
+			<li class="">
+				<a href="<?= base_url() . 'biodata'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Biodata sekolah
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'ruangan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Ruangan
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'jabatan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Jabatan
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'tahun_akad1'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tahun Akademik 1
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+
+			<li class="">
+				<a href="typography.html">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tahun Akademik 2
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="typography.html">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tahun Akademik 3
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="typography.html">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Program Sekolah
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="typography.html">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Menu
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+
+		</ul>
+	</li>
+	<li class="">
+		<a href="javascript:void(0);" class="dropdown-toggle">
+			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<span class="menu-text">
+				Data Master
+			</span>
+
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+
+		<b class="arrow"></b>
+
+		<ul class="submenu">
+
+			<li class="">
+				<a href="<?= base_url() . 'guru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Biodata Guru
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'karyawan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Karyawan
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'siswa'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Siswa
+				</a>
+
+				<b class="arrow"></b>
+			</li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="javascript:void(0);" class="dropdown-toggle">
+			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<span class="menu-text">
+				Nilai
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -61,44 +179,16 @@
 			<li class="">
 				<a href="<?= base_url() . 'jenjang'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Jenjang Pendidikan
+					Per Mataajar
 				</a>
 			</li>
 
 			<li class="">
 				<a href="<?= base_url() . 'guru'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Guru
+					Penghapusan Nilai
 				</a>
 			</li>
-
-			<li class="">
-				<a href="<?= base_url() . 'karyawan'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Karyawan
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
-			<li class="">
-				<a href="<?= base_url() . 'jabatan'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Jabatan
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
-			<li class="">
-				<a href="typography.html">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Role
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
 		</ul>
 	</li>
 
@@ -106,7 +196,7 @@
 		<a href="javascript:void(0);" class="dropdown-toggle">
 			<i class="menu-icon fa fa-money"></i>
 			<span class="menu-text">
-				Master Tarif
+				Jadwal
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -119,35 +209,8 @@
 			<li class="">
 				<a href="<?= base_url() . 'tarif'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Tarif
+					Jadwal
 				</a>
-			</li>
-
-			<li class="">
-				<a href="<?= base_url() . 'karyawan'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Karyawan
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
-			<li class="">
-				<a href="<?= base_url() . 'jabatan'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Jabatan
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
-			<li class="">
-				<a href="typography.html">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Role
-				</a>
-
-				<b class="arrow"></b>
 			</li>
 
 		</ul>
@@ -157,7 +220,7 @@
 		<a href="javascript:void(0);" class="dropdown-toggle">
 			<i class="menu-icon glyphicon glyphicon-upload"></i>
 			<span class="menu-text">
-				Master TU
+				Kurikulum
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -170,7 +233,7 @@
 			<li class="">
 				<a href="typography.html">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Employee
+					Kurikulum
 				</a>
 
 				<b class="arrow"></b>
@@ -179,7 +242,7 @@
 			<li class="">
 				<a href="typography.html">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Teacher's
+					Mata Ajar Aktif
 				</a>
 
 				<b class="arrow"></b>
@@ -192,7 +255,7 @@
 		<a href="javascript:void(0);" class="dropdown-toggle">
 			<i class="menu-icon glyphicon glyphicon-upload"></i>
 			<span class="menu-text">
-				Master Akuntansi
+				Lulusan
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -205,61 +268,13 @@
 			<li class="">
 				<a href="typography.html">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Employee
+					Kelulusan Siswa
 				</a>
 
 				<b class="arrow"></b>
 			</li>
-
-			<li class="">
-				<a href="typography.html">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Teacher's
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-
 		</ul>
 	</li>
-
-	<li class="">
-		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon fa fa-book"></i>
-			<span class="menu-text">
-				Laporan
-			</span>
-		</a>
-	</li>
-
-	<li class="">
-		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon fa fa-info-circle"></i>
-			<span class="menu-text">
-				Transaksi
-			</span>
-		</a>
-	</li>
-
-	<li class="">
-		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon fa fa-info-circle"></i>
-			<span class="menu-text">
-				Transaksi Keuangan
-			</span>
-		</a>
-	</li>
-
-	<li class="">
-		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon fa fa-info-circle"></i>
-			<span class="menu-text">
-				Laporan Keuangan
-			</span>
-		</a>
-	</li>
-
-
 </ul><!-- /.nav-list -->
 
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
