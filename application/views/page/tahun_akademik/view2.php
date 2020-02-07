@@ -222,7 +222,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/simpan') ?>",
+                    url: "<?php echo base_url('tahun_akad2/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -270,7 +270,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/update') ?>",
+                    url: "<?php echo base_url('tahun_akad2/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -303,7 +303,7 @@
     function show_data() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('tahun_akad1/tampil') ?>',
+            url: '<?php echo site_url('tahun_akad2/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
@@ -357,7 +357,7 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('tahun_akad1/tampil_byid') ?>",
+            url: "<?php echo base_url('tahun_akad2/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
@@ -375,38 +375,4 @@
             }
         });
     });
-
-    $('#show_data').on('click', '.item_hapus', function() {
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda tidak akan dapat mengembalikan ini!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url('ruangan/delete') ?>",
-                    async: true,
-                    dataType: "JSON",
-                    data: {
-                        id: id,
-                    },
-                    success: function(data) {
-                        show_data();
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data sudah dihapus.',
-                            'success'
-                        )
-                    }
-                });
-            }
-        })
-    })
 </script>

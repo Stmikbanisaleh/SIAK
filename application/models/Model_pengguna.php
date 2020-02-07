@@ -1,7 +1,8 @@
 <?php
 
-class Model_guru extends CI_model
+class Model_pengguna extends CI_model
 {
+
     public function view($table)
     {
         $this->db->where('isdeleted !=', 1);
@@ -30,29 +31,9 @@ class Model_guru extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_where_v2($table, $data)
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1 and a.id = ' . $data['id'] .'
-        ');
-    }
-
-    public function view_guru()
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1
-        ');
-    }
-
     public function view_count($table, $data_id)
     {
-        return $this->db->query('select IdGuru from ' . $table . ' where IdGuru = ' . $data_id . ' and isdeleted != 1')->num_rows();
+        return $this->db->query("select RUANG from " . $table . " where RUANG = '" . $data_id['RUANG'] . "' and isdeleted != 1")->num_rows();
     }
 
     public function insert($data, $table)

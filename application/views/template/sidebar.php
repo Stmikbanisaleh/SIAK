@@ -90,7 +90,7 @@
 			</li>
 
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'tahun_akad2'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tahun Akademik 2
 				</a>
@@ -98,7 +98,7 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'tahun_akad3'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tahun Akademik 3
 				</a>
@@ -106,7 +106,7 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'prog_sekolah'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Program Sekolah
 				</a>
@@ -114,7 +114,7 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'menu'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Menu
 				</a>

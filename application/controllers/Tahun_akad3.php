@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Tahun_akad1 extends CI_Controller
+class Tahun_akad3 extends CI_Controller
 {
 
     function __construct()
@@ -19,16 +19,16 @@ class Tahun_akad1 extends CI_Controller
     public function index()
     {
         $data = array(
-            'page_content'  => 'tahun_akademik/view',
-            'ribbon'        => '<li class="active">Tahun Akademik 1</li>',
-            'page_name'     => 'Tahun Akademik 1'
+            'page_content'  => 'tahun_akademik/view3',
+            'ribbon'        => '<li class="active">Tahun Akademik 3</li>',
+            'page_name'     => 'Tahun Akademik 3'
         );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()
     {
-        $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk', 'id', 'asc')->result();
+        $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk3', 'id', 'asc')->result();
         echo json_encode($my_data);
     }
 
@@ -37,7 +37,7 @@ class Tahun_akad1 extends CI_Controller
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_tahun_akademik->view_where('tbakadmk', $data)->result();
+        $my_data = $this->model_tahun_akademik->view_where('tbakadmk3', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -53,7 +53,7 @@ class Tahun_akad1 extends CI_Controller
             'KDSEKOLAH'  => $this->input->post('kdsekolah'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_tahun_akademik->insert($data, 'tbakadmk');
+        $action = $this->model_tahun_akademik->insert($data, 'tbakadmk3');
         echo json_encode($action);
     }
 
@@ -73,7 +73,7 @@ class Tahun_akad1 extends CI_Controller
             'updatedAt' => date('Y-m-d H:i:s'),
         );
 
-        $action = $this->model_tahun_akademik->update($data_id, $data, 'tbakadmk');
+        $action = $this->model_tahun_akademik->update($data_id, $data, 'tbakadmk3');
         echo json_encode($action);
     }
  

@@ -344,34 +344,4 @@ if ($("#formEdit").length > 0) {
 		  }
 		})
     })
-
-
-	//Simpan guru
-	// $('#btn_simpan1').on('click', function() {
-	// 	var id = $('#id').val();
-	// 	var nama = $('#nama').val();
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "<?php echo base_url('jabatan/simpan_jabatan') ?>",
-	// 		dataType: "JSON",
-	// 		data: {
-	// 			id: id,
-	// 			nama: nama,
-	// 		},
-	// 		success: function(response) {
-	// 			if(response == true){
-	// 				swalInputSuccess();
-	// 				show_data();
-	// 				$('[name="id"]').val("");
-	// 				$('[name="nama"]').val("");
-	// 				$('#modalTambah').modal('hide');
-	// 			}else if(response == 1048){
-	// 				swalIdDouble('ID Jabatan Sudah digunakan!');
-	// 			}else{
-	// 				swalInputFailed();
-	// 			}
-	// 		}
-	// 	});
-	// 	return false;
-	// });
 </script>

@@ -20,45 +20,49 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Menu </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="semester" name="semester" placeholder="GANJIL/GENAP" class="form-control" />
+                                    <input type="text" id="nama" name="nama" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Urutan </label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" id="urut" name="urut" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value="T">Aktif</option>
+                                        <option value="F">Tidak</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pengguna </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
+                                    <select class="form-control" name="pengguna" id="pengguna">
+                                        <option value="">-- Pilih Pengguna --</option>
+                                        <?php foreach ($mypengguna as $value) { ?>
+                                            <option value=<?= $value['NMPENGGUNA'] ?>><?= $value['NMPENGGUNA'] ?></option>
+                                        <?php } ?>
+                                    </select>
+
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Link </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="indek" name="indek" placeholder="" class="form-control" />
+                                    <input type="text" id="link" name="link" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="thndapodik" name="thndapodik" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" />
+                                    <input type="number" id="jenis" name="jenis" placeholder="" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -92,46 +96,50 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Menu </label>
                                 <div class="col-sm-6">
                                     <input type="hidden" id="e_id" name="e_id"/>
-                                    <input type="text" id="e_semester" name="e_semester" placeholder="GANJIL/GENAP" class="form-control" />
+                                    <input type="text" id="e_nama" name="e_nama" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Urutan </label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="e_tahun" name="e_tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" id="e_urut" name="e_urut" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_tahun_akad" name="e_tahun_akad" placeholder="2020/2021" class="form-control" />
+                                    <select class="form-control" name="e_status" id="e_status">
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value="T">Aktif</option>
+                                        <option value="F">Tidak</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pengguna </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
+                                    <select class="form-control" name="e_pengguna" id="e_pengguna">
+                                        <option value="">-- Pilih Pengguna --</option>
+                                        <?php foreach ($mypengguna as $value) { ?>
+                                            <option value=<?= $value['NMPENGGUNA'] ?>><?= $value['NMPENGGUNA'] ?></option>
+                                        <?php } ?>
+                                    </select>
+
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Link </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_indek" name="e_indek" placeholder="" class="form-control" />
+                                    <input type="text" id="e_link" name="e_link" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_thndapodik" name="e_thndapodik" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="e_kdsekolah" name="e_kdsekolah" placeholder="" class="form-control" />
+                                    <input type="number" id="e_jenis" name="e_jenis" placeholder="" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -164,13 +172,11 @@
     <thead>
         <tr>
             <th class="col-md-1">No</th>
-            <th>Semester</th>
-            <th>Tahun</th>
-            <th>Tahun Akademik</th>
-            <th>UTS / UAS</th>
-            <th>Tahun Dapodik</th>
-            <th>Indek</th>
-            <th>Kode Sekolah</th>
+            <th>Nama Menu</th>
+            <th>Urutan</th>
+            <th>Status</th>
+            <th>Posisi</th>
+            <th>Link</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -222,7 +228,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/simpan') ?>",
+                    url: "<?php echo base_url('menu/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -235,7 +241,7 @@
                             show_data();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Tahun Akademik Sudah digunakan!');
+                            swalIdDouble('Nama Ruangan Sudah digunakan!');
                         } else {
                             swalInputFailed();
                         }
@@ -270,7 +276,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/update') ?>",
+                    url: "<?php echo base_url('menu/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -283,7 +289,7 @@
                             show_data();
                             $('#modalEdit').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama Ruangan Sudah digunakan!');
+                            swalIdDouble('Nama Menu Sudah digunakan!');
                         } else {
                             swalEditFailed();
                         }
@@ -303,7 +309,7 @@
     function show_data() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('tahun_akad1/tampil') ?>',
+            url: '<?php echo site_url('menu/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
@@ -313,16 +319,18 @@
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
                         '<td class="text-right">' + no + '</td>' +
-                        '<td class="text-left">' + data[i].SEMESTER + '</td>' +
-                        '<td>' + data[i].TAHUN + '</td>' +
-                        '<td class="text-right">' + data[i].THNAKAD + '</td>' +
-                        '<td>' + data[i].UTSUAS + '</td>' +
-                        '<td class="text-right">' + data[i].INDEK + '</td>' +
-                        '<td>' + data[i].THNDAPODIK + '</td>' +
-                        '<td class="text-right">' + data[i].KDSEKOLAH + '</td>' +
+                        '<td class="text-left">' + data[i].NAMA + '</td>' +
+                        '<td class="text-right">' + data[i].URUT + '</td>' +
+                        '<td class="text-center">' + data[i].BLOKIR + '</td>' +
+                        '<td>' + data[i].PENGGUNA + '</td>' +
+                        '<td class="text-left">' + data[i].ALAMAT + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                        '</button> &nbsp' +
+                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                        '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                        '</button>' +
                         '</td>' +
                         '</tr>';
                     no++;
@@ -357,7 +365,7 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('tahun_akad1/tampil_byid') ?>",
+            url: "<?php echo base_url('menu/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
@@ -365,13 +373,12 @@
             },
             success: function(data) {
                 $('#e_id').val(data[0].ID);
-                $('#e_semester').val(data[0].SEMESTER);
-                $('#e_tahun').val(data[0].TAHUN);
-                $('#e_tahun_akad').val(data[0].THNAKAD);
-                $('#e_uts_uas').val(data[0].UTSUAS);
-                $('#e_indek').val(data[0].INDEK);
-                $('#e_thndapodik').val(data[0].THNDAPODIK);
-                $('#e_kdsekolah').val(data[0].KDSEKOLAH);
+                $('#e_nama').val(data[0].NAMA);
+                $('#e_urut').val(data[0].URUT);
+                $('#e_pengguna').val(data[0].PENGGUNA);
+                $('#e_status').val(data[0].BLOKIR);
+                $('#e_link').val(data[0].ALAMAT);
+                $('#e_jenis').val(data[0].JENIS);
             }
         });
     });
@@ -391,7 +398,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('ruangan/delete') ?>",
+                    url: "<?php echo base_url('menu/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {
@@ -409,4 +416,34 @@
             }
         })
     })
+
+
+    //Simpan guru
+    // $('#btn_simpan1').on('click', function() {
+    // 	var id = $('#id').val();
+    // 	var nama = $('#nama').val();
+    // 	$.ajax({
+    // 		type: "POST",
+    // 		url: "<?php echo base_url('jabatan/simpan_jabatan') ?>",
+    // 		dataType: "JSON",
+    // 		data: {
+    // 			id: id,
+    // 			nama: nama,
+    // 		},
+    // 		success: function(response) {
+    // 			if(response == true){
+    // 				swalInputSuccess();
+    // 				show_data();
+    // 				$('[name="id"]').val("");
+    // 				$('[name="nama"]').val("");
+    // 				$('#modalTambah').modal('hide');
+    // 			}else if(response == 1048){
+    // 				swalIdDouble('ID Jabatan Sudah digunakan!');
+    // 			}else{
+    // 				swalInputFailed();
+    // 			}
+    // 		}
+    // 	});
+    // 	return false;
+    // });
 </script>
