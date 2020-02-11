@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /payroll/
+RewriteBase /siak/
 # RewriteCond $1 !^(index\.php)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
