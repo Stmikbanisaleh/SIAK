@@ -9,10 +9,10 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="index.html" class="navbar-brand">
+	<a href="<?php echo base_url()?>" class="navbar-brand">
 		<small>
 			<i class="fa fa-leaf"></i>
-			Payroll
+			Operator
 		</small>
 	</a>
 </div>

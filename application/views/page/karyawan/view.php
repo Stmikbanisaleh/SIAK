@@ -18,7 +18,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Input Data Guru</h3>
+                <h3 class="smaller lighter blue no-margin">Form Input Data Karyawan</h3>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nik" required name="nik" placeholder="NIK Karyawan" class="form-control" />
+                                    <input type="text" id="nip" required name="nip" placeholder="NIK Karyawan" class="form-control" />
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
-                                    <input type="file" id="foto" required name="foto" placeholder="" class="form-control" />
+                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
                                 </div>
                             </div>
 
@@ -109,106 +109,49 @@
                         <!-- PAGE CONTENT BEGINS -->
                         <form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
                                 <div class="col-sm-6">
                                     <input type="hidden" id="e_id" required name="e_id" />
-                                    <input type="text" id="e_IdGuru" required name="e_IdGuru" placeholder="Kode Guru" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="e_GuruNoDapodik" required name="e_GuruNoDapodik" placeholder="kode Dapodik" class="form-control" />
+                                    <input type="text" id="e_nip" required name="e_nip" placeholder="NIK Karyawan" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="e_nama" required name="e_nama" placeholder="Nama Guru" class="form-control" />
+                                    <input type="text" id="e_nama" required name="e_nama" placeholder="Nama Karyawan" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Telepon </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="e_telepon" required name="e_telepon" placeholder="No Telp" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-                                <div class="col-sm-9">
-                                    <textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Masukan Alamat"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_program_sekolah" id="e_program_sekolah">
-                                        <option value="">-- Pilih Program --</option>
-                                        <?php foreach ($myprogram as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_jenis_kelamin" id="e_jenis_kelamin">
-                                        <option value="">-- Pilih Pengguna --</option>
-                                        <option value="L">Laki-Laki</option>
-                                        <option value="P">Perempuan</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-                                        <option value="">-- Pilih Pendidikan --</option>
-                                        <?php foreach ($mypendidikan as $value) { ?>
-                                            <option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_agama" id="e_agama">
-                                        <option value="">-- Pilih Agama --</option>
-                                        <?php foreach ($myagama as $value) { ?>
-                                            <option value=<?= $value['KDTBAGAMA'] ?>><?= $value['DESCRTBAGAMA'] ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="e_email" id="e_email" placeholder="Email" />
+                                    <input type="email" id="e_email" required name="e_email" placeholder="Email" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Password </label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" name="e_tgl_lahir" id="e_tgl_lahir" placeholder="24/10/1995"></textarea>
+                                    <input type="password" class="form-control" name="e_password" id="e_password" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="e_tempat_lahir" id="e_tempat_lahir" placeholder="Jakarta" />
+                                    <select class="form-control" name="e_level" id="e_level">
+                                        <option value="">-- Pilih Program --</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -217,9 +160,25 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" name="e_status" id="e_status">
                                         <option value="">-- Pilih Status --</option>
-                                        <option value="T">Aktif</option>
-                                        <option value="F">Tidak</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Tidak Aktif</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gambar </label>
+                                <div class="col-sm-9">
+                                    <span class="profile-picture">
+                                        <img id="avatar" name="avatar" class="editable img-responsive" />
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
                                 </div>
                             </div>
                     </div>
@@ -299,16 +258,17 @@
                 },
             },
             submitHandler: function(form) {
-                var formData = new FormData(form);
+                formdata = new FormData(form);
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url('karyawan/simpan') ?>",
-                    data: formData,
+                    data: formdata,
                     processData: false,
                     contentType: false,
                     cache: false,
                     async: false,
                     success: function(data) {
+                        console.log(data);
                         $('#my-modal').modal('hide');
                         if (data == 1) {
                             document.getElementById("formTambah").reset();
@@ -365,7 +325,7 @@
             submitHandler: function(form) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('guru/update') ?>",
+                    url: "<?php echo base_url('karyawan/update') ?>",
                     dataType: "JSON",
                     data: $('#formEdit').serialize(),
                     success: function(data) {
@@ -410,7 +370,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('guru/delete') ?>",
+                    url: "<?php echo base_url('karyawan/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {
@@ -430,27 +390,22 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('guru/tampil_byid') ?>",
+            url: "<?php echo base_url('karyawan/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
                 id: id,
             },
             success: function(data) {
-                $('#e_id').val(data[0].id);
-                $('#e_IdGuru').val(data[0].IdGuru);
-                $('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-                $('#e_nama').val(data[0].GuruNama);
-                $('#e_telepon').val(data[0].GuruTelp);
-                $('#e_alamat').val(data[0].GuruAlamat);
-                $('#e_program_sekolah').val(data[0].GuruBase);
-                $('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-                $('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-                $('#e_agama').val(data[0].GuruAgama);
-                $('#e_email').val(data[0].GuruEmail);
-                $('#e_tgl_lahir').val(data[0].GuruTglLahir);
-                $('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-                $('#e_status').val(data[0].GuruStatus);
+                $('#e_id').val(data[0].id_pengawas);
+                $('#e_nip').val(data[0].nip);
+                $('#e_nama').val(data[0].nama);
+                $('#e_jabatan').val(data[0].jabatan);
+                $('#e_email').val(data[0].username);
+                $('#e_level').val(data[0].level);
+                $('#e_status').val(data[0].status);
+                $('#e_file').val(data[0].gambar);
+                $("#avatar").attr('src','http://localhost/siak/assets/gambar/2fb4ccd62e4ab2886d2b51fe1fa5ca2e.png');
             }
         });
     });
@@ -476,10 +431,10 @@
                         '<td>' + data[i].level + '</td>' +
                         '<td>' + data[i].statusv2 + '</td>' +
                         '<td class="text-center">' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_pengawas + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                         '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id_pengawas + '">' +
                         '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                         '</button>' +
                         '</td>' +
