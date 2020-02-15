@@ -1,31 +1,34 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Profile extends CI_Controller
+{
 
-    function __construct(){
-        parent::__construct();      
+    function __construct()
+    {
+        parent::__construct();
         $this->load->model('guru/model_guru');
+    }
+
+    function render_view($data)
+    {
+        $this->template->load('templateguru', $data); //Display Page
 
     }
 
-	function render_view($data) {
-        $this->template->load('template/guru', $data); //Display Page
-       
-    }
-
-	public function index() {
+    public function index()
+    {
         $data = array(
-            'page_content' 	=> 'biodata/view',
-            'ribbon' 		=> '<li class="active">Biodata Sekolah</li><li>Sample</li>',
-            'page_name' 	=> 'Biodata Sekolah',
+            'page_content'     => '../pageguru/profile/view',
+            'ribbon'         => '<li class="active">Profil Guru</li><li>Sample</li>',
+            'page_name'     => 'Profil Guru',
         );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()
     {
-        $my_data = $this->model_biodata->viewOrdering('sys_config','id','asc')->result();
+        $my_data = $this->model_guru->viewOrdering('sys_config', 'id', 'asc')->result();
         echo json_encode($my_data);
     }
 
@@ -34,7 +37,7 @@ class Profile extends CI_Controller {
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_biodata->view_where('sys_config',$data)->result();
+        $my_data = $this->model_guru->view_where('sys_config', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -60,9 +63,7 @@ class Profile extends CI_Controller {
             'directory'  => $this->input->post('e_folder'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_biodata->update($data_id,$data,'sys_config');
+        $action = $this->model_biodata->update($data_id, $data, 'sys_config');
         echo json_encode($action);
-        
     }
-
 }

@@ -65,14 +65,14 @@
 			</li>
 
 			<li class="">
-				<a href="<?= base_url() . 'ruangan'; ?>">
+				<a href="<?= base_url() . 'modulguru/uts'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Input Nilai UTS
 				</a>
 			</li>
 
 			<li class="">
-				<a href="<?= base_url() . 'jabatan'; ?>">
+				<a href="<?= base_url() . 'modulguru/uas'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Input Nilai UAS
 				</a>
@@ -80,7 +80,7 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'jabatan'; ?>">
+				<a href="<?= base_url() . 'modulguru/jadwal'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Jadwal Mengajar
 				</a>

@@ -1,6 +1,6 @@
 <?php
 
-class Model_biodata extends CI_model
+class Model_uas extends CI_model
 {
 
     public function view($table)

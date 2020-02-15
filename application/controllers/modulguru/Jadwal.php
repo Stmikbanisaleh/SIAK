@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Biodata extends CI_Controller
+class Jadwal extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('guru/model_biodata');
+        $this->load->model('guru/model_jadwal');
         $this->load->model('model_jabatan');
     }
 
@@ -19,32 +19,33 @@ class Biodata extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_biodata->view('tbps')->result_array();
-        $myagama = $this->model_biodata->view('tbagama')->result_array();
-        $mypendidikan = $this->model_biodata->view('mspendidikan')->result_array();
+        $my_data = $this->model_jadwal->view('tbps')->result_array();
+        $myakadmk = $this->model_jadwal->view('tbakadmk')->result_array();
+        $mypendidikan = $this->model_jadwal->view('mspendidikan')->result_array();
         $data = array(
-            'page_content'     => '../pageguru/biodata/view',
-            'ribbon'         => '<li class="active">Biodata Guru</li><li>Sample</li>',
-            'page_name'     => 'Biodata Guru',
+            'page_content'     => '../pageguru/jadwal/view',
+            'ribbon'         => '<li class="active">Jadwal Mengajar</li><li>Sample</li>',
+            'page_name'     => 'Jadwal Mengajar',
             'myprogram'     => $my_data,
-            'myagama'        => $myagama,
+            'myakadmk'        => $myakadmk,
             'mypendidikan'     => $mypendidikan
         );
         $this->render_view($data); //Memanggil function render_view
     }
 
-    public function tampil_byid()
+    public function perikas_jadwal()
     {
         $data = array(
-            'id'  => $this->input->post('id'),
+            'program_sekolah'  => $this->input->post('program_sekolah'),
+            'tahun'  => $this->input->post('tahun'),
         );
-        $my_data = $this->model_biodata->view_where_v2('TBGURU', $data)->result();
+        $my_data = $this->model_jadwal->view_periksa('TBJADWAL', $data)->result();
         echo json_encode($my_data);
     }
 
     public function tampil()
     {
-        $my_data = $this->model_biodata->view_guru('TBGURU')->result_array();
+        $my_data = $this->model_jadwal->view_guru('TBGURU')->result_array();
         echo json_encode($my_data);
     }
 
@@ -70,7 +71,7 @@ class Biodata extends CI_Controller
             'GuruStatus'  => $this->input->post('e_status'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_biodata->update($data_id, $data, 'TBGURU');
+        $action = $this->model_jadwal->update($data_id, $data, 'TBGURU');
         echo json_encode($action);
     }
 }

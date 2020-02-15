@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Biodata extends CI_Controller
+class Uas extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('guru/model_biodata');
+        $this->load->model('guru/model_uas');
         $this->load->model('model_jabatan');
     }
 
@@ -19,13 +19,13 @@ class Biodata extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_biodata->view('tbps')->result_array();
-        $myagama = $this->model_biodata->view('tbagama')->result_array();
-        $mypendidikan = $this->model_biodata->view('mspendidikan')->result_array();
+        $my_data = $this->model_uas->view('tbps')->result_array();
+        $myagama = $this->model_uas->view('tbagama')->result_array();
+        $mypendidikan = $this->model_uas->view('mspendidikan')->result_array();
         $data = array(
-            'page_content'     => '../pageguru/biodata/view',
-            'ribbon'         => '<li class="active">Biodata Guru</li><li>Sample</li>',
-            'page_name'     => 'Biodata Guru',
+            'page_content'     => '../pageguru/uas/view',
+            'ribbon'         => '<li class="active">Nilai Uas</li><li>Sample</li>',
+            'page_name'     => 'Nilai Uas',
             'myprogram'     => $my_data,
             'myagama'        => $myagama,
             'mypendidikan'     => $mypendidikan
@@ -38,13 +38,13 @@ class Biodata extends CI_Controller
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_biodata->view_where_v2('TBGURU', $data)->result();
+        $my_data = $this->model_uas->view_where_v2('TBGURU', $data)->result();
         echo json_encode($my_data);
     }
 
     public function tampil()
     {
-        $my_data = $this->model_biodata->view_guru('TBGURU')->result_array();
+        $my_data = $this->model_uas->view_guru('TBGURU')->result_array();
         echo json_encode($my_data);
     }
 
@@ -70,7 +70,7 @@ class Biodata extends CI_Controller
             'GuruStatus'  => $this->input->post('e_status'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_biodata->update($data_id, $data, 'TBGURU');
+        $action = $this->model_uas->update($data_id, $data, 'TBGURU');
         echo json_encode($action);
     }
 }

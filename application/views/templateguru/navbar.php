@@ -38,8 +38,8 @@
 					</a>
 				</li>
 
-				<li>
-					<a href="profile.html">
+				<li class="">
+					<a href="<?= base_url() . 'modulguru/profile'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>

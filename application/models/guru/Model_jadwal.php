@@ -1,6 +1,6 @@
 <?php
 
-class Model_biodata extends CI_model
+class Model_jadwal extends CI_model
 {
 
     public function view($table)
@@ -32,6 +32,15 @@ class Model_biodata extends CI_model
     }
 
     public function view_where_v2($table, $data)
+    {
+        return  $this->db->query('select * from tbguru a 
+        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
+        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
+        left join tbps d on a.GuruBase = d.KDTBPS
+        where a.isdeleted != 1 and a.id = ' . $data['id'] . '
+        ');
+    }
+    public function view_periksa($table, $data)
     {
         return  $this->db->query('select * from tbguru a 
         left join tbagama b on a.GuruAgama = b.KDTBAGAMA
