@@ -146,4 +146,10 @@ class Configfunction
         $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
         return $result;
     }
+
+    public function getidthnakd()
+    {
+        $result = $this->CI->db->query('SELECT ID FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
+        return $result;
+    }
 }
