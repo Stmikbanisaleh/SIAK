@@ -19,16 +19,12 @@ class Uas extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_uas->view('tbps')->result_array();
-        $myagama = $this->model_uas->view('tbagama')->result_array();
-        $mypendidikan = $this->model_uas->view('mspendidikan')->result_array();
+        $mypelajaran = $this->model_uas->view('mspelajaran')->result_array();
         $data = array(
             'page_content'     => '../pageguru/uas/view',
             'ribbon'         => '<li class="active">Nilai Uas</li><li>Sample</li>',
             'page_name'     => 'Nilai Uas',
-            'myprogram'     => $my_data,
-            'myagama'        => $myagama,
-            'mypendidikan'     => $mypendidikan
+            'mypelajaran'     => $mypelajaran
         );
         $this->render_view($data); //Memanggil function render_view
     }

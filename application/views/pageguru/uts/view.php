@@ -47,15 +47,15 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Program Sekolah</th>
-            <th>Kode</th>
-            <th>Kode Dapodik</th>
-            <th>Nama</th>
-            <th>Telp</th>
-            <th>Alamat</th>
+            <th>Hari</th>
+            <th>Nama Kelas</th>
+            <th>Jam</th>
+            <th>Nama Siswa</th>
+            <th>UTS</th>
+            <!-- <th>Alamat</th>
             <th>Jenis Kelamin</th>
             <th>Pendidikan Terakhir</th>
-            <th>Action</th>
+            <th>Action</th> -->
         </tr>
     </thead>
     <tbody id="show_data">

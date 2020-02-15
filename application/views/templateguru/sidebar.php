@@ -90,7 +90,7 @@
 		</ul>
 	</li>
 	<li class="">
-		<a href="javascript:void(0);" class="dropdown-toggle">
+		<a href="<?= base_url() . 'modulguru/tentang'; ?>">
 			<i class="menu-icon glyphicon glyphicon-download"></i>
 			<span class="menu-text">
 				Tentang Aplikasi
