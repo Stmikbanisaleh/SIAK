@@ -1,23 +1,21 @@
 <?php
 
-class Model_jadwal extends CI_model
+class Model_penghapusannilai extends CI_model
 {
 
-    public function view($periode,$ps)
+    public function view()
     {
-        return  $this->db->query("select * from tbjadwal a 
-        left join tbguru b on a.id_guru = b.idGuru
-        join mspelajaran c on a.id_mapel = c.id_mapel
-        join msruang d on a.id_ruang = d.ID
-        join tbps e on a.ps = e.KDTBPS where a.periode = " .$periode ." and a.ps = ".$ps." 
-        ");
+        return  $this->db->query('select g.*, j.nama as nama_jabatan from guru g join jabatan j on g.jabatan = j.id where g.isdeleted != 1 ');
     }
-
-    public function viewOrdering($table, $order, $ordering)
-    {
-        $this->db->where('isdeleted !=', 1);
-        $this->db->order_by($order, $ordering);
-        return $this->db->get($table);
+    public function getpermataajar($tahun, $semester, $programsekolah){
+        return $this->db->query("SELECT
+         A.ID, A.IDKRS, A.IDJDK, A.NPMTRNIL, 
+        (SELECT z.NMSISWA FROM MSSISWA z WHERE z.NOINDUK= A.NPMTRNIL)AS nama_siswa,
+        KDMKTRNIL, (SELECT z.nama FROM MSPELAJARAN z WHERE z.id_mapel = A.KDMKTRNIL)AS nama_mapel, 
+        SMTTRNIL, KLSTRNIL, UTSTRNIL, UASTRNIL, TGLUTSTRNIL, TGLUASTRNIL, USERUTSTRNIL, USERUASTRNIL, C.GuruNama 
+        FROM TRNILAI A JOIN TBJADWAL B ON A.IDJDK = B.id LEFT JOIN TBGURU C ON B.id_guru = C.IdGuru JOIN MSSISWA D ON A.NPMTRNIL = D.NOINDUK 
+        WHERE B.periode = ". $tahun ." AND B.semester= '" .$semester. "' AND D.PS = '". $programsekolah ."'
+        ORDER BY A.NPMTRNIL");
     }
 
     public function gettahun()
@@ -35,6 +33,13 @@ class Model_jadwal extends CI_model
         return  $this->db->query('SELECT DISTINCT 
         KDTBPS, DESCRTBPS,SINGKTBPS 
         FROM TBPS ORDER BY KDTBPS DESC ');
+    }
+
+    public function viewOrdering($table, $order, $ordering)
+    {
+        $this->db->where('isdeleted !=', 1);
+        $this->db->order_by($order, $ordering);
+        return $this->db->get($table);
     }
 
     public function viewWhereOrdering($table, $data, $order, $ordering)

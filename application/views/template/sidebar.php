@@ -177,14 +177,14 @@
 		<ul class="submenu">
 
 			<li class="">
-				<a href="<?= base_url() . 'jenjang'; ?>">
+				<a href="<?= base_url() . 'permataajar'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Per Mataajar
 				</a>
 			</li>
 
 			<li class="">
-				<a href="<?= base_url() . 'guru'; ?>">
+				<a href="<?= base_url() . 'penghapusannilai'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Penghapusan Nilai
 				</a>
@@ -207,7 +207,7 @@
 		<ul class="submenu">
 
 			<li class="">
-				<a href="<?= base_url() . 'tarif'; ?>">
+				<a href="<?= base_url() . 'jadwal'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Jadwal
 				</a>
@@ -231,7 +231,7 @@
 		<ul class="submenu">
 
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'kurikulum'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Kurikulum
 				</a>
@@ -240,7 +240,7 @@
 			</li>
 
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'mataajaraktif'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Mata Ajar Aktif
 				</a>
@@ -266,7 +266,7 @@
 		<ul class="submenu">
 
 			<li class="">
-				<a href="typography.html">
+				<a href="<?= base_url() . 'kelulusan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Kelulusan Siswa
 				</a>
