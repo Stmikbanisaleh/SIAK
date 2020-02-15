@@ -4,7 +4,6 @@
 
 <!-- <![endif]-->
 
-[if IE]>
 <script src="<?= base_url() ?>assets/template/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <!-- <script src="<?= base_url() ?>assets/template/js/jquery-2.1.4.min.js"></script> -->

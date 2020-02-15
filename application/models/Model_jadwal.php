@@ -25,6 +25,11 @@ class Model_jadwal extends CI_model
         return  $this->db->query('select TAHUN from tbakadmk where isdeleted != 1 ORDER BY TAHUN DESC ');
     }
 
+    public function getguru()
+    {
+        return  $this->db->query('select * from tbguru where isdeleted != 1 ORDER BY id DESC ');
+    }
+
     public function getsemester()
     {
         return  $this->db->query('select SEMESTER from tbakadmk where isdeleted != 1 ORDER BY SEMESTER DESC ');

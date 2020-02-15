@@ -1,7 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class ConfigFunction
+class Configfunction
 {
+    function __construct()
+    {
+        $this->CI =& get_instance();
+    }
+
     function picture($id, $w = 100, $h = 100)
     {
         $url = "//graph.facebook.com/$id/picture?width=$w&height=$h";
@@ -134,5 +139,11 @@ class ConfigFunction
 				  </div>';
 
         return $v_ret;
+    }
+
+    public function getthnakd()
+    {
+        $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
+        return $result;
     }
 }

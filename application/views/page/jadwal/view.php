@@ -1,4 +1,11 @@
 <div class="row">
+    <div class="col-xs-1">
+        <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
+            <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
+        </button>
+    </div>
+    <br>
+    <br>
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
             <select class="form-control" name="tahun" id="tahun">
@@ -23,85 +30,104 @@
         <br>
     </form>
 </div>
-
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Input Data Karyawan</h3>
+                <h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-                        <form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="nip" required name="nip" placeholder="NIK Karyawan" class="form-control" />
-                                </div>
-                            </div>
+            <form class="form-horizontal" role="form" id="formTambah">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="nama" required name="nama" placeholder="Nama Karyawan" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="jabatan" required name="jabatan" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-                                <div class="col-sm-9">
-                                    <input type="email" id="email" required name="email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Password </label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" required name="password" id="password" placeholder=""></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="programsekolah" id="programsekolah">
+                                        <option value="0">Status</option>
+                                        <?php foreach ($myps as $value) { ?>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="guru" id="guru">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myguru as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mata Ajar </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="mataajar" id="mataajar">
+                                        <option value="0">-- Status --</option>
+                                        <!-- <?php foreach ($myguru as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+                                        <?php } ?> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="guru" id="guru">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myguru as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="hari" id="hari">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myhari as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="ruang" id="ruang">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myruang as $value) { ?>
+                                            <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam </label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
-                    <i class="ace-icon fa fa-save"></i>
-                    Simpan
-                </button>
-                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                    <i class="ace-icon fa fa-times"></i>
-                    Batal
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Simpan
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -112,99 +138,40 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Edit Data Guru</h3>
+                <h3 class="smaller lighter blue no-margin">Form Edit Data <?= $page_name; ?></h3>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-                        <form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
+            <form class="form-horizontal" role="form" id="formEdit">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" id="e_id" required name="e_id" />
-                                    <input type="text" id="e_nip" required name="e_nip" placeholder="NIK Karyawan" class="form-control" />
+                                    <input type="hidden" id="e_id" name="e_id" />
+                                    <input type="text" id="e_nama" name="e_nama" placeholder="Nama Jabatan" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="e_nama" required name="e_nama" placeholder="Nama Karyawan" class="form-control" />
+                                    <input type="text" id="e_keterangan" name="e_keterangan" placeholder="Keterangan Jabatan" class="form-control" />
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-                                <div class="col-sm-9">
-                                    <input type="email" id="e_email" required name="e_email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Password </label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="e_password" id="e_password" placeholder=""></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_level" id="e_level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_status" id="e_status">
-                                        <option value="">-- Pilih Status --</option>
-                                        <option value="1">Aktif</option>
-                                        <option value="0">Tidak Aktif</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gambar </label>
-                                <div class="col-sm-9">
-                                    <span class="profile-picture">
-                                        <img id="avatar" name="avatar" class="editable img-responsive" />
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
-                                </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
-                    <i class="ace-icon fa fa-save"></i>
-                    Update
-                </button>
-                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                    <i class="ace-icon fa fa-times"></i>
-                    Batal
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Ubah
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -213,91 +180,117 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="table-header">
-            Semua Data Permata ajar
+            Semua Data <?= $page_name; ?>
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
+<br>
+<table id="table_id" class="display">
     <thead>
         <tr>
-            <th>No</th>
-            <th>Guru</th>
-            <th>Mata Ajar</th>
-            <th>Hari</th>
-            <th>Ruang</th>
-            <th>Kelas</th>
-            <th>Jam</th>
-            <th>Program Sekolah</th>
+            <th class="col-md-1">No</th>
+            <th>Nama Jabatan</th>
+            <th>Keterangan</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody id="show_data">
     </tbody>
 </table>
-<script type="text/javascript">
+<script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
+                id: {
+                    required: true
+                },
                 nama: {
-                    required: true,
-                },
-                telepon: {
-                    required: true,
-                    digits: true,
-                    maxlength: 14,
-                    minlength: 10,
-                },
-                alamat: {
-                    required: true,
-                    minlength: 10,
-                },
-                email: {
-                    required: true,
-                    email: true,
+                    required: true
                 },
             },
             messages: {
+
+                id: {
+                    required: "Kode jabatan harus diisi!"
+                },
                 nama: {
-                    required: "Nama Guru harus diisi!"
-                },
-                telepon: {
-                    required: "Telepon harus diisi!"
-                },
-                alamat: {
-                    required: "Harap Masukan alamat dengan benar!"
+                    required: "Nama jabatan harus diisi!"
                 },
             },
             submitHandler: function(form) {
-                formdata = new FormData(form);
+                $('#btn_simpan').html('Sending..');
                 $.ajax({
+                    url: "<?php echo base_url('jadwal/simpan') ?>",
                     type: "POST",
-                    url: "<?php echo base_url('karyawan/simpan') ?>",
-                    data: formdata,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
-                    success: function(data) {
-                        console.log(data);
-                        $('#my-modal').modal('hide');
-                        if (data == 1) {
+                    data: $('#formTambah').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        if (response == true) {
                             document.getElementById("formTambah").reset();
                             swalInputSuccess();
                             show_data();
-                        } else if (data == 401) {
-                            document.getElementById("formTambah").reset();
-                            swalIdDouble();
+                            $('#modalTambah').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Nama Jabatan Sudah digunakan!');
                         } else {
-                            document.getElementById("formTambah").reset();
                             swalInputFailed();
                         }
                     }
                 });
-                return false;
             }
-        });
+        })
+    }
+
+    if ($("#formSearch").length > 0) {
+        $("#formSearch").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                id: {
+                    required: true
+                },
+
+                nama: {
+                    required: true
+                },
+            },
+            messages: {
+
+                id: {
+                    required: "Kode jabatan harus diisi!"
+                },
+                nama: {
+                    required: "Nama jabatan harus diisi!"
+                },
+            },
+            submitHandler: function(form) {
+                $('#btn_search').html('Searching..');
+                $.ajax({
+                    url: "<?php echo base_url('jadwal/search') ?>",
+                    type: "POST",
+                    data: $('#formSearch').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        if (response == true) {
+                            document.getElementById("formTambah").reset();
+                            swalInputSuccess();
+                            show_data();
+                            $('#modalTambah').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Nama Jabatan Sudah digunakan!');
+                        } else {
+                            swalInputFailed();
+                        }
+                    }
+                });
+            }
+        })
     }
 
     if ($("#formEdit").length > 0) {
@@ -305,67 +298,123 @@
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                nama: {
-                    required: true,
+                e_id: {
+                    required: true
                 },
-                telepon: {
-                    required: true,
-                    digits: true,
-                    maxlength: 14,
-                    minlength: 10,
-                },
-                alamat: {
-                    required: true,
-                    minlength: 10,
-                },
-                email: {
-                    required: true,
-                    email: true,
+                e_nama: {
+                    required: true
                 },
             },
             messages: {
-                nama: {
-                    required: "Nama Guru harus diisi!"
+
+                e_nama: {
+                    required: "Nama jabatan harus diisi!"
                 },
-                telepon: {
-                    required: "Telepon harus diisi!"
-                },
-                alamat: {
-                    required: "Harap Masukan alamat dengan benar!"
-                },
+
             },
             submitHandler: function(form) {
+                $('#btn_edit').html('Sending..');
                 $.ajax({
+                    url: "<?php echo base_url('jabatan/update') ?>",
                     type: "POST",
-                    url: "<?php echo base_url('karyawan/update') ?>",
-                    dataType: "JSON",
                     data: $('#formEdit').serialize(),
-                    success: function(data) {
-                        $('#modalEdit').modal('hide');
-                        if (data == 1) {
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Ubah');
+                        if (response == true) {
                             document.getElementById("formEdit").reset();
                             swalEditSuccess();
                             show_data();
-                        } else if (data == 401) {
-                            document.getElementById("formEdit").reset();
-                            swalIdDouble();
+                            $('#modalEdit').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Nama Jabatan Sudah digunakan!');
                         } else {
-                            document.getElementById("formEdit").reset();
                             swalEditFailed();
                         }
                     }
                 });
-                return false;
             }
+        })
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        show_data();
+        $('#table_id').DataTable();
+    });
+
+    //function show all Data
+    function show_data() {
+        $.ajax({
+            type: 'ajax',
+            url: '<?php echo site_url('jabatan/tampil') ?>',
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                var html = '';
+                var i = 0;
+                var no = 1;
+                for (i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td class="text-center">' + no + '</td>' +
+                        '<td>' + data[i].NAMAJABATAN + '</td>' +
+                        '<td>' + data[i].KET + '</td>' +
+                        '<td class="text-center">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
+                        '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                        '</button> &nbsp' +
+                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                        '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                        '</button>' +
+                        '</td>' +
+                        '</tr>';
+                    no++;
+                }
+                $("#table_id").dataTable().fnDestroy();
+                var a = $('#show_data').html(html);
+                //                    $('#mydata').dataTable();
+                if (a) {
+                    $('#table_id').dataTable({
+                        "bPaginate": true,
+                        "bLengthChange": false,
+                        "bFilter": true,
+                        "bInfo": false,
+                        "bAutoWidth": false
+                    });
+                }
+                /* END TABLETOOLS */
+            }
+
         });
     }
 
-    $(document).ready(function() {
-        show_data();
-        $('#datatable_tabletools').DataTable();
+    //show modal tambah
+    $('#item-tambah').on('click', function() {
+        $('#modalTambah').modal('show');
     });
 
-    //Simpan guru
+    //get data for update record
+    $('#show_data').on('click', '.item_edit', function() {
+        document.getElementById("formEdit").reset();
+        var id = $(this).data('id');
+        $('#modalEdit').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('jabatan/tampil_byid') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                $('#e_id').val(data[0].ID);
+                $('#e_nama').val(data[0].NAMAJABATAN);
+                $('#e_keterangan').val(data[0].KET);
+
+            }
+        });
+    });
 
     $('#show_data').on('click', '.item_hapus', function() {
         var id = $(this).data('id');
@@ -382,7 +431,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('karyawan/delete') ?>",
+                    url: "<?php echo base_url('jabatan/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {
@@ -390,78 +439,14 @@
                     },
                     success: function(data) {
                         show_data();
-                        swalDeleteSuccess();
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data sudah dihapus.',
+                            'success'
+                        )
                     }
                 });
             }
         })
     })
-
-    $('#show_data').on('click', '.item_edit', function() {
-        var id = $(this).data('id');
-        $('#modalEdit').modal('show');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('karyawan/tampil_byid') ?>",
-            async: true,
-            dataType: "JSON",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                $('#e_id').val(data[0].id_pengawas);
-                $('#e_nip').val(data[0].nip);
-                $('#e_nama').val(data[0].nama);
-                $('#e_jabatan').val(data[0].jabatan);
-                $('#e_email').val(data[0].username);
-                $('#e_level').val(data[0].level);
-                $('#e_status').val(data[0].status);
-                $('#e_file').val(data[0].gambar);
-                $("#avatar").attr('src', 'http://localhost/siak/assets/gambar/2fb4ccd62e4ab2886d2b51fe1fa5ca2e.png');
-            }
-        });
-    });
-
-    //function show all Data
-    function show_data() {
-        $.ajax({
-            type: 'ajax',
-            url: '<?php echo site_url('jadwal/tampil') ?>',
-            async: true,
-            dataType: 'json',
-            success: function(data) {
-                var html = '';
-                var i = 0;
-                var no = 1;
-                for (i = 0; i < data.length; i++) {
-                    html += '<tr>' +
-                        '<td class="text-center">' + no + '</td>' +
-                        '<td>' + data[i].nip + '</td>' +
-                        '<td>' + data[i].nama + '</td>' +
-                        '<td>' + data[i].jabatan + '</td>' +
-                        '<td>' + data[i].username + '</td>' +
-                        '<td>' + data[i].level + '</td>' +
-                        '<td>' + data[i].statusv2 + '</td>' +
-                        '<td>' + data[i].level + '</td>' +
-                        '<td>' + data[i].statusv2 + '</td>' +
-                        '</tr>';
-                    no++;
-                }
-                $("#datatable_tabletools").dataTable().fnDestroy();
-                var a = $('#show_data').html(html);
-                //                    $('#mydata').dataTable();
-                if (a) {
-                    $('#datatable_tabletools').dataTable({
-                        "bPaginate": true,
-                        "bLengthChange": false,
-                        "bFilter": true,
-                        "bInfo": false,
-                        "bAutoWidth": false
-                    });
-                }
-                /* END TABLETOOLS */
-            }
-
-        });
-    }
 </script>
