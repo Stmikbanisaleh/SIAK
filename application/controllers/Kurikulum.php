@@ -17,8 +17,8 @@ class Kurikulum extends CI_Controller {
 	public function index() {
         $data = array(
                     'page_content'  => 'kurikulum/view',
-                    'ribbon'        => '<li class="active">Kurikulum</li>',
-                    'page_name'     => 'Kurikulum'
+                    'ribbon'        => '<li class="active">Master Kurikulum</li>',
+                    'page_name'     => 'Master Kurikulum'
                 );
         $this->render_view($data); //Memanggil function render_view
     }

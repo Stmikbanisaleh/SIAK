@@ -6,6 +6,20 @@
 	</div>
 	<br>
 	<br>
+	<div class="col-xs-4">
+        <select class="form-control" name="level" id="level">
+            <option value="">SEKOLAH MENENGAH ATAS</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+	</div>
+	<div class="col-xs-1">
+		<button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
+			<a class="ace-icon fa fa bigger-120"></a>Periksa
+		</button>
+	</div>
+	<br>
+		
 </div>
 <div id="modalTambah" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -151,8 +165,10 @@
 	<thead>
 		<tr>
 			<th class="col-md-1">No</th>
-			<th>Kode Jabatan</th>
-			<th>Nama Jabatan</th>
+			<th>Kode Kurikulim</th>
+			<th>Nama Kurikulum</th>
+			<th>Jam</th>
+			<th>Program Sekolah</th>
 			<th>Action</th>
 		</tr>
 	</thead>

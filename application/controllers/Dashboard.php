@@ -11,15 +11,15 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		if ($this->session->userdata('username') != null) {
+		// if ($this->session->userdata('username') != null) {
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Sample</li>',
 				'page_name' 	=> 'Dashboard',
 			);
 			$this->render_view($data); //Memanggil function render_view
-		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
-		}
+		// } else {
+			// $this->load->view('page/login'); //Memanggil function render_view
+		// }
 	}
 }
