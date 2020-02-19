@@ -62,7 +62,7 @@ class Jadwal extends CI_Controller
             'id_mapel'  => $this->input->post('mapel'),
             'id_ruang'  => $this->input->post('ruang'),
             'id_guru'  => $this->input->post('guru'),
-            'periode'  => 
+            'periode'  => date('Y'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_jadwal->insert($data, 'tbjadwal');
