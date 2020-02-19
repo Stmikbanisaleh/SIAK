@@ -40,14 +40,18 @@ class Model_jadwal extends CI_model
         where a.isdeleted != 1 and a.id = ' . $data['id'] . '
         ');
     }
-    public function view_periksa($table, $data)
+    public function view_periksa($tahun, $programsekolah)
     {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1 and a.id = ' . $data['id'] . '
-        ');
+        return  $this->db->query("SELECT TBGURU.IdGuru,TBGURU.GuruNama,TBJADWAL.id_mapel,MSPELAJARAN.nama, MSRUANG.RUANG, TBJADWAL.hari,TBJADWAL.NMKLSTRJDK, TBJADWAL.JAM, TBPS.DESCRTBPS, TBJADWAL.id
+        FROM
+        TBJADWAL
+        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
+        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.kode
+        INNER JOIN MSRUANG ON TBJADWAL.IDRUANG = MSRUANG.ID
+        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
+        WHERE TBJADWAL.periode=".$tahun." AND TBJADWAL.PS=".$programsekolah."
+        ORDER BY hari
+        ");
     }
 
     public function view_guru()

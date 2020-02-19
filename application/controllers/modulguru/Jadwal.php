@@ -35,12 +35,10 @@ class Jadwal extends CI_Controller
 
     public function perikas_jadwal()
     {
-        $data = array(
-            'program_sekolah'  => $this->input->post('program_sekolah'),
-            'tahun'  => $this->input->post('tahun'),
-        );
-        $my_data = $this->model_jadwal->view_periksa('TBJADWAL', $data)->result();
-        echo json_encode($my_data);
+        $tahun = $this->input->post('tahun');
+		$programsekolah = $this->input->post('programsekolah');
+		$result = $this->model_jadwal->view_periksa($tahun, $programsekolah)->result();
+		echo json_encode($result);
     }
 
     public function tampil()
