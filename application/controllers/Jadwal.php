@@ -8,7 +8,6 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_jadwal');
-
     }
 
     function render_view($data)
@@ -17,6 +16,13 @@ class Jadwal extends CI_Controller
 
     }
 
+    public function search(){
+		$tahun = $this->input->post('tahun');
+        $programsekolah = $this->input->post('programsekolah');
+        $result = $this->model_jadwal->getjadwal($tahun, $programsekolah)->result();
+		echo json_encode($result);
+    }
+    
     public function index()
     {
         $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
@@ -24,6 +30,8 @@ class Jadwal extends CI_Controller
         $mytahun = $this->model_jadwal->viewOrdering('tbakadmk', 'id', 'asc')->result_array();
         $myps = $this->model_jadwal->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
         $myruang = $this->model_jadwal->viewOrdering('msruang', 'ID', 'asc')->result_array();
+        $mymapel = $this->model_jadwal->viewOrdering('mspelajaran', 'id_mapel', 'asc')->result_array();
+
         $data = array(
             'page_content'  => 'jadwal/view',
             'ribbon'        => '<li class="active">Master Jadwal</li>',
@@ -33,6 +41,7 @@ class Jadwal extends CI_Controller
             'myguru'        => $myguru,
             'myhari'        => $myhari,
             'myruang'        => $myruang,
+            'mymapel'       => $mymapel
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -59,10 +68,13 @@ class Jadwal extends CI_Controller
         $data = array(
             'ps'  => $this->input->post('programsekolah'),
             'id_guru'  => $this->input->post('guru'),
-            'id_mapel'  => $this->input->post('mapel'),
+            'id_mapel'  => $this->input->post('mataajar'),
             'id_ruang'  => $this->input->post('ruang'),
             'id_guru'  => $this->input->post('guru'),
-            'periode'  => 
+            'hari'  => $this->input->post('hari'),
+            'nmklstrjdk'  => $this->input->post('kelas'),
+            'periode'  => $tampil_thnakad[0]['THNAKAD'],
+            'semester'  => $tampil_thnakad[0]['SEMESTER'],
             'createdAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_jadwal->insert($data, 'tbjadwal');

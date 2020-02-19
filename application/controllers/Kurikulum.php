@@ -15,42 +15,47 @@ class Kurikulum extends CI_Controller {
     }
 
 	public function index() {
+        $myps = $this->model_kurikulum->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
         $data = array(
                     'page_content'  => 'kurikulum/view',
                     'ribbon'        => '<li class="active">Master Kurikulum</li>',
-                    'page_name'     => 'Master Kurikulum'
+                    'page_name'     => 'Master Kurikulum',
+                    'myps'          => $myps
                 );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()
     {
-        $my_data = $this->model_jabatan->viewOrdering('kurikulum','id','asc')->result();
+        $my_data = $this->model_kurikulum->viewtampil()->result();
         echo json_encode($my_data);
     }
 
     public function tampil_byid()
     {
         $data = array(
-            'id'  => $this->input->post('id'),
+            'id_mapel'  => $this->input->post('id'),
         );
-        $my_data = $this->model_jabatan->view_where('kurikulum',$data)->result();
+        $my_data = $this->model_kurikulum->view_where('mspelajaran',$data)->result();
         echo json_encode($my_data);
     }
 
     public function simpan()
     {
         $data_id = array(
-            'nama'  => $this->input->post('nama')
+            'kode'  => $this->input->post('kodematajar')
         );
-        $count_id = $this->model_jabatan->view_count('kurikulum', $data_id);
+        $count_id = $this->model_kurikulum->view_count('mspelajaran', $data_id);
         if($count_id<1){
             $data = array(
-                'id'  => $this->input->post('id'),
-                'nama'  => $this->input->post('nama'),
+                'kode'  => $this->input->post('kodematajar'),
+                'nama'  => $this->input->post('namamataajar'),
+                'jam'  => $this->input->post('jam'),
+                'semester'  => $this->input->post('semester'),
+                'ps'  => $this->input->post('programsekolah'),
                 'createdAt' => date('Y-m-d H:i:s'),
             );
-            $action = $this->model_jabatan->insert($data,'kurikulum');
+            $action = $this->model_kurikulum->insert($data,'mspelajaran');
             echo json_encode($action);
         }else{
             echo json_encode(401);
@@ -61,13 +66,17 @@ class Kurikulum extends CI_Controller {
     public function update()
     {
         $data_id = array(
-            'id'  => $this->input->post('e_id')
+            'id_mapel'  => $this->input->post('e_id')
         );
         $data = array(
-            'nama'  => $this->input->post('e_nama'),
+            'kode'  => $this->input->post('e_kodematajar'),
+            'nama'  => $this->input->post('e_namamataajar'),
+            'jam'  => $this->input->post('e_jam'),
+            'semester'  => $this->input->post('e_semester'),
+            'ps'  => $this->input->post('e_programsekolah'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jabatan->update($data_id,$data,'kurikulum');
+        $action = $this->model_kurikulum->update($data_id,$data,'mspelajaran');
         echo json_encode($action);
         
     }
@@ -75,12 +84,12 @@ class Kurikulum extends CI_Controller {
     public function delete()
     {
         $data_id = array(
-            'id'  => $this->input->post('id')
+            'id_mapel'  => $this->input->post('id')
         );
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_jabatan->update($data_id,$data,'kurikulum');
+        $action = $this->model_kurikulum->update($data_id,$data,'mspelajaran');
         echo json_encode($action);
         
     }

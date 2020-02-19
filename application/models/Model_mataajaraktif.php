@@ -1,8 +1,38 @@
 <?php 
 
-class Model_kurikulum extends CI_model{
+class Model_mataajaraktif extends CI_model{
+
     public function view($table){
         return $this->db->get($table);
+    }
+
+    public function getsearch($tahun, $programsekolah,$semester){
+        return  $this->db->query("SELECT
+        TRMKA.ID,
+        TRMKA.IDKRKTRMKA,
+        TRMKA.KDMKTRMKA,
+        TRMKA.SMTTRMKA,
+        TRMKA.PSTRMKA,
+        TRMKA.THNAKDTRMKA,
+        TRMKA.GANGENTRMKA,
+        TRMKA.IDUSER,
+        TRMKA.TGLINPUT,
+        MSPELAJARAN.nama,
+        TBPS.DESCRTBPS
+        FROM
+        TRMKA
+        INNER JOIN TBPS ON TRMKA.PSTRMKA = TBPS.KDTBPS
+        INNER JOIN MSPELAJARAN ON TRMKA.KDMKTRMKA = MSPELAJARAN.kode
+        WHERE PSTRMKA = ".$programsekolah ." AND THNAKDTRMKA = '". $tahun."'  AND GANGENTRMKA = '". $semester."' and TRMKA.isdeleted != 1
+        ORDER BY semester");
+    }
+
+    public function getsemester(){
+        return $this->db->query('SELECT DISTINCT SEMESTER FROM TBAKADMK ORDER BY SEMESTER DESC');
+    }
+
+    public function getthnakad(){
+        return $this->db->query('SELECT DISTINCT THNAKAD FROM TBAKADMK ORDER BY ID DESC');
     }
 
     public function viewtampil(){

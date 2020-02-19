@@ -35,6 +35,29 @@ class Model_jadwal extends CI_model
         return  $this->db->query('select SEMESTER from tbakadmk where isdeleted != 1 ORDER BY SEMESTER DESC ');
     }
 
+    public function getjadwal($periode, $programsekolah)
+    {
+        return  $this->db->query("SELECT
+        TBGURU.IdGuru,
+        TBGURU.GuruNama,
+        TBJADWAL.id_mapel,
+        MSPELAJARAN.nama,
+        TBJADWAL.hari,
+        MSRUANG.RUANG,
+        TBJADWAL.NMKLSTRJDK,
+        TBJADWAL.JAM,
+        TBPS.DESCRTBPS,
+        TBJADWAL.id
+        FROM
+        TBJADWAL
+        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
+        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.id_mapel
+        INNER JOIN MSRUANG ON TBJADWAL.id_ruang = MSRUANG.ID
+        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
+        WHERE TBJADWAL.periode= ".$periode ." AND TBJADWAL.PS= ". $programsekolah."
+        ORDER BY hari");
+    }
+
     public function getps()
     {
         return  $this->db->query('SELECT DISTINCT 
