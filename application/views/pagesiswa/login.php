@@ -27,7 +27,7 @@
 							<h1>
 								<i class="ace-icon fa fa-leaf green"></i>
 								<span class="red">Halaman</span>
-								<span class="white" id="id-text2">Operator</span>
+								<span class="white" id="id-text2">Siswa</span>
 							</h1>
 							<h4 class="blue" id="id-company-text">&copy; Smart School</h4>
 						</div>
@@ -47,7 +47,7 @@
 										<?php if ($this->session->flashdata('category_error')) { ?>
 											<div class="alert alert-danger"> <?= $this->session->flashdata('category_error') ?> </div>
 										<?php } ?>
-										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'dashboard/login'; ?>">
+										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulsiswa/dashboard/login'; ?>">
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">

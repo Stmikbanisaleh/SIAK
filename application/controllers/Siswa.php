@@ -1,116 +1,147 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Siswa extends CI_Controller {
+class Siswa extends CI_Controller
+{
 
-    function __construct(){
-        parent::__construct();      
+    function __construct()
+    {
+        parent::__construct();
         $this->load->model('model_siswa');
         $this->load->model('model_guru');
     }
 
-	function render_view($data) {
+    function render_view($data)
+    {
         $this->template->load('template', $data); //Display Page
-       
+
     }
 
-	public function index() {
-		$myps = $this->model_guru->view('tbps')->result_array();
-        $myagama = $this->model_guru->view('tbagama')->result_array();
-        $data = array(
-                    'page_content'  => 'siswa/view',
-                    'ribbon'        => '<li class="active">Siswa</li>',
-                    'page_name'     => 'Siswa',
-                    'myagama'       => $myagama,
-                    'myps'          => $myps
-                );
-        $this->render_view($data); //Memanggil function render_view
+    public function index()
+    {
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $myps = $this->model_guru->view('tbps')->result_array();
+            $myagama = $this->model_guru->view('tbagama')->result_array();
+            $data = array(
+                'page_content'  => 'siswa/view',
+                'ribbon'        => '<li class="active">Siswa</li>',
+                'page_name'     => 'Siswa',
+                'myagama'       => $myagama,
+                'myps'          => $myps
+            );
+            $this->render_view($data); //Memanggil function render_view
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
     }
 
     public function tampil()
     {
-        $my_data = $this->model_siswa->view('mssiswa','id','asc')->result();
-        echo json_encode($my_data);
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $my_data = $this->model_siswa->view('mssiswa', 'id', 'asc')->result();
+            echo json_encode($my_data);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
     }
 
     public function tampil_byid()
     {
-        $data = array(
-            'ID'  => $this->input->post('id'),
-        );
-        $my_data = $this->model_siswa->view_where('mssiswa',$data)->result();
-        echo json_encode($my_data);
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $data = array(
+                'ID'  => $this->input->post('id'),
+            );
+            $my_data = $this->model_siswa->view_where('mssiswa', $data)->result();
+            echo json_encode($my_data);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
     }
 
     public function simpan()
     {
-        $data_id = array(
-            'NOINDUK'  => $this->input->post('no_induk'),
-        );
-        $count_id = $this->model_siswa->view_count('mssiswa', $data_id);
-        if($count_id<1){
-            $data = array(
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $data_id = array(
                 'NOINDUK'  => $this->input->post('no_induk'),
-                'NOREG'  => $this->input->post('noreg'),
-                'TGLREG'  => $this->input->post('tglreg'),
-                'NMSISWA'  => $this->input->post('nmsiswa'),
-                'TPLHR'  => $this->input->post('tplhr'),
-                'TGLHR'  => $this->input->post('tglhr'),
-                'JK'  => $this->input->post('jk'),
-                'AGAMA'  => $this->input->post('agama'),
-                'TAHUN'  => $this->input->post('tahun'),
-                'PS'  => $this->input->post('programsekolah'),
-                'KDWARGA'  => $this->input->post('kdwarga'),
-                'EMAIL'  => $this->input->post('email'),
-                'TELP'  => $this->input->post('telp'),
-                'IDUSER'  => $this->session->userdata('nip'),
-                'createdAt' => date('Y-m-d H:i:s'),
             );
-            $action = $this->model_siswa->insert($data,'mssiswa');
-            echo json_encode($action);
-        }else{
-            echo json_encode(401);
+            $count_id = $this->model_siswa->view_count('mssiswa', $data_id);
+            if ($count_id < 1) {
+                $data = array(
+                    'NOINDUK'  => $this->input->post('no_induk'),
+                    'NOREG'  => $this->input->post('noreg'),
+                    'TGLREG'  => $this->input->post('tglreg'),
+                    'NMSISWA'  => $this->input->post('nmsiswa'),
+                    'TPLHR'  => $this->input->post('tplhr'),
+                    'TGLHR'  => $this->input->post('tglhr'),
+                    'JK'  => $this->input->post('jk'),
+                    'AGAMA'  => $this->input->post('agama'),
+                    'TAHUN'  => $this->input->post('tahun'),
+                    'PS'  => $this->input->post('programsekolah'),
+                    'KDWARGA'  => $this->input->post('kdwarga'),
+                    'EMAIL'  => $this->input->post('email'),
+                    'TELP'  => $this->input->post('telp'),
+                    'IDUSER'  => $this->session->userdata('nip'),
+                    'createdAt' => date('Y-m-d H:i:s'),
+                );
+                $action = $this->model_siswa->insert($data, 'mssiswa');
+                echo json_encode($action);
+            } else {
+                echo json_encode(401);
+            }
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
         }
-        
     }
 
     public function update()
     {
-        $data_id = array(
-            'ID'  => $this->input->post('e_id')
-        );
-        $data = array(
-            'NOINDUK'  => $this->input->post('e_no_induk'),
-            'NOREG'  => $this->input->post('e_noreg'),
-            'TGLREG'  => $this->input->post('e_tglreg'),
-            'NMSISWA'  => $this->input->post('e_nmsiswa'),
-            'TPLHR'  => $this->input->post('e_tplhr'),
-            'TGLHR'  => $this->input->post('e_tglhr'),
-            'JK'  => $this->input->post('e_jk'),
-            'AGAMA'  => $this->input->post('e_agama'),
-            'TAHUN'  => $this->input->post('e_tahun'),
-            'PS'  => $this->input->post('e_programsekolah'),
-            'KDWARGA'  => $this->input->post('e_kdwarga'),
-            'EMAIL'  => $this->input->post('e_email'),
-            'TELP'  => $this->input->post('e_telp'),
-            'IDUSER'  => $this->session->userdata('nip'),
-            'updatedAt' => date('Y-m-d H:i:s'),
-        );
-        $action = $this->model_siswa->update($data_id,$data,'mssiswa');
-        echo json_encode($action);
-        
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $data_id = array(
+                'ID'  => $this->input->post('e_id')
+            );
+            $data = array(
+                'NOINDUK'  => $this->input->post('e_no_induk'),
+                'NOREG'  => $this->input->post('e_noreg'),
+                'TGLREG'  => $this->input->post('e_tglreg'),
+                'NMSISWA'  => $this->input->post('e_nmsiswa'),
+                'TPLHR'  => $this->input->post('e_tplhr'),
+                'TGLHR'  => $this->input->post('e_tglhr'),
+                'JK'  => $this->input->post('e_jk'),
+                'AGAMA'  => $this->input->post('e_agama'),
+                'TAHUN'  => $this->input->post('e_tahun'),
+                'PS'  => $this->input->post('e_programsekolah'),
+                'KDWARGA'  => $this->input->post('e_kdwarga'),
+                'EMAIL'  => $this->input->post('e_email'),
+                'TELP'  => $this->input->post('e_telp'),
+                'IDUSER'  => $this->session->userdata('nip'),
+                'updatedAt' => date('Y-m-d H:i:s'),
+            );
+            $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
+            echo json_encode($action);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
     }
 
     public function delete()
     {
-        $data_id = array(
-            'ID'  => $this->input->post('id')
-        );
-        $data = array(
-            'isdeleted'  => 1,
-        );
-        $action = $this->model_siswa->update($data_id,$data,'mssiswa');
-        echo json_encode($action);
-        
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+            $data_id = array(
+                'ID'  => $this->input->post('id')
+            );
+            $data = array(
+                'isdeleted'  => 1,
+            );
+            $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
+            echo json_encode($action);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
     }
 }

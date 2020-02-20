@@ -36,7 +36,7 @@
 
 <ul class="nav nav-list">
 	<li class="">
-		<a href="<?= base_url().'modulguru/dashboard'; ?>">
+		<a href="<?= base_url().'modulsiswa/dashboard'; ?>">
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
@@ -45,9 +45,9 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon fa fa-user"></i>
 			<span class="menu-text">
-				Evaluasi
+				Data Master
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -58,45 +58,36 @@
 		<ul class="submenu">
 
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/biodata'; ?>">
+				<a href="<?= base_url() . 'modulsiswa/history'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Biodata
+					History Pembayaran
 				</a>
 			</li>
 
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uts'; ?>">
+				<a href="<?= base_url() . 'modulsiswa/rekap'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Input Nilai UTS
+					Rekap Pembayaran
 				</a>
 			</li>
-
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulsiswa/hasilstudi'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Input Nilai UAS
-				</a>
-
-				<b class="arrow"></b>
-			</li>
-			<li class="">
-				<a href="<?= base_url() . 'modulguru/jadwal'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Jadwal Mengajar
+					Hasil Studi
 				</a>
 
 				<b class="arrow"></b>
 			</li>
 		</ul>
 	</li>
-	<li class="">
-		<a href="<?= base_url() . 'modulguru/tentang'; ?>">
+	<!-- <li class="">
+		<a href="<?= base_url() . 'modulsiswa/tentang'; ?>">
 			<i class="menu-icon glyphicon glyphicon-download"></i>
 			<span class="menu-text">
 				Tentang Aplikasi
 			</span>
 		</a>
-	</li>
+	</li> -->
 </ul><!-- /.nav-list -->
 
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

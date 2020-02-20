@@ -14,7 +14,6 @@ class Biodata extends CI_Controller
     function render_view($data)
     {
         $this->template->load('templateguru', $data); //Display Page
-
     }
 
     public function index()

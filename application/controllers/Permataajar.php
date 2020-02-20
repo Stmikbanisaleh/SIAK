@@ -17,138 +17,173 @@ class Permataajar extends CI_Controller
 
 	public function index()
 	{
-		$mytahun = $this->model_permataajar->gettahun()->result_array();
-		$mysemester = $this->model_permataajar->getsemester()->result_array();
-		$myps = $this->model_permataajar->getps()->result_array();
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-		$data = array(
-			'page_content' 	=> '/permataajar/view',
-			'ribbon' 		=> '<li class="active">Dashboard</li><li>Data Permataajar</li>',
-			'page_name' 	=> 'Data Permataajar',
-			'js' 			=> 'js_file',
-			'mytahun'		=> $mytahun,
-			'mysemester'	=> $mysemester,
-			'myps'			=> $myps
-		);
-		$this->render_view($data);
+			$mytahun = $this->model_permataajar->gettahun()->result_array();
+			$mysemester = $this->model_permataajar->getsemester()->result_array();
+			$myps = $this->model_permataajar->getps()->result_array();
+
+			$data = array(
+				'page_content' 	=> '/permataajar/view',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Data Permataajar</li>',
+				'page_name' 	=> 'Data Permataajar',
+				'js' 			=> 'js_file',
+				'mytahun'		=> $mytahun,
+				'mysemester'	=> $mysemester,
+				'myps'			=> $myps
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
 	}
 
-	public function search(){
-		$tahun = $this->input->post('tahun');
-		$semester = $this->input->post('semester');
-		$programsekolah = $this->input->post('programsekolah');
-		$result = $this->model_permataajar->getpermataajar($tahun, $semester, $programsekolah)->result();
-		echo json_encode($result);
+	public function search()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$tahun = $this->input->post('tahun');
+			$semester = $this->input->post('semester');
+			$programsekolah = $this->input->post('programsekolah');
+			$result = $this->model_permataajar->getpermataajar($tahun, $semester, $programsekolah)->result();
+			echo json_encode($result);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
 	}
 	public function simpan()
 	{
-		$config['upload_path']          = './assets/gambar';
-		$config['allowed_types']        = 'gif|jpg|png';
-        $config['encrypt_name'] = TRUE;
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload("file")){
-			$data = array('upload_data' => $this->upload->data());
-			$foto = $data['upload_data']['file_name']; 
-			$data = array(
-				'nip'  => $this->input->post('nip'),
-				'nama'  => $this->input->post('nama'),
-				'jabatan'  => $this->input->post('jabatan'),
-				'username'  => $this->input->post('email'),
-				'password'  => $this->input->post('password'),
-				'level' => $this->input->post('level'),
-				'status'  => 1,
-				'gambar'  => $foto,
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
-            echo json_decode($result);
-        } else {
-			$data = array(
-				'nip'  => $this->input->post('nip'),
-				'nama'  => $this->input->post('nama'),
-				'jabatan'  => $this->input->post('jabatan'),
-				'username'  => $this->input->post('email'),
-				'password'  => $this->input->post('password'),
-				'level' => $this->input->post('level'),
-				'status'  => 1,
-				'gambar'  => null,
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
-            echo json_decode($result);
+			$config['upload_path']          = './assets/gambar';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['encrypt_name'] = TRUE;
+
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload("file")) {
+				$data = array('upload_data' => $this->upload->data());
+				$foto = $data['upload_data']['file_name'];
+				$data = array(
+					'nip'  => $this->input->post('nip'),
+					'nama'  => $this->input->post('nama'),
+					'jabatan'  => $this->input->post('jabatan'),
+					'username'  => $this->input->post('email'),
+					'password'  => $this->input->post('password'),
+					'level' => $this->input->post('level'),
+					'status'  => 1,
+					'gambar'  => $foto,
+					'createdAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				echo json_decode($result);
+			} else {
+				$data = array(
+					'nip'  => $this->input->post('nip'),
+					'nama'  => $this->input->post('nama'),
+					'jabatan'  => $this->input->post('jabatan'),
+					'username'  => $this->input->post('email'),
+					'password'  => $this->input->post('password'),
+					'level' => $this->input->post('level'),
+					'status'  => 1,
+					'gambar'  => null,
+					'createdAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				echo json_decode($result);
+			}
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
 
 	public function tampil_byid()
 	{
-		$data = array(
-			'id_pengawas'  => $this->input->post('id'),
-		);
-		$my_data = $this->model_karyawan->view_where('TBPENGAWAS', $data)->result();
-		echo json_encode($my_data);
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$data = array(
+				'id_pengawas'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_karyawan->view_where('TBPENGAWAS', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
 	}
 
 	public function tampil()
 	{
-		$my_data = $this->model_karyawan->view_karyawan()->result_array();
-		echo json_encode($my_data);
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$my_data = $this->model_karyawan->view_karyawan()->result_array();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
 	}
 
 	public function update()
 	{
-		$data_id = array(
-			'id'  => $this->input->post('e_id')
-		);
-		$config['upload_path']          = './assets/gambar';
-		$config['allowed_types']        = 'gif|jpg|png';
-        $config['encrypt_name'] = TRUE;
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload("e_file")){
-			$data = array('upload_data' => $this->upload->data());
-			$foto = $data['upload_data']['file_name']; 
-			$data = array(
-				'nip'  => $this->input->post('nip'),
-				'nama'  => $this->input->post('nama'),
-				'jabatan'  => $this->input->post('jabatan'),
-				'username'  => $this->input->post('email'),
-				'password'  => $this->input->post('password'),
-				'level' => $this->input->post('level'),
-				'status'  => 1,
-				'gambar'  => $foto,
-				'createdAt' => date('Y-m-d H:i:s')
+			$data_id = array(
+				'id'  => $this->input->post('e_id')
 			);
-			$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
-            echo json_decode($result);
-        } else {
-			$data = array(
-				'nip'  => $this->input->post('e_nip'),
-				'nama'  => $this->input->post('e_nama'),
-				'jabatan'  => $this->input->post('e_jabatan'),
-				'username'  => $this->input->post('e_email'),
-				'password'  => $this->input->post('e_password'),
-				'level' => $this->input->post('e_level'),
-				'status'  => $this->input->post('e_status'),
-				'gambar'  => null,
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
-            echo json_decode($result);
+			$config['upload_path']          = './assets/gambar';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['encrypt_name'] = TRUE;
+
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload("e_file")) {
+				$data = array('upload_data' => $this->upload->data());
+				$foto = $data['upload_data']['file_name'];
+				$data = array(
+					'nip'  => $this->input->post('nip'),
+					'nama'  => $this->input->post('nama'),
+					'jabatan'  => $this->input->post('jabatan'),
+					'username'  => $this->input->post('email'),
+					'password'  => $this->input->post('password'),
+					'level' => $this->input->post('level'),
+					'status'  => 1,
+					'gambar'  => $foto,
+					'createdAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				echo json_decode($result);
+			} else {
+				$data = array(
+					'nip'  => $this->input->post('e_nip'),
+					'nama'  => $this->input->post('e_nama'),
+					'jabatan'  => $this->input->post('e_jabatan'),
+					'username'  => $this->input->post('e_email'),
+					'password'  => $this->input->post('e_password'),
+					'level' => $this->input->post('e_level'),
+					'status'  => $this->input->post('e_status'),
+					'gambar'  => null,
+					'createdAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				echo json_decode($result);
+			}
+			echo json_encode($result);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
 		}
-		echo json_encode($result);
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id_pengawas'  => $this->input->post('id')
-        );
-        $data = array(
-            'isdeleted'  => 1,
-        );
-		$action = $this->model_karyawan->update($data_id,$data,'TBPENGAWAS');
-        echo json_encode($action);
-        
-    }
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$data_id = array(
+				'id_pengawas'  => $this->input->post('id')
+			);
+			$data = array(
+				'isdeleted'  => 1,
+			);
+			$action = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+			echo json_encode($action);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
+	}
 }
