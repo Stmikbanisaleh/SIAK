@@ -40,43 +40,35 @@
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
-
 		<b class="arrow"></b>
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon fa fa-cogs"></i>
 			<span class="menu-text">
 				Evaluasi
 			</span>
-
 			<b class="arrow fa fa-angle-down"></b>
 		</a>
-
 		<b class="arrow"></b>
-
 		<ul class="submenu">
-
 			<li class="">
 				<a href="<?= base_url() . 'modulguru/biodata'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Biodata
 				</a>
 			</li>
-
 			<li class="">
 				<a href="<?= base_url() . 'modulguru/uts'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Input Nilai UTS
 				</a>
 			</li>
-
 			<li class="">
 				<a href="<?= base_url() . 'modulguru/uas'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Input Nilai UAS
 				</a>
-
 				<b class="arrow"></b>
 			</li>
 			<li class="">
@@ -84,14 +76,13 @@
 					<i class="menu-icon fa fa-caret-right"></i>
 					Jadwal Mengajar
 				</a>
-
 				<b class="arrow"></b>
 			</li>
 		</ul>
 	</li>
 	<li class="">
 		<a href="<?= base_url() . 'modulguru/tentang'; ?>">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon  fa fa-bell"></i>
 			<span class="menu-text">
 				Tentang Aplikasi
 			</span>

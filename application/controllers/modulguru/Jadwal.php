@@ -8,7 +8,6 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('guru/model_jadwal');
-        $this->load->model('model_jabatan');
     }
 
     function render_view($data)
@@ -20,7 +19,7 @@ class Jadwal extends CI_Controller
     public function index()
     {
         $my_data = $this->model_jadwal->view('tbps')->result_array();
-        $myakadmk = $this->model_jadwal->view('tbakadmk')->result_array();
+        $myakadmk = $this->model_jadwal->view_custome()->result_array();
         $mypendidikan = $this->model_jadwal->view('mspendidikan')->result_array();
         $data = array(
             'page_content'     => '../pageguru/jadwal/view',
@@ -31,14 +30,6 @@ class Jadwal extends CI_Controller
             'mypendidikan'     => $mypendidikan
         );
         $this->render_view($data); //Memanggil function render_view
-    }
-
-    public function perikas_jadwal()
-    {
-        $tahun = $this->input->post('tahun');
-		$programsekolah = $this->input->post('programsekolah');
-		$result = $this->model_jadwal->view_periksa($tahun, $programsekolah)->result();
-		echo json_encode($result);
     }
 
     public function tampil()
@@ -71,5 +62,18 @@ class Jadwal extends CI_Controller
         );
         $action = $this->model_jadwal->update($data_id, $data, 'TBGURU');
         echo json_encode($action);
+    }
+
+    public function search()
+    {
+        // if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+        $tahun = $this->input->post('tahun');
+        $programsekolah = $this->input->post('programsekolah');
+        $result = $this->model_jadwal->getjadwal($tahun, $programsekolah)->result();
+        echo json_encode($result);
+        // } else {
+        //     $this->load->view('page/login'); //Memanggil function render_view
+        // }
     }
 }

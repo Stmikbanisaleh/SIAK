@@ -316,7 +316,7 @@
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td class="text-center">' +
                                 '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
                                 '</button> &nbsp' +
                                 '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
                                 '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +

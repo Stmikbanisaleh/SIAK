@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
                 <div class="col-sm-9">
-                    <select class="form-control" name="program_sekolah" id="program_sekolah">
+                    <select class="form-control" name="programsekolah" id="programsekolah">
                         <option value="">-- Pilih Program --</option>
                         <?php foreach ($myprogram as $value) { ?>
                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
@@ -18,10 +18,10 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                 <div class="col-sm-9">
-                    <select class="form-control" name="periode" id="periode">
+                    <select class="form-control" name="tahun" id="tahun">
                         <option value="">-- Pilih Tahun --</option>
                         <?php foreach ($myakadmk as $value) { ?>
-                            <option value=<?= $value['ID'] ?>><?= $value['TAHUN'] ?></option>
+                            <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -46,6 +46,7 @@
 <table id="datatable_tabletools" class="display">
     <thead>
         <tr>
+            <th>No</th>
             <th>Guru</th>
             <th>Mata Ajar</th>
             <th>Hari </th>
@@ -92,10 +93,10 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].idGuru + '</td>' +
-                                '<td>' + data[i].id_mapel + '</td>' +
+                                '<td>' + data[i].GuruNama + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].hari + '</td>' +
-                                '<td>' + data[i].Ruang + '</td>' +
+                                '<td>' + data[i].RUANG + '</td>' +
                                 '<td>' + data[i].NMKLSTRJDK + '</td>' +
                                 '<td>' + data[i].JAM + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
@@ -144,16 +145,16 @@
                 var no = 1;
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                                '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].idGuru + '</td>' +
-                                '<td>' + data[i].id_mapel + '</td>' +
-                                '<td>' + data[i].hari + '</td>' +
-                                '<td>' + data[i].Ruang + '</td>' +
-                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
-                                '<td>' + data[i].JAM + '</td>' +
-                                '<td>' + data[i].DESCRTBPS + '</td>' +
-                                '</tr>';
-                            no++;
+                        '<td class="text-center">' + no + '</td>' +
+                        '<td>' + data[i].idGuru + '</td>' +
+                        '<td>' + data[i].id_mapel + '</td>' +
+                        '<td>' + data[i].hari + '</td>' +
+                        '<td>' + data[i].Ruang + '</td>' +
+                        '<td>' + data[i].NMKLSTRJDK + '</td>' +
+                        '<td>' + data[i].JAM + '</td>' +
+                        '<td>' + data[i].DESCRTBPS + '</td>' +
+                        '</tr>';
+                    no++;
                 }
                 $("#datatable_tabletools").dataTable().fnDestroy();
                 var a = $('#show_data').html(html);

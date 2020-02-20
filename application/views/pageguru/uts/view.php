@@ -1,18 +1,19 @@
 <div class="row">
     <div class="col-xs-6">
         <!-- PAGE CONTENT BEGINS -->
-        <form class="form-horizontal" role="form" id="formTambah">
+        <form class="form-horizontal" role="form" id="formSearch">
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
                 <div class="col-sm-9">
-                    <input type="text" id="NOINDUK" required name="NOINDUK" placeholder="kode Dapodik" class="form-control" />
+                    <input type="text" disabled id="kddapodik" value="<?php echo $guru[0]['GuruNoDapodik']; ?>" name="kddapodik" placeholder="kode Dapodik" class="form-control" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
                 <div class="col-sm-9">
-                    <input type="text" id="NMSISWA" required name="NMSISWA" placeholder="nama siswa" class="form-control" />
+                    <input type="hidden" id="gurunama" value="<?php echo $guru[0]['GuruNama']; ?>" name="gurunama" />
+                    <input type="text" disabled id="gurunama2" value="<?php echo $guru[0]['GuruNama']; ?>" name="gurunama2" placeholder="nama siswa" class="form-control" />
                 </div>
             </div>
 
@@ -22,7 +23,7 @@
                     <select class="form-control" name="mapel" id="mapel">
                         <option value="">-- Pilih Pelajaran --</option>
                         <?php foreach ($mypelajaran as $value) { ?>
-                            <option value=<?= $value['id_mapel'] ?>><?= $value['nama'] ?></option>
+                            <option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -52,16 +53,79 @@
             <th>Jam</th>
             <th>Nama Siswa</th>
             <th>UTS</th>
-            <!-- <th>Alamat</th>
-            <th>Jenis Kelamin</th>
-            <th>Pendidikan Terakhir</th>
-            <th>Action</th> -->
         </tr>
     </thead>
     <tbody id="show_data">
     </tbody>
 </table>
 <script type="text/javascript">
+    if ($("#formSearch").length > 0) {
+        $("#formSearch").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                tahun: {
+                    required: true,
+                },
+                semester: {
+                    required: true,
+                },
+                programsekolah: {
+                    required: true,
+                },
+            },
+            messages: {
+                tahun: {
+                    required: "Tahun harus diisi!"
+                },
+                semester: {
+                    required: "Semester harus diisi!"
+                },
+                programsekolah: {
+                    required: "Harap Masukan Program sekolah dengan benar!"
+                },
+            },
+            submitHandler: function(form) {
+                $.ajax({
+                    type: 'POST',
+                    url: "<?php echo base_url('modulguru/uts/search') ?>",
+                    data: $('#formSearch').serialize(),
+                    dataType: 'JSON',
+                    success: function(data) {
+                        var html = '';
+                        var i = 0;
+                        var no = 1;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].hari + '</td>' +
+                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
+                                '<td>' + data[i].JAM + '</td>' +
+                                '<td>' + data[i].NMSISWA + '</td>' +
+                                '<td>' + data[i].UTSTRNIL + '</td>' +
+                                '</tr>';
+                            no++;
+                        }
+                        $("#datatable_tabletools").dataTable().fnDestroy();
+                        var a = $('#show_data').html(html);
+                        //                    $('#mydata').dataTable();
+                        if (a) {
+                            $('#datatable_tabletools').dataTable({
+                                "bPaginate": true,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false
+                            });
+                        }
+                        /* END TABLETOOLS */
+                    }
+
+                });
+                return false;
+            }
+        });
+    }
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",
@@ -183,7 +247,6 @@
     }
 
     $(document).ready(function() {
-        show_data();
         $('#datatable_tabletools').DataTable();
     });
 
@@ -253,7 +316,7 @@
     function show_data() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('guru/tampil') ?>',
+            url: '<?php echo site_url('modulguru/uts/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {

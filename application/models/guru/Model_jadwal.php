@@ -3,10 +3,39 @@
 class Model_jadwal extends CI_model
 {
 
+    public function getjadwal($tahun, $programsekolah)
+    {
+        return $this->db->query("SELECT
+        TBGURU.IdGuru,
+        TBGURU.GuruNama,
+        TBJADWAL.id_mapel,
+        MSPELAJARAN.nama,
+        TBJADWAL.hari,
+        MSRUANG.RUANG,
+        TBJADWAL.NMKLSTRJDK,
+        TBJADWAL.JAM,
+        TBPS.DESCRTBPS,
+        TBJADWAL.id
+        FROM
+        TBJADWAL
+        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
+        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.kode
+        INNER JOIN MSRUANG ON TBJADWAL.ID_RUANG = MSRUANG.ID
+        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
+        WHERE TBJADWAL.periode='$tahun' AND TBJADWAL.PS='$programsekolah'
+        ORDER BY hari");
+    }
+
     public function view($table)
     {
         $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
+    }
+
+    public function view_custome()
+    {
+        return $this->db->query("SELECT DISTINCT 
+        TBAKADMK.TAHUN FROM TBAKADMK ORDER BY TAHUN DESC");
     }
 
     public function viewOrdering($table, $order, $ordering)
@@ -29,37 +58,6 @@ class Model_jadwal extends CI_model
         $this->db->where($data);
         $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
-    }
-
-    public function view_where_v2($table, $data)
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1 and a.id = ' . $data['id'] . '
-        ');
-    }
-    public function view_periksa($tahun, $programsekolah)
-    {
-        return  $this->db->query("SELECT TBGURU.IdGuru,TBGURU.GuruNama,TBJADWAL.id_mapel,MSPELAJARAN.nama, MSRUANG.RUANG, TBJADWAL.hari,TBJADWAL.NMKLSTRJDK, TBJADWAL.JAM, TBPS.DESCRTBPS, TBJADWAL.id FROM TBJADWAL
-        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
-        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.kode
-        INNER JOIN MSRUANG ON TBJADWAL.IDRUANG = MSRUANG.ID
-        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
-        WHERE TBJADWAL.periode=".$tahun." AND TBJADWAL.PS=".$programsekolah."
-        ORDER BY hari
-        ");
-    }
-
-    public function view_guru()
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1
-        ');
     }
 
     public function view_count($table, $data_id)

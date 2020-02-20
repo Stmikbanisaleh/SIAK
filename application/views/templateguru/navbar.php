@@ -9,10 +9,10 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="index.html" class="navbar-brand">
+	<a href="<?= base_url() . 'modulguru/dashboard'; ?>" class="navbar-brand">
 		<small>
 			<i class="fa fa-leaf"></i>
-			Payroll
+			Guru
 		</small>
 	</a>
 </div>
@@ -24,31 +24,24 @@
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/image/avatars/avatar2.png" alt="Jason's Photo" />
 				<span class="user-info">
 					<small>Welcome,</small>
-					Jason
+					<?php echo $this->session->userdata('username_guru'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
 			</a>
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-				<li>
-					<a href="javascript:void(0);">
-						<i class="ace-icon fa fa-cog"></i>
-						Settings
-					</a>
-				</li>
-
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'modulguru/profile'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>
-				</li>
+				</li> -->
 
 				<li class="divider"></li>
 
 				<li>
-					<a href="javascript:void(0);">
+					<a href="<?= base_url() . 'modulguru/dashboard/logout'; ?>">
 						<i class="ace-icon fa fa-power-off"></i>
 						Logout
 					</a>

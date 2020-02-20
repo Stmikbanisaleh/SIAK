@@ -3,10 +3,30 @@
 class Model_biodata extends CI_model
 {
 
-    public function view($table)
+    public function view($session)
     {
-        $this->db->where('isdeleted !=', 1);
-        return $this->db->get($table);
+        return $this->db->query("SELECT
+        TBGURU.id,
+        TBGURU.IdGuru,
+        TBGURU.GuruNoDapodik,
+        TBGURU.GuruNama,
+        TBGURU.GuruTelp,
+        TBGURU.GuruAlamat,
+        TBGURU.GuruWaktu,
+        TBGURU.GuruJenisKelamin,
+        TBGURU.GuruPendidikanAkhir,
+        TBGURU.GuruAgama,
+        TBAGAMA.DESCRTBAGAMA,
+        TBGURU.GuruEmail,
+        TBGURU.GuruTempatLahir,
+        TBGURU.GuruTglLahir,
+        TBGURU.GuruStatus
+        FROM
+        guru
+        LEFT JOIN TBGURU ON guru.IdGuru = TBGURU.IdGuru
+        LEFT JOIN tbagama ON TBGURU.GuruAgama = tbagama.KDTBAGAMA
+
+        LEFT JOIN TBGURURIWAYAT ON TBGURU.IdGuru = TBGURURIWAYAT.IdGuru where TBGURU.IdGuru='".$session."'");
     }
 
     public function viewOrdering($table, $order, $ordering)

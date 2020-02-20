@@ -8,7 +8,6 @@ class Biodata extends CI_Controller
     {
         parent::__construct();
         $this->load->model('guru/model_biodata');
-        $this->load->model('model_jabatan');
     }
 
     function render_view($data)
@@ -18,9 +17,9 @@ class Biodata extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_biodata->view('tbps')->result_array();
-        $myagama = $this->model_biodata->view('tbagama')->result_array();
-        $mypendidikan = $this->model_biodata->view('mspendidikan')->result_array();
+        $my_data = $this->model_biodata->viewOrdering('tbps','KDTBPS','asc')->result_array();
+        $myagama = $this->model_biodata->viewOrdering('tbagama','KDTBAGAMA ','asc')->result_array();
+        $mypendidikan = $this->model_biodata->viewOrdering('mspendidikan','IDMSPENDIDIKAN','asc')->result_array();
         $data = array(
             'page_content'     => '../pageguru/biodata/view',
             'ribbon'         => '<li class="active">Biodata Guru</li><li>Sample</li>',
@@ -32,18 +31,10 @@ class Biodata extends CI_Controller
         $this->render_view($data); //Memanggil function render_view
     }
 
-    public function tampil_byid()
-    {
-        $data = array(
-            'id'  => $this->input->post('id'),
-        );
-        $my_data = $this->model_biodata->view_where_v2('TBGURU', $data)->result();
-        echo json_encode($my_data);
-    }
-
     public function tampil()
     {
-        $my_data = $this->model_biodata->view_guru('TBGURU')->result_array();
+        $session = $this->session->userdata('idguru');
+        $my_data = $this->model_biodata->view($session)->result_array();
         echo json_encode($my_data);
     }
 
@@ -53,13 +44,11 @@ class Biodata extends CI_Controller
             'id'  => $this->input->post('e_id')
         );
         $data = array(
-            'IdGuru'  => $this->input->post('e_IdGuru'),
-            'GuruNoDapodik'  => $this->input->post('e_GuruNoDapodik'),
             'GuruNama'  => $this->input->post('e_nama'),
             'GuruTelp'  => $this->input->post('e_telepon'),
             'GuruAlamat'  => $this->input->post('e_alamat'),
             'GuruBase' => $this->input->post('e_program_sekolah'),
-            // 'GuruWaktu'  => $this->input->post('alamat'),
+            'GuruWaktu'  => $this->input->post('e_tahun'),
             'GuruJeniskelamin'  => $this->input->post('e_jenis_kelamin'),
             'GuruPendidikanAkhir'  => $this->input->post('e_pendidikan_terakhir'),
             'GuruAgama'  => $this->input->post('e_agama'),

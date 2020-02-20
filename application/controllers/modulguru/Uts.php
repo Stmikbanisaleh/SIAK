@@ -8,7 +8,6 @@ class Uts extends CI_Controller
     {
         parent::__construct();
         $this->load->model('guru/model_uts');
-        $this->load->model('model_jabatan');
     }
 
     function render_view($data)
@@ -19,12 +18,15 @@ class Uts extends CI_Controller
 
     public function index()
     {
-        $mypelajaran = $this->model_uts->view('mspelajaran')->result_array();
+        $session = $this->session->userdata('idguru');
+        $nodapodik = $this->model_uts->views($session)->result_array();
+        $mypelajaran = $this->model_uts->getmapel($session)->result_array();
         $data = array(
             'page_content'     => '../pageguru/uts/view',
             'ribbon'         => '<li class="active">Nilai Uts</li><li>Sample</li>',
             'page_name'     => 'Nilai Uts',
-            'mypelajaran'     => $mypelajaran
+            'mypelajaran'     => $mypelajaran,
+            'guru'  => $nodapodik
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -69,4 +71,16 @@ class Uts extends CI_Controller
         $action = $this->model_uts->update($data_id, $data, 'TBGURU');
         echo json_encode($action);
     }
+
+    public function search()
+	{
+		// if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$mapel = $this->input->post('mapel');
+            $result = $this->model_uts->getuts($mapel)->result();
+			echo json_encode($result);
+		// } else {
+		// 	$this->load->view('page/login'); //Memanggil function render_view
+		// }
+	}
 }

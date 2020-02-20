@@ -3,23 +3,6 @@
         <div class="widget-box transparent" id="widget-box-12">
             <div class="widget-header">
                 <h4 class="widget-title lighter">Versi Aplikasi</h4>
-                <!-- <div class="widget-toolbar no-border">
-						<a href="#" data-action="settings">
-							<i class="ace-icon fa fa-cog"></i>
-						</a>
-
-						<a href="#" data-action="reload">
-							<i class="ace-icon fa fa-refresh"></i>
-						</a>
-
-						<a href="#" data-action="collapse">
-							<i class="ace-icon fa fa-chevron-up"></i>
-						</a>
-
-						<a href="#" data-action="close">
-							<i class="ace-icon fa fa-times"></i>
-						</a>
-					</div> -->
             </div>
 
             <div class="widget-body">

@@ -11,7 +11,7 @@ class Tentang extends CI_Controller {
         $data = array(
         			'page_content' 	=> '../pageguru/tentang/view',
         			'ribbon' 		=> '<li class="active">Tentang Aplikasi</li><li>Sample</li>',
-        			'page_name' 	=> 'Tentang Aplikasi',
+					'page_name' 	=> 'Tentang Aplikasi',
         		);
         $this->render_view($data); //Memanggil function render_view
     }

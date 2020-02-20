@@ -451,8 +451,8 @@
             },
             success: function(data) {
                 $('#e_id').val(data[0].ID);
-                $('#e_programsekolah').val(data[0].kode);
-                $('#e_kodemataajar').val(data[0].nama);
+                $('#e_programsekolah').val(data[0].PSTRMKA);
+                $('#e_kodemataajar').val(data[0].KDMKTRMKA);
                 $('#e_semester').val(data[0].SMTTRMKA);
             }
         });
