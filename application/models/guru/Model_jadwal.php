@@ -42,9 +42,7 @@ class Model_jadwal extends CI_model
     }
     public function view_periksa($tahun, $programsekolah)
     {
-        return  $this->db->query("SELECT TBGURU.IdGuru,TBGURU.GuruNama,TBJADWAL.id_mapel,MSPELAJARAN.nama, MSRUANG.RUANG, TBJADWAL.hari,TBJADWAL.NMKLSTRJDK, TBJADWAL.JAM, TBPS.DESCRTBPS, TBJADWAL.id
-        FROM
-        TBJADWAL
+        return  $this->db->query("SELECT TBGURU.IdGuru,TBGURU.GuruNama,TBJADWAL.id_mapel,MSPELAJARAN.nama, MSRUANG.RUANG, TBJADWAL.hari,TBJADWAL.NMKLSTRJDK, TBJADWAL.JAM, TBPS.DESCRTBPS, TBJADWAL.id FROM TBJADWAL
         LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
         INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.kode
         INNER JOIN MSRUANG ON TBJADWAL.IDRUANG = MSRUANG.ID
