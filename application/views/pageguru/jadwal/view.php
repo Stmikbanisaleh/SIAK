@@ -144,15 +144,16 @@
                 var no = 1;
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                        '<td class="text-center">' + no + '</td>' +
-                        '<td>' + data[i].nip + '</td>' +
-                        '<td>' + data[i].nama + '</td>' +
-                        '<td>' + data[i].jabatan + '</td>' +
-                        '<td>' + data[i].username + '</td>' +
-                        '<td>' + data[i].level + '</td>' +
-                        '<td>' + data[i].statusv2 + '</td>' +
-                        '</tr>';
-                    no++;
+                                '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].idGuru + '</td>' +
+                                '<td>' + data[i].id_mapel + '</td>' +
+                                '<td>' + data[i].hari + '</td>' +
+                                '<td>' + data[i].Ruang + '</td>' +
+                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
+                                '<td>' + data[i].JAM + '</td>' +
+                                '<td>' + data[i].DESCRTBPS + '</td>' +
+                                '</tr>';
+                            no++;
                 }
                 $("#datatable_tabletools").dataTable().fnDestroy();
                 var a = $('#show_data').html(html);
