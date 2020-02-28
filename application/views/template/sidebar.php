@@ -40,12 +40,11 @@
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
-
 		<b class="arrow"></b>
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon fa fa-cogs"></i>
 			<span class="menu-text">
 				Setting
 			</span>
@@ -126,7 +125,7 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon glyphicon glyphicon-user"></i>
 			<span class="menu-text">
 				Data Master
 			</span>
@@ -164,7 +163,7 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-download"></i>
+			<i class="menu-icon glyphicon glyphicon-pencil"></i>
 			<span class="menu-text">
 				Nilai
 			</span>
@@ -194,7 +193,7 @@
 
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon fa fa-money"></i>
+			<i class="menu-icon fa fa-calendar"></i>
 			<span class="menu-text">
 				Jadwal
 			</span>
@@ -218,7 +217,7 @@
 
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-upload"></i>
+			<i class="menu-icon fa fa-book"></i>
 			<span class="menu-text">
 				Kurikulum
 			</span>
@@ -253,24 +252,19 @@
 
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
-			<i class="menu-icon glyphicon glyphicon-upload"></i>
+			<i class="menu-icon fa fa-users "></i>
 			<span class="menu-text">
 				Lulusan
 			</span>
-
 			<b class="arrow fa fa-angle-down"></b>
 		</a>
-
 		<b class="arrow"></b>
-
 		<ul class="submenu">
-
 			<li class="">
 				<a href="<?= base_url() . 'kelulusan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Kelulusan Siswa
 				</a>
-
 				<b class="arrow"></b>
 			</li>
 		</ul>

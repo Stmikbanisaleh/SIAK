@@ -4,7 +4,11 @@ class Model_kurikulum extends CI_model{
     public function view($table){
         return $this->db->get($table);
     }
-    
+
+    public function viewtampil(){
+        return $this->db->query('select a.*,b.DESCRTBPS from mspelajaran a join tbps b on a.ps = b.KDTBPS where a.isdeleted != 1');
+    }
+
     public function viewOrdering($table,$order,$ordering){
         $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order,$ordering);

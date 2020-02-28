@@ -36,7 +36,7 @@
 
 <ul class="nav nav-list">
 	<li class="">
-		<a href="<?= base_url().'modulguru/dashboard'; ?>">
+		<a href="<?= base_url().'modulsiswa/dashboard'; ?>">
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
@@ -45,9 +45,15 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
+<<<<<<< HEAD
 			<i class="menu-icon glyphicon glyphicon-th-list"></i>
 			<span class="menu-text">
 				Master
+=======
+			<i class="menu-icon fa fa-user"></i>
+			<span class="menu-text">
+				Data Master
+>>>>>>> 01d1b109573a0a5d34c6611fd44c1523546efe69
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
@@ -67,10 +73,32 @@
 		<ul class="submenu">
 
 			<li class="">
+<<<<<<< HEAD
 				<a href="<?= base_url() . 'modulsiswa/'.$value['ALAMAT']; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					<?= $value['NAMA'] ?>
 				</a>
+=======
+				<a href="<?= base_url() . 'modulsiswa/history'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					History Pembayaran
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'modulsiswa/rekap'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Rekap Pembayaran
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulsiswa/hasilstudi'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Hasil Studi
+				</a>
+
+				<b class="arrow"></b>
+>>>>>>> 01d1b109573a0a5d34c6611fd44c1523546efe69
 			</li>
 		</ul>
 		<?PHP
@@ -79,14 +107,14 @@
 
 		
 	</li>
-	<li class="">
-		<a href="<?= base_url() . 'modulguru/tentang'; ?>">
+	<!-- <li class="">
+		<a href="<?= base_url() . 'modulsiswa/tentang'; ?>">
 			<i class="menu-icon glyphicon glyphicon-download"></i>
 			<span class="menu-text">
 				Tentang Aplikasi
 			</span>
 		</a>
-	</li>
+	</li> -->
 </ul><!-- /.nav-list -->
 
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

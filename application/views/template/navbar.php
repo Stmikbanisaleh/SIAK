@@ -9,7 +9,7 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="<?php echo base_url()?>" class="navbar-brand">
+	<a href="<?php echo base_url() ?>" class="navbar-brand">
 		<small>
 			<i class="fa fa-leaf"></i>
 			Operator
@@ -23,8 +23,8 @@
 			<a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/image/avatars/avatar2.png" alt="Jason's Photo" />
 				<span class="user-info">
-					<small>Welcome,</small>
-					Jason
+					<small>Selamat datang,</small>
+					<?php echo $this->session->userdata('username'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
@@ -48,7 +48,7 @@
 				<li class="divider"></li>
 
 				<li>
-					<a href="javascript:void(0);">
+					<a href="<?= base_url() . 'dashboard/logout'; ?>">
 						<i class="ace-icon fa fa-power-off"></i>
 						Logout
 					</a>

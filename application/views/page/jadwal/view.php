@@ -9,6 +9,7 @@
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
             <select class="form-control" name="tahun" id="tahun">
+                <option value=>--Pilih Tahun--</option>
                 <?php foreach ($mytahun as $value) { ?>
                     <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
                 <?php } ?>
@@ -16,6 +17,7 @@
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="programsekolah" id="programsekolah">
+                <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
                     <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
                 <?php } ?>
@@ -70,9 +72,9 @@
                                 <div class="col-xs-6">
                                     <select class="form-control" name="mataajar" id="mataajar">
                                         <option value="0">-- Status --</option>
-                                        <!-- <?php foreach ($myguru as $value) { ?>
-                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
-                                        <?php } ?> -->
+                                        <?php foreach ($mymapel as $value) { ?>
+                                            <option value=<?= $value['id_mapel'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -93,7 +95,7 @@
                                     <select class="form-control" name="hari" id="hari">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($myhari as $value) { ?>
-                                            <option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -107,6 +109,12 @@
                                             <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Kelas"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -189,8 +197,12 @@
     <thead>
         <tr>
             <th class="col-md-1">No</th>
-            <th>Nama Jabatan</th>
-            <th>Keterangan</th>
+            <th>Guru</th>
+            <th>Mata Ajar</th>
+            <th>Ruang</th>
+            <th>Kelas</th>
+            <th>Jam</th>
+            <th>Program Sekolah</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -203,10 +215,22 @@
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                id: {
+                nama: {
                     required: true
                 },
-                nama: {
+                kelas: {
+                    required: true
+                },
+                ruang: {
+                    required: true
+                },
+                jam: {
+                    required: true
+                },
+                hari: {
+                    required: true
+                },
+                guru: {
                     required: true
                 },
             },
@@ -250,45 +274,73 @@
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                id: {
+                programsekolah: {
                     required: true
                 },
 
-                nama: {
+                tahun: {
                     required: true
                 },
             },
             messages: {
 
-                id: {
-                    required: "Kode jabatan harus diisi!"
+                programsekolah: {
+                    required: "Program sekolah harus diisi!"
                 },
-                nama: {
-                    required: "Nama jabatan harus diisi!"
+                tahun: {
+                    required: "tahun harus diisi!"
                 },
             },
             submitHandler: function(form) {
                 $('#btn_search').html('Searching..');
                 $.ajax({
-                    url: "<?php echo base_url('jadwal/search') ?>",
-                    type: "POST",
+                    type: 'POST',
+                    url: '<?php echo site_url('jadwal/search') ?>',
                     data: $('#formSearch').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Simpan');
-                        if (response == true) {
-                            document.getElementById("formTambah").reset();
-                            swalInputSuccess();
-                            show_data();
-                            $('#modalTambah').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Nama Jabatan Sudah digunakan!');
-                        } else {
-                            swalInputFailed();
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                            'Periksa');
+                        var html = '';
+                        var i = 0;
+                        var no = 1;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].GuruNama + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
+                                '<td>' + data[i].GuruNama + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
+                                '<td>' + data[i].GuruNama + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
+                                '<td class="text-center">' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
+                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+                                '</button> &nbsp' +
+                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                                '</button>' +
+                                '</td>' +
+                                '</tr>';
+                            no++;
                         }
+                        $("#table_id").dataTable().fnDestroy();
+                        var a = $('#show_data').html(html);
+                        //                    $('#mydata').dataTable();
+                        if (a) {
+                            $('#table_id').dataTable({
+                                "bPaginate": true,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false
+                            });
+                        }
+                        /* END TABLETOOLS */
                     }
                 });
+
             }
         })
     }
@@ -348,7 +400,7 @@
     function show_data() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('jabatan/tampil') ?>',
+            url: '<?php echo site_url('jadwal/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {

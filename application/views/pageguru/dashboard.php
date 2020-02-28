@@ -2,7 +2,9 @@
 	<div class="col-sm-6 widget-container-col" id="widget-container-col-12">
 		<div class="widget-box transparent" id="widget-box-12">
 			<div class="widget-header">
-				<h4 class="widget-title lighter">Visi</h4>
+			<?php foreach ($myvisimisi as $value) { ?>
+                            <h4 class="widget-title lighter"><?= $value['title'] ?></h4>
+                        <?php } ?>
 					<!-- <div class="widget-toolbar no-border">
 						<a href="#" data-action="settings">
 							<i class="ace-icon fa fa-cog"></i>
@@ -23,8 +25,9 @@
 				</div>
 
 				<div class="widget-body">
-					<div class="widget-main padding-6 no-padding-left no-padding-right">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis. Nullam interdum massa vel nisl fringilla sed viverra erat tincidunt. Phasellus in ipsum velit. Maecenas id erat vel sem convallis blandit. Nunc aliquam enim ut arcu aliquet adipiscing. Fusce dignissim volutpat justo non consectetur.
+				<?php foreach ($myvisimisi as $value) { ?>
+							<div class="widget-main padding-6 no-padding-left no-padding-right"><?= $value['description'] ?>
+							<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -33,7 +36,9 @@
 	<div class="col-sm-6 widget-container-col" id="widget-container-col-13">
 		<div class="widget-box transparent" id="widget-box-13">
 			<div class="widget-header">
-				<h4 class="widget-title lighter">Misi</h4>
+			<?php foreach ($mymisi as $value) { ?>
+                            <h4 class="widget-title lighter"><?= $value['title'] ?></h4>
+                        <?php } ?>
 					<!-- <div class="widget-toolbar no-border">
 						<a href="#" data-action="settings">
 							<i class="ace-icon fa fa-cog"></i>
@@ -54,8 +59,9 @@
 				</div>
 
 				<div class="widget-body">
-					<div class="widget-main padding-6 no-padding-left no-padding-right">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis. Nullam interdum massa vel nisl fringilla sed viverra erat tincidunt. Phasellus in ipsum velit. Maecenas id erat vel sem convallis blandit. Nunc aliquam enim ut arcu aliquet adipiscing. Fusce dignissim volutpat justo non consectetur.
+				<?php foreach ($mymisi as $value) { ?>
+							<div class="widget-main padding-6 no-padding-left no-padding-right"><?= $value['description'] ?>
+							<?php } ?>
 					</div>
 				</div>
 			</div>
