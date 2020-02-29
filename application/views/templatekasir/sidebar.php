@@ -65,7 +65,7 @@
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulkasir/tunggukan'; ?>">
+				<a href="<?= base_url() . 'modulkasir/tunggakan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tunggakan
 				</a>
