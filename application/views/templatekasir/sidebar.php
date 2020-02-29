@@ -53,13 +53,13 @@
 		<b class="arrow"></b>
 		<ul class="submenu">
 			<li class="">
-				<a href="<?= base_url() . 'modulkasir/pembayaran'; ?>">
+				<a href="<?= base_url() . 'modulkasir/bayarlain'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Pembayaran Lain-Lain
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulkasir/imp_bayar'; ?>">
+				<a href="<?= base_url() . 'modulkasir/impbayar'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Import Pembayaran 
 				</a>
