@@ -146,25 +146,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Edit Data <?= $page_name; ?></h3>
+                <h3 class="smaller lighter blue no-margin">Form Import Jadwal <?= $page_name; ?></h3>
             </div>
-            <form class="form-horizontal" role="form" id="formEdit">
+            <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formEdit">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" id="e_id" name="e_id" />
-                                    <input type="text" id="e_nama" name="e_nama" placeholder="Nama Jabatan" class="form-control" />
+                                    <input type="file" id="file" required name="file" class="form-control" />
+                                    <input type="hidden" id="e_id" required name="e_id" class="form-control" />
+
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="e_keterangan" name="e_keterangan" placeholder="Keterangan Jabatan" class="form-control" />
+                                    <a href="<?php echo base_url().'assets/krs_siswa.xls';?>" for="form-field-1"> Download Sample Format </label></a>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +174,7 @@
                 <div class="modal-footer">
                     <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
                         <i class="ace-icon fa fa-save"></i>
-                        Ubah
+                        Import
                     </button>
                     <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
                         <i class="ace-icon fa fa-times"></i>
@@ -315,10 +316,10 @@
                                 '<td>' + data[i].GuruNama + '</td>' +
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td class="text-center">' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
                                 '</button> &nbsp' +
-                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                                 '</button>' +
                                 '</td>' +
@@ -344,49 +345,96 @@
             }
         })
     }
+    if ($("#formImport").length > 0) {
+        $("#formImport").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                formdata = new FormData(form);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('jadwal/import') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        console.log(data);
+                        $('#my-modal2').modal('hide');
+                        if (data == 1 || data == true) {
+                            document.getElementById("formImport").reset();
+                            swalInputSuccess();
+                            show_data();
+                        } else if (data == 401) {
+                            document.getElementById("formImport").reset();
+                            swalIdDouble();
+                        } else {
+                            document.getElementById("formImport").reset();
+                            swalInputFailed();
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    }
 
     if ($("#formEdit").length > 0) {
         $("#formEdit").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
-            rules: {
-                e_id: {
-                    required: true
-                },
-                e_nama: {
-                    required: true
-                },
-            },
-            messages: {
-
-                e_nama: {
-                    required: "Nama jabatan harus diisi!"
-                },
-
-            },
             submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
+                formdata = new FormData(form);
                 $.ajax({
-                    url: "<?php echo base_url('jabatan/update') ?>",
                     type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
+                    url: "<?php echo base_url('jadwal/import') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        console.log(data);
+                        $('#modalEdit').modal('hide');
+                        if (data == 1 || data == true) {
                             document.getElementById("formEdit").reset();
-                            swalEditSuccess();
+                            swalInputSuccess();
                             show_data();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Nama Jabatan Sudah digunakan!');
+                        } else if (data == 401) {
+                            document.getElementById("formEdit").reset();
+                            swalIdDouble();
                         } else {
-                            swalEditFailed();
+                            document.getElementById("formEdit").reset();
+                            swalInputFailed();
                         }
                     }
                 });
+                return false;
             }
+            // submitHandler: function(form) {
+            //     $('#btn_edit').html('Sending..');
+            //     $.ajax({
+            //         url: "<?php echo base_url('jabatan/update') ?>",
+            //         type: "POST",
+            //         data: $('#formEdit').serialize(),
+            //         dataType: "json",
+            //         success: function(response) {
+            //             $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+            //                 'Ubah');
+            //             if (response == true) {
+            //                 document.getElementById("formEdit").reset();
+            //                 swalEditSuccess();
+            //                 show_data();
+            //                 $('#modalEdit').modal('hide');
+            //             } else if (response == 401) {
+            //                 swalIdDouble('Nama Jabatan Sudah digunakan!');
+            //             } else {
+            //                 swalEditFailed();
+            //             }
+            //         }
+            //     });
+            // }
         })
     }
 </script>
@@ -413,10 +461,10 @@
                         '<td>' + data[i].NAMAJABATAN + '</td>' +
                         '<td>' + data[i].KET + '</td>' +
                         '<td class="text-center">' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                         '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
                         '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                         '</button>' +
                         '</td>' +
@@ -453,14 +501,15 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('jabatan/tampil_byid') ?>",
+            url: "<?php echo base_url('jadwal/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
                 id: id,
             },
             success: function(data) {
-                $('#e_id').val(data[0].ID);
+                console.log(data);
+                $('#e_id').val(data[0].id);
                 $('#e_nama').val(data[0].NAMAJABATAN);
                 $('#e_keterangan').val(data[0].KET);
 

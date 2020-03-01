@@ -130,7 +130,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Favicon</label>
 								<div class="col-sm-9">
-									<input type="text" id="e_favicon" name="e_favicon" placeholder="" class="form-control" />
+									<input type="file" id="e_favicon" name="e_favicon" placeholder="" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
