@@ -45,19 +45,40 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
+<<<<<<< HEAD
+			<i class="menu-icon glyphicon glyphicon-th-list"></i>
+			<span class="menu-text">
+				Master
+=======
 			<i class="menu-icon fa fa-user"></i>
 			<span class="menu-text">
 				Data Master
+>>>>>>> 01d1b109573a0a5d34c6611fd44c1523546efe69
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
 		</a>
 
 		<b class="arrow"></b>
+		<?php
+			$data = array(
+				'pengguna'	=> 'SISWA', 
+				'blokir'	=> 'T',
+				'jenis'		=> '1',
+			);
+			$menu = $this->model_siswa->view_where('sys_menu', $data)->result_array();
+			foreach ($menu as $value) {
+		?>
 
 		<ul class="submenu">
 
 			<li class="">
+<<<<<<< HEAD
+				<a href="<?= base_url() . 'modulsiswa/'.$value['ALAMAT']; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					<?= $value['NAMA'] ?>
+				</a>
+=======
 				<a href="<?= base_url() . 'modulsiswa/history'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					History Pembayaran
@@ -77,8 +98,14 @@
 				</a>
 
 				<b class="arrow"></b>
+>>>>>>> 01d1b109573a0a5d34c6611fd44c1523546efe69
 			</li>
 		</ul>
+		<?PHP
+			}
+		?>
+
+		
 	</li>
 	<!-- <li class="">
 		<a href="<?= base_url() . 'modulsiswa/tentang'; ?>">
