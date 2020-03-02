@@ -222,7 +222,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/simpan') ?>",
+                    url: "<?php echo base_url('modultu/tahunajaran/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -270,7 +270,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tahun_akad1/update') ?>",
+                    url: "<?php echo base_url('modultu/tahunajaran/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -303,7 +303,7 @@
     function show_data() {
         $.ajax({
             type: 'ajax',
-            url: '<?php echo site_url('tahun_akad1/tampil') ?>',
+            url: '<?php echo site_url('modultu/tahunajaran/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
@@ -357,7 +357,7 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('tahun_akad1/tampil_byid') ?>",
+            url: "<?php echo base_url('modultu/tahunajaran/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
