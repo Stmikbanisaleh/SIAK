@@ -32,14 +32,14 @@
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<li>
-					<a href="javascript:void(0);">
+					<a href="<?php echo base_url() . 'setting/index'; ?>">
 						<i class="ace-icon fa fa-cog"></i>
-						Settings
+						Password
 					</a>
 				</li>
 
 				<li>
-					<a href="profile.html">
+					<a href="<?php echo base_url() . 'profile/index'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>
