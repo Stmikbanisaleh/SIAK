@@ -641,7 +641,7 @@
 						'<td>' + data[i].GuruAlamat + '</td>' +
 						'<td>' + data[i].GuruJeniskelamin + '</td>' +
 						'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
-						'<td class="text-center">' +
+						'<td >' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
