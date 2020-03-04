@@ -21,10 +21,11 @@
 	<ul class="nav ace-nav">
 		<li class="light-blue dropdown-modal">
 			<a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
-				<img class="nav-user-photo" src="<?= base_url() ?>assets/image/avatars/avatar2.png" alt="Jason's Photo" />
+				<?php $result = $this->db->query("select gambar from tbpengawas where username ='" . $this->session->userdata('username') . "'")->result_array(); ?>
+				<img class="nav-user-photo" src="<?= base_url() ?>assets/gambar/<?php echo $result[0]['gambar']; ?>" />
 				<span class="user-info">
 					<small>Selamat datang,</small>
-					<?php echo $this->session->userdata('username'); ?>
+					<?php echo $this->session->userdata('nama'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>

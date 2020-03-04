@@ -26,7 +26,7 @@ class Setting extends CI_Controller
             $data = array(
                 'page_content'     => '/setting/view',
                 'ribbon'         => '<li class="active">Dashboard</li><li>Setting</li>',
-                'page_name'     => 'Setting',
+                'page_name'     => 'Setting Password',
                 'js'             => 'js_file',
                 'mytahun'        => $mytahun,
                 'mysemester'    => $mysemester,
@@ -38,84 +38,24 @@ class Setting extends CI_Controller
         }
     }
 
-    public function search()
+    
+
+    public function simpan2()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $tahun = $this->input->post('tahun');
-            $semester = $this->input->post('semester');
-            $programsekolah = $this->input->post('programsekolah');
-            $result = $this->model_permataajar->getpermataajar($tahun, $semester, $programsekolah)->result();
-            echo json_encode($result);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-    public function simpan()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['encrypt_name'] = TRUE;
-
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload("file")) {
-                $data = array('upload_data' => $this->upload->data());
-                $foto = $data['upload_data']['file_name'];
-                $data = array(
-                    'nip'  => $this->input->post('nip'),
-                    'nama'  => $this->input->post('nama'),
-                    'jabatan'  => $this->input->post('jabatan'),
-                    'username'  => $this->input->post('email'),
-                    'password'  => $this->input->post('password'),
-                    'level' => $this->input->post('level'),
-                    'status'  => 1,
-                    'gambar'  => $foto,
-                    'createdAt' => date('Y-m-d H:i:s')
-                );
-                $result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
-                echo json_decode($result);
+            if ($this->input->post('password1') != $this->input->post('password2')) {
+                echo json_decode(0);
             } else {
-                $data = array(
-                    'nip'  => $this->input->post('nip'),
-                    'nama'  => $this->input->post('nama'),
-                    'jabatan'  => $this->input->post('jabatan'),
-                    'username'  => $this->input->post('email'),
-                    'password'  => $this->input->post('password'),
-                    'level' => $this->input->post('level'),
-                    'status'  => 1,
-                    'gambar'  => null,
-                    'createdAt' => date('Y-m-d H:i:s')
+                $data_id = array(
+                    'username' => $this->session->userdata('username')
                 );
-                $result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+                $data = array(
+                    'password'  => md5($this->input->post('password1')),
+                    'updatedAt' => date('Y-m-d H:i:s')
+                );
+                $result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
                 echo json_decode($result);
             }
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
-    public function tampil_byid()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $data = array(
-                'id_pengawas'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_karyawan->view_where('TBPENGAWAS', $data)->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
-    public function tampil()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $my_data = $this->model_karyawan->view_karyawan()->result_array();
-            echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }
@@ -165,23 +105,6 @@ class Setting extends CI_Controller
                 echo json_decode($result);
             }
             echo json_encode($result);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
-    public function delete()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $data_id = array(
-                'id_pengawas'  => $this->input->post('id')
-            );
-            $data = array(
-                'isdeleted'  => 1,
-            );
-            $action = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
-            echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }

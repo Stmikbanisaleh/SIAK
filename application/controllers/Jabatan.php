@@ -29,6 +29,50 @@ class Jabatan extends CI_Controller
         }
     }
 
+    public function import()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$files = $_FILES;
+			$file = $files['file'];
+			$fname = $file['tmp_name'];
+			$file = $_FILES['file']['name'];
+			$fname = $_FILES['file']['tmp_name'];
+			$ext = explode('.', $file);
+			/** Include path **/
+			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+			/** PHPExcel_IOFactory */
+			include 'PHPExcel/IOFactory.php';
+			$objPHPExcel = PHPExcel_IOFactory::load($fname);
+			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+			$data_exist = [];
+
+			foreach ($allDataInSheet as $ads) {
+				if (array_filter($ads)) {
+					array_push($data_exist, $ads);
+				}
+			}
+			foreach ($data_exist as $key => $value) {
+				if ($key == '0') {
+					continue;
+				} else {
+					$arrayCustomerQuote = array(
+						'NAMAJABATAN' => $value[0],
+						'KET' => $value[1],
+						'createdAt'	=> date('Y-m-d H:i:s')
+					);
+                    $result = $this->model_jabatan->insert($arrayCustomerQuote, 'msjabatan');
+				}
+			}
+			if ($result) {
+				$result = 1;
+			}
+
+			echo json_encode($result);
+		} else {
+			echo json_encode($result);
+		}
+    }
+    
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

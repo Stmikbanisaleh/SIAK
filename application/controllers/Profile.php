@@ -38,6 +38,26 @@ class Profile extends CI_Controller
 		}
 	}
 
+	public function edit()
+    {
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$where = array('
+			username' => $this->session->userdata('username'));
+            $mydata = $this->model_profile->viewWhereOrdering('tbpengawas',$where, 'id_pengawas' ,'asc')->result_array();
+           
+            $data = array(
+                'page_content'     => 'profile/editprofile',
+                'ribbon'         => '<li class="active">Dashboard</li><li>Edit Profile</li>',
+                'page_name'     => 'Edit Profile',
+                'js'             => 'js_file',
+                'mydata'        => $mydata,
+            );
+            $this->render_view($data);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
+	}
+	
 	public function search()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -124,47 +144,32 @@ class Profile extends CI_Controller
 	public function update()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
 			$data_id = array(
-				'id'  => $this->input->post('e_id')
+				'id_pengawas'  => $this->input->post('e_id')
 			);
 			$config['upload_path']          = './assets/gambar';
 			$config['allowed_types']        = 'gif|jpg|png';
 			$config['encrypt_name'] = TRUE;
 
 			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("e_file")) {
+			if ($this->upload->do_upload("file")) {
 				$data = array('upload_data' => $this->upload->data());
 				$foto = $data['upload_data']['file_name'];
 				$data = array(
-					'nip'  => $this->input->post('nip'),
 					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => $this->input->post('password'),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
 					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
 				echo json_decode($result);
 			} else {
 				$data = array(
-					'nip'  => $this->input->post('e_nip'),
-					'nama'  => $this->input->post('e_nama'),
-					'jabatan'  => $this->input->post('e_jabatan'),
-					'username'  => $this->input->post('e_email'),
-					'password'  => $this->input->post('e_password'),
-					'level' => $this->input->post('e_level'),
-					'status'  => $this->input->post('e_status'),
-					'gambar'  => null,
-					'createdAt' => date('Y-m-d H:i:s')
+					'nama'  => $this->input->post('nama'),
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
 				echo json_decode($result);
 			}
-			echo json_encode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

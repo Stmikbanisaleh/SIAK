@@ -62,7 +62,7 @@
                                     <select class="form-control" name="guru" id="guru">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($myguru as $value) { ?>
-                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+                                            <option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -74,17 +74,6 @@
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($mymapel as $value) { ?>
                                             <option value=<?= $value['id_mapel'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="guru" id="guru">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myguru as $value) { ?>
-                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -311,10 +300,10 @@
                                 '<td class="text-center">' + no + '</td>' +
                                 '<td>' + data[i].GuruNama + '</td>' +
                                 '<td>' + data[i].nama + '</td>' +
-                                '<td>' + data[i].GuruNama + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
-                                '<td>' + data[i].GuruNama + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
+                                '<td>' + data[i].RUANG + '</td>' +
+                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
+                                '<td>' + data[i].JAM + '</td>' +
+                                '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
                                 '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
