@@ -36,6 +36,7 @@ class Dashboard extends CI_Controller
 					'nama' => $value['nama'],
 					'nip' => $value['nip'],
 					'jabatan' => $value['jabatan'],
+					'gambar' => $value['gambar'],
 				];
 			}
 			$this->session->set_userdata($data);

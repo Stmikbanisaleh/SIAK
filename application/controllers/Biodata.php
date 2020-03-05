@@ -56,6 +56,7 @@ class Biodata extends CI_Controller
     public function update()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            
             $data_id = array(
                 'id'  => $this->input->post('e_id')
             );

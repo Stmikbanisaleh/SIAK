@@ -6,6 +6,8 @@ class History extends CI_Controller {
     function __construct(){
         parent::__construct();      
         $this->load->model('modulsiswa/model_history');
+        $this->load->model('modulsiswa/model_history');
+
     }
 
 	function render_view($data) {

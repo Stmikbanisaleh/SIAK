@@ -3,16 +3,56 @@
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
-
     </div>
     <div class="col-xs-1">
-        <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-            <a class="ace-icon fa fa-plus bigger-120"></a>Import Data
+        <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+            <a class="ace-icon fa fa-upload bigger-120"></a>Import Data
         </button>
-
     </div>
     <br>
     <br>
+</div>
+<div id="my-modal2" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+                                <div class="col-sm-6">
+                                    <input type="file" id="file" required name="file" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
+                                <div class="col-sm-9">
+                                    <a href="<?php echo base_url().'assets/siswa.xls';?>" for="form-field-1"> Download Sample Format </label></a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+                    <i class="ace-icon fa fa-save"></i>
+                    Simpan
+                </button>
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Batal
+                </button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 <div id="modalTambah" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -279,16 +319,10 @@
     <thead>
         <tr>
             <th>No Induk</th>
-            <!-- <th>No Registrasi</th> -->
-            <!-- <th>Tanggal Resigtrasi</th> -->
             <th>Nama</th>
-            <!-- <th>Tempat Lahir</th> -->
-            <!-- <th>Tanggal Lahir</th> -->
-            <!-- <th>Jenis Kelamin</th> -->
             <th>Agama</th>
             <th>Tahun Masuk</th>
             <th>Program Sekolah</th>
-            <!-- <th>Kewarganegaraan</th> -->
             <th>E-Mail</th>
             <th>Petugas</th>
             <th>Telp</th>
@@ -299,6 +333,41 @@
     </tbody>
 </table>
 <script>
+    if ($("#formImport").length > 0) {
+		$("#formImport").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				formdata = new FormData(form);
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('siswa/import') ?>",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(data) {
+						console.log(data);
+						$('#my-modal2').modal('hide');
+						if (data == 1 || data == true) {
+							document.getElementById("formImport").reset();
+							swalInputSuccess();
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formImport").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formImport").reset();
+							swalInputFailed();
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
+
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",
@@ -306,39 +375,20 @@
             rules: {
                 id: {
                     required: true
-                    // ,maxlength: 50
                 },
 
                 nama: {
                     required: true
-                    // , digits:true,
-                    // minlength: 10,
-                    // maxlength:12,
                 },
-                // email: {
-                //         required: true,
-                //         maxlength: 50,
-                //         email: true,
-                //     },    
             },
             messages: {
 
                 id: {
                     required: "Kode jabatan harus diisi!"
-                    // ,maxlength: "Your last name maxlength should be 50 characters long."
                 },
                 nama: {
                     required: "Nama jabatan harus diisi!"
-                    // ,minlength: "The contact number should be 10 digits",
-                    // digits: "Please enter only numbers",
-                    // maxlength: "The contact number should be 12 digits",
                 },
-                // email: {
-                //     required: "Please enter valid email",
-                //     email: "Please enter valid email",
-                //     maxlength: "The email name should less than or equal to 50 characters",
-                //   },
-
             },
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
@@ -419,7 +469,6 @@
         show_data();
         $('#table_id').DataTable();
     });
-
     //function show all Data
     function show_data() {
         $.ajax({
