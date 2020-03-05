@@ -75,7 +75,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
 										<option value="">-- Pilih --</option>
@@ -132,7 +132,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_no_jurnal" id="e_pendidikan_terakhir">
 										<option value="">-- Pilih --</option>

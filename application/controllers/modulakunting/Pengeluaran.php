@@ -15,15 +15,11 @@ class Pengeluaran extends CI_Controller {
 	public function index() {
         $this->load->model('model_guru');
         $this->load->model('model_jabatan');
-        $my_data = $this->model_guru->view('tbps')->result_array();
-        $myagama = $this->model_guru->view('tbagama')->result_array();
         $myjurnal = $this->model_pengeluaran->view('spem_jurnal')->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/pengeluaran/view',
-        			'ribbon' 		=> '<li class="active">Jenis Pengeluaran</li><li>Sample</li>',
+        			'ribbon' 		=> '<li class="active">Jenis Pengeluaran</li>',
 					'page_name' 	=> 'Jenis Pengeluaran',
-                    'myprogram'     => $my_data,
-                    'myagama'       => $myagama,
                     'myjurnal'  => $myjurnal
         		);
         $this->render_view($data); //Memanggil function render_view
