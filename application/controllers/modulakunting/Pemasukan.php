@@ -3,16 +3,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pemasukan extends CI_Controller {
 
-	function render_view($data) {
-        $this->template->load('templateakunting', $data); //Display Page
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('akunting/model_pemasukan');
+	}
 
-	public function index() {
-        $data = array(
-        			'page_content' 	=> '../pageakunting/pemasukan/view',
-        			'ribbon' 		=> '<li class="active">Jenis Pemasukan</li><li>Sample</li>',
-					'page_name' 	=> 'Jenis Pemasukan',
-        		);
-        $this->render_view($data); //Memanggil function render_view
-    }
+	function render_view($data)
+	{
+		$this->template->load('templateakunting', $data); //Display Page
+	}
+
+	public function index()
+	{
+		$myjurnal = $this->model_pemasukan->view('spem_jurnal')->result_array();
+		$data = array(
+			'page_content' 	=> '../pageakunting/pemasukan/view',
+			'ribbon' 		=> '<li class="active">Jenis Pemasukan</li><li>Sample</li>',
+			'page_name' 	=> 'Jenis Pemasukan',
+			'myjurnal'       => $myjurnal,
+		);
+		$this->render_view($data); //Memanggil function render_view
+	}
+	public function tampil()
+	{
+		$my_data = $this->model_pemasukan->viewOrdering('spem_jenispembayaran', 'id', 'asc')->result();
+		echo json_encode($my_data);
+	}
+
+	public function tampil_byid()
+	{
+		$data = array(
+			'id'  => $this->input->post('id'),
+		);
+		$my_data = $this->model_pemasukan->view_where('spem_jenispembayaran', $data)->result();
+		echo json_encode($my_data);
+	}
+
+	public function simpan()
+	{
+		$data = array(
+			'Kodejnsbayar'  => $this->input->post('Kodejnsbayar'),
+			'namajenisbayar'  => $this->input->post('namajenisbayar'),
+			'no_jurnal'  => $this->input->post('no_jurnal'),
+			'createdAt' => date('Y-m-d H:i:s'),
+		);
+		$action = $this->model_pemasukan->insert($data, 'spem_jenispembayaran');
+		echo json_encode($action);
+	}
+
+	public function update()
+	{
+		$data_id = array(
+			'id'  => $this->input->post('e_id')
+		);
+		$data = array(
+			'Kodejnsbayar'  => $this->input->post('e_Kodejnsbayar'),
+			'namajenisbayar'  => $this->input->post('e_namajenisbayar'),
+			'no_jurnal'  => $this->input->post('e_no_jurnal'),
+			'updatedAt' => date('Y-m-d H:i:s'),
+		);
+		$action = $this->model_pemasukan->update($data_id, $data, 'spem_jenispembayaran');
+		echo json_encode($action);
+		//echo $this->db->last_query();
+	}
+	public function delete()
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
+		);
+		$data = array(
+			'isdeleted'  => 1,
+		);
+		$action = $this->model_pemasukan->update($data_id, $data, 'spem_jenispembayaran');
+		echo json_encode($action);
+	}
 }
