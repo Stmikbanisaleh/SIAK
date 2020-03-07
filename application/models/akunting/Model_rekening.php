@@ -1,6 +1,6 @@
 <?php
 
-class Model_pengeluaran extends CI_model
+class Model_rekening extends CI_model
 {
     public function view($table)
     {
@@ -30,17 +30,21 @@ class Model_pengeluaran extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_pengeluaran()
+    public function view_rekening()
     {
-        return  $this->db->query('SELECT jtr.id,
-                                        jtr.JnsTransaksi,
-                                        jtr.NamaTransaksi,
-                                        jur.kode_jurnal,
-                                        jur.nama_jurnal
-                                FROM jnstransaksi jtr INNER JOIN jurnal jur ON 
-                                        jtr.no_jurnal = jur.no_jurnal
-                                WHERE jtr.isDeleted != 1
-                                Order by JnsTransaksi desc');
+        return  $this->db->query('SELECT
+                                    jur.no_jurnal,
+                                    jur.kode_jurnal,
+                                    jur.nama_jurnal,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jur.JR AND z.`STATUS`=7)AS JR,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jur.type AND z.`STATUS`=8)AS type,
+                                    jur.kurs,
+                                    jur.rek_konsol,
+                                    jur.UserId,
+                                    jur.TglInput
+                                FROM jurnal jur
+                                WHERE jur.isDeleted != 1
+                                Order by jur.no_jurnal desc');
     }
 
     public function view_count($table, $field, $data_id)

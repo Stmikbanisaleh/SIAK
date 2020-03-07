@@ -20,6 +20,11 @@ CREATE TABLE `spem_jurnal` (
   `TglInput` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE `spem_jurnal` ADD `isDeleted` VARCHAR(5) NOT NULL AFTER `TglInput`,
+ADD `createdAt` DATE NOT NULL AFTER `isDeleted`, ADD `updateAt` DATETIME NOT NULL AFTER `createdAt`;
+
+ALTER TABLE `spem_jurnal` CHANGE `isDeleted` `isDeleted` INT(11) NOT NULL DEFAULT '0';
+
 INSERT INTO `spem_jurnal` (`no_jurnal`, `kode_jurnal`, `nama_jurnal`, `JR`, `type`, `kurs`, `rek_konsol`, `UserId`, `TglInput`) VALUES
 (1, '1000', 'Kas', '1', '1', NULL, NULL, '5140005', '2019-08-19 00:00:00'),
 (2, '1001', 'Kas Kecil', '1', '2', NULL, NULL, '5140005', '2019-08-19 00:00:00'),
