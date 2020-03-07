@@ -11,7 +11,7 @@ class Model_parameter extends CI_model
     public function viewOrdering()
     {
         return  $this->db->query('SELECT a.*, b.no_jurnal, b.kode_jurnal, b.nama_jurnal FROM
-        spem_parameter a join spem_jurnal b on a.no_jurnal = b.no_jurnal 
+        parameter a join jurnal b on a.no_jurnal = b.no_jurnal 
         
         where a.isdeleted != 1 ');
     }

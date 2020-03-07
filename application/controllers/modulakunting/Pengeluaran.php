@@ -15,7 +15,7 @@ class Pengeluaran extends CI_Controller {
 	public function index() {
         $this->load->model('model_guru');
         $this->load->model('model_jabatan');
-        $myjurnal = $this->model_pengeluaran->view('spem_jurnal')->result_array();
+        $myjurnal = $this->model_pengeluaran->view('jurnal')->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/pengeluaran/view',
         			'ribbon' 		=> '<li class="active">Jenis Pengeluaran</li>',
@@ -39,9 +39,9 @@ class Pengeluaran extends CI_Controller {
             'NamaTransaksi'  => $this->input->post('NamaTransaksi'),
             'createdAt' => date('Y-m-d H:i:s')
         );
-        $count_id = $this->model_pengeluaran->view_count('spem_jnstransaksi','JnsTransaksi',  $data['JnsTransaksi']);
+        $count_id = $this->model_pengeluaran->view_count('jnstransaksi','JnsTransaksi',  $data['JnsTransaksi']);
         if ($count_id < 1) {
-            $result = $this->model_pengeluaran->insert($data, 'spem_jnstransaksi');
+            $result = $this->model_pengeluaran->insert($data, 'jnstransaksi');
             if ($result) {
                 echo $result;
             } else {
@@ -57,7 +57,7 @@ class Pengeluaran extends CI_Controller {
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_pengeluaran->view_where('spem_jnstransaksi', $data)->result();
+        $my_data = $this->model_pengeluaran->view_where('jnstransaksi', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -72,7 +72,7 @@ class Pengeluaran extends CI_Controller {
             'NamaTransaksi'  => $this->input->post('e_NamaTransaksi'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_pengeluaran->update($data_id, $data, 'spem_jnstransaksi');
+        $action = $this->model_pengeluaran->update($data_id, $data, 'jnstransaksi');
         echo json_encode($action);
     }
 
@@ -84,7 +84,7 @@ class Pengeluaran extends CI_Controller {
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_pengeluaran->update($data_id, $data, 'spem_jnstransaksi');
+        $action = $this->model_pengeluaran->update($data_id, $data, 'jnstransaksi');
         echo json_encode($action);
     }
 }

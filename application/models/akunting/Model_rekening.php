@@ -36,13 +36,13 @@ class Model_rekening extends CI_model
                                     jur.no_jurnal,
                                     jur.kode_jurnal,
                                     jur.nama_jurnal,
-                                    (SELECT z.NAMA_REV FROM spem_msrev z WHERE z.KETERANGAN=jur.JR AND z.`STATUS`=7)AS JR,
-                                    (SELECT z.NAMA_REV FROM spem_msrev z WHERE z.KETERANGAN=jur.type AND z.`STATUS`=8)AS type,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jur.JR AND z.`STATUS`=7)AS JR,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jur.type AND z.`STATUS`=8)AS type,
                                     jur.kurs,
                                     jur.rek_konsol,
                                     jur.UserId,
                                     jur.TglInput
-                                FROM spem_jurnal jur
+                                FROM jurnal jur
                                 WHERE jur.isDeleted != 1
                                 Order by jur.no_jurnal desc');
     }

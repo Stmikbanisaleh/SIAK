@@ -14,7 +14,7 @@ class Parameter extends CI_Controller {
     }
 
 	public function index() {
-		$myjurnal = $this->model_parameter->view('spem_jurnal')->result_array();
+		$myjurnal = $this->model_parameter->view('jurnal')->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/parameter/view',
         			'ribbon' 		=> '<li class="active">Parameter</li><li>Sample</li>',
@@ -34,7 +34,7 @@ class Parameter extends CI_Controller {
 		$data = array(
 			'id'  => $this->input->post('id'),
 		);
-		$my_data = $this->model_parameter->view_where('spem_parameter', $data)->result();
+		$my_data = $this->model_parameter->view_where('parameter', $data)->result();
 		echo json_encode($my_data);
 	}
 
@@ -44,7 +44,7 @@ class Parameter extends CI_Controller {
 			'no_jurnal'  => $this->input->post('no_jurnal'),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_parameter->insert($data, 'spem_parameter');
+		$action = $this->model_parameter->insert($data, 'parameter');
 		echo json_encode($action);
 	}
 
@@ -57,7 +57,7 @@ class Parameter extends CI_Controller {
 			'no_jurnal'  => $this->input->post('e_no_jurnal'),
 			'updatedAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_parameter->update($data_id, $data, 'spem_parameter');
+		$action = $this->model_parameter->update($data_id, $data, 'parameter');
 		echo json_encode($action);
 		//echo $this->db->last_query();
 	}
@@ -69,7 +69,7 @@ class Parameter extends CI_Controller {
 		$data = array(
 			'isdeleted'  => 1,
 		);
-		$action = $this->model_parameter->update($data_id, $data, 'spem_parameter');
+		$action = $this->model_parameter->update($data_id, $data, 'parameter');
 		echo json_encode($action);
 	}
 }

@@ -11,7 +11,7 @@ class Model_pemasukan extends CI_model
     public function viewOrdering()
     {
         return  $this->db->query('SELECT a.*, b.no_jurnal, b.kode_jurnal, b.nama_jurnal FROM
-        spem_jenispembayaran a join spem_jurnal b on a.no_jurnal = b.no_jurnal 
+        jenispembayaran a join jurnal b on a.no_jurnal = b.no_jurnal 
         
         where a.isdeleted != 1 ');
     }

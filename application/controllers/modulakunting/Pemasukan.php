@@ -16,7 +16,7 @@ class Pemasukan extends CI_Controller {
 
 	public function index()
 	{
-		$myjurnal = $this->model_pemasukan->view('spem_jurnal')->result_array();
+		$myjurnal = $this->model_pemasukan->view('jurnal')->result_array();
 		$data = array(
 			'page_content' 	=> '../pageakunting/pemasukan/view',
 			'ribbon' 		=> '<li class="active">Jenis Pemasukan</li><li>Sample</li>',
@@ -27,7 +27,7 @@ class Pemasukan extends CI_Controller {
 	}
 	public function tampil()
 	{
-		$my_data = $this->model_pemasukan->viewOrdering('spem_jenispembayaran', 'id', 'asc')->result();
+		$my_data = $this->model_pemasukan->viewOrdering('jenispembayaran', 'id', 'asc')->result();
 		echo json_encode($my_data);
 	}
 
@@ -36,7 +36,7 @@ class Pemasukan extends CI_Controller {
 		$data = array(
 			'id'  => $this->input->post('id'),
 		);
-		$my_data = $this->model_pemasukan->view_where('spem_jenispembayaran', $data)->result();
+		$my_data = $this->model_pemasukan->view_where('jenispembayaran', $data)->result();
 		echo json_encode($my_data);
 	}
 
@@ -48,7 +48,7 @@ class Pemasukan extends CI_Controller {
 			'no_jurnal'  => $this->input->post('no_jurnal'),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_pemasukan->insert($data, 'spem_jenispembayaran');
+		$action = $this->model_pemasukan->insert($data, 'jenispembayaran');
 		echo json_encode($action);
 	}
 
@@ -63,7 +63,7 @@ class Pemasukan extends CI_Controller {
 			'no_jurnal'  => $this->input->post('e_no_jurnal'),
 			'updatedAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_pemasukan->update($data_id, $data, 'spem_jenispembayaran');
+		$action = $this->model_pemasukan->update($data_id, $data, 'jenispembayaran');
 		echo json_encode($action);
 		//echo $this->db->last_query();
 	}
@@ -75,7 +75,7 @@ class Pemasukan extends CI_Controller {
 		$data = array(
 			'isdeleted'  => 1,
 		);
-		$action = $this->model_pemasukan->update($data_id, $data, 'spem_jenispembayaran');
+		$action = $this->model_pemasukan->update($data_id, $data, 'jenispembayaran');
 		echo json_encode($action);
 	}
 }

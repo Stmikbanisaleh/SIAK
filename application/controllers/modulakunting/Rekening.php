@@ -19,8 +19,8 @@ class Rekening extends CI_Controller {
         $jurnal_type = array(
             'status'  => 8,
         );
-        $myjenisrek = $this->model_rekening->view_where('spem_msrev', $jurnal_jenisrek)->result_array();
-        $mytype = $this->model_rekening->view_where('spem_msrev', $jurnal_type)->result_array();
+        $myjenisrek = $this->model_rekening->view_where('msrev', $jurnal_jenisrek)->result_array();
+        $mytype = $this->model_rekening->view_where('msrev', $jurnal_type)->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/rekening/view',
         			'ribbon' 		=> '<li class="active">Rekening</li>',
@@ -46,9 +46,9 @@ class Rekening extends CI_Controller {
             'type'  => $this->input->post('type'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
-        $count_id = $this->model_rekening->view_count('spem_jurnal','no_jurnal',  $data['kode_jurnal']);
+        $count_id = $this->model_rekening->view_count('jurnal','no_jurnal',  $data['kode_jurnal']);
         if ($count_id < 1) {
-            $result = $this->model_rekening->insert($data, 'spem_jurnal');
+            $result = $this->model_rekening->insert($data, 'jurnal');
             if ($result) {
                 echo $result;
             } else {
@@ -64,7 +64,7 @@ class Rekening extends CI_Controller {
         $data = array(
             'no_jurnal'  => $this->input->post('id'),
         );
-        $my_data = $this->model_rekening->view_where('spem_jurnal', $data)->result();
+        $my_data = $this->model_rekening->view_where('jurnal', $data)->result();
         echo json_encode($my_data);
     }
 }
