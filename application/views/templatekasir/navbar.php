@@ -24,25 +24,25 @@
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/image/avatars/avatar2.png" alt="Jason's Photo" />
 				<span class="user-info">
 					<small>Welcome,</small>
-					<?php echo $this->session->userdata('username_kasir'); ?>
+					<?php echo $this->session->userdata('nama'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
 			</a>
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-				<!-- <li class="">
+				<li class="">
 					<a href="<?= base_url() . 'modulkasir/profile'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>
-				</li> -->
-				<!-- <li class="">
+				</li>
+				<li class="">
 					<a href="<?= base_url() . 'modulkasir/pengumuman'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Pengumuman
 					</a>
-				</li> -->
+				</li>
 				<li class="divider"></li>
 
 				<li>

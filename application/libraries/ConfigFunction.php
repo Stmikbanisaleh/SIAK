@@ -152,4 +152,10 @@ class Configfunction
         $result = $this->CI->db->query('SELECT ID FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
         return $result;
     }
+
+    public function getidta()
+    {
+        $result = $this->CI->db->query('SELECT  * FROM tahunakademik_2 where isdeleted != 1 ORDER BY IdTA DESC LIMIT 1')->result_array();
+        return $result;
+    }
 }

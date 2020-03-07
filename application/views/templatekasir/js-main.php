@@ -42,6 +42,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
 
 
+
 <script type="text/javascript">
 	function swalInputSuccess(){
 		Swal.fire({
@@ -51,11 +52,27 @@
 		});
 	}
 
+	function swalGenerateSuccess(){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: 'Generate Berhasil',
+		});
+	}
+
 	function swalInputFailed(){
 		Swal.fire({
 		  icon: 'error',
 		  title: 'Gagal',
 		  text: 'Tambah Data gagal!',
+		});
+	}
+
+	function swalPotonganFailed(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Siswa tidak terdaftar di kelas tersebut',
 		});
 	}
 
