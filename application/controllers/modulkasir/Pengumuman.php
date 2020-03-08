@@ -120,21 +120,38 @@ class Pengumuman extends CI_Controller
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
             $data_id = array(
-                'Useriid'  => $this->input->post('e_id')
+                'NoPengum'  => $this->input->post('e_id')
             );
             $config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png';
             $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload', $config);
-            if ($this->upload->do_upload("file")) {
+            if ($this->upload->do_upload("e_file")) {
                 $data = array('upload_data' => $this->upload->data());
                 $foto = $data['upload_data']['file_name'];
                 $data = array(
                     'gambar'  => $foto,
+                    'AwalTglPengum'  => $this->input->post('e_awal'),
+                    'AkhirTGlPengum'  => $this->input->post('e_akhir'),
+                    'WaktuPengum'  => $this->input->post('e_waktu'),
+                    'JenisPengum'  => $this->input->post('e_jenis'),
+                    'IsiPengum'  => $this->input->post('e_isi'),
+                    'keterangan' => $this->input->post('e_keterangan'),
                     'updatedAt' => date('Y-m-d H:i:s')
                 );
-                $result = $this->model_profile->update($data_id, $data, 'user_login');
+                $result = $this->model_pengumuman->update($data_id, $data, 'pengumuman');
+                echo json_decode($result);
+            } else{
+                $data = array(
+                    'AwalTglPengum'  => $this->input->post('e_awal'),
+                    'AkhirTGlPengum'  => $this->input->post('e_akhir'),
+                    'WaktuPengum'  => $this->input->post('e_waktu'),
+                    'JenisPengum'  => $this->input->post('e_jenis'),
+                    'IsiPengum'  => $this->input->post('e_isi'),
+                    'keterangan' => $this->input->post('e_keterangan'),
+                    'updatedAt' => date('Y-m-d H:i:s')
+                );
+                $result = $this->model_pengumuman->update($data_id, $data, 'pengumuman');
                 echo json_decode($result);
             }
         } else {

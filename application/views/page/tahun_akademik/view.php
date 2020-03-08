@@ -168,8 +168,8 @@
             <th>Tahun</th>
             <th>Tahun Akademik</th>
             <th>UTS / UAS</th>
-            <th>Tahun Dapodik</th>
             <th>Indek</th>
+            <th>Tahun Dapodik</th>
             <th>Kode Sekolah</th>
             <th>Action</th>
         </tr>

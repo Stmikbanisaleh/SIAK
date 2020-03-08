@@ -153,7 +153,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> File </label>
                                 <div class="col-sm-9">
-                                    <input type="file" id="file" name="file" placeholder="" class="form-control" />
+                                    <input type="file" id="e_file" name="e_file" placeholder="" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -369,7 +369,7 @@
             submitHandler: function(form) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('guru/update') ?>",
+                    url: "<?php echo base_url('modulkasir/pengumuman/update') ?>",
                     dataType: "JSON",
                     data: $('#formEdit').serialize(),
                     success: function(data) {

@@ -46,19 +46,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="indek" name="indek" placeholder="" class="form-control" />
+                                    <input type="text" id="indek" name="indek" placeholder="1/2/3/4/5" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="thndapodik" name="thndapodik" placeholder="" class="form-control" />
+                                    <input type="text" id="thndapodik" name="thndapodik" placeholder="2020" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" />
+                                    <input type="text" id="kdsekolah" name="kdsekolah" placeholder="123456" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -168,8 +168,8 @@
             <th>Tahun</th>
             <th>Tahun Akademik</th>
             <th>UTS / UAS</th>
-            <th>Tahun Dapodik</th>
             <th>Indek</th>
+            <th>Tahun Dapodik</th>
             <th>Kode Sekolah</th>
             <th>Action</th>
         </tr>
