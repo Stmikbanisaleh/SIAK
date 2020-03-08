@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="semester" name="semester" placeholder="1/2/3/4/5/6" class="form-control" />
                                 </div>

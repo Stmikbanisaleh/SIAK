@@ -38,7 +38,7 @@
 					<ul class="breadcrumb">
 						<li>
 							<i class="ace-icon fa fa-home home-icon"></i>
-							<a href="<?= base_url(); ?>">Home</a>
+							<a href="<?= base_url().'modulkasir/dashboard/index'; ?>">Home</a>
 						</li>
 						<?= $ribbon; ?>
 					</ul><!-- /.breadcrumb -->

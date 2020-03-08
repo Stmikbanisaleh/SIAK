@@ -13,7 +13,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Edit Data <?= $page_name; ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
 			</div>
 			<form class="form-horizontal" role="form" id="formTambah">
 				<div class="modal-body">
@@ -33,12 +33,12 @@
 									<input type="text" id="namamataajar" name="namamataajar" placeholder="Nama Mataajar" class="form-control" />
 								</div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam</label>
 								<div class="col-sm-9">
 									<input type="number" id="jam" name="jam" placeholder="hh:mm" class="form-control" />
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
 								<div class="col-sm-9">
