@@ -150,7 +150,28 @@
 					Master Karyawan
 				</a>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'jenispembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Jenis Pembayaran
+				</a>
+			</li>
 
+		</ul>
+	</li>
+	<li class="">
+		<a href="javascript:void(0);" class="dropdown-toggle">
+			<i class="menu-icon glyphicon glyphicon-user"></i>
+			<span class="menu-text">
+				Penerimaan Siswa Baru
+			</span>
+
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+
+		<b class="arrow"></b>
+
+		<ul class="submenu">
 			<li class="">
 				<a href="<?= base_url() . 'siswa'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
@@ -159,6 +180,21 @@
 
 				<b class="arrow"></b>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'guru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Biodata Guru
+				</a>
+			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'karyawan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Karyawan
+				</a>
+			</li>
+
+
 		</ul>
 	</li>
 	<li class="">

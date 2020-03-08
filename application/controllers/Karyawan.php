@@ -159,7 +159,7 @@ class Karyawan extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
-				'id'  => $this->input->post('e_id')
+				'id_pengawas'  => $this->input->post('e_id')
 			);
 			$config['upload_path']          = './assets/gambar';
 			$config['allowed_types']        = 'gif|jpg|png';
@@ -197,7 +197,6 @@ class Karyawan extends CI_Controller
 				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
 				echo json_decode($result);
 			}
-			echo json_encode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

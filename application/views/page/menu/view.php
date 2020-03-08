@@ -22,13 +22,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Menu </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nama" name="nama" placeholder="" class="form-control" />
+                                    <input type="text" id="nama" name="nama" placeholder="pembayaran" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Urutan </label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="urut" name="urut" placeholder="" class="form-control" />
+                                    <input type="number" id="urut" name="urut" placeholder="1" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -56,13 +56,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Link </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="link" name="link" placeholder="" class="form-control" />
+                                    <input type="text" id="link" name="link" placeholder="pembayaran" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis </label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="jenis" name="jenis" placeholder="" class="form-control" />
+                                    <input type="number" id="jenis" name="jenis" placeholder="1" class="form-control" />
                                 </div>
                             </div>
                         </div>
