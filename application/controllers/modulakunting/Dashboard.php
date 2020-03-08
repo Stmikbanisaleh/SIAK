@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulakunting/login');
         }
 
