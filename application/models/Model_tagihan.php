@@ -1,29 +1,36 @@
 <?php
 
-class Model_tarif extends CI_model
+class Model_tagihan extends CI_model
 {
 
     public function view()
     {
-        return  $this->db->query('select * from tarif where isdeleted != 1 ');
+        return  $this->db->query('SELECT a.*,b.DESCRTBAGAMA as agama,c.DESCRTBPS as ps FROM
+         mssiswa a join tbagama b on a.AGAMA = b.KDTBAGAMA 
+         join tbps c on a.PS = c.KDTBPS 
+
+          where a.isdeleted != 1 ');
     }
 
-    public function getdata()
+    public function getnis($where)
     {
-        return  $this->db->query("SELECT * ,CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v from tarif_berlaku where isdeleted != 1 order by idtarif desc ");
+        $where = "WHERE NIS='".$where."' OR Noreg='".$where."'";
+        return  $this->db->query("SELECT saldopembayaran_sekolah.idsaldo,
+		saldopembayaran_sekolah.NIS,
+		saldopembayaran_sekolah.Noreg,
+		(SELECT z.NMSISWA FROM mssiswa z WHERE z.Noreg = saldopembayaran_sekolah.Noreg)AS nama,
+		saldopembayaran_sekolah.Kdjnsbayar,
+		saldopembayaran_sekolah.idtarif,
+		saldopembayaran_sekolah.TotalTagihan,
+		saldopembayaran_sekolah.Bayar,
+		saldopembayaran_sekolah.Sisa,
+		saldopembayaran_sekolah.TA,
+		(SELECT zx.nama FROM tbkelas zx WHERE zx.id_kelas = saldopembayaran_sekolah.Kelas)AS Kelas,
+		tbakadmk.THNAKAD
+		FROM saldopembayaran_sekolah 
+		INNER JOIN tbakadmk ON tbakadmk.ID = saldopembayaran_sekolah.TA ".$where."");
     }
 
-    public function getsekolah()
-    {
-        return  $this->db->query('SELECT
-        sekolah.KodeSek,
-        sekolah.NamaSek,
-        jurusan.NamaJurusan
-        FROM
-        sekolah
-        INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where isdeleted !=1
-        ORDER BY KodeSek DESC ');
-    }
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
@@ -48,10 +55,7 @@ class Model_tarif extends CI_model
 
     public function view_count($table, $data_id)
     {
-        $this->db->where('isdeleted !=', 1);
-        $this->db->where('tarif =', $data_id);
-        $hasil = $this->db->get($table);
-        return $hasil->num_rows();
+        return $this->db->query("select NOINDUK from " . $table . " where NOINDUK = '" . $data_id['NOINDUK'] . "' and isdeleted != 1")->num_rows();
     }
 
     public function insert($data, $table)

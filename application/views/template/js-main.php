@@ -52,6 +52,22 @@
 		});
 	}
 
+	function swalAktifSuccess(){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: 'Akun Berhasil Diaktifkan',
+		});
+	}
+
+	function swalAktifFail(){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: 'Akun Berhasil DinonAktif!',
+		});
+	}
+
 	function swalInputFailed(){
 		Swal.fire({
 		  icon: 'error',

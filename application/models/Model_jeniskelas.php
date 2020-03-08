@@ -1,29 +1,13 @@
 <?php
 
-class Model_tarif extends CI_model
+class Model_jeniskelas extends CI_model
 {
-
-    public function view()
+    public function view($table)
     {
-        return  $this->db->query('select * from tarif where isdeleted != 1 ');
+        $this->db->where('isdeleted !=', 1);
+        return $this->db->get($table);
     }
 
-    public function getdata()
-    {
-        return  $this->db->query("SELECT * ,CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v from tarif_berlaku where isdeleted != 1 order by idtarif desc ");
-    }
-
-    public function getsekolah()
-    {
-        return  $this->db->query('SELECT
-        sekolah.KodeSek,
-        sekolah.NamaSek,
-        jurusan.NamaJurusan
-        FROM
-        sekolah
-        INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where isdeleted !=1
-        ORDER BY KodeSek DESC ');
-    }
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
@@ -46,13 +30,10 @@ class Model_tarif extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_count($table, $data_id)
-    {
-        $this->db->where('isdeleted !=', 1);
-        $this->db->where('tarif =', $data_id);
-        $hasil = $this->db->get($table);
-        return $hasil->num_rows();
-    }
+    // public function view_count($table, $data_id)
+    // {
+    //     return $this->db->query("select RUANG from " . $table . " where RUANG = '" . $data_id['RUANG'] . "' and isdeleted != 1")->num_rows();
+    // }
 
     public function insert($data, $table)
     {

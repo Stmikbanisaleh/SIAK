@@ -120,6 +120,14 @@
 
 				<b class="arrow"></b>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'aktivasiakun'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Aktivasi Akun
+				</a>
+
+				<b class="arrow"></b>
+			</li>
 
 		</ul>
 	</li>
@@ -160,6 +168,18 @@
 				<a href="<?= base_url() . 'tarifpembayaran'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Master Tarif Pembayaran
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'jeniskelas'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Jenis Kelas
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'tagihanpembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Tagihan Pembayaran Siswa
 				</a>
 			</li>
 

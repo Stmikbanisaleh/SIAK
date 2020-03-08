@@ -25,7 +25,7 @@
                                     <select class="form-control" name="sekolah" id="sekolah">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($sekolah as $value) { ?>
-                                            <option value=<?= $value['KodeSek'] ?>><?= $value['NamaSek']?> - <?= $value['NamaJurusan']?></option>
+                                            <option value=<?= $value['KodeSek'] ?>><?= $value['NamaSek'] ?> - <?= $value['NamaJurusan'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -33,18 +33,58 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="sekolah" id="sekolah">
+                                    <select class="form-control" name="kodejenis" id="kodejenis">
                                         <option value="0">-- Status --</option>
-                                        <?php foreach ($sekolah as $value) { ?>
-                                            <option value=<?= $value['KodeSek'] ?>><?= $value['NamaSek']?> - <?= $value['NamaJurusan']?></option>
+                                        <?php foreach ($jenisbayar as $value) { ?>
+                                            <option value=<?= $value['Kodejnsbayar'] ?>><?= $value['namajenisbayar'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
+                                <div class="col-sm-3">
+                                    <input type="number" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="nominal" name="nominal" placeholder="Nominal" class="form-control" />
+                                <div class="col-sm-6">
+                                    <input type="text" id="nominal" name="nominal" placeholder="Rp.1000.000" class="form-control" />
+                                    <input type="hidden" class="form-control" name="nominal_v" placeholder="Rp.1000.000" id="nominal_v" />
+                                    <script language="JavaScript">
+                                        var rupiah5 = document.getElementById('nominal');
+                                        rupiah5.addEventListener('keyup', function(e) {
+                                            // tambahkan 'Rp.' pada saat form di ketik
+                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                                            rup5 = this.value.replace(/\D/g, '');
+                                            $('#nominal_v').val(rup5);
+                                            rupiah5.value = formatRupiah5(this.value, 'Rp. ');
+                                        });
+
+                                        function formatRupiah5(angka, prefix) {
+                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                                split = number_string.split(','),
+                                                sisa5 = split[0].length % 3,
+                                                rupiah5 = split[0].substr(0, sisa5),
+                                                ribuan5 = split[0].substr(sisa5).match(/\d{3}/gi);
+
+                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                                            if (ribuan5) {
+                                                separator = sisa5 ? '.' : '';
+                                                rupiah5 += separator + ribuan5.join('.');
+                                            }
+
+                                            rupiah5 = split[1] != undefined ? rupiah5 + ',' + split[1] : rupiah5;
+                                            return prefix == undefined ? rupiah5 : (rupiah5 ? 'Rp. ' + rupiah5 : '');
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
+                                <div class="col-sm-3">
+                                    <input type="text" id="tahunakad" name="tahunakad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -76,30 +116,102 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-12">
-                            <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jenjang </label>
-                                <div class="col-sm-9">
-                                    <input type="hidden" id="e_id" name="e_id" placeholder="Nama Jenjang Pendidikan" class="form-control" />
-                                    <input type="text" id="e_jenjang" name="e_jenjang" placeholder="Nama Jenjang Pendidikan" class="form-control" />
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sekolah </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_sekolah" id="e_sekolah">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($sekolah as $value) { ?>
+                                            <option value=<?= $value['KodeSek'] ?>><?= $value['NamaSek'] ?> - <?= $value['NamaJurusan'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_kodejenis" id="e_kodejenis">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($jenisbayar as $value) { ?>
+                                            <option value=<?= $value['Kodejnsbayar'] ?>><?= $value['namajenisbayar'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
+                                <div class="col-sm-3">
+                                    <input type="hidden" id="e_id" name="e_id" placeholder="" class="form-control" />
+                                    <input type="number" id="e_tahun" name="e_tahun" placeholder="2020" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="e_nominal" name="e_nominal" placeholder="Rp.1000.000" class="form-control" />
+                                    <input type="hidden" class="form-control" name="e_nominal_v" placeholder="Rp.1000.000" id="e_nominal_v" />
+                                    <script language="JavaScript">
+                                        var rupiah6 = document.getElementById('e_nominal');
+                                        rupiah6.addEventListener('keyup', function(e) {
+                                            // tambahkan 'Rp.' pada saat form di ketik
+                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                                            rup6 = this.value.replace(/\D/g, '');
+                                            $('#e_nominal_v').val(rup6);
+                                            rupiah6.value = formatRupiah6(this.value, 'Rp. ');
+                                        });
+
+                                        function formatRupiah6(angka, prefix) {
+                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                                split = number_string.split(','),
+                                                sisa6 = split[0].length % 3,
+                                                rupiah6 = split[0].substr(0, sisa6),
+                                                ribuan6 = split[0].substr(sisa6).match(/\d{3}/gi);
+
+                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                                            if (ribuan6) {
+                                                separator = sisa6 ? '.' : '';
+                                                rupiah6 += separator + ribuan6.join('.');
+                                            }
+
+                                            rupiah6 = split[1] != undefined ? rupiah6 + ',' + split[1] : rupiah6;
+                                            return prefix == undefined ? rupiah6 : (rupiah6 ? 'Rp. ' + rupiah6 : '');
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
+                                <div class="col-sm-3">
+                                    <input type="text" id="e_tahunakad" name="e_tahunakad" placeholder="2020/2021" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="e_status" id="e_status">
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value='T'>Aktif</option>
+                                        <option value='F'>Tidak</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
-                        <i class="ace-icon fa fa-save"></i>
-                        Ubah
-                    </button>
-                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                        <i class="ace-icon fa fa-times"></i>
-                        Batal
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <div class="modal-footer">
+            <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
+                <i class="ace-icon fa fa-save"></i>
+                Ubah
+            </button>
+            <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                <i class="ace-icon fa fa-times"></i>
+                Batal
+            </button>
+        </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 </div>
 
 <div class="row">
@@ -149,7 +261,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('jenjang/simpan_jenjang') ?>",
+                    url: "<?php echo base_url('tarifpembayaran/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -190,7 +302,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('jenjang/update_jenjang') ?>",
+                    url: "<?php echo base_url('tarifpembayaran/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -236,7 +348,7 @@
                         '<td>' + data[i].kodesekolah + '</td>' +
                         '<td>' + data[i].Kodejnsbayar + '</td>' +
                         '<td>' + data[i].ThnMasuk + '</td>' +
-                        '<td>' + data[i].Nominal + '</td>' +
+                        '<td>' + data[i].nominal_v + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
                         '<td>' + data[i].createdAt + '</td>' +
                         '<td>' + data[i].userridd + '</td>' +
@@ -282,15 +394,23 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('jenjang/tampil_byid') ?>",
+            url: "<?php echo base_url('tarifpembayaran/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
                 id: id,
             },
             success: function(data) {
-                $('#e_id').val(data[0].id);
-                $('#e_jenjang').val(data[0].jenjang);
+                $('#e_id').val(data[0].idtarif);
+                $('#e_sekolah').val(data[0].kodesekolah);
+                $('#e_kodejenis').val(data[0].Kodejnsbayar);
+                $('#e_tahun').val(data[0].ThnMasuk);
+                $('#e_nominal').val(formatRupiah5(data[0].Nominal, 'Rp. '));
+                $('#e_nominal_v').val(data[0].Nominal);
+                $('#e_tahunakad').val(data[0].TA);
+                $('#e_status').val(data[0].status);
+
+
             }
         });
     });
