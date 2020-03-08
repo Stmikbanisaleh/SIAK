@@ -6,6 +6,10 @@ class Pengeluaran extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('akunting/model_pengeluaran');
+        if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulakunting/login');
+        }
     }
 
 	function render_view($data) {
@@ -13,8 +17,6 @@ class Pengeluaran extends CI_Controller {
     }
 
 	public function index() {
-        $this->load->model('model_guru');
-        $this->load->model('model_jabatan');
         $myjurnal = $this->model_pengeluaran->view('jurnal')->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/pengeluaran/view',

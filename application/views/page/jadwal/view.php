@@ -272,14 +272,6 @@
                     required: true
                 },
             },
-            messages: {
-
-                programsekolah: {
-                    required: "Program sekolah harus diisi!"
-                },
-                tahun: {
-                    required: "tahun harus diisi!"
-                },
             },
             submitHandler: function(form) {
                 $('#btn_search').html('Searching..');

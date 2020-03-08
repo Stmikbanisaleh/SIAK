@@ -43,10 +43,10 @@
 						Pengumuman
 					</a>
 				</li> -->
-				<li class="divider"></li>
+				<!-- <li class="divider"></li> -->
 
 				<li>
-					<a href="<?= base_url() . 'modulakunting/dashboard/logout'; ?>">
+					<a href="<?= base_url() . 'modulakunting/login/logout'; ?>">
 						<i class="ace-icon fa fa-power-off"></i>
 						Logout
 					</a>

@@ -6,6 +6,10 @@ class Rekening extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('akunting/model_rekening');
+        if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulakunting/login');
+        }
     }
 
 	function render_view($data) {

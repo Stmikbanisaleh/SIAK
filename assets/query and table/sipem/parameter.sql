@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2020 at 09:05 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Waktu pembuatan: 08 Mar 2020 pada 18.22
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,28 +19,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siak`
+-- Database: `siak_old1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `spem_parameter`
+-- Struktur dari tabel `parameter`
 --
 
-CREATE TABLE `spem_parameter` (
+CREATE TABLE `parameter` (
   `id` int(11) NOT NULL,
   `no_jurnal` int(11) DEFAULT NULL,
   `isdeleted` int(11) NOT NULL,
-  `createdAt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `createdAt` timestamp NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `spem_parameter`
+-- Dumping data untuk tabel `parameter`
 --
 
-INSERT INTO `spem_parameter` (`id`, `no_jurnal`, `isdeleted`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `parameter` (`id`, `no_jurnal`, `isdeleted`, `createdAt`, `updatedAt`) VALUES
 (8, 2, 0, '2019-08-22 10:57:01', '0000-00-00 00:00:00'),
 (9, 1, 1, '2020-03-06 08:03:54', '2020-03-06 02:03:42');
 
@@ -49,19 +49,19 @@ INSERT INTO `spem_parameter` (`id`, `no_jurnal`, `isdeleted`, `createdAt`, `upda
 --
 
 --
--- Indexes for table `spem_parameter`
+-- Indeks untuk tabel `parameter`
 --
-ALTER TABLE `spem_parameter`
+ALTER TABLE `parameter`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `spem_parameter`
+-- AUTO_INCREMENT untuk tabel `parameter`
 --
-ALTER TABLE `spem_parameter`
+ALTER TABLE `parameter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 

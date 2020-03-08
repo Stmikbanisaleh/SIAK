@@ -6,6 +6,11 @@ class Dashboard extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulakunting/login');
+        }
+
         $this->load->model('akunting/model_dashboard');
     }
 
@@ -18,7 +23,7 @@ class Dashboard extends CI_Controller
     {
         $data = array(
             'page_content' 	=> 'dashboard',
-            'ribbon' 		=> '<li class="active">Dashboard</li><li>Sample</li>',
+            'ribbon' 		=> '<li class="active">Dashboard</li>',
             'page_name' 	=> 'Dashboard',
         );
         $this->render_view($data); //Memanggil function render_view
