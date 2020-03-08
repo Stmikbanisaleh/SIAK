@@ -193,6 +193,12 @@
 					Pengembalian Formulir
 				</a>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'pembuatannis'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Pembuatan NIS
+				</a>
+			</li>
 
 
 		</ul>
