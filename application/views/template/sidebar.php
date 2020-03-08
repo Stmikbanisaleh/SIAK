@@ -207,16 +207,16 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'guru'; ?>">
+				<a href="<?= base_url() . 'pengambilanformulir'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Master Biodata Guru
+					Pengambilan Formulir
 				</a>
 			</li>
 
 			<li class="">
-				<a href="<?= base_url() . 'karyawan'; ?>">
+				<a href="<?= base_url() . 'pengembalianformulir'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Master Karyawan
+					Pengembalian Formulir
 				</a>
 			</li>
 
