@@ -1,6 +1,6 @@
 <?php
 
-class Model_pengeluaran extends CI_model
+class Model_buk extends CI_model
 {
     public function view($table)
     {
@@ -30,17 +30,19 @@ class Model_pengeluaran extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_pengeluaran()
+    public function view_buk($cp)
     {
-        return  $this->db->query('SELECT jtr.id,
-                                        jtr.JnsTransaksi,
-                                        jtr.NamaTransaksi,
-                                        jur.kode_jurnal,
-                                        jur.nama_jurnal
-                                FROM jnstransaksi jtr INNER JOIN jurnal jur ON 
-                                        jtr.no_jurnal = jur.no_jurnal
-                                WHERE jtr.isDeleted != 1
-                                Order by JnsTransaksi desc');
+        return  $this->db->query("SELECT akuntansi.no_akuntansi, akuntansi.bukti, DATE_FORMAT(tgl,'%d-%m-%Y')tgl1, tgl, akuntansi.jurnal, akuntansi.tdebet, akuntansi.tkredit, akuntansi.urai, akuntansi.posting FROM akuntansi ".$cp." Order by no_akuntansi desc");
+    }
+
+    public function view_tahun()
+    {
+        return  $this->db->query('SELECT distinct EXTRACT(YEAR FROM tglentri) as tahun FROM pembayaran_sekolah ORDER BY tglentri DESC');
+    }
+
+    public function view_nopembytahun($tahun)
+    {
+        return  $this->db->query('SELECT EXTRACT(YEAR FROM tglentri) as tahun,DATE_FORMAT(tglentri, "%d/%m/%Y")AS tglentri,Nopembayaran FROM pembayaran_sekolah WHERE EXTRACT(YEAR FROM tglentri) = "'.$tahun.'"');
     }
 
     public function view_count($table, $field, $data_id)

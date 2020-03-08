@@ -6,6 +6,10 @@ class Dashboard extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
+            redirect('modulakunting/login');
+        }
+
         $this->load->model('akunting/model_dashboard');
     }
 
