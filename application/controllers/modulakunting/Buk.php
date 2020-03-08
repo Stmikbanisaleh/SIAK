@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Buk extends CI_Controller {
+class Buk extends CI_Controller
+{
 
     function __construct()
     {
@@ -13,18 +14,20 @@ class Buk extends CI_Controller {
         }
     }
 
-	function render_view($data) {
+    function render_view($data)
+    {
         $this->template->load('templateakunting', $data); //Display Page
     }
 
-	public function index() {
+    public function index()
+    {
         $mytahun = $this->model_buk->view_tahun()->result_array();
         $data = array(
-        			'page_content' 	=> '../pageakunting/buk/view',
-        			'ribbon' 		=> '<li class="active">BUK</li><li>Sample</li>',
-					'page_name' 	=> 'BUK',
-                    'mytahun'       => $mytahun,
-        		);
+            'page_content'     => '../pageakunting/buk/view',
+            'ribbon'         => '<li class="active">BUK</li><li>Sample</li>',
+            'page_name'     => 'BUK',
+            'mytahun'       => $mytahun,
+        );
         $this->render_view($data); //Memanggil function render_view
     }
 
@@ -32,10 +35,10 @@ class Buk extends CI_Controller {
     {
         $nopembayaran = $this->input->post('nopembayaran');
         if ($nopembayaran == '0') {
-                $cp = "WHERE posting='T'";
-            } else {
-                $cp = "WHERE bukti = ".$nopembayaran;
-            }
+            $cp = "WHERE posting='T'";
+        } else {
+            $cp = "WHERE bukti = " . $nopembayaran;
+        }
         $my_data = $this->model_buk->view_buk($cp)->result_array();
         echo json_encode($my_data);
     }
@@ -45,9 +48,8 @@ class Buk extends CI_Controller {
         $tahun = $this->input->post('tahun');
         $my_data = $this->model_buk->view_nopembytahun($tahun)->result_array();
         echo "<option value='0'>--Pilih Program --</option>";
-        foreach ($my_data as $value) 
-            {
-                echo "<option value='".$value['Nopembayaran']."'>[".$value['Nopembayaran']."] - ".$value['tglentri']."</option>";
-            }
+        foreach ($my_data as $value) {
+            echo "<option value='" . $value['Nopembayaran'] . "'>[" . $value['Nopembayaran'] . "] - " . $value['tglentri'] . "</option>";
+        }
     }
 }

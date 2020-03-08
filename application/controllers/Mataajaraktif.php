@@ -43,7 +43,7 @@ class Mataajaraktif extends CI_Controller
 		$data = array(
 			'KDMKTRMKA'  => $this->input->post('kodemataajar'),
 			'SMTTRMKA'  => $this->input->post('semester'),
-			'PSTRMKA'  => $this->input->post('programsekolah'),
+			'PSTRMKA'  => $this->input->post('programsekolahs'),
 			'THNAKDTRMKA'  => $tampil_thnakad[0]['THNAKAD'],
 			'GANGENTRMKA'  => $tampil_thnakad[0]['SEMESTER'],
 			'IDUSER'  => $this->session->userdata('nip'),

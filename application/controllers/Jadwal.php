@@ -24,9 +24,31 @@ class Jadwal extends CI_Controller
         echo json_encode($result);
     }
 
+    public function showguru()
+    {
+        $ps = $this->input->post('ps');
+        $data = array('GuruBase' => $ps);
+        $my_data = $this->model_jadwal->viewWhereOrdering('tbguru', $data, 'id', 'asc')->result_array();
+        echo "<option value='0'>--Pilih Guru --</option>";
+        foreach ($my_data as $value) {
+            echo "<option value='" . $value['IdGuru'] . "'>[" . $value['GuruNama'] . "] </option>";
+        }
+    }
+
+    public function showmapel()
+    {
+        $ps = $this->input->post('ps');
+        $data = array('PS' => $ps);
+        $my_data = $this->model_jadwal->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
+        echo "<option value='0'>--Pilih Mapel --</option>";
+        foreach ($my_data as $value) {
+            echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] . "] </option>";
+        }
+    }
+
     public function index()
     {
-        $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
+        // $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
         $myhari = $this->model_jadwal->viewOrdering('tbhari', 'id', 'asc')->result_array();
         $mytahun = $this->model_jadwal->gettahun()->result_array();
 
@@ -40,7 +62,6 @@ class Jadwal extends CI_Controller
             'page_name'     => 'Master Jadwal',
             'mytahun'        => $mytahun,
             'myps'            => $myps,
-            'myguru'        => $myguru,
             'myhari'        => $myhari,
             'myruang'        => $myruang,
             'mymapel'       => $mymapel
@@ -116,12 +137,12 @@ class Jadwal extends CI_Controller
         $this->load->library('Configfunction');
         $tampil_thnakad = $this->configfunction->getthnakd();
         $data = array(
-            'ps'  => $this->input->post('programsekolah'),
-            'id_guru'  => $this->input->post('guru'),
+            'ps'  => $this->input->post('programsekolahs'),
             'id_mapel'  => $this->input->post('mataajar'),
             'id_ruang'  => $this->input->post('ruang'),
             'id_guru'  => $this->input->post('guru'),
             'hari'  => $this->input->post('hari'),
+            'jam'  => $this->input->post('jam'),
             'nmklstrjdk'  => $this->input->post('kelas'),
             'periode'  => $tampil_thnakad[0]['THNAKAD'],
             'semester'  => $tampil_thnakad[0]['SEMESTER'],

@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="programsekolah" id="programsekolah">
+                                    <select class="form-control" name="programsekolahs" id="programsekolahs">
                                         <option value="0">Status</option>
                                         <?php foreach ($myps as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
@@ -61,9 +61,6 @@
                                 <div class="col-xs-6">
                                     <select class="form-control" name="guru" id="guru">
                                         <option value="0">-- Status --</option>
-                                        <?php foreach ($myguru as $value) { ?>
-                                            <option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -72,9 +69,6 @@
                                 <div class="col-xs-6">
                                     <select class="form-control" name="mataajar" id="mataajar">
                                         <option value="0">-- Status --</option>
-                                        <?php foreach ($mymapel as $value) { ?>
-                                            <option value=<?= $value['id_mapel'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -154,7 +148,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
                                 <div class="col-sm-9">
-                                    <a href="<?php echo base_url().'assets/krs_siswa.xls';?>" for="form-field-1"> Download Sample Format </label></a>
+                                    <a href="<?php echo base_url() . 'assets/krs_siswa.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
                                 </div>
                             </div>
                         </div>
@@ -259,19 +253,19 @@
         })
     }
 
+
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                programsekolah: {
-                    required: true
+                nopembayaran: {
+                    required: false
                 },
 
                 tahun: {
-                    required: true
+                    required: false
                 },
-            },
             },
             submitHandler: function(form) {
                 $('#btn_search').html('Searching..');
@@ -393,29 +387,6 @@
                 });
                 return false;
             }
-            // submitHandler: function(form) {
-            //     $('#btn_edit').html('Sending..');
-            //     $.ajax({
-            //         url: "<?php echo base_url('jabatan/update') ?>",
-            //         type: "POST",
-            //         data: $('#formEdit').serialize(),
-            //         dataType: "json",
-            //         success: function(response) {
-            //             $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-            //                 'Ubah');
-            //             if (response == true) {
-            //                 document.getElementById("formEdit").reset();
-            //                 swalEditSuccess();
-            //                 show_data();
-            //                 $('#modalEdit').modal('hide');
-            //             } else if (response == 401) {
-            //                 swalIdDouble('Nama Jabatan Sudah digunakan!');
-            //             } else {
-            //                 swalEditFailed();
-            //             }
-            //         }
-            //     });
-            // }
         })
     }
 </script>
@@ -423,6 +394,32 @@
     $(document).ready(function() {
         show_data();
         $('#table_id').DataTable();
+        $("#programsekolahs").change(function() {
+            var ps = $('#programsekolahs').val();
+            $.ajax({
+                type: "POST",
+                url: "jadwal/showguru",
+                data: {
+                    ps: ps
+                }
+            }).done(function(data) {
+                $("#guru").html(data);
+            });
+        });
+
+        $("#programsekolahs").change(function() {
+            var ps = $("#programsekolahs").val();
+            $.ajax({
+                type: "POST",
+                url: "jadwal/showmapel",
+                data: {
+                    ps: ps
+                }
+            }).done(function(data) {
+                $("#mataajar").html(data);
+            });
+        });
+
     });
 
     //function show all Data
