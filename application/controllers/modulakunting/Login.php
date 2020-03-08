@@ -23,16 +23,16 @@ class Login extends CI_Controller
 	public function proses_login()
 	{
 		$data = array(
-            'Useriid'  => $this->input->post('email'),
-            'Passwordd'  => md5($this->input->post('password'))
+            'username'  => $this->input->post('email'),
+            'password'  => md5($this->input->post('password'))
         );
-        $my_data = $this->model_login->view_where('user_login', $data);
+        $my_data = $this->model_login->view_where('tbpengawas', $data);
 		if ($my_data->num_rows() == 1) {
 			$data = $my_data->result_array();
 			foreach ($data as $value) {
 				$data = [
-					'username' => $value['Useriid'],
-					'level' => $value['admin'],
+					'username' => $value['username'],
+					'level' => $value['level'],
 				];
 			}
 			$this->session->set_userdata($data);
