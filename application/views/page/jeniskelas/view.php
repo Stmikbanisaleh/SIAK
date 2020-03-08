@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Kelas </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nama_kelas" name="nama_kelas" id="form-field-1" placeholder="Biologi" class="form-control" />
+                                    <input type="text" id="nama_kelas" name="nama_kelas" id="form-field-1" placeholder="IX" class="form-control" />
                                 </div>
                             </div>
                         </div>
