@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$data = array(
 				'page_content' 	=> 'dashboard',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Sample</li>',
+				'ribbon' 		=> '<li class="active">Dashboard</li>',
 				'page_name' 	=> 'Dashboard',
 			);
 			$this->render_view($data); //Memanggil function render_view
