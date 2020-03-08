@@ -156,6 +156,12 @@
 					Master Jenis Pembayaran
 				</a>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'tarifpembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Tarif Pembayaran
+				</a>
+			</li>
 
 		</ul>
 	</li>

@@ -8,6 +8,17 @@ class Model_tarif extends CI_model
         return  $this->db->query('select * from tarif where isdeleted != 1 ');
     }
 
+    public function getsekolah()
+    {
+        return  $this->db->query('SELECT
+        sekolah.KodeSek,
+        sekolah.NamaSek,
+        jurusan.NamaJurusan
+        FROM
+        sekolah
+        INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where isdeleted !=1
+        ORDER BY KodeSek DESC ');
+    }
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);

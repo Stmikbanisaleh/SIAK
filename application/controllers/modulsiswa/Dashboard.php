@@ -43,15 +43,16 @@ class Dashboard extends CI_Controller
     public function login()
     {
         $email = $this->input->post('email');
-        $password = md5($this->input->post('password'));
-        $query = $this->db->query("select count(nis) as jml,nama,nis, username from siswa where username='" . $email . "' and password LIKE'$password'  GROUP BY nama,nis");
+        $password = hash("sha512",md5($this->input->post('password')));
+        $query = $this->db->query("select count(NOINDUK) as jml,NMSISWA,NOINDUK,EMAIL from mssiswa where NOINDUK='" . $email . "' and PASSWORD = '$password'  GROUP BY NOINDUK");
+        // print_r($this->db->last_query());exit;
         if ($query->num_rows() == 1) {
             $data = $query->result_array();
             foreach ($data as $value) {
                 $data = [
-                    'username_siswa' => $value['nama'],
-                    'email' => $value['username'],
-                    'nis' => $value['nis'],
+                    'username_siswa' => $value['NMSISWA'],
+                    'email' => $value['EMAIL'],
+                    'nis' => $value['NOINDUK'],
                 ];
             }
             $this->session->set_userdata($data);

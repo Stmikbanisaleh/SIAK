@@ -116,13 +116,14 @@ class Jenispembayaran extends CI_Controller
     public function update()
     {
         $data_id = array(
-            'id'  => $this->input->post('e_id')
+            'Kodejnsbayar'  => $this->input->post('e_id')
         );
         $data = array(
-            'nama'  => $this->input->post('e_nama'),
+            'Kodejnsbayar'  => $this->input->post('e_kdjenisbayar'),
+            'namajenisbayar'  => $this->input->post('e_nmjenisbayar'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jadwal->update($data_id, $data, 'tbjadwal');
+        $action = $this->model_jenis->update($data_id, $data, 'jenispembayaran');
         echo json_encode($action);
     }
 
