@@ -199,6 +199,12 @@
 					Pembuatan NIS
 				</a>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'penentuankelas'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Penentuan Kelas
+				</a>
+			</li>
 
 
 		</ul>
