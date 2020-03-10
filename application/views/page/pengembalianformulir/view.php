@@ -1,25 +1,12 @@
 <div class="row">
-    <div class="col-xs-1">
-        <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-            <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
-        </button>
-    </div>
-    <br>
-    <br>
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
-            <select class="form-control" name="tahun" id="tahun">
-                <option value=>--Pilih Tahun--</option>
-                <?php foreach ($mytahun as $value) { ?>
-                    <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
-                <?php } ?>
-            </select>
+            <input type="text" required class="form-control" name="noreg" id="noreg" placeholder="No Registrasi"></textarea>
         </div>
         <div class="col-xs-3">
-            <select class="form-control" name="programsekolah" id="programsekolah">
-                <option value=>--Pilih Program --</option>
-                <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+            <select class="form-control" name="sekolah" id="sekolah">
+                <?php foreach ($mysekolah as $value) { ?>
+                    <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan']; ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -32,104 +19,13 @@
         <br>
     </form>
 </div>
-<div id="modalTambah" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
-            </div>
-            <form class="form-horizontal" role="form" id="formTambah">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <!-- PAGE CONTENT BEGINS -->
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="programsekolahs" id="programsekolahs">
-                                        <option value="0">Status</option>
-                                        <?php foreach ($myps as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="guru" id="guru">
-                                        <option value="0">-- Status --</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mata Ajar </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="mataajar" id="mataajar">
-                                        <option value="0">-- Status --</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="hari" id="hari">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myhari as $value) { ?>
-                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="ruang" id="ruang">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myruang as $value) { ?>
-                                            <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Kelas"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam </label>
-                                <div class="col-sm-3">
-                                    <input type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
-                        <i class="ace-icon fa fa-save"></i>
-                        Simpan
-                    </button>
-                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                        <i class="ace-icon fa fa-times"></i>
-                        Batal
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
 
 <div id="modalEdit" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Import Jadwal <?= $page_name; ?></h3>
+                <h3 class="smaller lighter blue no-margin">Form <?= $page_name; ?></h3>
             </div>
             <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formEdit">
                 <div class="modal-body">
@@ -137,18 +33,59 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
                                 <div class="col-sm-6">
-                                    <input type="file" id="file" required name="file" class="form-control" />
+                                    <input type="text" id="e_noreg" required name="e_noreg" readonly class="form-control" />
                                     <input type="hidden" id="e_id" required name="e_id" class="form-control" />
-
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-                                <div class="col-sm-9">
-                                    <a href="<?php echo base_url() . 'assets/krs_siswa.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sekolah </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="e_sekolah" id="e_sekolah">
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="e_jk" id="e_jk">
+                                        <?php foreach ($myrev as $value) { ?>
+                                            <option value=<?= $value['KETERANGAN'] ?>> <?= $value['NAMA_REV'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Lahir </label>
+                                <div class="col-sm-6">
+                                    <input type="date" id="e_tglhr" name="e_tglhr" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="e_nama" readonly name="e_nama" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="e_agama" id="e_agama">
+                                        <?php foreach ($myagama as $value) { ?>
+                                            <option value=<?= $value['KETERANGAN'] ?>> <?= $value['NAMA_REV'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat lahir </label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="e_tmplhr" name="e_tmplhr" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -157,7 +94,7 @@
                 <div class="modal-footer">
                     <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
                         <i class="ace-icon fa fa-save"></i>
-                        Import
+                        Update
                     </button>
                     <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
                         <i class="ace-icon fa fa-times"></i>
@@ -181,12 +118,13 @@
     <thead>
         <tr>
             <th class="col-md-1">No</th>
-            <th>Guru</th>
-            <th>Mata Ajar</th>
-            <th>Ruang</th>
-            <th>Kelas</th>
-            <th>Jam</th>
-            <th>Program Sekolah</th>
+            <th>No Registrasi</th>
+            <th>Nama</th>
+            <th>Jenis Kelamin</th>
+            <th>Agama</th>
+            <th>Sekolah</th>
+            <th>Tanggal Lahir</th>
+            <th>Tempat Lahir</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -253,25 +191,33 @@
         })
     }
 
-
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                nopembayaran: {
-                    required: false
+                programsekolah: {
+                    required: true
                 },
 
                 tahun: {
-                    required: false
+                    required: true
+                },
+            },
+            messages: {
+
+                programsekolah: {
+                    required: "Program sekolah harus diisi!"
+                },
+                tahun: {
+                    required: "tahun harus diisi!"
                 },
             },
             submitHandler: function(form) {
                 $('#btn_search').html('Searching..');
                 $.ajax({
                     type: 'POST',
-                    url: '<?php echo site_url('jadwal/search') ?>',
+                    url: '<?php echo site_url('pengembalianformulir/search') ?>',
                     data: $('#formSearch').serialize(),
                     async: true,
                     dataType: 'json',
@@ -284,19 +230,16 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].GuruNama + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
-                                '<td>' + data[i].RUANG + '</td>' +
-                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
-                                '<td>' + data[i].JAM + '</td>' +
-                                '<td>' + data[i].DESCRTBPS + '</td>' +
+                                '<td>' + data[i].Noreg + '</td>' +
+                                '<td>' + data[i].Namacasis + '</td>' +
+                                '<td>' + data[i].Jk + '</td>' +
+                                '<td>' + data[i].agama + '</td>' +
+                                '<td>' + data[i].kodesekolah + '-' + data[i].NamaJurusan + '</td>' +
+                                '<td>' + data[i].tgllhr + '</td>' +
+                                '<td>' + data[i].tptlhr + '</td>' +
                                 '<td class="text-center">' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-                                '</button> &nbsp' +
-                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                '</button>' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Noreg + '">' +
+                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -320,40 +263,6 @@
             }
         })
     }
-    if ($("#formImport").length > 0) {
-        $("#formImport").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                formdata = new FormData(form);
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url('jadwal/import') ?>",
-                    data: formdata,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
-                    success: function(data) {
-                        console.log(data);
-                        $('#my-modal2').modal('hide');
-                        if (data == 1 || data == true) {
-                            document.getElementById("formImport").reset();
-                            swalInputSuccess();
-                            show_data();
-                        } else if (data == 401) {
-                            document.getElementById("formImport").reset();
-                            swalIdDouble();
-                        } else {
-                            document.getElementById("formImport").reset();
-                            swalInputFailed();
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
 
     if ($("#formEdit").length > 0) {
         $("#formEdit").validate({
@@ -363,7 +272,7 @@
                 formdata = new FormData(form);
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('jadwal/import') ?>",
+                    url: "<?php echo base_url('pengembalianformulir/update') ?>",
                     data: formdata,
                     processData: false,
                     contentType: false,
@@ -375,13 +284,13 @@
                         if (data == 1 || data == true) {
                             document.getElementById("formEdit").reset();
                             swalInputSuccess();
-                            show_data();
                         } else if (data == 401) {
                             document.getElementById("formEdit").reset();
                             swalIdDouble();
                         } else {
                             document.getElementById("formEdit").reset();
-                            swalInputFailed();
+                            swalInputSuccess();
+
                         }
                     }
                 });
@@ -392,34 +301,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        show_data();
         $('#table_id').DataTable();
-        $("#programsekolahs").change(function() {
-            var ps = $('#programsekolahs').val();
-            $.ajax({
-                type: "POST",
-                url: "jadwal/showguru",
-                data: {
-                    ps: ps
-                }
-            }).done(function(data) {
-                $("#guru").html(data);
-            });
-        });
-
-        $("#programsekolahs").change(function() {
-            var ps = $("#programsekolahs").val();
-            $.ajax({
-                type: "POST",
-                url: "jadwal/showmapel",
-                data: {
-                    ps: ps
-                }
-            }).done(function(data) {
-                $("#mataajar").html(data);
-            });
-        });
-
     });
 
     //function show all Data
@@ -479,18 +361,20 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('jadwal/tampil_byid') ?>",
+            url: "<?php echo base_url('pengembalianformulir/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
                 id: id,
             },
             success: function(data) {
-                console.log(data);
-                $('#e_id').val(data[0].id);
-                $('#e_nama').val(data[0].NAMAJABATAN);
-                $('#e_keterangan').val(data[0].KET);
-
+                $('#e_id').val(data[0].Noreg);
+                $('#e_sekolah').val(data[0].kodesekolah);
+                $('#e_nama').val(data[0].Namacasis);
+                $('#e_noreg').val(data[0].Noreg);
+                $('#e_agama').val(data[0].agama);
+                $('#e_tglhr').val(data[0].tgllhr);
+                $('#e_tmplhr').val(data[0].tptlhr);
             }
         });
     });

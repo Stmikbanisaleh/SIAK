@@ -15,17 +15,31 @@ class Pengembalianformulir extends CI_Controller
         $this->template->load('template', $data); //Display Page
     }
 
+    public function search()
+    {
+        $nis = $this->input->post('noreg');
+        $jenis = $this->input->post('sekolah');
+        $result = $this->model_pengembalianformulir->getdata($nis, $jenis)->result();
+        echo json_encode($result);
+    }
+
     public function index()
     {
         $this->load->library('Configfunction');
         $tampil_thnakad = $this->configfunction->getthnakd();
         $mysekolah = $this->model_pengembalianformulir->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
+        $data = array('status' => 1);
+        $myrev = $this->model_pengembalianformulir->viewWhereOrdering('msrev',$data, 'ID', 'asc')->result_array();
+        $data2 = array('status' => 4);
+        $myagama = $this->model_pengembalianformulir->viewWhereOrdering('msrev',$data2, 'ID', 'asc')->result_array();
         $data = array(
             'page_content'     => 'pengembalianformulir/view',
             'ribbon'         => '<li class="active">Dashboard</li><li>Master Pengembalian Formulir</li>',
             'page_name'     => 'Master Pengembalian Formulir',
             'js'             => 'js_file',
-            'mysekolah'     => $mysekolah
+            'mysekolah'     => $mysekolah,
+            'myrev'     => $myrev,
+            'myagama'   => $myagama
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -70,9 +84,9 @@ class Pengembalianformulir extends CI_Controller
     public function tampil_byid()
     {
         $data = array(
-            'id'  => $this->input->post('id'),
+            'Noreg'  => $this->input->post('id'),
         );
-        $my_data = $this->model_pengembalianformulir->view_where('jenjang', $data)->result();
+        $my_data = $this->model_pengembalianformulir->view_where('calon_siswa', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -84,16 +98,21 @@ class Pengembalianformulir extends CI_Controller
         echo json_encode($my_data);
     }
 
-    public function update_jenjang()
+    public function update()
     {
         $data_id = array(
-            'id'  => $this->input->post('e_id')
+            'Noreg'  => $this->input->post('e_id')
         );
         $data = array(
-            'jenjang'  => $this->input->post('e_jenjang'),
+            'kodesekolah'  => $this->input->post('e_sekolah'),
+            'agama'  => $this->input->post('e_agama'),
+            'Jk'  => $this->input->post('e_jk'),
+            'tgllhr'  => $this->input->post('e_tglhr'),
+            'tptlhr'  => $this->input->post('e_tmplhr'),
+            'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_pengembalianformulir->update($data_id, $data, 'jenjang');
-        echo json_encode($action);
+        $action = $this->model_pengembalianformulir->update($data_id, $data, 'calon_siswa');
+        echo json_encode(true);
     }
 
     public function delete()

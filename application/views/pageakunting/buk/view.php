@@ -1,27 +1,27 @@
 <div class="row">
-    <form class="form-horizontal" role="form" id="formSearch">
-        <div class="col-xs-3">
-            <select class="form-control tahun" name="tahun" id="tahun">
-                <option value="0">--Pilih Tahun--</option>
-                <?php foreach ($mytahun as $value) { ?>
-                    <option value=<?= $value['tahun'] ?>><?= $value['tahun'] ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <td>
-        <div class="col-xs-3">
-            <select class="form-control" name="nopembayaran" id="nopembayaran">
-            	<option value="0">--Pilih Tahun--</option>
-            </select>
-        </div>
-        <div class="col-xs-1">
-            <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
-                <a class="ace-icon fa fa-search bigger-120"></a>Periksa
-            </button>
-        </div>
-        <br>
-        <br>
-    </form>
+	<form class="form-horizontal" role="form" id="formSearch">
+		<div class="col-xs-3">
+			<select class="form-control tahun" name="tahun" id="tahun">
+				<option value="0">--Pilih Tahun--</option>
+				<?php foreach ($mytahun as $value) { ?>
+					<option value=<?= $value['tahun'] ?>><?= $value['tahun'] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<td>
+			<div class="col-xs-3">
+				<select class="form-control" name="nopembayaran" id="nopembayaran">
+					<option value="0">--Pilih Tahun--</option>
+				</select>
+			</div>
+			<div class="col-xs-1">
+				<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
+					<a class="ace-icon fa fa-search bigger-120"></a>Periksa
+				</button>
+			</div>
+			<br>
+			<br>
+	</form>
 </div>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -91,7 +91,7 @@
 									<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjurnal as $value) { ?>
-											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal']." - ".$value['nama_jurnal'] ?></option>
+											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -133,7 +133,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-							<input type="hidden" class="form-control" name="e_id" id="e_id"/>
+							<input type="hidden" class="form-control" name="e_id" id="e_id" />
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
@@ -148,7 +148,7 @@
 									<select class="form-control" name="e_no_jurnal" id="e_pendidikan_terakhir">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjurnal as $value) { ?>
-											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal']." - ".$value['nama_jurnal'] ?></option>
+											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -203,87 +203,88 @@
 	$(document).ready(function() {
 		// show_data();
 		$('#datatable_tabletools').DataTable();
-
-		$("#tahun").change(function(){
-            var tahun = $('#tahun').val();
-            $.ajax({
-                type: "POST",
-                url: "buk/show_nopem",
-                data: { tahun : tahun } 
-            }).done(function(data){
-                $("#nopembayaran").html(data);
-            });
-        });
+		$("#tahun").change(function() {
+			var tahun = $('#tahun').val();
+			$.ajax({
+				type: "POST",
+				url: "buk/show_nopem",
+				data: {
+					tahun: tahun
+				}
+			}).done(function(data) {
+				$("#nopembayaran").html(data);
+			});
+		});
 
 	});
 
 	if ($("#formSearch").length > 0) {
-        $("#formSearch").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            rules: {
-                nopembayaran: {
-                    required: false
-                },
+		$("#formSearch").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			rules: {
+				nopembayaran: {
+					required: false
+				},
 
-                tahun: {
-                    required: false
-                },
-            },
-            submitHandler: function(form) {
-                $('#btn_search').html('Searching..');
-                $.ajax({
-                    type: 'POST',
-                    url: '<?php echo site_url('modulakunting/buk/tampil') ?>',
-                    data: $('#formSearch').serialize(),
-                    async: true,
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
-                            'Periksa');
-                        var html = '';
-                        var i = 0;
-                        var no = 1;
-                        if(data.length == 0){
+				tahun: {
+					required: false
+				},
+			},
+			submitHandler: function(form) {
+				$('#btn_search').html('Searching..');
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo site_url('modulakunting/buk/tampil') ?>',
+					data: $('#formSearch').serialize(),
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						$('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+							'Periksa');
+						var html = '';
+						var i = 0;
+						var no = 1;
+						if (data.length == 0) {
 
-                        }else{
-                        	for (i = 0; i < data.length; i++) {
-	                            html += '<tr>' +
-	                                '<td class="text-center">' + no + '</td>' +
-	                                '<td>' + data[i].bukti + '</td>' +
-	                                '<td>' + data[i].tgl1 + '</td>' +
-	                                '<td>' + data[i].tdebet + '</td>' +
-	                                '<td>' + data[i].tkredit + '</td>' +
-	                                '<td class="text-center">' +
-	                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-	                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-	                                '</button> &nbsp' +
-	                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-	                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-	                                '</button>' +
-	                                '</td>' +
-	                                '</tr>';
-	                            no++;
-	                        }
-	                        $("#table_id").dataTable().fnDestroy();
-	                        var a = $('#show_data').html(html);
-	                        //                    $('#mydata').dataTable();
-	                        if (a) {
-	                            $('#table_id').dataTable({
-	                                "bPaginate": true,
-	                                "bLengthChange": false,
-	                                "bFilter": true,
-	                                "bInfo": false,
-	                                "bAutoWidth": false
-	                            });
-	                        }
-                        }
-                        
-                        /* END TABLETOOLS */
-                    }
-                });
+						} else {
+							for (i = 0; i < data.length; i++) {
+								html += '<tr>' +
+									'<td class="text-center">' + no + '</td>' +
+									'<td>' + data[i].bukti + '</td>' +
+									'<td>' + data[i].tgl1 + '</td>' +
+									'<td>' + data[i].tdebet + '</td>' +
+									'<td>' + data[i].tkredit + '</td>' +
+									'<td class="text-center">' +
+									'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+									'<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+									'</button> &nbsp' +
+									'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+									'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+									'</button>' +
+									'</td>' +
+									'</tr>';
+								no++;
+							}
+							$("#table_id").dataTable().fnDestroy();
+							var a = $('#show_data').html(html);
+							//                    $('#mydata').dataTable();
+							if (a) {
+								$('#table_id').dataTable({
+									"bPaginate": true,
+									"bLengthChange": false,
+									"bFilter": true,
+									"bInfo": false,
+									"bAutoWidth": false
+								});
+							}
+						}
 
-            }
-        })
-    }
+						/* END TABLETOOLS */
+					}
+				});
+
+			}
+		})
+	}
 </script>
