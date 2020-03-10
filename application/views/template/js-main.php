@@ -52,6 +52,14 @@
 		});
 	}
 
+	function swalGenerateSuccess(){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: 'Generate NIS Sukses',
+		});
+	}
+
 	function swalAktifSuccess(){
 		Swal.fire({
 		  icon: 'success',

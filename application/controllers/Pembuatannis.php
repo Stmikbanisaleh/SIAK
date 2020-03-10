@@ -7,7 +7,7 @@ class Pembuatannis extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('model_jadwal');
+        $this->load->model('model_pembuatan');
     }
 
     function render_view($data)
@@ -20,7 +20,7 @@ class Pembuatannis extends CI_Controller
     {
         $tahun = $this->input->post('tahun');
         $programsekolah = $this->input->post('programsekolah');
-        $result = $this->model_jadwal->getjadwal($tahun, $programsekolah)->result();
+        $result = $this->model_pembuatan->getjadwal($tahun, $programsekolah)->result();
         echo json_encode($result);
     }
 
@@ -28,7 +28,7 @@ class Pembuatannis extends CI_Controller
     {
         $ps = $this->input->post('ps');
         $data = array('GuruBase' => $ps);
-        $my_data = $this->model_jadwal->viewWhereOrdering('tbguru', $data, 'id', 'asc')->result_array();
+        $my_data = $this->model_pembuatan->viewWhereOrdering('tbguru', $data, 'id', 'asc')->result_array();
         echo "<option value='0'>--Pilih Guru --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['IdGuru'] . "'>[" . $value['GuruNama'] . "] </option>";
@@ -39,7 +39,7 @@ class Pembuatannis extends CI_Controller
     {
         $ps = $this->input->post('ps');
         $data = array('PS' => $ps);
-        $my_data = $this->model_jadwal->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
+        $my_data = $this->model_pembuatan->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
         echo "<option value='0'>--Pilih Mapel --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] . "] </option>";
@@ -48,87 +48,122 @@ class Pembuatannis extends CI_Controller
 
     public function index()
     {
-        // $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
-        $myhari = $this->model_jadwal->viewOrdering('tbhari', 'id', 'asc')->result_array();
-        $mytahun = $this->model_jadwal->gettahun()->result_array();
-
-        $myps = $this->model_jadwal->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
-        $myruang = $this->model_jadwal->viewOrdering('msruang', 'ID', 'asc')->result_array();
-        $mymapel = $this->model_jadwal->viewOrdering('mspelajaran', 'id_mapel', 'asc')->result_array();
-
+        $myjurusan = $this->model_pembuatan->getjurusan()->result_array();
         $data = array(
-            'page_content'  => 'jadwal/view',
-            'ribbon'        => '<li class="active">Master Jadwal</li>',
-            'page_name'     => 'Master Jadwal',
-            'mytahun'        => $mytahun,
-            'myps'            => $myps,
-            'myhari'        => $myhari,
-            'myruang'        => $myruang,
-            'mymapel'       => $mymapel
+            'page_content'  => 'pembuatannis/view',
+            'ribbon'        => '<li class="active">Pembuatan NIS</li>',
+            'page_name'     => 'Pembuatan NIS',
+            'myjurusan'        => $myjurusan,
         );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()
     {
-        $my_data = '';
+        $my_data = $this->model_pembuatan->getdata()->result_array();
         echo json_encode($my_data);
     }
 
-    public function import()
+    public function proses()
     {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $id = $this->input->post('e_id');
-            $this->load->library('Configfunction');
-            $tampil_thnakad = $this->configfunction->getthnakd();
-            $files = $_FILES;
-            $file = $files['file'];
-            $fname = $file['tmp_name'];
-            $file = $_FILES['file']['name'];
-            $fname = $_FILES['file']['tmp_name'];
-            $ext = explode('.', $file);
-            /** Include path **/
-            set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-            /** PHPExcel_IOFactory */
-            include 'PHPExcel/IOFactory.php';
-            $objPHPExcel = PHPExcel_IOFactory::load($fname);
-            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-            $data_exist = [];
-
-            foreach ($allDataInSheet as $ads) {
-                if (array_filter($ads)) {
-                    array_push($data_exist, $ads);
+        $kode = $this->input->post('kode');
+        $tahunmasuk = $this->input->post('tahunmasuk');
+        $jurusan = $this->input->post('jurusan');
+        $data = $this->model_pembuatan->proses($jurusan, $tahunmasuk)->result_array();
+        if ($data) {
+            foreach ($data as $value) {
+                $datas = array(
+                    'Noreg' => $value['Noreg'],
+                    'NMSISWA' => $value['Namacasis'],
+                    'AGAMA' => $value['agama'],
+                    'PS' => $value['kodesekolah'],
+                    'TGLHR' => $value['tgllhr'],
+                    'TPLHR' => $value['tptlhr'],
+                    'NMBAPAK' => $value['NmBapak'],
+                    'NMIBU' => $value['NmIbu'],
+                    'PEKERJAANORTU' => $value['Perkerjaanortu'],
+                    'GAJIORTU' => $value['GajiOrtu'],
+                    'ALAMATRUMAH' => $value['AlamatRumah'],
+                    'KELURAHAN' => $value['Kelurahan'],
+                    'KECAMATAN' => $value['Kecamatan'],
+                    'KABUPATEN' => $value['Kabupaten'],
+                    'PROVINSI'  => $value['Propinsi'],
+                    'KDPOS' => $value['Kodepos'],
+                    'TLPRUMAH' => $value['TelpRumah'],
+                    'NOHP'  => $value['TelpHp'],
+                    'NMWALI'  => $value['NamaWali'],
+                    'PEKERJAAN'  => $value['Pekerjaan'],
+                    'TLPWALI'   => $value['TelpWali'],
+                    'TLPHPWALI' => $value['TelpHpwali'],
+                    'NMASLSKL' => $value['AsalSekolah'],
+                    'ALMASLSKL'  => $value['AlamatASalSek'],
+                    'KELURAHANSEKOLAHASAL'  => $value['ASlKelurahan'],
+                    // ''  => $value['Aslsekkecamatan'],
+                    // ''  => $value['aslsekkabupaten'],
+                    // ''  => $value['aslsekpropinsi'],
+                    'STTBASLSKL'  => $value['NoIjazah'],
+                    'NILSTTBASLSKL'  => $value['NilaiJazah'],
+                    // ''  => $value['NoNem'],
+                    'NILNEMASLSKL'  => $value['NilaiNem'],
+                    // ''  => $value['potoijazah'],
+                    // ''  => $value['potonem'],
+                    // ''  => $value['potocalsis'],
+                    'TAHUN'  => $value['thnmasuk'],
+                    'STATUSCALONSISWA'  => $value['StatusCalsisw'],
+                    'createdAt' => $value['tglentri'],
+                    'IDUSER' => $value['userentri'],
+                    'JK'  => $value['Jk']
+                );
+                $insert = $this->model_pembuatan->insert($datas, 'mssiswa');
+                if ($insert) {
+                    $siswa = $this->model_pembuatan->generate($tahunmasuk, $jurusan)->result_array();
+                    $no = 1;
+                    foreach ($siswa as $value) {
+                        $nis = $this->model_pembuatan->getnis($tahunmasuk, $jurusan)->result_array();
+                        $v_ni = $nis[0]['ni'];
+                        if ($v_ni == '' || $v_ni == null) {
+                            $v_ni2 = $no;
+                            if ($no < 10) {
+                                $v_no = '00' . $no;
+                            } elseif ($no >= 10 && $no <= 99) {
+                                $v_no = '0' . $no;
+                            } elseif ($no >= 100) {
+                                $v_no = $no;
+                            }
+                        } else {
+                            $v_ni2 = $v_ni + 1;
+                            if ($v_ni2 < 10) {
+                                $v_no = '00' . $v_ni2;
+                            } elseif ($v_ni2 >= 10 && $v_ni2 <= 99) {
+                                $v_no = '0' . $v_ni2;
+                            } elseif ($v_ni2 >= 100) {
+                                $v_no = $v_ni2;
+                            }
+                        }
+                        $password = hash('sha512', md5($tahunmasuk . $kode . $v_no));
+                        $update = $this->db->query("update mssiswa set
+						NOINDUK ='" . $tahunmasuk . $kode . $v_no . "',
+						STATUSCALONSISWA='4', PASSWORD = '" . $password . "'
+                        WHERE Noreg='" . $value['NOREG'] . "'");
+                        $no + 1;
+                    }
                 }
             }
-            foreach ($data_exist as $key => $value) {
-                if ($key == '0') {
-                    continue;
-                } else {
-                    $arrayCustomerQuote = array(
-                        'id_jadwal' => $id,
-                        'periode' => $tampil_thnakad[0]['THNAKAD'],
-                        'NIS' => $value[0],
-                        'createdAt'    => date('Y-m-d H:i:s')
-                    );
-                    $result = $this->model_jadwal->insert($arrayCustomerQuote, 'tbkrs');
-                }
-            }
-            if ($result) {
-                $result = 1;
-            }
-
-            echo json_encode($result);
-        } else {
-            echo json_encode($result);
         }
+        echo json_encode(true);
     }
 
+    public function getnis($tahunmasuk, $jurusan)
+    {
+        $nis = $this->model_pembuatan->getnis($tahunmasuk, $jurusan)->result_array();
+        return $nis;
+    }
     public function tampil_byid()
     {
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_jadwal->view_where('tbjadwal', $data)->result();
+        $my_data = $this->model_pembuatan->view_where('tbjadwal', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -148,7 +183,7 @@ class Pembuatannis extends CI_Controller
             'semester'  => $tampil_thnakad[0]['SEMESTER'],
             'createdAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jadwal->insert($data, 'tbjadwal');
+        $action = $this->model_pembuatan->insert($data, 'tbjadwal');
         echo json_encode($action);
     }
 
@@ -161,7 +196,7 @@ class Pembuatannis extends CI_Controller
             'nama'  => $this->input->post('e_nama'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jadwal->update($data_id, $data, 'tbjadwal');
+        $action = $this->model_pembuatan->update($data_id, $data, 'tbjadwal');
         echo json_encode($action);
     }
 
@@ -173,7 +208,7 @@ class Pembuatannis extends CI_Controller
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_jadwal->update($data_id, $data, 'tbjadwal');
+        $action = $this->model_pembuatan->update($data_id, $data, 'tbjadwal');
         echo json_encode($action);
     }
 }
