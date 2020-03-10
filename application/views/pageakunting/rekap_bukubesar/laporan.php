@@ -1,171 +1,4 @@
-<?php
-// require("../config/config.default.php");
-// $query = "SELECT
-// jurnal.kode_jurnal,
-// jurnal.nama_jurnal
-// FROM
-// parameter
-// INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal";
-// $assistant = mysql_query($query);
-// $num_assistant = mysql_num_rows($assistant);
-// for ($i = 0; $i < $num_assistant; $i++) {
-//     $row = mysql_fetch_object($assistant);
-//     $v_kode_jurnal = $row->kode_jurnal;
-//     $v_nama_jurnal = $row->nama_jurnal;
-// }
-// function kekata($x)
-// {
-//     $x = abs($x);
-//     $angka = array(
-//         "", "satu", "dua", "tiga", "empat", "lima",
-//         "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"
-//     );
-//     $temp = "";
-//     if ($x < 12) {
-//         $temp = " " . $angka[$x];
-//     } else if ($x < 20) {
-//         $temp = kekata($x - 10) . " belas";
-//     } else if ($x < 100) {
-//         $temp = kekata($x / 10) . " puluh" . kekata($x % 10);
-//     } else if ($x < 200) {
-//         $temp = " seratus" . kekata($x - 100);
-//     } else if ($x < 1000) {
-//         $temp = kekata($x / 100) . " ratus" . kekata($x % 100);
-//     } else if ($x < 2000) {
-//         $temp = " seribu" . kekata($x - 1000);
-//     } else if ($x < 1000000) {
-//         $temp = kekata($x / 1000) . " ribu" . kekata($x % 1000);
-//     } else if ($x < 1000000000) {
-//         $temp = kekata($x / 1000000) . " juta" . kekata($x % 1000000);
-//     } else if ($x < 1000000000000) {
-//         $temp = kekata($x / 1000000000) . " milyar" . kekata(fmod($x, 1000000000));
-//     } else if ($x < 1000000000000000) {
-//         $temp = kekata($x / 1000000000000) . " trilyun" . kekata(fmod($x, 1000000000000));
-//     }
-//     return $temp;
-// }
-
-
-// function terbilang($x, $style = 4)
-// {
-//     if ($x < 0) {
-//         $hasil = "minus " . trim(kekata($x));
-//     } else {
-//         $hasil = trim(kekata($x));
-//     }
-//     switch ($style) {
-//         case 1:
-//             $hasil = strtoupper($hasil);
-//             break;
-//         case 2:
-//             $hasil = strtolower($hasil);
-//             break;
-//         case 3:
-//             $hasil = ucwords($hasil);
-//             break;
-//         default:
-//             $hasil = ucfirst($hasil);
-//             break;
-//     }
-//     return $hasil;
-// }
-// function format_rupiah($angka)
-// {
-//     $rupiah = number_format($angka, 0, ',', '.');
-//     return $rupiah;
-// }
-// $awal = $bln_awal;
-// switch ($awal) {
-//     case 1:
-//         $bln_awal = "Januari";
-//         break;
-//     case 2:
-//         $bln_awal = "Februari";
-//         break;
-//     case 3:
-//         $bln_awal = "Maret";
-//         break;
-//     case 4:
-//         $bln_awal = "April";
-//         break;
-//     case 5:
-//         $bln_awal = "Mei";
-//         break;
-//     case 6:
-//         $bln_awal = "Juni";
-//         break;
-//     case 7:
-//         $bln_awal = "Juli";
-//         break;
-//     case 8:
-//         $bln_awal = "Agustus";
-//         break;
-//     case 9:
-//         $bln_awal = "September";
-//         break;
-//     case 10:
-//         $bln_awal = "Oktober";
-//         break;
-//     case 11:
-//         $bln_awal = "November";
-//         break;
-//     case 12:
-//         $bln_awal = "Desember";
-//         break;
-// }
-// $akhir = $bln_akhir;
-// switch ($akhir) {
-//     case 1:
-//         $bln_akhir = "Januari";
-//         break;
-//     case 2:
-//         $bln_akhir = "Februari";
-//         break;
-//     case 3:
-//         $bln_akhir = "Maret";
-//         break;
-//     case 4:
-//         $bln_akhir = "April";
-//         break;
-//     case 5:
-//         $bln_akhir = "Mei";
-//         break;
-//     case 6:
-//         $bln_akhir = "Juni";
-//         break;
-//     case 7:
-//         $bln_akhir = "Juli";
-//         break;
-//     case 8:
-//         $bln_akhir = "Agustus";
-//         break;
-//     case 9:
-//         $bln_akhir = "September";
-//         break;
-//     case 10:
-//         $bln_akhir = "Oktober";
-//         break;
-//     case 11:
-//         $bln_akhir = "November";
-//         break;
-//     case 12:
-//         $bln_akhir = "Desember";
-//         break;
-// }
-// $query = "SELECT
-// SUM(Nilai)AS nml
-// FROM
-// transaksi_buk
-// INNER JOIN jurnal ON transaksi_buk.no_rek = jurnal.kode_jurnal
-// WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01'";
-// $assistant = mysql_query($query);
-// $num_assistant = mysql_num_rows($assistant);
-// for ($i = 0; $i < $num_assistant; $i++) {
-//     $row = mysql_fetch_object($assistant);
-//     $v_nml = $row->nml;
-// }
-?>
-            <table width="100%" cellpadding="0" cellspacing="0">
+     <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;">YAYASAN MUTIARA INSAN NUSANTARA<br>
                             SMP - SMA - SMK MUTIARA INSAN NUSANTARA</span></th>
@@ -229,25 +62,7 @@
                     <th align="right"><span style="font-family:Rockwell;font-size: 10px;">Kredit</th>
                 </tr>
                 <?php
-    //             $sql = "SELECT
-    //             transaksi_buk.No_bukti,
-    //             DATE_FORMAT(Tgl_bukti,'%d-%m-%Y') AS tgl1,
-    //             transaksi_buk.Tgl_bukti,
-    //             transaksi_buk.no_rek,
-    //             transaksi_buk.Ket,
-    //             transaksi_buk.DK,
-    //             sum(transaksi_buk.Nilai)as Nilai,
-    //             jurnal.nama_jurnal,
-    //             transaksi_buk.id,
-				// jurnal.JR
-    //             FROM
-    //             transaksi_buk
-    //             INNER JOIN jurnal ON transaksi_buk.no_rek = jurnal.kode_jurnal
-    //             GROUP BY no_rek
-    //             ORDER BY no_rek";
-    //             $hasil = mysql_query($sql);
                 $no = 1;
-    //             while ($r = mysql_fetch_array($hasil)) {
                 $v_uang = 0;
                 $totsad = 0;
                 $totsak = 0;
@@ -263,20 +78,9 @@
                 $tode = 0;
                 $tokre = 0;
                 foreach ($myrekening as $r) {
-//                     $query = "SELECT 
-// id,
-// DK,
-// Nilai FROM transaksi_buk where id='$r[id]'";
-//                     $assistant = mysql_query($query);
-//                     $num_assistant = mysql_num_rows($assistant);
                     $data_transbuk = $this->model_laporan->get_transbuk($r['id'])->result_array();
                     $v_dk = $data_transbuk[0]['DK'];
                     $v_nilai = $data_transbuk[0]['Nilai'];
-                    // for ($i = 0; $i < $num_assistant; $i++) {
-                    //     $row = mysql_fetch_object($assistant);
-                    //     $v_dk = $row->DK;
-                    //     $v_nilai = $row->Nilai;
-                    // }
 
                     if ($no == 1) {
                         $v_uang = $v_uang + $r['Nilai'] + $v_nml;
@@ -288,41 +92,28 @@
                     <?php
 					if($r['JR']==1){
                         $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  ";
-                        // $has = mysql_query($qu);
-                        // $sad = mysql_fetch_assoc($has);		
                         $sad = $this->model_laporan->view_byquery($qu)->row();
 					}elseif($r['JR']==2){
-                        $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  ";
-                        // $has = mysql_query($qu);
-                        // $sad = mysql_fetch_assoc($has);			
+                        $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  ";	
                         $sad = $this->model_laporan->view_byquery($qu)->row();
 					}else{
 						if($bln_awal==1){
                         $qu = "SELECT sum(Nilai-Nilai) as saldebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  ";
-                        // $has = mysql_query($qu);
-                        // $sad = mysql_fetch_assoc($has);		
                         $sad = $this->model_laporan->view_byquery($qu)->row();				
 						}else{
                         $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  ";
-                        // $has = mysql_query($qu);
-                        // $sad = mysql_fetch_assoc($has);
                         $sad = $this->model_laporan->view_byquery($qu)->row();
 						}
 					}
-                    // print_r(json_encode($sad));exit;
                         ?>
 
                     <!--Mendapatkan total Saldo awal kredit-->
                     <?php
 						if($bln_awal==1){
                         $qu = "SELECT sum(Nilai-Nilai) as salkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $sak = mysql_fetch_assoc($has);
                         $sak = $this->model_laporan->view_byquery($qu)->row();
 						}else{
                         $qu = "SELECT sum(Nilai) as salkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $sak = mysql_fetch_assoc($has);
                         $sak = $this->model_laporan->view_byquery($qu)->row();
 						}
 
@@ -331,10 +122,7 @@
                     <!--Mendapatkan total Mutasi debet-->
                     <?php
                         $qu = "SELECT sum(Nilai) as mtdebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='D' ";
-                        // $has = mysql_query($qu);
-                        // $mtd = mysql_fetch_assoc($has);
                         $mtd = $this->model_laporan->view_byquery($qu)->row();
-                        // print_r(json_encode($mtd));exit;
                         ?>
 
 
@@ -342,10 +130,7 @@
                     <!--Mendapatkan total Mutasi kredit-->
                     <?php
                         $qu = "SELECT sum(Nilai) as mtkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $mtk = mysql_fetch_assoc($has);
                         $mtk = $this->model_laporan->view_byquery($qu)->row();
-                        // print_r(json_encode($qu));exit;
                         ?>
 
                     <!--Mendapatkan total Rugi Laba debet-->
@@ -353,35 +138,25 @@
 					
 					if($r['JR']==1){
                         $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";
-                        // $has = mysql_query($qu);
-                        // $sads = mysql_fetch_assoc($has);
                         $sads = $this->model_laporan->view_byquery($qu)->row();
 
 					}elseif($r['JR']==2){
-                        $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";
-                        // $has = mysql_query($qu);
-                        // $sads = mysql_fetch_assoc($has);		
+                        $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";	
                         $sads = $this->model_laporan->view_byquery($qu)->row();
 
 					}else{
 						if($bln_awal==1){
                         $qu = "SELECT sum(Nilai-Nilai) as saldebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";
-                        // $has = mysql_query($qu);
-                        // $sads = mysql_fetch_assoc($has);
                         $sads = $this->model_laporan->view_byquery($qu)->row();
 
 						}else{
                         $qu = "SELECT sum(Nilai) as saldebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";
-                        // $has = mysql_query($qu);
-                        // $sads = mysql_fetch_assoc($has);
                         $sads = $this->model_laporan->view_byquery($qu)->row();
 
 						}
 					}
 					
                         $qu = "SELECT sum(Nilai) as mtdebet,Tgl_bukti FROM transaksi_buk JOIN jurnal  ON jurnal.kode_jurnal = transaksi_buk.no_rek WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='D'  AND jurnal.JR NOT IN(1) ";
-                        // $has = mysql_query($qu);
-                        // $mtds = mysql_fetch_assoc($has);
                         $mtds = $this->model_laporan->view_byquery($qu)->row();
                         ?>
 
@@ -391,21 +166,15 @@
 					
 						if($bln_awal==1){
                         $qu = "SELECT sum(Nilai-Nilai) as salkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $saks = mysql_fetch_assoc($has);
                         $saks = $this->model_laporan->view_byquery($qu)->row();
 
 						}else{
                         $qu = "SELECT sum(Nilai) as salkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <'" . $tahun . "-" . $bln_awal . "-01' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $saks = mysql_fetch_assoc($has);
                         $saks = $this->model_laporan->view_byquery($qu)->row();
 
 						}
 						
                         $qu = "SELECT sum(Nilai) as mtkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
-                        // $has = mysql_query($qu);
-                        // $mtks = mysql_fetch_assoc($has);
                         $mtks = $this->model_laporan->view_byquery($qu)->row();
 
                         ?>
@@ -414,8 +183,6 @@
                     <?php
 						if($bln_awal==1){
                         $qu = "SELECT sum(tb.Nilai-tb.Nilai) as nerdebet,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='".$r['no_rek']."' AND tb.DK='D' AND j.JR NOT IN(3,4)";
-                        // $has = mysql_query($qu);
-                        // $nrd = mysql_fetch_assoc($has);
                         $nrd = $this->model_laporan->view_byquery($qu)->row();
 
 						}else{
@@ -432,28 +199,20 @@
                     <?php
 						if($bln_awal==1){
                         $qu = "SELECT sum(tb.Nilai-tb.Nilai) as nerkredit,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='".$r['no_rek']."' AND tb.DK='K' AND j.JR NOT IN(3,4)";
-                        // $has = mysql_query($qu);
-                        // $nrk = mysql_fetch_assoc($has);
                         $nrk = $this->model_laporan->view_byquery($qu)->row();
 
 						}else{
                         $qu = "SELECT sum(tb.Nilai) as nerkredit,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='".$r['no_rek']."' AND tb.DK='K' AND j.JR NOT IN(3,4)";
-                        // $has = mysql_query($qu);
-                        // $nrk = mysql_fetch_assoc($has);	
                         $nrk = $this->model_laporan->view_byquery($qu)->row();
 
 						}
 						
 						if($bln_awal==1){
                         $qu = "SELECT sum(tb.Nilai-tb.Nilai) as nerkredit,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='".$r['no_rek']."' AND tb.DK='K' AND j.JR NOT IN(1,3,4)";
-                        // $has = mysql_query($qu);
-                        // $nrks = mysql_fetch_assoc($has);
                         $nrks = $this->model_laporan->view_byquery($qu)->row();
 
 						}else{
                         $qu = "SELECT sum(tb.Nilai) as nerkredit,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='".$r['no_rek']."' AND tb.DK='K' AND j.JR NOT IN(1,3,4)";
-                        // $has = mysql_query($qu);
-                        // $nrks = mysql_fetch_assoc($has);		
                         $nrks = $this->model_laporan->view_byquery($qu)->row();
 
 						}
