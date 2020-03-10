@@ -35,6 +35,11 @@ class Model_laporan extends CI_model
         return $this->db->query('select '.$field.' from ' . $table . ' where '.$field.' = "' . $data_id . '" and isdeleted != 1')->num_rows();
     }
 
+    public function view_byquery($query)
+    {
+        return  $this->db->query($query);
+    }
+
     public function view_rekeninglist()
     {
         return  $this->db->query("SELECT
@@ -103,6 +108,28 @@ class Model_laporan extends CI_model
             AND transaksi_buk.isdeleted != 1
             GROUP BY no_rek
             ORDER BY Tgl_bukti,no_rek");
+    }
+
+    public function view_rekeninglist_rbb()
+    {
+        return  $this->db->query("                SELECT
+                transaksi_buk.No_bukti,
+                DATE_FORMAT(Tgl_bukti,'%d-%m-%Y') AS tgl1,
+                transaksi_buk.Tgl_bukti,
+                transaksi_buk.no_rek,
+                transaksi_buk.Ket,
+                transaksi_buk.DK,
+                sum(transaksi_buk.Nilai)as Nilai,
+                jurnal.nama_jurnal,
+                transaksi_buk.id,
+                jurnal.JR
+                FROM
+                transaksi_buk
+                INNER JOIN jurnal ON transaksi_buk.no_rek = jurnal.kode_jurnal
+                WHERE jurnal.isdeleted != 1
+                AND transaksi_buk.isdeleted != 1
+                GROUP BY no_rek
+                ORDER BY no_rek");
     }
 
     public function view_transaksibuk($id)
@@ -187,7 +214,7 @@ class Model_laporan extends CI_model
         return  $this->db->query("SELECT 
                                 id,
                                 DK,
-                                Nilai FROM transaksi_buk where id='11495'");
+                                Nilai FROM transaksi_buk where id='".$id."'");
     }
     
 }
