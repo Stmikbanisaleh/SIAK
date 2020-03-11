@@ -13,6 +13,26 @@ class Profile extends CI_Controller {
        
     }
 
+    public function edit()
+    {
+        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nama') != null) {
+			$where = array('
+			NOINDUK' => $this->session->userdata('nis'));
+            $mydata = $this->model_profile->viewWhereOrdering('mssiswa',$where, 'NOINDUK' ,'asc')->result_array();
+            // print_r($mydata);exit;
+            $data = array(
+                'page_content'     => 'profile/editprofile',
+                'ribbon'         => '<li class="active">Dashboard</li><li>Edit Profile</li>',
+                'page_name'     => 'Edit Profile',
+                'js'             => 'js_file',
+                'mydata'        => $mydata,
+            );
+            $this->render_view($data);
+        } else {
+            $this->load->view('pagesiswa/login'); //Memanggil function render_view
+        }
+    }
+    
 	public function index() {
         $data = array(
             'page_content' 	=> '../pagesiswa/profile/view',
