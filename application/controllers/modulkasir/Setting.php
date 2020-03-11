@@ -53,7 +53,7 @@ class Setting extends CI_Controller
                     'password'  => md5($this->input->post('password1')),
                     'updatedAt' => date('Y-m-d H:i:s')
                 );
-                $result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
+                $result = $this->model_profile->update($data_id, $data, 'tbpengawas');
                 echo json_decode($result);
             }
         } else {
@@ -87,7 +87,7 @@ class Setting extends CI_Controller
                     'gambar'  => $foto,
                     'createdAt' => date('Y-m-d H:i:s')
                 );
-                $result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+                $result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
                 echo json_decode($result);
             } else {
                 $data = array(
@@ -101,7 +101,7 @@ class Setting extends CI_Controller
                     'gambar'  => null,
                     'createdAt' => date('Y-m-d H:i:s')
                 );
-                $result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+                $result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
                 echo json_decode($result);
             }
             echo json_encode($result);
