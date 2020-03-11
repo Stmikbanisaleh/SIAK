@@ -8,21 +8,21 @@ class Model_kelulusan extends CI_model{
 
     public function getsearch($tahun, $programsekolah){
         return  $this->db->query("SELECT
-        RKPAKTVSISWA.IDRKP,
-        RKPAKTVSISWA.NISRKP,
-        RKPAKTVSISWA.THNAKDRKP,
-        RKPAKTVSISWA.GANGENRKP,
-        RKPAKTVSISWA.SMTRKP,
-        RKPAKTVSISWA.STSRKP,
-        RKPAKTVSISWA.TANGGAL_KELUAR,
+        rkpaktvsiswa.IDRKP,
+        rkpaktvsiswa.NISRKP,
+        rkpaktvsiswa.THNAKDRKP,
+        rkpaktvsiswa.GANGENRKP,
+        rkpaktvsiswa.SMTRKP,
+        rkpaktvsiswa.STSRKP,
+        rkpaktvsiswa.TANGGAL_KELUAR,
         mssiswa.NMSISWA,
-        TBPS.DESCRTBPS
+        tbps.DESCRTBPS
         FROM
-        RKPAKTVSISWA
-        INNER JOIN mssiswa ON RKPAKTVSISWA.NISRKP = mssiswa.NOINDUK
-        INNER JOIN TBPS ON mssiswa.PS = TBPS.KDTBPS
+        rkpaktvsiswa
+        INNER JOIN mssiswa ON rkpaktvsiswa.NISRKP = mssiswa.NOINDUK
+        INNER JOIN tbps ON mssiswa.PS = tbps.KDTBPS
         WHERE
-        RKPAKTVSISWA.STSRKP IN ('L') AND RKPAKTVSISWA.THNAKDRKP='$tahun' AND RKPAKTVSISWA.GANGENRKP='$programsekolah' and RKPAKTVSISWA.isdeleted !=1
+        rkpaktvsiswa.STSRKP IN ('L') AND rkpaktvsiswa.THNAKDRKP='$tahun' AND rkpaktvsiswa.GANGENRKP='$programsekolah' and rkpaktvsiswa.isdeleted !=1
         ");
     }
 

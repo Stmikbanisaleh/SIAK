@@ -42,7 +42,7 @@ class Kelulusan extends CI_Controller
 			'TANGGAL_KELUAR'  => $this->input->post('tanggal'),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_kelulusan->insert($data, 'RKPAKTVSISWA');
+		$action = $this->model_kelulusan->insert($data, 'rkpaktvsiswa');
 		echo json_encode($action);
 	}
 

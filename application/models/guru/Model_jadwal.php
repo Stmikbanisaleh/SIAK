@@ -14,7 +14,7 @@ class Model_jadwal extends CI_model
         MSRUANG.RUANG,
         tbjadwal.NMKLSTRJDK,
         tbjadwal.JAM,
-        TBPS.DESCRTBPS,
+        tbps.DESCRTBPS,
         tbjadwal.id
         FROM
         tbjadwal
