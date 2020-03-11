@@ -30,6 +30,11 @@ class Model_buk extends CI_model
         return $this->db->get($table);
     }
 
+    public function dyn_query($query)
+    {
+        return  $this->db->query($query);
+    }
+
     public function view_buk($cp)
     {
         return  $this->db->query("SELECT akuntansi.no_akuntansi, akuntansi.bukti, DATE_FORMAT(tgl,'%d-%m-%Y')tgl1, tgl, akuntansi.jurnal, akuntansi.tdebet, akuntansi.tkredit, akuntansi.urai, akuntansi.posting FROM akuntansi ".$cp." Order by no_akuntansi desc");
