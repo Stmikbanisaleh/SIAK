@@ -42,7 +42,7 @@ class Kelulusan extends CI_Controller
 			'TANGGAL_KELUAR'  => $this->input->post('tanggal'),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_kelulusan->insert($data, 'RKPAKTVSISWA');
+		$action = $this->model_kelulusan->insert($data, 'rkpaktvsiswa');
 		echo json_encode($action);
 	}
 
@@ -51,7 +51,7 @@ class Kelulusan extends CI_Controller
 		$data = array(
 			'id_pengawas'  => $this->input->post('id'),
 		);
-		$my_data = $this->model_kelulusan->view_where('TBPENGAWAS', $data)->result();
+		$my_data = $this->model_kelulusan->view_where('tbpengawas', $data)->result();
 		echo json_encode($my_data);
 	}
 
@@ -85,7 +85,7 @@ class Kelulusan extends CI_Controller
 				'gambar'  => $foto,
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_kelulusan->update($data_id, $data, 'TBPENGAWAS');
+			$result = $this->model_kelulusan->update($data_id, $data, 'tbpengawas');
 			echo json_decode($result);
 		} else {
 			$data = array(
@@ -99,7 +99,7 @@ class Kelulusan extends CI_Controller
 				'gambar'  => null,
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_kelulusan->update($data_id, $data, 'TBPENGAWAS');
+			$result = $this->model_kelulusan->update($data_id, $data, 'tbpengawas');
 			echo json_decode($result);
 		}
 		echo json_encode($result);

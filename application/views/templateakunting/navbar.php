@@ -11,7 +11,7 @@
 <div class="navbar-header pull-left">
 	<a href="<?= base_url() . 'modulakunting/dashboard'; ?>" class="navbar-brand">
 		<small>
-			<i class="fa fa-leaf"></i>
+		<img src="<?php echo base_url() ?>global/images/akunting.png" width="32" height="32"/></div>
 			Akunting
 		</small>
 	</a>

@@ -93,11 +93,11 @@ class Model_rekap extends CI_model
 
     public function count_guru()
     {
-        return $this->db->query("SELECT COUNT(*) guru FROM TBGURU tg");
+        return $this->db->query("SELECT COUNT(*) guru FROM tbguru tg");
     }
 
     public function count_siswa($th_akademik)
     {
-        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM TBKRS WHERE periode=$th_akademik");
+        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM tbkrs WHERE periode=$th_akademik");
     }
 }

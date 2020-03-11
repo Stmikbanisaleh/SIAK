@@ -119,7 +119,7 @@
     //function show all Data
     function show_data() {
         $.ajax({
-            type: 'ajax',
+            type: 'POST',
             url: '<?php echo site_url('prog_sekolah/tampil') ?>',
             async: true,
             dataType: 'json',

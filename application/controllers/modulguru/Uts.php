@@ -36,13 +36,13 @@ class Uts extends CI_Controller
         $data = array(
             'id'  => $this->input->post('id'),
         );
-        $my_data = $this->model_uts->view_where_v2('TBGURU', $data)->result();
+        $my_data = $this->model_uts->view_where_v2('tbguru', $data)->result();
         echo json_encode($my_data);
     }
 
     public function tampil()
     {
-        $my_data = $this->model_uts->view_guru('TBGURU')->result_array();
+        $my_data = $this->model_uts->view_guru('tbguru')->result_array();
         echo json_encode($my_data);
     }
 
@@ -68,7 +68,7 @@ class Uts extends CI_Controller
             'GuruStatus'  => $this->input->post('e_status'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_uts->update($data_id, $data, 'TBGURU');
+        $action = $this->model_uts->update($data_id, $data, 'tbguru');
         echo json_encode($action);
     }
 

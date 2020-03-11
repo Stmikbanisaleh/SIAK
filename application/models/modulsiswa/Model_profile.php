@@ -6,17 +6,17 @@ class Model_profile extends CI_model
     public function view($nip)
     {
         return $this->db->query(" SELECT
-        Saldo_Pembayaran.SLNNo,
-        Saldo_Pembayaran.SLNIS,
-        Saldo_Pembayaran.SLNoregis,
-        Saldo_Pembayaran.SlSemester,
-        Saldo_Pembayaran.SLTotalTagihan,
-        Saldo_Pembayaran.SLTotalBayar,
-        Saldo_Pembayaran.SLSISA,
-        Saldo_Pembayaran.SlPotongan,
-        Saldo_Pembayaran.SLStatus,
-        Saldo_Pembayaran.SLTA
-        FROM Saldo_Pembayaran
+        saldo_pembayaran.SLNNo,
+        saldo_pembayaran.SLNIS,
+        saldo_pembayaran.SLNoregis,
+        saldo_pembayaran.SlSemester,
+        saldo_pembayaran.SLTotalTagihan,
+        saldo_pembayaran.SLTotalBayar,
+        saldo_pembayaran.SLSISA,
+        saldo_pembayaran.SlPotongan,
+        saldo_pembayaran.SLStatus,
+        saldo_pembayaran.SLTA
+        FROM saldo_pembayaran
         WHERE SLNIS='$nip'
         ORDER BY SlSemester DESC");
     }
@@ -83,11 +83,11 @@ class Model_profile extends CI_model
 
     public function count_guru()
     {
-        return $this->db->query("SELECT COUNT(*) guru FROM TBGURU tg");
+        return $this->db->query("SELECT COUNT(*) guru FROM tbguru tg");
     }
 
     public function count_siswa($th_akademik)
     {
-        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM TBKRS WHERE periode=$th_akademik");
+        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM tbkrs WHERE periode=$th_akademik");
     }
 }

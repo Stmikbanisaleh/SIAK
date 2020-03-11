@@ -94,7 +94,7 @@ class Profile extends CI_Controller
 					'gambar'  => $foto,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->insert($data, 'tbpengawas');
 				echo json_decode($result);
 			} else {
 				$data = array(
@@ -108,7 +108,7 @@ class Profile extends CI_Controller
 					'gambar'  => null,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->insert($data, 'tbpengawas');
 				echo json_decode($result);
 			}
 		} else {
@@ -123,7 +123,7 @@ class Profile extends CI_Controller
 			$data = array(
 				'id_pengawas'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_karyawan->view_where('TBPENGAWAS', $data)->result();
+			$my_data = $this->model_karyawan->view_where('tbpengawas', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -160,14 +160,14 @@ class Profile extends CI_Controller
 					'gambar'  => $foto,
 					'updatedAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_profile->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
 			} else {
 				$data = array(
 					'nama'  => $this->input->post('nama'),
 					'updatedAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_profile->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_profile->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
 			}
 		} else {
@@ -185,7 +185,7 @@ class Profile extends CI_Controller
 			$data = array(
 				'isdeleted'  => 1,
 			);
-			$action = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+			$action = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

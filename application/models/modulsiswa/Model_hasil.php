@@ -6,20 +6,20 @@ class Model_hasil extends CI_model
     public function view($nip)
     {
         return $this->db->query("SELECT
-        TBJADWAL.hari,
-        TBJADWAL.NMKLSTRJDK,
-        TBJADWAL.JAM,
-        MSSISWA.NMSISWA,
-        TRNILAI.UTSTRNIL,UASTRNIL,
-        MSSISWA.NOINDUK,
-        TBJADWAL.id_mapel,
-        (SELECT z.nama FROM MSPELAJARAN z WHERE z.kode= TBJADWAL.id_mapel)AS nama_mapel
+        tbjadwal.hari,
+        tbjadwal.NMKLSTRJDK,
+        tbjadwal.JAM,
+        mssiswa.NMSISWA,
+        trnilai.UTSTRNIL,UASTRNIL,
+        mssiswa.NOINDUK,
+        tbjadwal.id_mapel,
+        (SELECT z.nama FROM mspelajaran z WHERE z.kode= tbjadwal.id_mapel)AS nama_mapel
         FROM
-        TBJADWAL
-        INNER JOIN TBKRS ON TBJADWAL.id = TBKRS.id_jadwal
-        INNER JOIN MSSISWA ON TBKRS.NIS = MSSISWA.NOINDUK
-        LEFT JOIN TRNILAI ON TBKRS.id_krs = TRNILAI.IDKRS
-        WHERE MSSISWA.NOINDUK='$nip'
+        tbjadwal
+        INNER JOIN tbkrs ON tbjadwal.id = tbkrs.id_jadwal
+        INNER JOIN mssiswa ON tbkrs.NIS = mssiswa.NOINDUK
+        LEFT JOIN trnilai ON tbkrs.id_krs = trnilai.IDKRS
+        WHERE mssiswa.NOINDUK='$nip'
         ORDER BY NMKLSTRJDK ASC");
     }
 
@@ -85,11 +85,11 @@ class Model_hasil extends CI_model
 
     public function count_guru()
     {
-        return $this->db->query("SELECT COUNT(*) guru FROM TBGURU tg");
+        return $this->db->query("SELECT COUNT(*) guru FROM tbguru tg");
     }
 
     public function count_siswa($th_akademik)
     {
-        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM TBKRS WHERE periode=$th_akademik");
+        return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM tbkrs WHERE periode=$th_akademik");
     }
 }

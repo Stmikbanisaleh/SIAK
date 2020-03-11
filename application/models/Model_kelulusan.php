@@ -8,30 +8,30 @@ class Model_kelulusan extends CI_model{
 
     public function getsearch($tahun, $programsekolah){
         return  $this->db->query("SELECT
-        RKPAKTVSISWA.IDRKP,
-        RKPAKTVSISWA.NISRKP,
-        RKPAKTVSISWA.THNAKDRKP,
-        RKPAKTVSISWA.GANGENRKP,
-        RKPAKTVSISWA.SMTRKP,
-        RKPAKTVSISWA.STSRKP,
-        RKPAKTVSISWA.TANGGAL_KELUAR,
-        MSSISWA.NMSISWA,
-        TBPS.DESCRTBPS
+        rkpaktvsiswa.IDRKP,
+        rkpaktvsiswa.NISRKP,
+        rkpaktvsiswa.THNAKDRKP,
+        rkpaktvsiswa.GANGENRKP,
+        rkpaktvsiswa.SMTRKP,
+        rkpaktvsiswa.STSRKP,
+        rkpaktvsiswa.TANGGAL_KELUAR,
+        mssiswa.NMSISWA,
+        tbps.DESCRTBPS
         FROM
-        RKPAKTVSISWA
-        INNER JOIN MSSISWA ON RKPAKTVSISWA.NISRKP = MSSISWA.NOINDUK
-        INNER JOIN TBPS ON MSSISWA.PS = TBPS.KDTBPS
+        rkpaktvsiswa
+        INNER JOIN mssiswa ON rkpaktvsiswa.NISRKP = mssiswa.NOINDUK
+        INNER JOIN tbps ON mssiswa.PS = tbps.KDTBPS
         WHERE
-        RKPAKTVSISWA.STSRKP IN ('L') AND RKPAKTVSISWA.THNAKDRKP='$tahun' AND RKPAKTVSISWA.GANGENRKP='$programsekolah' and RKPAKTVSISWA.isdeleted !=1
+        rkpaktvsiswa.STSRKP IN ('L') AND rkpaktvsiswa.THNAKDRKP='$tahun' AND rkpaktvsiswa.GANGENRKP='$programsekolah' and rkpaktvsiswa.isdeleted !=1
         ");
     }
 
     public function getsemester(){
-        return $this->db->query('SELECT DISTINCT SEMESTER FROM TBAKADMK ORDER BY SEMESTER DESC');
+        return $this->db->query('SELECT DISTINCT SEMESTER FROM tbakadmk ORDER BY SEMESTER DESC');
     }
 
     public function getthnakad(){
-        return $this->db->query('SELECT DISTINCT THNAKAD FROM TBAKADMK ORDER BY ID DESC');
+        return $this->db->query('SELECT DISTINCT THNAKAD FROM tbakadmk ORDER BY ID DESC');
     }
 
     public function viewtampil(){

@@ -1,7 +1,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>Dashboard - Payroll</title>
-
+<title>Dashboard - Guru</title>
+    <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
+    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 <meta name="description" content="overview &amp; stats" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 

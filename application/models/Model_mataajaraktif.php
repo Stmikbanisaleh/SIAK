@@ -17,22 +17,22 @@ class Model_mataajaraktif extends CI_model{
         TRMKA.GANGENTRMKA,
         TRMKA.IDUSER,
         TRMKA.TGLINPUT,
-        MSPELAJARAN.nama,
+        mspelajaran.nama,
         TBPS.DESCRTBPS
         FROM
         TRMKA
         INNER JOIN TBPS ON TRMKA.PSTRMKA = TBPS.KDTBPS
-        INNER JOIN MSPELAJARAN ON TRMKA.KDMKTRMKA = MSPELAJARAN.kode
+        INNER JOIN mspelajaran ON TRMKA.KDMKTRMKA = mspelajaran.kode
         WHERE PSTRMKA = ".$programsekolah ." AND THNAKDTRMKA = '". $tahun."'  AND GANGENTRMKA = '". $semester."' and TRMKA.isdeleted != 1
         ORDER BY semester");
     }
 
     public function getsemester(){
-        return $this->db->query('SELECT DISTINCT SEMESTER FROM TBAKADMK ORDER BY SEMESTER DESC');
+        return $this->db->query('SELECT DISTINCT SEMESTER FROM tbakadmk ORDER BY SEMESTER DESC');
     }
 
     public function getthnakad(){
-        return $this->db->query('SELECT DISTINCT THNAKAD FROM TBAKADMK ORDER BY ID DESC');
+        return $this->db->query('SELECT DISTINCT THNAKAD FROM tbakadmk ORDER BY ID DESC');
     }
 
     public function viewtampil(){

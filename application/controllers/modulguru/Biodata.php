@@ -58,7 +58,7 @@ class Biodata extends CI_Controller
             'GuruStatus'  => $this->input->post('e_status'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_biodata->update($data_id, $data, 'TBGURU');
+        $action = $this->model_biodata->update($data_id, $data, 'tbguru');
         echo json_encode($action);
     }
 }

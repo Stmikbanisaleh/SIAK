@@ -74,7 +74,7 @@ class Permataajar extends CI_Controller
 					'gambar'  => $foto,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->insert($data, 'tbpengawas');
 				echo json_decode($result);
 			} else {
 				$data = array(
@@ -88,7 +88,7 @@ class Permataajar extends CI_Controller
 					'gambar'  => null,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->insert($data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->insert($data, 'tbpengawas');
 				echo json_decode($result);
 			}
 		} else {
@@ -103,7 +103,7 @@ class Permataajar extends CI_Controller
 			$data = array(
 				'id_pengawas'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_karyawan->view_where('TBPENGAWAS', $data)->result();
+			$my_data = $this->model_karyawan->view_where('tbpengawas', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -147,7 +147,7 @@ class Permataajar extends CI_Controller
 					'gambar'  => $foto,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
 			} else {
 				$data = array(
@@ -161,7 +161,7 @@ class Permataajar extends CI_Controller
 					'gambar'  => null,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
 			}
 			echo json_encode($result);
@@ -180,7 +180,7 @@ class Permataajar extends CI_Controller
 			$data = array(
 				'isdeleted'  => 1,
 			);
-			$action = $this->model_karyawan->update($data_id, $data, 'TBPENGAWAS');
+			$action = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

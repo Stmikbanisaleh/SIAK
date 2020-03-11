@@ -1,21 +1,15 @@
 <?php
 
-class Model_penentuan extends CI_model
+class Model_pernyataan extends CI_model
 {
 
-    public function getkelas($ThnAkademik, $jenis)
+    public function view($periode,$ps)
     {
-
-        $v_thnmasuk = "WHERE thnmasuk='" . $ThnAkademik . "' AND kodesekolah='" . $jenis. "'";
-        return  $this->db->query("SELECT*, (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='4' AND z.KETERANGAN=mssiswa.AGAMA)AS v_agama,
-         (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='1' AND z.KETERANGAN= mssiswa.JK)AS v_Jk,
-         (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=mssiswa.PS)AS v_sekolah, DATE_FORMAT(TGLHR,'%d-%m-%Y')tgl_lahir, 
-         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020')AS Kelas,
-         (SELECT (SELECT y.id_kelas FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS id_kelas,
-         (SELECT (SELECT y.id_kelas+1 FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS id_Kelas_naik,
-         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Naikkelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS Kelas_naik, 
-         (SELECT z.Naikkelas FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='".$ThnAkademik."')AS Naikkelas, (SELECT z.GolKelas FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='".$ThnAkademik."')AS GolKelas 
-         FROM mssiswa WHERE TAHUN ='".$ThnAkademik."' AND ps='".$jenis."' Order by NOINDUK desc
+        return  $this->db->query("select * from tbjadwal a 
+        left join tbguru b on a.id_guru = b.idGuru
+        join mspelajaran c on a.id_mapel = c.id_mapel
+        join msruang d on a.id_ruang = d.ID
+        join tbps e on a.ps = e.KDTBPS where a.periode = " .$periode ." and a.ps = ".$ps." 
         ");
     }
 
@@ -24,17 +18,6 @@ class Model_penentuan extends CI_model
         $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
-    }
-    public function getjurusan()
-    {
-        return $this->db->query("
-        SELECT sekolah.KodeSek,
-														sekolah.NamaSek,
-														jurusan.NamaJurusan
-														FROM
-														sekolah
-														INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan
-														ORDER BY KodeSek DESC");
     }
 
     public function gettahun()
@@ -60,18 +43,18 @@ class Model_penentuan extends CI_model
         tbjadwal.id_mapel,
         mspelajaran.nama,
         tbjadwal.hari,
-        MSRUANG.RUANG,
+        msruang.RUANG,
         tbjadwal.NMKLSTRJDK,
         tbjadwal.JAM,
-        TBPS.DESCRTBPS,
+        tbps.DESCRTBPS,
         tbjadwal.id
         FROM
         tbjadwal
         LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
         INNER JOIN mspelajaran ON tbjadwal.id_mapel = mspelajaran.id_mapel
-        INNER JOIN MSRUANG ON tbjadwal.id_ruang = MSRUANG.ID
-        INNER JOIN TBPS ON tbjadwal.PS = TBPS.KDTBPS
-        WHERE tbjadwal.periode= " . $periode . " AND tbjadwal.PS= " . $programsekolah . "
+        INNER JOIN msruang ON tbjadwal.id_ruang = msruang.ID
+        INNER JOIN tbps ON tbjadwal.PS = tbps.KDTBPS
+        WHERE tbjadwal.periode= ".$periode ." AND tbjadwal.PS= ". $programsekolah."
         ORDER BY hari");
     }
 

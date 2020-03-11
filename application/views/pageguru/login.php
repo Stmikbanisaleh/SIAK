@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
     <title>Login Page Guru</title>
+    <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
+    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
     <meta name="description" content="User login page" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!-- bootstrap & fontawesome -->
@@ -25,7 +27,6 @@
                     <div class="login-container">
                         <div class="center">
                             <h1>
-                                <i class="ace-icon fa fa-leaf green"></i>
                                 <span class="red">Halaman</span>
                                 <span class="white" id="id-text2">Guru</span>
                             </h1>

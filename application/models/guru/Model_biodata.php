@@ -6,27 +6,27 @@ class Model_biodata extends CI_model
     public function view($session)
     {
         return $this->db->query("SELECT
-        TBGURU.id,
-        TBGURU.IdGuru,
-        TBGURU.GuruNoDapodik,
-        TBGURU.GuruNama,
-        TBGURU.GuruTelp,
-        TBGURU.GuruAlamat,
-        TBGURU.GuruWaktu,
-        TBGURU.GuruJenisKelamin,
-        TBGURU.GuruPendidikanAkhir,
-        TBGURU.GuruAgama,
+        tbguru.id,
+        tbguru.IdGuru,
+        tbguru.GuruNoDapodik,
+        tbguru.GuruNama,
+        tbguru.GuruTelp,
+        tbguru.GuruAlamat,
+        tbguru.GuruWaktu,
+        tbguru.GuruJenisKelamin,
+        tbguru.GuruPendidikanAkhir,
+        tbguru.GuruAgama,
         TBAGAMA.DESCRTBAGAMA,
-        TBGURU.GuruEmail,
-        TBGURU.GuruTempatLahir,
-        TBGURU.GuruTglLahir,
-        TBGURU.GuruStatus
+        tbguru.GuruEmail,
+        tbguru.GuruTempatLahir,
+        tbguru.GuruTglLahir,
+        tbguru.GuruStatus
         FROM
         guru
-        LEFT JOIN TBGURU ON guru.IdGuru = TBGURU.IdGuru
-        LEFT JOIN tbagama ON TBGURU.GuruAgama = tbagama.KDTBAGAMA
+        LEFT JOIN tbguru ON guru.IdGuru = tbguru.IdGuru
+        LEFT JOIN tbagama ON tbguru.GuruAgama = tbagama.KDTBAGAMA
 
-        LEFT JOIN TBGURURIWAYAT ON TBGURU.IdGuru = TBGURURIWAYAT.IdGuru where TBGURU.IdGuru='".$session."'");
+        LEFT JOIN tbguruRIWAYAT ON tbguru.IdGuru = tbguruRIWAYAT.IdGuru where tbguru.IdGuru='".$session."'");
     }
 
     public function viewOrdering($table, $order, $ordering)

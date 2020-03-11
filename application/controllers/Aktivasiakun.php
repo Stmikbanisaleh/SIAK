@@ -52,9 +52,9 @@ class Aktivasiakun extends CI_Controller
                 'GuruStatus'  => $this->input->post('status'),
                 'createdAt' => date('Y-m-d H:i:s')
             );
-            $count_id = $this->model_aktivasi->view_count('TBGURU', $data['IdGuru']);
+            $count_id = $this->model_aktivasi->view_count('tbguru', $data['IdGuru']);
             if ($count_id < 1) {
-                $result = $this->model_aktivasi->insert($data, 'TBGURU');
+                $result = $this->model_aktivasi->insert($data, 'tbguru');
                 if ($result) {
                     echo $result;
                 } else {
@@ -75,7 +75,7 @@ class Aktivasiakun extends CI_Controller
             $data = array(
                 'id'  => $this->input->post('id'),
             );
-            $my_data = $this->model_aktivasi->view_where_v2('TBGURU', $data)->result();
+            $my_data = $this->model_aktivasi->view_where_v2('tbguru', $data)->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -124,7 +124,7 @@ class Aktivasiakun extends CI_Controller
                         'GuruTempatLahir' => $value[11],
                         'createdAt'    => date('Y-m-d H:i:s')
                     );
-                    $result = $this->model_aktivasi->insert($arrayCustomerQuote, 'TBGURU');
+                    $result = $this->model_aktivasi->insert($arrayCustomerQuote, 'tbguru');
                 }
             }
             if ($result) {
@@ -156,7 +156,7 @@ class Aktivasiakun extends CI_Controller
                 $insertGuru['GuruTglLahir']  = $data['GuruTglLahir'];
                 $insertGuru['GuruTempatLahir']  = $data['GuruTempatLahir'];
                 $insertGuru['createdAt']  = date('Y-m-d H:i:s');
-                $result = $this->model_aktivasi->insert($insertGuru, 'TBGURU');
+                $result = $this->model_aktivasi->insert($insertGuru, 'tbguru');
             }
         } else {
             return false;
@@ -198,7 +198,7 @@ class Aktivasiakun extends CI_Controller
                 'GuruStatus'  => $this->input->post('e_status'),
                 'updatedAt' => date('Y-m-d H:i:s')
             );
-            $action = $this->model_guru->update($data_id, $data, 'TBGURU');
+            $action = $this->model_guru->update($data_id, $data, 'tbguru');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -215,7 +215,7 @@ class Aktivasiakun extends CI_Controller
             $data = array(
                 'isdeleted'  => 1,
             );
-            $action = $this->model_aktivasi->update($data_id, $data, 'TBGURU');
+            $action = $this->model_aktivasi->update($data_id, $data, 'tbguru');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
