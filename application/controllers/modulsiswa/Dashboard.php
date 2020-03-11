@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('email') != null) {
+        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nis') != null) {
             $idthnakademik = $this->configfunction->getidthnakd();
             $th_akademik = $idthnakademik[0]['ID'];
             $visit = $this->model_siswa->count_visit()->result();
@@ -45,8 +45,7 @@ class Dashboard extends CI_Controller
         $email = $this->input->post('email');
         $password = hash("sha512",md5($this->input->post('password')));
         $query = $this->db->query("select count(NOINDUK) as jml,NMSISWA,NOINDUK,EMAIL from mssiswa where NOINDUK='" . $email . "' and PASSWORD = '$password'  GROUP BY NOINDUK");
-        // print_r($this->db->last_query());exit;
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() > 0) {
             $data = $query->result_array();
             foreach ($data as $value) {
                 $data = [

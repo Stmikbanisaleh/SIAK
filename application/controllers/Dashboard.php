@@ -8,6 +8,10 @@ class Dashboard extends CI_Controller
 	{
 		$this->template->load('template', $data); //Display Page
 	}
+	function crousel()
+	{
+		$this->load->view('crouselmenu');
+	}
 
 	public function index()
 	{
