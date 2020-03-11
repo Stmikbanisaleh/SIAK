@@ -115,27 +115,27 @@
                 <div class="dock-container">
                     <figure id="weather" name="operator">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>dashboard" target="operator">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/operator1.png" width="125" height="125"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/operator.png" width="128" height="128"/></div>
                             <figcaption>Operator</figcaption>
                     </figure>
                     <figure id="weather" name="kasir">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulkasir/dashboard" target="kasir">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/kasir1.png" width="125" height="125"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/kasir.png" width="128" height="128"/></div>
                             <figcaption>Kasir</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulakunting/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="125" height="125"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="128" height="128"/></div>
                             <figcaption>Akunting</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulguru/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="125" height="125"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/teacher.png" width="128" height="128"/></div>
                             <figcaption>Guru</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulsiswa/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="125" height="125"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/group.png" width="128" height="128"/></div>
                             <figcaption>Siswa</figcaption>
                     </figure>
                     <!-- <a class="dock-item" href="<?php echo base_url() ?>dashboard"><span></span><img src="<?php echo base_url() ?>global/images/operator1.png" width="128" height="128" alt="contact" /></a>

@@ -9,9 +9,9 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="<?php echo base_url() ?>" class="navbar-brand">
+	<a href="<?php echo base_url() ?>dashboard" class="navbar-brand">
 		<small>
-			<i class="fa fa-leaf"></i>
+		<img src="<?php echo base_url() ?>global/images/operator.png" width="32" height="32"/></div>
 			Operator
 		</small>
 	</a>
