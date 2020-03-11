@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>global/vendor/flag-icon-css/flag-icon.css">
     <style>
         .page-locked:before {
-            background-image: url("<?php echo base_url() ?>global/images/lockscreen.jpg");
+            background-image: url("<?php echo base_url() ?>global/images/lockscreen1.jpg");
         }
 
         .page-locked .avatar {
