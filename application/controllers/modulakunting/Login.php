@@ -24,7 +24,7 @@ class Login extends CI_Controller
 	{
 		$data = array(
             'username'  => $this->input->post('email'),
-            'password'  => md5($this->input->post('password'))
+            'password'  => hash('sha512',md5($this->input->post('password')))
         );
         $my_data = $this->model_login->view_where('tbpengawas', $data);
 		if ($my_data->num_rows() == 1) {
