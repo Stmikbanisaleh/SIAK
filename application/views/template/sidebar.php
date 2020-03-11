@@ -10,7 +10,7 @@
 
 <ul class="nav nav-list">
 	<li class="">
-		<a href="<?= base_url(); ?>">
+		<a href="<?= base_url(); ?>dashboard">
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
 		</a>
