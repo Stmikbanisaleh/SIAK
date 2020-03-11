@@ -45,11 +45,12 @@
         #weather {
             overflow: hidden;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 5px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 5px rgba(255, 255, 255, 0.5);
             margin-top: 30px;
             padding: 5px;
             margin-left: 15px;
+            margin-right: 15px;
         }
 
         #weather {
@@ -62,7 +63,7 @@
             font-weight: 400;
             font-size: 80px;
             line-height: 80px;
-            padding: 20px 0;
+            padding: 5px 0;
             background: rgba(0, 0, 0, 0.2);
             vertical-align: middle;
         }
@@ -78,7 +79,7 @@
         }
 
         #weather figcaption {
-            padding: 20px 0;
+            padding: 10px 0;
             color: #333;
             font-size: 14px;
             font-weight: 700;
@@ -115,27 +116,27 @@
                 <div class="dock-container">
                     <figure id="weather" name="operator">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>dashboard" target="operator">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/operator.png" width="128" height="128"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/operator.png" width="64" height="64"/></div>
                             <figcaption>Operator</figcaption>
                     </figure>
                     <figure id="weather" name="kasir">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulkasir/dashboard" target="kasir">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/kasir.png" width="128" height="128"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/kasir.png" width="64" height="64"/></div>
                             <figcaption>Kasir</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulakunting/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="128" height="128"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/akunting.png" width="64" height="64"/></div>
                             <figcaption>Akunting</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulguru/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/teacher.png" width="128" height="128"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/teacher.png" width="64" height="64"/></div>
                             <figcaption>Guru</figcaption>
                     </figure>
                     <figure id="weather" name="akunting">
                         <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulsiswa/dashboard" target="akunting">
-                            <div class="temp"><img src="<?php echo base_url() ?>global/images/group.png" width="128" height="128"/></div>
+                            <div class="temp"><img src="<?php echo base_url() ?>global/images/group.png" width="64" height="64"/></div>
                             <figcaption>Siswa</figcaption>
                     </figure>
                     <!-- <a class="dock-item" href="<?php echo base_url() ?>dashboard"><span></span><img src="<?php echo base_url() ?>global/images/operator1.png" width="128" height="128" alt="contact" /></a>
