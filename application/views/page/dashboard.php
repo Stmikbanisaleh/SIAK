@@ -38,7 +38,7 @@
 				<i class="ace-icon fa fa-users"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'kelulusan/index'; ?>"><?php $guru = $this->db->query('select count(IDRKP) as total from RKPAKTVSISWA where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="<?php echo base_url() . 'kelulusan/index'; ?>"><?php $guru = $this->db->query('select count(IDRKP) as total from rkpaktvsiswa where isdeleted != 1')->result_array();
 																											echo $guru[0]['total']; ?></a></span>
 				<div class="infobox-content"><a href="<?php echo base_url() . 'kelulusan/index'; ?>">Jumlah Lulusan</a></div>
 			</div>

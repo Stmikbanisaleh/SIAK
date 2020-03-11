@@ -79,8 +79,8 @@ class Jadwal extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $id = $this->input->post('e_id');
-            $this->load->library('Configfunction');
-            $tampil_thnakad = $this->configfunction->getthnakd();
+            $this->load->library('ConfigFunction');
+            $tampil_thnakad = $this->ConfigFunction->getthnakd();
             $files = $_FILES;
             $file = $files['file'];
             $fname = $file['tmp_name'];
