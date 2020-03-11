@@ -143,13 +143,13 @@ class Configfunction
 
     public function getthnakd()
     {
-        $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
+        $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();
         return $result;
     }
 
     public function getidthnakd()
     {
-        $result = $this->CI->db->query('SELECT ID FROM TBAKADMK2 WHERE INDEK=(SELECT MAX(INDEK) FROM TBAKADMK2)')->result_array();
+        $result = $this->CI->db->query('SELECT ID FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();
         return $result;
     }
 

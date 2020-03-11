@@ -17,12 +17,12 @@ class Model_mataajaraktif extends CI_model{
         TRMKA.GANGENTRMKA,
         TRMKA.IDUSER,
         TRMKA.TGLINPUT,
-        MSPELAJARAN.nama,
+        mspelajaran.nama,
         TBPS.DESCRTBPS
         FROM
         TRMKA
         INNER JOIN TBPS ON TRMKA.PSTRMKA = TBPS.KDTBPS
-        INNER JOIN MSPELAJARAN ON TRMKA.KDMKTRMKA = MSPELAJARAN.kode
+        INNER JOIN mspelajaran ON TRMKA.KDMKTRMKA = mspelajaran.kode
         WHERE PSTRMKA = ".$programsekolah ." AND THNAKDTRMKA = '". $tahun."'  AND GANGENTRMKA = '". $semester."' and TRMKA.isdeleted != 1
         ORDER BY semester");
     }

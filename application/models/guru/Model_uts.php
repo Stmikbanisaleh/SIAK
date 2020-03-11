@@ -4,40 +4,40 @@ class Model_uts extends CI_model
 {
     public function views($session)
     {
-        return $this->db->query("SELECT * FROM TBGURU WHERE IdGuru= '" . $session . "' and isdeleted != 1");
+        return $this->db->query("SELECT * FROM tbguru WHERE IdGuru= '" . $session . "' and isdeleted != 1");
     }
 
     public function getmapel($session)
     {
         return $this->db->query("SELECT
-        TBJADWAL.id,
-        (SELECT z.nama FROM MSPELAJARAN z WHERE z.kode=TBJADWAL.id_mapel)AS nama
+        tbjadwal.id,
+        (SELECT z.nama FROM mspelajaran z WHERE z.kode=tbjadwal.id_mapel)AS nama
         FROM
-        TBJADWAL
+        tbjadwal
         WHERE
-        TBJADWAL.id_guru = '" . $session . "'");
+        tbjadwal.id_guru = '" . $session . "'");
     }
 
     public function getuts($mapel)
     {
         return $this->db->query("SELECT
-        TBJADWAL.hari,
-        TBJADWAL.NMKLSTRJDK,
-        TBJADWAL.JAM,
-        MSSISWA.NMSISWA,
-        TRNILAI.UTSTRNIL,
-        TBJADWAL.id,
-        TBKRS.id_krs,
-        MSSISWA.NOINDUK,
-        TBJADWAL.id_mapel,
-        (TRNILAI.ID)AS idnilai
+        tbjadwal.hari,
+        tbjadwal.NMKLSTRJDK,
+        tbjadwal.JAM,
+        mssiswa.NMSISWA,
+        trnilai.UTSTRNIL,
+        tbjadwal.id,
+        tbkrs.id_krs,
+        mssiswa.NOINDUK,
+        tbjadwal.id_mapel,
+        (trnilai.ID)AS idnilai
         FROM
-        TBJADWAL
-        INNER JOIN TBKRS ON TBJADWAL.id = TBKRS.id_jadwal
-        INNER JOIN MSSISWA ON TBKRS.NIS = MSSISWA.NOINDUK
-        LEFT JOIN TRNILAI ON TBKRS.id_krs = TRNILAI.IDKRS
+        tbjadwal
+        INNER JOIN tbkrs ON tbjadwal.id = tbkrs.id_jadwal
+        INNER JOIN mssiswa ON tbkrs.NIS = mssiswa.NOINDUK
+        LEFT JOIN trnilai ON tbkrs.id_krs = trnilai.IDKRS
         WHERE
-        TBJADWAL.id = '" .$mapel. "'");
+        tbjadwal.id = '" .$mapel. "'");
     }
 
     public function view($table)

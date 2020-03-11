@@ -11,10 +11,10 @@ class Model_profile extends CI_model
     {
         return $this->db->query("SELECT
          A.ID, A.IDKRS, A.IDJDK, A.NPMTRNIL, 
-        (SELECT z.NMSISWA FROM MSSISWA z WHERE z.NOINDUK = A.NPMTRNIL)AS nama_siswa,
-        KDMKTRNIL, (SELECT z.nama FROM MSPELAJARAN z WHERE z.id_mapel = A.KDMKTRNIL)AS nama_mapel, 
+        (SELECT z.NMSISWA FROM mssiswa z WHERE z.NOINDUK = A.NPMTRNIL)AS nama_siswa,
+        KDMKTRNIL, (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel = A.KDMKTRNIL)AS nama_mapel, 
         SMTTRNIL, KLSTRNIL, UTSTRNIL, UASTRNIL, TGLUTSTRNIL, TGLUASTRNIL, USERUTSTRNIL, USERUASTRNIL, C.GuruNama 
-        FROM TRNILAI A JOIN TBJADWAL B ON A.IDJDK = B.id LEFT JOIN TBGURU C ON B.id_guru = C.id JOIN MSSISWA D ON A.NPMTRNIL = D.NOINDUK 
+        FROM trnilai A JOIN tbjadwal B ON A.IDJDK = B.id LEFT JOIN tbguru C ON B.id_guru = C.id JOIN mssiswa D ON A.NPMTRNIL = D.NOINDUK 
         WHERE B.periode = " . $tahun . " AND B.semester= '" . $semester . "' AND D.PS = '" . $programsekolah . "'
         ORDER BY A.NPMTRNIL");
     }

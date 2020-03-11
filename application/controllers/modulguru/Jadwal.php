@@ -34,7 +34,7 @@ class Jadwal extends CI_Controller
 
     public function tampil()
     {
-        $my_data = $this->model_jadwal->view_guru('TBGURU')->result_array();
+        $my_data = $this->model_jadwal->view_guru('tbguru')->result_array();
         echo json_encode($my_data);
     }
 
@@ -60,7 +60,7 @@ class Jadwal extends CI_Controller
             'GuruStatus'  => $this->input->post('e_status'),
             'updatedAt' => date('Y-m-d H:i:s')
         );
-        $action = $this->model_jadwal->update($data_id, $data, 'TBGURU');
+        $action = $this->model_jadwal->update($data_id, $data, 'tbguru');
         echo json_encode($action);
     }
 

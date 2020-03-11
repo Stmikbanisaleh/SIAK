@@ -55,23 +55,23 @@ class Model_penentuan extends CI_model
     public function getjadwal($periode, $programsekolah)
     {
         return  $this->db->query("SELECT
-        TBGURU.IdGuru,
-        TBGURU.GuruNama,
-        TBJADWAL.id_mapel,
-        MSPELAJARAN.nama,
-        TBJADWAL.hari,
+        tbguru.IdGuru,
+        tbguru.GuruNama,
+        tbjadwal.id_mapel,
+        mspelajaran.nama,
+        tbjadwal.hari,
         MSRUANG.RUANG,
-        TBJADWAL.NMKLSTRJDK,
-        TBJADWAL.JAM,
+        tbjadwal.NMKLSTRJDK,
+        tbjadwal.JAM,
         TBPS.DESCRTBPS,
-        TBJADWAL.id
+        tbjadwal.id
         FROM
-        TBJADWAL
-        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
-        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.id_mapel
-        INNER JOIN MSRUANG ON TBJADWAL.id_ruang = MSRUANG.ID
-        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
-        WHERE TBJADWAL.periode= " . $periode . " AND TBJADWAL.PS= " . $programsekolah . "
+        tbjadwal
+        LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
+        INNER JOIN mspelajaran ON tbjadwal.id_mapel = mspelajaran.id_mapel
+        INNER JOIN MSRUANG ON tbjadwal.id_ruang = MSRUANG.ID
+        INNER JOIN TBPS ON tbjadwal.PS = TBPS.KDTBPS
+        WHERE tbjadwal.periode= " . $periode . " AND tbjadwal.PS= " . $programsekolah . "
         ORDER BY hari");
     }
 

@@ -6,23 +6,23 @@ class Model_jadwal extends CI_model
     public function getjadwal($tahun, $programsekolah)
     {
         return $this->db->query("SELECT
-        TBGURU.IdGuru,
-        TBGURU.GuruNama,
-        TBJADWAL.id_mapel,
-        MSPELAJARAN.nama,
-        TBJADWAL.hari,
+        tbguru.IdGuru,
+        tbguru.GuruNama,
+        tbjadwal.id_mapel,
+        mspelajaran.nama,
+        tbjadwal.hari,
         MSRUANG.RUANG,
-        TBJADWAL.NMKLSTRJDK,
-        TBJADWAL.JAM,
+        tbjadwal.NMKLSTRJDK,
+        tbjadwal.JAM,
         TBPS.DESCRTBPS,
-        TBJADWAL.id
+        tbjadwal.id
         FROM
-        TBJADWAL
-        LEFT JOIN TBGURU ON TBJADWAL.id_guru = TBGURU.IdGuru
-        INNER JOIN MSPELAJARAN ON TBJADWAL.id_mapel = MSPELAJARAN.kode
-        INNER JOIN MSRUANG ON TBJADWAL.ID_RUANG = MSRUANG.ID
-        INNER JOIN TBPS ON TBJADWAL.PS = TBPS.KDTBPS
-        WHERE TBJADWAL.periode='$tahun' AND TBJADWAL.PS='$programsekolah'
+        tbjadwal
+        LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
+        INNER JOIN mspelajaran ON tbjadwal.id_mapel = mspelajaran.kode
+        INNER JOIN MSRUANG ON tbjadwal.ID_RUANG = MSRUANG.ID
+        INNER JOIN TBPS ON tbjadwal.PS = TBPS.KDTBPS
+        WHERE tbjadwal.periode='$tahun' AND tbjadwal.PS='$programsekolah'
         ORDER BY hari");
     }
 
