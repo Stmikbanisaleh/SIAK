@@ -11,7 +11,7 @@
 		<td>
 			<div class="col-xs-3">
 				<select class="form-control" name="nopembayaran" id="nopembayaran">
-					<option value="0">--Pilih Tahun--</option>
+					<option value="0">--Pilih Program--</option>
 				</select>
 			</div>
 			<div class="col-xs-1">
@@ -121,63 +121,6 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="modalEdit" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Data Jenis Pengeluaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formEdit">
-							<input type="hidden" class="form-control" name="e_id" id="e_id" />
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
-								<div class="col-sm-6">
-									<input type="text" id="e_JnsTransaksi" required name="e_JnsTransaksi" placeholder="Jenis Transaksi" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_no_jurnal" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih --</option>
-										<?php foreach ($myjurnal as $value) { ?>
-											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Transaksi </label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="e_NamaTransaksi" id="e_NamaTransaksi" placeholder="Nama Transaksi" />
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Update
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-
 <div class="row">
 	<div class="col-xs-12">
 		<div class="table-header">
@@ -249,6 +192,15 @@
 
 						} else {
 							for (i = 0; i < data.length; i++) {
+								if(data[i].posting=='Y'){
+									var button = '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_posting" id="item_posting" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
+									'Posting' +
+									'</button> &nbsp';
+								}else{
+									var button = '<button class="btn btn-xs btn-danger item_batalp" id="item_batalp" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
+									'Batal' +
+									'</button>';
+								}
 								html += '<tr>' +
 									'<td class="text-center">' + no + '</td>' +
 									'<td>' + data[i].bukti + '</td>' +
@@ -256,12 +208,16 @@
 									'<td>' + data[i].tdebet + '</td>' +
 									'<td>' + data[i].tkredit + '</td>' +
 									'<td class="text-center">' +
-									'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-									'<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-									'</button> &nbsp' +
-									'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-									'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-									'</button>' +
+									'<div id="info"></div>'+
+									// '<input type="text" class="form-control" name="" id="" value="'+ data[i].bukti +'"/>'+
+									// '<input type="text" class="form-control" name="" id="" value="'+ data[i].tgl +'"/>'+
+									// '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_posting" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
+									// 'Posting' +
+									// '</button> &nbsp' +
+									// '<button class="btn btn-xs btn-danger item_batalp" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
+									// 'Batal' +
+									// '</button>' +
+									button+
 									'</td>' +
 									'</tr>';
 								no++;
@@ -287,4 +243,52 @@
 			}
 		})
 	}
+
+    $('#show_data').on('click', '.item_posting', function() {
+        // document.getElementById("formEdit").reset();
+        var bukti = $(this).data('bukti');
+        var tgl = $(this).data('tgl');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('modulakunting/buk/posting') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                bukti: bukti, tgl: tgl,
+            },
+            success: function(data) {
+            	console.log(data);
+                // $('#e_id').val(data[0].id);
+                // $('#e_no_jurnal').val(data[0].no_jurnal);
+                $('#item_posting').hide();
+                $('#info').html('<div class="alert alert-info">'+
+								'This alert needs your attention, but its not super important.'+
+								'</div>');
+            }
+        });
+    });
+
+    $('#show_data').on('click', '.item_batalp', function() {
+        // document.getElementById("formEdit").reset();
+        var bukti = $(this).data('bukti');
+        var tgl = $(this).data('tgl');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('modulakunting/buk/batal_posting') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                bukti: bukti, tgl: tgl,
+            },
+            success: function(data) {
+            	$('#item_batalp').hide();
+                $('#info').html('<div class="alert alert-info">'+
+								data+
+								'</div>');
+            	// console.log(data);
+                // $('#e_id').val(data[0].id);
+                // $('#e_no_jurnal').val(data[0].no_jurnal);
+            }
+        });
+    });
 </script>
