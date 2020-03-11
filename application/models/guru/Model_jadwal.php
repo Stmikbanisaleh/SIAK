@@ -35,7 +35,7 @@ class Model_jadwal extends CI_model
     public function view_custome()
     {
         return $this->db->query("SELECT DISTINCT 
-        TBAKADMK.TAHUN FROM TBAKADMK ORDER BY TAHUN DESC");
+        tbakadmk.TAHUN FROM tbakadmk ORDER BY TAHUN DESC");
     }
 
     public function viewOrdering($table, $order, $ordering)

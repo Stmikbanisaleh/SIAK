@@ -28,11 +28,11 @@ class Model_mataajaraktif extends CI_model{
     }
 
     public function getsemester(){
-        return $this->db->query('SELECT DISTINCT SEMESTER FROM TBAKADMK ORDER BY SEMESTER DESC');
+        return $this->db->query('SELECT DISTINCT SEMESTER FROM tbakadmk ORDER BY SEMESTER DESC');
     }
 
     public function getthnakad(){
-        return $this->db->query('SELECT DISTINCT THNAKAD FROM TBAKADMK ORDER BY ID DESC');
+        return $this->db->query('SELECT DISTINCT THNAKAD FROM tbakadmk ORDER BY ID DESC');
     }
 
     public function viewtampil(){
