@@ -57,7 +57,7 @@ class Model_laporan extends CI_model
             transaksi_buk
             INNER JOIN jurnal 
             ON transaksi_buk.no_rek = jurnal.kode_jurnal
-            WHERE Jurnal.JR =3
+            WHERE jurnal.JR =3
             AND jurnal.isdeleted != 1
             AND transaksi_buk.isdeleted != 1
             GROUP BY no_rek
@@ -103,7 +103,7 @@ class Model_laporan extends CI_model
             FROM
             transaksi_buk
             INNER JOIN jurnal ON transaksi_buk.no_rek = jurnal.kode_jurnal
-            WHERE Jurnal.JR = $jr
+            WHERE jurnal.JR = $jr
             AND jurnal.isdeleted != 1
             AND transaksi_buk.isdeleted != 1
             GROUP BY no_rek

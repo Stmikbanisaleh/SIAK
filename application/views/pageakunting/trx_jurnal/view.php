@@ -269,7 +269,7 @@
 									html += '<tr>'+
 												'<td>' + data[i].kode_jurnal + '</td>'+
 												'<td>' + data[i].nama_jurnal + '</td>'+
-												'<td><input type="text" id="uraian'+no+'" required name="uraian'+no+'" placeholder="Uraian" class="form-control" value="' + data[i].tdebet + '"/></td>'+
+												'<td><input type="text" id="uraian'+no+'" required name="uraian'+no+'" placeholder="Uraian" class="form-control" value="' + data[i].v_urai + '"/></td>'+
 												'<td>D</td>'+
 												'<td><input type="number" id="nilai'+no+'" name="nilai'+no+'" placeholder="Nilai" class="form-control" value="' + data[i].TotalBayar + '"/></td>'+
 											'</tr>';
