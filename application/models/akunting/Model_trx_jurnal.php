@@ -60,17 +60,23 @@ class Model_trx_jurnal extends CI_model
 
     public function view_transaksi($nopembayaran)
     {
-        return  $this->db->query("SELECT 
-                                    pembayaran_sekolah.Nopembayaran,
-                                    pembayaran_sekolah.NIS,
-                                    pembayaran_sekolah.Noreg,
-                                    pembayaran_sekolah.Kelas,
-                                    pembayaran_sekolah.tglentri,
-                                    pembayaran_sekolah.useridd,
-                                    pembayaran_sekolah.TotalBayar,
-                                    pembayaran_sekolah.kodesekolah,
-                                    pembayaran_sekolah.TA
-                                    FROM pembayaran_sekolah WHERE Nopembayaran= ".$nopembayaran);
+        return  $this->db->query("SELECT
+                                    jnstransaksi.JnsTransaksi,
+                                    jnstransaksi.NamaTransaksi,
+                                    jurnal.no_jurnal,
+                                    jurnal.kode_jurnal,
+                                    jurnal.nama_jurnal,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7)AS JR,
+                                    (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8)AS type,(SELECT DISTINCT detail_akuntansi.urai FROM detail_akuntansi WHERE no_akuntansi='$nopembayaran' AND dk='D') v_urai,
+                                    (SELECT DISTINCT detail_akuntansi.urai FROM detail_akuntansi WHERE no_akuntansi='$nopembayaran' AND dk='K') v_urai1,
+                                    (select pembayaran_sekolah.TotalBayar
+FROM pembayaran_sekolah WHERE Nopembayaran='$nopembayaran') TotalBayar
+                                    FROM
+                                    jnstransaksi
+                                    LEFT JOIN jurnal ON jnstransaksi.no_jurnal = jurnal.no_jurnal
+                                    WHERE jnstransaksi.isdeleted != 1
+                                    AND jurnal.isdeleted != 1
+                                    Order by JnsTransaksi desc");
     }
 
     public function view_count($table, $field, $data_id)
