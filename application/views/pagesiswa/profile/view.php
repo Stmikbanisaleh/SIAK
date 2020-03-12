@@ -1,369 +1,167 @@
-<div class="row">
-    <div class="col-xs-6">
-        <!-- PAGE CONTENT BEGINS -->
-        <form class="form-horizontal" role="form" id="formEdit">
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode </label>
-                <div class="col-sm-6">
-                    <input type="hidden" id="e_id" required name="e_id" />
-                    <input type="text" id="e_IdGuru" required name="e_IdGuru" placeholder="Kode Guru" class="form-control" />
-                </div>
-            </div>
+<body class="no-skin">
+	<div class="main-content">
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="hr dotted"></div>
+					<div>
+						<div id="user-profile-1" class="user-profile row">
+							<div class="col-xs-12 col-sm-3 center">
+								<div>
+									<span class="profile-picture">
+										<?php $result = $this->db->query("select * from mssiswa where NOINDUK ='" . $this->session->userdata('nis') . "'")->result_array();
+										 ?>
+										<img id="avatar" class="editable img-responsive" alt="Siswa Avatar" src="
+										<?php if (!empty($result[0]['IMG'])) {
+											echo base_url(); ?>assets/gambar/<?php echo $result[0]['IMG'];
+																			} else {
+																				echo base_url() . 'assets/gambar/no-image.png';
+																			} ?>" />
+									</span>
+									<div class="space-4"></div>
+									<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+										<div class="inline position-relative">
+											<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+												<span class="white"><?php echo $this->session->userdata('username_siswa'); ?></span>
+											</a>
+										</div>
+									</div>
+								</div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
-                <div class="col-sm-9">
-                    <input type="text" id="e_GuruNoDapodik" required name="e_GuruNoDapodik" placeholder="kode Dapodik" class="form-control" />
-                </div>
-            </div>
+								<div class="space-6"></div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-                <div class="col-sm-9">
-                    <input type="text" id="e_nama" required name="e_nama" placeholder="Nama Guru" class="form-control" />
-                </div>
-            </div>
+								<div class="hr hr12 dotted"></div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Telepon </label>
-                <div class="col-sm-9">
-                    <input type="text" id="e_telepon" required name="e_telepon" placeholder="No Telp" class="form-control" />
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-                <div class="col-sm-9">
-                    <textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Masukan Alamat"></textarea>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
-                <div class="col-sm-9">
-                    <select class="form-control" name="e_program_sekolah" id="e_program_sekolah">
-                        <option value="">-- Pilih Program --</option>
-                        <?php foreach ($myprogram as $value) { ?>
-                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
+								<div class="hr hr16 dotted"></div>
+							</div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-                <div class="col-sm-9">
-                    <select class="form-control" name="e_jenis_kelamin" id="e_jenis_kelamin">
-                        <option value="">-- Pilih Pengguna --</option>
-                        <option value="L">Laki-Laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div>
-            </div>
+							<div class="col-xs-12 col-sm-9">
+								<div class="center">
+									<span class="btn btn-app btn-sm btn-light no-hover">
+										<span class="line-height-1 bigger-170 blue"> 1,411 </span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
-                <div class="col-sm-9">
-                    <select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-                        <option value="">-- Pilih Pendidikan --</option>
-                        <?php foreach ($mypendidikan as $value) { ?>
-                            <option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
+										<br />
+										<span class="line-height-1 smaller-90"> Views </span>
+									</span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-                <div class="col-sm-9">
-                    <select class="form-control" name="e_agama" id="e_agama">
-                        <option value="">-- Pilih Agama --</option>
-                        <?php foreach ($myagama as $value) { ?>
-                            <option value=<?= $value['KDTBAGAMA'] ?>><?= $value['DESCRTBAGAMA'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
+									<span class="btn btn-app btn-sm btn-yellow no-hover">
+										<span class="line-height-1 bigger-170"> 32 </span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="e_email" id="e_email" placeholder="Email" />
-                </div>
-            </div>
+										<br />
+										<span class="line-height-1 smaller-90"> Followers </span>
+									</span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
-                <div class="col-sm-9">
-                    <input type="date" class="form-control" name="e_tgl_lahir" id="e_tgl_lahir" placeholder="24/10/1995"></textarea>
-                </div>
-            </div>
+									<span class="btn btn-app btn-sm btn-pink no-hover">
+										<span class="line-height-1 bigger-170"> 4 </span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="e_tempat_lahir" id="e_tempat_lahir" placeholder="Jakarta" />
-                </div>
-            </div>
+										<br />
+										<span class="line-height-1 smaller-90"> Projects </span>
+									</span>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-                <div class="col-sm-9">
-                    <select class="form-control" name="e_status" id="e_status">
-                        <option value="">-- Pilih Status --</option>
-                        <option value="T">Aktif</option>
-                        <option value="F">Tidak</option>
-                    </select>
-                </div>
-            </div>
-    </div>
-</div>
-</div>
-<button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
-    <i class="ace-icon fa fa-save"></i>
-    Update
-</button>
-<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-    <i class="ace-icon fa fa-times"></i>
-    Batal
-</button>
-</form>
-<script type="text/javascript">
-	if ($("#formTambah").length > 0) {
-		$("#formTambah").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true,
-				},
-				telepon: {
-					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
-				},
-				alamat: {
-					required: true,
-					minlength: 10,
-				},
-				email: {
-					required: true,
-					email: true,
-				},
-			},
-			messages: {
-				nama: {
-					required: "Nama Guru harus diisi!"
-				},
-				telepon: {
-					required: "Telepon harus diisi!"
-				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
-				},
-			},
-			submitHandler: function(form) {
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('modulguru/biodata/simpan') ?>",
-					dataType: "JSON",
-					data: $('#formTambah').serialize(),
-					success: function(data) {
-						$('#my-modal').modal('hide');
-						if (data == 1) {
-							document.getElementById("formTambah").reset();
-							swalInputSuccess();
-							show_data();
-						} else if (data == 401) {
-							document.getElementById("formTambah").reset();
-							swalIdDouble();
-						} else {
-							document.getElementById("formTambah").reset();
-							swalInputFailed();
-						}
-					}
-				});
-				return false;
-			}
-		});
-	}
+									<span class="btn btn-app btn-sm btn-grey no-hover">
+										<span class="line-height-1 bigger-170"> 23 </span>
 
-	if ($("#formEdit").length > 0) {
-		$("#formEdit").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true,
-				},
-				telepon: {
-					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
-				},
-				alamat: {
-					required: true,
-					minlength: 10,
-				},
-				email: {
-					required: true,
-					email: true,
-				},
-			},
-			messages: {
-				nama: {
-					required: "Nama Guru harus diisi!"
-				},
-				telepon: {
-					required: "Telepon harus diisi!"
-				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
-				},
-			},
-			submitHandler: function(form) {
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('modulguru/biodata/update') ?>",
-					dataType: "JSON",
-					data: $('#formEdit').serialize(),
-					success: function(data) {
-						$('#modalEdit').modal('hide');
-						if (data == 1) {
-							document.getElementById("formEdit").reset();
-							swalEditSuccess();
-							show_data();
-						} else if (data == 401) {
-							document.getElementById("formEdit").reset();
-							swalIdDouble();
-						} else {
-							document.getElementById("formEdit").reset();
-							swalEditFailed();
-						}
-					}
-				});
-				return false;
-			}
-		});
-	}
+										<br />
+										<span class="line-height-1 smaller-90"> Reviews </span>
+									</span>
 
-	$(document).ready(function() {
-		show_data();
-		$('#datatable_tabletools').DataTable();
-	});
+									<span class="btn btn-app btn-sm btn-success no-hover">
+										<span class="line-height-1 bigger-170"> 7 </span>
 
-	//Simpan guru
+										<br />
+										<span class="line-height-1 smaller-90"> Albums </span>
+									</span>
 
-	// $('#show_data').on('click', '.item_hapus', function() {
-	// 	var id = $(this).data('id');
-	// 	Swal.fire({
-	// 		title: 'Apakah anda yakin?',
-	// 		text: "Anda tidak akan dapat mengembalikan ini!",
-	// 		icon: 'warning',
-	// 		showCancelButton: true,
-	// 		confirmButtonColor: '#3085d6',
-	// 		cancelButtonColor: '#d33',
-	// 		confirmButtonText: 'Ya, Hapus!',
-	// 		cancelButtonText: 'Batal'
-	// 	}).then((result) => {
-	// 		if (result.value) {
-	// 			$.ajax({
-	// 				type: "POST",
-	// 				url: "<?php echo base_url('guru/delete') ?>",
-	// 				async: true,
-	// 				dataType: "JSON",
-	// 				data: {
-	// 					id: id,
-	// 				},
-	// 				success: function(data) {
-	// 					show_data();
-	// 					swalDeleteSuccess();
-	// 				}
-	// 			});
-	// 		}
-	// 	})
-	// })
+									<span class="btn btn-app btn-sm btn-primary no-hover">
+										<span class="line-height-1 bigger-170"> 55 </span>
 
-	$('#show_data').on('click', '.item_edit', function() {
-		var id = $(this).data('id');
-		$('#modalEdit').modal('show');
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url('modulguru/biodata/tampil_byid') ?>",
-			async: true,
-			dataType: "JSON",
-			data: {
-				id: id,
-			},
-			success: function(data) {
-				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
-				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-				$('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
-			}
-		});
-	});
+										<br />
+										<span class="line-height-1 smaller-90"> Contacts </span>
+									</span>
+								</div>
 
-	//function show all Data
-	// function show_data() {
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: '<?php echo site_url('guru/tampil') ?>',
-	// 		async: true,
-	// 		dataType: 'json',
-	// 		success: function(data) {
-	// 			var html = '';
-	// 			var i = 0;
-	// 			var no = 1;
-	// 			for (i = 0; i < data.length; i++) {
-	// 				html += '<tr>' +
-	// 					'<td class="text-center">' + no + '</td>' +
-	// 					'<td>' + data[i].DESCRTBPS + '</td>' +
-	// 					'<td>' + data[i].IdGuru + '</td>' +
-	// 					'<td>' + data[i].GuruNoDapodik + '</td>' +
-	// 					'<td>' + data[i].GuruNama + '</td>' +
-	// 					'<td>' + data[i].GuruTelp + '</td>' +
-	// 					'<td>' + data[i].GuruAlamat + '</td>' +
-	// 					'<td>' + data[i].GuruJeniskelamin + '</td>' +
-	// 					'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
-	// 					'<td class="text-center">' +
-	// 					'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-	// 					'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
-	// 					'</button> &nbsp' +
-	// 					'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-	// 					'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-	// 					'</button>' +
-	// 					'</td>' +
-	// 					'</tr>';
-	// 				no++;
-	// 			}
-	// 			$("#datatable_tabletools").dataTable().fnDestroy();
-	// 			var a = $('#show_data').html(html);
-	// 			//                    $('#mydata').dataTable();
-	// 			if (a) {
-	// 				$('#datatable_tabletools').dataTable({
-	// 					"bPaginate": true,
-	// 					"bLengthChange": false,
-	// 					"bFilter": true,
-	// 					"bInfo": false,
-	// 					"bAutoWidth": false
-	// 				});
-	// 			}
-	// 			/* END TABLETOOLS */
-	// 		}
+								<div class="space-12"></div>
 
-	// 	});
-	// }
-</script>
+								<div class="profile-user-info profile-user-info-striped">
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Nama Lengkap </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="username"><?php echo $result[0]['NMSISWA']; ?> </span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name"> NIS / NO INDUK </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="age"><?php echo $result[0]['NOINDUK']; ?> </span>
+										</div>
+									</div>
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Tanggal Lahir </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="age"><?php echo $result[0]['TGLHR']; ?> </span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Joined </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="signup"><?php echo $result[0]['createdAt']; ?></span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name"> No HP </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login"><?php echo $result[0]['NOHP']; ?></span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Alamat </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login"><?php echo $result[0]['ALAMATRUMAH']; ?></span>
+										</div>
+									</div>
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Nama Bapak </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login"><?php echo $result[0]['NMBAPAK']; ?></span>
+										</div>
+									</div>
+									<div class="profile-info-row">
+										<div class="profile-info-name"> Nama Ibu </div>
+
+										<div class="profile-info-value">
+											<span class="editable" id="login"><?php echo $result[0]['NMIBU']; ?></span>
+										</div>
+									</div>
+									<br>
+									<br>
+								</div>
+
+							</div>
+
+						</div>
+						<!-- <div class="modal-footer">
+							<a href="<?php echo base_url() . 'modulsiswa/profile/edit'; ?>" class="btn btn-xs btn-success" title="Edit" data-id=15>Edit Profile</a>
+						</div> -->
+					</div>
+
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+	</div><!-- /.main-content -->
+	</div><!-- /.main-container -->
