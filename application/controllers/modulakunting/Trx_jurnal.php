@@ -18,6 +18,7 @@ class Trx_jurnal extends CI_Controller {
     }
 
 	public function index() {
+       print_r(hash('sha512',md5('akunting')));exit;
         $mytahun = $this->model_buk->view_tahun()->result_array();
         $data = array(
         			'page_content' 	=> '../pageakunting/trx_jurnal/view',
