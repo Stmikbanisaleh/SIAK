@@ -57,7 +57,8 @@ class Model_pengembalianformulir extends CI_model
         tarif_berlaku.tglentri,
         tarif_berlaku.userridd,
         tarif_berlaku.`status`
-        FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='FRM' AND TA='$ThnAkademik'");
+        FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='FRM' AND TA='$ThnAkademik'
+        ");
     }
 
     public function viewOrdering($table, $order, $ordering)

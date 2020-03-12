@@ -510,7 +510,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('jabatan/delete') ?>",
+                    url: "<?php echo base_url('jadwal/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {

@@ -54,7 +54,7 @@ class Model_jadwal extends CI_model
         INNER JOIN mspelajaran ON tbjadwal.id_mapel = mspelajaran.id_mapel
         INNER JOIN msruang ON tbjadwal.id_ruang = msruang.ID
         INNER JOIN tbps ON tbjadwal.PS = tbps.KDTBPS
-        WHERE tbjadwal.periode= ".$periode ." AND tbjadwal.PS= ". $programsekolah."
+        WHERE tbjadwal.periode= ".$periode ." AND tbjadwal.PS= ". $programsekolah." AND tbjadwal.isdeleted != 1
         ORDER BY hari");
     }
 
