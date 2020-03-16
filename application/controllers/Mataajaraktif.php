@@ -50,7 +50,7 @@ class Mataajaraktif extends CI_Controller
 			'TGLINPUT'  => date('Y-m-d H:i:s'),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
-		$action = $this->model_mataajaraktif->insert($data, 'TRMKA');
+		$action = $this->model_mataajaraktif->insert($data, 'trmka');
 		echo json_encode($action);
 	}
 
@@ -59,7 +59,7 @@ class Mataajaraktif extends CI_Controller
 		$data = array(
 			'ID'  => $this->input->post('id'),
 		);
-		$my_data = $this->model_mataajaraktif->view_where('TRMKA', $data)->result();
+		$my_data = $this->model_mataajaraktif->view_where('trmka', $data)->result();
 		echo json_encode($my_data);
 	}
 
@@ -102,7 +102,7 @@ class Mataajaraktif extends CI_Controller
 				'gambar'  => $foto,
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_mataajaraktif->update($data_id, $data, 'TRMKA');
+			$result = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
 			echo json_decode($result);
 		} else {
 			$data = array(
@@ -116,7 +116,7 @@ class Mataajaraktif extends CI_Controller
 				'gambar'  => null,
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_mataajaraktif->update($data_id, $data, 'TRMKA');
+			$result = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
 			echo json_decode($result);
 		}
 		echo json_encode($result);
@@ -131,7 +131,7 @@ class Mataajaraktif extends CI_Controller
 		$data = array(
 			'isdeleted'  => 1,
 		);
-		$action = $this->model_mataajaraktif->update($data_id, $data, 'TRMKA');
+		$action = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
 		echo json_encode($action);
 	}
 }

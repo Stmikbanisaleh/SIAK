@@ -11,7 +11,7 @@ class Model_jadwal extends CI_model
         tbjadwal.id_mapel,
         mspelajaran.nama,
         tbjadwal.hari,
-        MSRUANG.RUANG,
+        msruang.RUANG,
         tbjadwal.NMKLSTRJDK,
         tbjadwal.JAM,
         tbps.DESCRTBPS,
@@ -20,8 +20,8 @@ class Model_jadwal extends CI_model
         tbjadwal
         LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
         INNER JOIN mspelajaran ON tbjadwal.id_mapel = mspelajaran.kode
-        INNER JOIN MSRUANG ON tbjadwal.ID_RUANG = MSRUANG.ID
-        INNER JOIN TBPS ON tbjadwal.PS = TBPS.KDTBPS
+        INNER JOIN msruang ON tbjadwal.ID_RUANG = msruang.ID
+        INNER JOIN tbps ON tbjadwal.PS = tbps.KDTBPS
         WHERE tbjadwal.periode='$tahun' AND tbjadwal.PS='$programsekolah'
         ORDER BY hari");
     }
