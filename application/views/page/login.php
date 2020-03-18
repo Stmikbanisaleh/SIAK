@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<title>Login Page Operator</title>
 	<link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
+	<link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 	<meta name="description" content="User login page" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<!-- bootstrap & fontawesome -->
@@ -107,11 +107,11 @@
 											Enter your email and to receive instructions
 										</p>
 
-										<form>
+										<form class="form-horizontal" role="form" id="formSearch">
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="email" class="form-control" placeholder="Email" />
+														<input type="email" name="email" id="email" class="form-control" placeholder="Email" />
 														<i class="ace-icon fa fa-envelope"></i>
 													</span>
 												</label>
@@ -134,82 +134,6 @@
 									</div>
 								</div><!-- /.widget-body -->
 							</div><!-- /.forgot-box -->
-
-							<div id="signup-box" class="signup-box widget-box no-border">
-								<div class="widget-body">
-									<div class="widget-main">
-										<h4 class="header green lighter bigger">
-											<i class="ace-icon fa fa-users blue"></i>
-											New User Registration
-										</h4>
-
-										<div class="space-6"></div>
-										<p> Enter your details to begin: </p>
-
-										<form>
-											<fieldset>
-												<label class="block clearfix">
-													<span class="block input-icon input-icon-right">
-														<input type="email" class="form-control" placeholder="Email" />
-														<i class="ace-icon fa fa-envelope"></i>
-													</span>
-												</label>
-
-												<label class="block clearfix">
-													<span class="block input-icon input-icon-right">
-														<input type="text" class="form-control" placeholder="Username" />
-														<i class="ace-icon fa fa-user"></i>
-													</span>
-												</label>
-
-												<label class="block clearfix">
-													<span class="block input-icon input-icon-right">
-														<input type="password" class="form-control" placeholder="Password" />
-														<i class="ace-icon fa fa-lock"></i>
-													</span>
-												</label>
-
-												<label class="block clearfix">
-													<span class="block input-icon input-icon-right">
-														<input type="password" class="form-control" placeholder="Repeat password" />
-														<i class="ace-icon fa fa-retweet"></i>
-													</span>
-												</label>
-
-												<label class="block">
-													<input type="checkbox" class="ace" />
-													<span class="lbl">
-														I accept the
-														<a href="#">User Agreement</a>
-													</span>
-												</label>
-
-												<div class="space-24"></div>
-
-												<div class="clearfix">
-													<button type="reset" class="width-30 pull-left btn btn-sm">
-														<i class="ace-icon fa fa-refresh"></i>
-														<span class="bigger-110">Reset</span>
-													</button>
-
-													<button type="button" class="width-65 pull-right btn btn-sm btn-success">
-														<span class="bigger-110">Register</span>
-
-														<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-													</button>
-												</div>
-											</fieldset>
-										</form>
-									</div>
-
-									<div class="toolbar center">
-										<a href="#" data-target="#login-box" class="back-to-login-link">
-											<i class="ace-icon fa fa-arrow-left"></i>
-											Back to login
-										</a>
-									</div>
-								</div><!-- /.widget-body -->
-							</div><!-- /.signup-box -->
 						</div><!-- /.position-relative -->
 					</div>
 				</div><!-- /.col -->
@@ -233,6 +157,74 @@
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+		if ($("#formSearch").length > 0) {
+			$("#formSearch").validate({
+				errorClass: "my-error-class",
+				validClass: "my-valid-class",
+				rules: {
+					nopembayaran: {
+						required: false
+					},
+
+					tahun: {
+						required: false
+					},
+				},
+				submitHandler: function(form) {
+					$('#btn_search').html('Searching..');
+					$.ajax({
+						type: 'POST',
+						url: '<?php echo site_url('dashboard/lupaspassword') ?>',
+						data: $('#formSearch').serialize(),
+						async: true,
+						dataType: 'json',
+						success: function(data) {
+							$('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+								'Periksa');
+							var html = '';
+							var i = 0;
+							var no = 1;
+							for (i = 0; i < data.length; i++) {
+								html += '<tr>' +
+									'<td>' + data[i].Noreg + '</td>' +
+									'<td>' + data[i].Namacasis + '</td>' +
+									'<td>' + data[i].agama + '</td>' +
+									'<td>' + data[i].kodesekolah + '-' + data[i].NamaJurusan + '</td>' +
+									'<td>' + data[i].Kelas + '</td>' +
+									'<td>' + data[i].AlamatRumah + '</td>' +
+									'<td>' + data[i].TelpRumah + '</td>' +
+									'<td>' + data[i].TelpHp + '</td>' +
+									'<td class="text-center">' +
+									'<a href="<?= base_url() ?>siswa/tampil_byid?id=' + data[i].Noreg + '" class="btn btn-xs btn-info" title="Edit">' +
+									'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+									'</a> &nbsp' +
+									'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Noreg + '">' +
+									'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+									'</button>' +
+									'</td>' +
+									'</tr>';
+								no++;
+							}
+							$("#table_id").dataTable().fnDestroy();
+							var a = $('#show_data').html(html);
+							//                    $('#mydata').dataTable();
+							if (a) {
+								$('#table_id').dataTable({
+									"bPaginate": true,
+									"bLengthChange": false,
+									"bFilter": true,
+									"bInfo": false,
+									"bAutoWidth": false
+								});
+							}
+							/* END TABLETOOLS */
+						}
+					});
+
+				}
+			})
+		}
+
 		jQuery(function($) {
 			$(document).on('click', '.toolbar a[data-target]', function(e) {
 				e.preventDefault();

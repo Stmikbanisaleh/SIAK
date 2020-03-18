@@ -3,13 +3,47 @@
 class Model_siswa extends CI_model
 {
 
-    public function view()
+    public function getta()
     {
-        return  $this->db->query('SELECT a.*,b.DESCRTBAGAMA as agama,c.DESCRTBPS as ps FROM
-         mssiswa a join tbagama b on a.AGAMA = b.KDTBAGAMA 
-         join tbps c on a.PS = c.KDTBPS 
+        return  $this->db->query("SELECT  *,LEFT(tahunakademik.ThnAkademik,4)as thn FROM tahunakademik ORDER BY IdTA DESC");
+    }
 
-          where a.isdeleted != 1 ');
+    public function getsiswa($noreg, $ta, $sekolah)
+    {
+        if(empty($noreg)){
+            $where = "WHERE thnmasuk ='".$ta."' Order by kodesekolah,Noreg desc";
+        } else {
+            $where = "WHERE thnmasuk ='".$ta."' AND kodesekolah='".$sekolah."' OR Noreg='".$noreg."' ";
+        }
+        return  $this->db->query("SELECT
+        calon_siswa.Noreg,
+        calon_siswa.Namacasis,
+        (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND `STATUS`='4')AS agama,
+        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah)AS kodesekolah,
+        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan = z.Jurusan) FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah) AS NamaJurusan,
+        (SELECT (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=x.Kelas) FROM baginaikkelas x WHERE x.NIS=z.NOINDUK) FROM mssiswa z WHERE z.Noreg=calon_siswa.Noreg)AS Kelas,
+        
+        calon_siswa.AlamatRumah,
+        calon_siswa.TelpRumah,
+        calon_siswa.TelpHp
+                FROM calon_siswa $where");
+    }
+
+    public function getsekolah($ThnAkademik)
+    {
+        return $this->db->query("SELECT
+        tarif_berlaku.idtarif,
+        kodesekolah,
+        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS sekolah,
+        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS NamaJurusan,
+        tarif_berlaku.Kodejnsbayar,
+        tarif_berlaku.ThnMasuk,
+        tarif_berlaku.Nominal,
+        tarif_berlaku.TA,
+        tarif_berlaku.tglentri,
+        tarif_berlaku.userridd,
+        tarif_berlaku.`status`
+        FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='FRM' AND TA='$ThnAkademik'");
     }
 
     public function viewOrdering($table, $order, $ordering)
@@ -17,6 +51,11 @@ class Model_siswa extends CI_model
         $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
+    }
+
+    public function getpro()
+    {
+        return $this->db->query("SELECT DISTINCT KDTBPRO,PROPTBPRO	FROM tbpro GROUP BY PROPTBPRO ORDER BY KDTBPRO DESC");
     }
 
     public function viewWhereOrdering($table, $data, $order, $ordering)
