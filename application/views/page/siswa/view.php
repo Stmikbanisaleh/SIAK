@@ -1,16 +1,44 @@
 <div class="row">
     <div class="col-xs-1">
-        <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-            <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
-        </button>
-    </div>
-    <div class="col-xs-1">
         <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
             <a class="ace-icon fa fa-upload bigger-120"></a>Import Data
         </button>
     </div>
+    <div class="col-xs-1">
+        <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+            <a class="ace-icon fa fa-download bigger-120"></a>Export Data
+        </button>
+    </div>
     <br>
     <br>
+    <form class="form-horizontal" role="form" id="formSearch">
+        <div class="col-xs-3">
+            <input type="text" id="s_noreg" name="s_noreg" placeholder="No Registrasi" class="form-control" />
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="sekolah" id="sekolah">
+                <option value="">-- Pilih Sekolah --</option>
+                <?php foreach ($mysekolah as $value) { ?>
+                    <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="ta" id="ta">
+                <option value=>--Pilih Program --</option>
+                <?php foreach ($myta as $value) { ?>
+                    <option value=<?= $value['thn'] ?>><?= $value['ThnAkademik'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-xs-1">
+            <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
+                <a class="ace-icon fa fa-search bigger-120"></a>Periksa
+            </button>
+        </div>
+        <br>
+        <br>
+    </form>
 </div>
 <div id="my-modal2" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -34,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
                                 <div class="col-sm-9">
-                                    <a href="<?php echo base_url().'assets/siswa.xls';?>" for="form-field-1"> Download Sample Format </label></a>
+                                    <a href="<?php echo base_url() . 'assets/siswa.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
                                 </div>
                             </div>
                     </div>
@@ -318,15 +346,15 @@
 <table id="table_id" class="display">
     <thead>
         <tr>
-            <th>No Induk</th>
+            <th>No Regsistrasi</th>
             <th>Nama</th>
             <th>Agama</th>
-            <th>Tahun Masuk</th>
-            <th>Program Sekolah</th>
-            <th>E-Mail</th>
-            <th>Petugas</th>
-            <th>Telp</th>
-            <th>Aksi</th>
+            <th>Sekolah</th>
+            <th>Kelas</th>
+            <th>Alamat</th>
+            <th>Telp Rumah</th>
+            <th>HP</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody id="show_data">
@@ -334,39 +362,107 @@
 </table>
 <script>
     if ($("#formImport").length > 0) {
-		$("#formImport").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			submitHandler: function(form) {
-				formdata = new FormData(form);
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('siswa/import') ?>",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					cache: false,
-					async: false,
-					success: function(data) {
-						console.log(data);
-						$('#my-modal2').modal('hide');
-						if (data == 1 || data == true) {
-							document.getElementById("formImport").reset();
-							swalInputSuccess();
-							show_data();
-						} else if (data == 401) {
-							document.getElementById("formImport").reset();
-							swalIdDouble();
-						} else {
-							document.getElementById("formImport").reset();
-							swalInputFailed();
-						}
-					}
-				});
-				return false;
-			}
-		});
-	}
+        $("#formImport").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                formdata = new FormData(form);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('siswa/import') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        console.log(data);
+                        $('#my-modal2').modal('hide');
+                        if (data == 1 || data == true) {
+                            document.getElementById("formImport").reset();
+                            swalInputSuccess();
+                            show_data();
+                        } else if (data == 401) {
+                            document.getElementById("formImport").reset();
+                            swalIdDouble();
+                        } else {
+                            document.getElementById("formImport").reset();
+                            swalInputFailed();
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    }
+
+    if ($("#formSearch").length > 0) {
+        $("#formSearch").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                nopembayaran: {
+                    required: false
+                },
+
+                tahun: {
+                    required: false
+                },
+            },
+            submitHandler: function(form) {
+                $('#btn_search').html('Searching..');
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo site_url('siswa/search') ?>',
+                    data: $('#formSearch').serialize(),
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                            'Periksa');
+                        var html = '';
+                        var i = 0;
+                        var no = 1;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<td>' + data[i].Noreg + '</td>' +
+                                '<td>' + data[i].Namacasis + '</td>' +
+                                '<td>' + data[i].agama + '</td>' +
+                                '<td>' + data[i].kodesekolah + '-' + data[i].NamaJurusan + '</td>' +
+                                '<td>' + data[i].Kelas + '</td>' +
+                                '<td>' + data[i].AlamatRumah + '</td>' +
+                                '<td>' + data[i].TelpRumah + '</td>' +
+                                '<td>' + data[i].TelpHp + '</td>' +
+                                '<td class="text-center">' +
+                                '<a href="<?=base_url()?>siswa/tampil_byid?id='+data[i].Noreg + '" class="btn btn-xs btn-info" title="Edit">' +
+                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                                '</a> &nbsp' +
+                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Noreg + '">' +
+                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                                '</button>' +
+                                '</td>' +
+                                '</tr>';
+                            no++;
+                        }
+                        $("#table_id").dataTable().fnDestroy();
+                        var a = $('#show_data').html(html);
+                        //                    $('#mydata').dataTable();
+                        if (a) {
+                            $('#table_id').dataTable({
+                                "bPaginate": true,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false
+                            });
+                        }
+                        /* END TABLETOOLS */
+                    }
+                });
+
+            }
+        })
+    }
 
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
@@ -466,7 +562,6 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        show_data();
         $('#table_id').DataTable();
     });
     //function show all Data

@@ -175,7 +175,7 @@
 			<li class="">
 				<a href="<?= base_url() . 'siswa'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Master Siswa
+					Biodata Siswa
 				</a>
 
 				<b class="arrow"></b>

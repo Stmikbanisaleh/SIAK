@@ -33,7 +33,7 @@ class Model_profile extends CI_model
     {
         return  $this->db->query('SELECT DISTINCT 
         KDTBPS, DESCRTBPS,SINGKTBPS 
-        FROM TBPS ORDER BY KDTBPS DESC ');
+        FROM tbps ORDER BY KDTBPS DESC ');
     }
 
     public function viewOrdering($table, $order, $ordering)

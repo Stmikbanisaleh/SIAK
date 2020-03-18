@@ -17,18 +17,33 @@ class Siswa extends CI_Controller
 
     }
 
+    public function search()
+    {
+        $noreg = $this->input->post('s_noreg');
+        $ta = $this->input->post('ta');
+        $sekolah = $this->input->post('sekolah');
+        $result = $this->model_siswa->getsiswa($noreg, $ta, $sekolah)->result();
+        echo json_encode($result);
+    }
+
     public function index()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
+            $this->load->library('Configfunction');
+            $tampil_thnakad = $this->configfunction->getthnakd();
+            $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
             $myps = $this->model_guru->view('tbps')->result_array();
+            $myta = $this->model_siswa->getta()->result_array();
             $myagama = $this->model_guru->view('tbagama')->result_array();
             $data = array(
                 'page_content'  => 'siswa/view',
                 'ribbon'        => '<li class="active">Siswa</li>',
                 'page_name'     => 'Siswa',
                 'myagama'       => $myagama,
-                'myps'          => $myps
+                'myps'          => $myps,
+                'mysekolah'     => $mysekolah,
+                'myta'          => $myta
+
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
@@ -104,12 +119,40 @@ class Siswa extends CI_Controller
     public function tampil_byid()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $data = array(
-                'ID'  => $this->input->post('id'),
+            $noreg = array(
+                'Noreg' => $this->input->get('id')
             );
-            $my_data = $this->model_siswa->view_where('mssiswa', $data)->result();
-            echo json_encode($my_data);
+            $jk = array(
+                'status' => 1
+            );
+            $this->load->library('Configfunction');
+            $tampil_thnakad = $this->configfunction->getthnakd();
+            $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
+            $mysiswa = $this->model_siswa->view_where('mssiswa', $noreg)->result();
+            $myjeniskelamin = $this->model_siswa->view_where('msrev', $jk)->result_array();
+            $myagama = $this->model_guru->view('tbagama')->result_array();
+            $mytbpk = $this->model_siswa->viewOrdering('mspenghasilan','IDMSPENGHASILAN','desc')->result_array();
+            $myjob = $this->model_siswa->viewOrdering('mspekerjaan','IDMSPEKERJAAN','desc')->result_array();
+            $mytbkec = $this->model_siswa->viewOrdering('tbkec','IDKEC','desc')->result_array();
+            $mytbpro = $this->model_siswa->viewOrdering('tbpro','KDTBPRO','desc')->result_array();
+            $mypro = $this->model_siswa->getpro()->result_array();
+            // print_r($mysiswa);exit;
+            $data = array(
+                'page_content'  => 'siswa/edit',
+                'ribbon'        => '<li class="active">Biodata Siswa</li>',
+                'page_name'     => 'Biodata Siswa',
+                'mysiswa'       => $mysiswa[0],
+                'myjeniskelamin' => $myjeniskelamin,
+                'myagama'       => $myagama,
+                'mysekolah'     => $mysekolah,
+                'mytbpk'        => $mytbpk,
+                'mytbkec'        => $mytbkec,
+                'mytbpro'       => $mytbpro,
+                'mypro'         => $mypro,
+                'myjob'         => $myjob
+            );
+
+            $this->render_view($data); //Memanggil function render_view
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }
