@@ -2,7 +2,7 @@
 
 <!--[if !IE]> -->
 
-<!-- <![endif]-->
+<!--[endif]-->
 
 <script src="<?= base_url() ?>assets/template/js/jquery-1.11.3.min.js"></script>
 <!-- <script src="<?= base_url() ?>assets/template/js/jquery-2.1.4.min.js"></script> -->
@@ -37,9 +37,13 @@
 <!-- Sweet alert2 -->
 <script src="<?= base_url() ?>assets/template/sweetalert2/sweetalert2.all.min.js"></script>
 
+
 <!-- Validate -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+
+<!-- Select2 -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script> -->
 
 
 

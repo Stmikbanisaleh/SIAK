@@ -20,6 +20,13 @@
 <!-- ace styles -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
+<!-- Select 2 -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+
+
 <!--[if lte IE 9]>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-part2.min.css" class="ace-main-stylesheet" />
 <![endif]-->
