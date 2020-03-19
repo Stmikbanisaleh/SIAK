@@ -39,4 +39,24 @@ class Kartubayar extends CI_Controller {
             echo "<option value='" . $value['Nopembayaran'] . "'>[" . $value['Nopembayaran'] . "] - " . $value['tglentri'] . "</option>";
         }
     }
+
+    public function laporan_pdf(){
+        $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+        $nis = $this->input->post('siswa');
+        $pilihan_pertama = $this->input->post('pilihan_pertama');  
+        $dari = $this->input->post('dari'); 
+        $sampai = $this->input->post('sampai'); 
+        // $my_pembsiswa = $this->model_kartubayar->view_siswatg($nis, $kelas)->row();
+        // print_r(json_encode($my_pembsiswa));
+        // echo $my_pembsiswa->nmsiswa;
+        // exit;
+        $data = array(
+            // 'mydata'      => $my_pembsiswa,
+            'tgl'         => $tgl
+
+        );
+        $this->pdf->setPaper('FOLIO', 'potrait');
+        $this->pdf->filename = "laporan-Kartu-Bayar".date('Y-m-d').".pdf";
+        $this->pdf->load_view('pagekasir/kartubayar/laporan', $data);
+    }
 }

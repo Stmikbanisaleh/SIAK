@@ -46,7 +46,7 @@ class Surattagihan extends CI_Controller {
 
         );
         $this->pdf->setPaper('FOLIO', 'potrait');
-        $this->pdf->filename = "laporan-petanikode.pdf";
+        $this->pdf->filename = "Surat-Tagihan".$nis."-".date('Y-m-d').".pdf";
         $this->pdf->load_view('pagekasir/surattagihan/laporan', $data);
     }
 }

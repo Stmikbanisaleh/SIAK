@@ -7,7 +7,7 @@
 <div class="row">
     <form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/kartubayar/laporan_pdf">
         <div class="form-group">
-            <div class="col-xs-9">
+            <div class="col-xs-6">
                 Siswa
                 <select class="form-control" name="siswa" id="siswa">
                     <option value="0">--Pilih Siswa--</option>
