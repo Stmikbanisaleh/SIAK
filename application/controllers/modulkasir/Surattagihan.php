@@ -9,10 +9,10 @@ class Surattagihan extends CI_Controller {
         $this->load->model('akunting/model_surattagihan');
         $this->load->library('pdf');
         $this->load->library('mainfunction');
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('modulkasir/login');
-        }
+        // if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        //     $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+        //     redirect('modulkasir/login');
+        // }
     }
 
 	function render_view($data) {

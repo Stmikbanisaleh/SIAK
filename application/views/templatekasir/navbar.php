@@ -20,7 +20,7 @@
 <div class="navbar-buttons navbar-header pull-right" role="navigation">
 	<ul class="nav ace-nav">
 		<li class="light-blue dropdown-modal">
-			<!-- <a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
+			<a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
 				<?php $result = $this->db->query("select gambar from user_login where Useriid ='" . $this->session->userdata('kodekaryawan') . "'")->result_array(); ?>
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/gambar/<?php echo $result[0]['gambar']; ?>" />
 				<span class="user-info">
@@ -29,7 +29,7 @@
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
-			</a> -->
+			</a>
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<li class="">
