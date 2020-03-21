@@ -10,7 +10,7 @@
                             <div class="col-xs-12 col-sm-3 center">
                                 <div>
                                     <span class="profile-picture">
-                                        <?php $result = $this->db->query("select *,b.NamaSek from user_login a join sekolah b on a.KodeSek = b.KodeSek where Useriid ='" . $this->session->userdata('kodekaryawan') . "'")->result_array(); ?>
+                                        <?php $result = $this->db->query("select * from tbpengawas where nip ='" . $this->session->userdata('kodekaryawan') . "'")->result_array(); ?>
                                         <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<?php echo base_url(); ?>assets/gambar/<?php echo $result[0]['gambar']; ?>" />
                                     </span>
                                     <div class="space-4"></div>
@@ -84,7 +84,7 @@
                                         <div class="profile-info-name"> Nama Lengkap </div>
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="username"><?php echo $result[0]['admin']; ?> </span>
+                                            <span class="editable" id="username"><?php echo $result[0]['nama']; ?> </span>
                                         </div>
                                     </div>
 
@@ -92,14 +92,14 @@
                                         <div class="profile-info-name"> User ID </div>
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="age"><?php echo $result[0]['Useriid']; ?> </span>
+                                            <span class="editable" id="age"><?php echo $result[0]['nip']; ?> </span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Jabatan </div>
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="age"><?php echo $result[0]['admin']; ?> </span>
+                                            <span class="editable" id="age"><?php echo $result[0]['level']; ?> </span>
                                         </div>
                                     </div>
 

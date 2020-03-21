@@ -21,7 +21,7 @@
 	<ul class="nav ace-nav">
 		<li class="light-blue dropdown-modal">
 			<a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
-				<?php $result = $this->db->query("select gambar from user_login where Useriid ='" . $this->session->userdata('kodekaryawan') . "'")->result_array(); ?>
+				<?php $result = $this->db->query("select gambar from tbpengawas where nip ='" . $this->session->userdata('kodekaryawan') . "'")->result_array(); ?>
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/gambar/<?php echo $result[0]['gambar']; ?>" />
 				<span class="user-info">
 					<small>Selamat Datang,</small>

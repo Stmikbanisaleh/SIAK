@@ -42,8 +42,8 @@ class Profile extends CI_Controller
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
             $where = array('
-			Useriid' => $this->session->userdata('kodekaryawan'));
-            $mydata = $this->model_profile->viewWhereOrdering('user_login', $where, 'StatusLogin', 'asc')->result_array();
+			nip' => $this->session->userdata('kodekaryawan'));
+            $mydata = $this->model_profile->viewWhereOrdering('tbpengawas', $where, 'nip', 'asc')->result_array();
             $data = array(
                 'page_content'     => '../pagekasir/profile/editprofile',
                 'ribbon'         => '<li class="active">Dashboard</li><li>Edit Profile</li>',
@@ -131,7 +131,7 @@ class Profile extends CI_Controller
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
             $data_id = array(
-                'Useriid'  => $this->input->post('e_id')
+                'nip'  => $this->input->post('e_id')
             );
             $config['upload_path']          = './assets/gambar';
             $config['allowed_types']        = 'gif|jpg|png';
@@ -145,7 +145,7 @@ class Profile extends CI_Controller
                     'gambar'  => $foto,
                     'updatedAt' => date('Y-m-d H:i:s')
                 );
-                $result = $this->model_profile->update($data_id, $data, 'user_login');
+                $result = $this->model_profile->update($data_id, $data, 'tbpengawas');
                 echo json_decode($result);
             }
         } else {
