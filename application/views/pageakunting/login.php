@@ -48,11 +48,17 @@
 										<?php if ($this->session->flashdata('category_error')) { ?>
 											<div class="alert alert-danger"> <?= $this->session->flashdata('category_error') ?> </div>
 										<?php } ?>
+										<?php if ($this->session->flashdata('category_success')) { ?>
+											<div class="alert alert-success"> <?= $this->session->flashdata('category_success') ?> </div>
+										<?php } ?>
+										<?php if ($this->session->flashdata('category_change')) { ?>
+											<div class="alert alert-success"> <?= $this->session->flashdata('category_change') ?> </div>
+										<?php } ?>
 										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulakunting/login/proses_login'; ?>">
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="text" name="email" class="form-control" placeholder="User ID" />
+														<input type="text" required name="email" class="form-control" placeholder="User ID" />
 														<i class="ace-icon fa fa-user"></i>
 													</span>
 												</label>

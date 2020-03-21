@@ -38,64 +38,74 @@
                             <!-- PAGE CONTENT BEGINS -->
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="programsekolahs" id="programsekolahs">
-                                        <option value="0">Status</option>
-                                        <?php foreach ($myps as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                                    <select class="form-control" name="nik2" id="nik2">
+                                        <option value="">--Pilih NIK / No Induk--</option>
+                                        <?php foreach ($mysiswa as $value) { ?>
+                                            <option value=<?= $value['NOINDUK'] ?>><?= $value['NOINDUK'] . '-' . $value['NMSISWA'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Siswa </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="guru" id="guru">
-                                        <option value="0">-- Status --</option>
+                                    <input type="text" readonly class="form-control" name="nama" id="nama" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
+                                <div class="col-xs-6">
+                                    <input type="text" id="nominal" required name="nominal" placeholder="Rp.65.000" class="form-control" />
+                                    <input type="hidden" id="nominal_v" name="nominal_v" class="form-control" />
+                                    <script language="JavaScript">
+                                        var rupiah3 = document.getElementById('nominal');
+                                        rupiah3.addEventListener('keyup', function(e) {
+                                            // tambahkan 'Rp.' pada saat form di ketik
+                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                                            rup3 = this.value.replace(/\D/g, '');
+                                            $('#nominal_v').val(rup3);
+                                            rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+                                        });
+
+                                        function formatRupiah3(angka, prefix) {
+                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                                split = number_string.split(','),
+                                                sisa = split[0].length % 3,
+                                                rupiah3 = split[0].substr(0, sisa),
+                                                ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                                            if (ribuan3) {
+                                                separator = sisa ? '.' : '';
+                                                rupiah3 += separator + ribuan3.join('.');
+                                            }
+
+                                            rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+                                            return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="ket" id="ket">
+                                        <option value="0">-- Pilih Data --</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mata Ajar </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="mataajar" id="mataajar">
-                                        <option value="0">-- Status --</option>
-                                    </select>
+                                    <input type="text" value=<?= $ta ?> readonly class="form-control" name="thnakad" id="thnakad" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="hari" id="hari">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myhari as $value) { ?>
-                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="ruang" id="ruang">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myruang as $value) { ?>
-                                            <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal bayar </label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Kelas"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam </label>
-                                <div class="col-sm-3">
-                                    <input type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
+                                    <input type="date" class="form-control" name="tglbayar" id="tglbayar" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -181,13 +191,41 @@
             <th>Tarif</th>
             <th>Bayar</th>
             <th>TA</th>
-            <th>Action</th>
         </tr>
     </thead>
     <tbody id="show_data">
     </tbody>
 </table>
 <script>
+    $(document).ready(function() {
+        $("#nik2").change(function() {
+            var nik = $('#nik2').val();
+            $.ajax({
+                type: "POST",
+                url: "bayarlain/showsiswa",
+                data: {
+                    nik: nik
+                }
+            }).done(function(data) {
+                console.log(data);
+                $("#ket").html(data);
+            });
+        });
+
+        $("#nik2").change(function() {
+            var nik = $('#nik2').val();
+            $.ajax({
+                type: "POST",
+                url: "bayarlain/showsiswa2",
+                data: {
+                    nik: nik
+                }
+            }).success(function(data) {
+                $("#nama").val(data);
+            });
+        });
+    });
+
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",
@@ -224,7 +262,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('jadwal/simpan') ?>",
+                    url: "<?php echo base_url('modulkasir/bayarlain/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -234,7 +272,6 @@
                         if (response == true) {
                             document.getElementById("formTambah").reset();
                             swalInputSuccess();
-                            show_data();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
                             swalIdDouble('Nama Jabatan Sudah digunakan!');
@@ -278,22 +315,14 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].NOINDUK + '-'+ data[i].Noreg + '</td>' +
+                                '<td>' + data[i].NOINDUK + '-' + data[i].Noreg + '</td>' +
                                 '<td>' + data[i].NMSISWA + '</td>' +
-                                '<td>' + data[i].NamaSek +  '</td>' +
-                                '<td>' + data[i].nama +  '</td>' +
+                                '<td>' + data[i].NamaSek + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].namajenisbayar + '</td>' +
-                                '<td>' + data[i].Nominal + '</td>' +
-                                '<td>' + data[i].TotalBayar + '</td>' +
+                                '<td>' + data[i].Nominal2 + '</td>' +
+                                '<td>' + data[i].TotalBayar2 + '</td>' +
                                 '<td>' + data[i].TA + '</td>' +
-                                '<td class="text-center">' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-                                '</button> &nbsp' +
-                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                '</button>' +
-                                '</td>' +
                                 '</tr>';
                             no++;
                         }
@@ -306,8 +335,9 @@
                                 "bLengthChange": false,
                                 "bFilter": true,
                                 "bInfo": false,
-                                "bAutoWidth": false
+                                
                             });
+
                         }
                         /* END TABLETOOLS */
                     }

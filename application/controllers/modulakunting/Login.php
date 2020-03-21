@@ -54,8 +54,9 @@ class Login extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
+            redirect('modulakunting/dashboard');
         } else {
 			$email = $this->input->post('email');
 			
@@ -69,11 +70,11 @@ class Login extends CI_Controller
                 ];
                 $insert = $this->model_login->insert( $user_token,'msusertoken');
                 $ngimail = $this->_send_email($token, 'forgot');
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                $this->session->set_flashdata('category_success', '<div class="alert alert-success" role="alert">
             Periksa email untuk reset password!</div>');
                 redirect('modulakunting/login');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
                 redirect('modulakunting/dashboard');
             }

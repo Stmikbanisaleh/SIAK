@@ -62,8 +62,9 @@ class Dashboard extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
+            redirect('modulakasir/dashboard');
         } else {
 			$email = $this->input->post('email');
 			
@@ -77,11 +78,11 @@ class Dashboard extends CI_Controller
                 ];
                 $insert = $this->model_dashboard->insert( $user_token,'msusertoken');
                 $ngimail = $this->_send_email($token, 'forgot');
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                $this->session->set_flashdata('category_success', '<div class="alert alert-success" role="alert">
             Periksa email untuk reset password!</div>');
                 redirect('modulkasir/dashboard');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
                 redirect('modulakasir/dashboard');
             }
@@ -134,12 +135,12 @@ class Dashboard extends CI_Controller
                 $this->session->set_userdata('reset_email', $email);
                 $this->changePassword();
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Reset password gagal,token salah</div>');
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('category_error', '<div class="alert alert-danger" role="alert">
             Reset password gagal,Email salah</div>');
             redirect('auth');
         }
@@ -162,7 +163,7 @@ class Dashboard extends CI_Controller
 			// print_r($this->db->last_query());exit;
             $this->db->query("delete from msusertoken where email = '".$email."'");
             $this->session->unset_userdata('reset_email');
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            $this->session->set_flashdata('category_change', '<div class="alert alert-success" role="alert">
             Password telah diubah,silahkan Login</div>');
             redirect('modulkasir/dashboard/login');
         }

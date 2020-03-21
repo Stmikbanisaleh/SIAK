@@ -21,10 +21,12 @@ class Model_bayar extends CI_model
         mssiswa.NMSISWA,
         sekolah.NamaSek,
         tarif_berlaku.Nominal,
+        CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) as Nominal2,
         pembayaran_sekolah.TA,
         tbkelas.nama,
         jenispembayaran.namajenisbayar,
         detail_bayar_sekolah.kodejnsbayar,
+        CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) as TotalBayar2,
         SUM(pembayaran_sekolah.TotalBayar)AS TotalBayar
         FROM
         pembayaran_sekolah

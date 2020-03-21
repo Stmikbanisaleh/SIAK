@@ -48,6 +48,9 @@
 										<?php if ($this->session->flashdata('category_error')) { ?>
 											<div class="alert alert-danger"> <?= $this->session->flashdata('category_error') ?> </div>
 										<?php } ?>
+										<?php if ($this->session->flashdata('category_success')) { ?>
+											<div class="alert alert-success"> <?= $this->session->flashdata('category_success') ?> </div>
+										<?php } ?>
 										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulsiswa/dashboard/login'; ?>">
 											<fieldset>
 												<label class="block clearfix">
@@ -111,7 +114,7 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="email" id="email" name="email" class="form-control" placeholder="Email" />
+														<input type="email" id="email" name="email" required class="form-control" placeholder="Email" />
 														<i class="ace-icon fa fa-envelope"></i>
 													</span>
 												</label>
