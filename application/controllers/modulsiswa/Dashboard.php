@@ -86,7 +86,6 @@ class Dashboard extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
         if ($this->form_validation->run() == false) {
-            echo 'jembut';
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
         } else {
@@ -121,24 +120,15 @@ class Dashboard extends CI_Controller
 
 		// Konfigurasi SMTP
 		$mail->isSMTP();
-		$mail->Host = 'smtp.gmail.com';
+        $mail->Host = HOST_EMAIL;
 		$mail->SMTPAuth = true;
-		$mail->Username = 'school.gemanurani@gmail.com';
-		$mail->Password = 'P@sswordKu!!';
+		$mail->Username = EMAIL_BANTUAN;
+		$mail->Password = PASSWORD_BANTUAN;
 		$mail->SMTPSecure = 'tls';
-		$mail->Port = 587;
-		$mail->setFrom('dummyarif3228@gmail.com');
+		$mail->Port = EMAIL_PORT;
+		$mail->setFrom(EMAIL_BANTUAN);
 		// Menambahkan penerima
 		$mail->addAddress($this->input->post('email'));
-		// Menambahkan beberapa penerima
-		//$mail->addAddress('penerima2@contoh.com');
-		//$mail->addAddress('penerima3@contoh.com');
-
-		// Menambahkan cc atau bcc 
-		//$mail->addCC('cc@contoh.com');
-		//$mail->addBCC('bcc@contoh.com');
-
-
 		if ($type == 'forgot') {
 			// Subjek email
 			$mail->Subject = 'School Gemanurani  - Reset Password';
@@ -147,9 +137,6 @@ class Dashboard extends CI_Controller
 			// Konten/isi email
 			$mailContent = 'Klik untuk reset password akun anda : '.base_url().'modulsiswa/dashboard/resetpassword?email='.$this->input->post('email').'&token='.urlencode($token).'';
 			$mail->Body = $mailContent;
-			// Menambahakn lampiran
-			//$mail->addAttachment('berita/'.$file);
-			//$mail->addAttachment('lmp/file2.png', 'nama-baru-file2.png'); //atur nama baru
 		}
 
 		// Kirim email

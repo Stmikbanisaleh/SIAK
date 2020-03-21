@@ -85,3 +85,8 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 define('EMAIL_BANTUAN', 'bantuan@gemanurani.sch.id');
 define('PASSWORD_BANTUAN', 'imam6325');
+define('HOST_EMAIL', 'mail.gemanurani.sch.id');
+define('EMAIL_PORT', '587');
+
+
+
