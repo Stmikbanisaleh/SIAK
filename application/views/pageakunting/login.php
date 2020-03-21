@@ -107,17 +107,17 @@
 											Enter your email and to receive instructions
 										</p>
 
-										<form>
+										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulakunting/login/forgot_password'; ?>">
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="email" class="form-control" placeholder="Email" />
+														<input type="email" name="email" class="form-control" placeholder="Email" />
 														<i class="ace-icon fa fa-envelope"></i>
 													</span>
 												</label>
 
 												<div class="clearfix">
-													<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+													<button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
 														<i class="ace-icon fa fa-lightbulb-o"></i>
 														<span class="bigger-110">Send Me!</span>
 													</button>

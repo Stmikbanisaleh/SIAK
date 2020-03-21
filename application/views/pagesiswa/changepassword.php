@@ -52,14 +52,14 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="password" name="password1" class="form-control" placeholder="New Password" />
+														<input minlength="8" type="password" name="password1" class="form-control" placeholder="New Password" />
 														<i class="ace-icon fa fa-user"></i>
 													</span>
 												</label>
 
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="password" name="password2" class="form-control" placeholder="Confirm Password" />
+														<input minlength="8"  type="password" name="password2" class="form-control" placeholder="Confirm Password" />
 														<i class="ace-icon fa fa-lock"></i>
 													</span>
 												</label>

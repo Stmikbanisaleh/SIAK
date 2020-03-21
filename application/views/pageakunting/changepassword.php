@@ -48,7 +48,7 @@
 										<?php if ($this->session->flashdata('category_error')) { ?>
 											<div class="alert alert-danger"> <?= $this->session->flashdata('category_error') ?> </div>
 										<?php } ?>
-										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulguru/dashboard/changepassword'; ?>">
+										<form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulakunting/login/changepassword'; ?>">
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
