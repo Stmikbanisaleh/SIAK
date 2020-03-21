@@ -135,7 +135,7 @@ class Dashboard extends CI_Controller
 			// Mengatur format email ke HTML
 			$mail->isHTML(true);
 			// Konten/isi email
-			$mailContent = 'Klik untuk reset password akun anda : '.base_url().'modulsiswa/dashboard/resetpassword?email='.$this->input->post('email').'&token='.urlencode($token).'';
+			$mailContent = 'Klik untuk reset password akun anda  <a href="'.base_url().'modulsiswa/dashboard/resetpassword?email='.$this->input->post('email').'&token='.urlencode($token).'">Reset Password</a>';
 			$mail->Body = $mailContent;
 		}
 
