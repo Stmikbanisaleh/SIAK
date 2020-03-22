@@ -22,27 +22,18 @@
                 Pilihan Pertama
                 <select class="form-control" name="p_pertama" id="p_pertama">
                     <option value="0">--Pilih No Pembayaran--</option>
-                    <?php foreach ($my_kelas as $value) { ?>
-                        <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
-                    <?php } ?>
                 </select>
             </div>
             <div class="col-xs-3">
                 Dari
                 <select class="form-control" name="dari" id="dari">
                     <option value="0">--Pilih No Pembayaran--</option>
-                    <?php foreach ($my_kelas as $value) { ?>
-                        <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
-                    <?php } ?>
                 </select>
             </div>
             <div class="col-xs-3">
                 Sampai
                 <select class="form-control" name="sampai" id="sampai">
                     <option value="0">--Pilih No Pembayaran--</option>
-                    <?php foreach ($my_kelas as $value) { ?>
-                        <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
-                    <?php } ?>
                 </select>
             </div>
         </div>

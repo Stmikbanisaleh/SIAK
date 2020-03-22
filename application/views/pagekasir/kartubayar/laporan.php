@@ -193,8 +193,8 @@
                                 <th align="center"><span style="font-family:Rockwell;font-size: 12px;">KETERANGAN</th>
                             </tr>
                             <?php
-                            $siswa = $this->input->post('siswa');
-                            $data = $this->db->query("SELECT * from pembayaran_sekolah  WHERE NIS ='" . $siswa . "'")->result_array();
+                            $data = $this->db->query("SELECT * from pembayaran_sekolah  WHERE NIS ='" . $siswa . "' AND Nopembayaran BETWEEN '".$dari."' AND '".$sampai."'
+                                ORDER BY DATE_FORMAT(tglentri,'%Y%m%d')")->result_array();
                             $no = 1;
                             foreach ($data as $r) {
 
@@ -263,9 +263,9 @@
                                         </tr>
                                     <?php } else { ?>
                                         <tr>
-                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;color:#fff;"><?= date('d-m-Y', strtotime($r['tglentri'])); ?></td>
-                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;color:#fff;"><?= $r['TotalBayar']; ?></td>
-                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;color:#fff;">
+                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= date('d-m-Y', strtotime($r['tglentri'])); ?></td>
+                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= $r['TotalBayar']; ?></td>
+                                            <td align="center"><span style="font-family:Rockwell;font-size: 12px;">
                                                     <?php
                                                                 $qu = $this->db->query("SELECT kodejnsbayar 
                                                                 FROM detail_bayar_sekolah 
