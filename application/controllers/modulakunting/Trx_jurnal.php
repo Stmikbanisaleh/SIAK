@@ -141,8 +141,8 @@ class Trx_jurnal extends CI_Controller
                     $datainsert2 = array(
                         'no_akuntansi' => '',
                         'rek' => '',
-                        'urai' => '',
-                        'dk'   => 'D',
+                        'urai' => $this->input->post(''),
+                        'dk'   => 'K',
                         'kurs' => 'ID',
                         'nilai' => $this->input->post('nilai'),
                         'tgl_input' => date('Y-m-d'),
