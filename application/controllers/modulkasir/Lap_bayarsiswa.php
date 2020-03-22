@@ -40,8 +40,8 @@ class Lap_bayarsiswa extends CI_Controller {
             'tgl'         => $tgl,
         );
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "laporan-petanikode.pdf";
-        $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+        $this->pdf->filename = "Laporan-pembayaran.pdf";
+        $this->pdf->load_view('pagekasir/lap_bayarsiswa/laporan', $data);
     }
 
         function format_bulan($bulan){

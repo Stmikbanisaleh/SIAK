@@ -1,211 +1,293 @@
 <?php
-// require("../config/config.default.php");
-// $query = "SELECT
-// siswa.NIS,siswa.Noreg,
-// siswa.Namacasis,
-// sekolah.NamaSek
-// FROM
-// siswa
-// INNER JOIN sekolah ON siswa.kodesekolah = sekolah.KodeSek
-// WHERE Noreg='$_GET[id]'";
-// // $assistant = mysql_query($query);
-// // $num_assistant = mysql_num_rows($assistant);
-// for ($i = 0; $i < $num_assistant; $i++) {
-// $row = mysql_fetch_object($assistant);
-// $v_NIS = $row->NIS;
-// $v_NamaSek = $row->NamaSek;
-// $v_Noreg = $row->Noreg;
-// $v_Namacasis = $row->Namacasis;
-// // include('LPS.php');
-// }
+$id = $this->input->get('noreg');
+$nopem = $this->input->get('no');
+$kelas = $this->input->get('kls');
+$row = $this->db->query("SELECT
+                          siswa.NOINDUK,
+                          calon_siswa.Noreg,
+                          calon_siswa.Namacasis,
+                          sekolah.NamaSek,
+                          calon_siswa.thnmasuk,
+                          calon_siswa.kodesekolah,
+                          jurusan_smk.NamaJurusan
+                          FROM
+                          calon_siswa
+                          INNER JOIN sekolah ON calon_siswa.kodesekolah = sekolah.KodeSek
+                          LEFT JOIN mssiswa siswa ON calon_siswa.Noreg = siswa.Noreg
+                          INNER JOIN jurusan jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
+                          WHERE calon_siswa.Noreg='$id' OR  siswa.NOINDUK='$id'")->row();
 
-// function kekata($x)
-// {
-// $x = abs($x);
-// $angka = array(
-//   "", "satu", "dua", "tiga", "empat", "lima",
-//   "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"
-// );
+  $v_NIS = $row->NOINDUK;
+  $v_NamaSek = $row->NamaSek;
+  $v_Noreg = $row->Noreg;
+  $v_Namacasis = $row->Namacasis;
+  $v_thnmasuk = $row->thnmasuk;
+  $v_kodesekolah = $row->kodesekolah;
+  $v_NamaJurusan = $row->NamaJurusan;
 
-// $temp = "";
-// if ($x < 12) {
-//   $temp = " " . $angka[$x];
-// } else if ($x < 20) {
-//   $temp = kekata($x - 10) . " belas";
-// } else if ($x < 100) {
-//   $temp = kekata($x / 10) . " puluh" . kekata($x % 10);
-// } else if ($x < 200) {
-//   $temp = " seratus" . kekata($x - 100);
-// } else if ($x < 1000) {
-//   $temp = kekata($x / 100) . " ratus" . kekata($x % 100);
-// } else if ($x < 2000) {
-//   $temp = " seribu" . kekata($x - 1000);
-// } else if ($x < 1000000) {
-//   $temp = kekata($x / 1000) . " ribu" . kekata($x % 1000);
-// } else if ($x < 1000000000) {
-//   $temp = kekata($x / 1000000) . " juta" . kekata($x % 1000000);
-// } else if ($x < 1000000000000) {
-//   $temp = kekata($x / 1000000000) . " milyar" . kekata(fmod($x, 1000000000));
-// } else if ($x < 1000000000000000) {
-//   $temp = kekata($x / 1000000000000) . " trilyun" . kekata(fmod($x, 1000000000000));
-// }
-// return $temp;
-// }
+$row = $this->db->query("SELECT * FROM pembayaran_sekolah WHERE NIS='$id' OR Noreg='$id' AND Nopembayaran='$nopem'")->row();
 
+  $Nopembayaran = $row->Nopembayaran;
+  $tglentri = $row->tglentri;
+  $Kelas = $row->Kelas;
 
-// function terbilang($x, $style = 4)
-// {
-// if ($x < 0) {
-//   $hasil = "minus " . trim(kekata($x));
-// } else {
-//   $hasil = trim(kekata($x));
-// }
-// switch ($style) {
-//   case 1:
-//     $hasil = strtoupper($hasil);
-//     break;
-//   case 2:
-//     $hasil = strtolower($hasil);
-//     break;
-//   case 3:
-//     $hasil = ucwords($hasil);
-//     break;
-//   default:
-//     $hasil = ucfirst($hasil);
-//     break;
-// }
-// return $hasil;
-// }
-// function format_rupiah($angka)
-// {
-// $rupiah = number_format($angka, 0, ',', '.');
-// return $rupiah;
-// }
-
-// list($bln, $tgl, $thn) = explode('/', $_POST[AwalTglawal]);
-// $a1 = $thn . '-' . $bln . '-' . $tgl;
-// $b1 = $tgl . '-' . $bln . '-' . $thn;
-// list($bln1, $tgl1, $thn1) = explode('/', $_POST[AwalTglakhir]);
-// $a2 = $thn1 . '-' . $bln1 . '-' . $tgl1;
-// $b2 = $tgl1 . '-' . $bln1 . '-' . $thn1;
 ?>
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;">YAYASAN MUTIARA INSAN NUSANTARA<br>
-        SMP - SMA - SMK MUTIARA INSAN NUSANTARA</span></th>
-    <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 16px;"><b>REKAP PEMBAYARAN SISWA</b></th>
-    <th width="30%"></th>
-  </tr>
-  <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 10px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
-        Kecamatan Rajeg, Kabupaten Tangerang 15540</th>
-    <th align="left"><span style="font-family:Rockwell;font-size: 10px;"></th>
-  </tr>
-  <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 10px;">Telp. (021) 59391134</th>
-    <th align="left"><span style="font-family:Rockwell;font-size: 10px;"></th>
-  </tr>
-</table>
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-  </tr>
-  <tr>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-  </tr>
-</table>
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr>
-    <th width="50%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 10px;">Tanggal : <?php echo $v_awal; ?> s/d <?php echo $v_akhir; ?></th>
-  </tr>
-  <tr>
-    <th width="50%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 10px;">Pembayaran Siswa</th>
-  </tr>
-  <tr>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">&nbsp;</th>
-  </tr>
-</table>
-<table width="100%" cellpadding="6" cellspacing="2" rules="rows">
-  <tr>
-    <th width="5%" align="center"><span style="font-family:Rockwell;font-size: 10px;">No.</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">No. Bukti</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Sekolah</th>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Jenis Pembayaran</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Nominal</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Kelas</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Tanggal</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Tahun Pelajaran</th>
-  </tr>
-  <?php
-//   $sql = "SELECT
-// (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=pembayaran_sekolah.kodesekolah)AS kodesekolah,
-// jenispembayaran.namajenisbayar,
-// detail_bayar_sekolah.nominalbayar,
-// pembayaran_sekolah.TA,
-// (SELECT z.Kelas FROM jnskelas z WHERE z.IdKelas=pembayaran_sekolah.Kelas)AS Kelas,
-// DATE_FORMAT(tglentri,'%d-%m-%Y')tglentri,pembayaran_sekolah.Nopembayaran
-// FROM
-// pembayaran_sekolah
-// INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-// INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-// WHERE tglentri BETWEEN '$a1' AND '$a2'
-// ORDER BY pembayaran_sekolah.Nopembayaran,detail_bayar_sekolah.kodejnsbayar,tglentri";
-  // $hasil = mysql_query($sql);
-  $no = 1;
-  // while ($r = mysql_fetch_array($hasil)) {
-  $v_uang = 0;
-  foreach ($mydata as $r) {
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN MUTIARA INSAN NUSANTARA<br>
+          SMP - SMA - SMK MUTIARA INSAN NUSANTARA</span></th>
+      <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>BUKTI PEMBAYARAN SISWA</b></th>
+      <th width="30%"></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
+          Kecamatan Rajeg, Kabupaten Tangerang 15540</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Telp. (021) 59391134</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+    </tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0" rules="rows">
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <th width="50%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">No. Transaksi : <?= $Nopembayaran ?></th>
+      <th width="50%" colspan='2' align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">NIS/No Registrasi : <?php echo $v_NIS; ?>/<?php echo $v_Noreg; ?></th>
+    </tr>
+    <tr align="left">
+      <th scope="col"><span style="font-family:Rockwell;font-size: 12px;">Tanggal : <?= $tglentri ?></th>
+      <th width="50%" colspan='2' align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Nama Siswa : <?php echo $v_Namacasis; ?></th>
+    </tr>
+    <tr align="left">
+      <th scope="col"><span style="font-family:Rockwell;font-size: 12px;">Kelas : <?php echo $kelas; ?>-<?= $v_NamaJurusan ?></th>
+      <th width="50%" colspan='2' align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Tahun Pelajaran : <?php echo $ThnAkademik; ?></th>
+    </tr>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </table>
+  <table width="100%" cellpadding="6" cellspacing="2" border="0">
+    <?php
+    $cari1 = $this->db->query("SELECT*FROM saldopembayaran_sekolah
+  INNER JOIN pembayaran_sekolah ON saldopembayaran_sekolah.Noreg = pembayaran_sekolah.Noreg
+  WHERE pembayaran_sekolah.Noreg='$id' OR pembayaran_sekolah.NIS='$id' AND pembayaran_sekolah.Nopembayaran='$nopem'")->row();
+
+      $v_TotalTagihan = $cari1->TotalTagihan;
+      $v_Sisa = $cari1->Sisa;
+      $v_TA = $cari1->TA;
+
+    $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='SPP'")->row();
+
+      $v_Nominal_SPP = $cari1->Nominal;
+      $v_idtarif_SPP = $cari1->idtarif;
+
+    $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='GDG'")->row();
+
+      $v_Nominal_GDG = $cari1->Nominal;
+      $v_idtarif_GDG = $cari1->idtarif;
+
+    $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='SRG'")->row();
+
+      $v_Nominal_SRG = $cari1->Nominal;
+      $v_idtarif_SRG = $cari1->idtarif;
+
+    $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='KGT'")->row();
+
+      $v_Nominal_KGT = $cari1->Nominal;
+      $v_idtarif_KGT = $cari1->idtarif;
+
+    $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='SPP'")->row();
+
+    if(isset($row)){
+      $SPP_nominalbayar = $row->nominalbayar;
+    }else{
+      $SPP_nominalbayar = 0;
+    }
+
+    $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='GDG'")->row();
+
+    if(isset($row)){
+      $GDG_nominalbayar = $row->nominalbayar;
+    }else{
+      $GDG_nominalbayar = 0;
+    }
+
+    $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='SRG'")->row();
+
+    if(isset($row)){
+      $SRG_nominalbayar = $row->nominalbayar;
+    }else{
+      $SRG_nominalbayar = 0;
+    }
+
+    $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='KGT'")->row();
+
+    if(isset($row)){
+      $KGT_nominalbayar = $row->nominalbayar;
+    }else{
+      $KGT_nominalbayar= 0;
+    }
+
+    $cari1 = $this->db->query("SELECT SUM(SPP)AS SPP,SUM(GDG)AS GDG,SUM(SRG)AS SRG,SUM(KGT)AS KGT FROM(
+SELECT
+(SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='SPP' AND  Nopembayaran <$Nopembayaran)AS SPP,
+(SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='GDG' AND  Nopembayaran <$Nopembayaran)AS GDG,
+(SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='SRG' AND  Nopembayaran <$Nopembayaran)AS SRG,
+(SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='KGT' AND  Nopembayaran <$Nopembayaran)AS KGT
+FROM
+pembayaran_sekolah
+WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")->row();
+
+      $t_SPP = $cari1->SPP;
+      $t_GDG = $cari1->GDG;
+      $t_SRG = $cari1->SRG;
+      $t_KGT = $cari1->KGT;
+
+    $cari1 = $this->db->query("SELECT pot_spp, pot_gdg, pot_modul, pot_kgt
+                      FROM
+                      saldopembayaran_sekolah
+                      WHERE NIS='$id' AND Kelas='$Kelas'")->row();
+
+    if(isset($cari)){
+      $pot_spp = $cari1->pot_spp;
+      $pot_gdg = $cari1->pot_gdg;
+      $pot_modul = $cari1->pot_modul;
+      $pot_kgt = $cari1->pot_kgt;
+    }else{
+      $pot_spp = 0;
+      $pot_gdg = 0;
+      $pot_modul = 0;
+      $pot_kgt = 0;
+    }
+
+    $vap_Nominal_SPP = $v_Nominal_SPP - ($v_Nominal_SPP * $pot_spp / 100);
+    $vap_Nominal_GDG = $v_Nominal_GDG - ($v_Nominal_GDG * $pot_gdg / 100);
+    $vap_Nominal_SRG = $v_Nominal_SRG - ($v_Nominal_SRG * $pot_modul / 100);
+    $vap_Nominal_KGT = $v_Nominal_KGT - ($v_Nominal_KGT * $pot_kgt / 100);
+
+    $s_SPP = $vap_Nominal_SPP - $t_SPP;
+    $s_GDG = $vap_Nominal_GDG - $t_GDG;
+    $s_SRG = $vap_Nominal_SRG - $t_SRG;
+    $s_KGT = $vap_Nominal_KGT - $t_KGT;
+    $f_tot = ($s_KGT + $s_SRG + $s_GDG + $s_SPP);
+    $tot_byr = $SPP_nominalbayar + $GDG_nominalbayar + $SRG_nominalbayar + $KGT_nominalbayar;
+    $tot_dbyr = $t_SPP + $t_GDG + $t_SRG + $t_KGT + $tot_byr;
+    
+    $tot_tag = $vap_Nominal_SPP + $vap_Nominal_GDG + $vap_Nominal_SRG + $vap_Nominal_KGT;
+    $sisa_tag = $tot_tag - $tot_dbyr;
     ?>
     <tr>
-      <th align="center"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $no ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['Nopembayaran']; ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['kodesekolah']; ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['namajenisbayar']; ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;">Rp. <?php echo number_format($r['nominalbayar']); ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['Kelas']; ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['tglentri']; ?></th>
-      <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['TA']; ?></th>
+      <th colspan=2 width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Telah Dibayarkan :</th>
+      <th colspan=2 width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Tarif :</th>
     </tr>
-  <?php
-    $no++;
-    $v_uang = $v_uang + $r['nominalbayar'];
-  }
-  ?>
-  <tr>
-    <th scope="col"><span style="font-family:Rockwell;font-size: 10px;">Total</th>
-    <th scope="col" colspan='5'>&nbsp;</th>
-    <th scope="col"><span style="font-family:Rockwell;font-size: 10px;">Rp. <?= number_format($v_uang) ?></th>
-  </tr>
-</table>
-<br><br>
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <th width="30%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 10px;"></th>
-    <th align="right" width="5%" scope="col"><span style="font-family:Rockwell;font-size: 10px;"></th>
-    <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 10px;"></th>
-  </tr>
-</table>
-<br><br>
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <th width="5%" scope="col"></th>
-    <th align="right" width="30%" scope="col"><span style="font-family:Rockwell;font-size: 10px;"></th>
-    <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 10px;">Bekasi, <?php
-                                                                                            echo $tgl; ?></th>
-  </tr>
-</table>
-<br><br>
-<br>
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <th width="5%" scope="col"></th>
-    <th align="right" width="30%" scope="col"><span style="font-family:Rockwell;font-size: 12px;"></th>
-    <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Kasir</th>
-  </tr>
-</table>
+    <tr>
+      <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;">SPP</th>
+      <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($SPP_nominalbayar, 0, ',', '.'); ?></th>
+      <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;">SPP</th>
+      <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_SPP, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Gedung</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($GDG_nominalbayar, 0, ',', '.'); ?></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Gedung</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_GDG, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Seragam</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($SRG_nominalbayar, 0, ',', '.'); ?></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Seragam</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_SRG, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Kegiatan</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($KGT_nominalbayar, 0, ',', '.'); ?></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Kegiatan</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_KGT, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <td colspan=6><u>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jumlah Bayar</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($tot_byr, 0, ',', '.'); ?></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Tagihan</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($tot_tag, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Dibayar</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($tot_dbyr, 0, ',', '.'); ?></th>
+    </tr>
+    <tr>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Sisa Tagihan</th>
+      <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($sisa_tag, 0, ',', '.'); ?></th>
+    </tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="30%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 8px;"></th>
+      <th align="right" width="5%" scope="col"><span style="font-family:Rockwell;font-size: 12px;"></th>
+      <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 12px;"></th>
+    </tr>
+  </table>
+  <br><br>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="5%" scope="col"></th>
+      <th align="center" width="30%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Telah dikoreksi oleh :</th>
+      <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Bekasi, <?php $tgl = date('d/m/Y');
+                                                                                              echo $tgl; ?></th>
+    </tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="5%" scope="col"></th>
+      <th align="center" width="30%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Ka. Biro Keuangan</th>
+      <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">Yang Mengajukan</th>
+    </tr>
+  </table>
+  <br><br>
+  <br>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="5%" scope="col"></th>
+      <th align="center" width="30%" scope="col"><span style="font-family:Rockwell;font-size: 12px;">............................</th>
+      <th width="10%" scope="col"><span style="font-family:Rockwell;font-size: 12px;"><?php echo $v_Namacasis; ?></th>
+    </tr>
+  </table>
