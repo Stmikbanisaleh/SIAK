@@ -33,7 +33,8 @@ class Login extends CI_Controller
 			foreach ($data as $value) {
 				$data = [
 					'username' => $value['username'],
-					'level' => $value['level'],
+                    'level' => $value['level'],
+					'nip' => $value['nip'],
 				];
 			}
 			$this->session->set_userdata($data);

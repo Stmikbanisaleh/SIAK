@@ -54,13 +54,6 @@ class Buk extends CI_Controller
     }
 
     public function posting(){
-        // $date=date_create($this->input->post('tgl'));
-        // $v_thn=date_format($date,"Y");
-        // $date=date_create($this->input->post('tgl')); //2020-08-13 00:00:00
-        // $bukti = $this->input->post('bukti'); //10817
-        // $v_bln=date_format($date,"m");
-        // $f_bln = $v_bln;
-        // $s_bln = ltrim($f_bln, '0');
 
         $datee = '2020-08-13 00:00:00';
         $bkt = '10817';
@@ -197,14 +190,6 @@ class Buk extends CI_Controller
     }
 
     public function batal_posting(){
-        // $date=date_create($this->input->post('tgl'));
-        // $v_thn=date_format($date,"Y");
-        // $date=date_create($this->input->post('tgl')); //2020-08-13 00:00:00
-        // $bukti = $this->input->post('bukti'); //10817
-        // $v_bln=date_format($date,"m");
-        // $f_bln = $v_bln;
-        // $s_bln = ltrim($f_bln, '0');
-
         $datee = '2020-08-13 00:00:00';
         $bkt = '10817';
         $kdo = 1;
