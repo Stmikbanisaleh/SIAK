@@ -53,12 +53,6 @@
 		<b class="arrow"></b>
 		<ul class="submenu">
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/biodata'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Biodata
-				</a>
-			</li>
-			<li class="">
 				<a href="<?= base_url() . 'modulguru/uts'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Input Nilai UTS

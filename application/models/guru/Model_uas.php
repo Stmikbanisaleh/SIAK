@@ -11,7 +11,7 @@ class Model_uas extends CI_model
     {
         return $this->db->query("SELECT
         tbjadwal.id,
-        (SELECT z.nama FROM mspelajaran z WHERE z.kode=tbjadwal.id_mapel)AS nama
+        (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel=tbjadwal.id_mapel)AS nama
         FROM
         tbjadwal
         WHERE
@@ -36,7 +36,7 @@ class Model_uas extends CI_model
         tbjadwal
         INNER JOIN tbkrs ON tbjadwal.id = tbkrs.id_jadwal
         INNER JOIN mssiswa ON tbkrs.NIS = mssiswa.NOINDUK
-        LEFT JOIN trnilai ON tbkrs.id_krs = trnilai.IDKRS
+        LEFT JOIN trnilai ON tbkrs.NIS = trnilai.IDKRS
         WHERE
         tbjadwal.id = '" .$mapel. "'");
     }

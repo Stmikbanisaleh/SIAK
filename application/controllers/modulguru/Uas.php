@@ -74,13 +74,8 @@ class Uas extends CI_Controller
 
     public function search()
 	{
-		// if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
 			$mapel = $this->input->post('mapel');
             $result = $this->model_uas->getuts($mapel)->result();
 			echo json_encode($result);
-		// } else {
-		// 	$this->load->view('page/login'); //Memanggil function render_view
-		// }
 	}
 }
