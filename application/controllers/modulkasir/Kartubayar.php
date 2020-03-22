@@ -34,7 +34,7 @@ class Kartubayar extends CI_Controller {
     {
         $siswa = $this->input->post('siswa');
         $my_data = $this->model_kartubayar->view_nopem($siswa)->result_array();
-        echo "<option value='0'>--Pilih Noa Pembayaran--</option>";
+        echo "<option value='0'>--Pilih No Pembayaran--</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['Nopembayaran'] . "'>[" . $value['Nopembayaran'] . "] - " . $value['tglentri'] . "</option>";
         }
@@ -45,7 +45,7 @@ class Kartubayar extends CI_Controller {
         $nis = $this->input->post('siswa');
         $pilihan_pertama = $this->input->post('pilihan_pertama');  
         $dari = $this->input->post('dari'); 
-        $sampai = $this->input->post('sampai'); 
+        $sampai = $this->input->post('sampai');
         // $my_pembsiswa = $this->model_kartubayar->view_siswatg($nis, $kelas)->row();
         // print_r(json_encode($my_pembsiswa));
         // echo $my_pembsiswa->nmsiswa;
@@ -54,6 +54,8 @@ class Kartubayar extends CI_Controller {
             // 'mydata'      => $my_pembsiswa,
             'tgl'         => $tgl,
             'siswa'         => $nis,
+            'dari'        => $dari,
+            'sampai'      => $sampai
 
         );
         $this->pdf->setPaper('FOLIO', 'potrait');

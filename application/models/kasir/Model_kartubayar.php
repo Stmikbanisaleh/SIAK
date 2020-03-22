@@ -13,9 +13,11 @@ class Model_kartubayar extends CI_model
 		return $this->db->query("SELECT 
 								pembayaran_sekolah.Nopembayaran,
 								pembayaran_sekolah.NIS,
-								DATE_FORMAT(tglentri,'%d-%m-%Y') tglentri
+								DATE_FORMAT(tglentri,'%d-%m-%Y') tglentri,
+								DATE_FORMAT(tglentri,'%Y%m%d')
 								FROM pembayaran_sekolah
-								WHERE NIS = '$nis'");
+								WHERE NIS = '$nis'
+								ORDER BY DATE_FORMAT(tglentri,'%Y%m%d')");
 	}
 }
 
