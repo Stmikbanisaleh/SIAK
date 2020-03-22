@@ -108,6 +108,8 @@
                                         <option value="">-- Pilih Program --</option>
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
+                                        <option value="kasir">Kasir</option>
+                                        <option value="akunting">Akunting</option>
                                     </select>
                                 </div>
                             </div>
