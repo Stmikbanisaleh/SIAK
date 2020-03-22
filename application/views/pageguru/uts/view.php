@@ -5,7 +5,11 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
                 <div class="col-sm-9">
-                    <input type="text" disabled id="kddapodik" value="<?php echo $guru[0]['GuruNoDapodik']; ?>" name="kddapodik" placeholder="kode Dapodik" class="form-control" />
+                    <?php if (!empty($guru[0]['GuruNoDapodik'])) { ?>
+                        <input type="text" disabled id="kddapodik" value="<?php echo $guru[0]['GuruNoDapodik']; ?>" name="kddapodik" placeholder="kode Dapodik" class="form-control" />
+                    <?php } else { ?>
+                        <input type="text" disabled id="kddapodik" value="No Dapotik belum ada" name="kddapodik" placeholder="kode Dapodik" class="form-control" />
+                    <?php } ?>
                 </div>
             </div>
 

@@ -20,7 +20,11 @@ class Uts extends CI_Controller
     {
         $session = $this->session->userdata('idguru');
         $nodapodik = $this->model_uts->views($session)->result_array();
+        // print_r($this->db->last_query());exit;
+
         $mypelajaran = $this->model_uts->getmapel($session)->result_array();
+        // print_r($mypelajaran);exit;
+
         $data = array(
             'page_content'     => '../pageguru/uts/view',
             'ribbon'         => '<li class="active">Nilai Uts</li><li>Sample</li>',
@@ -74,13 +78,8 @@ class Uts extends CI_Controller
 
     public function search()
 	{
-		// if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
 			$mapel = $this->input->post('mapel');
             $result = $this->model_uts->getuts($mapel)->result();
 			echo json_encode($result);
-		// } else {
-		// 	$this->load->view('page/login'); //Memanggil function render_view
-		// }
 	}
 }
