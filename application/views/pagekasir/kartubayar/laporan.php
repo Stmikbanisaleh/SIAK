@@ -193,29 +193,32 @@
                                 <th align="center"><span style="font-family:Rockwell;font-size: 12px;">KETERANGAN</th>
                             </tr>
                             <?php
-                            $sql = "SELECT * from pembayaran_sekolah  WHERE NIS ='" . $_POST[siswa] . "'";
-                            $hasil = mysql_query($sql);
+                            $siswa = $this->input->post('siswa');
+                            $data = $this->db->query("SELECT * from pembayaran_sekolah  WHERE NIS ='" . $siswa . "'")->result_array();
                             $no = 1;
-                            while ($r = mysql_fetch_array($hasil)) {
+                            foreach ($data as $r) {
 
                                 ?>
                                 <?php
 
                                     ?>
-                                <?php if ($_POST[nopembayaran] != '') { ?>
-                                    <?php if ($r['Nopembayaran'] == $_POST[nopembayaran]) { ?>
+                                <?php if ($this->input->post('nopembayaran') != '') { ?>
+                                    <?php if ($r['Nopembayaran'] == $this->input->post('nopembayaran')) { ?>
                                         <tr>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= date('d-m-Y', strtotime($r['tglentri'])); ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= $r['TotalBayar']; ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;">
-                                                    <?php
-                                                                $qu = "SELECT kodejnsbayar 
-                                                        FROM detail_bayar_sekolah 
-                                                        WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
-                                                                    echo "$row[0],";
-                                                                ?>
+                                                     <?php
+                                                                $qu = $this->db->query("SELECT kodejnsbayar 
+                                                                FROM detail_bayar_sekolah 
+                                                                WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'")->result_array();
+                                                                if (!empty($qu)){
+                                                                   echo $qu[0]['kodejnsbayar'];
+                                                                } else {
+                                                                    echo "";
+                                                                }
+                                                                
+                                                    ?>
                                             </td>
                                         </tr>
                                     <?php } else { ?>
@@ -223,33 +226,39 @@
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= date('d-m-Y', strtotime($r['tglentri'])); ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= $r['TotalBayar']; ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;">
-                                                    <?php
-                                                                $qu = "SELECT kodejnsbayar 
-                                                        FROM detail_bayar_sekolah 
-                                                        WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
-                                                                    echo "$row[0],";
-                                                                ?>
+                                                  <?php
+                                                                $qu = $this->db->query("SELECT kodejnsbayar 
+                                                                FROM detail_bayar_sekolah 
+                                                                WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'")->result_array();
+                                                                if (!empty($qu)){
+                                                                   echo $qu[0]['kodejnsbayar'];
+                                                                } else {
+                                                                    echo "";
+                                                                }
+                                                                
+                                                    ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 <?php } ?>
 
-                                <?php if ($_POST[nopembayaran] == '') { ?>
-                                    <?php if ($r['Nopembayaran'] >= $_POST[nopembayarandari] and $r['Nopembayaran'] <= $_POST[nopembayaransampai]) { ?>
+                                <?php if ($this->input->post('nopembayaran') == '') { ?>
+                                    <?php if ($r['Nopembayaran'] >= $this->input->post('nopembayarandari') and $r['Nopembayaran'] <= $this->input->post('nopembayaransampai')) { ?>
                                         <tr>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= date('d-m-Y', strtotime($r['tglentri'])); ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;"><?= $r['TotalBayar']; ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;">
                                                     <?php
-                                                                $qu = "SELECT kodejnsbayar 
-                                                        FROM detail_bayar_sekolah 
-                                                        WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
-                                                                    echo "$row[0],";
-                                                                ?>
+                                                                $qu = $this->db->query("SELECT kodejnsbayar 
+                                                                FROM detail_bayar_sekolah 
+                                                                WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'")->result_array();
+                                                                if (!empty($qu)){
+                                                                   echo $qu[0]['kodejnsbayar'];
+                                                                } else {
+                                                                    echo "";
+                                                                }
+                                                                
+                                                    ?>
                                             </td>
                                         </tr>
                                     <?php } else { ?>
@@ -258,13 +267,17 @@
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;color:#fff;"><?= $r['TotalBayar']; ?></td>
                                             <td align="center"><span style="font-family:Rockwell;font-size: 12px;color:#fff;">
                                                     <?php
-                                                                $qu = "SELECT kodejnsbayar 
-                                                        FROM detail_bayar_sekolah 
-                                                        WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
-                                                                    echo "$row[0],";
-                                                                ?>
+                                                                $qu = $this->db->query("SELECT kodejnsbayar 
+                                                                FROM detail_bayar_sekolah 
+                                                                WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'")->result_array();
+                                                                if (!empty($qu)){
+                                                                   echo $qu[0]['kodejnsbayar'];
+                                                                } else {
+                                                                    echo "";
+                                                                }
+                                                                
+                                                    ?>
+                                                                
                                             </td>
                                         </tr>
                                     <?php } ?>
