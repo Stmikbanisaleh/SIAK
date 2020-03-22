@@ -66,14 +66,9 @@ class Jadwal extends CI_Controller
 
     public function search()
     {
-        // if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
         $tahun = $this->input->post('tahun');
         $programsekolah = $this->input->post('programsekolah');
         $result = $this->model_jadwal->getjadwal($tahun, $programsekolah)->result();
         echo json_encode($result);
-        // } else {
-        //     $this->load->view('page/login'); //Memanggil function render_view
-        // }
     }
 }

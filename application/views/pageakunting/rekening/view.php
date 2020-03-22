@@ -82,7 +82,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Rekening </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="JR" id="JR">
 										<option value="">-- Pilih --</option>
@@ -151,7 +151,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Rekening </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_JR" id="e_JR">
 										<option value="">-- Pilih --</option>

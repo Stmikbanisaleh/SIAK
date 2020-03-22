@@ -31,12 +31,20 @@
 			</a>
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-				<!-- <li class="">
+				<li class="">
 					<a href="<?= base_url() . 'modulguru/profile'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>
-				</li> -->
+				</li>
+				<li class="divider"></li>
+
+				<li class="">
+					<a href="<?= base_url() . 'modulguru/setting'; ?>">
+						<i class="ace-icon fa fa-cog"></i>
+						Password
+					</a>
+				</li>
 
 				<li class="divider"></li>
 
