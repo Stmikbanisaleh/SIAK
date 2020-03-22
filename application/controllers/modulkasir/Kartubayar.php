@@ -52,7 +52,8 @@ class Kartubayar extends CI_Controller {
         // exit;
         $data = array(
             // 'mydata'      => $my_pembsiswa,
-            'tgl'         => $tgl
+            'tgl'         => $tgl,
+            'siswa'         => $nis,
 
         );
         $this->pdf->setPaper('FOLIO', 'potrait');

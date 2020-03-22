@@ -194,9 +194,9 @@
                             </tr>
                             <?php
                             $sql = "SELECT * from pembayaran_sekolah  WHERE NIS ='" . $_POST[siswa] . "'";
-                            $hasil = mysql_query($sql);
+                            $hasil = mysqli_query($sql);
                             $no = 1;
-                            while ($r = mysql_fetch_array($hasil)) {
+                            while ($r = mysqli_fetch_array($hasil)) {
 
                                 ?>
                                 <?php
@@ -212,8 +212,8 @@
                                                                 $qu = "SELECT kodejnsbayar 
                                                         FROM detail_bayar_sekolah 
                                                         WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
+                                                                $has = mysqli_query($qu);
+                                                                while ($row = mysqli_fetch_array($has, MYSQL_NUM))
                                                                     echo "$row[0],";
                                                                 ?>
                                             </td>
@@ -227,8 +227,8 @@
                                                                 $qu = "SELECT kodejnsbayar 
                                                         FROM detail_bayar_sekolah 
                                                         WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
+                                                                $has = mysqli_query($qu);
+                                                                while ($row = mysqli_fetch_array($has, MYSQL_NUM))
                                                                     echo "$row[0],";
                                                                 ?>
                                             </td>
@@ -261,8 +261,8 @@
                                                                 $qu = "SELECT kodejnsbayar 
                                                         FROM detail_bayar_sekolah 
                                                         WHERE Nopembayaran = '" . $r['Nopembayaran'] . "'";
-                                                                $has = mysql_query($qu);
-                                                                while ($row = mysql_fetch_array($has, MYSQL_NUM))
+                                                                $has = mysqli_query($qu);
+                                                                while ($row = mysqli_fetch_array($has, MYSQL_NUM))
                                                                     echo "$row[0],";
                                                                 ?>
                                             </td>
