@@ -162,7 +162,7 @@ class Karyawan extends CI_Controller
 				'id_pengawas'  => $this->input->post('e_id')
 			);
 			$config['upload_path']          = './assets/gambar';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['encrypt_name'] = TRUE;
 
 			$this->load->library('upload', $config);

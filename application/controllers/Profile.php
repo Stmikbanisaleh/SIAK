@@ -76,7 +76,7 @@ class Profile extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$config['upload_path']          = './assets/gambar';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['encrypt_name'] = TRUE;
 
 			$this->load->library('upload', $config);
