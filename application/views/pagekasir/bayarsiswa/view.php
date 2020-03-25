@@ -44,7 +44,11 @@
         <form class="form-horizontal" target="_blank" method="POST" role="form" id="as" action="<?php echo base_url() ?>modulkasir/surattagihan/laporan_pdf">
             <div class="form-group">
                 <div class="col-xs-12">
-                    <h4><b>Siswa &nbsp; &nbsp; : Deni Adinda Purnama</b><h4>
+                    <h4><b>Siswa &nbsp; &nbsp; : 
+                        <div id="namasiswa">
+
+                        </div>
+                    </b><h4>
                 </div>
             </div>
             <div class="form-group">
@@ -57,13 +61,19 @@
                 <div class="col-xs-3">
                     <b>Biaya tagihan</b>
                     <div class="input-group">
-                        Rp. 1.800.000
+                        Rp. 
+                        <div id="tghn_spp">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <b>Dibayarkan</b>
                     <div class="input-group">
-                        Rp. 1.800.000
+                        Rp. 
+                        <div id="dbyr_spp">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -81,12 +91,18 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 1.800.000
+                        Rp. 
+                        <div id="tghn_gedung">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 0
+                        Rp.
+                        <div id="dbyr_gedung">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -103,12 +119,18 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 1.800.000
+                        Rp. 
+                        <div id="tghn_seragam">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 0
+                        Rp.
+                        <div id="dbyr_seragam">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -125,12 +147,18 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 1.800.000
+                        Rp. 
+                        <div id="tghn_kegiatan">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 0
+                        Rp.
+                        <div id="dbyr_kegiatan">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -303,6 +331,31 @@
             },
             submitHandler: function(form) {
                 $('#btn_search').html('Searching..');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo site_url('modulkasir/bayarsiswa/view_tagihan') ?>',
+                    data: $('#formSearch').serialize(),
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                            'Periksa');
+                        $('#namasiswa').html(data[0].Namacasis);
+                        $('#tghn_spp').html(formatRupiah(data[0].nominal_spp));
+                        $('#tghn_gedung').html(formatRupiah(data[0].nominal_GDG));
+                        $('#tghn_seragam').html(formatRupiah(data[0].nominal_SRG));
+                        $('#tghn_kegiatan').html(formatRupiah(data[0].nominal_KGT));
+                        $('#dbyr_spp').html(formatRupiah(data[0].blmbyr_spp));
+                        $('#dbyr_gedung').html(formatRupiah(data[0].blmbyr_gdg));
+                        $('#dbyr_seragam').html(formatRupiah(data[0].blmbyr_srg));
+                        $('#dbyr_kegiatan').html(formatRupiah(data[0].blmbyr_kgt));
+                        console.log(data);
+
+                        /* END TABLETOOLS */
+                    }
+                });
+
                 $.ajax({
                     type: 'POST',
                     url: '<?php echo site_url('modulkasir/bayarsiswa/search') ?>',
