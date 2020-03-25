@@ -29,6 +29,16 @@ class Bayarsiswa extends CI_Controller {
         $this->render_view($data); //Memanggil function render_view
     }
 
+    public function view_tagihan()
+    {
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $thnakad = $tampil_thnakad[0]['THNAKAD'];
+        $siswa = $this->input->post('siswa');
+        $kelas = $this->input->post('kelas');
+        $result = $this->model_bayarsiswa->view_tagihan($siswa, $kelas, $thnakad)->result();
+        echo json_encode($result);
+    }
+
     public function search()
     {
         $siswa = $this->input->post('siswa');
