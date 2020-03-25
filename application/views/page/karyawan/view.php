@@ -83,7 +83,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="jabatan" required name="jabatan" placeholder="" class="form-control" />
+                                <select class="form-control" name="jabatan" id="jabatan">
+                                        <option value="">-- Pilih Jabatan --</option>
+                                        <option value="operator">Operator</option>
+                                        <option value="akunting">Akunting</option>
+                                        <option value="kasir">Kasir</option>
+                                    </select>
                                 </div>
                             </div>
 
