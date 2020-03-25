@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller
 	public function login()
 	{
 		$email = $this->input->post('email');
-		$password = md5($this->input->post('password'));
+		$password = hash('sha51',md5($this->input->post('password')));
 		$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '" . $password . "' and jabatan ='operator'");
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
