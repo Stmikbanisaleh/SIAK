@@ -37,9 +37,8 @@ class Karyawan extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$config['upload_path']          = './assets/gambar';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['encrypt_name'] = TRUE;
-
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['encrypt_name'] = TRUE;
 			$this->load->library('upload', $config);
 			if ($this->upload->do_upload("file")) {
 				$data = array('upload_data' => $this->upload->data());
@@ -49,6 +48,7 @@ class Karyawan extends CI_Controller
 					'nama'  => $this->input->post('nama'),
 					'jabatan'  => $this->input->post('jabatan'),
 					'username'  => $this->input->post('email'),
+					'email'	=> $this->input->post('email'),
 					'password'  => hash('sha512',md5($this->input->post('password'))),
 					'level' => $this->input->post('level'),
 					'status'  => 1,
@@ -66,7 +66,7 @@ class Karyawan extends CI_Controller
 					'password'  => hash('sha512',md5($this->input->post('password'))),
 					'level' => $this->input->post('level'),
 					'status'  => 1,
-					'gambar'  => null,
+					'email' => $this->input->post('email'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_karyawan->insert($data, 'tbpengawas');
