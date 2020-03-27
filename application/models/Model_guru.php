@@ -52,7 +52,7 @@ class Model_guru extends CI_model
 
     public function view_count($table, $data_id)
     {
-        return $this->db->query('select IdGuru from ' . $table . ' where IdGuru = ' . $data_id . ' and isdeleted != 1')->num_rows();
+        return $this->db->query("select IdGuru from " . $table . " where IdGuru = '" . $data_id . "' and isdeleted != 1")->num_rows();
     }
 
     public function insert($data, $table)

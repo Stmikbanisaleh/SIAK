@@ -23,7 +23,7 @@ class Model_pembuatan extends CI_model
     public function getdata()
     {
         return $this->db->query("SELECT
-		(SELECT z.NIS FROM siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NIS,
+		(SELECT z.NOINDUK FROM mssiswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NIS,
 		pembayaran_sekolah.Nopembayaran,
 		pembayaran_sekolah.Noreg,
 		(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS Namacasis,

@@ -26,9 +26,15 @@
                                     <?php
                                     $tahun = date("Y");
                                     $noreg = $this->db->query("SELECT
-                                    RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa WHERE thnmasuk='$tahun' ORDER BY Noreg DESC")->result_array();
+                                    RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa WHERE thnmasuk='$tahun' ORDER BY Noreg DESC")->row();
+                                    $no = $noreg->Noreg;
+                                    if(empty($noreg)){
+                                        $no = '0001';
+                                    } else {
+                                        $no = $noreg->Noreg;
+                                    }
                                     ?>
-                                    <input type="text" value="<?= $tahun ?><?= $noreg[0]['Noreg'] ?>" id="noreg" required name="noreg" placeholder="" class="form-control" readonly />
+                                    <input type="text" value="<?= $tahun ?><?= $no ?>" id="noreg" required name="noreg" placeholder="" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -393,6 +399,7 @@
                         if (data == 1) {
                             document.getElementById("formTambah").reset();
                             swalInputSuccess();
+                            location.reload();
                             show_data();
                         } else if (data == 401) {
                             document.getElementById("formTambah").reset();

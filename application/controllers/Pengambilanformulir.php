@@ -25,7 +25,7 @@ class Pengambilanformulir extends CI_Controller
             'ribbon'         => '<li class="active">Dashboard</li><li>Master Pengambilan Formulir</li>',
             'page_name'     => 'Master Pengambilan Formulir',
             'js'             => 'js_file',
-            'mysekolah'     => $mysekolah
+            'mysekolah'     => $mysekolah,
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -38,7 +38,7 @@ class Pengambilanformulir extends CI_Controller
             'Noreg'  => $this->input->post('noreg'),
             'tglentri'  => date('Y-m-d H:i:s'),
             'useridd'  => $this->session->userdata('nip'),
-            'TotalBayar'  => $this->input->post('nominal'),
+            'TotalBayar'  => $this->input->post('nominal_v'),
             'kodesekolah'  => $this->input->post('sekolah'),
             'TA' => $this->input->post('tahunakademik'),
             'createdAt' => date('Y-m-d H:i:s')
@@ -50,7 +50,7 @@ class Pengambilanformulir extends CI_Controller
                 'Nopembayaran' => $id_result,
                 'kodejnsbayar' => 'FRM',
                 'idtarif'      => $idtarifq[0]['idtarif'],
-                'nominalbayar' => $this->input->post('nominal')
+                'nominalbayar' => $this->input->post('nominal_v')
             );
             $insert_detail = $this->model_pengambilanformulir->insert($data_detail, 'detail_bayar_sekolah');
             if ($insert_detail) {
@@ -58,6 +58,7 @@ class Pengambilanformulir extends CI_Controller
                     'Noreg' => $this->input->post('noreg'),
                     'Namacasis' => strtoupper($this->input->post('nama')),
                     'thnmasuk' => $tahun,
+                    'kodesekolah'  => $this->input->post('sekolah'),
                     'tglentri' => date('Y-m-d H:i:s'),
                     'userentri' => $this->session->userdata('kodekaryawan')
                 );

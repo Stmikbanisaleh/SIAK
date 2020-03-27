@@ -88,6 +88,12 @@
                                     <input type="text" id="e_tmplhr" name="e_tmplhr" class="form-control" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat Rumah </label>
+                                <div class="col-sm-6">
+                                   <textarea id="e_alamat" required placeholder="Masukan Alamat" name="e_alamat" class="form-control"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -375,6 +381,9 @@
                 $('#e_agama').val(data[0].agama);
                 $('#e_tglhr').val(data[0].tgllhr);
                 $('#e_tmplhr').val(data[0].tptlhr);
+                $('#e_nmbapak').val(data[0].NmBapak);
+                $('#e_nmibu').val(data[0].NmIbu);
+                $('#e_alamat').val(data[0].AlamatRumah);
             }
         });
     });
