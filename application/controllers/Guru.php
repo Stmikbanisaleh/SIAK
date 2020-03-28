@@ -49,7 +49,7 @@ class Guru extends CI_Controller
 				'GuruTelp'  => $this->input->post('telepon'),
 				'GuruAlamat'  => $this->input->post('alamat'),
 				'GuruBase' => $this->input->post('program_sekolah'),
-				// 'GuruWaktu'  => $this->input->post('alamat'),
+				'password'  => hash('sha512',md5($this->input->post('IdGuru'))),
 				'GuruJeniskelamin'  => $this->input->post('jenis_kelamin'),
 				'GuruPendidikanAkhir'  => $this->input->post('pendidikan_terakhir'),
 				'GuruAgama'  => $this->input->post('agama'),

@@ -128,7 +128,7 @@ class Siswa extends CI_Controller
             $this->load->library('Configfunction');
             $tampil_thnakad = $this->configfunction->getthnakd();
             $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
-            $mysiswa = $this->model_siswa->view_where('mssiswa', $noreg)->result();
+            $mysiswa = $this->model_siswa->view_where('mssiswa', $noreg)->row();
             $myjeniskelamin = $this->model_siswa->view_where('msrev', $jk)->result_array();
             $myagama = $this->model_guru->view('tbagama')->result_array();
             $mytbpk = $this->model_siswa->viewOrdering('mspenghasilan','IDMSPENGHASILAN','desc')->result_array();

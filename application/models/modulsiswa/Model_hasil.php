@@ -13,7 +13,7 @@ class Model_hasil extends CI_model
         trnilai.UTSTRNIL,UASTRNIL,
         mssiswa.NOINDUK,
         tbjadwal.id_mapel,
-        (SELECT z.nama FROM mspelajaran z WHERE z.kode= tbjadwal.id_mapel)AS nama_mapel
+        (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel= tbjadwal.id_mapel)AS nama_mapel
         FROM
         tbjadwal
         INNER JOIN tbkrs ON tbjadwal.id = tbkrs.id_jadwal

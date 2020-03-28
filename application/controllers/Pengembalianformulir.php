@@ -31,7 +31,10 @@ class Pengembalianformulir extends CI_Controller
         $data = array('status' => 1);
         $myrev = $this->model_pengembalianformulir->viewWhereOrdering('msrev',$data, 'ID', 'asc')->result_array();
         $data2 = array('status' => 4);
+        $mytbpk = $this->model_pengembalianformulir->viewOrdering('mspenghasilan','IDMSPENGHASILAN','desc')->result_array();
+        // print_r($mytbpk);exit;
         $myagama = $this->model_pengembalianformulir->viewWhereOrdering('msrev',$data2, 'ID', 'asc')->result_array();
+        $myjob = $this->model_pengembalianformulir->viewOrdering('mspekerjaan','IDMSPEKERJAAN','desc')->result_array();
         $data = array(
             'page_content'     => 'pengembalianformulir/view',
             'ribbon'         => '<li class="active">Dashboard</li><li>Master Pengembalian Formulir</li>',
@@ -39,7 +42,9 @@ class Pengembalianformulir extends CI_Controller
             'js'             => 'js_file',
             'mysekolah'     => $mysekolah,
             'myrev'     => $myrev,
-            'myagama'   => $myagama
+            'myagama'   => $myagama,
+            'myjob'     => $myjob,
+            'mytbpk'     => $mytbpk
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -58,6 +63,8 @@ class Pengembalianformulir extends CI_Controller
             'createdAt' => date('Y-m-d H:i:s')
         );
         $insert = $this->model_pengembalianformulir->insert($data, 'pembayaran_sekolah');
+        print_r($this->db->last_query());
+        print_r($insert);exit;
         $id_result = $this->db->insert_id();
         if ($insert) {
             $data_detail = array(
@@ -109,6 +116,9 @@ class Pengembalianformulir extends CI_Controller
             'Jk'  => $this->input->post('e_jk'),
             'tgllhr'  => $this->input->post('e_tglhr'),
             'tptlhr'  => $this->input->post('e_tmplhr'),
+            'NmBapak'  => $this->input->post('e_nmbapak'),
+            'NmIbu'  => $this->input->post('e_nmibu'),
+            'AlamatRumah' => $this->input->post('e_alamat'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_pengembalianformulir->update($data_id, $data, 'calon_siswa');

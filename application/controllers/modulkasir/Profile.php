@@ -44,6 +44,7 @@ class Profile extends CI_Controller
             $where = array('
 			nip' => $this->session->userdata('kodekaryawan'));
             $mydata = $this->model_profile->viewWhereOrdering('tbpengawas', $where, 'nip', 'asc')->result_array();
+            // print_r($mydata);exit;
             $data = array(
                 'page_content'     => '../pagekasir/profile/editprofile',
                 'ribbon'         => '<li class="active">Dashboard</li><li>Edit Profile</li>',

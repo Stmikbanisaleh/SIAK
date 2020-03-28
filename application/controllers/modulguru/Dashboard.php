@@ -37,7 +37,8 @@ class Dashboard extends CI_Controller
 	{
 		$email = $this->input->post('email');
 		$password = hash('sha512',md5($this->input->post('password')));
-		$query = $this->db->query("select count(IdGuru) as jml,GuruNama,GuruEmail,IdGuru from tbguru where IdGuru='" . $email . "' and password like '" . $password . "' GROUP BY GuruNama");
+		
+		$query = $this->db->query("select count(IdGuru) as jml,GuruNama,GuruEmail,IdGuru from tbguru where IdGuru='" . $email . "' and password = '" . $password . "' GROUP BY GuruNama");
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
 			foreach ($data as $value) {

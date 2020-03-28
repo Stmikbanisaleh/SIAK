@@ -6,8 +6,8 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">NIP</label>
                     <div class="col-sm-4">
-                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['Useriid']; ?>" id="e_id" class="form-control" />
-                        <input disabled type="text" name="nip" value="<?php echo $mydata[0]['Useriid']; ?>" id="nip" class="form-control" />
+                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['nip']; ?>" id="e_id" class="form-control" />
+                        <input disabled type="text" name="nip" value="<?php echo $mydata[0]['nip']; ?>" id="nip" class="form-control" />
                     </div>
                 </div>
 

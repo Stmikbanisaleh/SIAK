@@ -83,7 +83,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="jabatan" required name="jabatan" placeholder="" class="form-control" />
+                                    <select class="form-control" name="jabatan" id="jabatan">
+                                        <option value="">-- Pilih Jabatan --</option>
+                                        <option value="operator">Operator</option>
+                                        <option value="akunting">Akunting</option>
+                                        <option value="kasir">Kasir</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -169,7 +174,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="" class="form-control" />
+                                    <select class="form-control" name="jabatan" id="jabatan">
+                                        <option value="">-- Pilih Jabatan --</option>
+                                        <option value="operator">Operator</option>
+                                        <option value="akunting">Akunting</option>
+                                        <option value="kasir">Kasir</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -208,16 +218,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <!-- <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gambar </label>
-                                <div class="col-sm-9">
-                                    <span class="profile-picture">
-                                        <img id="avatar" name="avatar" class="editable img-responsive" />
-                                    </span>
-                                </div>
-                            </div> -->
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
