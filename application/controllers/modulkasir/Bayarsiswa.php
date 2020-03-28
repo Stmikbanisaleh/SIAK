@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bayarsiswa extends CI_Controller {
-        function __construct()
+    function __construct()
     {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
@@ -12,20 +12,20 @@ class Bayarsiswa extends CI_Controller {
         $this->load->library('Configfunction');
     }
 
-	function render_view($data) {
+    function render_view($data) {
         $this->template->load('templatekasir', $data); //Display Page
     }
 
-	public function index() {
+    public function index() {
         $my_siswa = $this->model_surattagihan->view('mssiswa')->result_array();
         $my_kelas = $this->model_surattagihan->view('tbkelas')->result_array();
         $data = array(
-        			'page_content' 	=> '../pagekasir/bayarsiswa/view',
-        			'ribbon' 		=> '<li class="active">Pembayaran Siswa</li>',
-					'page_name' 	=> 'Pembayaran Siswa',
-                    'my_siswa'      => $my_siswa,
-                    'my_kelas'     => $my_kelas
-        		);
+         'page_content' 	=> '../pagekasir/bayarsiswa/view',
+         'ribbon' 		=> '<li class="active">Pembayaran Siswa</li>',
+         'page_name' 	=> 'Pembayaran Siswa',
+         'my_siswa'      => $my_siswa,
+         'my_kelas'     => $my_kelas
+     );
         $this->render_view($data); //Memanggil function render_view
     }
 
@@ -64,17 +64,6 @@ class Bayarsiswa extends CI_Controller {
     }
 
     public function print(){
-        // $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-        // $periode_awal = $this->input->post('periode_awal');
-        // $periode_akhir = $this->input->post('periode_akhir');  
-        // $my_pembsiswa = $this->model_laporan->get_pemb_siswa($periode_awal, $periode_akhir)->result_array();
-        // print_r(json_encode($my_pembsiswa));exit;
-        // $data = array(
-        //     'v_awal'      => $periode_awal,
-        //     'v_akhir'     => $periode_akhir,
-        //     'mydata'      => $my_pembsiswa,
-        //     'tgl'         => $tgl,
-        // );
         $tampil_thnakad = $this->configfunction->getthnakd();
         $thnakad = $tampil_thnakad[0]['THNAKAD'];
         $data = array(
@@ -85,5 +74,128 @@ class Bayarsiswa extends CI_Controller {
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Rekap-Pembayaran.pdf";
         $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+    }
+
+    public function insert(){
+            $tampil_thnakad = $this->configfunction->getthnakd();
+            $thnakad = $tampil_thnakad[0]['THNAKAD'];
+
+            $tot = $this->input->post('spp') + $this->input->post('gedung') + $this->input->post('seragam') + $this->input->post('kegiatan');
+            $ss = $this->input->post('sisa')-$tot;
+
+            $data = array(
+                'NIS'           => $this->input->post('NIS'),
+                'Noreg'         => $this->input->post('Noreg'),
+                'Kelas'         => $this->input->post('Kelas'),
+                'tglentri'      => date('Y-m-d H:i:s'),
+                'useridd'       => $this->session->userdata('kodekaryawan'),
+                'TotalBayar'    => $tot,
+                'kodesekolah'   => $this->input->post('kodesekolah'),
+                'TA'            => $thnakad,
+            );
+            // print_r(json_encode($data));exit;
+            $action = $this->db->insert('pembayaran_sekolah',$data);
+
+            $query = "SELECT
+                pembayaran_sekolah.Nopembayaran,
+                pembayaran_sekolah.NIS,
+                pembayaran_sekolah.Noreg,
+                pembayaran_sekolah.tglentri,
+                pembayaran_sekolah.useridd,
+                pembayaran_sekolah.TotalBayar,
+                pembayaran_sekolah.kodesekolah,
+                pembayaran_sekolah.TA,
+                pembayaran_sekolah.Kelas,
+                (jnskelas.nama)as v_kls
+                FROM
+                pembayaran_sekolah
+                INNER JOIN tbkelas jnskelas ON pembayaran_sekolah.Kelas = jnskelas.id_kelas
+                WHERE NIS='" . $this->input->post('NIS') . "'  ORDER BY Nopembayaran DESC LIMIT 1";
+
+            $q1 = $this->db->query($query)->row();
+
+                $v_Nopembayaran = $q1->Nopembayaran;
+                $v_v_kls = $q1->v_kls;
+
+
+            if($this->input->post('spp') != 0 || $this->input->post('spp')!= ''){
+                $ins1 = array(
+                    'Nopembayaran'           => $v_Nopembayaran,
+                    'kodejnsbayar'         => 'SPP',
+                    'idtarif'      => $this->input->post('idtarif_spp'),
+                    'nominalbayar'       => $this->input->post('spp'),
+                );
+                $action = $this->db->insert('detail_bayar_sekolah',$ins1);
+            }
+
+
+            if($this->input->post('gedung') != 0 || $this->input->post('gedung')!= ''){
+                $ins2 = array(
+                    'Nopembayaran'           => $v_Nopembayaran,
+                    'kodejnsbayar'         => 'GDG',
+                    'idtarif'      => $this->input->post('idtarif_gdg'),
+                    'nominalbayar'       => $this->input->post('gedung'),
+                );
+                $action = $this->db->insert('detail_bayar_sekolah',$ins2);
+            }
+
+            if($this->input->post('seragam') != 0 || $this->input->post('seragam')!= ''){
+                $ins3 = array(
+                    'Nopembayaran'           => $v_Nopembayaran,
+                    'kodejnsbayar'         => 'SRG',
+                    'idtarif'      => $this->input->post('idtarif_gdg'),
+                    'nominalbayar'       => $this->input->post('seragam'),
+                );
+                $action = $this->db->insert('detail_bayar_sekolah',$ins3);
+            }
+
+            if($this->input->post('kegiatan') != 0 || $this->input->post('kegiatan')!= ''){
+                $ins4 = array(
+                    'Nopembayaran'           => $v_Nopembayaran,
+                    'kodejnsbayar'         => 'SRG',
+                    'idtarif'      => $this->input->post('idtarif_gdg'),
+                    'nominalbayar'       => $this->input->post('kegiatan'),
+                );
+                $action = $this->db->insert('detail_bayar_sekolah',$ins4);
+            }
+
+            $query = "SELECT*FROM saldopembayaran_sekolah WHERE NIS=".$this->input->post('NIS')."  AND Kelas=".$this->input->post('Kelas');
+            $q2 = $this->db->query($query)->row();
+            $v_TotalTagihan = $q2->TotalTagihan;
+
+            $query = "SELECT SUM(SPP)AS SPP,SUM(GDG)AS GDG,SUM(SRG)AS SRG,SUM(KGT)AS KGT FROM(
+                    SELECT
+                    (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='SPP')AS SPP,
+                    (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='GDG')AS GDG,
+                    (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='SRG')AS SRG,
+                    (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='KGT')AS KGT
+                    FROM
+                    pembayaran_sekolah
+                    WHERE NIS=".$this->input->post('NIS')." AND Kelas=".$this->input->post('Kelas')." AND TA=".$thnakad.")AS kl";
+            $q3 = $this->db->query($query)->row();
+
+            $t_SPP = $q3->SPP;
+            $t_GDG = $q3->GDG;
+            $t_SRG = $q3->SRG;
+            $t_KGT = $q3->KGT;
+
+            $f_tot = ($t_SPP + $t_GDG + $t_SRG + $t_KGT);
+            $v_Sisa = ($v_TotalTagihan) - ($t_SPP + $t_GDG + $t_SRG + $t_KGT);
+            $sql = "UPDATE saldopembayaran_sekolah SET
+            saldopembayaran_sekolah.Bayar='$f_tot',
+            saldopembayaran_sekolah.Sisa='$v_Sisa'
+            WHERE 
+            saldopembayaran_sekolah.NIS = ".$this->input->post('NIS')."
+            AND saldopembayaran_sekolah.Kelas = ".$this->input->post('Kelas');
+            $action = $this->db->query($sql);
+
+            if($action){
+                $this->session->set_flashdata('cat_success', 'Data Berhasil Disimpan!');
+            }else{
+                $this->session->set_flashdata('cat_error', 'EROR!!!');
+            }
+
+            header("Location: ".base_url()."modulkasir/bayarsiswa");            
+            // echo json_encode(true);    
     }
 }

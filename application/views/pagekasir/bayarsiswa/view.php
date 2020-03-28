@@ -41,7 +41,17 @@
         </form>
     </div>
     <div class="col-xs-7">
-        <form class="form-horizontal" target="_blank" method="POST" role="form" id="as" action="<?php echo base_url() ?>modulkasir/surattagihan/laporan_pdf">
+        <form class="form-horizontal" role="form" id="formInsert1" method="POST" action="<?php echo base_url()?>modulkasir/bayarsiswa/insert">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <?php if ($this->session->flashdata('cat_error')) { ?>
+                        <div class="alert alert-danger"> <?= $this->session->flashdata('cat_error') ?> </div>
+                    <?php } ?>
+                    <?php if ($this->session->flashdata('cat_success')) { ?>
+                        <div class="alert alert-success"> <?= $this->session->flashdata('cat_success') ?> </div>
+                    <?php } ?>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-xs-12">
                     <h4><b>Siswa &nbsp; &nbsp; : 
@@ -54,32 +64,40 @@
             <div class="form-group">
                 <div class="col-xs-3">
                     <b>Tarif Sekolah</b>
+                </div>
+                <div class="col-xs-3">
+                    <b>Biaya tagihan (Rp)</b>
+                </div>
+                <div class="col-xs-3">
+                    <b>Dibayarkan (Rp)</b>
+                </div>
+                <div class="col-xs-3">
+                    <b>Bayar</b>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">
                     <div class="input-group">
                         SPP
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <b>Biaya tagihan</b>
                     <div class="input-group">
-                        Rp. 
                         <div id="tghn_spp">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <b>Dibayarkan</b>
                     <div class="input-group">
-                        Rp. 
                         <div id="dbyr_spp">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <b>Bayar</b>
                     <div class="input-group">
-                        <input type="text" id="asd" required name="asd" placeholder="Tahun" class="form-control" />
+                        <input type="number" id="spp" required name="spp" placeholder="SPP" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -91,23 +109,21 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 
                         <div id="tghn_gedung">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp.
                         <div id="dbyr_gedung">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="text" id="asd" required name="asd" placeholder="Tahun" class="form-control" />
+                        <input type="number" id="gedung" required name="gedung" placeholder="Gedung" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -119,23 +135,21 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 
                         <div id="tghn_seragam">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp.
                         <div id="dbyr_seragam">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="text" id="asd" required name="asd" placeholder="Tahun" class="form-control" />
+                        <input type="number" id="seragam" required name="seragam" placeholder="Seragam" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -147,30 +161,28 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp. 
                         <div id="tghn_kegiatan">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        Rp.
                         <div id="dbyr_kegiatan">
-                            
+                            0
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="text" id="asd" required name="asd" placeholder="Tahun" class="form-control" />
+                        <input type="number" id="kegiatan" required name="kegiatan" placeholder="Kegiatan" class="form-control" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <b>Total Tagihan</b>
+                        <b>Total Tagihan (Rp)</b>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -185,14 +197,18 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <b>Rp. 1.800.000</b>
+                        <b>
+                            <div id="tot_tagihan">
+                                0
+                            </div>
+                        </b>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-5">
                     <div class="input-group">
-                        <b>Sisa Belum Dibayarkan</b>
+                        <b>Sisa Belum Dibayarkan (Rp)</b>
                     </div>
                 </div>
                 <div class="col-xs-1">
@@ -207,14 +223,18 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <b>Rp. 1.800.000</b>
+                        <b>
+                            <div id="blm_dibayarkan">
+                                0
+                            </div>
+                        </b>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <b>Total Bayar</b>
+                        <b>Total Bayar (Rp)</b>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -229,14 +249,24 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="text" id="asd" required name="asd" placeholder="Tahun" class="form-control" />
+                        <input type="text" readonly="" id="ttotal" required name="ttotal" placeholder="0" class="form-control" />
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="nilai" value='1'>
+            <input type="hidden" name="idtarif_spp" id="idtarif_spp">
+            <input type="hidden" name="idtarif_gdg" id="idtarif_gdg">
+            <input type="hidden" name="idtarif_srg" id="idtarif_srg">
+            <input type="hidden" name="idtarif_kgt" id="idtarif_kgt">
+            <input type="hidden" name="NIS" id="NIS">
+            <input type="hidden" name="Noreg" id="Noreg">
+            <input type="hidden" name="Kelas" id="Kelas">
+            <input type="hidden" name="sisa" id="sisa">
+            <input type="hidden" name="kodesekolah" id="kodesekolah">
             <div class="form-group">
                 <div class="col-xs-1">
                     <br>
-                    <button type="submit" id="btn_searcah" class="btn btn-sm btn-success pull-left">
+                    <button type="submit" id="btn_insert" class="btn btn-sm btn-success pull-left">
                         <a class="ace-icon fa fa-save bigger-120"></a>Simpan
                     </button>
                 </div>
@@ -339,19 +369,32 @@
                     async: true,
                     dataType: 'json',
                     success: function(data) {
+                        var sdh_dibayarkan = Number(null_tonumber(data[0].byr_spp))+Number(null_tonumber(data[0].byr_gdg))+Number(null_tonumber(data[0].byr_srg))+Number(null_tonumber(data[0].byr_kgt));
+                        var total_tghn = data[0].TotalTagihan;
+                        var blm_dbyrkn = data[0].blm_bayar;
+                        console.log(blm_dbyrkn);
                         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
                             'Periksa');
                         $('#namasiswa').html(data[0].Namacasis);
-                        $('#tghn_spp').html(formatRupiah(data[0].nominal_spp));
-                        $('#tghn_gedung').html(formatRupiah(data[0].nominal_GDG));
-                        $('#tghn_seragam').html(formatRupiah(data[0].nominal_SRG));
-                        $('#tghn_kegiatan').html(formatRupiah(data[0].nominal_KGT));
-                        $('#dbyr_spp').html(formatRupiah(data[0].blmbyr_spp));
-                        $('#dbyr_gedung').html(formatRupiah(data[0].blmbyr_gdg));
-                        $('#dbyr_seragam').html(formatRupiah(data[0].blmbyr_srg));
-                        $('#dbyr_kegiatan').html(formatRupiah(data[0].blmbyr_kgt));
-                        console.log(data);
-
+                        $('#tghn_spp').html(data[0].nominal_spp);
+                        $('#tghn_gedung').html(data[0].nominal_GDG);
+                        $('#tghn_seragam').html(data[0].nominal_SRG);
+                        $('#tghn_kegiatan').html(data[0].nominal_KGT);
+                        $('#dbyr_spp').html(data[0].blmbyr_spp);
+                        $('#dbyr_gedung').html(data[0].blmbyr_gdg);
+                        $('#dbyr_seragam').html(data[0].blmbyr_srg);
+                        $('#dbyr_kegiatan').html(data[0].blmbyr_kgt);
+                        $('#tot_tagihan').html(total_tghn);
+                        $('#blm_dibayarkan').html(blm_dbyrkn);
+                        $('#idtarif_spp').val(data[0].id_spp);
+                        $('#idtarif_gdg').val(data[0].id_gdg);
+                        $('#idtarif_srg').val(data[0].id_srg);
+                        $('#idtarif_kgt').val(data[0].id_kgt);
+                        $('#NIS').val(data[0].NOINDUK);
+                        $('#Noreg').val(data[0].Noreg);
+                        $('#Kelas').val(data[0].Kelas);
+                        $('#sisa').val(Number(data[0].Sisa));
+                        $('#kodesekolah').val(data[0].kodesekolah);
                         /* END TABLETOOLS */
                     }
                 });
@@ -491,10 +534,90 @@
         })
     }
 
+    $('#spp').keyup(function() {
+        var spp = Number($('#spp').val());
+        var gedung = Number($('#gedung').val());
+        var kegiatan = Number($('#kegiatan').val());
+        var seragam = Number($('#seragam').val());
+        var total_bayar = spp + gedung + kegiatan + seragam;
+        $('#ttotal').val(total_bayar);
+    });
+
+    $('#gedung').keyup(function() {
+        var spp = Number($('#spp').val());
+        var gedung = Number($('#gedung').val());
+        var kegiatan = Number($('#kegiatan').val());
+        var seragam = Number($('#seragam').val());
+        var total_bayar = spp + gedung + kegiatan + seragam;
+        $('#ttotal').val(total_bayar);
+    });
+
+    $('#seragam').keyup(function() {
+        var spp = Number($('#spp').val());
+        var gedung = Number($('#gedung').val());
+        var kegiatan = Number($('#kegiatan').val());
+        var seragam = Number($('#seragam').val());
+        var total_bayar = spp + gedung + kegiatan + seragam;
+        $('#ttotal').val(total_bayar);
+    });
+    $('#kegiatan').keyup(function() {
+        var spp = Number($('#spp').val());
+        var gedung = Number($('#gedung').val());
+        var kegiatan = Number($('#kegiatan').val());
+        var seragam = Number($('#seragam').val());
+        var total_bayar = spp + gedung + kegiatan + seragam;
+        $('#ttotal').val(total_bayar);
+    });
+
+        if ($("#formInsert").length > 0) {
+        $("#formInsert").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                spp: {
+                    required: false
+                },
+                gedung: {
+                    required: false
+                },
+                seragam: {
+                    required: false
+                },
+                kegiatan: {
+                    required: false
+                },
+            },
+            messages: {
+            },
+            submitHandler: function(form) {
+                $('#btn_insert').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulkasir/bayarsiswa/insert') ?>",
+                    type: "POST",
+                    data: $('#formInsert').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_insert').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        console.log(response);
+                        if (response == true) {
+                            document.getElementById("formInsert").reset();
+                            swalInputSuccess();
+                        } else if (response == 401) {
+                            swalIdDouble('Eror 401!');
+                        } else {
+                            swalInputFailed();
+                        }
+                    }
+                });
+            }
+        })
+    }
+
     /* Fungsi formatRupiah */
         function formatRupiah(angka){
             if(angka != null){
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                var number_string = angka.toString().replace(/[^,\d]/g, ''),
                 split           = number_string.split(','),
                 sisa            = split[0].length % 3,
                 rupiah          = split[0].substr(0, sisa),
@@ -514,8 +637,14 @@
             
         }
 
-
-
+        function null_tonumber(angka){
+            if(angka != null){
+                return angka;
+            }else{
+                return 0;
+            }
+            
+        }
 
 </script>
 <!-- End Select2
