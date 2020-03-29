@@ -22,7 +22,7 @@ class Model_jadwal extends CI_model
 
     public function gettahun()
     {
-        return  $this->db->query('select distinct TAHUN from tbakadmk where isdeleted != 1 ORDER BY TAHUN DESC ');
+        return  $this->db->query('select distinct TAHUN from tbakadmk2 where isdeleted != 1 ORDER BY TAHUN DESC ');
     }
 
     public function getguru()

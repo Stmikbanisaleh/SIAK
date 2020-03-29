@@ -79,8 +79,8 @@ class Jadwal extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $id = $this->input->post('e_id');
-            $this->load->library('ConfigFunction');
-            $tampil_thnakad = $this->ConfigFunction->getthnakd();
+            $this->load->library('Configfunction');
+            $tampil_thnakad = $this->configfunction->getthnakd();
             $files = $_FILES;
             $file = $files['file'];
             $fname = $file['tmp_name'];
@@ -170,10 +170,8 @@ class Jadwal extends CI_Controller
         $data_id = array(
             'id'  => $this->input->post('id')
         );
-        $data = array(
-            'isdeleted'  => 1,
-        );
-        $action = $this->model_jadwal->update($data_id, $data, 'tbjadwal');
+       
+        $action = $this->model_jadwal->delete($data_id, 'tbjadwal');
         echo json_encode($action);
     }
 }

@@ -84,10 +84,10 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="jabatan" id="jabatan">
-                                        <option value="">-- Pilih Jabatan --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="akunting">Akunting</option>
-                                        <option value="kasir">Kasir</option>
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myjabatan as $value) { ?>
+                                            <option value=<?= $value['NAMAJABATAN'] ?>><?= $value['NAMAJABATAN'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -111,8 +111,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" name="level" id="level">
                                         <option value="">-- Pilih Program --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        <option value="operator">Operator</option>
                                         <option value="kasir">Kasir</option>
                                         <option value="akunting">Akunting</option>
                                     </select>
@@ -174,11 +173,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="jabatan" id="jabatan">
-                                        <option value="">-- Pilih Jabatan --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="akunting">Akunting</option>
-                                        <option value="kasir">Kasir</option>
+                                    <select class="form-control" name="e_jabatan" id="e_jabatan">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($myjabatan as $value) { ?>
+                                            <option value=<?= $value['ID'] ?>><?= $value['NAMAJABATAN'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -202,8 +201,9 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" name="e_level" id="e_level">
                                         <option value="">-- Pilih Program --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        <option value="operator">Operator</option>
+                                        <option value="kasir">Kasir</option>
+                                        <option value="akunting">Akunting</option>
                                     </select>
                                 </div>
                             </div>
@@ -501,7 +501,7 @@
                         '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].nip + '</td>' +
                         '<td>' + data[i].nama + '</td>' +
-                        '<td>' + data[i].jabatan + '</td>' +
+                        '<td>' + data[i].nmjabatan + '</td>' +
                         '<td>' + data[i].username + '</td>' +
                         '<td>' + data[i].level + '</td>' +
                         '<td>' + data[i].statusv2 + '</td>' +

@@ -32,7 +32,7 @@ class Model_karyawan extends CI_model
 
     public function view_karyawan()
     {
-        return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2 from tbpengawas a 
+        return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
         where a.isdeleted != 1
         ');
     }

@@ -22,7 +22,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="semester" name="semester" placeholder="GANJIL/GENAP" class="form-control" />
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value='1'>Ganjil</option>
+                                        <option value='2'>Genap</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,12 +44,6 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class="col-sm-6">
                                     <input type="text" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="indek" name="indek" placeholder="1/2/3/4/5" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -94,7 +91,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester </label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" id="e_id" name="e_id"/>
+                                    <input type="hidden" id="e_id" name="e_id" />
                                     <input type="text" id="e_semester" name="e_semester" placeholder="GANJIL/GENAP" class="form-control" />
                                 </div>
                             </div>

@@ -20,12 +20,12 @@ class Model_permataajar extends CI_model
 
     public function gettahun()
     {
-        return  $this->db->query('select distinct TAHUN from tbakadmk where isdeleted != 1 ORDER BY TAHUN DESC ');
+        return  $this->db->query('select distinct TAHUN from tbakadmk2 where isdeleted != 1 ORDER BY TAHUN DESC ');
     }
 
     public function getsemester()
     {
-        return  $this->db->query('select distinct SEMESTER from tbakadmk where isdeleted != 1 ORDER BY SEMESTER DESC ');
+        return  $this->db->query('select distinct SEMESTER from tbakadmk2 where isdeleted != 1 ORDER BY SEMESTER DESC ');
     }
 
     public function getps()

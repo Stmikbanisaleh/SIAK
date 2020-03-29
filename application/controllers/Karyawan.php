@@ -19,12 +19,13 @@ class Karyawan extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
+			$myjabatan = $this->model_karyawan->viewOrdering('msjabatan', 'ID', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/karyawan/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Karyawan</li>',
 				'page_name' 	=> 'Master Karyawan',
 				'js' 			=> 'js_file',
+				'myjabatan'		=> $myjabatan,
 			);
 			$this->render_view($data);
 		} else {
