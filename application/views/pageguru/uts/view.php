@@ -60,77 +60,105 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody id="show_data">
-    </tbody>
+    <?php
+    if ($this->input->get('mapel')) {
+        $mapel = $this->input->get('mapel');
+        $data = $this->db->query("SELECT
+        tbjadwal.hari,
+        tbjadwal.NMKLSTRJDK,
+        tbjadwal.JAM,
+        mssiswa.NMSISWA,
+        trnilai.UTSTRNIL,
+        tbjadwal.id,
+        tbkrs.id_krs,
+        mssiswa.NOINDUK,
+        tbjadwal.id_mapel,
+        (trnilai.ID)AS idnilai
+        FROM
+        tbjadwal
+        INNER JOIN tbkrs ON tbjadwal.id = tbkrs.id_jadwal
+        INNER JOIN mssiswa ON tbkrs.NIS = mssiswa.NOINDUK
+        LEFT JOIN trnilai ON tbkrs.id_krs = trnilai.IDKRS
+        WHERE
+        tbjadwal.id = '" . $mapel . "'")->result_array(); ?>
+        <tbody>
+            <tr>
+                <?php
+                $no = 1;
+                foreach ($data as $value) { ?>
+                    <td><?= $no; ?></td>
+                    <td><?= $value['hari']; ?></td>
+                    <td><?= $value['NMKLSTRJDK']; ?></td>
+                    <td><?= $value['JAM']; ?></td>
+                    <td><?= $value['NMSISWA']; ?></td>
+                    <input name="id_krs" id="id_krs<?=$no?>" type="hidden"  value="<?=$value['id_krs']?>"/>
+					<input name="NMKLSTRJDK" id="NMKLSTRJDK<?=$no?>" type="hidden"  value="<?=$value['NMKLSTRJDK']?>"/>
+                    <input name="nis" id="nis<?=$no?>" type="hidden"  value="<?=$value['NOINDUK']?>"/>
+                    <input name="id_mapel" id="id_mapel<?=$no?>" type="hidden"  value="<?=$value['id_mapel']?>"/>
+                    <input name="idjadwal" id="idjadwal<?=$no?>" type="hidden"  value="<?=$value['id']?>"/>
+                    <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
+                    <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
+                    <td style="text-align:center">
+                        <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
+                            Simpan
+                        </button>
+                        <div id="pes<?= $no ?>">
+                    </td>
+            </tr>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#uts<?= $no ?>").keypress(function(event) {
+                        if (event.keyCode == 13) {
+                            var nilai = $("#nilai<?= $no ?>").val();
+                            var nis = $("#nis<?= $no ?>").val();
+                            var idjadwal = $("#idjadwal<?= $no ?>").val();
+                            var id_krs = $("#id_krs<?= $no ?>").val();
+                            var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
+                            var id_mapel = $("#id_mapel<?= $no ?>").val();
+                            var idnilai = $("#idnilai<?= $no ?>").val();
+                            $.ajax({
+                                type: "POST",
+                                url:  '<?php echo site_url('modulguru/uts/simpannilai') ?>',
+                                data: "nilai="+nilai+"&nis="+nis+"&idjadwal="+idjadwal+"&id_krs="+id_krs+"&NMKLSTRJDK="+NMKLSTRJDK+"&id_mapel="+id_mapel+"&idnilai="+idnilai,
+                                cache: false,
+                                success: function(data) {
+                                    $("#pes<?= $no ?>").html("Tersimpan").show();
+                                }
+                            });
+                            //	return false;
+                            $("#nilai<?= $no + 1 ?>").focus();
+                        }
+                    });
+                    $("#simpan<?= $no ?>").click(function(event) {
+                        var nilai = $("#nilai<?= $no ?>").val();
+                        var nis = $("#nis<?= $no ?>").val();
+                        var idjadwal = $("#idjadwal<?= $no ?>").val();
+                        var id_krs = $("#id_krs<?= $no ?>").val();
+                        var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
+                        var id_mapel = $("#id_mapel<?= $no ?>").val();
+                        var idnilai = $("#idnilai<?= $no ?>").val();
+                        $.ajax({
+                            type: "POST",
+                            url:  '<?php echo site_url('modulguru/uts/simpannilai') ?>',
+                            data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai,
+                            cache: false,
+                            success: function(data) {
+                                $("#pes<?= $no ?>").html("Tersimpan").show();
+                                // $("#pesan<?= $no ?>").html(data);
+                            }
+                        });
+                        //	return false;
+                        $("#nilai<?= $no + 1 ?>").focus();
+                    });
+                });
+            </script>
+        <?php $no++;
+                } ?>
+
+        </tbody>
+    <?php } ?>
 </table>
 <script type="text/javascript">
-    if ($("#formSearch").length > 0) {
-        $("#formSearch").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            rules: {
-                tahun: {
-                    required: true,
-                },
-                semester: {
-                    required: true,
-                },
-                programsekolah: {
-                    required: true,
-                },
-            },
-            messages: {
-                tahun: {
-                    required: "Tahun harus diisi!"
-                },
-                semester: {
-                    required: "Semester harus diisi!"
-                },
-                programsekolah: {
-                    required: "Harap Masukan Program sekolah dengan benar!"
-                },
-            },
-            submitHandler: function(form) {
-                $.ajax({
-                    type: 'POST',
-                    url: "<?php echo base_url('modulguru/uts/search') ?>",
-                    data: $('#formSearch').serialize(),
-                    dataType: 'JSON',
-                    success: function(data) {
-                        var html = '';
-                        var i = 0;
-                        var no = 1;
-                        for (i = 0; i < data.length; i++) {
-                            html += '<tr>' +
-                                '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].hari + '</td>' +
-                                '<td>' + data[i].NMKLSTRJDK + '</td>' +
-                                '<td>' + data[i].JAM + '</td>' +
-                                '<td>' + data[i].NMSISWA + '</td>' +
-                                '<td>' + data[i].UTSTRNIL + '</td>' +
-                                '</tr>';
-                            no++;
-                        }
-                        $("#datatable_tabletools").dataTable().fnDestroy();
-                        var a = $('#show_data').html(html);
-                        //                    $('#mydata').dataTable();
-                        if (a) {
-                            $('#datatable_tabletools').dataTable({
-                                "bPaginate": true,
-                                "bLengthChange": false,
-                                "bFilter": true,
-                                "bInfo": false,
-                                "bAutoWidth": false
-                            });
-                        }
-                        /* END TABLETOOLS */
-                    }
-
-                });
-                return false;
-            }
-        });
-    }
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",

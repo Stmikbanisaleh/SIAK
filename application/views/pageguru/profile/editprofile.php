@@ -3,16 +3,34 @@
         <form class="form-horizontal" role="form" id="formTambah">
             <div id="edit-password" class="tab-pane">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">NIP</label>
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">No Induk</label>
                     <div class="col-sm-4">
-                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['id_pengawas']; ?>" id="e_id" class="form-control" />
-                        <input disabled type="text" name="nip" value="<?php echo $mydata[0]['nip']; ?>" id="nip" class="form-control" />
+                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['IdGuru']; ?>" id="e_id" class="form-control" />
+                        <input readonly type="text" name="nip" value="<?php echo $mydata[0]['IdGuru']; ?>" id="nip" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Nama</label>
                     <div class="col-sm-4">
-                        <input minlength="4" type="text" value="<?php echo $mydata[0]['nama']; ?>" name="nama" id="nama" class="form-control" />
+                        <input minlength="4" readonly type="text" value="<?php echo $mydata[0]['GuruNama']; ?>" name="nama" id="nama" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Email</label>
+                    <div class="col-sm-4">
+                        <input minlength="4" type="text" value="<?php echo $mydata[0]['GuruEmail']; ?>" name="email" id="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Telp</label>
+                    <div class="col-sm-4">
+                        <input minlength="4" type="text" value="<?php echo $mydata[0]['GuruTelp']; ?>" name="telp" id="telp" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Alamat</label>
+                    <div class="col-sm-4">
+                        <input type="text" value="<?php echo $mydata[0]['GuruAlamat']; ?>" name="alamat" id="alamat" class="form-control" />
                     </div>
                 </div>
                 <div class="space-4"></div>
@@ -28,7 +46,7 @@
                     <i class="ace-icon fa fa-save bigger-110"></i>
                     Ubah
                 </button> &nbsp;&nbsp;&nbsp;
-                <a href="<?php echo base_url() . 'profile/index'; ?>" class="ace-icon fa fa-back bigger-110">
+                <a href="<?php echo base_url() . 'modulguru/profile/index'; ?>" class="ace-icon fa fa-back bigger-110">
                     Kembali</a>
             </div>
         </form>
@@ -65,7 +83,7 @@
                 $('#btn_simpan').html('Sending..');
                 formdata = new FormData(form);
                 $.ajax({
-                    url: "<?php echo base_url('profile/update') ?>",
+                    url: "<?php echo base_url('modulguru/profile/update') ?>",
                     type: "POST",
                     data: formdata,
                     processData: false,
@@ -73,17 +91,9 @@
                     cache: false,
                     async: false,
                     success: function(response) {
-                        $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Simpan');
-                        if (response == true) {
-                            document.getElementById("formTambah").reset();
-                            swalEditSuccess();
-                            $('#modalTambah').modal('hide');
-                        } else if (response == 0) {
-                            swalEditFailed('Password New dan Konfirm tidak sama!');
-                        } else {
-                            swalEditFailed();
-                        }
+                        document.getElementById("formTambah").reset();
+                        swalEditSuccess();
+                        location.reload();
                     }
                 });
             }

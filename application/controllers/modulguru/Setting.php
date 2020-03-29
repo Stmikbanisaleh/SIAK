@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Profile extends CI_Controller
+class Setting extends CI_Controller
 {
 
     function __construct()
@@ -23,9 +23,9 @@ class Profile extends CI_Controller
 			IdGuru' => $this->session->userdata('idguru'));
             $mydata = $this->model_guru->viewWhereOrdering('tbguru',$where, 'id' ,'asc')->result_array();
             $data = array(
-                'page_content'     => '../pageguru/profile/editprofile',
-                'ribbon'         => '<li class="active">Dashboard</li><li>Edit Profile</li>',
-                'page_name'     => 'Edit Profile',
+                'page_content'     => '../pageguru/setting/editpassword',
+                'ribbon'         => '<li class="active">Dashboard</li><li>Edit Password</li>',
+                'page_name'     => 'Edit Password',
                 'js'             => 'js_file',
                 'mydata'        => $mydata,
             );
@@ -37,9 +37,9 @@ class Profile extends CI_Controller
     public function index()
     {
         $data = array(
-            'page_content'     => '../pageguru/profile/view',
+            'page_content'     => '../pageguru/setting/editpassword',
             'ribbon'         => '<li class="active">Profil Guru</li><li>Sample</li>',
-            'page_name'     => 'Profil Guru',
+            'page_name'     => 'Setting Password',
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -61,16 +61,19 @@ class Profile extends CI_Controller
 
     public function update()
     {
-        $data_id = array(
-            'IdGuru'  => $this->input->post('e_id')
-        );
-        $data = array(
-            'GuruEmail'  => $this->input->post('email'),
-            'GuruAlamat'  => $this->input->post('alamat'),
-            'GuruTelp'  => $this->input->post('telp'),
-            'updatedAt' => date('Y-m-d H:i:s'),
-        );
-        $action = $this->model_guru->update($data_id, $data, 'tbguru');
-        echo json_encode($action);
+        if($this->input->post('password') == $this->input->post('password_new')){
+            $data_id = array(
+                'IdGuru'  => $this->session->userdata('idguru')
+            );
+            $data = array(
+                'password'  => hash('sha512',md5($this->input->post('password'))),
+                'updatedAt' => date('Y-m-d H:i:s'),
+            );
+            $action = $this->model_guru->update($data_id, $data, 'tbguru');
+            echo json_encode($action);
+        } else {
+            echo json_encode(false);
+        }
+        
     }
 }

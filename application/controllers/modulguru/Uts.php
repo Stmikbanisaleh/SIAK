@@ -16,6 +16,37 @@ class Uts extends CI_Controller
 
     }
 
+    public function simpannilai()
+    {
+        $data_id = array(
+            'ID'  => $this->input->post('idnilai')
+        );
+        $data = array(
+            'IDKRS'  => $this->input->post('id_krs'),
+            'TGLUTSTRNIL'  => date('Y-m-d H:i:s'),
+            'IDJDK' => $this->input->post('idjadwal'),
+            'NPMTRNIL' => $this->input->post('nis'),
+            'KDMKTRNIL' => $this->input->post('id_mapel'),
+            'KLSTRNIL'  => $this->input->post('NMKLSTRJDK'),
+            'UTSTRNIL'  => $this->input->post('nilai'),
+            'USERUTSTRNIL'         => $this->session->userdata('idguru'),
+            'createdAt' => date('Y-m-d H:i:s'),
+        );
+        $data_update = array(
+            'UTSTRNIL'  => $this->input->post('nilai'),
+            'TGLUTSTRNIL'  => date('Y-m-d H:i:s'),
+            'USERUTSTRNIL'  => $this->session->userdata('idguru'),
+            'updatedAt' => date('Y-m-d H:i:s'),
+        );
+        $cek = $this->model_uts->view_where('trnilai',$data_id)->num_rows();
+        if($cek > 0){
+             $action = $this->model_uts->update($data_id,$data_update, 'trnilai');
+        } else {
+            $action = $this->model_uts->insert($data, 'trnilai');
+        }
+        echo json_encode($action);
+    }
+
     public function index()
     {
         $session = $this->session->userdata('idguru');
@@ -74,9 +105,9 @@ class Uts extends CI_Controller
     }
 
     public function search()
-	{
-			$mapel = $this->input->post('mapel');
-            $result = $this->model_uts->getuts($mapel)->result();
-			echo json_encode($result);
-	}
+    {
+        $mapel = $this->input->post('mapel');
+        $result = $this->model_uts->getuts($mapel)->result();
+        echo json_encode($result);
+    }
 }

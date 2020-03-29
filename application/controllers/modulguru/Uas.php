@@ -16,6 +16,37 @@ class Uas extends CI_Controller
 
     }
 
+    public function simpannilai()
+    {
+        $data_id = array(
+            'ID'  => $this->input->post('idnilai')
+        );
+        $data = array(
+            'IDKRS'  => $this->input->post('id_krs'),
+            'TGLUASTRNIL'  => date('Y-m-d H:i:s'),
+            'IDJDK' => $this->input->post('idjadwal'),
+            'NPMTRNIL' => $this->input->post('nis'),
+            'KDMKTRNIL' => $this->input->post('id_mapel'),
+            'KLSTRNIL'  => $this->input->post('NMKLSTRJDK'),
+            'UASTRNIL'  => $this->input->post('nilaiuas'),
+            'USERUASTRNIL'         => $this->session->userdata('idguru'),
+            'createdAt' => date('Y-m-d H:i:s'),
+        );
+        $data_update = array(
+            'UASTRNIL'  => $this->input->post('nilaiuas'),
+            'TGLUASTRNIL'  => date('Y-m-d H:i:s'),
+            'USERUASTRNIL'  => $this->session->userdata('idguru'),
+            'updatedAt' => date('Y-m-d H:i:s'),
+        );
+        $cek = $this->model_uas->view_where('trnilai',$data_id)->num_rows();
+        if($cek > 0){
+             $action = $this->model_uas->update($data_id,$data_update, 'trnilai');
+        } else {
+            $action = $this->model_uas->insert($data, 'trnilai');
+        }
+        echo json_encode($action);
+    }
+
     public function index()
     {
         $session = $this->session->userdata('idguru');
