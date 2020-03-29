@@ -5,7 +5,8 @@ class Model_siswa extends CI_model
 
     public function getta()
     {
-        return  $this->db->query("SELECT  *,LEFT(tahunakademik.ThnAkademik,4)as thn FROM tahunakademik ORDER BY IdTA DESC");
+        // return  $this->db->query("SELECT  *,LEFT(tahunakademik.ThnAkademik,4)as thn FROM tahunakademik ORDER BY IdTA DESC"); --Last USe Remake By Dedi 29 Mar 2020
+        return  $this->db->query("SELECT *,LEFT(tbakadmk2.TAHUN,4)AS thn, THNAKAD ThnAkademik, ID idTA FROM tbakadmk2 ORDER BY TAHUN DESC");
     }
 
     public function getsiswa($noreg, $ta, $sekolah)
