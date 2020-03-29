@@ -300,6 +300,51 @@
                         }
                     }
                 });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo site_url('pengembalianformulir/search') ?>',
+                    data: $('#formSearch').serialize(),
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                            'Periksa');
+                        var html = '';
+                        var i = 0;
+                        var no = 1;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].Noreg + '</td>' +
+                                '<td>' + data[i].Namacasis + '</td>' +
+                                '<td>' + data[i].Jk + '</td>' +
+                                '<td>' + data[i].agama + '</td>' +
+                                '<td>' + data[i].kodesekolah + '-' + data[i].NamaJurusan + '</td>' +
+                                '<td>' + data[i].tgllhr + '</td>' +
+                                '<td>' + data[i].tptlhr + '</td>' +
+                                '<td class="text-center">' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Noreg + '">' +
+                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                                '</td>' +
+                                '</tr>';
+                            no++;
+                        }
+                        $("#table_id").dataTable().fnDestroy();
+                        var a = $('#show_data').html(html);
+                        //                    $('#mydata').dataTable();
+                        if (a) {
+                            $('#table_id').dataTable({
+                                "bPaginate": true,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false
+                            });
+                        }
+                        /* END TABLETOOLS */
+                    }
+                });
                 return false;
             }
         })
@@ -384,6 +429,7 @@
                 $('#e_nmbapak').val(data[0].NmBapak);
                 $('#e_nmibu').val(data[0].NmIbu);
                 $('#e_alamat').val(data[0].AlamatRumah);
+                $('#e_jk').val(data[0].Jk);
             }
         });
     });

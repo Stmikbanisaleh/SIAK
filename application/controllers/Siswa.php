@@ -141,7 +141,7 @@ class Siswa extends CI_Controller
                 'page_content'  => 'siswa/edit',
                 'ribbon'        => '<li class="active">Biodata Siswa</li>',
                 'page_name'     => 'Biodata Siswa',
-                'mysiswa'       => $mysiswa[0],
+                'mysiswa'       => $mysiswa,
                 'myjeniskelamin' => $myjeniskelamin,
                 'myagama'       => $myagama,
                 'mysekolah'     => $mysekolah,
