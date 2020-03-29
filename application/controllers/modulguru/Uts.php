@@ -20,10 +20,7 @@ class Uts extends CI_Controller
     {
         $session = $this->session->userdata('idguru');
         $nodapodik = $this->model_uts->views($session)->result_array();
-        // print_r($this->db->last_query());exit;
-
         $mypelajaran = $this->model_uts->getmapel($session)->result_array();
-        // print_r($mypelajaran);exit;
 
         $data = array(
             'page_content'     => '../pageguru/uts/view',

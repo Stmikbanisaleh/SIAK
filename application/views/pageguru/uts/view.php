@@ -57,6 +57,7 @@
             <th>Jam</th>
             <th>Nama Siswa</th>
             <th>UTS</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody id="show_data">
