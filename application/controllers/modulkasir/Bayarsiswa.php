@@ -7,7 +7,7 @@ class Bayarsiswa extends CI_Controller {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
         $this->load->model('kasir/model_bayarsiswa');
-        $this->load->library('pdf');
+        // $this->load->library('pdf');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
     }
@@ -63,7 +63,7 @@ class Bayarsiswa extends CI_Controller {
         echo json_encode($result);
     }
 
-    public function print(){
+    public function print2(){
         $tampil_thnakad = $this->configfunction->getthnakd();
         $thnakad = $tampil_thnakad[0]['THNAKAD'];
         $data = array(
@@ -71,13 +71,13 @@ class Bayarsiswa extends CI_Controller {
         );
 
 
-        $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "Rekap-Pembayaran.pdf";
-        $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+    //     $this->pdf->setPaper('A4', 'potrait');
+    //     $this->pdf->filename = "Rekap-Pembayaran.pdf";
+    //     $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
     }
 
     public function insert(){
-            $tampil_thnakad = $this->configfunction->getthnakd();
+            $tampil_thnakad = $this->configfunction->getthnakdkeuangan();
             $thnakad = $tampil_thnakad[0]['THNAKAD'];
 
             $tot = $this->input->post('spp') + $this->input->post('gedung') + $this->input->post('seragam') + $this->input->post('kegiatan');
@@ -93,37 +93,15 @@ class Bayarsiswa extends CI_Controller {
                 'kodesekolah'   => $this->input->post('kodesekolah'),
                 'TA'            => $thnakad,
             );
-            // print_r(json_encode($data));exit;
             $action = $this->db->insert('pembayaran_sekolah',$data);
-
-            $query = "SELECT
-                pembayaran_sekolah.Nopembayaran,
-                pembayaran_sekolah.NIS,
-                pembayaran_sekolah.Noreg,
-                pembayaran_sekolah.tglentri,
-                pembayaran_sekolah.useridd,
-                pembayaran_sekolah.TotalBayar,
-                pembayaran_sekolah.kodesekolah,
-                pembayaran_sekolah.TA,
-                pembayaran_sekolah.Kelas,
-                (jnskelas.nama)as v_kls
-                FROM
-                pembayaran_sekolah
-                INNER JOIN tbkelas jnskelas ON pembayaran_sekolah.Kelas = jnskelas.id_kelas
-                WHERE NIS='" . $this->input->post('NIS') . "'  ORDER BY Nopembayaran DESC LIMIT 1";
-
-            $q1 = $this->db->query($query)->row();
-
-                $v_Nopembayaran = $q1->Nopembayaran;
-                $v_v_kls = $q1->v_kls;
-
-
+            $id = $this->db->insert_id();
             if($this->input->post('spp') != 0 || $this->input->post('spp')!= ''){
                 $ins1 = array(
-                    'Nopembayaran'           => $v_Nopembayaran,
+                    'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'SPP',
                     'idtarif'      => $this->input->post('idtarif_spp'),
                     'nominalbayar'       => $this->input->post('spp'),
+                    'createdAt' => date('Y-m-d H:i:s'),
                 );
                 $action = $this->db->insert('detail_bayar_sekolah',$ins1);
             }
@@ -131,29 +109,31 @@ class Bayarsiswa extends CI_Controller {
 
             if($this->input->post('gedung') != 0 || $this->input->post('gedung')!= ''){
                 $ins2 = array(
-                    'Nopembayaran'           => $v_Nopembayaran,
+                    'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'GDG',
                     'idtarif'      => $this->input->post('idtarif_gdg'),
                     'nominalbayar'       => $this->input->post('gedung'),
+                    'createdAt' => date('Y-m-d H:i:s'),
                 );
                 $action = $this->db->insert('detail_bayar_sekolah',$ins2);
             }
 
             if($this->input->post('seragam') != 0 || $this->input->post('seragam')!= ''){
                 $ins3 = array(
-                    'Nopembayaran'           => $v_Nopembayaran,
+                    'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'SRG',
-                    'idtarif'      => $this->input->post('idtarif_gdg'),
+                    'idtarif'      => $this->input->post('idtarif_srg'),
                     'nominalbayar'       => $this->input->post('seragam'),
+                    'createdAt' => date('Y-m-d H:i:s'),
                 );
                 $action = $this->db->insert('detail_bayar_sekolah',$ins3);
             }
 
             if($this->input->post('kegiatan') != 0 || $this->input->post('kegiatan')!= ''){
                 $ins4 = array(
-                    'Nopembayaran'           => $v_Nopembayaran,
-                    'kodejnsbayar'         => 'SRG',
-                    'idtarif'      => $this->input->post('idtarif_gdg'),
+                    'Nopembayaran'           => $id,
+                    'kodejnsbayar'         => 'KGT',
+                    'idtarif'      => $this->input->post('idtarif_kgt'),
                     'nominalbayar'       => $this->input->post('kegiatan'),
                 );
                 $action = $this->db->insert('detail_bayar_sekolah',$ins4);
@@ -171,7 +151,7 @@ class Bayarsiswa extends CI_Controller {
                     (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='KGT')AS KGT
                     FROM
                     pembayaran_sekolah
-                    WHERE NIS=".$this->input->post('NIS')." AND Kelas=".$this->input->post('Kelas')." AND TA=".$thnakad.")AS kl";
+                    WHERE NIS='".$this->input->post('NIS')."' AND Kelas=".$this->input->post('Kelas')." AND TA=".$thnakad.")AS kl";
             $q3 = $this->db->query($query)->row();
 
             $t_SPP = $q3->SPP;

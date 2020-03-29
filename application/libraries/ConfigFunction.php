@@ -141,6 +141,12 @@ class Configfunction
         return $v_ret;
     }
 
+    public function getthnakdkeuangan()
+    {
+        $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM tbakadmk WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();
+        return $result;
+    }
+
     public function getthnakd()
     {
         $result = $this->CI->db->query('SELECT THNAKAD, ID,SEMESTER,TAHUN, INDEK FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();
@@ -155,7 +161,7 @@ class Configfunction
 
     public function getidta()
     {
-        $result = $this->CI->db->query('SELECT  * FROM tahunakademik_2 where isdeleted != 1 ORDER BY IdTA DESC LIMIT 1')->result_array();
+        $result = $this->CI->db->query('SELECT  * FROM tbakadmk where isdeleted != 1 ORDER BY ID DESC LIMIT 1')->result_array();
         return $result;
     }
 }

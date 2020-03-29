@@ -34,7 +34,7 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$this->load->library('Configfunction');
 			$IdTA = $this->configfunction->getidta();
-			$IdTA = $IdTA[0]['IdTA'];
+			$IdTA = $IdTA[0]['ID'];
 			$my_data = $this->db->query("SELECT
 			saldopembayaran_sekolah.idsaldo,NIS,
 			saldopembayaran_sekolah.Noreg,
@@ -43,7 +43,7 @@ class Tunggakan extends CI_Controller
 			saldopembayaran_sekolah.Bayar,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Bayar,2)) as bayar2,
 			saldopembayaran_sekolah.Sisa,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Sisa,2)) as sisa2,
 			(TA)as tas,
-			(SELECT z.ThnAkademik FROM tahunakademik_2 z WHERE z.IdTA=saldopembayaran_sekolah.TA)AS TA
+			(SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA)AS TA
 			FROM saldopembayaran_sekolah
 			WHERE TA= " . $IdTA . "
 			Order by Noreg desc")->result_array();
@@ -56,11 +56,10 @@ class Tunggakan extends CI_Controller
 	public function generate()
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-			echo ('1');
 			$this->load->library('Configfunction');
 			$IdTA = $this->configfunction->getidta();
-			$idtea = $IdTA[0]['IdTA'];
-			$thnakademik = $IdTA[0]['ThnAkademik'];
+			$idtea = $IdTA[0]['ID'];
+			$thnakademik = $IdTA[0]['THNAKAD'];
 			$calonsiswa = $this->db->query("SELECT * FROM calon_siswa WHERE Noreg NOT IN(SELECT saldopembayaran_sekolah.Noreg
 			FROM saldopembayaran_sekolah) AND kodesekolah IS NOT NULL AND thnmasuk IS NOT NULL ORDER BY kodesekolah,Noreg")->result_array();
 			if ($calonsiswa) {
@@ -86,12 +85,10 @@ class Tunggakan extends CI_Controller
 						baginaikkelas.userentri,
 						baginaikkelas.NIS
 						FROM baginaikkelas
-						JOIN siswa ON baginaikkelas.NIS = siswa.NIS
-						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND siswa.Noreg= $value[Noreg]");
-						// print_r($this->db->last_query());exit;
+						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
+						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.Noreg= $value[Noreg]");
 						if ($naikkelas) {
 							$kelas = $naikkelas->result_array();
-							// print_r($naikkelas->num_rows());exit;
 							$vkelas = $kelas[0]['Kelas'];
 							$vnis = $kelas[0]['NIS'];
 							if ($vkelas == '') {

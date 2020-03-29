@@ -18,11 +18,12 @@ class Model_bayarsiswa extends CI_model
                                     FORMAT(TotalTagihan-(byr_spp+byr_gdg+byr_srg+byr_kgt), 0) blm_bayar
                                 FROM
                                 (SELECT
-                                    (SELECT z.ThnAkademik FROM tahunakademik_2 z WHERE z.IdTA=saldopembayaran_sekolah.TA) AS TAS,
+                                    (SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA) AS TAS,
                                     calon_siswa.thnmasuk,
                                     calon_siswa.kodesekolah,
                                     calon_siswa.Noreg,
-                                    siswa.NOINDUK,
+                                    mssiswa.NOINDUK,
+                                    saldopembayaran_sekolah.Sisa as  Sisa2,
                                     FORMAT(saldopembayaran_sekolah.Sisa, 0) Sisa,
                                     saldopembayaran_sekolah.Kelas,
                                     calon_siswa.Namacasis,
@@ -58,7 +59,7 @@ class Model_bayarsiswa extends CI_model
                                             AND z.kodejnsbayar='SPP'))
                                         FROM
                                             pembayaran_sekolah
-                                        WHERE NIS = siswa.NOINDUK
+                                        WHERE NIS = mssiswa.NOINDUK
                                         AND Kelas = saldopembayaran_sekolah.Kelas
                                         AND TA='$thnakad') byr_spp,
                                     (SELECT
@@ -68,7 +69,7 @@ class Model_bayarsiswa extends CI_model
                                             AND z.kodejnsbayar='GDG'))
                                         FROM
                                             pembayaran_sekolah
-                                        WHERE NIS = siswa.NOINDUK
+                                        WHERE NIS = mssiswa.NOINDUK
                                         AND Kelas = saldopembayaran_sekolah.Kelas
                                         AND TA='$thnakad') byr_gdg,
                                     (SELECT
@@ -78,7 +79,7 @@ class Model_bayarsiswa extends CI_model
                                             AND z.kodejnsbayar='SRG'))
                                         FROM
                                             pembayaran_sekolah
-                                        WHERE NIS = siswa.NOINDUK
+                                        WHERE NIS = mssiswa.NOINDUK
                                         AND Kelas = saldopembayaran_sekolah.Kelas
                                         AND TA='$thnakad') byr_srg,
                                     (SELECT
@@ -88,7 +89,7 @@ class Model_bayarsiswa extends CI_model
                                             AND z.kodejnsbayar='KGT'))
                                         FROM
                                             pembayaran_sekolah
-                                        WHERE NIS = siswa.NOINDUK
+                                        WHERE NIS = mssiswa.NOINDUK
                                         AND Kelas = saldopembayaran_sekolah.Kelas
                                         AND TA='$thnakad') byr_kgt,
                                     (SELECT
@@ -117,7 +118,7 @@ class Model_bayarsiswa extends CI_model
                                         AND Kodejnsbayar='KGT') id_kgt
                                     FROM saldopembayaran_sekolah
                                     INNER JOIN calon_siswa ON saldopembayaran_sekolah.Noreg = calon_siswa.Noreg
-                                    LEFT JOIN mssiswa siswa ON siswa.Noreg = calon_siswa.Noreg
+                                    LEFT JOIN mssiswa ON mssiswa.Noreg = calon_siswa.Noreg
                                     WHERE NIS = '$siswa' AND Kelas='$kelas') mq");
     }
 
@@ -131,7 +132,7 @@ class Model_bayarsiswa extends CI_model
                                     saldopembayaran_sekolah.TotalTagihan TotalTagihan,
                                     saldopembayaran_sekolah.Bayar Bayar,
                                     saldopembayaran_sekolah.Sisa Sisa,
-                                    (SELECT z.ThnAkademik FROM tahunakademik_2 z WHERE z.IdTA=saldopembayaran_sekolah.TA)AS TA,
+                                    (SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA)AS TA,
                                     (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=saldopembayaran_sekolah.Kelas)AS Kelas
                                     FROM saldopembayaran_sekolah
                                     WHERE NIS='$siswa' OR saldopembayaran_sekolah.Noreg='$siswa'
