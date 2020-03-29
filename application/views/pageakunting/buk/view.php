@@ -209,14 +209,6 @@
 									'<td>' + data[i].tkredit + '</td>' +
 									'<td class="text-center">' +
 									'<div id="info"></div>'+
-									// '<input type="text" class="form-control" name="" id="" value="'+ data[i].bukti +'"/>'+
-									// '<input type="text" class="form-control" name="" id="" value="'+ data[i].tgl +'"/>'+
-									// '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_posting" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
-									// 'Posting' +
-									// '</button> &nbsp' +
-									// '<button class="btn btn-xs btn-danger item_batalp" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
-									// 'Batal' +
-									// '</button>' +
 									button+
 									'</td>' +
 									'</tr>';
@@ -224,7 +216,6 @@
 							}
 							$("#table_id").dataTable().fnDestroy();
 							var a = $('#show_data').html(html);
-							//                    $('#mydata').dataTable();
 							if (a) {
 								$('#table_id').dataTable({
 									"bPaginate": true,
@@ -257,9 +248,6 @@
                 bukti: bukti, tgl: tgl,
             },
             success: function(data) {
-            	console.log(data);
-                // $('#e_id').val(data[0].id);
-                // $('#e_no_jurnal').val(data[0].no_jurnal);
                 $('#item_posting').hide();
                 $('#info').html('<div class="alert alert-info">'+
 								'This alert needs your attention, but its not super important.'+
@@ -269,7 +257,6 @@
     });
 
     $('#show_data').on('click', '.item_batalp', function() {
-        // document.getElementById("formEdit").reset();
         var bukti = $(this).data('bukti');
         var tgl = $(this).data('tgl');
         $.ajax({
@@ -285,9 +272,6 @@
                 $('#info').html('<div class="alert alert-info">'+
 								data+
 								'</div>');
-            	// console.log(data);
-                // $('#e_id').val(data[0].id);
-                // $('#e_no_jurnal').val(data[0].no_jurnal);
             }
         });
     });
