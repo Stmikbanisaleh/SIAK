@@ -7,7 +7,7 @@ class Bayarsiswa extends CI_Controller {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
         $this->load->model('kasir/model_bayarsiswa');
-        // $this->load->library('pdf');
+        $this->load->library('pdf');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
     }
@@ -71,9 +71,9 @@ class Bayarsiswa extends CI_Controller {
         );
 
 
-    //     $this->pdf->setPaper('A4', 'potrait');
-    //     $this->pdf->filename = "Rekap-Pembayaran.pdf";
-    //     $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Rekap-Pembayaran.pdf";
+        $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
     }
 
     public function insert(){

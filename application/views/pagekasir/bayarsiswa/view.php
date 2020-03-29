@@ -372,7 +372,6 @@
                         var sdh_dibayarkan = Number(null_tonumber(data[0].byr_spp))+Number(null_tonumber(data[0].byr_gdg))+Number(null_tonumber(data[0].byr_srg))+Number(null_tonumber(data[0].byr_kgt));
                         var total_tghn = data[0].TotalTagihan;
                         var blm_dbyrkn = data[0].blm_bayar;
-                        console.log(blm_dbyrkn);
                         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
                             'Periksa');
                         $('#namasiswa').html(data[0].Namacasis);
