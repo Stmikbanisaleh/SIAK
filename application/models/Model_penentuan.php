@@ -10,10 +10,10 @@ class Model_penentuan extends CI_model
         return  $this->db->query("SELECT*, (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='4' AND z.KETERANGAN=mssiswa.AGAMA)AS v_agama,
          (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='1' AND z.KETERANGAN= mssiswa.JK)AS v_Jk,
          (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=mssiswa.PS)AS v_sekolah, DATE_FORMAT(TGLHR,'%d-%m-%Y')tgl_lahir, 
-         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020')AS Kelas,
-         (SELECT (SELECT y.id_kelas FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS id_kelas,
-         (SELECT (SELECT y.id_kelas+1 FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS id_Kelas_naik,
-         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Naikkelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='2020') AS Kelas_naik, 
+         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA=mssiswa.TAHUN)AS Kelas,
+         (SELECT (SELECT y.id_kelas FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA=mssiswa.TAHUN) AS id_kelas,
+         (SELECT (SELECT y.id_kelas+1 FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA=mssiswa.TAHUN) AS id_Kelas_naik,
+         (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=z.Naikkelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA=mssiswa.TAHUN) AS Kelas_naik, 
          (SELECT z.Naikkelas FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='".$ThnAkademik."')AS Naikkelas, (SELECT z.GolKelas FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.TA='".$ThnAkademik."')AS GolKelas 
          FROM mssiswa WHERE TAHUN ='".$ThnAkademik."' AND ps='".$jenis."' Order by NOINDUK desc
         ");
@@ -50,6 +50,11 @@ class Model_penentuan extends CI_model
     public function getsemester()
     {
         return  $this->db->query('select distinct SEMESTER from tbakadmk where isdeleted != 1 ORDER BY SEMESTER DESC ');
+    }
+
+    public function getrev()
+    {
+        return  $this->db->query('SELECT*FROM msrev WHERE `STATUS`=10 AND isdeleted != 1');
     }
 
     public function getjadwal($periode, $programsekolah)

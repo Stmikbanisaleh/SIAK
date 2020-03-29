@@ -7,7 +7,7 @@ class Bayarsiswa extends CI_Controller {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
         $this->load->model('kasir/model_bayarsiswa');
-        // $this->load->library('pdf');
+        $this->load->library('pdf');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
     }
@@ -71,9 +71,9 @@ class Bayarsiswa extends CI_Controller {
         );
 
 
-    //     $this->pdf->setPaper('A4', 'potrait');
-    //     $this->pdf->filename = "Rekap-Pembayaran.pdf";
-    //     $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Rekap-Pembayaran.pdf";
+        $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
     }
 
     public function insert(){
@@ -81,7 +81,9 @@ class Bayarsiswa extends CI_Controller {
             $thnakad = $tampil_thnakad[0]['THNAKAD'];
 
             $tot = $this->input->post('spp') + $this->input->post('gedung') + $this->input->post('seragam') + $this->input->post('kegiatan');
+            // print_r(json_encode($tot));exit;
             $ss = $this->input->post('sisa')-$tot;
+            // print_r(json_encode($this->input->post('sisa')));exit;
 
             $data = array(
                 'NIS'           => $this->input->post('NIS'),
@@ -151,8 +153,9 @@ class Bayarsiswa extends CI_Controller {
                     (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='KGT')AS KGT
                     FROM
                     pembayaran_sekolah
-                    WHERE NIS='".$this->input->post('NIS')."' AND Kelas=".$this->input->post('Kelas')." AND TA=".$thnakad.")AS kl";
+                    WHERE NIS='".$this->input->post('NIS')."' AND Kelas='".$this->input->post('Kelas')."' AND TA='".$thnakad."')AS kl";
             $q3 = $this->db->query($query)->row();
+            // print_r(json_encode($q3));exit;
 
             $t_SPP = $q3->SPP;
             $t_GDG = $q3->GDG;

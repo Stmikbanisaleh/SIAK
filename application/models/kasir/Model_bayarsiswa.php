@@ -11,11 +11,15 @@ class Model_bayarsiswa extends CI_model
 
     public function view_tagihan($siswa, $kelas, $thnakad){
         return $this->db->query("SELECT *,
-                                    FORMAT(mq.nominal_spp-mq.byr_spp, 0) blmbyr_spp,
-                                    FORMAT(mq.nominal_gdg-mq.byr_gdg, 0) blmbyr_gdg,
-                                    FORMAT(mq.nominal_srg-mq.byr_srg, 0) blmbyr_srg,
-                                    FORMAT(mq.nominal_kgt-mq.byr_kgt, 0) blmbyr_kgt,
-                                    FORMAT(TotalTagihan-(byr_spp+byr_gdg+byr_srg+byr_kgt), 0) blm_bayar
+                                    FORMAT(mq.nom_spp-mq.byr_spp, 0) blmbyr_spp,
+                                    FORMAT(mq.nom_gdg-mq.byr_gdg, 0) blmbyr_gdg,
+                                    FORMAT(mq.nom_srg-mq.byr_srg, 0) blmbyr_srg,
+                                    FORMAT(mq.nom_kgt-mq.byr_kgt, 0) blmbyr_kgt,
+                                    FORMAT(mq.nom_spp, 0) nominal_spp,
+                                    FORMAT(mq.nom_gdg, 0) nominal_gdg,
+                                    FORMAT(mq.nom_srg, 0) nominal_srg,
+                                    FORMAT(mq.nom_kgt, 0) nominal_kgt,
+                                    FORMAT(TotalTagihan2-(byr_spp+byr_gdg+byr_srg+byr_kgt), 0) blm_bayar
                                 FROM
                                 (SELECT
                                     (SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA) AS TAS,
@@ -27,31 +31,32 @@ class Model_bayarsiswa extends CI_model
                                     FORMAT(saldopembayaran_sekolah.Sisa, 0) Sisa,
                                     saldopembayaran_sekolah.Kelas,
                                     calon_siswa.Namacasis,
+                                    saldopembayaran_sekolah.TotalTagihan TotalTagihan2,
                                     FORMAT(saldopembayaran_sekolah.TotalTagihan, 0) TotalTagihan,
-                                    FORMAT((SELECT 
+                                    (SELECT 
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
-                                        AND Kodejnsbayar='SPP'), 0) nominal_spp,
-                                    FORMAT((SELECT 
+                                        AND Kodejnsbayar='SPP') nom_spp,
+                                    (SELECT 
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
-                                        AND Kodejnsbayar='GDG'), 0) nominal_GDG,
-                                    FORMAT((SELECT
+                                        AND Kodejnsbayar='GDG') nom_GDG,
+                                    (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
-                                        AND Kodejnsbayar='SRG'), 0) nominal_SRG,
-                                    FORMAT((SELECT
+                                        AND Kodejnsbayar='SRG') nom_SRG,
+                                    (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
-                                        AND Kodejnsbayar='KGT'), 0) nominal_KGT,
+                                        AND Kodejnsbayar='KGT') nom_KGT,
                                     (SELECT
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
