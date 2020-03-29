@@ -1,7 +1,5 @@
 <div class="row">
-    <br>
-    <br>
-    <form class="form-horizontal" role="form" id="formSearch">
+    <form class="form-horizontal" role="form" id="formSearch1" method="POST" action="<?php echo base_url()?>penentuankelas/validasi" target="_blank">
         <div class="col-xs-3">
             <select class="form-control" name="thn" id="thn">
                 <option value=>--Pilih Tahun--</option>
@@ -185,7 +183,7 @@
             <th>Kelas</th>
             <th>Kelas Saat ini</th>
             <th>Golongan Kelas</th>
-            <!-- <th>Action</th> -->
+            <th class="col-sm-2 text-center">Action</th>
         </tr>
     </thead>
     <tbody id="show_data">
@@ -289,24 +287,38 @@
                                 '<td>' + data[i].v_agama + '</td>' +
                                 '<td>' + data[i].NILSTTBASLSKL + '</td>' +
                                 '<td>' + data[i].NILNEMASLSKL + '</td>' +
-                                '<td>' + data[i].Kelas + '-' + data[i].GolKelas + '</td>' +
+                                '<td>' + data[i].Kelas + '.' + data[i].GolKelas + '</td>' +
                                 '<td>' + data[i].Kelas_naik + '</td>' +
+                                '<td class="text-center">';
+                            html += '<select class="form-control">';
+                                if(data[i].GolKelas == null){
 
-                                '<td class="text-center">' +
-                                '<select class="form-control">' +
-                                    '<option value="">--Pilih Tahun--</option>'
-                                        <?php foreach ($mytahun as $value) { ?>
-                                            '<option value="'+data[i].GolKelas+'-'+data[i].GolKelas+'">'+data[i].GolKelas+'</option>';
-                                        <?php } ?>
+                                }else{
+                                    html += '<option value="'+data[i].GolKelas+'">'+data[i].GolKelas+'</option>'
+                                }
+                            html += '<option value="">--Pilih--</option>'+
+                                        <?php foreach ($myrev as $value) {
+                                            echo "'<option value=`".$value->NAMA_REV."`>".$value->NAMA_REV."</option>'+";
+                                            }
+                                        ?>
                                 '</select>' +
-                            // '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-                            // '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-                            // '</button> &nbsp' +
-                            // '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-                            // '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                            // '</button>' +
-                            '</td>' +
-                            '<td>' + data[i].Kelas_naik + '</td>' +
+                                '</td>'+
+                                // '<td>asd</td>'
+                                '<td>';
+                                if(data[i].Kelas != null){
+                                    console.log(data[i].Kelas);
+                                    html+= '<button class="btn btn-xs btn-success item_hapus" title="Ubah" data-id="' + data[i].NOINDUK + '">' +
+                                            '<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>' +
+                                            '</button> &nbsp' +
+                                            '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Naik" data-id="' + data[i].NOINDUK + '">' +
+                                            '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+                                            '</button> &nbsp' +
+                                            '<button class="btn btn-xs btn-warning item_hapus" title="Tinggal" data-id="' + data[i].NOINDUK + '">' +
+                                            '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
+                                            '</button>';
+                                }
+                                html += '</td>' +
+                            // '<td>' + data[i].Kelas_naik + '</td>' +
 
                                 '</tr>';
                             no++;

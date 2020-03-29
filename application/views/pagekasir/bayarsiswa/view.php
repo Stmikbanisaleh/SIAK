@@ -69,7 +69,7 @@
                     <b>Biaya tagihan (Rp)</b>
                 </div>
                 <div class="col-xs-3">
-                    <b>Dibayarkan (Rp)</b>
+                    <b>Belum dibayarkan (Rp)</b>
                 </div>
                 <div class="col-xs-3">
                     <b>Bayar</b>
@@ -376,9 +376,9 @@
                             'Periksa');
                         $('#namasiswa').html(data[0].Namacasis);
                         $('#tghn_spp').html(data[0].nominal_spp);
-                        $('#tghn_gedung').html(data[0].nominal_GDG);
-                        $('#tghn_seragam').html(data[0].nominal_SRG);
-                        $('#tghn_kegiatan').html(data[0].nominal_KGT);
+                        $('#tghn_gedung').html(data[0].nominal_gdg);
+                        $('#tghn_seragam').html(data[0].nominal_srg);
+                        $('#tghn_kegiatan').html(data[0].nominal_kgt);
                         $('#dbyr_spp').html(data[0].blmbyr_spp);
                         $('#dbyr_gedung').html(data[0].blmbyr_gdg);
                         $('#dbyr_seragam').html(data[0].blmbyr_srg);
@@ -392,7 +392,7 @@
                         $('#NIS').val(data[0].NOINDUK);
                         $('#Noreg').val(data[0].Noreg);
                         $('#Kelas').val(data[0].Kelas);
-                        $('#sisa').val(Number(data[0].Sisa));
+                        $('#sisa').val(Number(data[0].Sisa2));
                         $('#kodesekolah').val(data[0].kodesekolah);
                         /* END TABLETOOLS */
                     }
@@ -461,7 +461,7 @@
                                 '<td>' + data[i].useridd+ '</td>' +
                                 '<td>' + data[i].TA+ '</td>' +
                                 '<td>' +
-                                        '<a target="_blank"  href="<?php echo  base_url().'modulkasir/bayarsiswa/print?noreg='?>'+ data[i].Noreg+'&no='+ data[i].Nopembayaran+'&kls='+ data[i].Kelas+'" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
+                                        '<a target="_blank"  href="<?php echo  base_url().'modulkasir/bayarsiswa/print2?noreg='?>'+ data[i].Noreg+'&no='+ data[i].Nopembayaran+'&kls='+ data[i].Kelas+'" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
                                             '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                             '</a> &nbsp' +
                                 '</td>' +
