@@ -6,11 +6,46 @@ class Rekap extends CI_Controller {
     function __construct(){
         parent::__construct();      
         $this->load->model('modulsiswa/model_rekap');
+        $this->load->library('pdf');
+        $this->load->library('Configfunction');
     }
 
 	function render_view($data) {
         $this->template->load('templatesiswa', $data); //Display Page
        
+    }
+    public function search()
+    {
+        $siswa = $this->session->userdata('nis');
+        $result = $this->model_rekap->pembsis_detail($siswa)->result();
+        echo json_encode($result);
+    }
+
+    public function print2(){
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $thnakad = $tampil_thnakad[0]['THNAKAD'];
+        $data = array(
+            'ThnAkademik'         => $thnakad,
+        );
+
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Rekap-Pembayaran.pdf";
+        $this->pdf->load_view('pagekasir/bayarsiswa/laporan', $data);
+    }
+
+    public function search_pemb_sekolah()
+    {
+        $siswa = $this->session->userdata('nis');
+        $result = $this->model_rekap->pemb_sekolah($siswa)->result();
+        echo json_encode($result);
+    }
+
+    public function search_pemb_sekolah_q2()
+    {
+        $siswa = $this->session->userdata('nis');
+        $result = $this->model_rekap->pemb_sekolah_q2($siswa)->result();
+        echo json_encode($result);
     }
 
 	public function index() {

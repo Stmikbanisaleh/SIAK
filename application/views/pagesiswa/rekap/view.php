@@ -12,55 +12,86 @@
             <th class="col-md-1">No</th>
             <th>No Induk</th>
             <th>Kelas</th>
-            <th>Tanggal</th>
-            <th>Bayar Ke</th>
-            <th>SPP</th>
-            <th>DU+Buku</th>
-            <th>Kegiatan</th>
-            <th>Petugas</th>
-            <th>Cara Bayar</th>
-            <th>Potongan SPP</th>
-            <th>Potongan DU+Buku</th>
-            <th>Potongan Kegiatan</th>
+            <th>Tagihan</th>
+            <th>Bayar</th>
+            <th>Sisa</th>
             <th>Tahun Akademik</th>
         </tr>
     </thead>
     <tbody id="show_data">
+
+</tbody>
+</table>
+<hr>
+<br>
+<table id="table_id2" class="display">
+    <thead>
+        <tr>
+            <th class="col-md-1">No</th>
+            <th>No Induk</th>
+            <th>Kelas</th>
+            <th>Tanggal</th>
+            <th>Bayar</th>
+            <th>Petugas</th>
+            <th>Tahun Akademik</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="show_data2">
+
+    </tbody>
+</table>
+<hr>
+<br>
+<table id="table_id3" class="display">
+    <thead>
+        <tr>
+            <th class="col-md-1">No</th>
+            <th>No Induk</th>
+            <th>Kelas</th>
+            <th>Tanggal</th>
+            <th>Keterangan</th>
+            <th>Tagihan</th>
+            <th>Bayar</th>
+            <th>Sisa</th>
+            <th>Petugas</th>
+            <th>Tahun Akademik</th>
+        </tr>
+    </thead>
+    <tbody id="show_data3">
+
     </tbody>
 </table>
 <script type="text/javascript">
     $(document).ready(function() {
         show_data();
         $('#table_id').DataTable();
+        $('#table_id2').DataTable();
+        $('#table_id3').DataTable();
     });
 
-    //function show all Data
     function show_data() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('modulsiswa/rekap/tampil') ?>',
+            url: '<?php echo site_url('modulsiswa/rekap/search') ?>',
+            data: $('#formSearch').serialize(),
             async: true,
             dataType: 'json',
             success: function(data) {
+                $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                    'Periksa');
                 var html = '';
                 var i = 0;
                 var no = 1;
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
                         '<td class="text-center">' + no + '</td>' +
-                        '<td>' + data[i].PBKNIS + '</td>' +
-                        '<td>' + data[i].PBKSemester + '</td>' +
-                        '<td>' + data[i].PBKTgl + '</td>' +
-                        '<td>' + data[i].PBKByrke + '</td>' +
-                        '<td>' + data[i].PBKSPP + '</td>' +
-                        '<td>' + data[i].PBKBPP + '</td>' +
-                        '<td>' + data[i].PBKKegiatan + '</td>' +
-                        '<td>' + data[i].PBKuser + '</td>' +
-                        '<td>' + data[i].PBKcrbayar + '</td>' +
-                        '<td>' + data[i].PBKPotspp + '</td>' +
-                        '<td>' + data[i].PBKpotbpp + '</td>' +
-                        '<td>' + data[i].PBKpotkegiatan + '</td>' +
-                        '<td>' + data[i].PBKTA + '</td>' +
+                        '<td>' + data[i].NIS + '</td>' +
+                        '<td>' + data[i].Kelas + '</td>' +
+                        '<td>' + formatRupiah(data[i].TotalTagihan) + '</td>' +
+                        '<td>' + formatRupiah(data[i].Bayar) + '</td>' +
+                        '<td>' + formatRupiah(data[i].Sisa) + '</td>' +
+                        '<td>' + data[i].TA + '</td>' +
                         '</tr>';
                     no++;
                 }
@@ -73,73 +104,125 @@
                         "bLengthChange": false,
                         "bFilter": true,
                         "bInfo": false,
-                        "bAutoWidth": false
+
                     });
+
                 }
                 /* END TABLETOOLS */
             }
-
         });
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo site_url('modulsiswa/rekap/search_pemb_sekolah') ?>',
+            data: $('#formSearch').serialize(),
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                    'Periksa');
+                var html = '';
+                var i = 0;
+                var no = 1;
+                for (i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td class="text-center">' + no + '</td>' +
+                        '<td>' + data[i].NIS + '</td>' +
+                        '<td>' + data[i].Kelas + '</td>' +
+                        '<td>' + data[i].tglentri + '</td>' +
+                        '<td>' + formatRupiah(data[i].TotalBayar) + '</td>' +
+                        '<td>' + data[i].useridd + '</td>' +
+                        '<td>' + data[i].TA + '</td>' +
+                        '<td>' +
+                        '<a target="_blank"  href="<?php echo  base_url() . 'modulsiswa/rekap/print2?noreg=' ?>' + data[i].Noreg + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
+                        '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                        '</a> &nbsp' +
+                        '</td>' +
+                        '</tr>';
+                    no++;
+                }
+                $("#table_id2").dataTable().fnDestroy();
+                var a = $('#show_data2').html(html);
+                //                    $('#mydata').dataTable();
+                if (a) {
+                    $('#table_id2').dataTable({
+                        "bPaginate": true,
+                        "bLengthChange": false,
+                        "bFilter": true,
+                        "bInfo": false,
+
+                    });
+
+                }
+                /* END TABLETOOLS */
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo site_url('modulsiswa/rekap/search_pemb_sekolah_q2') ?>',
+            data: $('#formSearch').serialize(),
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                    'Periksa');
+                var html = '';
+                var i = 0;
+                var no = 1;
+                for (i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td class="text-center">' + no + '</td>' +
+                        '<td>' + data[i].NIS + '</td>' +
+                        '<td>' + data[i].Kelas + '</td>' +
+                        '<td>' + data[i].tglentri + '</td>' +
+                        '<td>' + data[i].namajenisbayar + '</td>' +
+                        '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
+                        '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
+                        '<td>' + formatRupiah(data[i].sisa) + '</td>' +
+                        '<td>' + data[i].useridd + '</td>' +
+                        '<td>' + data[i].TA + '</td>' +
+                        '</tr>';
+                    no++;
+                }
+                $("#table_id3").dataTable().fnDestroy();
+                var a = $('#show_data3').html(html);
+                //                    $('#mydata').dataTable();
+                if (a) {
+                    $('#table_id3').dataTable({
+                        "bPaginate": true,
+                        "bLengthChange": false,
+                        "bFilter": true,
+                        "bInfo": false,
+
+                    });
+
+                }
+                /* END TABLETOOLS */
+            }
+        });
+
     }
 
-    //show modal tambah
-    $('#item-tambah').on('click', function() {
-        $('#modalTambah').modal('show');
-    });
+    function formatRupiah(angka) {
+        if (angka != null) {
+            var number_string = angka.toString().replace(/[^,\d]/g, ''),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-    //get data for update record
-    $('#show_data').on('click', '.item_edit', function() {
-        document.getElementById("formEdit").reset();
-        var id = $(this).data('id');
-        $('#modalEdit').modal('show');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('jabatan/tampil_byid') ?>",
-            async: true,
-            dataType: "JSON",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                $('#e_id').val(data[0].ID);
-                $('#e_nama').val(data[0].NAMAJABATAN);
-                $('#e_keterangan').val(data[0].KET);
-
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
             }
-        });
-    });
 
-    $('#show_data').on('click', '.item_hapus', function() {
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda tidak akan dapat mengembalikan ini!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url('jabatan/delete') ?>",
-                    async: true,
-                    dataType: "JSON",
-                    data: {
-                        id: id,
-                    },
-                    success: function(data) {
-                        show_data();
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data sudah dihapus.',
-                            'success'
-                        )
-                    }
-                });
-            }
-        })
-    })
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return rupiah;
+        } else {
+            return 0;
+        }
+
+    }
 </script>
