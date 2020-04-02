@@ -199,27 +199,80 @@ class Siswa extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
             $data_id = array(
-                'ID'  => $this->input->post('e_id')
+                'NOREG'  => $this->input->post('noreg')
             );
+            //file1 photo siswa
+            //photoijazah
+            //photonem
             $data = array(
-                'NOINDUK'  => $this->input->post('e_no_induk'),
-                'NOREG'  => $this->input->post('e_noreg'),
-                'TGLREG'  => $this->input->post('e_tglreg'),
-                'NMSISWA'  => $this->input->post('e_nmsiswa'),
-                'TPLHR'  => $this->input->post('e_tplhr'),
-                'TGLHR'  => $this->input->post('e_tglhr'),
-                'JK'  => $this->input->post('e_jk'),
-                'AGAMA'  => $this->input->post('e_agama'),
-                'TAHUN'  => $this->input->post('e_tahun'),
-                'PS'  => $this->input->post('e_programsekolah'),
-                'KDWARGA'  => $this->input->post('e_kdwarga'),
-                'EMAIL'  => $this->input->post('e_email'),
-                'TELP'  => $this->input->post('e_telp'),
-                'IDUSER'  => $this->session->userdata('nip'),
+                'NOREG'  => $this->input->post('noreg'),
+                'NMSISWA'  => $this->input->post('nama'),
+                'AGAMA'  => $this->input->post('agama'),
+                'JK'  => $this->input->post('jk'),
+                'TGLHR'  => $this->input->post('tglhr'),
+                'PS'  => $this->input->post('sekolah'),
+                'TPLHR'  => $this->input->post('tempat'),
+                'NMBAPAK' => $this->input->post('ayah'),
+                'GAJIORTU'  => $this->input->post('penghasilan'),
+                'NMIBU' => $this->input->post('ibu'),
+                'KELURAHAN' => $this->input->post('kelurahan'),
+                'KECAMATAN' => $this->input->post('kecamatan'),
+                'KABUPATEN' => $this->input->post('kabupaten'),
+                'PROVINSI' => $this->input->post('provinsi'),
+                'KDPOS'  => $this->input->post('kdpos'),
+                'NOHP'  => $this->input->post('nohp'),
+                'NMWALI'  => $this->input->post('wali'),
+                'PEKERJAANORTU'  => $this->input->post('pekerjaan'),
+                'ALAMATRUMAH'  => $this->input->post('alamat2'),
+                'TLPRUMAH'  => $this->input->post('telprmh'),
+                'TLPWALI'  => $this->input->post('telpwali'),
+                'NMASLSKL'  => $this->input->post('aslsekolah'),
+                'PROVINSISEKOLAHASAL'  => $this->input->post('provinsi2'),
+                'KABUPATENSEKOLAHASAL' => $this->input->post('kabupaten2'),
+                'KECAMATANSEKOLAHASAL' => $this->input->post('kecamatan2'),
+                'ALMASLSKL' => $this->input->post('alamat3'),
+                'NOIJAZAH' => $this->input->post('noijazah'),
+                'THNMASUKSEKOLAHASAL' => $this->input->post('thnmassuk'),
+                'NILNEMASLSKL' => $this->input->post('nem'),
+                'updatedAt' => date('Y-m-d H:i:s'),
+            );
+            $data2 = array(
+                'Noreg'  => $this->input->post('noreg'),
+                'Namacasis'  => $this->input->post('nama'),
+                'agama'  => $this->input->post('agama'),
+                'Jk'  => $this->input->post('jk'),
+                'tgllhr'  => $this->input->post('tglhr'),
+                'kodesekolah'  => $this->input->post('sekolah'),
+                'tptlhr'  => $this->input->post('tempat'),
+                'NmBapak' => $this->input->post('ayah'),
+                'GajiOrtu'  => $this->input->post('penghasilan'),
+                'NmIbu' => $this->input->post('ibu'),
+                'Kelurahan' => $this->input->post('kelurahan'),
+                'Kecamatan' => $this->input->post('kecamatan'),
+                'Kabupaten' => $this->input->post('kabupaten'),
+                'Propinsi' => $this->input->post('provinsi'),
+                'Kodepos'  => $this->input->post('kdpos'),
+                'TelpHp'  => $this->input->post('nohp'),
+                'NamaWali'  => $this->input->post('wali'),
+                'Pekerjaan'  => $this->input->post('pekerjaan'),
+                'Perkerjaanortu'  => $this->input->post('pekerjaan'),
+                'AlamatRumah'  => $this->input->post('alamat2'),
+                'TelpRumah'  => $this->input->post('telprmh'),
+                'TelpWali'  => $this->input->post('telpwali'),
+                'AsalSekolah'  => $this->input->post('aslsekolah'),
+                'ASlKelurahan'  => $this->input->post('aslsekolah'),
+                'aslsekpropinsi'  => $this->input->post('provinsi2'),
+                'aslsekkabupaten' => $this->input->post('kabupaten2'),
+                'Aslsekkecamatan' => $this->input->post('kecamatan2'),
+                'AlamatASalSek' => $this->input->post('alamat3'),
+                'NoIjazah' => $this->input->post('noijazah'),
+                'thnmasuk' => $this->input->post('thnmassuk'),
+                'NilaiNem' => $this->input->post('nem'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
-            echo json_encode($action);
+            $action2 = $this->model_siswa->update($data_id, $data2, 'calon_siswa');
+            echo json_encode(1);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }
