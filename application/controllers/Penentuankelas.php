@@ -173,6 +173,22 @@ class Penentuankelas extends CI_Controller
         echo json_encode($action);
     }
 
+    public function ubah()
+    {
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
+
+        $data = array(
+            'GolKelas'  => $this->input->post('gol'),
+        );
+        $where = array(
+            'NIS'  => $this->input->post('noreg'),
+            'TA'  => $ThnAkademik,
+        );
+        $action = $this->model_penentuan->update($where, $data, 'baginaikkelas');
+        echo json_encode($action);
+    }
+
     public function validasi(){
         $tampil_thnakad = $this->configfunction->getthnakd();
         $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
@@ -190,6 +206,9 @@ class Penentuankelas extends CI_Controller
 
         // $hasil = mysql_query($sql);
         // while ($rl = mysql_fetch_array($hasil)) {
+        if($this->db->query($sql)->num_rows()!=1){
+            echo json_encode(401);
+        }
         foreach ($hasil as $rl){
             $query = "SELECT COUNT(*)AS jml,Naikkelas,idbagiNaikKelas,Kelas FROM baginaikkelas WHERE NIS ='".$rl['NOINDUK']."' AND TA='".$ThnAkademik."' ORDER BY idbagiNaikKelas DESC LIMIT 1";
             $cari1 = $this->db->query($query)->row();
@@ -243,15 +262,17 @@ class Penentuankelas extends CI_Controller
                     'Thnmasuk'  => $rl['TAHUN'],
                     'Kelas'  => $vt_kelas,
                     'Kodesekolah'  => $rl['PS'],
-                    'tglentri'  => $ThnAkademik,
-                    'userentri'  => date('Y-m-d H:i:s'),
-                    'NIS'  => $_SESSION['kodekaryawan'],
-                    'id'  => $rl['NOINDUK'],
+                    'TA'  => $ThnAkademik,
+                    'tglentri'  => date('Y-m-d H:i:s'),
+                    'userentri'  => $this->session->userdata('nip'),
+                    'NIS'  => $rl['NOINDUK'],
                 );
+                // print_r(json_encode($data));exit;
                 $action = $this->model_penentuan->insert($data, 'baginaikkelas');
-                print_r(json_encode($action));exit;
-                echo json_encode($action);
-
+                // print_r(json_encode($action));exit;
+                if($action){
+                    echo json_encode($action);
+                }
                 // $sql = "INSERT INTO baginaikkelas (
                 // Thnmasuk, 
                 // Kelas, 
