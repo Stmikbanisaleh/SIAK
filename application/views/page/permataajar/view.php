@@ -29,7 +29,7 @@
         <br>
         <br>
         <div class="col-xs-1">
-            <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
+            <button id="kirimemail" role="button" data-toggle="modal" class="btn btn-xs btn-info">
                 <a class="ace-icon fa fa-share bigger-120"></a>Kirim Email
             </button>
         </div>
@@ -60,6 +60,35 @@
     </tbody>
 </table>
 <script type="text/javascript">
+
+    $('#kirimemail').click(function() {
+        $('#kirimemail').html('Proses..');
+        var periode =  $('#tahun').val();
+        var ps =  $('#programsekolah').val();
+        var semester =  $('#semester').val();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo site_url('permataajar/kirim_email') ?>',
+            data: {
+                ps:ps,
+                periode:periode,
+                semester:semester
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('#kirimemail').html('<i class="ace-icon fa fa-search"></i>' +
+                    'Kirim Email');
+                if (response == true) {
+                    swalInputSuccess();
+                } else {
+                    swalInputFailed();
+                }
+
+                /* END TABLETOOLS */
+            }
+        });
+    });
+
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
             errorClass: "my-error-class",
@@ -99,12 +128,11 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].nip + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
-                                '<td>' + data[i].jabatan + '</td>' +
-                                '<td>' + data[i].username + '</td>' +
-                                '<td>' + data[i].level + '</td>' +
-                                '<td>' + data[i].statusv2 + '</td>' +
+                                '<td>' + data[i].nama_siswa + '</td>' +
+                                '<td>' + data[i].nama_mapel + '</td>' +
+                                '<td>' + data[i].KLSTRNIL + '</td>' +
+                                '<td>' + data[i].UTSTRNIL + '</td>' +
+                                '<td>' + data[i].UASTRNIL + '</td>' +
                                 '</tr>';
                             no++;
                         }

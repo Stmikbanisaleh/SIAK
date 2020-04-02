@@ -110,6 +110,95 @@ class Permataajar extends CI_Controller
 		}
 	}
 
+	public function kirim_email()
+	{
+		$semester = $this->input->post('semester');
+		$ps = $this->input->post('ps');
+		$periode = $this->input->post('periode');
+		if (empty($ps) && empty($semester) && empty($periode)) {
+			echo json_encode(404);
+		} else {
+			$data = $this->model_permataajar->getdataemail($semester, $ps, $periode)->result_array();
+			$this->send_email($data);
+		}
+	}
+
+	private function send_email($type)
+	{
+		require 'assets/PHPMailer/PHPMailerAutoload.php';
+		$mail = new PHPMailer;
+		// Konfigurasi SMTP
+		$mail->isSMTP();
+		$mail->Host = HOST_EMAIL;
+		$mail->SMTPAuth = true;
+		$mail->Username = EMAIL_NILAI;
+		$mail->Password = PASSWORD_NILAI;
+		$mail->SMTPSecure = 'tls';
+		$mail->Port = EMAIL_PORT;
+		foreach ($type as $value) {
+			print_r($value);
+			$mail->setFrom(EMAIL_NILAI, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
+			$mail->addReplyTo(EMAIL_LOG, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
+			$mail->addAddress($value['EMAIL']);
+
+			if (!empty($value)) {
+				// Subjek email
+				$mail->Subject = 'Nilai Siswa Mata Pelajaran';
+				// Mengatur format email ke HTML
+				$mail->isHTML(true);
+				// Konten/isi email
+				$mailContent = "<p>
+								  <table width='70%'style='border-style:solid' class='table' border=1>
+									<thead>
+									  <tr>
+										<th>Mata Ajar</th>
+										<th>Kelas</th>
+										<th>UTS</th>	
+										<th>UAS</th>	
+									  </tr>
+									</thead>
+									<tbody>";
+				$mailFooter = "</tbody>
+								  </table>
+			<br>
+			<br>Terima kasih atas perhatian dan kerjasamanya.
+			<br>
+			<br>
+			<br>Regards,
+			<br><b><font color=blue>Server Gema Nurani</font></b>
+			<br><font color=green>ICT</font>
+			<br>Gema Nurani
+			<br>Jl. Raya Kaliabang Tengah No.75B, Kaliabang Tengah, Bekasi Utara, Kota Bks, Jawa Barat 17125
+			<br><font color=green>Ph :</font> (021) 88871329
+			<br><font color=green>Website :</font> berita.gemanurani-bks.sch.id
+			<br><font color=green>E-Mail :</font> server.gemanurani@gmail.com
+			<br>Integrated And Holistic Islamic School</p>";
+				$data = $this->model_permataajar->getformatemail($value['NPMTRNIL'])->result_array();
+				$no = 1;
+				foreach ($data as $value) {
+					$vm[$no] = "
+					<tr>
+						<td>" . $value['KDMKTRNIL'] . "-" . $value['nama_mapel'] . "</td> 
+						<td text-align='center'>" . $value['KLSTRNIL'] . "</td> 
+						<td align-text='center'>" . $value['UTSTRNIL'] . "</td> 
+						<td align-text='center'>" . $value['UASTRNIL'] . "</td> 
+					</tr>
+				";
+					$no++;
+				}
+				$mail->Body = $mailContent . $vm[1] . $vm[2] . $vm[3] . $vm[4] . $vm[5] . $vm[6] . $vm[7] . $vm[8] . $vm[9] . $vm[10] . $vm[11] . $vm[12] . $vm[13] . $vm[14] . $mailFooter;
+			}
+
+			// Kirim email
+			if (!$mail->send()) {
+				$pes = 'Pesan tidak dapat dikirim.';
+				$mai = 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+				$pes = 'Pesan telah terkirim';
+			}
+		}
+	}
+
 	public function tampil()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

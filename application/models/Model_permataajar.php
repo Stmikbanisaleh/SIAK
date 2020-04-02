@@ -3,18 +3,49 @@
 class Model_permataajar extends CI_model
 {
 
-    public function view()
+    public function getformatemail($value)
     {
-        return  $this->db->query('select g.*, j.nama as nama_jabatan from guru g join jabatan j on g.jabatan = j.id where g.isdeleted != 1 ');
+        return  $this->db->query("SELECT
+        trnilai.NPMTRNIL,
+        (SELECT z.NMSISWA FROM mssiswa z WHERE z.NOINDUK = trnilai.NPMTRNIL) AS nama_siswa,
+        trnilai.KDMKTRNIL,
+        (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel = trnilai.KDMKTRNIL) AS nama_mapel,
+        trnilai.KLSTRNIL,
+        trnilai.UTSTRNIL,
+        trnilai.UASTRNIL,
+        tbguru.GuruNama,
+        mssiswa.EMAIL
+                FROM trnilai 
+                INNER JOIN tbjadwal ON trnilai.IDJDK = tbjadwal.id
+                LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
+                INNER JOIN mssiswa ON trnilai.NPMTRNIL = mssiswa.NOINDUK
+                WHERE NPMTRNIL ='$value'
+                ORDER BY trnilai.ID");
     }
-    public function getpermataajar($tahun, $semester, $programsekolah){
+
+    public function getdataemail($semester, $ps, $periode)
+    {
+        return  $this->db->query("SELECT DISTINCT
+        trnilai.NPMTRNIL,
+        (SELECT z.NMSISWA FROM mssiswa z WHERE z.NOINDUK= trnilai.NPMTRNIL) AS nama_siswa,
+        trnilai.KLSTRNIL,
+        mssiswa.EMAIL
+                FROM trnilai 
+                INNER JOIN tbjadwal ON trnilai.IDJDK = tbjadwal.id
+                LEFT JOIN tbguru ON tbjadwal.id_guru = tbguru.IdGuru
+                INNER JOIN mssiswa ON trnilai.NPMTRNIL = mssiswa.NOINDUK
+                WHERE tbjadwal.periode='$periode' AND tbjadwal.semester='$semester' AND mssiswa.PS='$ps'
+                ORDER BY NPMTRNIL");
+    }
+    public function getpermataajar($tahun, $semester, $programsekolah)
+    {
         return $this->db->query("SELECT
          A.ID, A.IDKRS, A.IDJDK, A.NPMTRNIL, 
         (SELECT z.NMSISWA FROM mssiswa z WHERE z.NOINDUK = A.NPMTRNIL)AS nama_siswa,
         KDMKTRNIL, (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel = A.KDMKTRNIL)AS nama_mapel, 
         SMTTRNIL, KLSTRNIL, UTSTRNIL, UASTRNIL, TGLUTSTRNIL, TGLUASTRNIL, USERUTSTRNIL, USERUASTRNIL, C.GuruNama 
         FROM trnilai A JOIN tbjadwal B ON A.IDJDK = B.id LEFT JOIN tbguru C ON B.id_guru = C.id JOIN mssiswa D ON A.NPMTRNIL = D.NOINDUK 
-        WHERE B.periode = ". $tahun ." AND B.semester= '" .$semester. "' AND D.PS = '". $programsekolah ."'
+        WHERE B.periode = " . $tahun . " AND B.semester= '" . $semester . "' AND D.PS = '" . $programsekolah . "'
         ORDER BY A.NPMTRNIL");
     }
 
