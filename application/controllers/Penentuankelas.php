@@ -71,54 +71,6 @@ class Penentuankelas extends CI_Controller
         echo json_encode($my_data);
     }
 
-    public function import()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $id = $this->input->post('e_id');
-            $this->load->library('Configfunction');
-            $tampil_thnakad = $this->configfunction->getthnakd();
-            $files = $_FILES;
-            $file = $files['file'];
-            $fname = $file['tmp_name'];
-            $file = $_FILES['file']['name'];
-            $fname = $_FILES['file']['tmp_name'];
-            $ext = explode('.', $file);
-            /** Include path **/
-            set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-            /** PHPExcel_IOFactory */
-            include 'PHPExcel/IOFactory.php';
-            $objPHPExcel = PHPExcel_IOFactory::load($fname);
-            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-            $data_exist = [];
-
-            foreach ($allDataInSheet as $ads) {
-                if (array_filter($ads)) {
-                    array_push($data_exist, $ads);
-                }
-            }
-            foreach ($data_exist as $key => $value) {
-                if ($key == '0') {
-                    continue;
-                } else {
-                    $arrayCustomerQuote = array(
-                        'id_jadwal' => $id,
-                        'periode' => $tampil_thnakad[0]['THNAKAD'],
-                        'NIS' => $value[0],
-                        'createdAt'    => date('Y-m-d H:i:s')
-                    );
-                    $result = $this->model_jadwal->insert($arrayCustomerQuote, 'tbkrs');
-                }
-            }
-            if ($result) {
-                $result = 1;
-            }
-
-            echo json_encode($result);
-        } else {
-            echo json_encode($result);
-        }
-    }
-
     public function tampil_byid()
     {
         $data = array(
@@ -189,10 +141,41 @@ class Penentuankelas extends CI_Controller
         echo json_encode($action);
     }
 
+    public function naik()
+    {
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
+
+        $data = array(
+            'Naikkelas'  => $this->input->post('id_Kelas_naik'),
+        );
+        $where = array(
+            'NIS'  => $this->input->post('noreg'),
+            'TA'  => $ThnAkademik,
+        );
+        $action = $this->model_penentuan->update($where, $data, 'baginaikkelas');
+        echo json_encode($action);
+    }
+
+    public function tinggal()
+    {
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
+
+        $data = array(
+            'Naikkelas'  => $this->input->post('id_kelas'),
+        );
+        $where = array(
+            'NIS'  => $this->input->post('noreg'),
+            'TA'  => $ThnAkademik,
+        );
+        $action = $this->model_penentuan->update($where, $data, 'baginaikkelas');
+        echo json_encode($action);
+    }
+
     public function validasi(){
         $tampil_thnakad = $this->configfunction->getthnakd();
         $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
-        // print_r(json_encode($this->input->post()));exit;
         $sql = "SELECT*,
         (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='4' AND z.KETERANGAN=siswa.agama)AS v_agama,
         (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='1' AND z.KETERANGAN=siswa.Jk)AS v_Jk,
@@ -201,11 +184,7 @@ class Penentuankelas extends CI_Controller
         DATE_FORMAT(tglhr,'%d-%m-%Y')tgl_lahir
         FROM mssiswa siswa WHERE TAHUN='" . $this->input->post('thn') . "' AND PS='" . $this->input->post('jurusan') . "'";
         $hasil = $this->db->query($sql)->result_array();
-        // print_r(json_encode($hasil));exit;
 
-
-        // $hasil = mysql_query($sql);
-        // while ($rl = mysql_fetch_array($hasil)) {
         if($this->db->query($sql)->num_rows()!=1){
             echo json_encode(401);
         }
@@ -213,17 +192,10 @@ class Penentuankelas extends CI_Controller
             $query = "SELECT COUNT(*)AS jml,Naikkelas,idbagiNaikKelas,Kelas FROM baginaikkelas WHERE NIS ='".$rl['NOINDUK']."' AND TA='".$ThnAkademik."' ORDER BY idbagiNaikKelas DESC LIMIT 1";
             $cari1 = $this->db->query($query)->row();
 
-            // $rowi = mysql_query($query);
-            // $num_daftar = mysql_num_rows($rowi);
-
-            // for ($i = 0; $i < $num_daftar; $i++) {
-            //     $cari1 = mysql_fetch_object($rowi);
-                $jml = $cari1->jml;
-                $Naikkelas = $cari1->Naikkelas;
-                $idbagiNaikKelas = $cari1->idbagiNaikKelas;
-                $Kelas = $cari1->Kelas;
-                // print_r(json_encode($cari1));exit;
-            // }
+            $jml = $cari1->jml;
+            $Naikkelas = $cari1->Naikkelas;
+            $idbagiNaikKelas = $cari1->idbagiNaikKelas;
+            $Kelas = $cari1->Kelas;
             if ($jml != 1) {
 
                 $str = $ThnAkademik;
@@ -267,32 +239,67 @@ class Penentuankelas extends CI_Controller
                     'userentri'  => $this->session->userdata('nip'),
                     'NIS'  => $rl['NOINDUK'],
                 );
-                // print_r(json_encode($data));exit;
                 $action = $this->model_penentuan->insert($data, 'baginaikkelas');
-                // print_r(json_encode($action));exit;
                 if($action){
                     echo json_encode($action);
                 }
-                // $sql = "INSERT INTO baginaikkelas (
-                // Thnmasuk, 
-                // Kelas, 
-                // Kodesekolah,
-                // TA,
-                // tglentri,
-                // userentri,
-                // NIS
-                // ) 
-                // VALUES (
-                // '$rl['thnmasuk']',
-                // '$vt_kelas',
-                // '$rl['kodesekolah']',
-                // '$ThnAkademik',
-                // '$datetime',
-                // '$_SESSION['kodekaryawan']',
-                // '$rl['NIS']')";
-
-                // mysql_query($sql);
             }
-        }}
-        
+        }
     }
+
+    public function import()
+    {
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $files = $_FILES;
+            $file = $files['file'];
+            $fname = $file['tmp_name'];
+            $file = $_FILES['file']['name'];
+            $fname = $_FILES['file']['tmp_name'];
+
+
+            $ext = explode('.', $file);
+            /** Include path **/
+            set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+            /** PHPExcel_IOFactory */
+            include 'PHPExcel/IOFactory.php';
+            $objPHPExcel = PHPExcel_IOFactory::load($fname);
+            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+            $data_exist = [];
+
+            foreach ($allDataInSheet as $ads) {
+                if (array_filter($ads)) {
+                    array_push($data_exist, $ads);
+                }
+            }
+            foreach ($data_exist as $key => $value) {
+                if ($key == '0') {
+                    continue;
+                } else {
+                    $arrayCustomerQuote = array(
+                        'Thnmasuk' => $value[0],
+                        'Ruangan' => $value[1],
+                        'kelas' => $value[2],
+                        'Naikkelas' => $value[3],
+                        'GolKelas' => $value[4],
+                        'Jurusan' => $value[5],
+                        // 'GuruWaktu' => $validated_data['GuruWaktu'],
+                        'Kodesekolah' => $value[6],
+                        'TA' => $value[7],
+                        'userentri' => $this->session->userdata('nip'),
+                        'NIS' => $value[8],
+                        'tglentri' => date('Y-m-d H:i:s')
+                    );
+                    $result = $this->model_penentuan->insert($arrayCustomerQuote, 'baginaikkelas');
+                }
+            }
+            if ($result) {
+                $result = 1;
+            }
+
+            echo json_encode($result);
+        } else {
+            echo json_encode($result);
+        }
+    }
+
+}
