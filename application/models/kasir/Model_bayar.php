@@ -19,25 +19,26 @@ class Model_bayar extends CI_model
         mssiswa.NOINDUK,
         pembayaran_sekolah.Noreg,
         mssiswa.NMSISWA,
-        sekolah.NamaSek,
+        tbps.DESCRTBPS NamaSek,
         tarif_berlaku.Nominal,
-        CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) as Nominal2,
+        CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) AS Nominal2,
         pembayaran_sekolah.TA,
         tbkelas.nama,
         jenispembayaran.namajenisbayar,
         detail_bayar_sekolah.kodejnsbayar,
-        CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) as TotalBayar2,
+        CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) AS TotalBayar2,
         SUM(pembayaran_sekolah.TotalBayar)AS TotalBayar
         FROM
         pembayaran_sekolah
         INNER JOIN mssiswa ON mssiswa.Noreg = pembayaran_sekolah.Noreg
-        INNER JOIN sekolah ON mssiswa.PS = sekolah.KodeSek
+        INNER JOIN tbps ON mssiswa.PS = tbps.KDTBPS
         INNER JOIN tbkelas ON pembayaran_sekolah.Kelas = tbkelas.id_kelas
         INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
         INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
         INNER JOIN jenispembayaran ON jenispembayaran.Kodejnsbayar = tarif_berlaku.Kodejnsbayar $v_cek 
 		GROUP BY kodejnsbayar");
     }
+
     public function view($table)
     {
         $this->db->where('isdeleted !=' ,1);
