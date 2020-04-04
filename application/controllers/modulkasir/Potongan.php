@@ -39,10 +39,10 @@ class Potongan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 
 			$my_data = $this->db->query("SELECT sd.*, ss.NMSISWA, jk.nama as Kelass ,
-			CONCAT('Rp. ',FORMAT(sd.pot_spp,2)) as pot_spp2,
-			CONCAT('Rp. ',FORMAT(sd.pot_gdg,2)) as pot_gdg2,
-			CONCAT('Rp. ',FORMAT(sd.pot_modul,2)) as pot_modul2,
-			CONCAT('Rp. ',FORMAT(sd.pot_kgt,2)) as pot_kgt2
+			CONCAT(FORMAT(sd.pot_spp,0),'%') as pot_spp2,
+			CONCAT(FORMAT(sd.pot_gdg,0),'%') as pot_gdg2,
+			CONCAT(FORMAT(sd.pot_modul,0), '%') as pot_modul2,
+			CONCAT(FORMAT(sd.pot_kgt,0),'%') as pot_kgt2
 			FROM saldopembayaran_sekolah sd
 			JOIN mssiswa ss ON sd.NIS = ss.NOINDUK
 			JOIN tbkelas jk ON sd.Kelas = jk.id_kelas
@@ -65,6 +65,7 @@ class Potongan extends CI_Controller
 				'pot_gdg'  => $this->input->post('potongangedung_v'),
 				'pot_modul'  => $this->input->post('potonganmodul_v'),
 				'pot_kgt'  => $this->input->post('potongankegiatan_v'),
+				'pot_srg'  => $this->input->post('potonganseragam_v'),
 				'updatedAt' => date('Y-m-d H:i:s')
 			);
 			$count = $this->db->query("select * from saldopembayaran_sekolah where NIS ='" . $where['NIS'] . "' and Kelas = " . $where['Kelas'] ." and isdeleted != 1")->num_rows();
@@ -92,6 +93,8 @@ class Potongan extends CI_Controller
 				'pot_kgt'  => $this->input->post('e_potongankegiatan_v'),
 				'pot_modul'  => $this->input->post('e_potonganmodul_v'),
 				'pot_gdg'  => $this->input->post('e_potongangedung_v'),
+				'pot_srg'  => $this->input->post('e_potonganseragam_v'),
+
 				'updatedAt' => date('Y-m-d H:i:s')
 			);
 			$action = $this->model_potongan->update($data_id, $data, 'saldopembayaran_sekolah');
