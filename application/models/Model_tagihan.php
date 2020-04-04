@@ -22,8 +22,11 @@ class Model_tagihan extends CI_model
 		saldopembayaran_sekolah.Kdjnsbayar,
 		saldopembayaran_sekolah.idtarif,
 		saldopembayaran_sekolah.TotalTagihan,
+        CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.TotalTagihan,2)) as TotalTagihan2,
 		saldopembayaran_sekolah.Bayar,
+        CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Bayar,2)) as Bayar2,
 		saldopembayaran_sekolah.Sisa,
+        CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Sisa,2)) as Sisa2,
 		saldopembayaran_sekolah.TA,
 		(SELECT zx.nama FROM tbkelas zx WHERE zx.id_kelas = saldopembayaran_sekolah.Kelas)AS Kelas,
 		tbakadmk.THNAKAD

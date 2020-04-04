@@ -72,9 +72,9 @@
                                 '<td>' + data[i].NIS + '</td>' +
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].Kelas + '</td>' +
-                                '<td>' + data[i].TotalTagihan + '</td>' +
-                                '<td>' + data[i].Bayar + '</td>' +
-                                '<td>' + data[i].Sisa + '</td>' +
+                                '<td>' + data[i].TotalTagihan2 + '</td>' +
+                                '<td>' + data[i].Bayar2 + '</td>' +
+                                '<td>' + data[i].Sisa2 + '</td>' +
                                 '<td>' + data[i].THNAKAD + '</td>' +
                                 '</tr>';
                             no++;
