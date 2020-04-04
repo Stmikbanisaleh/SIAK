@@ -418,7 +418,7 @@
                         '<td>' + data[i].tglbayar + '</td>' +
                         '<td>' + data[i].totalbayar2 + '</td>' +
                         '<td>' + data[i].NamaSek +  '-' + data[i].NamaJurusan + '</td>' +
-                        '<td>' + data[i].TA + '</td>' +
+                        '<td>' + data[i].TAHUN + '</td>' +
                         '</tr>';
                     no++;
                 }

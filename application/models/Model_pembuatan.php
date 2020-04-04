@@ -25,6 +25,7 @@ class Model_pembuatan extends CI_model
     {
         return $this->db->query("SELECT
 		(SELECT z.NOINDUK FROM mssiswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NIS,
+        (SELECT z.thnmasuk FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS TAHUN,
 		pembayaran_sekolah.Nopembayaran,
 		pembayaran_sekolah.Noreg,
 		(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS Namacasis,
