@@ -220,7 +220,7 @@ class Model_laporan extends CI_model
     public function get_pemb_siswa($p_awal, $p_akhir)
     {
         return  $this->db->query("SELECT
-            (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=pembayaran_sekolah.kodesekolah)AS kodesekolah,
+            (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=pembayaran_sekolah.kodesekolah)AS kodesekolah,
                 jenispembayaran.namajenisbayar,
                 detail_bayar_sekolah.nominalbayar,
                 pembayaran_sekolah.TA,

@@ -28,6 +28,7 @@ class Lap_bayarsiswa extends CI_Controller {
         $periode_awal = $this->input->post('periode_awal');
         $periode_akhir = $this->input->post('periode_akhir');  
         $my_pembsiswa = $this->model_laporan->get_pemb_siswa($periode_awal, $periode_akhir)->result_array();
+        // print_r($this->db->last_query());exit;
         // print_r(json_encode($my_pembsiswa));exit;
         $data = array(
             'v_awal'      => $periode_awal,

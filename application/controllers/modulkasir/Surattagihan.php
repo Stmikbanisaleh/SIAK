@@ -37,16 +37,19 @@ class Surattagihan extends CI_Controller {
         $nis = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');  
         $my_pembsiswa = $this->model_surattagihan->view_siswatg($nis, $kelas)->row();
-        // print_r(json_encode($my_pembsiswa));
-        // echo $my_pembsiswa->nmsiswa;
-        // exit;
-        $data = array(
-            'mydata'      => $my_pembsiswa,
-            'tgl'         => $tgl
+        // print_r($my_pembsiswa);exit;
+        if($my_pembsiswa!=null){
+            $data = array(
+                'mydata'      => $my_pembsiswa,
+                'tgl'         => $tgl
 
-        );
-        $this->pdf->setPaper('FOLIO', 'potrait');
-        $this->pdf->filename = "Surat-Tagihan".$nis."-".date('Y-m-d').".pdf";
-        $this->pdf->load_view('pagekasir/surattagihan/laporan', $data);
+            );
+            $this->pdf->setPaper('FOLIO', 'potrait');
+            $this->pdf->filename = "Surat-Tagihan".$nis."-".date('Y-m-d').".pdf";
+            $this->pdf->load_view('pagekasir/surattagihan/laporan', $data);
+        }else{
+            $this->session->set_flashdata('cat_success', 'Data Tidak Ditemukan!');
+            header("Location: ".base_url()."modulkasir/surattagihan");
+        }
     }
 }

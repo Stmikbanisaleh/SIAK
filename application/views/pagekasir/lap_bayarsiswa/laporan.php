@@ -44,16 +44,18 @@
   <tr>
     <th width="5%" align="center"><span style="font-family:Rockwell;font-size: 10px;">No.</th>
     <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">No. Bukti</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Sekolah</th>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Jenis Pembayaran</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Nominal</th>
-    <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Kelas</th>
+    <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Sekolah</th>
+    <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Jenis Pembayaran</th>
+    <th width="13%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Nominal</th>
+    <th width="7%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Kelas</th>
     <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Tanggal</th>
     <th width="10%" align="left"><span style="font-family:Rockwell;font-size: 10px;">Tahun Pelajaran</th>
   </tr>
   <?php
-  $no = 1;
   $v_uang = 0;
+  $no = 1;
+  // $v_uang = 0;
+  // print_r(json_encode($mydata[0]['kodesekolah']));
   foreach ($mydata as $r) {
     ?>
     <tr>
@@ -67,14 +69,18 @@
       <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['TA']; ?></th>
     </tr>
   <?php
+  // if($no = 1){
+  //     $v_uang = 0;
+  //   }
     $no++;
+
     $v_uang = $v_uang + $r['nominalbayar'];
   }
   ?>
   <tr>
     <th scope="col"><span style="font-family:Rockwell;font-size: 10px;">Total</th>
     <th scope="col" colspan='5'>&nbsp;</th>
-    <th scope="col"><span style="font-family:Rockwell;font-size: 10px;">Rp. <?= number_format($v_uang) ?></th>
+    <th scope="col" colspan="2"><span style="font-family:Rockwell;font-size: 10px;">Rp. <?= number_format($v_uang) ?></th>
   </tr>
 </table>
 <br><br>

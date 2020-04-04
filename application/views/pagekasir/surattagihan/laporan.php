@@ -36,14 +36,35 @@
 		</tr>
 		<tr>
 			<td style="text-indent: 15px;"><b>Nama</b></td>
-			<td colspan="19">&nbsp; : &nbsp;<b><?= $mydata->nmsiswa ?></b></td>
+			<?php
+				if($mydata != null){
+					$dtsiswa = $mydata->nmsiswa;
+				}else{
+					$dtsiswa = '';
+				}
+			?>
+			<td colspan="19">&nbsp; : &nbsp;<b><?= $dtsiswa ?></b></td>
 		</tr>
 		<tr>
 			<td style="text-indent: 15px;"><b>Kelas</b></td>
-			<td>&nbsp; : &nbsp;<b><?= $mydata->kelas ?></b></td>
+			<?php
+				if($mydata != null){
+					$dtkelas = $mydata->kelas;
+				}else{
+					$dtkelas = '';
+				}
+			?>
+			<td colspan="19">&nbsp; : &nbsp;<b><?= $dtkelas ?></b></td>
 		</tr>
 		<tr>
-			<td colspan="20"><?= $mydata->NamaSek ?> Mutiara Insan Nusantara</td>
+			<?php
+				if($mydata != null){
+					$dtNamaSek = $mydata->NamaSek;
+				}else{
+					$dtNamaSek = '';
+				}
+			?>
+			<td colspan="20"><?= $dtNamaSek ?> Mutiara Insan Nusantara</td>
 		</tr>
 		<tr>
 			<td colspan="20">Ditempat</td>
@@ -57,7 +78,14 @@
 		</tr>
 		<tr>
 			<br><br><br>
-			<td colspan="15" style="font-size: 16px; text-align: center;"><b>Sisa Tagihan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rp <?= number_format($mydata->sisa, 0, ',', '.') ?></b></td><br>
+			<?php
+				if($mydata != null){
+					$dtsisa = $mydata->sisa;
+				}else{
+					$dtsisa = 0;
+				}
+			?>
+			<td colspan="15" style="font-size: 16px; text-align: center;"><b>Sisa Tagihan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rp <?= number_format($dtsisa, 0, ',', '.') ?></b></td><br>
 			<br><br>
 		</tr>
 		<tr>

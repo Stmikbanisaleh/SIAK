@@ -5,7 +5,17 @@
 <!-- End Select2 -->
 
 <div class="row">
-    <form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/surattagihan/laporan_pdf">
+    <div class="form-group">
+                <div class="col-xs-12">
+                    <?php if ($this->session->flashdata('cat_error')) { ?>
+                        <div class="alert alert-danger"> <?= $this->session->flashdata('cat_error') ?> </div>
+                    <?php } ?>
+                    <?php if ($this->session->flashdata('cat_success')) { ?>
+                        <div class="alert alert-success"> <?= $this->session->flashdata('cat_success') ?> </div>
+                    <?php } ?>
+                </div>
+            </div>
+    <form class="form-horizontal" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/surattagihan/laporan_pdf">
         <div class="col-xs-5">
             Siswa
             <select class="form-control" name="siswa" id="siswa">
