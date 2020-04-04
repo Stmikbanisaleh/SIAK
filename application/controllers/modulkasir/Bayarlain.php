@@ -30,14 +30,20 @@ class Bayarlain extends CI_Controller {
 	public function search()
     {
 		$noreg = $this->input->post('nik');
-		$result = $this->model_bayar->getsiswa($noreg)->result();
+		$result = $this->model_bayar->getsiswa2($noreg)->result();
         echo json_encode($result);
 	}
 
 	public function showsiswa()
     {
+		$this->load->library("Configfunction");
 		$noreg = $this->input->post('nik');
-		$result = $this->model_bayar->getsiswa2($noreg)->result_array();
+		$ta = $this->configfunction->getthnakd();
+		$getssiswa = $this->model_bayar->getsiswa($noreg)->result_array();
+		$siswa = $getssiswa;
+		$siswa = $siswa[0]['PS'];
+		$result = $this->model_bayar->getsiswa2($ta[0]['THNAKAD'],$siswa)->result_array();
+		print_r($this->db->last_query());exit;
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
             echo "<option value='" . $value['kodejnsbayar'] . "'>[".$value['NamaSek']."] - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
