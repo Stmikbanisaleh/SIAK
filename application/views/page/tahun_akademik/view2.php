@@ -55,7 +55,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" />
+                                    <select class="form-control" name="kdsekolah" id="kdsekolah">
+                                        <option value="">-- Pilih Sekolah --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['KodeSek'] ?>> <?= $value['NamaSek'] . "-" . $value['NamaJurusan'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <!-- <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" /> -->
                                 </div>
                             </div>
                         </div>

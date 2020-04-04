@@ -3,9 +3,9 @@
 class Model_tahun_akademik extends CI_model
 {
 
-    public function view()
+    public function getsekolah()
     {
-        return  $this->db->query('select g.*, j.nama as nama_jabatan from guru g join jabatan j on g.jabatan = j.id where g.isdeleted != 1 ');
+        return  $this->db->query("SELECT a.KodeSek, a.NamaSek, b.NamaJurusan from sekolah a join jurusan b on a.Jurusan = b.Kodejurusan where a.isdeleted !=1 and b.isdeleted != 1 ");
     }
 
     public function viewOrdering($table, $order, $ordering)

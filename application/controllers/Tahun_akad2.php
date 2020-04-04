@@ -19,10 +19,12 @@ class Tahun_akad2 extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $mysekolah = $this->model_tahun_akademik->getsekolah()->result_array();
             $data = array(
                 'page_content'  => 'tahun_akademik/view2',
                 'ribbon'        => '<li class="active">Tahun Akademik 2</li>',
-                'page_name'     => 'Tahun Akademik 2'
+                'page_name'     => 'Tahun Akademik 2',
+                'mysekolah'     => $mysekolah
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
