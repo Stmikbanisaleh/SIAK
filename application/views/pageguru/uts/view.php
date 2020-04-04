@@ -97,7 +97,7 @@
                     <input name="id_mapel" id="id_mapel<?=$no?>" type="hidden"  value="<?=$value['id_mapel']?>"/>
                     <input name="idjadwal" id="idjadwal<?=$no?>" type="hidden"  value="<?=$value['id']?>"/>
                     <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
-                    <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" maxlength="3" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
+                    <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
                     <td style="text-align:center">
                         <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
                             Simpan
