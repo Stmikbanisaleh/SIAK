@@ -178,7 +178,7 @@
             <th>Tanggal Bayar</th>
             <th>Total Bayar</th>
             <th>Sekolah</th>
-            <th>Tahun Akademik</th>
+            <th>Tahun Masuk</th>
         </tr>
     </thead>
     <tbody id="show_data">
