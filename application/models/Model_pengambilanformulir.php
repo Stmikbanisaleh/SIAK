@@ -38,8 +38,8 @@ class Model_pengambilanformulir extends CI_model
 		(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS Namacasis,
 		DATE_FORMAT(tglentri,'%d-%m-%Y')tglbayar,
 		pembayaran_sekolah.useridd,
-		(SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=pembayaran_sekolah.kodesekolah)AS NamaSek,
-		(SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=pembayaran_sekolah.kodesekolah)AS NamaJurusan,
+		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=pembayaran_sekolah.kodesekolah)AS NamaSek,
+        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=pembayaran_sekolah.kodesekolah)AS NamaJurusan,
 		pembayaran_sekolah.kodesekolah,
 		pembayaran_sekolah.TA FROM pembayaran_sekolah
         INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
@@ -52,8 +52,8 @@ class Model_pengambilanformulir extends CI_model
         return $this->db->query("SELECT
         tarif_berlaku.idtarif,
         kodesekolah,
-        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS sekolah,
-        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS NamaJurusan,
+        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = tarif_berlaku.kodesekolah)AS sekolah,
+        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=tarif_berlaku.kodesekolah)AS NamaJurusan,
         tarif_berlaku.Kodejnsbayar,
         tarif_berlaku.ThnMasuk,
         tarif_berlaku.Nominal,

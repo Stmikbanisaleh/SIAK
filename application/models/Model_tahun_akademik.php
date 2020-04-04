@@ -5,7 +5,7 @@ class Model_tahun_akademik extends CI_model
 
     public function getsekolah()
     {
-        return  $this->db->query("SELECT a.KodeSek, a.NamaSek, b.NamaJurusan from sekolah a join jurusan b on a.Jurusan = b.Kodejurusan where a.isdeleted !=1 and b.isdeleted != 1 ");
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
     }
 
     public function viewOrdering($table, $order, $ordering)
