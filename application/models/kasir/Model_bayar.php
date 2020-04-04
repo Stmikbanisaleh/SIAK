@@ -15,19 +15,49 @@ class Model_bayar extends CI_model
 
     public function getsiswa2($ta,$ps){
         return $this->db->query("SELECT
-        tarif_berlaku.idtarif,
-        kodesekolah,
-        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =tarif_berlaku.kodesekolah)AS sekolah,
-        (SELECT z.namajenisbayar FROM jenispembayaran z WHERE z.Kodejnsbayar=tarif_berlaku.Kodejnsbayar)AS namajenisbayar,
-        tarif_berlaku.Kodejnsbayar,
-        tarif_berlaku.ThnMasuk,
-        tarif_berlaku.Nominal,
-        tarif_berlaku.TA,
-        tarif_berlaku.tglentri,
-        tarif_berlaku.userridd,
-        tarif_berlaku.`status`
-        FROM tarif_berlaku 
-        WHERE `status`='T' AND TA='$ta' AND kodesekolah='$ps' AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+                                tarif_berlaku.idtarif,
+                                kodesekolah,
+                                (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =tarif_berlaku.kodesekolah)AS sekolah,
+                                (SELECT z.namajenisbayar FROM jenispembayaran z WHERE z.Kodejnsbayar=tarif_berlaku.Kodejnsbayar)AS namajenisbayar,
+                                tarif_berlaku.Kodejnsbayar,
+                                tarif_berlaku.ThnMasuk,
+                                tarif_berlaku.Nominal,
+                                CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) Nominal2,
+                                tarif_berlaku.TA,
+                                tarif_berlaku.tglentri,
+                                tarif_berlaku.userridd,
+                                tarif_berlaku.`status`
+                                FROM tarif_berlaku 
+                                WHERE `status`='T' AND TA='$ta' AND kodesekolah='$ps' AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+    }
+
+    public function getsiswa1($noreg){
+        if(empty($noreg)){
+            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM')";
+        } else {
+            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM') AND pembayaran_sekolah.NIS='$noreg' OR mssiswa.Noinduk='$noreg' AND detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM') ";
+        }
+        return $this->db->query("SELECT DISTINCT
+                                mssiswa.NOINDUK,
+                                pembayaran_sekolah.Noreg,
+                                mssiswa.NMSISWA,
+                                tbps.DESCRTBPS NamaSek,
+                                CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) AS Nominal2,
+                                pembayaran_sekolah.TA,
+                                tbkelas.nama,
+                                jenispembayaran.namajenisbayar,
+                                detail_bayar_sekolah.kodejnsbayar,
+                                CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) AS TotalBayar2,
+                                SUM(pembayaran_sekolah.TotalBayar)AS TotalBayar
+                                FROM
+                                pembayaran_sekolah
+                                INNER JOIN mssiswa ON mssiswa.Noreg = pembayaran_sekolah.Noreg
+                                INNER JOIN tbps ON mssiswa.PS = tbps.KDTBPS
+                                INNER JOIN tbkelas ON pembayaran_sekolah.Kelas = tbkelas.id_kelas
+                                INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+                                INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
+                                INNER JOIN jenispembayaran ON jenispembayaran.Kodejnsbayar = tarif_berlaku.Kodejnsbayar $v_cek 
+                                GROUP BY kodejnsbayar");
     }
 
     public function view($table)
