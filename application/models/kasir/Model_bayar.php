@@ -10,6 +10,10 @@ class Model_bayar extends CI_model
     }
 
     public function getsiswa($noreg){
+        return $this->db->query("SELECT NMSISWA FROM mssiswa WHERE NOINDUK = '".$noreg."'");
+    }
+
+    public function getsiswa2($noreg){
         if(empty($noreg)){
             $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM')";
         } else {

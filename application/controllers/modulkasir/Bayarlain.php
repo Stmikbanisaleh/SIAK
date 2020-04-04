@@ -37,7 +37,7 @@ class Bayarlain extends CI_Controller {
 	public function showsiswa()
     {
 		$noreg = $this->input->post('nik');
-		$result = $this->model_bayar->getsiswa($noreg)->result_array();
+		$result = $this->model_bayar->getsiswa2($noreg)->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
             echo "<option value='" . $value['kodejnsbayar'] . "'>[".$value['NamaSek']."] - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
