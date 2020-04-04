@@ -125,4 +125,71 @@ class Kelulusan extends CI_Controller
 		// echo $this->db->last_query();exit;
 		echo json_encode($result);
 	}
+
+	public function lulus()
+	{
+		$query = $this->db->query("SELECT*FROM calon_siswa where Noreg='".$this->input->post('noreg')."'");
+		$row = $query->row();
+
+			$v_StatusCalsisw = $row->StatusCalsisw;
+
+		if ($v_StatusCalsisw == 1) {
+			$data = array(
+	            'StatusCalsisw'  => 4,
+	        );
+	        $where = array(
+	            'Noreg'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+
+	        //Update Siswa
+	        $data = array(
+	            'STATUSCALONSISWA'  => 4,
+	        );
+	        $where = array(
+	            'NOREG'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'mssiswa');
+	        echo json_encode($action);
+		} else {
+			$data = array(
+	            'StatusCalsisw'  => 1,
+	        );
+	        $where = array(
+	            'Noreg'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+
+	        //Update Siswa
+	        $data = array(
+	            'STATUSCALONSISWA'  => 1,
+	        );
+	        $where = array(
+	            'NOREG'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'mssiswa');
+	        echo json_encode($action);
+		}
+	}
+
+	public function keluarkan()
+	{
+			$data = array(
+	            'StatusCalsisw'  => $this->input->post('n'),
+	        );
+	        $where = array(
+	            'Noreg'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+
+	        //Update Siswa
+	        $data = array(
+	            'STATUSCALONSISWA'  => $this->input->post('n'),
+	        );
+	        $where = array(
+	            'NOREG'  => $this->input->post('noreg'),
+	        );
+	        $action = $this->model_kelulusan->update($where, $data, 'mssiswa');
+	        echo json_encode($action);
+	}
 }

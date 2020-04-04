@@ -16,7 +16,9 @@ class Model_kelulusan extends CI_model{
         rkpaktvsiswa.STSRKP,
         rkpaktvsiswa.TANGGAL_KELUAR,
         mssiswa.NMSISWA,
-        tbps.DESCRTBPS
+        tbps.DESCRTBPS,
+        mssiswa.STATUSCALONSISWA,
+        mssiswa.NOREG
         FROM
         rkpaktvsiswa
         INNER JOIN mssiswa ON rkpaktvsiswa.NISRKP = mssiswa.NOINDUK

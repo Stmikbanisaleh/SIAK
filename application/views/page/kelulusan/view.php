@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-xs-1">
+<!--     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
-    </div>
-    <br>
-    <br>
+    </div> -->
+<!--     <br>
+    <br> -->
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
             <select class="form-control" name="tahun" id="tahun">
@@ -19,7 +19,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                    <option value=<?= $value['id'] ?>><?= $value['DESCRTBPS'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -175,7 +175,8 @@
             <th>Nama</th>
             <th>Tahun</th>
             <th>Program Sekolah</th>
-            <th>Action</th>
+            <th>Lulus</th>
+            <th>Keluar</th>
         </tr>
     </thead>
     <tbody id="show_data">
@@ -214,10 +215,32 @@
                     success: function(data) {
                         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
                             'Periksa');
+                        var st_calsis_keluar = '';
+                        var st_calsis_lulus = '';
                         var html = '';
                         var i = 0;
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
+                            console.log(data[i].STATUSCALONSISWA);
+                            if(data[i].STATUSCALONSISWA == '4'){
+                                st_calsis_lulus = '<button class="btn btn-xs btn-warning item_lulus" title="Batal" data-noreg="' + data[i].NOREG + '">' +
+                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                            '</button>';
+                            }else if(data[i].STATUSCALONSISWA == '1'){
+                                st_calsis_lulus = '<button class="btn btn-xs btn-success item_lulus" title="Lulus" data-noreg="' + data[i].NOREG + '">' +
+                                            '<i class="ace-icon fa fa-check bigger-120"></i>' +
+                                            '</button>';
+                            }
+
+                            if(data[i].STATUSCALONSISWA == 3){
+                                st_calsis_keluar = '<button class="btn btn-xs btn-success item_keluarkan" title="Batal" data-noreg="' + data[i].NOREG + '" data-n="4">' +
+                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                            '</button>';
+                            }else{
+                                st_calsis_keluar = '<button class="btn btn-xs btn-danger item_keluarkan" title="Keluarkan" data-noreg="' + data[i].NOREG + '" data-n="3">' +
+                                            '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
+                                            '</button>';
+                            }
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
                                 '<td>' + data[i].NISRKP + '</td>' +
@@ -225,9 +248,10 @@
                                 '<td>' + data[i].THNAKDRKP + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
-                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].IDRKP + '">' +
-                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                '</button>' +
+                                st_calsis_lulus+
+                                '</td>' +
+                                '<td class="text-center">' +
+                                st_calsis_keluar+
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -298,179 +322,83 @@
         })
     }
 
-    if ($("#formEdit").length > 0) {
-        $("#formEdit").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            rules: {
-                e_id: {
-                    required: true
-                },
-                e_jam: {
-                    required: true
-                },
-                e_ps: {
-                    required: true
-                },
-                e_namamataajar: {
-                    required: true
-                },
-                e_semester: {
-                    required: true,
-                    maxlength: 1,
-                    minlength: 1,
-                    max: 6,
-                }
-            },
-            messages: {
-
-                e_id: {
-                    required: "Kode jabatan harus diisi!"
-                },
-                e_nama: {
-                    required: "Nama jabatan harus diisi!"
-                },
-
-            },
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('mataajaraktif/update') ?>",
-                    type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEdit").reset();
-                            swalEditSuccess();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Kode Jabatan Sudah digunakan!');
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
-    }
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_id').DataTable();
     });
 
-    //function show all Data
-    function show_data() {
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo site_url('mataajaraktif/search') ?>',
-            data: $('#formSearch').serialize(),
-            async: true,
-            dataType: 'json',
-            success: function(data) {
-                $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
-                    'Periksa');
-                var html = '';
-                var i = 0;
-                var no = 1;
-                for (i = 0; i < data.length; i++) {
-                    html += '<tr>' +
-                        '<td class="text-center">' + no + '</td>' +
-                        '<td>' + data[i].KDMKTRMKA + '</td>' +
-                        '<td>' + data[i].nama + '</td>' +
-                        '<td>' + data[i].THNAKDTRMKA + '</td>' +
-                        '<td>' + data[i].GANGENTRMKA + '</td>' +
-                        '<td>' + data[i].DESCRTBPS + '</td>' +
-                        '<td class="text-right">' + data[i].SMTTRMKA + '</td>' +
-                        '<td class="text-center">' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
-                        '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
-                        '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
-                        '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                        '</button>' +
-                        '</td>' +
-                        '</tr>';
-                    no++;
-                }
-                $("#table_id").dataTable().fnDestroy();
-                var a = $('#show_data').html(html);
-                //                    $('#mydata').dataTable();
-                if (a) {
-                    $('#table_id').dataTable({
-                        "bPaginate": true,
-                        "bLengthChange": false,
-                        "bFilter": true,
-                        "bInfo": false,
-                        "bAutoWidth": false
-                    });
-                }
-                /* END TABLETOOLS */
-            }
-        });
-    }
 
     //show modal tambah
     $('#item-tambah').on('click', function() {
         $('#modalTambah').modal('show');
     });
 
-    //get data for update record
-    $('#show_data').on('click', '.item_edit', function() {
-        document.getElementById("formEdit").reset();
-        var id = $(this).data('id');
-        $('#modalEdit').modal('show');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('mataajaraktif/tampil_byid') ?>",
-            async: true,
-            dataType: "JSON",
-            data: {
-                id: id,
-            },
-            success: function(data) {
-                $('#e_id').val(data[0].ID);
-                $('#e_programsekolah').val(data[0].PSTRMKA);
-                $('#e_kodemataajar').val(data[0].KDMKTRMKA);
-                $('#e_semester').val(data[0].SMTTRMKA);
-            }
-        });
-    });
-
-    $('#show_data').on('click', '.item_hapus', function() {
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda tidak akan dapat mengembalikan ini!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url('kelulusan/delete') ?>",
-                    async: true,
-                    dataType: "JSON",
-                    data: {
-                        id: id,
-                    },
-                    success: function(data) {
-                        show_data();
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data sudah dihapus.',
-                            'success'
-                        )
+    $('#show_data').on('click', '.item_lulus', function() {
+        var noreg = $(this).data('noreg');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('kelulusan/lulus') ?>",
+                async: true,
+                dataType: "JSON",
+                data: {
+                    noreg: noreg,
+                },
+                success: function(response) {
+                    if (response == true) {
+                    swalEditSuccess();
+                    $("#table_id").dataTable().fnDestroy();
+                    var a = $('#show_data').html('');
+                    if(a){
+                        $('#table_id').dataTable({
+                                    "bPaginate": true,
+                                    "bLengthChange": false,
+                                    "bFilter": true,
+                                    "bInfo": false,
+                                    "bAutoWidth": false
+                                });
                     }
-                });
-            }
-        })
+                    } else if (response == 401) {
+                        swalSuccessKosong('Eror!');
+                    } else {
+                        swalEditFailed();
+                    }
+                }
+            });
+    })
+
+    $('#show_data').on('click', '.item_keluarkan', function() {
+        var noreg = $(this).data('noreg');
+        var n = $(this).data('n');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('kelulusan/keluarkan') ?>",
+                async: true,
+                dataType: "JSON",
+                data: {
+                    noreg: noreg,
+                    n: n,
+                },
+                success: function(response) {
+                    if (response == true) {
+                    swalEditSuccess();
+                    $("#table_id").dataTable().fnDestroy();
+                    var a = $('#show_data').html('');
+                    if(a){
+                        $('#table_id').dataTable({
+                                    "bPaginate": true,
+                                    "bLengthChange": false,
+                                    "bFilter": true,
+                                    "bInfo": false,
+                                    "bAutoWidth": false
+                                });
+                    }
+                    } else if (response == 401) {
+                        swalSuccessKosong('Eror!');
+                    } else {
+                        swalEditFailed();
+                    }
+                }
+            });
     })
 </script>
