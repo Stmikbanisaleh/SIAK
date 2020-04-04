@@ -10,11 +10,12 @@ class Model_pembuatan extends CI_model
 		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa)
 		Order by  NOREG ASC ");
     }
-    public function getnis($thn,$kode){
+    public function getnis($thn, $kode)
+    {
         return $this->db->query("SELECT RIGHT(NOINDUK,3)AS ni FROM mssiswa WHERE TAHUN=$thn AND PS=$kode
         Order by NOINDUK DESC LIMIT 1");
     }
-    public function generate($thn,$kode)
+    public function generate($thn, $kode)
     {
         return $this->db->query("SELECT * FROM mssiswa WHERE TAHUN=$thn AND PS=$kode AND NOINDUK is null
 		Order by NOREG ASC");
@@ -42,13 +43,7 @@ class Model_pembuatan extends CI_model
     public function getjurusan()
     {
         return $this->db->query("
-        SELECT sekolah.KodeSek,
-														sekolah.NamaSek,
-														jurusan.NamaJurusan
-														FROM
-														sekolah
-														INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan
-														ORDER BY KodeSek DESC");
+        SELECT tbps.KDTBPS,	tbps.DESCRTBPS, tbjs.DESCRTBJS FROM	tbps INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS ORDER BY id DESC");
     }
     public function viewOrdering($table, $order, $ordering)
     {

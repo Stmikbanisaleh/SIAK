@@ -14,7 +14,7 @@ class Model_siswa extends CI_model
         if(empty($noreg)){
             $where = "WHERE thnmasuk ='".$ta."' Order by kodesekolah,Noreg desc";
         } else {
-            $where = "WHERE thnmasuk ='".$ta."' AND kodesekolah='".$sekolah."' OR Noreg='".$noreg."' ";
+            $where = "WHERE thnmasuk ='".$ta."' AND kodesekolah='".$sekolah."' AND Noreg='".$noreg."' ";
         }
         return  $this->db->query("SELECT
         calon_siswa.Noreg,
