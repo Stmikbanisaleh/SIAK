@@ -6,7 +6,6 @@ class Rekap extends CI_Controller {
     function __construct(){
         parent::__construct();      
         $this->load->model('modulsiswa/model_rekap');
-        $this->load->library('pdf');
         $this->load->library('Configfunction');
     }
 
@@ -22,6 +21,7 @@ class Rekap extends CI_Controller {
     }
 
     public function print2(){
+        $this->load->library('pdf');
         $tampil_thnakad = $this->configfunction->getthnakd();
         $thnakad = $tampil_thnakad[0]['THNAKAD'];
         $data = array(

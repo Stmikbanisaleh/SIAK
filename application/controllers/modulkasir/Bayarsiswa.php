@@ -7,7 +7,6 @@ class Bayarsiswa extends CI_Controller {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
         $this->load->model('kasir/model_bayarsiswa');
-        $this->load->library('pdf');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
     }
@@ -64,6 +63,7 @@ class Bayarsiswa extends CI_Controller {
     }
 
     public function print2(){
+        $this->load->library('pdf');
         $tampil_thnakad = $this->configfunction->getthnakd();
         $thnakad = $tampil_thnakad[0]['THNAKAD'];
         $data = array(

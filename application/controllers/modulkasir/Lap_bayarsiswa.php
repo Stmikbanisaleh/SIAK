@@ -6,12 +6,7 @@ class Lap_bayarsiswa extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('akunting/model_laporan');
-        $this->load->library('pdf');
         $this->load->library('mainfunction');
-        // if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'KASIR') {
-        //     $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-        //     redirect('modulkasir/login');
-        // }
     }
 
 	function render_view($data) {
@@ -28,6 +23,7 @@ class Lap_bayarsiswa extends CI_Controller {
     }
 
     public function laporan_pdf(){
+        $this->load->library('pdf');
         $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
         $periode_awal = $this->input->post('periode_awal');
         $periode_akhir = $this->input->post('periode_akhir');  

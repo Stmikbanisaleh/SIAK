@@ -7,12 +7,7 @@ class Kartubayar extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('kasir/model_kartubayar');
-        $this->load->library('pdf');
         $this->load->library('mainfunction');
-        // if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-        //     $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-        //     redirect('pagekasir/login');
-        // }
     }
 
 	function render_view($data) {
@@ -41,17 +36,13 @@ class Kartubayar extends CI_Controller {
     }
 
     public function laporan_pdf(){
+        $this->load->library('pdf');
         $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
         $nis = $this->input->post('siswa');
         $pilihan_pertama = $this->input->post('pilihan_pertama');  
         $dari = $this->input->post('dari'); 
         $sampai = $this->input->post('sampai');
-        // $my_pembsiswa = $this->model_kartubayar->view_siswatg($nis, $kelas)->row();
-        // print_r(json_encode($my_pembsiswa));
-        // echo $my_pembsiswa->nmsiswa;
-        // exit;
         $data = array(
-            // 'mydata'      => $my_pembsiswa,
             'tgl'         => $tgl,
             'siswa'         => $nis,
             'dari'        => $dari,
