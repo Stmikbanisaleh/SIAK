@@ -17,6 +17,24 @@ class Penentuankelas extends CI_Controller
 
     }
 
+        public function index()
+    {
+        $mytahun = $this->model_penentuan->gettahun()->result_array();
+        $myjurusan = $this->model_penentuan->getjurusan()->result_array();
+        $myrev = $this->model_penentuan->getrev()->result();
+
+        $data = array(
+            'page_content'  => 'penentuan/view',
+            'ribbon'        => '<li class="active">Penentuan Kelas</li>',
+            'page_name'     => 'Penentuan Kelas',
+            'mytahun'        => $mytahun,
+            'myjurusan'       => $myjurusan,
+            'myrev'         => $myrev,
+
+        );
+        $this->render_view($data); //Memanggil function render_view
+    }
+
     public function search()
     {
         $tahun = $this->input->post('thn');
@@ -45,24 +63,6 @@ class Penentuankelas extends CI_Controller
         foreach ($my_data as $value) {
             echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] . "] </option>";
         }
-    }
-
-    public function index()
-    {
-        $mytahun = $this->model_penentuan->gettahun()->result_array();
-        $myjurusan = $this->model_penentuan->getjurusan()->result_array();
-        $myrev = $this->model_penentuan->getrev()->result();
-
-        $data = array(
-            'page_content'  => 'penentuan/view',
-            'ribbon'        => '<li class="active">Penentuan Kelas</li>',
-            'page_name'     => 'Penentuan Kelas',
-            'mytahun'        => $mytahun,
-            'myjurusan'       => $myjurusan,
-            'myrev'         => $myrev,
-
-        );
-        $this->render_view($data); //Memanggil function render_view
     }
 
     public function tampil()

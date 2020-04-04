@@ -9,7 +9,7 @@ class Model_penentuan extends CI_model
         $v_thnmasuk = "WHERE thnmasuk='" . $ThnAkademik . "' AND kodesekolah='" . $jenis. "'";
         return  $this->db->query("SELECT*, (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='4' AND z.KETERANGAN=mssiswa.AGAMA)AS v_agama,
          (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='1' AND z.KETERANGAN= mssiswa.JK)AS v_Jk,
-         (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=mssiswa.PS)AS v_sekolah, DATE_FORMAT(TGLHR,'%d-%m-%Y')tgl_lahir, 
+         (SELECT z.DESCRTBPS NamaSek FROM tbps z WHERE z.KDTBPS=mssiswa.PS)AS v_sekolah, DATE_FORMAT(TGLHR,'%d-%m-%Y')tgl_lahir, 
          (SELECT (SELECT Y.nama FROM tbkelas Y WHERE Y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.Thnmasuk=mssiswa.TAHUN)AS Kelas,
          (SELECT (SELECT y.id_kelas FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.Thnmasuk=mssiswa.TAHUN) AS id_kelas,
          (SELECT (SELECT y.id_kelas+1 FROM tbkelas y WHERE y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK AND z.Thnmasuk=mssiswa.TAHUN) AS id_Kelas_naik,
@@ -27,14 +27,7 @@ class Model_penentuan extends CI_model
     }
     public function getjurusan()
     {
-        return $this->db->query("
-        SELECT sekolah.KodeSek,
-														sekolah.NamaSek,
-														jurusan.NamaJurusan
-														FROM
-														sekolah
-														INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan
-														ORDER BY KodeSek DESC");
+        return $this->db->query("SELECT a.id, a.KDTBPS KodeSek, a.DESCRTBPS NamaSek, a.SINGKTBPS, b.DESCRTBJS NamaJurusan FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS ORDER BY a.KDTBPS ASC");
     }
 
     public function gettahun()
