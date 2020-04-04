@@ -16,13 +16,13 @@ class Model_tarif extends CI_model
     public function getsekolah()
     {
         return  $this->db->query('SELECT
-        sekolah.KodeSek,
-        sekolah.NamaSek,
-        jurusan.NamaJurusan
+        tbps.KDTBPS,
+        tbps.DESCRTBPS,
+        tbjs.DESCRTBJS
         FROM
-        sekolah
-        JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where sekolah.isdeleted !=1 
-        ORDER BY KodeSek DESC ');
+        tbps
+        JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS where tbps.isdeleted !=1 
+        ORDER BY KDTBPS DESC ');
     }
     public function viewOrdering($table, $order, $ordering)
     {

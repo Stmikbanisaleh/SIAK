@@ -138,6 +138,7 @@ class Penentuankelas extends CI_Controller
             'TA'  => $ThnAkademik,
         );
         $action = $this->model_penentuan->update($where, $data, 'baginaikkelas');
+        // print_r($this->db->last_query());exit;
         echo json_encode($action);
     }
 
@@ -175,16 +176,17 @@ class Penentuankelas extends CI_Controller
 
     public function validasi(){
         $tampil_thnakad = $this->configfunction->getthnakd();
+        $thn = $this->input->post('thn');
+        $ps = $this->input->post('jurusan');
         $ThnAkademik = $tampil_thnakad[0]['THNAKAD'];
-        $sql = "SELECT*,
+        $sql = "SELECT * ,
         (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='4' AND z.KETERANGAN=siswa.agama)AS v_agama,
         (SELECT z.NAMA_REV FROM msrev z WHERE z.`STATUS`='1' AND z.KETERANGAN=siswa.Jk)AS v_Jk,
-        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=siswa.PS)AS v_sekolah,
+        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS= siswa.PS)AS v_sekolah,
         (SELECT z.Naikkelas FROM baginaikkelas z WHERE z.NIS=siswa.NOINDUK ORDER BY idbagiNaikKelas DESC LIMIT 1)AS Naikkelas,
         DATE_FORMAT(tglhr,'%d-%m-%Y')tgl_lahir
-        FROM mssiswa siswa WHERE TAHUN='" . $this->input->post('thn') . "' AND PS='" . $this->input->post('jurusan') . "'";
+        FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps'";
         $hasil = $this->db->query($sql)->result_array();
-
         if($this->db->query($sql)->num_rows()!=1){
             echo json_encode(401);
         }

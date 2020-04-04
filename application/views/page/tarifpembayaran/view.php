@@ -25,7 +25,7 @@
                                     <select class="form-control" name="sekolah" id="sekolah">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($sekolah as $value) { ?>
-                                            <option value=<?= $value['KodeSek'] ?>><?= $value['NamaSek'] ?> - <?= $value['NamaJurusan'] ?></option>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?> - <?= $value['DESCRTBJS'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

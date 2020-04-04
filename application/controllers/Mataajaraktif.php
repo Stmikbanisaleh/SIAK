@@ -39,7 +39,7 @@ class Mataajaraktif extends CI_Controller
 	public function simpan()
 	{
 		$this->load->library('Configfunction');
-        $tampil_thnakad = $this->configfunction->getthnakd();
+		$tampil_thnakad = $this->configfunction->getthnakd();
 		$data = array(
 			'KDMKTRMKA'  => $this->input->post('kodemataajar'),
 			'SMTTRMKA'  => $this->input->post('semester'),
@@ -80,46 +80,21 @@ class Mataajaraktif extends CI_Controller
 
 	public function update()
 	{
+		$this->load->library('Configfunction');
+		$tampil_thnakad = $this->configfunction->getthnakd();
 		$data_id = array(
 			'id'  => $this->input->post('e_id')
 		);
-		$config['upload_path']          = './assets/gambar';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['encrypt_name'] = TRUE;
-
-		$this->load->library('upload', $config);
-		if ($this->upload->do_upload("e_file")) {
-			$data = array('upload_data' => $this->upload->data());
-			$foto = $data['upload_data']['file_name'];
-			$data = array(
-				'nip'  => $this->input->post('nip'),
-				'nama'  => $this->input->post('nama'),
-				'jabatan'  => $this->input->post('jabatan'),
-				'username'  => $this->input->post('email'),
-				'password'  => $this->input->post('password'),
-				'level' => $this->input->post('level'),
-				'status'  => 1,
-				'gambar'  => $foto,
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
-			echo json_decode($result);
-		} else {
-			$data = array(
-				'nip'  => $this->input->post('e_nip'),
-				'nama'  => $this->input->post('e_nama'),
-				'jabatan'  => $this->input->post('e_jabatan'),
-				'username'  => $this->input->post('e_email'),
-				'password'  => $this->input->post('e_password'),
-				'level' => $this->input->post('e_level'),
-				'status'  => $this->input->post('e_status'),
-				'gambar'  => null,
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
-			echo json_decode($result);
-		}
-		echo json_encode($result);
+		
+		$data = array(
+			'KDMKTRMKA'  => $this->input->post('e_kodemataajar'),
+			'SMTTRMKA'  => $this->input->post('e_semester'),
+			'PSTRMKA'  => $this->input->post('e_programsekolah'),
+			'IDUSER'  => $this->session->userdata('nip'),
+			'updatedAt' => date('Y-m-d H:i:s'),
+		);
+		$result = $this->model_mataajaraktif->update($data_id, $data, 'trmka');
+		echo json_decode($result);
 	}
 
 	public function delete()

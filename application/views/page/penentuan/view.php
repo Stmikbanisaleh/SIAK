@@ -59,7 +59,6 @@
     </div><!-- /.modal-dialog -->
 </div>
 <div class="row">
-    <!-- <form class="form-horizontal" role="form" id="formSearch" method="POST" action="<?php echo base_url()?>penentuankelas/validasi" target="_blank"> -->
         <form class="form-horizontal" role="form" id="formSearch">
             <div class="col-xs-3">
                 <select class="form-control" name="thn" id="thn">
@@ -282,6 +281,16 @@
                                     '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas + '" data-noreg="' + data[i].NOINDUK + '">' +
                                     '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
                                     '</button>';
+                                } else {
+                                    html+= '<button class="btn btn-xs btn-success item_ubah" title="Ubah" data-gol="' + data[i].GolKelas + '" data-id_Kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
+                                    '<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>' +
+                                    '</button> &nbsp' +
+                                    '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_naik" title="Naik" data-id_kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
+                                    '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+                                    '</button> &nbsp' +
+                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas + '" data-noreg="' + data[i].NOINDUK + '">' +
+                                    '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
+                                    '</button>';
                                 }
                                 html += '</td>' +
                             // '<td>' + data[i].Kelas_naik + '</td>' +
@@ -315,8 +324,8 @@ $('.btn_proses').click(function(){
     $.ajax({
         type: 'POST',
         url: '<?php echo site_url('penentuankelas/validasi') ?>',
-            // data: $('#formSearch').serialize(),
-            // async: true,
+            data: $('#formSearch').serialize(),
+            async: true,
             dataType: 'json',
             success: function(response) {
                 $('#btn_proses').html('<i class="ace-icon fa fa-search"></i>' +

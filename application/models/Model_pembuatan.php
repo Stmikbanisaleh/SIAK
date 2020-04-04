@@ -32,8 +32,8 @@ class Model_pembuatan extends CI_model
 		pembayaran_sekolah.useridd,
 		pembayaran_sekolah.TotalBayar,
         CONCAT('Rp. ',FORMAT(pembayaran_sekolah.TotalBayar,2)) as totalbayar2,
-		(SELECT (SELECT y.NamaSek FROM sekolah y WHERE y.KodeSek=z.kodesekolah) FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NamaSek,
-		(SELECT (SELECT (SELECT x.NamaJurusan FROM jurusan x WHERE x.Kodejurusan=y.Jurusan) FROM sekolah y WHERE y.KodeSek=z.kodesekolah) FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NamaJurusan,
+		(SELECT (SELECT y.DESCRTBPS FROM tbps y WHERE y.KDTBPS=z.kodesekolah) FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NamaSek,
+		(SELECT (SELECT (SELECT x.DESCRTBJS FROM tbjs x WHERE x.KDTBJS=y.KDTBJS) FROM tbps y WHERE y.KDTBPS=z.kodesekolah) FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS NamaJurusan,
 		pembayaran_sekolah.TA
 		FROM pembayaran_sekolah
 		WHERE pembayaran_sekolah.Noreg NOT IN(SELECT Noreg FROM mssiswa)

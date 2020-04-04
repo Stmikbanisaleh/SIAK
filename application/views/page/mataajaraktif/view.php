@@ -128,7 +128,7 @@
                                     <select class="form-control" name="e_kodemataajar" id="e_kodemataajar">
                                         <option value=>--Pilih Mata Ajar --</option>
                                         <?php foreach ($mypelajaran as $value) { ?>
-                                            <option value=<?= $value['kode'] ?>><?= $value['kode'] ?> - <?= $value['nama'] ?> </option>
+                                            <option value=<?= $value['id_mapel'] ?>><?= $value['kode'] ?> - <?= $value['nama'] ?> </option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -226,7 +226,7 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].KDMKTRMKA + '</td>' +
+                                '<td>' + data[i].kode + '</td>' +
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].THNAKDTRMKA + '</td>' +
                                 '<td>' + data[i].GANGENTRMKA + '</td>' +

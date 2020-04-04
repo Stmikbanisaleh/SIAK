@@ -287,6 +287,7 @@
                         if (data == 1 || data == true) {
                             document.getElementById("formSearch").reset();
                             swalGenerateSuccess();
+                            show_data();
                         } else {
                             swalInputFailed();
                         }

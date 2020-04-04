@@ -9,6 +9,7 @@ class Model_mataajaraktif extends CI_model{
     public function getsearch($tahun, $programsekolah,$semester){
         return  $this->db->query("SELECT
         trmka.ID,
+        mspelajaran.kode,
         trmka.IDKRKTRMKA,
         trmka.KDMKTRMKA,
         trmka.SMTTRMKA,
@@ -22,7 +23,7 @@ class Model_mataajaraktif extends CI_model{
         FROM
         trmka
         INNER JOIN tbps ON trmka.PSTRMKA = tbps.KDTBPS
-        INNER JOIN mspelajaran ON trmka.KDMKTRMKA = mspelajaran.kode
+        INNER JOIN mspelajaran ON trmka.KDMKTRMKA = mspelajaran.id_mapel
         WHERE PSTRMKA = ".$programsekolah ." AND THNAKDTRMKA = '". $tahun."'  AND GANGENTRMKA = '". $semester."' and trmka.isdeleted != 1
         ORDER BY semester");
     }

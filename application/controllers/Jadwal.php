@@ -51,7 +51,6 @@ class Jadwal extends CI_Controller
         // $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
         $myhari = $this->model_jadwal->viewOrdering('tbhari', 'id', 'asc')->result_array();
         $mytahun = $this->model_jadwal->gettahun()->result_array();
-
         $myps = $this->model_jadwal->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
         $myruang = $this->model_jadwal->viewOrdering('msruang', 'ID', 'asc')->result_array();
         $mymapel = $this->model_jadwal->viewOrdering('mspelajaran', 'id_mapel', 'asc')->result_array();
