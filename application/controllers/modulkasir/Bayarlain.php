@@ -7,7 +7,6 @@ class Bayarlain extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('kasir/model_bayar');
-        $this->load->library('Configfunction');
 	}
 	
 	function render_view($data) {
@@ -15,6 +14,7 @@ class Bayarlain extends CI_Controller {
     }
 
 	public function index() {
+		$this->load->library("Configfunction");
 		$mysiswa = $this->model_bayar->view('mssiswa')->result_array();
 		$ta = $this->configfunction->getthnakd();
         $data = array(
@@ -60,17 +60,17 @@ class Bayarlain extends CI_Controller {
 		$ket= $this->input->post('ket');
 		$ThnAkademik = $this->input->post('thnakad');
 		$getkelas = $this->db->query("SELECT*,
-		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS=siswa.NOINDUK ORDER BY Kelas DESC LIMIT 1)AS Kelas2
-		FROM mssiswa siswa WHERE NOINDUK='$nis' OR Noreg='$nis'")->result_array();
-		$kdsekolah = $getkelas[0]['PS'];
+		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS=siswa.NIS ORDER BY Kelas DESC LIMIT 1)AS Kelas2
+		FROM siswa WHERE NIS='$nis' OR Noreg='$nis'")->result_array();
+		$kdsekolah = $getkelas[0]['kodesekolah'];
         $data = array(
             'NIS'  => $nis,
-            'Noreg'  => $getkelas[0]['NOREG'],
+            'Noreg'  => $getkelas[0]['Noreg'],
             'Kelas'  => $getkelas[0]['Kelas2'],
             'tglentri'  => date('Y-m-d'),
             'useridd'  => $this->session->userdata('kodekaryawan'),
             'TotalBayar'  => $this->input->post('nominal_v'),
-            'kodesekolah'  => $getkelas[0]['PS'],
+            'kodesekolah'  => $getkelas[0]['kodesekolah'],
             'TA'  => $this->input->post('thnakad'),
             'createdAt' => date('Y-m-d H:i:s'),
 		);
