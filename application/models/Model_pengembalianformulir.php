@@ -36,8 +36,8 @@ class Model_pengembalianformulir extends CI_model
 		calon_siswa.Namacasis,
 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.Jk AND z.`STATUS`=1)AS Jk,
 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND z.`STATUS`=4)AS agama,
-		(SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah)AS kodesekolah,
-		(SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah)AS NamaJurusan,
+		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = calon_siswa.kodesekolah)AS kodesekolah,
+        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=calon_siswa.kodesekolah)AS NamaJurusan,
 		DATE_FORMAT(tgllhr,'%d-%m-%Y')tgllhr,
 		calon_siswa.tptlhr
 		FROM calon_siswa $where");
@@ -48,8 +48,8 @@ class Model_pengembalianformulir extends CI_model
         return $this->db->query("SELECT
         tarif_berlaku.idtarif,
         kodesekolah,
-        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS sekolah,
-        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS NamaJurusan,
+        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = tarif_berlaku.kodesekolah)AS sekolah,
+        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=tarif_berlaku.kodesekolah)AS NamaJurusan,
         tarif_berlaku.Kodejnsbayar,
         tarif_berlaku.ThnMasuk,
         tarif_berlaku.Nominal,
