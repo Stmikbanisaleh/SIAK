@@ -100,7 +100,7 @@
                     <input name="idjadwal" id="idjadwal<?=$no?>" type="hidden"  value="<?=$value['id']?>"/>
                     <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
                     <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" type="text" readonly value="<?= $value['UTSTRNIL'] ?>"></td>
-                    <td><input name="nilaiuas<?= $no ?>" id="nilaiuas<?= $no ?>" type="text" value="<?= $value['UASTRNIL'] ?>"></td>
+                    <td><input name="nilaiuas<?= $no ?>" id="nilaiuas<?= $no ?>" maxlength="3" type="text" value="<?= $value['UASTRNIL'] ?>"></td>
                     <td style="text-align:center">
                         <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
                             Simpan
