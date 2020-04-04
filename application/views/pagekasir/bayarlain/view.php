@@ -207,7 +207,7 @@
                     nik: nik
                 }
             }).done(function(data) {
-                console.log(data);
+                // console.log(data);
                 $("#ket").html(data);
             });
         });
