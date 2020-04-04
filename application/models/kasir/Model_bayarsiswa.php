@@ -40,19 +40,19 @@ class Model_bayarsiswa extends CI_model
                                         AND kodesekolah = calon_siswa.kodesekolah
                                         AND Kodejnsbayar='SPP') nom_spp,
                                     (SELECT 
-                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
+                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_gdg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
                                         AND Kodejnsbayar='GDG') nom_GDG,
                                     (SELECT
-                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
+                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_srg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah
                                         AND Kodejnsbayar='SRG') nom_SRG,
                                     (SELECT
-                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
+                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_kgt/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = calon_siswa.thnmasuk
                                         AND kodesekolah = calon_siswa.kodesekolah

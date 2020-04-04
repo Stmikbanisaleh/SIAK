@@ -86,139 +86,26 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan SPP </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="potonganspp" placeholder="Rp.1000.000" id="potonganspp" />
-                                    <input type="hidden" class="form-control" name="potonganspp_v" placeholder="Rp.1000.000" id="potonganspp_v" />
-
-                                    <script language="JavaScript">
-                                        var rupiah = document.getElementById('potonganspp');
-                                        rupiah.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup = this.value.replace(/\D/g, '');
-                                            $('#potonganspp_v').val(rup);
-                                            rupiah.value = formatRupiah(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah = split[0].substr(0, sisa),
-                                                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah += separator + ribuan.join('.');
-                                            }
-
-                                            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                                            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength ="3" class="form-control" name="potonganspp_v" placeholder="10%" id="potonganspp_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Gedung </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="potongangedung" placeholder="Rp.1000.000" id="potongangedung" />
-                                    <input type="hidden" class="form-control" name="potongangedung_v" placeholder="Rp.1000.000" id="potongangedung_v" />
-
-                                    <script language="JavaScript">
-                                        var rupiah2 = document.getElementById('potongangedung');
-                                        rupiah2.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup2 = this.value.replace(/\D/g, '');
-                                            $('#potongangedung_v').val(rup2);
-                                            rupiah2.value = formatRupiah2(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah2(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah2 = split[0].substr(0, sisa),
-                                                ribuan2 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan2) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah2 += separator + ribuan2.join('.');
-                                            }
-
-                                            rupiah2 = split[1] != undefined ? rupiah2 + ',' + split[1] : rupiah2;
-                                            return prefix == undefined ? rupiah2 : (rupiah2 ? 'Rp. ' + rupiah2 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength ="3" class="form-control" name="potongangedung_v" placeholder="10%" id="potongangedung_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Modul </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="potonganmodul" placeholder="Rp.1000.000" id="potonganmodul" />
-                                    <input type="hidden" class="form-control" name="potonganmodul_v" placeholder="Rp.1000.000" id="potonganmodul_v" />
-                                    <script language="JavaScript">
-                                        var rupiah3 = document.getElementById('potonganmodul');
-                                        rupiah3.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup3 = this.value.replace(/\D/g, '');
-                                            $('#potonganmodul_v').val(rup3);
-                                            rupiah3.value = formatRupiah3(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah3(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah3 = split[0].substr(0, sisa),
-                                                ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan3) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah3 += separator + ribuan3.join('.');
-                                            }
-
-                                            rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
-                                            return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength ="3" class="form-control" name="potonganmodul_v" placeholder="10%" id="potonganmodul_v" />
                                 </div>
                             </div>
+                       
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Modul </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Kegiatan </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="potongankegiatan" placeholder="Rp.1000.000" id="potongankegiatan" />
-                                    <input type="hidden" class="form-control" name="potongankegiatan_v" placeholder="Rp.1000.000" id="potongankegiatan_v" />
-                                    <script language="JavaScript">
-                                        var rupiah4 = document.getElementById('potongankegiatan');
-                                        rupiah4.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup4 = this.value.replace(/\D/g, '');
-                                            $('#potongankegiatan_v').val(rup4);
-                                            rupiah4.value = formatRupiah4(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah4(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah4 = split[0].substr(0, sisa),
-                                                ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan4) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah4 += separator + ribuan4.join('.');
-                                            }
-
-                                            rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
-                                            return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength ="3" class="form-control" name="potongankegiatan_v" placeholder="10%" id="potongankegiatan_v" />
                                 </div>
                             </div>
                         </div>
@@ -255,139 +142,25 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan SPP </label>
                                 <div class="col-sm-6">
                                     <input type="hidden" name="e_id" id="e_id" />
-                                    <input type="text" class="form-control" name="e_potonganspp" placeholder="Rp.1000.000" id="e_potonganspp" />
-                                    <input type="hidden" class="form-control" name="e_potonganspp_v" placeholder="Rp.1000.000" id="e_potonganspp_v" />
-
-                                    <script language="JavaScript">
-                                        var rupiah5 = document.getElementById('e_potonganspp');
-                                        rupiah5.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup5 = this.value.replace(/\D/g, '');
-                                            $('#e_potonganspp_v').val(rup5);
-                                            rupiah5.value = formatRupiah5(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah5(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa5 = split[0].length % 3,
-                                                rupiah5 = split[0].substr(0, sisa5),
-                                                ribuan5 = split[0].substr(sisa5).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan5) {
-                                                separator = sisa5 ? '.' : '';
-                                                rupiah5 += separator + ribuan5.join('.');
-                                            }
-
-                                            rupiah5 = split[1] != undefined ? rupiah5 + ',' + split[1] : rupiah5;
-                                            return prefix == undefined ? rupiah5 : (rupiah5 ? 'Rp. ' + rupiah5 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength="3" class="form-control" name="e_potonganspp_v" placeholder="10%" id="e_potonganspp_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Gedung </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="e_potongangedung" placeholder="Rp.1000.000" id="e_potongangedung" />
-                                    <input type="hidden" class="form-control" name="e_potongangedung_v" placeholder="Rp.1000.000" id="e_potongangedung_v" />
-
-                                    <script language="JavaScript">
-                                        var rupiah6 = document.getElementById('e_potongangedung');
-                                        rupiah6.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup6 = this.value.replace(/\D/g, '');
-                                            $('#e_potongangedung_v').val(rup6);
-                                            rupiah6.value = formatRupiah6(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah6(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah6 = split[0].substr(0, sisa),
-                                                ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan6) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah6 += separator + ribuan6.join('.');
-                                            }
-
-                                            rupiah6 = split[1] != undefined ? rupiah6 + ',' + split[1] : rupiah6;
-                                            return prefix == undefined ? rupiah6 : (rupiah6 ? 'Rp. ' + rupiah6 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength="3" class="form-control" name="e_potongangedung_v" placeholder="10%" id="e_potongangedung_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Modul </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="e_potonganmodul" placeholder="Rp.1000.000" id="e_potonganmodul" />
-                                    <input type="hidden" class="form-control" name="e_potonganmodul_v" placeholder="Rp.1000.000" id="e_potonganmodul_v" />
-                                    <script language="JavaScript">
-                                        var rupiah7 = document.getElementById('e_potonganmodul');
-                                        rupiah7.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup7 = this.value.replace(/\D/g, '');
-                                            $('#potonganmodul_v').val(rup7);
-                                            rupiah7.value = formatRupiah7(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah7(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah7 = split[0].substr(0, sisa),
-                                                ribuan7 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan7) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah7 += separator + ribuan7.join('.');
-                                            }
-
-                                            rupiah7 = split[1] != undefined ? rupiah7 + ',' + split[1] : rupiah7;
-                                            return prefix == undefined ? rupiah7 : (rupiah7 ? 'Rp. ' + rupiah7 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength="3" class="form-control" name="e_potonganmodul_v" placeholder="10%" id="e_potonganmodul_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Kegiatan </label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="e_potongankegiatan" placeholder="Rp.1000.000" id="e_potongankegiatan" />
-                                    <input type="hidden" class="form-control" name="e_potongankegiatan_v" placeholder="Rp.1000.000" id="e_potongankegiatan_v" />
-                                    <script language="JavaScript">
-                                        var rupiah8 = document.getElementById('e_potongankegiatan');
-                                        rupiah8.addEventListener('keyup', function(e) {
-                                            // tambahkan 'Rp.' pada saat form di ketik
-                                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                            rup8 = this.value.replace(/\D/g, '');
-                                            $('#e_potongankegiatan_v').val(rup8);
-                                            rupiah8.value = formatRupiah8(this.value, 'Rp. ');
-                                        });
-
-                                        function formatRupiah8(angka, prefix) {
-                                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                                split = number_string.split(','),
-                                                sisa = split[0].length % 3,
-                                                rupiah8 = split[0].substr(0, sisa),
-                                                ribuan8 = split[0].substr(sisa).match(/\d{3}/gi);
-
-                                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                            if (ribuan8) {
-                                                separator = sisa ? '.' : '';
-                                                rupiah8 += separator + ribuan8.join('.');
-                                            }
-
-                                            rupiah8 = split[1] != undefined ? rupiah8 + ',' + split[1] : rupiah8;
-                                            return prefix == undefined ? rupiah8 : (rupiah8 ? 'Rp. ' + rupiah8 : '');
-                                        }
-                                    </script>
+                                    <input type="text" maxlength="3" class="form-control" name="e_potongankegiatan_v" placeholder="10%" id="e_potongankegiatan_v" />
                                 </div>
                             </div>
                         </div>
@@ -681,13 +454,9 @@
             },
             success: function(data) {
                 $('#e_id').val(data[0].idsaldo);
-                $('#e_potonganspp').val(formatRupiah5(data[0].pot_spp, 'Rp. '));
                 $('#e_potonganspp_v').val(data[0].pot_spp);
-                $('#e_potongangedung').val(formatRupiah6(data[0].pot_gdg, 'Rp. '));
                 $('#e_potongangedung_v').val(data[0].pot_gdg);
-                $('#e_potongankegiatan').val(formatRupiah7(data[0].pot_kgt, 'Rp. '));
                 $('#e_potongankegiatan_v').val(data[0].pot_kgt);
-                $('#e_potonganmodul').val(formatRupiah8(data[0].pot_modul, 'Rp. '));
                 $('#e_potonganmodul_v').val(data[0].pot_modul);
             }
         });
