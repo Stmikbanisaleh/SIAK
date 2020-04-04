@@ -6,7 +6,7 @@
                 <label class="col-xs-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
                 <div class="col-xs-9">
                     <span class="input-icon">
-                        <input type="text" name="noreg" readonly value="<?= $mysiswa->NOREG; ?>" id="noreg" />
+                        <input type="text" name="noreg" readonly value="<?= $mysiswa->Noreg; ?>" id="noreg" />
                         <i class="ace-icon fa fa-check-square-o blue"></i>
                     </span>
                 </div>
@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Nama Siswa</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NMSISWA; ?>" required class="col-xs-10 col-sm-5" id="nama" name="nama" />
+                    <input type="text" value="<?= $mysiswa->Namacasis; ?>" required class="col-xs-10 col-sm-5" id="nama" name="nama" />
                 </div>
             </div>
             <div class="form-group">
@@ -23,7 +23,7 @@
                     <select class="form-control" required name="agama" id="agama">
                         <option value="">-- Pilih Agama --</option>
                         <?php foreach ($myagama as $value) { ?>
-                            <?php if ($mysiswa->AGAMA == $value['KDTBAGAMA']) {
+                            <?php if ($mysiswa->agama == $value['KDTBAGAMA']) {
                                 echo "<option value='" . $value['KDTBAGAMA'] . "' selected>" . $value['DESCRTBAGAMA'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KDTBAGAMA'] . "'>" . $value['DESCRTBAGAMA'] . "</option>";
@@ -39,7 +39,7 @@
                     <select required class="form-control" name="jk" id="jk">
                         <option value="">-- Pilih Jenis Kelamin --</option>
                         <?php foreach ($myjeniskelamin as $value) { ?>
-                            <?php if ($mysiswa->JK == $value['KETERANGAN']) {
+                            <?php if ($mysiswa->Jk == $value['KETERANGAN']) {
                                 echo "<option value='" . $value['KETERANGAN'] . "' selected>" . $value['NAMA_REV'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KETERANGAN'] . "'>" . $value['NAMA_REV'] . "</option>";
@@ -53,7 +53,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Tanggal Lahir </label>
                 <div class="col-sm-9">
                     <span class="input-icon">
-                        <input type="date" name="tglhr" id="tglhr" required value="<?= $mysiswa->TGLHR ?>" />
+                        <input type="date" name="tglhr" id="tglhr" required value="<?= $mysiswa->tgllhr ?>" />
                         <i class="ace-icon fa fa-calendar blue"></i>
                     </span>
                 </div>
@@ -65,7 +65,7 @@
                     <select class="form-control" name="sekolah" id="sekolah">
                         <option value="">-- Pilih Sekolah --</option>
                         <?php foreach ($mysekolah as $value) { ?>
-                            <?php if ($mysiswa->PS == $value['kodesekolah']) {
+                            <?php if ($mysiswa->kodesekolah == $value['kodesekolah']) {
                                 echo "<option value='" . $value['kodesekolah'] . "' selected>" . $value['sekolah']  . "-" . $value['NamaJurusan'] .  "</option>";
                             } else {
                                 echo "<option value='" . $value['kodesekolah'] . "'>" . $value['sekolah'] . "-" . $value['NamaJurusan'] . "</option>";
@@ -85,7 +85,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
                 <div class="col-sm-9">
                     <span class="input-icon">
-                        <input type="text" value="<?= $mysiswa->TPLHR ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
+                        <input type="text" value="<?= $mysiswa->tptlhr ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
                         <i class="ace-icon fa fa-home blue"></i>
                     </span>
                 </div>
@@ -97,7 +97,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Ayah </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NMBAPAK ?>" required name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->NmBapak ?>" required name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
-                            <?php if ($mysiswa->GAJIORTU == $value['IDMSPENGHASILAN']) {
+                            <?php if ($mysiswa->GajiOrtu == $value['IDMSPENGHASILAN']) {
                                 echo "<option value='" . $value['IDMSPENGHASILAN'] . "' selected>" . $value['NMMSPENGHASILAN'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['IDMSPENGHASILAN'] . "'>" . $value['NMMSPENGHASILAN'] . "</option>";
@@ -121,7 +121,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nama Ibu </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NMIBU ?>" required name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->NmIbu ?>" required name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Kelurahan </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->KELURAHAN ?>" name="kelurahan" id="kelurahan" placeholder="kelurahan" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->Kelurahan ?>" name="kelurahan" id="kelurahan" placeholder="kelurahan" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -141,7 +141,7 @@
                         <option value="">-- Pilih Provinsi --</option>
                         <?php
                         foreach ($mypro as $value) { ?>
-                            <?php if ($mysiswa->PROVINSI == $value['KDTBPRO']) {
+                            <?php if ($mysiswa->Propinsi == $value['KDTBPRO']) {
                                 echo "<option value='" . $value['KDTBPRO'] . "' selected>" . $value['PROPTBPRO'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KDTBPRO'] . "'>" . $value['PROPTBPRO'] . "</option>";
@@ -158,7 +158,7 @@
                         <option value="">-- Pilih Kabupaten --</option>
                         <?php 
                         foreach ($mytbpro as $value) { ?>
-                            <?php if ($mysiswa->KABUPATEN == $value['KDTBPRO']) {
+                            <?php if ($mysiswa->Kabupaten == $value['KDTBPRO']) {
                                 echo "<option value='" . $value['KDTBPRO'] . "' selected>" . $value['KOTATBPRO'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KDTBPRO'] . "'>" . $value['KOTATBPRO'] . "</option>";
@@ -174,7 +174,7 @@
                         <option value="">-- Pilih Kecamatan --</option>
                         <?php
                         foreach ($mytbkec as $value) { ?>
-                            <?php if ($mysiswa->KECAMATAN == $value['IDKEC']) {
+                            <?php if ($mysiswa->Kecamatan == $value['IDKEC']) {
                                 echo "<option value='" . $value['IDKEC'] . "' selected>" . $value['NMKEC'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['IDKEC'] . "'>" . $value['NMKEC'] . "</option>";
@@ -186,7 +186,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right">Kode Pos</label>
                 <div class="col-sm-9">
-                    <input type="number" name="kdpos" value="<?= $mysiswa->KDPOS ?>" id="kdpos" />
+                    <input type="number" name="kdpos" value="<?= $mysiswa->Kodepos ?>" id="kdpos" />
                 </div>
             </div>
 
@@ -195,7 +195,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Hp</label>
                 <div class="col-sm-9">
-                    <input type="number" name="nohp" value="<?= $mysiswa->NOHP ?>" id="nohp" />
+                    <input type="number" name="nohp" value="<?= $mysiswa->TelpHp ?>" id="nohp" />
                 </div>
             </div>
 
@@ -204,7 +204,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Wali </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NMWALI ?>" name="wali" id="wali" placeholder="Nama Wali" class=" col-sm-3" />
+                    <input type="text" value="<?= $mysiswa->NamaWali ?>" name="wali" id="wali" placeholder="Nama Wali" class=" col-sm-3" />
                 </div>
             </div>
             <div class="form-group">
@@ -214,7 +214,7 @@
                         <option value="">-- Pilih Pekerjaan --</option>
                         <?php
                         foreach ($myjob as $value) { ?>
-                            <?php if ($mysiswa->PEKERJAANORTU == $value['IDMSPEKERJAAN']) {
+                            <?php if ($mysiswa->Perkerjaanortu == $value['IDMSPEKERJAAN']) {
                                 echo "<option value='" . $value['IDMSPEKERJAAN'] . "' selected>" . $value['NMMSPEKERJAAN'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['IDMSPEKERJAAN'] . "'>" . $value['NMMSPEKERJAAN'] . "</option>";
@@ -226,13 +226,13 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Alamat</label>
                 <div class="col-sm-8">
-                    <input type ="text" value="<?=$mysiswa->ALAMATRUMAH?>" id="alamat2" name="alamat2" class="form-control"/>
+                    <input type ="text" value="<?=$mysiswa->AlamatRumah?>" id="alamat2" name="alamat2" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Telp Rumah</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->TLPRUMAH ?>" name="telprmh" id="telprmh" placeholder="Telp Rumah" class=" col-sm-3" />
+                    <input type="text" value="<?= $mysiswa->TelpRumah ?>" name="telprmh" id="telprmh" placeholder="Telp Rumah" class=" col-sm-3" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -240,7 +240,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Telp Wali</label>
                 <div class="col-sm-9">
                     <div class="inline">
-                        <input type="text" value="<?= $mysiswa->TLPWALI ?>" name="telpwali" id="telpwali" placeholder="Telp Wali" />
+                        <input type="text" value="<?= $mysiswa->TelpWali ?>" name="telpwali" id="telpwali" placeholder="Telp Wali" />
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Asal Sekolah </label>
                 <div class="col-sm-9">
-                    <input type="text" id="aslsekolah" value="<?= $mysiswa->NMASLSKL ?>" name="aslsekolah" placeholder="Asal Sekolah" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="aslsekolah" value="<?= $mysiswa->AsalSekolah ?>" name="aslsekolah" placeholder="Asal Sekolah" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
 
@@ -262,7 +262,7 @@
                         <option value="">-- Pilih Provinsi --</option>
                         <?php
                         foreach ($mypro as $value) { ?>
-                            <?php if ($mysiswa->PROVINSISEKOLAHASAL == $value['KDTBPRO']) {
+                            <?php if ($mysiswa->aslsekpropinsi == $value['KDTBPRO']) {
                                 echo "<option value='" . $value['KDTBPRO'] . "' selected>" . $value['PROPTBPRO'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KDTBPRO'] . "'>" . $value['PROPTBPRO'] . "</option>";
@@ -312,7 +312,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Kelurahan </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->KELURAHANSEKOLAHASAL ?>" name="kelurahan2" id="kelurahan2" placeholder="kelurahan" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->ASlKelurahan ?>" name="kelurahan2" id="kelurahan2" placeholder="kelurahan" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -321,7 +321,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Alamat</label>
 
                 <div class="col-sm-8">
-                    <input class="form-control" type="text" value="<?= $mysiswa->ALMASLSKL ?>" name ="alamat3" id="alamat3" placeholder="" />
+                    <input class="form-control" type="text" value="<?= $mysiswa->AlamatASalSek ?>" name ="alamat3" id="alamat3" placeholder="" />
                 </div>
             </div>
 
@@ -330,7 +330,7 @@
 
                 <div class="col-sm-9">
                     <div class="clearfix">
-                        <input class="col-xs-1" type="text" value="<?= $mysiswa->NOIJAZAH ?>" name="noijazah" id="noijazah" placeholder="" />
+                        <input class="col-xs-1" type="text" value="<?= $mysiswa->NoIjazah ?>" name="noijazah" id="noijazah" placeholder="" />
                     </div>
                 </div>
             </div>
@@ -347,7 +347,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Tahun Masuk</label>
                 <div class="col-sm-9">
-                    <input type="number" id="thnmasuk" value="<?= $mysiswa->THNMASUKSEKOLAHASAL ?>" name="thnmassuk" placeholder="Tahun masuk"  />
+                    <input type="number" id="thnmasuk" value="<?= $mysiswa->thnmasuk ?>" name="thnmassuk" placeholder="Tahun masuk"  />
                 </div>
             </div>
 
@@ -357,7 +357,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">NEM</label>
                 <div class="col-sm-9">
                     <div class="inline">
-                        <input type="text" name="nem" id="nem" value="<?= $mysiswa->NILNEMASLSKL ?>" value="Tag Input Control" placeholder="Masukan NEM Sekolah " />
+                        <input type="text" name="nem" id="nem" value="<?= $mysiswa->NilaiNem ?>" value="Tag Input Control" placeholder="Masukan NEM Sekolah " />
                     </div>
                 </div>
             </div>

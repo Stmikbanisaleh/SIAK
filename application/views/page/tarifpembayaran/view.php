@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
                                 <div class="col-sm-3">
-                                    <input type="number" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" maxlength="4" id="tahun" name="tahun" placeholder="2020" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">

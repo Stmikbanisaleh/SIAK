@@ -31,19 +31,25 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" maxlength="4" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="indek" name="indek" placeholder="1 / 2" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
+                                    <input type="text" maxlength="9" id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
+                                    <input type="text" maxlength="3" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,7 +140,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_kdsekolah" name="e_kdsekolah" placeholder="" class="form-control" />
+                                    <!-- <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" /> -->
+                                     <select class="form-control" name="e_kdsekolah" id="e_kdsekolah">
+                                        <option value="">-- Pilih Sekolah --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['KodeSek'] ?>> <?= $value['NamaSek'] . "-" . $value['NamaJurusan'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>

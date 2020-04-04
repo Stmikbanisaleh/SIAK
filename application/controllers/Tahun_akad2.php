@@ -63,7 +63,7 @@ class Tahun_akad2 extends CI_Controller
                 'TAHUN'  => $this->input->post('tahun'),
                 'THNAKAD'  => $this->input->post('tahun_akad'),
                 'UTSUAS'  => $this->input->post('uts_uas'),
-                'INDEK'  => 0,
+                'INDEK'  => $this->input->post('indek'),
                 'THNDAPODIK'  => $this->input->post('thndapodik'),
                 'KDSEKOLAH'  => $this->input->post('kdsekolah'),
                 'createdAt' => date('Y-m-d H:i:s'),

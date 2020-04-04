@@ -35,6 +35,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="indek" name="indek" placeholder="1 / 2" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-6">
                                     <input type="text" id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />

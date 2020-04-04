@@ -27,7 +27,6 @@
                                     $tahun = date("Y");
                                     $noreg = $this->db->query("SELECT
                                     RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa WHERE thnmasuk='$tahun' ORDER BY Noreg DESC")->row();
-                                    $no = $noreg->Noreg;
                                     if(empty($noreg)){
                                         $no = '0001';
                                     } else {
@@ -95,7 +94,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" required name="tahunakademik" id="tahunakademik" placeholder="2020/2021" />
+                                    <input type="text" maxlength="9" class="form-control" required name="tahunakademik" id="tahunakademik" placeholder="2020/2021" />
                                 </div>
                             </div>
 

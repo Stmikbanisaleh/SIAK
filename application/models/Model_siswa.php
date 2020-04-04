@@ -20,10 +20,9 @@ class Model_siswa extends CI_model
         calon_siswa.Noreg,
         calon_siswa.Namacasis,
         (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND `STATUS`='4')AS agama,
-        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah)AS kodesekolah,
-        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan = z.Jurusan) FROM sekolah z WHERE z.KodeSek=calon_siswa.kodesekolah) AS NamaJurusan,
+        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =calon_siswa.kodesekolah)AS kodesekolah,
+        (SELECT (SELECT y.DESCRTBJS FROM tbjs y WHERE y.KDTBJS = z.KDTBJS) FROM tbps z WHERE z.KDTBPS=calon_siswa.kodesekolah) AS NamaJurusan,
         (SELECT (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=x.Kelas) FROM baginaikkelas x WHERE x.NIS=z.NOINDUK) FROM mssiswa z WHERE z.Noreg=calon_siswa.Noreg)AS Kelas,
-        
         calon_siswa.AlamatRumah,
         calon_siswa.TelpRumah,
         calon_siswa.TelpHp
@@ -35,8 +34,8 @@ class Model_siswa extends CI_model
         return $this->db->query("SELECT
         tarif_berlaku.idtarif,
         kodesekolah,
-        (SELECT z.NamaSek FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS sekolah,
-        (SELECT (SELECT y.NamaJurusan FROM jurusan y WHERE y.Kodejurusan=z.Jurusan) FROM sekolah z WHERE z.KodeSek=tarif_berlaku.kodesekolah)AS NamaJurusan,
+        (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=tarif_berlaku.kodesekolah)AS sekolah,
+        (SELECT (SELECT y.KDTBJS FROM tbjs y WHERE y.KDTBJS=z.KDTBJS) FROM tbps z WHERE z.KDTBPS=tarif_berlaku.kodesekolah)AS NamaJurusan,
         tarif_berlaku.Kodejnsbayar,
         tarif_berlaku.ThnMasuk,
         tarif_berlaku.Nominal,

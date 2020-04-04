@@ -21,7 +21,7 @@ class Model_tarif extends CI_model
         jurusan.NamaJurusan
         FROM
         sekolah
-        INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where isdeleted !=1
+        JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan where sekolah.isdeleted !=1 
         ORDER BY KodeSek DESC ');
     }
     public function viewOrdering($table, $order, $ordering)

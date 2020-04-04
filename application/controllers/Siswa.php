@@ -128,7 +128,7 @@ class Siswa extends CI_Controller
             $this->load->library('Configfunction');
             $tampil_thnakad = $this->configfunction->getthnakd();
             $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
-            $mysiswa = $this->model_siswa->view_where('mssiswa', $noreg)->row();
+            $mysiswa = $this->model_siswa->view_where('calon_siswa', $noreg)->row();
             $myjeniskelamin = $this->model_siswa->view_where('msrev', $jk)->result_array();
             $myagama = $this->model_guru->view('tbagama')->result_array();
             $mytbpk = $this->model_siswa->viewOrdering('mspenghasilan','IDMSPENGHASILAN','desc')->result_array();
@@ -171,7 +171,7 @@ class Siswa extends CI_Controller
                     'NOINDUK'  => $this->input->post('no_induk'),
                     'NOREG'  => $this->input->post('noreg'),
                     'TGLREG'  => $this->input->post('tglreg'),
-                    'NMSISWA'  => $this->input->post('nmsiswa'),
+                    'NMSISWA'  => strtoupper($this->input->post('nmsiswa')),
                     'TPLHR'  => $this->input->post('tplhr'),
                     'TGLHR'  => $this->input->post('tglhr'),
                     'JK'  => $this->input->post('jk'),
@@ -201,6 +201,7 @@ class Siswa extends CI_Controller
             $data_id = array(
                 'NOREG'  => $this->input->post('noreg')
             );
+            $noreg = $this->input->post('noreg');
             //file1 photo siswa
             //photoijazah
             //photonem
@@ -270,8 +271,11 @@ class Siswa extends CI_Controller
                 'NilaiNem' => $this->input->post('nem'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
-            $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
             $action2 = $this->model_siswa->update($data_id, $data2, 'calon_siswa');
+            $ceksiswa = $this->db->query("select NOREG from mssiswa where NOREG = '$noreg'");
+            if (count($ceksiswa) > 0){
+                $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
+            }
             echo json_encode(1);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
