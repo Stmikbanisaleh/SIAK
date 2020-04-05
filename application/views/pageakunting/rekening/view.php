@@ -87,7 +87,7 @@
 									<select class="form-control" name="JR" id="JR">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjenisrek as $value) { ?>
-											<option value=<?= $value['ID'] ?>><?= $value['NAMA_REV']?></option>
+											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -99,7 +99,7 @@
 									<select class="form-control" name="type" id="type">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) { ?>
-											<option value=<?= $value['ID'] ?>><?= $value['NAMA_REV']?></option>
+											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -156,7 +156,7 @@
 									<select class="form-control" name="e_JR" id="e_JR">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjenisrek as $value) { ?>
-											<option id='<?= 'ej_'.$value['ID'] ?>' value=<?= $value['ID'] ?>><?= $value['NAMA_REV']?></option>
+											<option id='<?= 'ej_'.$value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -168,7 +168,7 @@
 									<select class="form-control" name="e_type" id="e_type">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) { ?>
-											<option id='<?= 'et_'.$value['ID'] ?>' value=<?= $value['ID'] ?>><?= $value['NAMA_REV']?></option>
+											<option id='<?= 'et_'.$value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -370,7 +370,7 @@
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulakunting/pengeluaran/update') ?>",
+					url: "<?php echo base_url('modulakunting/rekening/update') ?>",
 					dataType: "JSON",
 					data: $('#formEdit').serialize(),
 					success: function(data) {
@@ -415,7 +415,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulakunting/pengeluaran/delete') ?>",
+					url: "<?php echo base_url('modulakunting/rekening/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
@@ -443,11 +443,14 @@
 				id: id,
 			},
 			success: function(data) {
+				var jr = 'ej_'+data[0].JR;
+				var type = data[0].type;
+				console.log(jr);
 				$('#e_no_jurnal').val(data[0].no_jurnal);
 				$('#e_kode_jurnal').val(data[0].kode_jurnal);
 				$('#e_nama_jurnal').val(data[0].nama_jurnal);
-				document.getElementById('ej_'+data[0].JR).selected = "true";
-				document.getElementById('et_'+data[0].type).selected = "true";
+				document.getElementById(jr).selected = "true";
+				document.getElementById('et_'+type).selected = "true";
 			}
 		});
 	});
@@ -474,7 +477,7 @@
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].no_jurnal + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
-						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].no_junral + '">' +
+						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].no_jurnal + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
 						'</td>' +

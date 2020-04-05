@@ -67,6 +67,22 @@ class Rekening extends CI_Controller {
         }
     }
 
+    public function update()
+    {
+        $data_id = array(
+            'no_jurnal'  => $this->input->post('e_no_jurnal')
+        );
+        $data = array(
+            'kode_jurnal'  => $this->input->post('e_kode_jurnal'),
+            'nama_jurnal'  => $this->input->post('e_nama_jurnal'),
+            'JR'  => $this->input->post('e_JR'),
+            'type'  => $this->input->post('e_type'),
+            'updatedAt' => date('Y-m-d H:i:s'),
+        );
+        $action = $this->model_rekening->update($data_id, $data, 'jurnal');
+        echo json_encode($action);
+    }
+
     public function tampil_byid()
     {
         $data = array(
@@ -74,5 +90,17 @@ class Rekening extends CI_Controller {
         );
         $my_data = $this->model_rekening->view_where('jurnal', $data)->result();
         echo json_encode($my_data);
+    }
+
+    public function delete()
+    {
+        $data_id = array(
+            'no_jurnal'  => $this->input->post('id')
+        );
+        $data = array(
+            'isdeleted'  => 1,
+        );
+        $action = $this->model_rekening->update($data_id, $data, 'jurnal');
+        echo json_encode($action);
     }
 }
