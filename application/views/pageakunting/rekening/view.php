@@ -422,8 +422,8 @@
 						id: id,
 					},
 					success: function(data) {
-						show_data();
 						swalDeleteSuccess();
+						show_data();
 					}
 				});
 			}

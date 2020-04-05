@@ -42,7 +42,7 @@ class Pemasukan extends CI_Controller {
 	public function tampil_byid()
 	{
 		$data = array(
-			'id'  => $this->input->post('id'),
+			'Kodejnsbayar'  => $this->input->post('id'),
 		);
 		$my_data = $this->model_pemasukan->view_where('jenispembayaran', $data)->result();
 		echo json_encode($my_data);
@@ -63,7 +63,7 @@ class Pemasukan extends CI_Controller {
 	public function update()
 	{
 		$data_id = array(
-			'id'  => $this->input->post('e_id')
+			'Kodejnsbayar'  => $this->input->post('e_id')
 		);
 		$data = array(
 			'Kodejnsbayar'  => $this->input->post('e_Kodejnsbayar'),
@@ -73,12 +73,11 @@ class Pemasukan extends CI_Controller {
 		);
 		$action = $this->model_pemasukan->update($data_id, $data, 'jenispembayaran');
 		echo json_encode($action);
-		//echo $this->db->last_query();
 	}
 	public function delete()
 	{
 		$data_id = array(
-			'id'  => $this->input->post('id')
+			'Kodejnsbayar'  => $this->input->post('id')
 		);
 		$data = array(
 			'isdeleted'  => 1,

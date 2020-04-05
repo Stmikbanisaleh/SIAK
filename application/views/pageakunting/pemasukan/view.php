@@ -262,10 +262,10 @@
                         '<td>' + data[i].kode_jurnal  + '</td>' +
                         '<td>' + data[i].nama_jurnal  + '</td>' +
                         '<td>' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Kodejnsbayar + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                         '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Kodejnsbayar + '">' +
                         '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                         '</button>' +
                         '</td>' +
@@ -309,7 +309,7 @@
                 id: id,
             },
             success: function(data) {
-                $('#e_id').val(data[0].id);
+                $('#e_id').val(data[0].Kodejnsbayar);
                 $('#e_Kodejnsbayar').val(data[0].Kodejnsbayar);
                 $('#e_namajenisbayar').val(data[0].namajenisbayar);
                 $('#e_no_jurnal').val(data[0].no_jurnal);
