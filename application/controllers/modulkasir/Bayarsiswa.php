@@ -9,6 +9,10 @@ class Bayarsiswa extends CI_Controller {
         $this->load->model('kasir/model_bayarsiswa');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulkasir/dashboard/login');
+        }
     }
 
     function render_view($data) {

@@ -35,7 +35,6 @@ class Dashboard extends CI_Controller
         $password = md5($this->input->post('password'));
         $password = hash("sha512", $password);
         $query = $this->db->query("select * from tbpengawas where nip ='" . $useriid . "' and Password = '" . $password . "'");
-        // print_r($this->db->last_query());exit;
         if ($query->num_rows() == 1) {
             $data = $query->result_array();
             foreach ($data as $value) {

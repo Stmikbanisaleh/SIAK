@@ -8,6 +8,10 @@ class Impbayar extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('kasir/model_imppembayaran');
+		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulkasir/dashboard/login');
+        }
 	}
 
 	function render_view($data)
