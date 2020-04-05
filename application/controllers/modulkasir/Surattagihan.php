@@ -40,7 +40,7 @@ class Surattagihan extends CI_Controller {
         $thnakad = $this->configfunction->getthnakd();
         $this->load->library('pdf');
 
-        $setting = $this->model_surattagihan->viewOrdering('sys_config','id','asc')->row();
+        $setting = $this->model_surattagihan->view('sys_config','id','asc')->row();
         if($my_pembsiswa!=null){
             $data = array(
                 'mydata'      => $my_pembsiswa,
