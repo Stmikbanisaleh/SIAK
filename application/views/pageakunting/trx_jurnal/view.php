@@ -21,318 +21,348 @@
 			</div>
 			<br>
 			<br>
-	</form>
-</div>
-<div id="my-modal2" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Jenis Pengeluaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
-								<div class="col-sm-6">
-									<input type="file" id="file" required name="file" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-								<div class="col-sm-9">
-									<a label class="col-sm-3" for="form-field-1"> Download Sample Format </label></a>
-								</div>
-							</div>
-					</div>
+		</form>
+	</div>
+	<div id="my-modal2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 class="smaller lighter blue no-margin">Form Import Data Jenis Pengeluaran</h3>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Simpan
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+							<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+									<div class="col-sm-6">
+										<input type="file" id="file" required name="file" class="form-control" />
+									</div>
+								</div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Jenis Pengeluaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formTambah">
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
-								<div class="col-sm-6">
-									<input type="text" id="JnsTransaksi" required name="JnsTransaksi" placeholder="Jenis Transaksi" class="form-control" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
+									<div class="col-sm-9">
+										<a label class="col-sm-3" for="form-field-1"> Download Sample Format </label></a>
+									</div>
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
-										<option value="">-- Pilih --</option>
-										<?php foreach ($myjurnal as $value) { ?>
-											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Transaksi </label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="NamaTransaksi" id="NamaTransaksi" placeholder="Nama Transaksi" />
-								</div>
-							</div>
+						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+							<i class="ace-icon fa fa-save"></i>
+							Simpan
+						</button>
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Batal
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
+	<div id="my-modal" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 class="smaller lighter blue no-margin">Form Input Data Jenis Pengeluaran</h3>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Simpan
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-<br>
-<div class="row">
-	<table class="table table-bordered table-hover table-striped  w-full" cellspacing="0">
-		<thead>
-			<tr>
-				<th>Kode Rekening</th>
-				<th>Nama Rekening</th>
-				<th>Uraian</th>
-				<th>D/K</th>
-				<th>Nilai</th>
-			</tr>
-		</thead>
-		<?php
-		if ($this->input->get('tahun')) { ?>
-			<tbody id="show_data">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+							<form class="form-horizontal" role="form" id="formTambah">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
+									<div class="col-sm-6">
+										<input type="text" id="JnsTransaksi" required name="JnsTransaksi" placeholder="Jenis Transaksi" class="form-control" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
+											<option value="">-- Pilih --</option>
+											<?php foreach ($myjurnal as $value) { ?>
+												<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Transaksi </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="NamaTransaksi" id="NamaTransaksi" placeholder="Nama Transaksi" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
+							<i class="ace-icon fa fa-save"></i>
+							Simpan
+						</button>
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Batal
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	<br>
+	<div class="row">
+		<table class="table table-bordered table-hover table-striped  w-full" cellspacing="0">
+			<thead>
 				<tr>
-					<?php $jurnal = $this->db->query("SELECT
+					<th>Kode Rekening</th>
+					<th>Nama Rekening</th>
+					<th>Uraian</th>
+					<th>D/K</th>
+					<th>Nilai</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				if (empty($this->input->get('tahun'))) {
+					$sql = "";
+				} else {
+					$sql = "SELECT
 					jurnal.kode_jurnal,
 					jurnal.nama_jurnal,
 					parameter.id
 					FROM
-					parameter 
-					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal where parameter.isdeleted != 1")->result_array();
-					?>
-					<?php
-					foreach ($jurnal as $data) { ?>
-						<td><?= $data['kode_jurnal'] ?></td>
-						<td><?= $data['nama_jurnal'] ?></td>
-					<?php
+					parameter
+					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal";
+				}
+				// $hasil = mysql_query($sql);
+				$hasil = $this->db->query($sql)->result_array();
+				$no = 1;
+				// while ($r = mysql_fetch_array($hasil)) {
+				foreach($hasil as $r){
+					$no_bukti = $this->input->get('nopembayaran');
+					$query = "SELECT 
+					pembayaran_sekolah.Nopembayaran,
+					pembayaran_sekolah.NIS,
+					pembayaran_sekolah.Noreg,
+					pembayaran_sekolah.Kelas,
+					pembayaran_sekolah.tglentri,
+					pembayaran_sekolah.useridd,
+					pembayaran_sekolah.TotalBayar,
+					pembayaran_sekolah.kodesekolah,
+					pembayaran_sekolah.TA
+					FROM pembayaran_sekolah WHERE Nopembayaran='$no_bukti'";
+
+					// $assistant = mysql_query($query);
+					// $num_assistant = mysql_num_rows($assistant);
+					// for ($i = 0; $i < $num_assistant; $i++) {
+					// 	$row = mysql_fetch_object($assistant);
+					$row = $this->db->query($query)->row();
+					if($row!=null){
+						$v_pem = $row->Nopembayaran;
+						$v_tglentri = $row->tglentri;
+						$v_TotalBayar = $row->TotalBayar;
+					}else{
+						$v_pem = '';
+						$v_tglentri = '';
+						$v_TotalBayar = 0;
 					}
+					// print_r(json_encode($row));exit;
+					// }
+
+					$query = "SELECT COUNT(*)AS n,urai FROM akuntansi WHERE bukti='$no_bukti'";
+					// $assistant = mysql_query($query);
+					// $num_assistant = mysql_num_rows($assistant);
+					// for ($i = 0; $i < $num_assistant; $i++) {
+					// 	$row = mysql_fetch_object($assistant);
+					$row = $this->db->query($query)->row();
+					if($row!=null){
+						$v_Status = $row->n;
+					}else{
+						$v_Status = 0;
+					}
+					// }
+
+					$query = "SELECT detail_akuntansi.urai FROM detail_akuntansi WHERE no_akuntansi='$no_bukti' AND dk='D'";
+					// $assistant = mysql_query($query);
+					// $num_assistant = mysql_num_rows($assistant);
+					// for ($i = 0; $i < $num_assistant; $i++) {
+					// 	$row = mysql_fetch_object($assistant);
+					$row = $this->db->query($query)->row();
+					if($row!=null){
+						$v_urai = $row->urai;
+					}else{
+						$v_urai = '';
+					}
+					// }
+
+					$query = "SELECT DISTINCT detail_akuntansi.urai FROM detail_akuntansi WHERE no_akuntansi='$no_bukti' AND dk='K'";
+					// $assistant = mysql_query($query);
+					// $num_assistant = mysql_num_rows($assistant);
+					// for ($i = 0; $i < $num_assistant; $i++) {
+					// 	$row = mysql_fetch_object($assistant);
+					$row = $this->db->query($query)->row();
+					if($row!=null){
+						$v_urai1 = $row->urai;
+					}else{
+						$v_urai1 = '';
+					}
+					// }
+
+
 					?>
-					<?php
-					$bukti = $this->input->get('nopembayaran');
-					$uraiain = $this->db->query("SELECT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='D'")->result_array();
-					?>
-					<?php
-					$no = 1;
-					if (!empty($uraiain)) {
-						foreach ($uraiain as $val) { ?>
-							<td><input type="text" value="<?= $val['urai'] ?>" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
-						<?php
+					<tr class="gradeA">
+						<td><?= $r['kode_jurnal'] ?></td>
+						<td><?= $r['nama_jurnal'] ?></td>
+						<td><input name="uraian<?= $no ?>" id="uraian<?= $no ?>" type="text" value="<?= $v_urai ?>" required></td>
+						<td>D</td>
+						<td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" type="number" value="<?= $v_TotalBayar ?>" readonly required></td>
+					</tr>
+					<tr class="gradeA">
+						<td><?php
+
+						$sql1 = "SELECT
+								jurnal.kode_jurnal,
+								jurnal.nama_jurnal,
+								(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
+								(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
+								jenispembayaran.Kodejnsbayar,
+								jenispembayaran.namajenisbayar,
+								detail_bayar_sekolah.nominalbayar,
+								pembayaran_sekolah.tglentri,
+								pembayaran_sekolah.NIS,
+								pembayaran_sekolah.Noreg,
+								sekolah.NamaSek,
+								sekolah.KodeSek,
+								jurusan_smk.NamaJurusan,
+								pembayaran_sekolah.Nopembayaran,
+								detail_bayar_sekolah.NodetailBayar,
+								siswa.Namacasis
+								FROM
+								pembayaran_sekolah
+								INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+								INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+								INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
+								INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
+								INNER JOIN jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
+								INNER JOIN siswa ON pembayaran_sekolah.Noreg = siswa.Noreg
+								WHERE pembayaran_sekolah.Nopembayaran='$no_bukti'
+								ORDER BY pembayaran_sekolah.Nopembayaran";
+						$r1 = $this->db->query($sql)->row();
+						// $hasil1 = mysql_query($sql1);
+						// while ($r1 = mysql_fetch_array($hasil1)) {
+						if($r1!=null){
+							echo $r1->kode_jurnal . "<br>";
+						}else{
+							echo "<br>";
+						}
+						// }
+						?></td>
+						<td><?php
+						$sql1 = "SELECT
+						jurnal.kode_jurnal,
+						jurnal.nama_jurnal,
+						(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
+						(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
+						jenispembayaran.Kodejnsbayar,
+						jenispembayaran.namajenisbayar,
+						detail_bayar_sekolah.nominalbayar,
+						pembayaran_sekolah.tglentri,
+						pembayaran_sekolah.NIS,
+						pembayaran_sekolah.Noreg,
+						sekolah.NamaSek,
+						sekolah.KodeSek,
+						jurusan_smk.NamaJurusan,
+						pembayaran_sekolah.Nopembayaran,
+						detail_bayar_sekolah.NodetailBayar,
+						siswa.Namacasis
+						FROM
+						pembayaran_sekolah
+						INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+						INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+						INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
+						INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
+						INNER JOIN jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
+						INNER JOIN siswa ON pembayaran_sekolah.Noreg = siswa.Noreg
+						WHERE pembayaran_sekolah.Nopembayaran='$no_bukti'
+						ORDER BY pembayaran_sekolah.Nopembayaran";
+						// $hasil1 = mysql_query($sql1);
+						// while ($r1 = mysql_fetch_array($hasil1)) {
+						$r1 = $this->db->query($sql)->row();
+						if($r1!=null){
+							echo $r1->nama_jurnal. "<br>";
+						}else{
+							echo "<br>";
+						}
+						// }
+						?></td>
+						<td><input name="uraian_2<?= $no ?>" id="uraian_2<?= $no ?>" type="text" value="<?= $v_urai1 ?>" required></td>
+						<td>K</td>
+						<td><input name="nilai_2<?= $no ?>" id="nilai_2<?= $no ?>" type="number" value="<?= $v_TotalBayar ?>" readonly required></td>
+					</tr>
+					<tr>
+						<td colspan="5" align="right">
+							<input name="kod<?= $no ?>" id="kod<?= $no ?>" type="hidden" value="<?= $r['kode_jurnal'] ?>">
+							<input name="nopem<?= $no ?>" id="nopem<?= $no ?>" type="hidden" value="<?= $v_pem ?>">
+							<input name="tgl<?= $no ?>" id="tgl<?= $no ?>" type="hidden" value="<?= $v_tglentri ?>">
+							<?php if ($v_Status == 1) { ?>
+								<input name="kdo<?= $no ?>" id="kdo<?= $no ?>" type="hidden" value="2">
+								<button class="btn btn-danger" type="submit" name="simpan1<?= $no ?>" id="simpan1<?= $no ?>" onClick="if(!(checkButton(this.value))) return false;">Batal</button>
+								<div id="tampilkandatanya1<?= $no ?>">
+								<?php } else { ?>
+									<input name="kdo<?= $no ?>" id="kdo<?= $no ?>" type="hidden" value="1">
+									<button class="btn btn-primary" type="submit" name="simpan1<?= $no ?>" id="simpan1<?= $no ?>" onClick="if(!(checkButton(this.value))) return false;">Simpan</button>
+									<div id="tampilkandatanya1<?= $no ?>">
+									<?php } ?>
+								</td>
+							</tr>
+							<script language="javascript">
+								var htmlobjek;
+								$(document).ready(function() {
+									$("#simpan1<?= $no; ?>").click(function() {
+										var nopem = $("#nopem<?= $no; ?>").val();
+										var tgl = $("#tgl<?= $no; ?>").val();
+										var uraian = $("#uraian<?= $no; ?>").val();
+										var uraian_2 = $("#uraian_2<?= $no; ?>").val();
+										var nilai = $("#nilai<?= $no; ?>").val();
+										var nilai_2 = $("#nilai_2<?= $no; ?>").val();
+										var kdo = $("#kdo<?= $no; ?>").val();
+										var kod = $("#kod<?= $no; ?>").val();
+										$("#simpan1<?= $no; ?>").hide();
+										$.ajax({
+											type: "POST",
+											url: "modul/aksi_POSI.php",
+											data: "nopem=" + nopem + "&tgl=" + tgl + "&nilai=" + nilai + "&kdo=" + kdo + "&kod=" + kod + "&nilai_2=" + nilai_2 + "&uraian=" + uraian + "&uraian_2=" + uraian_2,
+											cache: false,
+											success: function(data) {
+												$("#simpan1<?= $no; ?>").hide();
+												$("#tampilkandatanya1<?= $no; ?>").html(data);
+											}
+										});
+										return false;
+									});
+								});
+							</script>
+							<?php
+							$no++;
 						}
 						?>
-					<?php } else { ?>
-						<td><input type="text" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
-					<?php } ?>
-					<td>D (Debet)</td>
-					<?php
-					$nilai = $this->db->query("SELECT 
-						pembayaran_sekolah.Nopembayaran,
-						pembayaran_sekolah.NIS,
-						pembayaran_sekolah.Noreg,
-						pembayaran_sekolah.Kelas,
-						pembayaran_sekolah.tglentri,
-						pembayaran_sekolah.useridd,
-						pembayaran_sekolah.TotalBayar,
-						pembayaran_sekolah.kodesekolah,
-						pembayaran_sekolah.TA
-						FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($nilai as $nilaival) {
-					?>
-						<td><input type="text" id="nilai" readonly value="<?= $nilaival['TotalBayar'] ?>" name="nilai" placeholder="nilai" class="form-control" /></td>
-					<?php } ?>
-				</tr>
-				<tr>
-					<?php $datanil2 = $this->db->query("SELECT
-							jurnal.kode_jurnal,
-							jurnal.nama_jurnal,
-							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
-							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
-							jenispembayaran.Kodejnsbayar,
-							jenispembayaran.namajenisbayar,
-							detail_bayar_sekolah.nominalbayar,
-							pembayaran_sekolah.tglentri,
-							pembayaran_sekolah.NIS,
-							pembayaran_sekolah.Noreg,
-							tbps.DESCRTBPS,
-							tbps.KDTBPS,
-							tbjs.DESCRTBJS,
-							pembayaran_sekolah.Nopembayaran,
-							detail_bayar_sekolah.NodetailBayar,
-							mssiswa.NMSISWA
-							FROM
-							pembayaran_sekolah
-							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
-							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
-							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
-							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
-							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					foreach ($datanil2 as $value) { ?>
-						<td><?= $value['kode_jurnal'] ?></td>
-					<?php } ?>
+					</tbody>
+				</table>
+			</div>
 
-					<?php
-					$datanya = $this->db->query("SELECT
-							jurnal.kode_jurnal,
-							jurnal.nama_jurnal,
-							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
-							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
-							jenispembayaran.Kodejnsbayar,
-							jenispembayaran.namajenisbayar,
-							detail_bayar_sekolah.nominalbayar,
-							pembayaran_sekolah.tglentri,
-							pembayaran_sekolah.NIS,
-							pembayaran_sekolah.Noreg,
-							tbps.DESCRTBPS,
-							tbps.KDTBPS,
-							tbjs.DESCRTBJS,
-							pembayaran_sekolah.Nopembayaran,
-							detail_bayar_sekolah.NodetailBayar,
-							mssiswa.NMSISWA
-							FROM
-							pembayaran_sekolah
-							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
-							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
-							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
-							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
-							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					foreach ($datanya as $val) { ?>
-						<td><?= $val['nama_jurnal'] ?></td>
-					<?php
-					}
-					?>
-					<?php
-					$data3 = $this->db->query("SELECT DISTINCT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='K'")->result_array();
-					if (!empty($data3)) {
-						foreach ($data3 as $datanya) {
-					?>
-							<td><input type="text" id="urai2" value="<?= $datanya['urai'] ?>" name="urai2" placeholder="uraian" class="form-control" /></td>
-						<?php } ?>
-					<?php } else { ?>
-						<td><input type="text" id="urai2" name="urai2" placeholder="uraian" class="form-control" /></td>
-					<?php } ?>
-					<td>K (Kredit)</td>
-					<?php
-					$data4 = $this->db->query("SELECT 
-						pembayaran_sekolah.Nopembayaran,
-						pembayaran_sekolah.NIS,
-						pembayaran_sekolah.Noreg,
-						pembayaran_sekolah.Kelas,
-						pembayaran_sekolah.tglentri,
-						pembayaran_sekolah.useridd,
-						pembayaran_sekolah.TotalBayar,
-						pembayaran_sekolah.kodesekolah,
-						pembayaran_sekolah.TA
-						FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($data4 as $datanya) {
-					?>
-						<td><input type="number" id="nilai2" value="<?= $datanya['TotalBayar'] ?>" required readonly name="nilai2" placeholder="Nilai" class="form-control" /></td>
-					<?php } ?>
-				</tr>
-				<tr>
-					<?php $data5 = $this->db->query("SELECT
-							jurnal.kode_jurnal,
-							jurnal.nama_jurnal,
-							parameter.id
-							FROM
-							parameter 
-					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal where parameter.isdeleted != 1")->result_array();
-					$no = 1;
-					foreach ($data5 as $val) { ?>
-						<td><input name="kod" id="kod" type="hidden" value="<?= $val['kode_jurnal'] ?>"></td>
-					<?php } ?>
-					<?php $data6 = $this->db->query("SELECT 
-							pembayaran_sekolah.Nopembayaran,
-							pembayaran_sekolah.NIS,
-							pembayaran_sekolah.Noreg,
-							pembayaran_sekolah.Kelas,
-							pembayaran_sekolah.tglentri,
-							pembayaran_sekolah.useridd,
-							pembayaran_sekolah.TotalBayar,
-							pembayaran_sekolah.kodesekolah,
-							pembayaran_sekolah.TA
-							FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($data6 as $data) { ?>
-						<td><input name="nopem" id="nopem" type="hidden" value="<?= $data['Nopembayaran'] ?>"></td>
-					<?php } ?>
-					<td></td>
-					<td></td>
-					<?php
-					$status = $this->db->query("SELECT COUNT(*)AS n,urai FROM akuntansi WHERE bukti='$bukti'")->result_array();
-					if ($status[0]['n'] == 1) { ?>
-						<td style="text-align: right">
-							<input name="kdo" id="kdo" type="hidden" value="2">
-							<button class="btn btn-xs btn-danger" id="simpan1" title="">
-								Batal
-							</button>
-							<div id="tampilkandatanya1">
-						</td>
-					<?php } else { ?>
-						<td style="text-align: right">
-							<input name="kdo" id="kdo" type="hidden" value="1">
-							<button class="btn btn-xs btn-success" id="simpan1" title="">
-								Simpan
-							</button>
-							<div id="tampilkandatanya1">
-						</td>
-					<?php } ?>
-				</tr>
-			</tbody>
-	</table>
-</div>
-<?php
-		}
-?>
-<script type="text/javascript">
-	$(document).ready(function() {
+			<script type="text/javascript">
+				$(document).ready(function() {
 		// show_data();
 		$('#datatable_tabletools').DataTable();
 		$("#tahun").change(function() {
