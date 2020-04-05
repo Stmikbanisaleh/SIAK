@@ -196,9 +196,9 @@
 							pembayaran_sekolah.tglentri,
 							pembayaran_sekolah.NIS,
 							pembayaran_sekolah.Noreg,
-							sekolah.NamaSek,
-							sekolah.KodeSek,
-							jurusan.NamaJurusan,
+							tbps.DESCRTBPS,
+							tbps.KDTBPS,
+							tbjs.DESCRTBJS,
 							pembayaran_sekolah.Nopembayaran,
 							detail_bayar_sekolah.NodetailBayar,
 							mssiswa.NMSISWA
@@ -207,8 +207,8 @@
 							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
 							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
 							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-							INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
-							INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan
+							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
 							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
 							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
 							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
@@ -228,9 +228,9 @@
 							pembayaran_sekolah.tglentri,
 							pembayaran_sekolah.NIS,
 							pembayaran_sekolah.Noreg,
-							sekolah.NamaSek,
-							sekolah.KodeSek,
-							jurusan.NamaJurusan,
+							tbps.DESCRTBPS,
+							tbps.KDTBPS,
+							tbjs.DESCRTBJS,
 							pembayaran_sekolah.Nopembayaran,
 							detail_bayar_sekolah.NodetailBayar,
 							mssiswa.NMSISWA
@@ -239,8 +239,8 @@
 							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
 							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
 							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-							INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
-							INNER JOIN jurusan ON sekolah.Jurusan = jurusan.Kodejurusan
+							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
 							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
 							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
 							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();

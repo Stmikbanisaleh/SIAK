@@ -63,17 +63,17 @@ detail_bayar_sekolah.nominalbayar,
 jenispembayaran.namajenisbayar,
 jurnal.kode_jurnal,
 pembayaran_sekolah.Nopembayaran,
-sekolah.NamaSek,
-jurusan_smk.NamaJurusan
+tbps.DESCRTBPS,
+tbjs.DESCRTBJS
 FROM
 pembayaran_sekolah
 INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
 INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
 INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
-INNER JOIN jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
+INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
 WHERE tglentri between '$a1' AND '$a2'
-ORDER BY tglentri,NamaJurusan
+ORDER BY tglentri
 ";
 $myrekening = $this->model_laporan->view_byquery($sql)->result_array();
     $no = 1;
@@ -86,7 +86,7 @@ $myrekening = $this->model_laporan->view_byquery($sql)->result_array();
         <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['kode_jurnal']; ?></th>
         <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['namajenisbayar']; ?></th>
         <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo date('d-m-Y', strtotime($r['tglentri'])); ?></th>
-        <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['NamaSek']; ?>-<?php echo $r['NamaJurusan']; ?></th>
+        <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?php echo $r['DESCRTBPS']; ?>-<?php echo $r['DESCRTBJS']; ?></th>
         <th align="left"><span style="font-family:Rockwell;font-size: 10px;">Rp. <?php echo number_format($r['nominalbayar']); ?></th>
       </tr>
     <?php
