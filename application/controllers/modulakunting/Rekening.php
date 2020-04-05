@@ -16,6 +16,18 @@ class Rekening extends CI_Controller {
         $this->template->load('templateakunting', $data); //Display Page
     }
 
+    public function delete()
+    {
+        $data_id = array(
+            'no_jurnal'  => $this->input->post('id')
+        );
+        $data = array(
+            'isdeleted'  => 1,
+        );
+        $action = $this->model_rekening->update($data_id, $data, 'jurnal');
+        echo json_encode($action);
+    }
+
 	public function index() {
         $jurnal_jenisrek = array(
             'status'  => 7,

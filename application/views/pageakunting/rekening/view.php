@@ -415,15 +415,15 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulakunting/pengeluaran/delete') ?>",
+					url: "<?php echo base_url('modulakunting/rekening/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
 						id: id,
 					},
 					success: function(data) {
-						show_data();
 						swalDeleteSuccess();
+						show_data();
 					}
 				});
 			}
@@ -474,7 +474,7 @@
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].no_jurnal + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
-						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].no_junral + '">' +
+						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].no_jurnal + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
 						'</td>' +
