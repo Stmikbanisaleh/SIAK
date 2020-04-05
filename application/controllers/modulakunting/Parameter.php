@@ -6,8 +6,12 @@ class Parameter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('akunting/model_parameter');
-		if ($this->session->userdata('username') == NULL && $this->session->userdata('level') != 'AKUNTING') {
-			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+		if (
+            empty($this->session->userdata('username_akunting'))
+            && empty($this->session->userdata('nip'))
+            && $this->session->userdata('level') != 'akunting'
+        ) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulakunting/login');
         }
 	}

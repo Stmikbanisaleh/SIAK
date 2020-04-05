@@ -33,7 +33,7 @@ class Login extends CI_Controller
 			$data = $my_data->result_array();
 			foreach ($data as $value) {
 				$data = [
-					'username' => $value['username'],
+					'username_akunting' => $value['username'],
                     'level' => $value['level'],
 					'nip' => $value['nip'],
 				];
