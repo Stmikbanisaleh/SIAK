@@ -135,7 +135,13 @@
 			<tbody>
 				<?php
 				if (empty($this->input->get('tahun'))) {
-					$sql = "";
+					$sql = "SELECT
+					jurnal.kode_jurnal,
+					jurnal.nama_jurnal,
+					parameter.id
+					FROM
+					parameter
+					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal and parameter.no_jurnal = 'nothing'";
 				} else {
 					$sql = "SELECT
 					jurnal.kode_jurnal,
@@ -242,20 +248,20 @@
 								pembayaran_sekolah.tglentri,
 								pembayaran_sekolah.NIS,
 								pembayaran_sekolah.Noreg,
-								sekolah.NamaSek,
-								sekolah.KodeSek,
-								jurusan_smk.NamaJurusan,
+								tbps.DESCRTBPS,
+								tbps.KDTBPS,
+								tbjs.DESCRTBJS,
 								pembayaran_sekolah.Nopembayaran,
 								detail_bayar_sekolah.NodetailBayar,
-								siswa.Namacasis
+								mssiswa.NMSISWA
 								FROM
 								pembayaran_sekolah
 								INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
 								INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
 								INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-								INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
-								INNER JOIN jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
-								INNER JOIN siswa ON pembayaran_sekolah.Noreg = siswa.Noreg
+								INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+								INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
+								INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
 								WHERE pembayaran_sekolah.Nopembayaran='$no_bukti'
 								ORDER BY pembayaran_sekolah.Nopembayaran";
 						$r1 = $this->db->query($sql)->row();
@@ -270,32 +276,32 @@
 						?></td>
 						<td><?php
 						$sql1 = "SELECT
-						jurnal.kode_jurnal,
-						jurnal.nama_jurnal,
-						(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
-						(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
-						jenispembayaran.Kodejnsbayar,
-						jenispembayaran.namajenisbayar,
-						detail_bayar_sekolah.nominalbayar,
-						pembayaran_sekolah.tglentri,
-						pembayaran_sekolah.NIS,
-						pembayaran_sekolah.Noreg,
-						sekolah.NamaSek,
-						sekolah.KodeSek,
-						jurusan_smk.NamaJurusan,
-						pembayaran_sekolah.Nopembayaran,
-						detail_bayar_sekolah.NodetailBayar,
-						siswa.Namacasis
-						FROM
-						pembayaran_sekolah
-						INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-						INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-						INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-						INNER JOIN sekolah ON pembayaran_sekolah.kodesekolah = sekolah.KodeSek
-						INNER JOIN jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
-						INNER JOIN siswa ON pembayaran_sekolah.Noreg = siswa.Noreg
-						WHERE pembayaran_sekolah.Nopembayaran='$no_bukti'
-						ORDER BY pembayaran_sekolah.Nopembayaran";
+							jurnal.kode_jurnal,
+							jurnal.nama_jurnal,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
+							jenispembayaran.Kodejnsbayar,
+							jenispembayaran.namajenisbayar,
+							detail_bayar_sekolah.nominalbayar,
+							pembayaran_sekolah.tglentri,
+							pembayaran_sekolah.NIS,
+							pembayaran_sekolah.Noreg,
+							tbps.DESCRTBPS,
+							tbps.KDTBPS,
+							tbjs.DESCRTBJS,
+							pembayaran_sekolah.Nopembayaran,
+							detail_bayar_sekolah.NodetailBayar,
+							mssiswa.NMSISWA
+							FROM
+							pembayaran_sekolah
+							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
+							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
+							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
+							WHERE pembayaran_sekolah.Nopembayaran='$no_bukti'
+							ORDER BY pembayaran_sekolah.Nopembayaran";
 						// $hasil1 = mysql_query($sql1);
 						// while ($r1 = mysql_fetch_array($hasil1)) {
 						$r1 = $this->db->query($sql)->row();
@@ -326,7 +332,7 @@
 									<?php } ?>
 								</td>
 							</tr>
-							<script language="javascript">
+							<!-- <script language="javascript">
 								var htmlobjek;
 								$(document).ready(function() {
 									$("#simpan1<?= $no; ?>").click(function() {
@@ -352,7 +358,7 @@
 										return false;
 									});
 								});
-							</script>
+							</script> -->
 							<?php
 							$no++;
 						}

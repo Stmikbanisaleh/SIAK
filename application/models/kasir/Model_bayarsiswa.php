@@ -10,7 +10,7 @@ class Model_bayarsiswa extends CI_model
     }
 
     public function view_tagihan($siswa, $kelas, $thnakad){
-        return ("SELECT *,
+        return $this->db->query("SELECT *,
                                     FORMAT(mq.nom_spp-mq.byr_spp, 0) blmbyr_spp,
                                     FORMAT(mq.nom_gdg-mq.byr_gdg, 0) blmbyr_gdg,
                                     FORMAT(mq.nom_srg-mq.byr_srg, 0) blmbyr_srg,
