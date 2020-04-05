@@ -7,12 +7,12 @@ class Surattagihan extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('akunting/model_surattagihan');
-        $this->load->library('pdf');
         $this->load->library('mainfunction');
-        // if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-        //     $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-        //     redirect('modulkasir/login');
-        // }
+        $this->load->library('Configfunction');
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulkasir/dashboard/login');
+        }
     }
 
 	function render_view($data) {
@@ -37,11 +37,16 @@ class Surattagihan extends CI_Controller {
         $nis = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');  
         $my_pembsiswa = $this->model_surattagihan->view_siswatg($nis, $kelas)->row();
-        // print_r($my_pembsiswa);exit;
+        $thnakad = $this->configfunction->getthnakd();
+        $this->load->library('pdf');
+
+        $setting = $this->model_surattagihan->viewOrdering('sys_config','id','asc')->row();
         if($my_pembsiswa!=null){
             $data = array(
                 'mydata'      => $my_pembsiswa,
-                'tgl'         => $tgl
+                'tgl'         => $tgl,
+                'setting'     => $setting,
+                'thnakad'     => $thnakad[0]['THNAKAD']
 
             );
             $this->pdf->setPaper('FOLIO', 'potrait');
