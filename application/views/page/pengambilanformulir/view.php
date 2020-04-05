@@ -531,9 +531,9 @@
                         '<td>' + data[i].NamaSek + '-' + data[i].NamaJurusan + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
                         '<td >' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Noreg + '">' +
+                        '<a  href="<?php echo base_url() ?>pengambilanformulir/cetak/'+ data[i].Noreg +'" class="btn btn-xs btn-info" target="_blank" title="Print" data-id="' + data[i].Noreg + '">' +
                         '<i class="ace-icon fa fa-print bigger-120"></i>' +
-                        '</button> &nbsp' +
+                        '</a> &nbsp' +
                         '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Noreg + '">' +
                         '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                         '</button>' +

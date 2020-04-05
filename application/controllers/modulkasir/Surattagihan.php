@@ -33,7 +33,6 @@ class Surattagihan extends CI_Controller {
     }
 
     public function laporan_pdf(){
-        $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
         $nis = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');  
         $my_pembsiswa = $this->model_surattagihan->view_siswatg($nis, $kelas)->row();

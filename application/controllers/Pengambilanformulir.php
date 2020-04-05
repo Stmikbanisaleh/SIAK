@@ -114,4 +114,19 @@ class Pengambilanformulir extends CI_Controller
             }
         }
     }
+
+    public function cetak()
+    {
+        // $this->load->library('Configfunction');
+        // $tampil_thnakad = $this->configfunction->getthnakd();
+        // $mysekolah = $this->model_pengambilanformulir->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
+        // $data = array(
+        //     'page_content'     => 'pengambilanformulir/view',
+        //     'ribbon'         => '<li class="active">Dashboard</li><li>Master Pengambilan Formulir</li>',
+        //     'page_name'     => 'Master Pengambilan Formulir',
+        //     'js'             => 'js_file',
+        //     'mysekolah'     => $mysekolah,
+        // );
+        $this->load->view('page/pengambilanformulir/print'); //Memanggil function render_view
+    }
 }
