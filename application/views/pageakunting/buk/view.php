@@ -189,7 +189,22 @@
 						var i = 0;
 						var no = 1;
 						if (data.length == 0) {
-
+							var a = $('#show_data').html('<tr>'+
+															'<td></td>'+
+															'<td></td>'+
+															'<td></td>'+
+															'<td></td>'+
+															'<td></td>'+
+															'<td></td>'+
+														'</tr>');
+							var b = $("#table_id").dataTable().fnDestroy();
+								$('#table_id').dataTable({
+									"bPaginate": true,
+									"bLengthChange": false,
+									"bFilter": true,
+									"bInfo": false,
+									"bAutoWidth": false
+								});
 						} else {
 							for (i = 0; i < data.length; i++) {
 								if(data[i].posting=='Y'){

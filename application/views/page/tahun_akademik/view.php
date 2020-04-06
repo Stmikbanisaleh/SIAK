@@ -46,12 +46,12 @@
                                     <input type="text" maxlength="9"  id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
-                                <div class="col-sm-6">
-                                    <input type="text"  maxlength="3"  id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
-                                </div>
-                            </div>
+                                <div class ="col-sm-6">-->
+                                    <input type="hidden"  maxlength="3"  id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
+                               <!--  </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
                                 <div class="col-sm-6">
@@ -119,12 +119,12 @@
                                     <input type="text" id="e_tahun_akad" name="e_tahun_akad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
-                                </div>
-                            </div>
+                                <div class="col-sm-6"> -->
+                                    <input type="hidden" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
+                              <!--   </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
                                 <div class="col-sm-6">
@@ -182,7 +182,7 @@
             <th>Semester</th>
             <th>Tahun</th>
             <th>Tahun Akademik</th>
-            <th>UTS / UAS</th>
+            <!-- <th>UTS / UAS</th> -->
             <th>Indek</th>
             <th>Tahun Dapodik</th>
             <th>Kode Sekolah</th>
@@ -331,7 +331,7 @@
                         '<td class="text-left">' + data[i].SEMESTER + '</td>' +
                         '<td>' + data[i].TAHUN + '</td>' +
                         '<td class="text-right">' + data[i].THNAKAD + '</td>' +
-                        '<td>' + data[i].UTSUAS + '</td>' +
+                        // '<td>' + data[i].UTSUAS + '</td>' +
                         '<td class="text-right">' + data[i].INDEK + '</td>' +
                         '<td>' + data[i].THNDAPODIK + '</td>' +
                         '<td class="text-right">' + data[i].KDSEKOLAH + '</td>' +

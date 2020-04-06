@@ -367,7 +367,7 @@ if ($("#formImport").length > 0) {
                 cache: false,
                 async: false,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#my-modal2').modal('hide');
                     if (data == 1 || data == true) {
                         document.getElementById("formImport").reset();

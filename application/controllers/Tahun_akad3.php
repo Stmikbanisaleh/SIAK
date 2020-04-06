@@ -34,7 +34,7 @@ class Tahun_akad3 extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-            $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk3', 'id', 'asc')->result();
+            $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk3', 'id', 'desc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
