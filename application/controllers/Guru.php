@@ -20,7 +20,7 @@ class Guru extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_guru->view('tbps')->result_array();
+			$my_data = $this->model_guru->view('sekolah')->result_array();
 			$myagama = $this->model_guru->view('tbagama')->result_array();
 			$mypendidikan = $this->model_guru->view('mspendidikan')->result_array();
 			$data = array(

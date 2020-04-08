@@ -60,6 +60,16 @@
             <th>UAS</th>
             <th>Action</th>
         </tr>
+    <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tbody>
     </thead>
     <?php
     if ($this->input->get('mapel')) {
@@ -93,11 +103,11 @@
                     <td><?= $value['NMKLSTRJDK']; ?></td>
                     <td><?= $value['JAM']; ?></td>
                     <td><?= $value['NMSISWA']; ?></td>
-                    <input name="id_krs" id="id_krs<?=$no?>" type="hidden"  value="<?=$value['id_krs']?>"/>
-					<input name="NMKLSTRJDK" id="NMKLSTRJDK<?=$no?>" type="hidden"  value="<?=$value['NMKLSTRJDK']?>"/>
-                    <input name="nis" id="nis<?=$no?>" type="hidden"  value="<?=$value['NOINDUK']?>"/>
-                    <input name="id_mapel" id="id_mapel<?=$no?>" type="hidden"  value="<?=$value['id_mapel']?>"/>
-                    <input name="idjadwal" id="idjadwal<?=$no?>" type="hidden"  value="<?=$value['id']?>"/>
+                    <input name="id_krs" id="id_krs<?= $no ?>" type="hidden" value="<?= $value['id_krs'] ?>" />
+                    <input name="NMKLSTRJDK" id="NMKLSTRJDK<?= $no ?>" type="hidden" value="<?= $value['NMKLSTRJDK'] ?>" />
+                    <input name="nis" id="nis<?= $no ?>" type="hidden" value="<?= $value['NOINDUK'] ?>" />
+                    <input name="id_mapel" id="id_mapel<?= $no ?>" type="hidden" value="<?= $value['id_mapel'] ?>" />
+                    <input name="idjadwal" id="idjadwal<?= $no ?>" type="hidden" value="<?= $value['id'] ?>" />
                     <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
                     <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" type="text" readonly value="<?= $value['UTSTRNIL'] ?>"></td>
                     <td><input name="nilaiuas<?= $no ?>" id="nilaiuas<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UASTRNIL'] ?>"></td>
@@ -122,8 +132,8 @@
                             var idnilai = $("#idnilai<?= $no ?>").val();
                             $.ajax({
                                 type: "POST",
-                                url:  '<?php echo site_url('modulguru/uas/simpannilai') ?>',
-                                data: "nilai="+nilai+"&nis="+nis+"&idjadwal="+idjadwal+"&id_krs="+id_krs+"&NMKLSTRJDK="+NMKLSTRJDK+"&id_mapel="+id_mapel+"&idnilai="+idnilai+"&nilaiuas="+uas,
+                                url: '<?php echo site_url('modulguru/uas/simpannilai') ?>',
+                                data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas,
                                 cache: false,
                                 success: function(data) {
                                     $("#pes<?= $no ?>").html("Tersimpan").show();
@@ -144,8 +154,8 @@
                         var idnilai = $("#idnilai<?= $no ?>").val();
                         $.ajax({
                             type: "POST",
-                            url:  '<?php echo site_url('modulguru/uas/simpannilai') ?>',
-                            data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai+"&nilaiuas="+uas,
+                            url: '<?php echo site_url('modulguru/uas/simpannilai') ?>',
+                            data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas,
                             cache: false,
                             success: function(data) {
                                 $("#pes<?= $no ?>").html("Tersimpan").show();
@@ -286,5 +296,4 @@
     $(document).ready(function() {
         $('#datatable_tabletools').DataTable();
     });
-
 </script>

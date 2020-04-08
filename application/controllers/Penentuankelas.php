@@ -149,6 +149,7 @@ class Penentuankelas extends CI_Controller
 
         $data = array(
             'Naikkelas'  => $this->input->post('id_Kelas_naik'),
+            'Kelas'  => $this->input->post('id_Kelas_naik'),
         );
         $where = array(
             'NIS'  => $this->input->post('noreg'),
@@ -165,6 +166,7 @@ class Penentuankelas extends CI_Controller
 
         $data = array(
             'Naikkelas'  => $this->input->post('id_kelas'),
+            'Kelas'  => $this->input->post('id_kelas'),
         );
         $where = array(
             'NIS'  => $this->input->post('noreg'),
@@ -187,6 +189,7 @@ class Penentuankelas extends CI_Controller
         DATE_FORMAT(tglhr,'%d-%m-%Y')tgl_lahir
         FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps'";
         $hasil = $this->db->query($sql)->result_array();
+        // print_r($this->db->last_query());exit;
         if($this->db->query($sql)->num_rows()!=1){
             echo json_encode(401);
         }

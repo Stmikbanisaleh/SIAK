@@ -278,7 +278,7 @@
                                     '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_naik" title="Naik" data-id_kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
                                     '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
                                     '</button> &nbsp' +
-                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas + '" data-noreg="' + data[i].NOINDUK + '">' +
+                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas_turun + '" data-noreg="' + data[i].NOINDUK + '">' +
                                     '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
                                     '</button>';
                                 } else {
@@ -288,7 +288,7 @@
                                     '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_naik" title="Naik" data-id_kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
                                     '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
                                     '</button> &nbsp' +
-                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas + '" data-noreg="' + data[i].NOINDUK + '">' +
+                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas_turun + '" data-noreg="' + data[i].NOINDUK + '">' +
                                     '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
                                     '</button>';
                                 }

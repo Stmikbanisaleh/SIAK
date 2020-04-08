@@ -51,7 +51,7 @@
 									<select class="form-control" name="programsekolah" id="programsekolah">
 										<option value=>--Pilih Program --</option>
 										<?php foreach ($myps as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -113,12 +113,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah</label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_programsekolah" id="e_programsekolah">
 										<option value=>--Pilih Program --</option>
 										<?php foreach ($myps as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS'] ?></option>
 										<?php } ?>
 									</select>
 								</div>

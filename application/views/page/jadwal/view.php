@@ -19,7 +19,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -51,7 +51,7 @@
                                     <select class="form-control" name="programsekolahs" id="programsekolahs">
                                         <option value="0">Status</option>
                                         <?php foreach ($myps as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -97,7 +97,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Kelas"></textarea>
+                                    <select class="form-control" name="kelas" id="kelas">
+                                        <option value="0">-- Status --</option>
+                                        <?php foreach ($mykelas as $value) { ?>
+                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -242,10 +247,8 @@
                             swalInputSuccess();
                             show_data();
                             $('#modalTambah').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Nama Jabatan Sudah digunakan!');
                         } else {
-                            swalInputFailed();
+                            swalIdDouble('Tidak ada Tahun akademik , Harap input dahulu');
                         }
                     }
                 });

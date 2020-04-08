@@ -8,6 +8,11 @@ class Model_guru extends CI_model
         return $this->db->get($table);
     }
 
+    public function getsekolah()
+    {
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
+    }
+
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
@@ -45,7 +50,7 @@ class Model_guru extends CI_model
         return  $this->db->query('select * from tbguru a 
         left join tbagama b on a.GuruAgama = b.KDTBAGAMA
         left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
+        left join sekolah d on a.GuruBase = d.id
         where a.isdeleted != 1
         ');
     }

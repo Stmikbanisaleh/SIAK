@@ -15,7 +15,7 @@ class Kurikulum extends CI_Controller {
     }
 
 	public function index() {
-        $myps = $this->model_kurikulum->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
+        $myps = $this->model_kurikulum->getsekolah()->result_array();
         $data = array(
                     'page_content'  => 'kurikulum/view',
                     'ribbon'        => '<li class="active">Master Kurikulum</li>',

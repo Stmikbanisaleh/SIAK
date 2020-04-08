@@ -60,6 +60,15 @@
             <th>Action</th>
         </tr>
     </thead>
+    <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tbody>
     <?php
     if ($this->input->get('mapel')) {
         $mapel = $this->input->get('mapel');
@@ -91,11 +100,11 @@
                     <td><?= $value['NMKLSTRJDK']; ?></td>
                     <td><?= $value['JAM']; ?></td>
                     <td><?= $value['NMSISWA']; ?></td>
-                    <input name="id_krs" id="id_krs<?=$no?>" type="hidden"  value="<?=$value['id_krs']?>"/>
-					<input name="NMKLSTRJDK" id="NMKLSTRJDK<?=$no?>" type="hidden"  value="<?=$value['NMKLSTRJDK']?>"/>
-                    <input name="nis" id="nis<?=$no?>" type="hidden"  value="<?=$value['NOINDUK']?>"/>
-                    <input name="id_mapel" id="id_mapel<?=$no?>" type="hidden"  value="<?=$value['id_mapel']?>"/>
-                    <input name="idjadwal" id="idjadwal<?=$no?>" type="hidden"  value="<?=$value['id']?>"/>
+                    <input name="id_krs" id="id_krs<?= $no ?>" type="hidden" value="<?= $value['id_krs'] ?>" />
+                    <input name="NMKLSTRJDK" id="NMKLSTRJDK<?= $no ?>" type="hidden" value="<?= $value['NMKLSTRJDK'] ?>" />
+                    <input name="nis" id="nis<?= $no ?>" type="hidden" value="<?= $value['NOINDUK'] ?>" />
+                    <input name="id_mapel" id="id_mapel<?= $no ?>" type="hidden" value="<?= $value['id_mapel'] ?>" />
+                    <input name="idjadwal" id="idjadwal<?= $no ?>" type="hidden" value="<?= $value['id'] ?>" />
                     <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
                     <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
                     <td style="text-align:center">
@@ -118,8 +127,8 @@
                             var idnilai = $("#idnilai<?= $no ?>").val();
                             $.ajax({
                                 type: "POST",
-                                url:  '<?php echo site_url('modulguru/uts/simpannilai') ?>',
-                                data: "nilai="+nilai+"&nis="+nis+"&idjadwal="+idjadwal+"&id_krs="+id_krs+"&NMKLSTRJDK="+NMKLSTRJDK+"&id_mapel="+id_mapel+"&idnilai="+idnilai,
+                                url: '<?php echo site_url('modulguru/uts/simpannilai') ?>',
+                                data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai,
                                 cache: false,
                                 success: function(data) {
                                     $("#pes<?= $no ?>").html("Tersimpan").show();
@@ -139,7 +148,7 @@
                         var idnilai = $("#idnilai<?= $no ?>").val();
                         $.ajax({
                             type: "POST",
-                            url:  '<?php echo site_url('modulguru/uts/simpannilai') ?>',
+                            url: '<?php echo site_url('modulguru/uts/simpannilai') ?>',
                             data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai,
                             cache: false,
                             success: function(data) {

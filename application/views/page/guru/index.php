@@ -108,7 +108,7 @@
 									<select class="form-control" name="program_sekolah" id="program_sekolah">
 										<option value="">-- Pilih Program --</option>
 										<?php foreach ($myprogram as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -252,7 +252,7 @@
 									<select class="form-control" name="e_program_sekolah" id="e_program_sekolah">
 										<option value="">-- Pilih Program --</option>
 										<?php foreach ($myprogram as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -633,7 +633,7 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td>' + data[i].DESCRTBPS + '</td>' +
+						'<td class="text-center">' + data[i].deskripsi + '</td>' +
 						'<td>' + data[i].IdGuru + '</td>' +
 						'<td>' + data[i].GuruNoDapodik + '</td>' +
 						'<td>' + data[i].GuruNama + '</td>' +

@@ -27,7 +27,9 @@ class Jadwal extends CI_Controller
     public function showguru()
     {
         $ps = $this->input->post('ps');
-        $data = array('GuruBase' => $ps);
+        $data = array('KDTBPS' => $ps);
+        $sekolah = $this->model_jadwal->viewWhereOrdering('tbps', $data, 'id', 'asc')->result_array();
+        $data = array('GuruBase' => $sekolah[0]['KDSK']);
         $my_data = $this->model_jadwal->viewWhereOrdering('tbguru', $data, 'id', 'asc')->result_array();
         echo "<option value='0'>--Pilih Guru --</option>";
         foreach ($my_data as $value) {
@@ -51,8 +53,9 @@ class Jadwal extends CI_Controller
         // $myguru = $this->model_jadwal->viewOrdering('tbguru', 'id', 'asc')->result_array();
         $myhari = $this->model_jadwal->viewOrdering('tbhari', 'id', 'asc')->result_array();
         $mytahun = $this->model_jadwal->gettahun()->result_array();
-        $myps = $this->model_jadwal->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
+        $myps = $this->model_jadwal->getsekolah()->result_array();
         $myruang = $this->model_jadwal->viewOrdering('msruang', 'ID', 'asc')->result_array();
+        $mykelas = $this->model_jadwal->viewOrdering('tbkelas', 'id_kelas', 'asc')->result_array();
         $mymapel = $this->model_jadwal->viewOrdering('mspelajaran', 'id_mapel', 'asc')->result_array();
 
         $data = array(
@@ -63,7 +66,8 @@ class Jadwal extends CI_Controller
             'myps'            => $myps,
             'myhari'        => $myhari,
             'myruang'        => $myruang,
-            'mymapel'       => $mymapel
+            'mymapel'       => $mymapel,
+            'mykelas'   => $mykelas
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -135,20 +139,25 @@ class Jadwal extends CI_Controller
     {
         $this->load->library('Configfunction');
         $tampil_thnakad = $this->configfunction->getthnakd();
-        $data = array(
-            'ps'  => $this->input->post('programsekolahs'),
-            'id_mapel'  => $this->input->post('mataajar'),
-            'id_ruang'  => $this->input->post('ruang'),
-            'id_guru'  => $this->input->post('guru'),
-            'hari'  => $this->input->post('hari'),
-            'jam'  => $this->input->post('jam'),
-            'nmklstrjdk'  => $this->input->post('kelas'),
-            'periode'  => $tampil_thnakad[0]['THNAKAD'],
-            'semester'  => $tampil_thnakad[0]['SEMESTER'],
-            'createdAt' => date('Y-m-d H:i:s'),
-        );
-        $action = $this->model_jadwal->insert($data, 'tbjadwal');
-        echo json_encode($action);
+        if(empty($tampil_thnakad)){
+            echo json_encode(400);
+        } else {
+            $data = array(
+                'ps'  => $this->input->post('programsekolahs'),
+                'id_mapel'  => $this->input->post('mataajar'),
+                'id_ruang'  => $this->input->post('ruang'),
+                'id_guru'  => $this->input->post('guru'),
+                'hari'  => $this->input->post('hari'),
+                'jam'  => $this->input->post('jam'),
+                'nmklstrjdk'  => $this->input->post('kelas'),
+                'periode'  => $tampil_thnakad[0]['THNAKAD'],
+                'semester'  => $tampil_thnakad[0]['SEMESTER'],
+                'createdAt' => date('Y-m-d H:i:s'),
+            );
+            $action = $this->model_jadwal->insert($data, 'tbjadwal');
+            echo json_encode($action);
+        }
+
     }
 
     public function update()
