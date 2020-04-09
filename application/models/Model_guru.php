@@ -47,7 +47,7 @@ class Model_guru extends CI_model
 
     public function view_guru()
     {
-        return  $this->db->query('select * from tbguru a 
+        return  $this->db->query('select a.*,b.*,c.*,d.deskripsi from tbguru a 
         left join tbagama b on a.GuruAgama = b.KDTBAGAMA
         left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
         left join sekolah d on a.GuruBase = d.id

@@ -9,6 +9,7 @@ class Siswa extends CI_Controller
         parent::__construct();
         $this->load->model('model_siswa');
         $this->load->model('model_guru');
+        error_reporting(0);
     }
 
     function render_view($data)

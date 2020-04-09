@@ -214,7 +214,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode </label>
 								<div class="col-sm-6">
 									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_IdGuru" required name="e_IdGuru" placeholder="Kode Guru" class="form-control" />
+									<input type="text" id="e_IdGuru" required name="e_IdGuru" readonly placeholder="Kode Guru" class="form-control" />
 								</div>
 							</div>
 

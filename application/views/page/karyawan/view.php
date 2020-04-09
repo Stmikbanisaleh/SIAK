@@ -86,7 +86,7 @@
                                     <select class="form-control" name="jabatan" id="jabatan">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($myjabatan as $value) { ?>
-                                            <option value=<?= $value['NAMAJABATAN'] ?>><?= $value['NAMAJABATAN'] ?></option>
+                                            <option value=<?= $value['ID'] ?>><?= $value['NAMAJABATAN'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

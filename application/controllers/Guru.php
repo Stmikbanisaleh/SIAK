@@ -122,7 +122,7 @@ class Guru extends CI_Controller
 						'GuruTelp' => $value[3],
 						'GuruAlamat' => $value[4],
 						'GuruBase' => $value[5],
-						// 'GuruWaktu' => $validated_data['GuruWaktu'],
+						'password' => hash('sha512',md5($value[0])),
 						'GuruJenisKelamin' => $value[6],
 						'GuruPendidikanAkhir' => $value[7],
 						'GuruAgama' => $value[8],
@@ -176,6 +176,7 @@ class Guru extends CI_Controller
 
 			$my_data = $this->model_guru->view_guru('tbguru')->result_array();
 			echo json_encode($my_data);
+
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

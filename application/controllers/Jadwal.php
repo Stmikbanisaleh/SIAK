@@ -8,6 +8,14 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_jadwal');
+        if (
+            empty($this->session->userdata('username'))
+            && empty($this->session->userdata('nama'))
+            && $this->session->userdata('level') != 'operator'
+        ) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('modulakunting/login');
+        }
     }
 
     function render_view($data)
