@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam Ke </label>
                                 <div class="col-sm-3">
                                     <input type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
                                 </div>
@@ -190,7 +190,7 @@
             <th>Mata Ajar</th>
             <th>Ruang</th>
             <th>Kelas</th>
-            <th>Jam</th>
+            <th>Jam Ke</th>
             <th>Program Sekolah</th>
             <th>Action</th>
         </tr>
