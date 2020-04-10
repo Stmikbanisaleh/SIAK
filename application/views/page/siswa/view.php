@@ -25,10 +25,7 @@
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="ta" id="ta">
-                <option value=>--Pilih Program --</option>
-                <?php foreach ($myta as $value) { ?>
-                    <option value=<?= $value['thn'] ?>><?= $value['ThnAkademik'] ?></option>
-                <?php } ?>
+                <option value="0">-- Status --</option>
             </select>
         </div>
         <div class="col-xs-1">
@@ -434,7 +431,7 @@
                                 '<td>' + data[i].TelpRumah + '</td>' +
                                 '<td>' + data[i].TelpHp + '</td>' +
                                 '<td class="text-center">' +
-                                '<a href="<?=base_url()?>siswa/tampil_byid?id='+data[i].Noreg + '" class="btn btn-xs btn-info" title="Edit">' +
+                                '<a href="<?= base_url() ?>siswa/tampil_byid?id=' + data[i].Noreg + '" class="btn btn-xs btn-info" title="Edit">' +
                                 '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                                 '</a> &nbsp' +
                                 '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Noreg + '">' +
@@ -563,6 +560,18 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_id').DataTable();
+        $("#sekolah").change(function() {
+            var ps = $('#sekolah').val();
+            $.ajax({
+                type: "POST",
+                url: "siswa/showta",
+                data: {
+                    ps: ps
+                }
+            }).done(function(data) {
+                $("#ta").html(data);
+            });
+        });
     });
     //function show all Data
     function show_data() {

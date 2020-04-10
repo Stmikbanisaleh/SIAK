@@ -15,6 +15,13 @@ class Model_tahun_akademik extends CI_model
         return $this->db->get($table);
     }
 
+    public function viewjoin($table)
+    {
+        
+        return $this->db->query("select a.*,b.DESCRTBPS,c.DESCRTBJS from $table a join tbps b on a.KDSEKOLAH = b.KDTBPS 
+        join tbjs c on b.KDTBJS = c.KDTBJS order by a.id desc");
+    }
+
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);

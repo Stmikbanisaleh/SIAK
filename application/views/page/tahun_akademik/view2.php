@@ -334,7 +334,7 @@
                         // '<td>' + data[i].UTSUAS + '</td>' +
                         '<td class="text-right">' + data[i].INDEK + '</td>' +
                         '<td>' + data[i].THNDAPODIK + '</td>' +
-                        '<td class="text-right">' + data[i].KDSEKOLAH + '</td>' +
+                        '<td class="text-left">'+ data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '-' + data[i].KDSEKOLAH + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +

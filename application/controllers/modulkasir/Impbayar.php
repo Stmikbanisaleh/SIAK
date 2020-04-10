@@ -9,9 +9,9 @@ class Impbayar extends CI_Controller
 		parent::__construct();
 		$this->load->model('kasir/model_imppembayaran');
 		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('modulkasir/dashboard/login');
-        }
+			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+			redirect('modulkasir/dashboard/login');
+		}
 	}
 
 	function render_view($data)
@@ -73,8 +73,14 @@ class Impbayar extends CI_Controller
 							'TA' => $value[7],
 							'createdAt'	=> date('Y-m-d H:i:s')
 						);
+						// $this->db->trans_begin();
 						$result = $this->model_imppembayaran->insert($arrayCustomerQuote, 'pembayaran_sekolah');
 						$id = $this->db->insert_id();
+						// if ($this->db->trans_status() === FALSE) {
+						// 	$this->db->trans_rollback();
+						// } else {
+						// 	$this->db->trans_commit();
+						// }
 						if ($id) {
 							$arrayCustomerQuotedetail = array(
 								'Nopembayaran' => $id,
@@ -83,7 +89,13 @@ class Impbayar extends CI_Controller
 								'nominalbayar' => $value[9],
 								'createdAt'	=> date('Y-m-d H:i:s')
 							);
+							// $this->db->trans_begin();
 							$result = $this->model_imppembayaran->insert($arrayCustomerQuotedetail, 'detail_bayar_sekolah');
+							// if ($this->db->trans_status() === FALSE) {
+							// 	$this->db->trans_rollback();
+							// } else {
+							// 	$this->db->trans_commit();
+							// }
 						}
 					}
 				}

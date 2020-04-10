@@ -3,10 +3,10 @@
 class Model_siswa extends CI_model
 {
 
-    public function getta()
+    public function getta($ps)
     {
         // return  $this->db->query("SELECT  *,LEFT(tahunakademik.ThnAkademik,4)as thn FROM tahunakademik ORDER BY IdTA DESC"); --Last USe Remake By Dedi 29 Mar 2020
-        return  $this->db->query("SELECT *,LEFT(tbakadmk2.TAHUN,4)AS thn, THNAKAD ThnAkademik, ID idTA FROM tbakadmk2 ORDER BY TAHUN DESC");
+        return  $this->db->query("SELECT THNAKAD as ThnAkademik, ID,SEMESTER,TAHUN as thn, INDEK FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2) and KDSEKOLAH = '$ps'");
     }
 
     public function getsiswa($noreg, $ta, $sekolah)
@@ -35,7 +35,7 @@ class Model_siswa extends CI_model
         tarif_berlaku.idtarif,
         kodesekolah,
         (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=tarif_berlaku.kodesekolah)AS sekolah,
-        (SELECT (SELECT y.KDTBJS FROM tbjs y WHERE y.KDTBJS=z.KDTBJS) FROM tbps z WHERE z.KDTBPS=tarif_berlaku.kodesekolah)AS NamaJurusan,
+        (SELECT (SELECT y.DESCRTBJS FROM tbjs y WHERE y.KDTBJS=z.KDTBJS) FROM tbps z WHERE z.KDTBPS=tarif_berlaku.kodesekolah)AS NamaJurusan,
         tarif_berlaku.Kodejnsbayar,
         tarif_berlaku.ThnMasuk,
         tarif_berlaku.Nominal,

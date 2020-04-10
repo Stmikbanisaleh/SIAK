@@ -35,7 +35,7 @@ class Tahun_akad2 extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk2', 'id', 'desc')->result();
+            $my_data = $this->model_tahun_akademik->viewjoin('tbakadmk2')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
