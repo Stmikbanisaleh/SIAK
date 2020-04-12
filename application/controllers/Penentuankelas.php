@@ -187,7 +187,7 @@ class Penentuankelas extends CI_Controller
         (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS= siswa.PS)AS v_sekolah,
         (SELECT z.Naikkelas FROM baginaikkelas z WHERE z.NIS=siswa.NOINDUK ORDER BY idbagiNaikKelas DESC LIMIT 1)AS Naikkelas,
         DATE_FORMAT(tglhr,'%d-%m-%Y')tgl_lahir
-        FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps' AND siswa.NOINDUK = '192001003'";
+        FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps'";
         $hasil = $this->db->query($sql)->result_array();
         // print_r($this->db->last_query());exit;
         if($this->db->query($sql)->num_rows() < 1){
@@ -263,7 +263,6 @@ class Penentuankelas extends CI_Controller
                     'Thnmasuk'  => $rl['TAHUN'],
                     'Kelas'  => $vt_kelas,
                     'Kodesekolah'  => $rl['PS'],
-                    'Ruangan'  => '404',
                     'TA'  => $ThnAkademik,
                     'tglentri'  => date('Y-m-d H:i:s'),
                     'userentri'  => $this->session->userdata('nip'),
