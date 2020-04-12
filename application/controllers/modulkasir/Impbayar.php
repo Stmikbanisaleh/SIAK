@@ -70,7 +70,7 @@ class Impbayar extends CI_Controller
 							'TotalBayar' => $value[9],
 							'kodesekolah' => $value[5],
 							// 'idtarif' => $value[8],
-							'TA' => $value[7],
+							'TA' => $value[6],
 							'createdAt'	=> date('Y-m-d H:i:s')
 						);
 						// $this->db->trans_begin();

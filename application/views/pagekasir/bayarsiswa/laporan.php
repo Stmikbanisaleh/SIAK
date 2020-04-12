@@ -3,19 +3,19 @@ $id = $this->input->get('noreg');
 $nopem = $this->input->get('no');
 $kelas = $this->input->get('kls');
 $row = $this->db->query("SELECT
-                          siswa.NOINDUK,
-                          calon_siswa.Noreg,
-                          calon_siswa.Namacasis,
-                          sekolah.NamaSek,
-                          calon_siswa.thnmasuk,
-                          calon_siswa.kodesekolah,
+                          mssiswa.NOINDUK,
+                          mssiswa.NOREG,
+                          mssiswa.NMSISWA,
+                          tbps.DESCR,
+                          mssiswa.TAHUN,
+                          mssiswa.PS,
                           jurusan_smk.NamaJurusan
                           FROM
-                          calon_siswa
+                          mssiswa
                           INNER JOIN sekolah ON calon_siswa.kodesekolah = sekolah.KodeSek
-                          LEFT JOIN mssiswa siswa ON calon_siswa.Noreg = siswa.Noreg
+                          LEFT JOIN mssiswa siswa ON mssiswa.NOREG = mssiswa.NOREG
                           INNER JOIN jurusan jurusan_smk ON sekolah.Jurusan = jurusan_smk.Kodejurusan
-                          WHERE calon_siswa.Noreg='$id' OR  siswa.NOINDUK='$id'")->row();
+                          WHERE mssiswa.NOREG='$id' OR  mssiswa.NOINDUK='$id'")->row();
 
   $v_NIS = $row->NOINDUK;
   $v_NamaSek = $row->NamaSek;
@@ -34,8 +34,8 @@ $row = $this->db->query("SELECT * FROM pembayaran_sekolah WHERE NIS='$id' OR Nor
 ?>
   <table width="100%" cellpadding="0" cellspacing="0">
     <tr>
-      <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN MUTIARA INSAN NUSANTARA<br>
-          SMP - SMA - SMK MUTIARA INSAN NUSANTARA</span></th>
+      <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN GEMA NURANI<br>
+          SD- SMP - SMA - GEMA NURANI </span></th>
       <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>BUKTI PEMBAYARAN SISWA</b></th>
       <th width="30%"></th>
     </tr>
