@@ -44,7 +44,7 @@
             type: "POST",
             dataType: "json",
             success: function(response) {
-                console.log(response);
+                // console.log(response);
                 $('#btn_generate').html('<i class="ace-icon fa fa-plus"></i>' +
                     'Generate');
                 if (response == true) {

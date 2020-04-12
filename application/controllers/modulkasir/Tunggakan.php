@@ -64,8 +64,9 @@ class Tunggakan extends CI_Controller
 			$IdTA = $this->configfunction->getidta();
 			$idtea = $IdTA[0]['ID'];
 			$thnakademik = $IdTA[0]['THNAKAD'];
-			$calonsiswa = $this->db->query("SELECT * FROM mssiswa WHERE NOREG NOT IN(SELECT saldopembayaran_sekolah.Noreg
-			FROM saldopembayaran_sekolah) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+			$calonsiswa = $this->db->query("SELECT * FROM mssiswa WHERE NOT EXISTS (SELECT a.Noreg
+											FROM saldopembayaran_sekolah a where
+											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 			if (count($calonsiswa) > 0) {
 				foreach ($calonsiswa as $value) {
 					$tarif = $this->db->query("SELECT
@@ -92,33 +93,53 @@ class Tunggakan extends CI_Controller
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
 						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.NOREG= $value[NOREG]");
 						// print_r($this->db->last_query());exit;
-						if (count($naikkelas) > 0) {
+						if (count($naikkelas->result_array()) > 0) {
 							$kelas = $naikkelas->result_array();
 							$vkelas = $kelas[0]['Kelas'];
 							$vnis = $kelas[0]['NIS'];
+							$kdsk = "select KDSK from tbps WHERE kdtbps = '".$value['PS']."'";
+							$kdsk = $this->db->query($kdsk)->row();
+							if($kdsk==NULL){
+								$kdsk = '';
+							}else{
+								$kdsk = $kdsk->KDSK;
+							}
+							// print_r(json_encode($kdsk));exit;
+
 							if ($vkelas == '') {
-								if ($value['PS'] == '01') {
+								if ($value['PS'] == '1') {
 									$t_kelas = 1;
+								}else if($kdsk = '2'){
+									$t_kelas = 1;
+								}else if($kdsk = '3'){
+									$t_kelas = 7;
+								}else if($kdsk = '2'){
+									$t_kelas = 10;
 								} else {
-									$t_kelas = 4;
+									$t_kelas = 0;
 								}
 							} else {
 								$t_kelas = $vkelas;
 							}
 							$data = array(
 								'NIS' => $vnis,
-								'Noreg' => $value['Noreg'],
+								'Noreg' => $value['NOREG'],
 								'TotalTagihan' => $vtotal,
 								'TA' => $idtea,
 								'Kelas' => $t_kelas,
 								'createdAt' => date('Y-m-d H:i:s')
 							);
-							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');
+
+							// print_r($data);
+
+							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');	
+							
 						} 
 					}
 				}
+				echo json_encode(true);	
 			} else {
-				print_r('jembut');exit;
+				echo json_encode(false);
 			}
 		} else {
 			$this->load->view('pagekasir/login'); //Memanggil function render_view
