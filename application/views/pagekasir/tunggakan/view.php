@@ -39,6 +39,7 @@
 
     function generate() {
         $('#btn_generate').html('Generating...');
+        document.getElementById("btn_generate").setAttribute("disabled", true);
         $.ajax({
             url: "<?php echo base_url('modulkasir/tunggakan/generate') ?>",
             type: "POST",
@@ -49,11 +50,14 @@
                     'Generate');
                 if (response == true) {
                     swalGenerateSuccess();
+                    document.getElementById("btn_generate").removeAttribute("disabled");
                     show_data();
                 } else if (response == 401) {
                     swalIdDouble('Nama Ruangan Sudah digunakan!');
+                    document.getElementById("btn_generate").removeAttribute("disabled");
                 } else {
                     swalInputFailed();
+                    document.getElementById("btn_generate").removeAttribute("disabled");
                 }
             }
         });
