@@ -1,5 +1,5 @@
 <?php
-$id = $this->input->get('noreg');
+$id = $this->input->get('no');
 $nopem = $this->input->get('no');
 $kelas = $this->input->get('kls');
 $row = $this->db->query("SELECT
