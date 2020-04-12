@@ -42,7 +42,7 @@ class Tunggakan extends CI_Controller
 			$my_data = $this->db->query("SELECT
 			saldopembayaran_sekolah.idsaldo,NIS,
 			saldopembayaran_sekolah.Noreg,
-			(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=saldopembayaran_sekolah.Noreg) AS Namacasis,
+			(SELECT z.NMSISWA FROM mssiswa z WHERE z.NOREG = saldopembayaran_sekolah.Noreg) AS Namacasis,
 			saldopembayaran_sekolah.TotalTagihan,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.TotalTagihan,2)) as totaltagihan2,
 			saldopembayaran_sekolah.Bayar,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Bayar,2)) as bayar2,
 			saldopembayaran_sekolah.Sisa,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Sisa,2)) as sisa2,
@@ -64,14 +64,14 @@ class Tunggakan extends CI_Controller
 			$IdTA = $this->configfunction->getidta();
 			$idtea = $IdTA[0]['ID'];
 			$thnakademik = $IdTA[0]['THNAKAD'];
-			$calonsiswa = $this->db->query("SELECT * FROM calon_siswa WHERE Noreg NOT IN(SELECT saldopembayaran_sekolah.Noreg
-			FROM saldopembayaran_sekolah) AND kodesekolah IS NOT NULL AND thnmasuk IS NOT NULL ORDER BY kodesekolah,Noreg")->result_array();
-			if ($calonsiswa) {
+			$calonsiswa = $this->db->query("SELECT * FROM mssiswa WHERE NOREG NOT IN(SELECT saldopembayaran_sekolah.Noreg
+			FROM saldopembayaran_sekolah) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+			if (count($calonsiswa) > 0) {
 				foreach ($calonsiswa as $value) {
 					$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
-					WHERE kodesekolah='$value[kodesekolah]' AND `status`='T' AND ThnMasuk='$value[thnmasuk]' AND Kodejnsbayar IN('SRG','SPP','KGT','GDG')");
+					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' AND Kodejnsbayar IN('SRG','SPP','KGT','GDG')");
 					$n = $tarif->num_rows();
 					if ($tarif) {
 						$v = $tarif->result_array();
@@ -90,13 +90,14 @@ class Tunggakan extends CI_Controller
 						baginaikkelas.NIS
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
-						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.Noreg= $value[Noreg]");
-						if ($naikkelas) {
+						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.NOREG= $value[NOREG]");
+						// print_r($this->db->last_query());exit;
+						if (count($naikkelas) > 0) {
 							$kelas = $naikkelas->result_array();
 							$vkelas = $kelas[0]['Kelas'];
 							$vnis = $kelas[0]['NIS'];
 							if ($vkelas == '') {
-								if ($value['kodesekolah'] == '01') {
+								if ($value['PS'] == '01') {
 									$t_kelas = 1;
 								} else {
 									$t_kelas = 4;
@@ -113,9 +114,11 @@ class Tunggakan extends CI_Controller
 								'createdAt' => date('Y-m-d H:i:s')
 							);
 							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');
-						}
+						} 
 					}
 				}
+			} else {
+				print_r('jembut');exit;
 			}
 		} else {
 			$this->load->view('pagekasir/login'); //Memanggil function render_view

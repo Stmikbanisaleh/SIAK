@@ -161,7 +161,7 @@ class Configfunction
 
     public function getidta()
     {
-        $result = $this->CI->db->query('SELECT  * FROM tbakadmk where isdeleted != 1 ORDER BY ID DESC LIMIT 1')->result_array();
+        $result = $this->CI->db->query('SELECT * FROM tbakadmk WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk)')->result_array();
         return $result;
     }
 }

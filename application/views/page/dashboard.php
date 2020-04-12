@@ -128,9 +128,9 @@
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(ID) as total from tbakadmk where isdeleted != 1')->result_array();
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">Tahun Akademik 1</a></div>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">SD Reguler</a></div>
 								</div>
 							</div>
 						</div>
