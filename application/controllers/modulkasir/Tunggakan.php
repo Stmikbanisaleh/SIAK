@@ -64,7 +64,7 @@ class Tunggakan extends CI_Controller
 			$IdTA = $this->configfunction->getidta();
 			$idtea = $IdTA[0]['ID'];
 			$thnakademik = $IdTA[0]['THNAKAD'];
-			$calonsiswa = $this->db->query("SELECT * FROM mssiswa WHERE NOT EXISTS (SELECT a.Noreg
+			$calonsiswa = $this->db->query("SELECT PS, TAHUN, NOREG FROM mssiswa WHERE NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
 											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 			if (count($calonsiswa) > 0) {
@@ -78,16 +78,7 @@ class Tunggakan extends CI_Controller
 						$v = $tarif->result_array();
 						$vtotal = $v[0]['total'];
 						$naikkelas = $this->db->query("SELECT
-						baginaikkelas.idbagiNaikKelas,
-						baginaikkelas.Thnmasuk,
-						baginaikkelas.Ruangan,
 						baginaikkelas.Kelas,
-						baginaikkelas.Naikkelas,
-						baginaikkelas.Jurusan,
-						baginaikkelas.Kodesekolah,
-						baginaikkelas.TA,
-						baginaikkelas.tglentri,
-						baginaikkelas.userentri,
 						baginaikkelas.NIS
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
