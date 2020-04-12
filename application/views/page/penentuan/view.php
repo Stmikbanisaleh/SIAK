@@ -360,7 +360,7 @@ if ($("#formImport").length > 0) {
             formdata = new FormData(form);
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('jadwal/import') ?>",
+                url: "<?php echo base_url('penentuankelas/import') ?>",
                 data: formdata,
                 processData: false,
                 contentType: false,

@@ -309,7 +309,6 @@ class Penentuankelas extends CI_Controller
                         'Naikkelas' => $value[3],
                         'GolKelas' => $value[4],
                         'Jurusan' => $value[5],
-                        // 'GuruWaktu' => $validated_data['GuruWaktu'],
                         'Kodesekolah' => $value[6],
                         'TA' => $value[7],
                         'userentri' => $this->session->userdata('nip'),
