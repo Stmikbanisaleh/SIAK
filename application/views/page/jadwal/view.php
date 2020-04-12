@@ -289,7 +289,7 @@
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
                                 '<td>' + data[i].GuruNama + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
+                                '<td>' + data[i].nama+'-'+data[i].kode + '</td>' +
                                 '<td>' + data[i].RUANG + '</td>' +
                                 '<td>' + data[i].NMKLSTRJDK + '</td>' +
                                 '<td>' + data[i].hari + '</td>' +
