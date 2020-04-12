@@ -207,7 +207,7 @@ class Penentuankelas extends CI_Controller
                 $pieces = (explode("/", $str));
                 $v_hasil = $pieces[0] - $rl['TAHUN'];
 
-                $hasil_kdsk = "select kdsk from tbps where kdtbps = '$rl['PS']'";
+                $hasil_kdsk = "select kdsk from tbps where kdtbps = '".$rl['PS']."'";
                 $hasil_kdsk = $hasil_kdsk->row();
 
                 if($hasil_kdsk = null){
@@ -215,15 +215,17 @@ class Penentuankelas extends CI_Controller
                 }else{
                     $hasil_kdsk = $hasil_kdsk->kdsk;
                     if($hasil_kdsk = 1){
-
+                        $kls = 1;
                     }else if($hasil_kdsk = 2){
-
+                        $kls = 1;
                     }else if($hasil_kdsk = 3){
-
+                        $kls = 7;
                     }else if($hasil_kdsk = 4){
-
+                        $kls = 10;
                     }
                 }
+
+                // print_r(json_encode($kls));exit;
 
                 // if ($v_hasil == '0') {
                 //     if ($rl['PS'] == '01') {
@@ -264,7 +266,7 @@ class Penentuankelas extends CI_Controller
                     'userentri'  => $this->session->userdata('nip'),
                     'NIS'  => $rl['NOINDUK'],
                 );
-                $action = $this->model_penentuan->insert($data, 'baginaikkelas');
+                // $action = $this->model_penentuan->insert($data, 'baginaikkelas');
                 if($action){
                     echo json_encode($action);
                 }
