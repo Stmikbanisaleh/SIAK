@@ -187,10 +187,10 @@ class Penentuankelas extends CI_Controller
         (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS= siswa.PS)AS v_sekolah,
         (SELECT z.Naikkelas FROM baginaikkelas z WHERE z.NIS=siswa.NOINDUK ORDER BY idbagiNaikKelas DESC LIMIT 1)AS Naikkelas,
         DATE_FORMAT(tglhr,'%d-%m-%Y')tgl_lahir
-        FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps'";
+        FROM mssiswa siswa WHERE TAHUN='$thn' AND PS ='$ps' AND siswa.NOINDUK = '192001003'";
         $hasil = $this->db->query($sql)->result_array();
         // print_r($this->db->last_query());exit;
-        if($this->db->query($sql)->num_rows()!=1){
+        if($this->db->query($sql)->num_rows() < 1){
             echo json_encode(401);
         }
         foreach ($hasil as $rl){
@@ -201,31 +201,33 @@ class Penentuankelas extends CI_Controller
             $Naikkelas = $cari1->Naikkelas;
             $idbagiNaikKelas = $cari1->idbagiNaikKelas;
             $Kelas = $cari1->Kelas;
+
             if ($jml != 1) {
 
                 $str = $ThnAkademik;
                 $pieces = (explode("/", $str));
                 $v_hasil = $pieces[0] - $rl['TAHUN'];
 
-                $hasil_kdsk = "select kdsk from tbps where kdtbps = '".$rl['PS']."'";
-                $hasil_kdsk = $hasil_kdsk->row();
+                $query_kdsk = $this->db->query("select kdsk from tbps where kdtbps = '".$rl['PS']."'");
+                $hasil_kdsk = $query_kdsk->row();
 
-                if($hasil_kdsk = null){
+                if($hasil_kdsk == null){
                     $kls = '';
                 }else{
-                    $hasil_kdsk = $hasil_kdsk->kdsk;
-                    if($hasil_kdsk = 1){
-                        $kls = 1;
-                    }else if($hasil_kdsk = 2){
-                        $kls = 1;
-                    }else if($hasil_kdsk = 3){
-                        $kls = 7;
-                    }else if($hasil_kdsk = 4){
-                        $kls = 10;
-                    }
+                    $kdsk = $hasil_kdsk->kdsk;
                 }
-
-                // print_r(json_encode($kls));exit;
+                    
+                    if($kdsk == 1){
+                        $kls = 1;
+                    }else if($kdsk == 2){
+                        $kls = 1;
+                    }else if($kdsk == 3){
+                        $kls = 7;
+                    }else if($kdsk == 4){
+                        $kls = 10;
+                    }else{
+                        $kls = 0;
+                    }
 
                 // if ($v_hasil == '0') {
                 //     if ($rl['PS'] == '01') {
@@ -261,17 +263,16 @@ class Penentuankelas extends CI_Controller
                     'Thnmasuk'  => $rl['TAHUN'],
                     'Kelas'  => $vt_kelas,
                     'Kodesekolah'  => $rl['PS'],
+                    'Ruangan'  => '404',
                     'TA'  => $ThnAkademik,
                     'tglentri'  => date('Y-m-d H:i:s'),
                     'userentri'  => $this->session->userdata('nip'),
                     'NIS'  => $rl['NOINDUK'],
                 );
-                // $action = $this->model_penentuan->insert($data, 'baginaikkelas');
-                if($action){
-                    echo json_encode($action);
-                }
+                $action = $this->model_penentuan->insert($data, 'baginaikkelas');
             }
         }
+        echo json_encode(true);
     }
 
     public function import()

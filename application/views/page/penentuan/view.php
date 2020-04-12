@@ -328,8 +328,7 @@ $('.btn_proses').click(function(){
             async: true,
             dataType: 'json',
             success: function(response) {
-                $('#btn_proses').html('<i class="ace-icon fa fa-search"></i>' +
-                    'Proses');
+                $('#btn_proses').html('<a class="ace-icon fa fa-exchange bigger-120 btn_proses"></a>Proses');
                 if (response == true) {
                     swalInputSuccess();
                 } else if (response == 401) {
