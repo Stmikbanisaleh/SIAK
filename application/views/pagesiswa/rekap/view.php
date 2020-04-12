@@ -177,8 +177,8 @@
                         '<td>' + data[i].Kelas + '</td>' +
                         '<td>' + data[i].tglentri + '</td>' +
                         '<td>' + data[i].namajenisbayar + '</td>' +
-                        '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
                         '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
+                        '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
                         '<td>' + formatRupiah(data[i].sisa) + '</td>' +
                         '<td>' + data[i].useridd + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
