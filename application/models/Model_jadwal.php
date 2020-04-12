@@ -47,6 +47,7 @@ class Model_jadwal extends CI_model
         tbguru.GuruNama,
         tbjadwal.id_mapel,
         mspelajaran.nama,
+        mspelajaran.kode,
         tbjadwal.hari,
         msruang.RUANG,
         tbjadwal.NMKLSTRJDK,
