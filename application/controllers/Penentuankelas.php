@@ -206,25 +206,45 @@ class Penentuankelas extends CI_Controller
                 $str = $ThnAkademik;
                 $pieces = (explode("/", $str));
                 $v_hasil = $pieces[0] - $rl['TAHUN'];
-                if ($v_hasil == '0') {
-                    if ($rl['PS'] == '01') {
-                        $kls = 1;
-                    } else {
-                        $kls = 4;
-                    }
-                } elseif ($v_hasil == 1) {
-                    if ($rl['PS'] == '01') {
-                        $kls = 2;
-                    } else {
-                        $kls = 5;
-                    }
-                } elseif ($v_hasil == 2) {
-                    if ($rl['PS'] == '01') {
-                        $kls = 3;
-                    } else {
-                        $kls = 6;
+
+                $hasil_kdsk = "select kdsk from tbps where kdtbps = '$rl['PS']'";
+                $hasil_kdsk = $hasil_kdsk->row();
+
+                if($hasil_kdsk = null){
+                    $kls = '';
+                }else{
+                    $hasil_kdsk = $hasil_kdsk->kdsk;
+                    if($hasil_kdsk = 1){
+
+                    }else if($hasil_kdsk = 2){
+
+                    }else if($hasil_kdsk = 3){
+
+                    }else if($hasil_kdsk = 4){
+
                     }
                 }
+
+                // if ($v_hasil == '0') {
+                //     if ($rl['PS'] == '01') {
+                //         $kls = 1;
+                //     } else {
+                //         $kls = 4;
+                //     }
+                // } elseif ($v_hasil == 1) {
+                //     if ($rl['PS'] == '01') {
+                //         $kls = 2;
+                //     } else {
+                //         $kls = 5;
+                //     }
+                // } elseif ($v_hasil == 2) {
+                //     if ($rl['PS'] == '01') {
+                //         $kls = 3;
+                //     } else {
+                //         $kls = 6;
+                //     }
+                // }
+
                 if ($rl['Naikkelas'] == '') {
                     $vt_kelas = $kls;
                 } else {

@@ -190,6 +190,7 @@
             <th>Mata Ajar</th>
             <th>Ruang</th>
             <th>Kelas</th>
+            <th>Hari</th>
             <th>Jam Ke</th>
             <th>Program Sekolah</th>
             <th>Action</th>
@@ -291,6 +292,7 @@
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].RUANG + '</td>' +
                                 '<td>' + data[i].NMKLSTRJDK + '</td>' +
+                                '<td>' + data[i].hari + '</td>' +
                                 '<td>' + data[i].JAM + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
