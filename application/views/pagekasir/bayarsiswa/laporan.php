@@ -1,5 +1,5 @@
 <?php
-$id = $this->input->get('no');
+$id = $this->input->get('noreg');
 $nopem = $this->input->get('no');
 $kelas = $this->input->get('kls');
 $row = $this->db->query("SELECT
@@ -110,7 +110,7 @@ $Kelas = $row->Kelas;
   $v_Nominal_KGT = $cari1->Nominal;
   $v_idtarif_KGT = $cari1->idtarif;
 
-  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='SPP'")->row();
+  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='SPP'")->row();
 
   if (isset($row)) {
     $SPP_nominalbayar = $row->nominalbayar;
@@ -118,7 +118,7 @@ $Kelas = $row->Kelas;
     $SPP_nominalbayar = 0;
   }
 
-  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='GDG'")->row();
+  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='GDG'")->row();
 
   if (isset($row)) {
     $GDG_nominalbayar = $row->nominalbayar;
@@ -126,7 +126,7 @@ $Kelas = $row->Kelas;
     $GDG_nominalbayar = 0;
   }
 
-  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='SRG'")->row();
+  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='SRG'")->row();
 
   if (isset($row)) {
     $SRG_nominalbayar = $row->nominalbayar;
@@ -134,7 +134,7 @@ $Kelas = $row->Kelas;
     $SRG_nominalbayar = 0;
   }
 
-  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$id' AND kodejnsbayar='KGT'")->row();
+  $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='KGT'")->row();
 
   if (isset($row)) {
     $KGT_nominalbayar = $row->nominalbayar;
