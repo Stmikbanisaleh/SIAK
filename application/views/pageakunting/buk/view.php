@@ -207,7 +207,7 @@
 								});
 						} else {
 							for (i = 0; i < data.length; i++) {
-								if(data[i].posting=='Y'){
+								if(data[i].posting=='T'){
 									var button = '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_posting" id="item_posting" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
 									'Posting' +
 									'</button> &nbsp';

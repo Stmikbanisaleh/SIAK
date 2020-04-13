@@ -28,7 +28,7 @@ class Buk extends CI_Controller
         $mytahun = $this->model_buk->view_tahun()->result_array();
         $data = array(
             'page_content'     => '../pageakunting/buk/view',
-            'ribbon'         => '<li class="active">BUK</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">BUK</li>',
             'page_name'     => 'BUK',
             'mytahun'       => $mytahun,
         );
@@ -72,7 +72,7 @@ class Buk extends CI_Controller
         $f_bln = $v_bln;
         $s_bln = ltrim($f_bln, '0');
 
-        $query="SELECT*FROM detail_akuntansi WHERE no_akuntansi='".$this->input->post('tgl')."'";   
+        $query="SELECT*FROM detail_akuntansi WHERE no_akuntansi='$bukti'";   
             // $hasil = mysql_query($query);
             $hasil = $this->model_buk->dyn_query($query)->result_array();
             $no=1;
@@ -85,7 +85,7 @@ class Buk extends CI_Controller
                 transaksi_buk.Ket,
                 transaksi_buk.Nilai,
                 transaksi_buk.DK) 
-                VALUES('".$r['rek']."','".$date."','".$bukti."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                VALUES('".$r['rek']."','".date('Y-m-d')."','".$bukti."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
                 // mysql_query($sql);
 
@@ -167,7 +167,7 @@ class Buk extends CI_Controller
                         $s_kredit=$f_kredit+$r['nilai'];
                         $sql3="update posting set
                         Kredit".$v_bln."='".$s_kredit."'
-                        WHERE THN=".$v_thn." AND no_jurnal=".$r['rek'];
+                        WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
 
                         $this->model_buk->dyn_query($sql3);
                     }else{
@@ -175,7 +175,7 @@ class Buk extends CI_Controller
                         $s_Debet=$f_Debet+$r['nilai'];
                         $sql3="update posting set
                         Debet".$v_bln."='".$s_Debet."'
-                        WHERE THN=".$v_thn." AND no_jurnal=".$r['rek'];
+                        WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
 
                         $this->model_buk->dyn_query($sql3);
                     }
@@ -235,7 +235,7 @@ class Buk extends CI_Controller
                 Kredit09,
                 Kredit10,
                 Kredit11,
-                Kredit12 FROM posting WHERE THN=$v_thn AND no_jurnal= ".$r['rek'];
+                Kredit12 FROM posting WHERE THN=$v_thn AND no_jurnal= '".$r['rek']."'";
 
                 $row = $this->model_buk->dyn_query($query)->row();    
                     $v_jmlh = $row->jmlh;    
@@ -269,7 +269,7 @@ class Buk extends CI_Controller
                     $s_kredit=$f_kredit-$r['nilai'];
                     $sql3="update posting set
                     Kredit".$v_bln."='".$s_kredit."'
-                    WHERE THN=".$v_thn." AND no_jurnal=".$r['rek'];
+                    WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
 
                     $this->model_buk->dyn_query($sql3);
                 }else{
@@ -277,7 +277,7 @@ class Buk extends CI_Controller
                     $s_Debet=$f_Debet-$r['nilai'];
                     $sql3="update posting set
                     Debet".$v_bln."='".$s_Debet."'
-                    WHERE THN=".$v_thn." AND no_jurnal=".$r['rek'];
+                    WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
 
                     $this->model_buk->dyn_query($sql3);
                 }                   
