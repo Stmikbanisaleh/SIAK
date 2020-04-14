@@ -175,7 +175,7 @@ class Model_bayarsiswa extends CI_model
                                     INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
                                     INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
                                     INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-                                    WHERE pembayaran_sekolah.NIS='$siswa' OR pembayaran_sekolah.Noreg='$siswa'
+                                    WHERE jenispembayaran.Kodejnsbayar NOT IN('SPP') and pembayaran_sekolah.NIS='$siswa'
                                     ORDER BY tglentri desc");
     }
 

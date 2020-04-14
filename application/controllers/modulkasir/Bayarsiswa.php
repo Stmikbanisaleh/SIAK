@@ -92,7 +92,8 @@ class Bayarsiswa extends CI_Controller {
             // print_r(json_encode($tot));exit;
             $ss = $this->input->post('sisa')-$tot;
             // print_r(json_encode($this->input->post('sisa')));exit;
-
+            $nis = $this->input->post('NIS');
+            $kelas = $this->input->post('Kelas');
             $data = array(
                 'NIS'           => $this->input->post('NIS'),
                 'Noreg'         => $this->input->post('Noreg'),
@@ -161,7 +162,7 @@ class Bayarsiswa extends CI_Controller {
                     (SELECT SUM(z.nominalbayar) FROM detail_bayar_sekolah z WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran AND z.kodejnsbayar='KGT')AS KGT
                     FROM
                     pembayaran_sekolah
-                    WHERE NIS='".$this->input->post('NIS')."' AND Kelas='".$this->input->post('Kelas')."' AND TA='".$thnakad."')AS kl";
+                    WHERE NIS='".$nis."' AND Kelas='".$kelas."' AND TA='".$thnakad."')AS kl";
             $q3 = $this->db->query($query)->row();
             // print_r(json_encode($q3));exit;
 
@@ -176,8 +177,8 @@ class Bayarsiswa extends CI_Controller {
             saldopembayaran_sekolah.Bayar='$f_tot',
             saldopembayaran_sekolah.Sisa='$v_Sisa'
             WHERE 
-            saldopembayaran_sekolah.NIS = ".$this->input->post('NIS')."
-            AND saldopembayaran_sekolah.Kelas = ".$this->input->post('Kelas');
+            saldopembayaran_sekolah.NIS = ".$nis."
+            AND saldopembayaran_sekolah.Kelas = ".$kelas;
             $action = $this->db->query($sql);
 
             if($action){
