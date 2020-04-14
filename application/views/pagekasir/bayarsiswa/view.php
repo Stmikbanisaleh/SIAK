@@ -384,7 +384,7 @@
                         $('#dbyr_seragam').html(data[0].blmbyr_srg);
                         $('#dbyr_kegiatan').html(data[0].blmbyr_kgt);
                         $('#tot_tagihan').html(total_tghn);
-                        $('#blm_dibayarkan').html(blm_dbyrkn);
+                        $('#blm_dibayarkan').html(data[0].Sisa);
                         $('#idtarif_spp').val(data[0].id_spp);
                         $('#idtarif_gdg').val(data[0].id_gdg);
                         $('#idtarif_srg').val(data[0].id_srg);

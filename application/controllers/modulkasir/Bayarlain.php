@@ -70,7 +70,7 @@ class Bayarlain extends CI_Controller {
 		$ket= $this->input->post('ket');
 		$ThnAkademik = $this->input->post('thnakad');
 		$getkelas = $this->db->query("SELECT*,
-		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS=mssiswa.NOINDUK ORDER BY Kelas DESC LIMIT 1)AS Kelas2
+		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS = mssiswa.NOINDUK ORDER BY Kelas DESC LIMIT 1)AS Kelas2
 		FROM mssiswa WHERE NOINDUK='$nis' OR Noreg='$nis'")->result_array();
 		$kdsekolah = $getkelas[0]['PS'];
         $data = array(

@@ -164,9 +164,9 @@ class Model_bayarsiswa extends CI_model
                                     (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
                                     DATE_FORMAT(pembayaran_sekolah.tglentri,'%d-%m-%Y')tglentri,
                                     jenispembayaran.namajenisbayar,
-                                    sum(detail_bayar_sekolah.nominalbayar) as nominalbayar,
+                                    detail_bayar_sekolah.nominalbayar as nominalbayar,
                                     tarif_berlaku.Nominal,
-                                    (tarif_berlaku.Nominal- sum(detail_bayar_sekolah.nominalbayar))AS sisa,
+                                    (tarif_berlaku.Nominal- detail_bayar_sekolah.nominalbayar)AS sisa,
                                     pembayaran_sekolah.useridd,
                                     detail_bayar_sekolah.NodetailBayar,
                                     pembayaran_sekolah.TA
