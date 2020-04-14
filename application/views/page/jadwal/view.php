@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -32,7 +34,7 @@
         <br>
     </form>
 </div>
-<div id="modalTambah" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -200,6 +202,8 @@
     </tbody>
 </table>
 <script>
+    $('select').select2({ width: '100%', placeholder: "Masukan Data", allowClear: true });
+
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",

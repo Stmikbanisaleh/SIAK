@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -24,7 +26,7 @@
         <br>
     </form>
 </div>
-<div id="modalTambah" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -36,7 +38,6 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
                                 <div class="col-xs-6">
@@ -198,6 +199,9 @@
 </table>
 <script>
     $(document).ready(function() {
+        $('select').select2({ width: '100%', placeholder: "Masukan Siswa", allowClear: true });
+
+
         $("#nik2").change(function() {
             var nik = $('#nik2').val();
             $.ajax({
