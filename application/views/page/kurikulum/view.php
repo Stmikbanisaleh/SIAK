@@ -101,12 +101,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam</label>
-								<div class="col-sm-9">
-									<input type="text" id="e_jam" name="e_jam" placeholder="hh:mm" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
 								<div class="col-sm-9">
 									<input type="number" id="e_semester" name="e_semester" placeholder="" class="form-control" />
@@ -155,7 +149,6 @@
 			<th class="col-md-1">No</th>
 			<th>Kode Kurikulim</th>
 			<th>Nama Kurikulum</th>
-			<th>Jam</th>
 			<th>Program Sekolah</th>
 			<th>Semester</th>
 			<th>Action</th>
@@ -316,7 +309,6 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].kode + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td class="text-center">' + data[i].jam + '</td>' +
 						'<td>' + data[i].DESCRTBPS  + '-' + data[i].DESCRTBJS  + '</td>' +
 						'<td>' + data[i].semester + '</td>' +
 						'<td class="text-center">' +
