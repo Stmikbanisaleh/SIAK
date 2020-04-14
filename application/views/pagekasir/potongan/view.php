@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -7,7 +9,7 @@
     <br>
     <br>
 </div>
-<div id="my-modal2" class="modal fade" tabindex="-1">
+<div id="my-modal2" class="modal fade" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -49,7 +51,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
-<div id="modalTambah" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -126,7 +128,7 @@
     </div><!-- /.modal-dialog -->
 </div>
 
-<div id="modalEdit" class="modal fade" tabindex="-1">
+<div id="modalEdit" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -206,6 +208,8 @@
     </tbody>
 </table>
 <script>
+        $('select').select2({ width: '100%', placeholder: "Masukan Data", allowClear: true });
+
     if ($("#formImport").length > 0) {
         $("#formImport").validate({
             errorClass: "my-error-class",

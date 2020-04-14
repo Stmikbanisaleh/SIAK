@@ -72,6 +72,14 @@
 		});
 	}
 
+	function swalDatanull(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Tidak Ditemukan',
+		  text: 'Data Tidak Ditemukan!',
+		});
+	}
+
 	function swalPotonganFailed(){
 		Swal.fire({
 		  icon: 'error',

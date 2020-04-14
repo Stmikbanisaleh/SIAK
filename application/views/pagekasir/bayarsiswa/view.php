@@ -1,6 +1,5 @@
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <!-- End Select2 -->
 
 <div class="row">
@@ -12,7 +11,7 @@
                     <select class="form-control" name="siswa" id="siswa">
                         <option>--Pilih Siswa--</option>
                         <?php foreach ($my_siswa as $value) { ?>
-                            <option value=<?= $value['NOINDUK'] ?>><?= $value['NOINDUK']." - ".$value['NMSISWA'] ?></option>
+                            <option value=<?= $value['NOINDUK'] ?>><?= $value['NOINDUK'] . " - " . $value['NMSISWA'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -41,7 +40,7 @@
         </form>
     </div>
     <div class="col-xs-7">
-        <form class="form-horizontal" role="form" id="formInsert1" method="POST" action="<?php echo base_url()?>modulkasir/bayarsiswa/insert">
+        <form class="form-horizontal" role="form" id="formInsert1" method="POST" action="<?php echo base_url() ?>modulkasir/bayarsiswa/insert">
             <div class="form-group">
                 <div class="col-xs-12">
                     <?php if ($this->session->flashdata('cat_error')) { ?>
@@ -54,11 +53,12 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <h4><b>Siswa &nbsp; &nbsp; : 
-                        <div id="namasiswa">
+                    <h4><b>Siswa &nbsp; &nbsp; :
+                            <div id="namasiswa">
 
-                        </div>
-                    </b><h4>
+                            </div>
+                        </b>
+                        <h4>
                 </div>
             </div>
             <div class="form-group">
@@ -187,12 +187,12 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -213,12 +213,12 @@
                 </div>
                 <div class="col-xs-1">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -239,12 +239,12 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        
+
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -344,7 +344,11 @@
 
 <!-- Start Select2 -->
 <script>
-    $('select').select2({ width: '100%', placeholder: "Select an Option", allowClear: true });
+    $('select').select2({
+        width: '100%',
+        placeholder: "Select an Option",
+        allowClear: true
+    });
 
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
@@ -369,32 +373,58 @@
                     async: true,
                     dataType: 'json',
                     success: function(data) {
-                        var sdh_dibayarkan = Number(null_tonumber(data[0].byr_spp))+Number(null_tonumber(data[0].byr_gdg))+Number(null_tonumber(data[0].byr_srg))+Number(null_tonumber(data[0].byr_kgt));
-                        var total_tghn = data[0].TotalTagihan;
-                        var blm_dbyrkn = data[0].blm_bayar;
-                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
-                            'Periksa');
-                        $('#namasiswa').html(data[0].Namacasis);
-                        $('#tghn_spp').html(data[0].nominal_spp);
-                        $('#tghn_gedung').html(data[0].nominal_gdg);
-                        $('#tghn_seragam').html(data[0].nominal_srg);
-                        $('#tghn_kegiatan').html(data[0].nominal_kgt);
-                        $('#dbyr_spp').html(data[0].blmbyr_spp);
-                        $('#dbyr_gedung').html(data[0].blmbyr_gdg);
-                        $('#dbyr_seragam').html(data[0].blmbyr_srg);
-                        $('#dbyr_kegiatan').html(data[0].blmbyr_kgt);
-                        $('#tot_tagihan').html(total_tghn);
-                        $('#blm_dibayarkan').html(data[0].Sisa);
-                        $('#idtarif_spp').val(data[0].id_spp);
-                        $('#idtarif_gdg').val(data[0].id_gdg);
-                        $('#idtarif_srg').val(data[0].id_srg);
-                        $('#idtarif_kgt').val(data[0].id_kgt);
-                        $('#NIS').val(data[0].NOINDUK);
-                        $('#Noreg').val(data[0].Noreg);
-                        $('#Kelas').val(data[0].Kelas);
-                        $('#sisa').val(Number(data[0].Sisa2));
-                        $('#kodesekolah').val(data[0].kodesekolah);
-                        /* END TABLETOOLS */
+                        if (data == 0) {
+                            swalDatanull();
+                            $('#namasiswa').html('');
+                            $('#tghn_spp').html('0');
+                            $('#tghn_gedung').html('0');
+                            $('#tghn_seragam').html('0');
+                            $('#tghn_kegiatan').html('0');
+                            $('#dbyr_spp').html('0');
+                            $('#dbyr_gedung').html('0');
+                            $('#dbyr_seragam').html('0');
+                            $('#dbyr_kegiatan').html('0');
+                            $('#tot_tagihan').html('0');
+                            $('#blm_dibayarkan').html('0');
+                            $('#idtarif_spp').val('0');
+                            $('#idtarif_gdg').val('0');
+                            $('#idtarif_srg').val('0');
+                            $('#idtarif_kgt').val('0');
+                            $('#NIS').val('0');
+                            $('#Noreg').val('0');
+                            $('#Kelas').val('0');
+                            $('#sisa').val('0');
+                            $('#kodesekolah').val('0');
+                        } else {
+
+                            var sdh_dibayarkan = Number(null_tonumber(data[0].byr_spp)) + Number(null_tonumber(data[0].byr_gdg)) + Number(null_tonumber(data[0].byr_srg)) + Number(null_tonumber(data[0].byr_kgt));
+                            var total_tghn = data[0].TotalTagihan;
+                            var blm_dbyrkn = data[0].blm_bayar;
+                            $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                                'Periksa');
+                            $('#namasiswa').html(data[0].NMSISWA);
+                            $('#tghn_spp').html(data[0].nominal_spp);
+                            $('#tghn_gedung').html(data[0].nominal_gdg);
+                            $('#tghn_seragam').html(data[0].nominal_srg);
+                            $('#tghn_kegiatan').html(data[0].nominal_kgt);
+                            $('#dbyr_spp').html(data[0].blmbyr_spp);
+                            $('#dbyr_gedung').html(data[0].blmbyr_gdg);
+                            $('#dbyr_seragam').html(data[0].blmbyr_srg);
+                            $('#dbyr_kegiatan').html(data[0].blmbyr_kgt);
+                            $('#tot_tagihan').html(total_tghn);
+                            $('#blm_dibayarkan').html(data[0].Sisa);
+                            $('#idtarif_spp').val(data[0].id_spp);
+                            $('#idtarif_gdg').val(data[0].id_gdg);
+                            $('#idtarif_srg').val(data[0].id_srg);
+                            $('#idtarif_kgt').val(data[0].id_kgt);
+                            $('#NIS').val(data[0].NOINDUK);
+                            $('#Noreg').val(data[0].Noreg);
+                            $('#Kelas').val(data[0].Kelas);
+                            $('#sisa').val(Number(data[0].Sisa2));
+                            $('#kodesekolah').val(data[0].kodesekolah);
+                            /* END TABLETOOLS */
+                        }
+
                     }
                 });
 
@@ -413,8 +443,8 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].NIS+ '</td>' +
-                                '<td>' + data[i].Kelas+ '</td>' +
+                                '<td>' + data[i].NIS + '</td>' +
+                                '<td>' + data[i].Kelas + '</td>' +
                                 '<td>' + formatRupiah(data[i].TotalTagihan) + '</td>' +
                                 '<td>' + formatRupiah(data[i].Bayar) + '</td>' +
                                 '<td>' + formatRupiah(data[i].Sisa) + '</td>' +
@@ -431,7 +461,7 @@
                                 "bLengthChange": false,
                                 "bFilter": true,
                                 "bInfo": false,
-                                
+
                             });
 
                         }
@@ -454,16 +484,16 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].NIS+ '</td>' +
-                                '<td>' + data[i].Kelas+ '</td>' +
-                                '<td>' + data[i].tglentri+ '</td>' +
+                                '<td>' + data[i].NIS + '</td>' +
+                                '<td>' + data[i].Kelas + '</td>' +
+                                '<td>' + data[i].tglentri + '</td>' +
                                 '<td>' + formatRupiah(data[i].TotalBayar) + '</td>' +
-                                '<td>' + data[i].useridd+ '</td>' +
-                                '<td>' + data[i].TA+ '</td>' +
+                                '<td>' + data[i].useridd + '</td>' +
+                                '<td>' + data[i].TA + '</td>' +
                                 '<td>' +
-                                        '<a target="_blank"  href="<?php echo  base_url().'modulkasir/bayarsiswa/print2?noreg='?>'+ data[i].Noreg+'&no='+ data[i].Nopembayaran+'&kls='+ data[i].Kelas+'" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
-                                            '<i class="ace-icon fa fa-print bigger-120"></i>' +
-                                            '</a> &nbsp' +
+                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].Noreg + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a> &nbsp' +
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -477,7 +507,7 @@
                                 "bLengthChange": false,
                                 "bFilter": true,
                                 "bInfo": false,
-                                
+
                             });
 
                         }
@@ -500,15 +530,15 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].NIS+ '</td>' +
-                                '<td>' + data[i].Kelas+ '</td>' +
-                                '<td>' + data[i].tglentri+ '</td>' +
-                                '<td>' + data[i].namajenisbayar+ '</td>' +
+                                '<td>' + data[i].NIS + '</td>' +
+                                '<td>' + data[i].Kelas + '</td>' +
+                                '<td>' + data[i].tglentri + '</td>' +
+                                '<td>' + data[i].namajenisbayar + '</td>' +
                                 '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
                                 '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
                                 '<td>' + formatRupiah(data[i].sisa) + '</td>' +
-                                '<td>' + data[i].useridd+ '</td>' +
-                                '<td>' + data[i].TA+ '</td>' +
+                                '<td>' + data[i].useridd + '</td>' +
+                                '<td>' + data[i].TA + '</td>' +
                                 '</tr>';
                             no++;
                         }
@@ -521,7 +551,7 @@
                                 "bLengthChange": false,
                                 "bFilter": true,
                                 "bInfo": false,
-                                
+
                             });
 
                         }
@@ -568,7 +598,7 @@
         $('#ttotal').val(total_bayar);
     });
 
-        if ($("#formInsert").length > 0) {
+    if ($("#formInsert").length > 0) {
         $("#formInsert").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
@@ -586,8 +616,7 @@
                     required: false
                 },
             },
-            messages: {
-            },
+            messages: {},
             submitHandler: function(form) {
                 $('#btn_insert').html('Sending..');
                 $.ajax({
@@ -614,36 +643,35 @@
     }
 
     /* Fungsi formatRupiah */
-        function formatRupiah(angka){
-            if(angka != null){
-                var number_string = angka.toString().replace(/[^,\d]/g, ''),
-                split           = number_string.split(','),
-                sisa            = split[0].length % 3,
-                rupiah          = split[0].substr(0, sisa),
-                ribuan          = split[0].substr(sisa).match(/\d{3}/gi);
-     
-                // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                if(ribuan){
-                    separator = sisa ? '.' : '';
-                    rupiah += separator + ribuan.join('.');
-                }
-     
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return rupiah;
-            }else{
-                return 0;
+    function formatRupiah(angka) {
+        if (angka != null) {
+            var number_string = angka.toString().replace(/[^,\d]/g, ''),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
             }
-            
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return rupiah;
+        } else {
+            return 0;
         }
 
-        function null_tonumber(angka){
-            if(angka != null){
-                return angka;
-            }else{
-                return 0;
-            }
-            
+    }
+
+    function null_tonumber(angka) {
+        if (angka != null) {
+            return angka;
+        } else {
+            return 0;
         }
 
+    }
 </script>
 <!-- End Select2

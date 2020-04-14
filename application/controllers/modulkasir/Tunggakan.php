@@ -91,7 +91,7 @@ class Tunggakan extends CI_Controller
 							$vnis = $kelas[0]['NIS'];
 							$kdsk = "select KDSK from tbps WHERE kdtbps = '".$value['PS']."'";
 							$kdsk = $this->db->query($kdsk)->row();
-							$bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah WHERE NIS = '".$value['NOINDUK']."' and TA= '$thnakademik'  ";
+							$bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."' and TA= '$thnakademik' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ";
 							$nominal = $this->db->query($bayar)->row();
 							if($kdsk==NULL){
 								$kdsk = '';

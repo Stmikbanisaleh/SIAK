@@ -72,8 +72,18 @@ class Potongan extends CI_Controller
 				'pot_srg'  => $this->input->post('potonganseragam_v'),
 				'updatedAt' => date('Y-m-d H:i:s')
 			);
-			$count = $this->db->query("select * from saldopembayaran_sekolah where NIS ='" . $where['NIS'] . "' and Kelas = " . $where['Kelas'] ." and isdeleted != 1")->num_rows();
-			if (($count) > 0) {
+			$count = $this->db->query("select * from saldopembayaran_sekolah where NIS ='" . $where['NIS'] . "' and Kelas = " . $where['Kelas'] ." and isdeleted != 1")->result_array();
+			$data2 = array(
+				'pot_spp'  => $this->input->post('potonganspp_v'),
+				'pot_gdg'  => $this->input->post('potongangedung_v'),
+				'pot_modul'  => $this->input->post('potonganmodul_v'),
+				'pot_kgt'  => $this->input->post('potongankegiatan_v'),
+				'Kelas' => $this->input->post('kelas'),
+				'NIS'	=> $this->input->post('nama'),
+				'idsaldo' => $count[0]['idsaldo']
+			);
+			if (count($count) > 0) {
+				$rekap = $this->model_potongan->insert($data2,'rekappotongan');
 				$result = $this->model_potongan->update($where, $data, 'saldopembayaran_sekolah');
 				echo $result;
 			} else {
@@ -97,11 +107,11 @@ class Potongan extends CI_Controller
 				'pot_kgt'  => $this->input->post('e_potongankegiatan_v'),
 				'pot_modul'  => $this->input->post('e_potonganmodul_v'),
 				'pot_gdg'  => $this->input->post('e_potongangedung_v'),
-				'pot_srg'  => $this->input->post('e_potonganseragam_v'),
-
 				'updatedAt' => date('Y-m-d H:i:s')
 			);
 			$action = $this->model_potongan->update($data_id, $data, 'saldopembayaran_sekolah');
+			$action = $this->model_potongan->update($data_id, $data, 'rekappotongan');
+
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -125,12 +135,17 @@ class Potongan extends CI_Controller
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$data_id = array(
-				'idpot'  => $this->input->post('id')
+				'idsaldo'  => $this->input->post('id')
 			);
 			$data = array(
-				'isdeleted'  => 1,
+				'pot_spp'  => 0,
+				'pot_kgt'  =>0,
+				'pot_modul'  => 0,
+				'pot_gdg'  => 0,
+				'updatedAt' => date('Y-m-d H:i:s')
 			);
-			$action = $this->model_potongan->update($data_id, $data, 'tbpot');
+			$action = $this->model_potongan->update($data_id, $data, 'saldopembayaran_sekolah');
+			$action = $this->model_potongan->delete($data_id, 'rekappotongan');
 			echo json_encode($action);
 		} else {
 			$this->load->view('pagekasir/login'); //Memanggil function render_view

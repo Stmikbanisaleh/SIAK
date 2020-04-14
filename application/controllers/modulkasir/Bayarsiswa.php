@@ -39,7 +39,11 @@ class Bayarsiswa extends CI_Controller {
         $siswa = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');
         $result = $this->model_bayarsiswa->view_tagihan($siswa, $kelas, $thnakad)->result();
-        echo json_encode($result);
+        if(count($result) > 0){
+            echo json_encode($result);
+        } else {
+            echo json_encode(0);
+        }
     }
 
     public function search()
