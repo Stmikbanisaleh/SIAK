@@ -17,7 +17,7 @@
         <div class="col-xs-3">
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['SINGKTBPS']?></option>
                 <?php } ?>
             </select>
         </div>

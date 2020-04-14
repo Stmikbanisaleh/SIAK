@@ -22,7 +22,6 @@ class Permataajar extends CI_Controller
 			$mytahun = $this->model_permataajar->gettahun()->result_array();
 			$mysemester = $this->model_permataajar->getsemester()->result_array();
 			$myps = $this->model_permataajar->getps()->result_array();
-
 			$data = array(
 				'page_content' 	=> '/permataajar/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Data Permataajar</li>',

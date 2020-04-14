@@ -86,9 +86,9 @@ $Kelas = $row->Kelas;
   INNER JOIN pembayaran_sekolah ON saldopembayaran_sekolah.Noreg = pembayaran_sekolah.Noreg
   WHERE pembayaran_sekolah.Noreg='$id' OR pembayaran_sekolah.NIS='$id' AND pembayaran_sekolah.Nopembayaran='$nopem'")->row();
 
-  $v_TotalTagihan = $cari1->TotalTagihan;
-  $v_Sisa = $cari1->Sisa;
-  $v_TA = $cari1->TA;
+  // $v_TotalTagihan = $cari1->TotalTagihan;
+  // $v_Sisa = $cari1->Sisa;
+  // $v_TA = $cari1->TA;
 
   $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='SPP'")->row();
 
