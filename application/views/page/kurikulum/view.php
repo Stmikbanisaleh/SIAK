@@ -317,7 +317,7 @@
 						'<td class="text-center">' + data[i].kode + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
 						'<td class="text-center">' + data[i].jam + '</td>' +
-						'<td>' + data[i].DESCRTBPS + '</td>' +
+						'<td>' + data[i].DESCRTBPS  + '-' + data[i].DESCRTBJS  + '</td>' +
 						'<td>' + data[i].semester + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_mapel + '">' +
