@@ -107,14 +107,13 @@ function format_rupiah($angka){
 ?>
 <table width="100%" cellpadding="0" cellspacing="0" >
   <tr>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN MUTIARA INSAN NUSANTARA<br>
-SMP  -  SMA  -  SMK  MUTIARA  INSAN  NUSANTARA</span></th>
+    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN GEMA NURANI<br>
+SMP  -  SMA  -  SMK  GEMA NURANI</span></th>
     <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>KWITANSI</b></th>
     <th width="30%"></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
-Kecamatan Rajeg, Kabupaten Tangerang 15540</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Cendana Raya Test alamat</th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Tanggal Bayar : <?php echo $v_tglbayar;?></th>
   </tr>
   <tr>
