@@ -11,7 +11,11 @@ class Model_uts extends CI_model
     {
         return $this->db->query("SELECT
         tbjadwal.id,
-        (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel=tbjadwal.id_mapel)AS nama
+        (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel=tbjadwal.id_mapel)AS nama,
+        (SELECT x.SINGKTBPS FROM tbps x WHERE x.KDTBPS = tbjadwal.ps)AS ps,
+        tbjadwal.nmklstrjdk as kelas,
+        tbjadwal.jam as jam,
+        tbjadwal.hari as hari
         FROM
         tbjadwal
         WHERE
