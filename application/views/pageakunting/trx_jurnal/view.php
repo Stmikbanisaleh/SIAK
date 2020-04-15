@@ -186,77 +186,77 @@
 				</tr>
 				<tr>
 					<?php
-					// $datanil2 = $this->db->query("SELECT
-					// 		jurnal.kode_jurnal,
-					// 		jurnal.nama_jurnal,
-					// 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
-					// 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
-					// 		jenispembayaran.Kodejnsbayar,
-					// 		jenispembayaran.namajenisbayar,
-					// 		detail_bayar_sekolah.nominalbayar,
-					// 		pembayaran_sekolah.tglentri,
-					// 		pembayaran_sekolah.NIS,
-					// 		pembayaran_sekolah.Noreg,
-					// 		tbps.DESCRTBPS,
-					// 		tbps.KDTBPS,
-					// 		tbjs.DESCRTBJS,
-					// 		pembayaran_sekolah.Nopembayaran,
-					// 		detail_bayar_sekolah.NodetailBayar,
-					// 		mssiswa.NMSISWA
-					// 		FROM
-					// 		pembayaran_sekolah
-					// 		INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-					// 		INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-					// 		INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-					// 		INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
-					// 		INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
-					// 		INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
-					// 		WHERE pembayaran_sekolah.Nopembayaran='$bukti'
-					// 		ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					// foreach ($datanil2 as $value) { 
+					$datanil2 = $this->db->query("SELECT
+							jurnal.kode_jurnal,
+							jurnal.nama_jurnal,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
+							jenispembayaran.Kodejnsbayar,
+							jenispembayaran.namajenisbayar,
+							detail_bayar_sekolah.nominalbayar,
+							pembayaran_sekolah.tglentri,
+							pembayaran_sekolah.NIS,
+							pembayaran_sekolah.Noreg,
+							tbps.DESCRTBPS,
+							tbps.KDTBPS,
+							tbjs.DESCRTBJS,
+							pembayaran_sekolah.Nopembayaran,
+							detail_bayar_sekolah.NodetailBayar,
+							mssiswa.NMSISWA
+							FROM
+							pembayaran_sekolah
+							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
+							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
+							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
+							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
+							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
+					foreach ($datanil2 as $value) { 
 						?>
 						<td>
-							<!-- <?= $value['kode_jurnal'] ?> -->
+							<?= $value['kode_jurnal'] ?>
 						</td>
 					<?php
-						// }
+						}
 					 ?>
 
 					<?php
-					// $datanya = $this->db->query("SELECT
-					// 		jurnal.kode_jurnal,
-					// 		jurnal.nama_jurnal,
-					// 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
-					// 		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
-					// 		jenispembayaran.Kodejnsbayar,
-					// 		jenispembayaran.namajenisbayar,
-					// 		detail_bayar_sekolah.nominalbayar,
-					// 		pembayaran_sekolah.tglentri,
-					// 		pembayaran_sekolah.NIS,
-					// 		pembayaran_sekolah.Noreg,
-					// 		tbps.DESCRTBPS,
-					// 		tbps.KDTBPS,
-					// 		tbjs.DESCRTBJS,
-					// 		pembayaran_sekolah.Nopembayaran,
-					// 		detail_bayar_sekolah.NodetailBayar,
-					// 		mssiswa.NMSISWA
-					// 		FROM
-					// 		pembayaran_sekolah
-					// 		INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-					// 		INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-					// 		INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
-					// 		INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
-					// 		INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
-					// 		INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
-					// 		WHERE pembayaran_sekolah.Nopembayaran='$bukti'
-					// 		ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					// foreach ($datanya as $val) { 
+					$datanya = $this->db->query("SELECT
+							jurnal.kode_jurnal,
+							jurnal.nama_jurnal,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
+							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.type AND z.`STATUS`=8) AS type,
+							jenispembayaran.Kodejnsbayar,
+							jenispembayaran.namajenisbayar,
+							detail_bayar_sekolah.nominalbayar,
+							pembayaran_sekolah.tglentri,
+							pembayaran_sekolah.NIS,
+							pembayaran_sekolah.Noreg,
+							tbps.DESCRTBPS,
+							tbps.KDTBPS,
+							tbjs.DESCRTBJS,
+							pembayaran_sekolah.Nopembayaran,
+							detail_bayar_sekolah.NodetailBayar,
+							mssiswa.NMSISWA
+							FROM
+							pembayaran_sekolah
+							INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+							INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+							INNER JOIN jurnal ON jenispembayaran.no_jurnal = jurnal.no_jurnal
+							INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
+							INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
+							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
+							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
+							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
+					foreach ($datanya as $val) { 
 						?>
 						<td>
-							<!-- <?= $val['nama_jurnal'] ?> -->
+							<?= $val['nama_jurnal'] ?>
 						</td>
 					<?php
-					// }
+					}
 					?>
 					<?php
 					$data3 = $this->db->query("SELECT DISTINCT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='K'")->result_array();
