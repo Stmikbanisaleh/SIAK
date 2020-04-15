@@ -104,12 +104,6 @@
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulkasir/kartubayar'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Kartu Pembayaran 
-				</a>
-			</li>
-			<li class="">
 				<a href="<?= base_url() . 'modulkasir/surattagihan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Surat Tagihan
