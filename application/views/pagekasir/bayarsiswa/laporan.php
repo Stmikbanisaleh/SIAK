@@ -85,30 +85,54 @@ $Kelas = $row->Kelas;
   $cari1 = $this->db->query("SELECT*FROM saldopembayaran_sekolah
   INNER JOIN pembayaran_sekolah ON saldopembayaran_sekolah.Noreg = pembayaran_sekolah.Noreg
   WHERE pembayaran_sekolah.Noreg='$id' OR pembayaran_sekolah.NIS='$id' AND pembayaran_sekolah.Nopembayaran='$nopem'")->row();
-
+// // print_r(json_encode($cari1));exit;
   // $v_TotalTagihan = $cari1->TotalTagihan;
   // $v_Sisa = $cari1->Sisa;
   // $v_TA = $cari1->TA;
+  if($cari1 == null){
+    $v_TA = '';
+  }else{
+    $v_TA = $cari1->TA;
+  }
 
   $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='SPP'")->row();
 
-  $v_Nominal_SPP = $cari1->Nominal;
-  $v_idtarif_SPP = $cari1->idtarif;
+  if($cari1 == null){
+    $v_Nominal_SPP = 0;
+    $v_idtarif_SPP = '';
+  }else{
+    $v_Nominal_SPP = $cari1->Nominal;
+    $v_idtarif_SPP = $cari1->idtarif;
+  }
 
   $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='GDG'")->row();
 
-  $v_Nominal_GDG = $cari1->Nominal;
-  $v_idtarif_GDG = $cari1->idtarif;
+  if($cari1 == null){
+    $v_Nominal_GDG = 0;
+    $v_idtarif_GDG = '';
+  }else{
+    $v_Nominal_GDG = $cari1->Nominal;
+    $v_idtarif_GDG = $cari1->idtarif;
+  }
 
   $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='SRG'")->row();
-
-  $v_Nominal_SRG = $cari1->Nominal;
-  $v_idtarif_SRG = $cari1->idtarif;
+  if($cari1 == null){
+    $v_Nominal_SRG = 0;
+    $v_idtarif_SRG = '';
+  }else{
+    $v_Nominal_SRG = $cari1->Nominal;
+    $v_idtarif_SRG = $cari1->idtarif;
+  }
 
   $cari1 = $this->db->query("SELECT*FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar='KGT'")->row();
 
-  $v_Nominal_KGT = $cari1->Nominal;
-  $v_idtarif_KGT = $cari1->idtarif;
+  if($cari1 == null){
+    $v_Nominal_KGT = 0;
+    $v_idtarif_KGT = '';
+  }else{
+    $v_Nominal_KGT = $cari1->Nominal;
+    $v_idtarif_KGT = $cari1->idtarif;
+  }
 
   $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='SPP'")->row();
 
@@ -152,10 +176,17 @@ FROM
 pembayaran_sekolah
 WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")->row();
 
-  $t_SPP = $cari1->SPP;
-  $t_GDG = $cari1->GDG;
-  $t_SRG = $cari1->SRG;
-  $t_KGT = $cari1->KGT;
+  if($cari1 == null){
+    $t_SPP = 0;
+    $t_GDG = 0;
+    $t_SRG = 0;
+    $t_KGT = 0;
+  }else{
+    $t_SPP = $cari1->SPP;
+    $t_GDG = $cari1->GDG;
+    $t_SRG = $cari1->SRG;
+    $t_KGT = $cari1->KGT;
+  }
 
   $cari1 = $this->db->query("SELECT pot_spp, pot_gdg, pot_modul, pot_kgt
                       FROM
@@ -163,10 +194,18 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
                       WHERE NIS='$id' AND Kelas='$Kelas'")->row();
 
   if (isset($cari)) {
-    $pot_spp = $cari1->pot_spp;
-    $pot_gdg = $cari1->pot_gdg;
-    $pot_modul = $cari1->pot_modul;
-    $pot_kgt = $cari1->pot_kgt;
+    if($cari1 == null){
+      $pot_spp = 0;
+      $pot_gdg = 0;
+      $pot_modul = 0;
+      $pot_kgt = 0;
+    }else{
+      $pot_spp = $cari1->pot_spp;
+      $pot_gdg = $cari1->pot_gdg;
+      $pot_modul = $cari1->pot_modul;
+      $pot_kgt = $cari1->pot_kgt;
+    }
+    
   } else {
     $pot_spp = 0;
     $pot_gdg = 0;
