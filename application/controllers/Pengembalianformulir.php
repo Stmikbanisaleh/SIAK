@@ -63,8 +63,6 @@ class Pengembalianformulir extends CI_Controller
             'createdAt' => date('Y-m-d H:i:s')
         );
         $insert = $this->model_pengembalianformulir->insert($data, 'pembayaran_sekolah');
-        print_r($this->db->last_query());
-        print_r($insert);exit;
         $id_result = $this->db->insert_id();
         if ($insert) {
             $data_detail = array(

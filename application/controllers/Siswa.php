@@ -23,6 +23,7 @@ class Siswa extends CI_Controller
         $ta = $this->input->post('ta');
         $sekolah = $this->input->post('sekolah');
         $result = $this->model_siswa->getsiswa($noreg, $ta, $sekolah)->result();
+        print_r($this->db->last_query());exit;
         echo json_encode($result);
     }
 
