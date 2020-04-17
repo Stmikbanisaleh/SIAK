@@ -108,22 +108,13 @@ function format_rupiah($angka){
 ?>
 <table width="100%" cellpadding="0" cellspacing="0" >
   <tr>
-<<<<<<< HEAD
     <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;"><?= $nama_sekolah; ?><br>
 SMP  -  SMA  -  SMK  <?= $nama_sekolah;?></span></th>
-=======
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN GEMA NURANI<br>
-SMP  -  SMA  -  SMK  GEMA NURANI</span></th>
->>>>>>> acc191ddc6169b028cf90fcb81fb2091a3592e11
     <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>KWITANSI</b></th>
     <th width="30%"></th>
   </tr>
   <tr>
-<<<<<<< HEAD
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"><?= $alamat; ?></th>
-=======
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Cendana Raya Test alamat</th>
->>>>>>> acc191ddc6169b028cf90fcb81fb2091a3592e11
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Tanggal Bayar : <?php echo $v_tglbayar;?></th>
   </tr>
   <tr>
