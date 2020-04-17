@@ -33,6 +33,8 @@ class Lap_bukubesar extends CI_Controller {
     }
 
     public function laporan() {
+        $this->load->library('Configfunction');
+        $sysconfig = $this->configfunction->get_sysconfig();
         $blnawal = $this->format_bulan($this->input->post('blnawal'));
         $blnakhir = $this->format_bulan($this->input->post('blnakhir'));        
         $tahun = $this->input->post('tahun');
@@ -51,6 +53,7 @@ class Lap_bukubesar extends CI_Controller {
             'v_kode_jurnal' => $v_kode_jurnal,
             'v_nama_jurnal' => $v_nama_jurnal,
             'v_nml' => $nml,
+            'my_sysconfig' => $sysconfig,
         );
         $this->load->view('pageakunting/lap_bukubesar/laporan', $data);
     }

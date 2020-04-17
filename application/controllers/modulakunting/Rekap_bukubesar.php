@@ -30,6 +30,8 @@ class Rekap_bukubesar extends CI_Controller {
     }
 
     public function laporan() {
+        $this->load->library('Configfunction');
+        $sysconfig = $this->configfunction->get_sysconfig();
         $blnawal = $this->format_bulan($this->input->post('blnawal'));
         $blnakhir = $this->format_bulan($this->input->post('blnakhir'));        
         $tahun = $this->input->post('tahun');
@@ -48,6 +50,7 @@ class Rekap_bukubesar extends CI_Controller {
             'myrekening' => $myrekening,
             'myrekening4' => $myrekening4,
             'v_nml'       => $nml,
+            'my_sysconfig' => $sysconfig,
         );
         $this->load->view('pageakunting/rekap_bukubesar/laporan', $data);
     }  

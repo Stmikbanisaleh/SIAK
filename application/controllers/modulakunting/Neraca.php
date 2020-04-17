@@ -30,6 +30,8 @@ class Neraca extends CI_Controller {
     }
 
     public function laporan() {
+        $this->load->library('Configfunction');
+        $sysconfig = $this->configfunction->get_sysconfig();
         $blnawal = $this->format_bulan($this->input->post('blnawal'));
         $blnakhir = $this->format_bulan($this->input->post('blnakhir'));        
         $tahun = $this->input->post('tahun');
@@ -40,7 +42,8 @@ class Neraca extends CI_Controller {
             'v_akhir'     => $blnakhir,
             'tahun'       => $tahun,
             'myrekening' => $myrekening,
-            'myrekening4' => $myrekening4
+            'myrekening4' => $myrekening4,
+            'my_sysconfig' => $sysconfig,
         );
         $this->load->view('pageakunting/neraca/laporan', $data);
     }

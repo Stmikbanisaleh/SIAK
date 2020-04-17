@@ -1,8 +1,19 @@
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
           <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;">
-            YAYASAN MUTIARA INSAN NUSANTARA<br>
-          SMP - SMA - SMK MUTIARA INSAN NUSANTARA</span></th>
+          <?php
+                if($my_sysconfig != null){
+                    $nama_sekolah = $my_sysconfig->name_school;
+                    $alamat = $my_sysconfig->address;
+                    $telp = $my_sysconfig->no_telp;
+                }else{
+                    $nama_sekolah = '';
+                    $alamat = '';
+                    $telp = '';
+                }
+                echo "YAYASAN ".$nama_sekolah;
+            ?><br>
+          SMP - SMA - SMK <?= $nama_sekolah;?></span></th>
           <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 16px;">
             <b>BUKU BESAR</b>
           </th>
@@ -11,15 +22,14 @@
           </th>
         </tr>
         <tr>
-          <th align="left"><span style="font-family:Rockwell;font-size: 10px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
-            Kecamatan Rajeg, Kabupaten Tangerang 15540
+          <th align="left"><span style="font-family:Rockwell;font-size: 10px;"><?= $alamat; ?>
           </th>
           <th align="left"><span style="font-family:Rockwell;font-size: 10px;">
           </th>
         </tr>
         <tr>
           <th align="left"><span style="font-family:Rockwell;font-size: 10px;">
-            Telp. (021) 59391134
+            Telp. <?= $telp ?>
           </th>
           <th align="left"><span style="font-family:Rockwell;font-size: 10px;">
           </th>
