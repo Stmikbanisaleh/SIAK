@@ -164,4 +164,10 @@ class Configfunction
         $result = $this->CI->db->query('SELECT * FROM tbakadmk WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk)')->result_array();
         return $result;
     }
+
+    public function get_sysconfig()
+    {
+        $result = $this->CI->db->query('SELECT address, UPPER(name_school) name_school, no_telp FROM sys_config WHERE 1')->row();
+        return $result;
+    }
 }

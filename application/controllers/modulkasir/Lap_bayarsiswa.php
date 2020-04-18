@@ -28,6 +28,8 @@ class Lap_bayarsiswa extends CI_Controller {
 
     public function laporan_pdf(){
         $this->load->library('pdf');
+        $this->load->library('Configfunction');
+        $sysconfig = $this->configfunction->get_sysconfig();
         $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
         $periode_awal = $this->input->post('periode_awal');
         $periode_akhir = $this->input->post('periode_akhir');  
@@ -39,6 +41,7 @@ class Lap_bayarsiswa extends CI_Controller {
             'v_akhir'     => $periode_akhir,
             'mydata'      => $my_pembsiswa,
             'tgl'         => $tgl,
+            'my_sysconfig' => $sysconfig,
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Laporan-pembayaran.pdf";

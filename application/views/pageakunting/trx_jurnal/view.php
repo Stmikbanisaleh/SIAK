@@ -250,6 +250,7 @@
 							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
 							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
 							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
+					print_r($this->db->last_query());exit;
 					foreach ($datanya as $val) { 
 						?>
 						<td>

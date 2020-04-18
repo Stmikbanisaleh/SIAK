@@ -1,7 +1,15 @@
 <?php
-
-// print_r($this->uri->segment('3'));exit;
-// require("../config/config.default.php");
+                if($my_sysconfig != null){
+                    $nama_sekolah = $my_sysconfig->name_school;
+                    $alamat = $my_sysconfig->address;
+                    $telp = $my_sysconfig->no_telp;
+                }else{
+                    $nama_sekolah = '';
+                    $alamat = '';
+                    $telp = '';
+                }
+            ?>
+<?php
 		$query= $this->db->query("SELECT
 									pembayaran_sekolah.Nopembayaran,
 									pembayaran_sekolah.Noreg,
@@ -18,14 +26,8 @@
 									JOIN tarif_berlaku t ON t.idtarif = d.idtarif
 									WHERE Noreg='".$this->uri->segment('3')."' AND t.Kodejnsbayar = 'FRM'");
 
-		// print_r(json_encode($query->row()));exit;
-	// $assistant = mysql_query($query);
-	// $num_assistant = mysql_num_rows($assistant);
 	$row = $query->row();
-	if($row!=null){
-	// for ($i=0; $i <$num_assistant; $i++)
-	// {
-		// $row =mysql_fetch_object($assistant);		  
+	if($row!=null){	  
 		$v_NoPembayaranPSB = $row->Nopembayaran;  			  
 		$v_Noreg = $row->Noreg;  			  
 		$v_Namacasis = $row->Namacasis;  			  
@@ -46,7 +48,6 @@
 		$v_nominalbayar = 0;  			  
 		$v_Kodejnsbayar = '';
 	}
-	// }
 function kekata($x) {
     $x = abs($x);
     $angka = array("", "satu", "dua", "tiga", "empat", "lima",
@@ -107,17 +108,17 @@ function format_rupiah($angka){
 ?>
 <table width="100%" cellpadding="0" cellspacing="0" >
   <tr>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN GEMA NURANI<br>
-SMP  -  SMA  -  SMK  GEMA NURANI</span></th>
+    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;"><?= $nama_sekolah; ?><br>
+SMP  -  SMA  -  SMK  <?= $nama_sekolah;?></span></th>
     <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>KWITANSI</b></th>
     <th width="30%"></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Cendana Raya Test alamat</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;"><?= $alamat; ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Tanggal Bayar : <?php echo $v_tglbayar;?></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Telp. (021) 59391134</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Telp. <?= $telp ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">No. Kwitansi : <?=$v_Kodejnsbayar.'-'.$v_NamaSek.'-'.$v_NoPembayaranPSB?></th>
   </tr>
   </table>  
