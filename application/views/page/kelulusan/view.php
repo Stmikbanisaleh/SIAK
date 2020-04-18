@@ -24,7 +24,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['id'] ?>><?= "[".$value['sekolah']."-".$value['jurusan']."]" ?></option>
+                    <option value=<?= $value['id'] ?>><?= "[" . $value['sekolah'] . "-" . $value['jurusan'] . "]" ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -340,18 +340,18 @@
                                             '</button>';
                             }else if(data[i].STATUSCALONSISWA == '4'){
                                 st_calsis_lulus = '<button class="btn btn-xs btn-success item_lulus" title="Lulus" data-noreg="' + data[i].NOREG + '">' +
-                                            '<i class="ace-icon fa fa-check bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon fa fa-check bigger-120"></i>' +
+                                    '</button>';
                             }
 
-                            if(data[i].STATUSCALONSISWA == 3){
+                            if (data[i].STATUSCALONSISWA == 3) {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-success item_keluarkan" title="Batal" data-noreg="' + data[i].NOREG + '" data-n="4">' +
-                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
-                                            '</button>';
-                            }else{
+                                    '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                    '</button>';
+                            } else {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-danger item_keluarkan" title="Keluarkan" data-noreg="' + data[i].NOREG + '" data-n="3">' +
-                                            '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
+                                    '</button>';
                             }
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
@@ -360,10 +360,10 @@
                                 '<td>' + data[i].THNAKDRKP + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_lulus+
+                                st_calsis_lulus +
                                 '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_keluar+
+                                st_calsis_keluar +
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -498,69 +498,69 @@
 
     $('#show_data').on('click', '.item_lulus', function() {
         var noreg = $(this).data('noreg');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/lulus') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/lulus') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 
     $('#show_data').on('click', '.item_keluarkan', function() {
         var noreg = $(this).data('noreg');
         var n = $(this).data('n');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/keluarkan') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                    n: n,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/keluarkan') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+                n: n,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 </script>

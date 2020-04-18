@@ -6,21 +6,23 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Hari</th>
-            <th>Nama Kelas</th>
-            <th>Jam</th>
-            <th>Nama Matapelajaran</th>
-            <th>UTS</th>
-            <th>UAS</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Hari</th>
+                <th>Nama Kelas</th>
+                <th>Jam</th>
+                <th>Nama Matapelajaran</th>
+                <th>UTS</th>
+                <th>UAS</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     $(document).ready(function() {
         show_data();

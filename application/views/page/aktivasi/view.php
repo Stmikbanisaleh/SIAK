@@ -5,19 +5,21 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>User</th>
-            <th>Nama</th>
-            <th>Jabatan</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>User</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     if ($("#formImport").length > 0) {
         $("#formImport").validate({

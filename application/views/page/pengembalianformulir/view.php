@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat Rumah </label>
                                 <div class="col-sm-6">
-                                   <textarea id="e_alamat" required placeholder="Masukan Alamat" name="e_alamat" class="form-control"></textarea>
+                                    <textarea id="e_alamat" required placeholder="Masukan Alamat" name="e_alamat" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -120,23 +120,25 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Registrasi</th>
-            <th>Nama</th>
-            <th>Jenis Kelamin</th>
-            <th>Agama</th>
-            <th>Sekolah</th>
-            <th>Tanggal Lahir</th>
-            <th>Tempat Lahir</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Registrasi</th>
+                <th>Nama</th>
+                <th>Jenis Kelamin</th>
+                <th>Agama</th>
+                <th>Sekolah</th>
+                <th>Tanggal Lahir</th>
+                <th>Tempat Lahir</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

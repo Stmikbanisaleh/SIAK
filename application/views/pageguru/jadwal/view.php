@@ -43,22 +43,24 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Guru</th>
-            <th>Mata Ajar</th>
-            <th>Hari </th>
-            <th>Ruang</th>
-            <th>Kelas</th>
-            <th>Jam</th>
-            <th>Program Sekolah</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Guru</th>
+                <th>Mata Ajar</th>
+                <th>Hari </th>
+                <th>Ruang</th>
+                <th>Kelas</th>
+                <th>Jam</th>
+                <th>Program Sekolah</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({

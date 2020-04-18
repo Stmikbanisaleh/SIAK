@@ -89,17 +89,19 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama Kelas</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Kelas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

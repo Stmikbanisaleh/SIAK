@@ -13,7 +13,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" id="e_id" name="e_id"/>
+                                    <input type="hidden" id="e_id" name="e_id" />
                                     <input type="text" id="e_deskripsi" name="e_deskripsi" placeholder="Deskripsi" class="form-control" />
                                 </div>
                             </div>
@@ -49,18 +49,20 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Keterangan</th>
-            <th>Singkatan</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Keterangan</th>
+                <th>Singkatan</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formEdit").length > 0) {
         $("#formEdit").validate({
@@ -182,5 +184,4 @@
             }
         });
     });
-
 </script>

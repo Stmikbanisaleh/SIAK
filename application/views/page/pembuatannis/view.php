@@ -169,21 +169,23 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Registrasi</th>
-            <th>Nama</th>
-            <th>Tanggal Bayar</th>
-            <th>Total Bayar</th>
-            <th>Sekolah</th>
-            <th>Tahun Masuk</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Registrasi</th>
+                <th>Nama</th>
+                <th>Tanggal Bayar</th>
+                <th>Total Bayar</th>
+                <th>Sekolah</th>
+                <th>Tahun Masuk</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
@@ -417,7 +419,7 @@
                         '<td>' + data[i].Namacasis + '</td>' +
                         '<td>' + data[i].tglbayar + '</td>' +
                         '<td>' + data[i].totalbayar2 + '</td>' +
-                        '<td>' + data[i].NamaSek +  '-' + data[i].NamaJurusan + '</td>' +
+                        '<td>' + data[i].NamaSek + '-' + data[i].NamaJurusan + '</td>' +
                         '<td>' + data[i].TAHUN + '</td>' +
                         '</tr>';
                     no++;

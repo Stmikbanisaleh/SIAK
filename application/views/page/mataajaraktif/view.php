@@ -27,7 +27,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['SINGKTBPS']?></option>
+                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['SINGKTBPS'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -165,22 +165,24 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Kode Mata ajar</th>
-            <th>Nama Mata ajar</th>
-            <th>Tahun</th>
-            <th>Periode</th>
-            <th>Program Sekolah</th>
-            <th>Semester</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Kode Mata ajar</th>
+                <th>Nama Mata ajar</th>
+                <th>Tahun</th>
+                <th>Periode</th>
+                <th>Program Sekolah</th>
+                <th>Semester</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({

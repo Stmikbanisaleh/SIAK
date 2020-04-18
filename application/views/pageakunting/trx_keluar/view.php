@@ -57,6 +57,7 @@
 		</div>
 	</div>
 </div>
+<div class="table-responsive">
 <table id="datatable_tabletools" class="display">
 	<thead>
 		<tr>
@@ -95,6 +96,7 @@
 
 		</tbody>
 	</table>
+</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			show_data();

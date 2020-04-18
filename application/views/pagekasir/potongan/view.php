@@ -9,7 +9,7 @@
     <br>
     <br>
 </div>
-<div id="my-modal2" class="modal fade" >
+<div id="my-modal2" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -88,26 +88,26 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan SPP </label>
                                 <div class="col-sm-6">
-                                    <input type="text" maxlength ="3" class="form-control" name="potonganspp_v" placeholder="10%" id="potonganspp_v" />
+                                    <input type="text" maxlength="3" class="form-control" name="potonganspp_v" placeholder="10%" id="potonganspp_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Gedung </label>
                                 <div class="col-sm-6">
-                                    <input type="text" maxlength ="3" class="form-control" name="potongangedung_v" placeholder="10%" id="potongangedung_v" />
+                                    <input type="text" maxlength="3" class="form-control" name="potongangedung_v" placeholder="10%" id="potongangedung_v" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Modul </label>
                                 <div class="col-sm-6">
-                                    <input type="text" maxlength ="3" class="form-control" name="potonganmodul_v" placeholder="10%" id="potonganmodul_v" />
+                                    <input type="text" maxlength="3" class="form-control" name="potonganmodul_v" placeholder="10%" id="potonganmodul_v" />
                                 </div>
                             </div>
-                       
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Potongan Kegiatan </label>
                                 <div class="col-sm-6">
-                                    <input type="text" maxlength ="3" class="form-control" name="potongankegiatan_v" placeholder="10%" id="potongankegiatan_v" />
+                                    <input type="text" maxlength="3" class="form-control" name="potongankegiatan_v" placeholder="10%" id="potongankegiatan_v" />
                                 </div>
                             </div>
                         </div>
@@ -191,24 +191,30 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Nama Siswa</th>
-            <th>Kelas</th>
-            <th>Potongan SPP</th>
-            <th>Potongan Gedung</th>
-            <th>Potongan Modul</th>
-            <th>Potongan Kegiatan</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Nama Siswa</th>
+                <th>Kelas</th>
+                <th>Potongan SPP</th>
+                <th>Potongan Gedung</th>
+                <th>Potongan Modul</th>
+                <th>Potongan Kegiatan</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
-        $('select').select2({ width: '100%', placeholder: "Masukan Data", allowClear: true });
+    $('select').select2({
+        width: '100%',
+        placeholder: "Masukan Data",
+        allowClear: true
+    });
 
     if ($("#formImport").length > 0) {
         $("#formImport").validate({
