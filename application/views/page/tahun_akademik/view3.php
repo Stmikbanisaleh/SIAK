@@ -61,7 +61,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="kdsekolah" name="kdsekolah" placeholder="123456" class="form-control" />
+                                    <select class="form-control" name="kdsekolah" id="kdsekolah">
+                                        <option value="">-- Pilih Sekolah --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['KDTBPS'] ?>> <?= $value['DESCRTBPS'] . "-" . $value['DESCRTBJS'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +139,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="e_kdsekolah" name="e_kdsekolah" placeholder="" class="form-control" />
+                                    <select class="form-control" name="e_kdsekolah" id="e_kdsekolah">
+                                        <option value="">-- Pilih Sekolah --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['KDTBPS'] ?>> <?= $value['DESCRTBPS'] . "-" . $value['DESCRTBJS'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                <!-- <input type="text" id="e_kdsekolah" name="e_kdsekolah" placeholder="" class="form-control" /> -->
                                 </div>
                             </div>
                         </div>
@@ -322,7 +333,7 @@
                         // '<td>' + data[i].UTSUAS + '</td>' +
                         '<td class="text-right">' + data[i].INDEK + '</td>' +
                         '<td>' + data[i].THNDAPODIK + '</td>' +
-                        '<td class="text-right">' + data[i].KDSEKOLAH + '</td>' +
+                        '<td class="text-left">'+ data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '-' + data[i].KDSEKOLAH + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +

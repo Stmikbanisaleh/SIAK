@@ -21,8 +21,8 @@ class Tahun_akad1 extends CI_Controller
             $mysekolah = $this->model_tahun_akademik->getsekolah()->result_array();
             $data = array(
                 'page_content'  => 'tahun_akademik/view',
-                'ribbon'        => '<li class="active">Tahun Akademik 1</li>',
-                'page_name'     => 'Tahun Akademik 1',
+                'ribbon'        => '<li class="active">Tahun Akademik Keuangan</li>',
+                'page_name'     => 'Tahun Akademik Keuangan',
                 'mysekolah'     => $mysekolah
             );
             $this->render_view($data); //Memanggil function render_view
@@ -34,7 +34,7 @@ class Tahun_akad1 extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk', 'id', 'desc')->result();
+            $my_data = $this->model_tahun_akademik->viewjoin('tbakadmk')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view

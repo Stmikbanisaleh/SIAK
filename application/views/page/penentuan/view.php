@@ -96,26 +96,26 @@
     </div>
     <br>
     <div class="table-responsive">
-    <table id="table_id" class="display">
-        <thead>
-            <tr>
-                <th class="col-md-1">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th>Jenis Kelamin</th>
-                <th>Agama</th>
-                <th>Ijazah</th>
-                <th>NEM</th>
-                <th>Kelas</th>
-                <th>Kelas Saat ini</th>
-                <th>Golongan Kelas</th>
-                <th class="col-sm-2 text-center">Action</th>
-            </tr>
-        </thead>
-        <tbody id="show_data">
-        </tbody>
-    </table>
-</div>
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th class="col-md-1">No</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Agama</th>
+                    <th>Ijazah</th>
+                    <th>NEM</th>
+                    <th>Kelas</th>
+                    <th>Kelas Saat ini</th>
+                    <th>Golongan Kelas</th>
+                    <th class="col-sm-2 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody id="show_data">
+            </tbody>
+        </table>
+    </div>
     <script>
         if ($("#formImport").length > 0) {
         $("#formImport").validate({

@@ -94,7 +94,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-9">
-                                    <input type="text" maxlength="9" class="form-control" required name="tahunakademik" id="tahunakademik" placeholder="2020/2021" />
+                                    <!-- <input type="text" maxlength="9" class="form-control" required name="tahunakademik" id="tahunakademik" placeholder="2020/2021" /> -->
+                                    <select class="form-control" name="tahunakademik" id="tahunakademik">
+                                        <option value="">-- Pilih Tahun Akademik --</option>
+                                        <?php foreach ($my_thnakad3 as $value) { ?>
+                                            <option value=<?= $value['THNAKAD'] ?>> <?= $value['THNAKAD'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
 
