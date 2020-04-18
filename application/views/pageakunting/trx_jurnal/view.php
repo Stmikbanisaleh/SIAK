@@ -122,53 +122,54 @@
 </div>
 <br>
 <div class="row">
-	<table class="table table-bordered table-hover table-striped  w-full" cellspacing="0">
-		<thead>
-			<tr>
-				<th>Kode Rekening</th>
-				<th>Nama Rekening</th>
-				<th>Uraian</th>
-				<th>D/K</th>
-				<th>Nilai</th>
-			</tr>
-		</thead>
-		<?php
-		if ($this->input->get('tahun')) { ?>
-			<tbody id="show_data">
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover table-striped  w-full" cellspacing="0">
+			<thead>
 				<tr>
-					<?php $jurnal = $this->db->query("SELECT
+					<th>Kode Rekening</th>
+					<th>Nama Rekening</th>
+					<th>Uraian</th>
+					<th>D/K</th>
+					<th>Nilai</th>
+				</tr>
+			</thead>
+			<?php
+			if ($this->input->get('tahun')) { ?>
+				<tbody id="show_data">
+					<tr>
+						<?php $jurnal = $this->db->query("SELECT
 					jurnal.kode_jurnal,
 					jurnal.nama_jurnal,
 					parameter.id
 					FROM
 					parameter 
 					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal where parameter.isdeleted != 1")->result_array();
-					?>
-					<?php
-					foreach ($jurnal as $data) { ?>
-						<td><?= $data['kode_jurnal'] ?></td>
-						<td><?= $data['nama_jurnal'] ?></td>
-					<?php
-					}
-					?>
-					<?php
-					$bukti = $this->input->get('nopembayaran');
-					$uraiain = $this->db->query("SELECT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='D'")->result_array();
-					?>
-					<?php
-					$no = 1;
-					if (!empty($uraiain)) {
-						foreach ($uraiain as $val) { ?>
-							<td><input type="text" value="<?= $val['urai'] ?>" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
+						?>
+						<?php
+						foreach ($jurnal as $data) { ?>
+							<td><?= $data['kode_jurnal'] ?></td>
+							<td><?= $data['nama_jurnal'] ?></td>
 						<?php
 						}
 						?>
-					<?php } else { ?>
-						<td><input type="text" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
-					<?php } ?>
-					<td>D (Debet)</td>
-					<?php
-					$nilai = $this->db->query("SELECT 
+						<?php
+						$bukti = $this->input->get('nopembayaran');
+						$uraiain = $this->db->query("SELECT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='D'")->result_array();
+						?>
+						<?php
+						$no = 1;
+						if (!empty($uraiain)) {
+							foreach ($uraiain as $val) { ?>
+								<td><input type="text" value="<?= $val['urai'] ?>" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
+							<?php
+							}
+							?>
+						<?php } else { ?>
+							<td><input type="text" id="urai1" name="urai1" placeholder="uraian" class="form-control" /></td>
+						<?php } ?>
+						<td>D (Debet)</td>
+						<?php
+						$nilai = $this->db->query("SELECT 
 						pembayaran_sekolah.Nopembayaran,
 						pembayaran_sekolah.NIS,
 						pembayaran_sekolah.Noreg,
@@ -179,14 +180,14 @@
 						pembayaran_sekolah.kodesekolah,
 						pembayaran_sekolah.TA
 						FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($nilai as $nilaival) {
-					?>
-						<td><input type="text" id="nilai" readonly value="<?= $nilaival['TotalBayar'] ?>" name="nilai" placeholder="nilai" class="form-control" /></td>
-					<?php } ?>
-				</tr>
-				<tr>
-					<?php
-					$datanil2 = $this->db->query("SELECT
+						foreach ($nilai as $nilaival) {
+						?>
+							<td><input type="text" id="nilai" readonly value="<?= $nilaival['TotalBayar'] ?>" name="nilai" placeholder="nilai" class="form-control" /></td>
+						<?php } ?>
+					</tr>
+					<tr>
+						<?php
+						$datanil2 = $this->db->query("SELECT
 							jurnal.kode_jurnal,
 							jurnal.nama_jurnal,
 							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
@@ -213,17 +214,17 @@
 							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg 
 							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
 							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					foreach ($datanil2 as $value) { 
+						foreach ($datanil2 as $value) {
 						?>
-						<td>
-							<?= $value['kode_jurnal'] ?>
-						</td>
-					<?php
+							<td>
+								<?= $value['kode_jurnal'] ?>
+							</td>
+						<?php
 						}
-					 ?>
+						?>
 
-					<?php
-					$datanya = $this->db->query("SELECT
+						<?php
+						$datanya = $this->db->query("SELECT
 							jurnal.kode_jurnal,
 							jurnal.nama_jurnal,
 							(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=jurnal.JR AND z.`STATUS`=7) AS JR,
@@ -250,28 +251,29 @@
 							INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
 							WHERE pembayaran_sekolah.Nopembayaran='$bukti'
 							ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
-					print_r($this->db->last_query());exit;
-					foreach ($datanya as $val) { 
+						print_r($this->db->last_query());
+						exit;
+						foreach ($datanya as $val) {
 						?>
-						<td>
-							<?= $val['nama_jurnal'] ?>
-						</td>
-					<?php
-					}
-					?>
-					<?php
-					$data3 = $this->db->query("SELECT DISTINCT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='K'")->result_array();
-					if (!empty($data3)) {
-						foreach ($data3 as $datanya) {
-					?>
-							<td><input type="text" id="urai2" value="<?= $datanya['urai'] ?>" name="urai2" placeholder="uraian" class="form-control" /></td>
+							<td>
+								<?= $val['nama_jurnal'] ?>
+							</td>
+						<?php
+						}
+						?>
+						<?php
+						$data3 = $this->db->query("SELECT DISTINCT * FROM detail_akuntansi WHERE no_akuntansi='$bukti' AND dk='K'")->result_array();
+						if (!empty($data3)) {
+							foreach ($data3 as $datanya) {
+						?>
+								<td><input type="text" id="urai2" value="<?= $datanya['urai'] ?>" name="urai2" placeholder="uraian" class="form-control" /></td>
+							<?php } ?>
+						<?php } else { ?>
+							<td><input type="text" id="urai2" name="urai2" placeholder="uraian" class="form-control" /></td>
 						<?php } ?>
-					<?php } else { ?>
-						<td><input type="text" id="urai2" name="urai2" placeholder="uraian" class="form-control" /></td>
-					<?php } ?>
-					<td>K (Kredit)</td>
-					<?php
-					$data4 = $this->db->query("SELECT 
+						<td>K (Kredit)</td>
+						<?php
+						$data4 = $this->db->query("SELECT 
 						pembayaran_sekolah.Nopembayaran,
 						pembayaran_sekolah.NIS,
 						pembayaran_sekolah.Noreg,
@@ -282,24 +284,24 @@
 						pembayaran_sekolah.kodesekolah,
 						pembayaran_sekolah.TA
 						FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($data4 as $datanya) {
-					?>
-						<td><input type="number" id="nilai2" value="<?= $datanya['TotalBayar'] ?>" required readonly name="nilai2" placeholder="Nilai" class="form-control" /></td>
-					<?php } ?>
-				</tr>
-				<tr>
-					<?php $data5 = $this->db->query("SELECT
+						foreach ($data4 as $datanya) {
+						?>
+							<td><input type="number" id="nilai2" value="<?= $datanya['TotalBayar'] ?>" required readonly name="nilai2" placeholder="Nilai" class="form-control" /></td>
+						<?php } ?>
+					</tr>
+					<tr>
+						<?php $data5 = $this->db->query("SELECT
 							jurnal.kode_jurnal,
 							jurnal.nama_jurnal,
 							parameter.id
 							FROM
 							parameter 
 					INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal where parameter.isdeleted != 1")->result_array();
-					$no = 1;
-					foreach ($data5 as $val) { ?>
-						<td><input name="kod" id="kod" type="hidden" value="<?= $val['kode_jurnal'] ?>"></td>
-					<?php } ?>
-					<?php $data6 = $this->db->query("SELECT 
+						$no = 1;
+						foreach ($data5 as $val) { ?>
+							<td><input name="kod" id="kod" type="hidden" value="<?= $val['kode_jurnal'] ?>"></td>
+						<?php } ?>
+						<?php $data6 = $this->db->query("SELECT 
 							pembayaran_sekolah.Nopembayaran,
 							pembayaran_sekolah.NIS,
 							pembayaran_sekolah.Noreg,
@@ -310,36 +312,37 @@
 							pembayaran_sekolah.kodesekolah,
 							pembayaran_sekolah.TA
 							FROM pembayaran_sekolah WHERE Nopembayaran='$bukti'")->result_array();
-					foreach ($data6 as $data) { ?>
-						<td><input name="nopem" id="nopem" type="hidden" value="<?= $data['Nopembayaran'] ?>"></td>
-					<?php } ?>
-					<td></td>
-					<td></td>
-					<?php
-					$status = $this->db->query("SELECT COUNT(*)AS n,urai FROM akuntansi WHERE bukti='$bukti'")->result_array();
-					if ($status[0]['n'] == 1) { ?>
-						<td style="text-align: right">
-							<input name="kdo" id="kdo" type="hidden" value="2">
-							<button class="btn btn-xs btn-danger" id="simpan1" title="">
-								Batal
-							</button>
-							<div id="tampilkandatanya1">
-						</td>
-					<?php } else { ?>
-						<td style="text-align: right">
-							<input name="kdo" id="kdo" type="hidden" value="1">
-							<button class="btn btn-xs btn-success" id="simpan1" title="">
-								Simpan
-							</button>
-							<div id="tampilkandatanya1">
-						</td>
-					<?php } ?>
-				</tr>
-			</tbody>
-	</table>
+						foreach ($data6 as $data) { ?>
+							<td><input name="nopem" id="nopem" type="hidden" value="<?= $data['Nopembayaran'] ?>"></td>
+						<?php } ?>
+						<td></td>
+						<td></td>
+						<?php
+						$status = $this->db->query("SELECT COUNT(*)AS n,urai FROM akuntansi WHERE bukti='$bukti'")->result_array();
+						if ($status[0]['n'] == 1) { ?>
+							<td style="text-align: right">
+								<input name="kdo" id="kdo" type="hidden" value="2">
+								<button class="btn btn-xs btn-danger" id="simpan1" title="">
+									Batal
+								</button>
+								<div id="tampilkandatanya1">
+							</td>
+						<?php } else { ?>
+							<td style="text-align: right">
+								<input name="kdo" id="kdo" type="hidden" value="1">
+								<button class="btn btn-xs btn-success" id="simpan1" title="">
+									Simpan
+								</button>
+								<div id="tampilkandatanya1">
+							</td>
+						<?php } ?>
+					</tr>
+				</tbody>
+		</table>
+	</div>
 </div>
 <?php
-		}
+			}
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Menu </label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" id="e_id" name="e_id"/>
+                                    <input type="hidden" id="e_id" name="e_id" />
                                     <input type="text" id="e_nama" name="e_nama" placeholder="" class="form-control" />
                                 </div>
                             </div>
@@ -168,21 +168,23 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Nama Menu</th>
-            <th>Urutan</th>
-            <th>Status</th>
-            <th>Posisi</th>
-            <th>Link</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Nama Menu</th>
+                <th>Urutan</th>
+                <th>Status</th>
+                <th>Posisi</th>
+                <th>Link</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

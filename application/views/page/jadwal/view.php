@@ -182,23 +182,25 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Guru</th>
-            <th>Mata Ajar</th>
-            <th>Ruang</th>
-            <th>Kelas</th>
-            <th>Hari</th>
-            <th>Jam Ke</th>
-            <th>Program Sekolah</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Guru</th>
+                <th>Mata Ajar</th>
+                <th>Ruang</th>
+                <th>Kelas</th>
+                <th>Hari</th>
+                <th>Jam Ke</th>
+                <th>Program Sekolah</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
@@ -289,7 +291,7 @@
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
                                 '<td>' + data[i].GuruNama + '</td>' +
-                                '<td>' + data[i].nama+'-'+data[i].kode + '</td>' +
+                                '<td>' + data[i].nama + '-' + data[i].kode + '</td>' +
                                 '<td>' + data[i].RUANG + '</td>' +
                                 '<td>' + data[i].NMKLSTRJDK + '</td>' +
                                 '<td>' + data[i].hari + '</td>' +

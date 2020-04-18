@@ -6,21 +6,23 @@
 	</div>
 </div>
 <br>
-<table id="table_id" class="display">
-	<thead>
-		<tr>
-			<th class="col-md-1">No</th>
-			<th>Nama Induk</th>
-            <th>Kelas</th>
-            <th>Tagihan</th>
-            <th>Bayar</th>
-            <th>Sisa</th>
-			<th>Tahun Akademik</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="table_id" class="display">
+		<thead>
+			<tr>
+				<th class="col-md-1">No</th>
+				<th>Nama Induk</th>
+				<th>Kelas</th>
+				<th>Tagihan</th>
+				<th>Bayar</th>
+				<th>Sisa</th>
+				<th>Tahun Akademik</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		show_data();
@@ -42,10 +44,10 @@
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].SLNIS + '</td>' +
-                        '<td>' + data[i].SlSemester + '</td>' +
-                        '<td>' + data[i].SLTotalTagihan + '</td>' +
-                        '<td>' + data[i].SLTotalBayar + '</td>' +
-                        '<td>' + data[i].SLSISA + '</td>' +
+						'<td>' + data[i].SlSemester + '</td>' +
+						'<td>' + data[i].SLTotalTagihan + '</td>' +
+						'<td>' + data[i].SLTotalBayar + '</td>' +
+						'<td>' + data[i].SLSISA + '</td>' +
 						'<td>' + data[i].SLTA + '</td>' +
 						'</tr>';
 					no++;
@@ -95,37 +97,37 @@
 		});
 	});
 
-    $('#show_data').on('click','.item_hapus',function(){
-        var id    = $(this).data('id');
-       Swal.fire({
-		  title: 'Apakah anda yakin?',
-		  text: "Anda tidak akan dapat mengembalikan ini!",
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Ya, Hapus!',
-		  cancelButtonText: 'Batal'
+	$('#show_data').on('click', '.item_hapus', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda tidak akan dapat mengembalikan ini!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Hapus!',
+			cancelButtonText: 'Batal'
 		}).then((result) => {
-		  if (result.value) {
-		  	$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('jabatan/delete') ?>",
-				async: true,
-				dataType: "JSON",
-				data: {
-					id: id,
-				},
-				success: function(data) {
-					show_data();
-					Swal.fire(
-				      'Terhapus!',
-				      'Data sudah dihapus.',
-				      'success'
-				    )
-				}
-			});
-		  }
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('jabatan/delete') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terhapus!',
+							'Data sudah dihapus.',
+							'success'
+						)
+					}
+				});
+			}
 		})
-    })
+	})
 </script>

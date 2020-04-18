@@ -31,26 +31,26 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
                                 <div class="col-sm-6">
-                                    <input type="number" maxlength="4"  id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" maxlength="4" id="tahun" name="tahun" placeholder="2020" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
                                 <div class="col-sm-6">
-                                    <input type="number"  id="indek" name="indek" placeholder="1 / 2" class="form-control" />
+                                    <input type="number" id="indek" name="indek" placeholder="1 / 2" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-6">
-                                    <input type="text" maxlength="9"  id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
+                                    <input type="text" maxlength="9" id="tahun_akad" name="tahun_akad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
                             <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class ="col-sm-6">-->
-                                    <input type="hidden"  maxlength="3"  id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
-                               <!--  </div>
+                            <input type="hidden" maxlength="3" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
+                            <!--  </div>
                             </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
@@ -62,7 +62,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Sekolah </label>
                                 <div class="col-sm-6">
                                     <!-- <input type="text" id="kdsekolah" name="kdsekolah" placeholder="" class="form-control" /> -->
-                                     <select class="form-control" name="kdsekolah" id="kdsekolah">
+                                    <select class="form-control" name="kdsekolah" id="kdsekolah">
                                         <option value="">-- Pilih Sekolah --</option>
                                         <?php foreach ($mysekolah as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>> <?= $value['DESCRTBPS'] . "-" . $value['DESCRTBJS'] ?></option>
@@ -122,8 +122,8 @@
                             <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class="col-sm-6"> -->
-                                    <input type="hidden" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
-                              <!--   </div>
+                            <input type="hidden" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
+                            <!--   </div>
                             </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
@@ -175,23 +175,25 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Semester</th>
-            <th>Tahun</th>
-            <th>Tahun Akademik</th>
-            <!-- <th>UTS / UAS</th> -->
-            <th>Indek</th>
-            <th>Tahun Dapodik</th>
-            <th>Kode Sekolah</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Semester</th>
+                <th>Tahun</th>
+                <th>Tahun Akademik</th>
+                <!-- <th>UTS / UAS</th> -->
+                <th>Indek</th>
+                <th>Tahun Dapodik</th>
+                <th>Kode Sekolah</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

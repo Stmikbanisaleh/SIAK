@@ -340,23 +340,25 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>No Regsistrasi</th>
-            <th>Nama</th>
-            <th>Agama</th>
-            <th>Sekolah</th>
-            <th>Kelas</th>
-            <th>Alamat</th>
-            <th>Telp Rumah</th>
-            <th>HP</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>No Regsistrasi</th>
+                <th>Nama</th>
+                <th>Agama</th>
+                <th>Sekolah</th>
+                <th>Kelas</th>
+                <th>Alamat</th>
+                <th>Telp Rumah</th>
+                <th>HP</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formImport").length > 0) {
         $("#formImport").validate({

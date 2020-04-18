@@ -276,62 +276,68 @@
         </form>
     </div>
 </div>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Induk</th>
-            <th>Kelas</th>
-            <th>Tagihan</th>
-            <th>Bayar</th>
-            <th>Sisa</th>
-            <th>Tahun Akademik</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Induk</th>
+                <th>Kelas</th>
+                <th>Tagihan</th>
+                <th>Bayar</th>
+                <th>Sisa</th>
+                <th>Tahun Akademik</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 <hr>
 <br>
-<table id="table_id2" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Induk</th>
-            <th>Kelas</th>
-            <th>Tanggal</th>
-            <th>Bayar</th>
-            <th>Petugas</th>
-            <th>Tahun Akademik</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody id="show_data2">
+<div class="table-responsive">
+    <table id="table_id2" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Induk</th>
+                <th>Kelas</th>
+                <th>Tanggal</th>
+                <th>Bayar</th>
+                <th>Petugas</th>
+                <th>Tahun Akademik</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="show_data2">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 <hr>
 <br>
-<table id="table_id3" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Induk</th>
-            <th>Kelas</th>
-            <th>Tanggal</th>
-            <th>Keterangan</th>
-            <th>Tagihan</th>
-            <th>Bayar</th>
-            <th>Sisa</th>
-            <th>Petugas</th>
-            <th>Tahun Akademik</th>
-        </tr>
-    </thead>
-    <tbody id="show_data3">
+<div class="table-responsive">
+    <table id="table_id3" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Induk</th>
+                <th>Kelas</th>
+                <th>Tanggal</th>
+                <th>Keterangan</th>
+                <th>Tagihan</th>
+                <th>Bayar</th>
+                <th>Sisa</th>
+                <th>Petugas</th>
+                <th>Tahun Akademik</th>
+            </tr>
+        </thead>
+        <tbody id="show_data3">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {

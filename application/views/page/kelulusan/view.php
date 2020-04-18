@@ -4,7 +4,7 @@
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
     </div>
-     <br>
+    <br>
     <br>
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
@@ -19,7 +19,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['id'] ?>><?= "[".$value['sekolah']."-".$value['jurusan']."]" ?></option>
+                    <option value=<?= $value['id'] ?>><?= "[" . $value['sekolah'] . "-" . $value['jurusan'] . "]" ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -167,21 +167,23 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Induk</th>
-            <th>Nama</th>
-            <th>Tahun</th>
-            <th>Program Sekolah</th>
-            <th>Lulus</th>
-            <th>Keluar</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Induk</th>
+                <th>Nama</th>
+                <th>Tahun</th>
+                <th>Program Sekolah</th>
+                <th>Lulus</th>
+                <th>Keluar</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
@@ -222,24 +224,24 @@
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
                             console.log(data[i].STATUSCALONSISWA);
-                            if(data[i].STATUSCALONSISWA == '4'){
+                            if (data[i].STATUSCALONSISWA == '4') {
                                 st_calsis_lulus = '<button class="btn btn-xs btn-warning item_lulus" title="Batal" data-noreg="' + data[i].NOREG + '">' +
-                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
-                                            '</button>';
-                            }else if(data[i].STATUSCALONSISWA == '1'){
+                                    '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                    '</button>';
+                            } else if (data[i].STATUSCALONSISWA == '1') {
                                 st_calsis_lulus = '<button class="btn btn-xs btn-success item_lulus" title="Lulus" data-noreg="' + data[i].NOREG + '">' +
-                                            '<i class="ace-icon fa fa-check bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon fa fa-check bigger-120"></i>' +
+                                    '</button>';
                             }
 
-                            if(data[i].STATUSCALONSISWA == 3){
+                            if (data[i].STATUSCALONSISWA == 3) {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-success item_keluarkan" title="Batal" data-noreg="' + data[i].NOREG + '" data-n="4">' +
-                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
-                                            '</button>';
-                            }else{
+                                    '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                    '</button>';
+                            } else {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-danger item_keluarkan" title="Keluarkan" data-noreg="' + data[i].NOREG + '" data-n="3">' +
-                                            '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
+                                    '</button>';
                             }
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
@@ -248,10 +250,10 @@
                                 '<td>' + data[i].THNAKDRKP + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_lulus+
+                                st_calsis_lulus +
                                 '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_keluar+
+                                st_calsis_keluar +
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -321,7 +323,6 @@
             }
         })
     }
-
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -336,69 +337,69 @@
 
     $('#show_data').on('click', '.item_lulus', function() {
         var noreg = $(this).data('noreg');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/lulus') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/lulus') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 
     $('#show_data').on('click', '.item_keluarkan', function() {
         var noreg = $(this).data('noreg');
         var n = $(this).data('n');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/keluarkan') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                    n: n,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/keluarkan') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+                n: n,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 </script>

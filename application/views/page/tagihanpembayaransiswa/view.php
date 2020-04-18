@@ -21,22 +21,24 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>NIS</th>
-            <th>Nama</th>
-            <th>Kelas</th>
-            <th>Total Tagihan</th>
-            <th>Bayar</th>
-            <th>Sisa</th>
-            <th>Tahun Akademik</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>NIS</th>
+                <th>Nama</th>
+                <th>Kelas</th>
+                <th>Total Tagihan</th>
+                <th>Bayar</th>
+                <th>Sisa</th>
+                <th>Tahun Akademik</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({

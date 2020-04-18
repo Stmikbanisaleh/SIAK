@@ -1,5 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -180,26 +180,32 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Induk</th>
-            <th>Nama</th>
-            <th>Sekolah</th>
-            <th>Kelas</th>
-            <th>Jenis Pembayaran</th>
-            <th>Tarif</th>
-            <th>Bayar</th>
-            <th>TA</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Induk</th>
+                <th>Nama</th>
+                <th>Sekolah</th>
+                <th>Kelas</th>
+                <th>Jenis Pembayaran</th>
+                <th>Tarif</th>
+                <th>Bayar</th>
+                <th>TA</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     $(document).ready(function() {
-        $('select').select2({ width: '100%', placeholder: "Masukan Siswa", allowClear: true });
+        $('select').select2({
+            width: '100%',
+            placeholder: "Masukan Siswa",
+            allowClear: true
+        });
 
 
         $("#nik2").change(function() {
@@ -339,7 +345,7 @@
                                 "bLengthChange": false,
                                 "bFilter": true,
                                 "bInfo": false,
-                                
+
                             });
 
                         }

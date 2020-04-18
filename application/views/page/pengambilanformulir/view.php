@@ -27,7 +27,7 @@
                                     $tahun = date("Y");
                                     $noreg = $this->db->query("SELECT
                                     RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa WHERE thnmasuk='$tahun' ORDER BY Noreg DESC")->row();
-                                    if(empty($noreg)){
+                                    if (empty($noreg)) {
                                         $no = '0001';
                                     } else {
                                         $no = $noreg->Noreg;
@@ -273,21 +273,23 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>No Regsistrasi</th>
-            <th>Nama</th>
-            <th>Tanggal Bayar</th>
-            <th>Sekolah</th>
-            <th>Tahun Akademik</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>No Regsistrasi</th>
+                <th>Nama</th>
+                <th>Tanggal Bayar</th>
+                <th>Sekolah</th>
+                <th>Tahun Akademik</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     if ($("#formImport").length > 0) {
         $("#formImport").validate({
@@ -531,7 +533,7 @@
                         '<td>' + data[i].NamaSek + '-' + data[i].NamaJurusan + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
                         '<td >' +
-                        '<a  href="<?php echo base_url() ?>pengambilanformulir/cetak/'+ data[i].Noreg +'" class="btn btn-xs btn-info" target="_blank" title="Print" data-id="' + data[i].Noreg + '">' +
+                        '<a  href="<?php echo base_url() ?>pengambilanformulir/cetak/' + data[i].Noreg + '" class="btn btn-xs btn-info" target="_blank" title="Print" data-id="' + data[i].Noreg + '">' +
                         '<i class="ace-icon fa fa-print bigger-120"></i>' +
                         '</a> &nbsp' +
                         '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Noreg + '">' +

@@ -16,21 +16,23 @@
     </div>
 </div>
 <br>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>No Induk</th>
-            <th>Nama</th>
-            <th>Total Tagihan</th>
-            <th>Bayar</th>
-            <th>Sisa</th>
-            <th>Tahun Akademik</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>No Induk</th>
+                <th>Nama</th>
+                <th>Total Tagihan</th>
+                <th>Bayar</th>
+                <th>Sisa</th>
+                <th>Tahun Akademik</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     $(document).ready(function() {
         show_data();

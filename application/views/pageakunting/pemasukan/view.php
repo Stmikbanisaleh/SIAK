@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode </label>
                                 <div class="col-sm-6">
-                                <input type="hidden" id="e_id" name="e_id" placeholder="1234567" class="form-control" />
+                                    <input type="hidden" id="e_id" name="e_id" placeholder="1234567" class="form-control" />
                                     <input type="text" id="e_Kodejnsbayar" name="e_Kodejnsbayar" placeholder="MDL" class="form-control" />
                                 </div>
                             </div>
@@ -127,27 +127,29 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Kode Jenis Bayar</th>
-            <th>Nama Jenis Bayar</th>
-            <th>Kode Rekening</th>
-            <th>Nama Rekening</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode Jenis Bayar</th>
+                <th>Nama Jenis Bayar</th>
+                <th>Kode Rekening</th>
+                <th>Nama Rekening</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                Kodejnsbayar : {
+                Kodejnsbayar: {
                     required: true
                 },
 
@@ -195,7 +197,7 @@
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                e_Kodejnsbayar : {
+                e_Kodejnsbayar: {
                     required: true
                 },
 
@@ -256,11 +258,11 @@
                 var no = 1;
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
-                    '<td class="text-center">' + no + '</td>' +
+                        '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].Kodejnsbayar + '</td>' +
                         '<td>' + data[i].namajenisbayar + '</td>' +
-                        '<td>' + data[i].kode_jurnal  + '</td>' +
-                        '<td>' + data[i].nama_jurnal  + '</td>' +
+                        '<td>' + data[i].kode_jurnal + '</td>' +
+                        '<td>' + data[i].nama_jurnal + '</td>' +
                         '<td>' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Kodejnsbayar + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -350,5 +352,4 @@
             }
         })
     })
-
 </script>

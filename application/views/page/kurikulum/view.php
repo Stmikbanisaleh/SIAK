@@ -42,7 +42,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
 								<div class="col-sm-9">
-									<input type="number" max="6"maxlength="1" id="semester" name="semester" placeholder="" class="form-control" />
+									<input type="number" max="6" maxlength="1" id="semester" name="semester" placeholder="" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,7 +51,7 @@
 									<select class="form-control" name="programsekolah" id="programsekolah">
 										<option value=>--Pilih Program --</option>
 										<?php foreach ($myps as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS'] ?></option>
+											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -112,7 +112,7 @@
 									<select class="form-control" name="e_programsekolah" id="e_programsekolah">
 										<option value=>--Pilih Program --</option>
 										<?php foreach ($myps as $value) { ?>
-											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS'] ?></option>
+											<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -143,20 +143,22 @@
 	</div>
 </div>
 <br>
-<table id="table_id" class="display">
-	<thead>
-		<tr>
-			<th class="col-md-1">No</th>
-			<th>Kode Kurikulim</th>
-			<th>Nama Kurikulum</th>
-			<th>Program Sekolah</th>
-			<th>Semester</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="table_id" class="display">
+		<thead>
+			<tr>
+				<th class="col-md-1">No</th>
+				<th>Kode Kurikulim</th>
+				<th>Nama Kurikulum</th>
+				<th>Program Sekolah</th>
+				<th>Semester</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script>
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
@@ -180,7 +182,7 @@
 					maxlength: 1,
 					minlength: 1,
 					max: 6,
-				}  
+				}
 			},
 			messages: {
 
@@ -309,7 +311,7 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].kode + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td>' + data[i].DESCRTBPS  + '-' + data[i].DESCRTBJS  + '</td>' +
+						'<td>' + data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '</td>' +
 						'<td>' + data[i].semester + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_mapel + '">' +
@@ -403,5 +405,4 @@
 			}
 		})
 	})
-
 </script>

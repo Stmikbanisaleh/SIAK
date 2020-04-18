@@ -165,21 +165,23 @@
 	</div>
 </div>
 <br>
-<table id="table_id" class="display">
-	<thead>
-		<tr>
-			<th class="col-md-1">Alamat</th>
-			<th>Email</th>
-			<th>Nama Sekolah</th>
-			<th>URL</th>
-			<th>Satuan Kerja</th>
-			<th>Facebook</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="table_id" class="display">
+		<thead>
+			<tr>
+				<th class="col-md-1">Alamat</th>
+				<th>Email</th>
+				<th>Nama Sekolah</th>
+				<th>URL</th>
+				<th>Satuan Kerja</th>
+				<th>Facebook</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script>
 	if ($("#formEdit").length > 0) {
 		$("#formEdit").validate({
@@ -317,5 +319,4 @@
 			}
 		});
 	});
-
 </script>
