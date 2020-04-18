@@ -109,7 +109,7 @@ class Pembuatannis extends CI_Controller
                     // ''  => $value['potonem'],
                     // ''  => $value['potocalsis'],
                     'TAHUN'  => $value['thnmasuk'],
-                    'STATUSCALONSISWA'  => $value['StatusCalsisw'],
+                    'STATUSCALONSISWA'  => 4,
                     'createdAt' => $value['tglentri'],
                     'IDUSER' => $value['userentri'],
                     'JK'  => $value['Jk']

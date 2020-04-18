@@ -163,6 +163,14 @@ if ($jabatan == 19) { ?>
 			<ul class="submenu">
 
 				<li class="">
+					<a href="<?= base_url() . 'mssiswa'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Siswa
+					</a>
+				</li>
+
+
+				<li class="">
 					<a href="<?= base_url() . 'guru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Biodata Guru

@@ -7,14 +7,12 @@ class Mssiswa extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('model_siswa');
-        $this->load->model('model_guru');
+        $this->load->model('model_mssiswa');
     }
 
     function render_view($data)
     {
         $this->template->load('template', $data); //Display Page
-
     }
 
     public function search()
@@ -22,14 +20,15 @@ class Mssiswa extends CI_Controller
         $noreg = $this->input->post('s_noreg');
         $ta = $this->input->post('ta');
         $sekolah = $this->input->post('sekolah');
-        $result = $this->model_siswa->getsiswa($noreg, $ta, $sekolah)->result();
+        $result = $this->model_mssiswa->getsiswa($noreg,$sekolah)->result();
+        // print_r($result);exit;
         echo json_encode($result);
     }
 
     public function showta()
     {
         $ps = $this->input->post('ps');
-        $my_data = $this->model_siswa->getta($ps)->result_array();
+        $my_data = $this->model_mssiswa->getta($ps)->result_array();
         echo "<option value='0'>--Pilih Tahun --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['thn'] . "'>[" . $value['ThnAkademik'] . "] </option>";
@@ -41,13 +40,13 @@ class Mssiswa extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $this->load->library('Configfunction');
             $tampil_thnakad = $this->configfunction->getthnakd();
-            $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
-            $myps = $this->model_guru->view('tbps')->result_array();
-            $myagama = $this->model_guru->view('tbagama')->result_array();
+            $mysekolah = $this->model_mssiswa->getsekolah()->result_array();
+            $myps = $this->model_mssiswa->viewOrdering('tbps','id','desc')->result_array();
+            $myagama = $this->model_mssiswa->viewOrdering('tbagama','KDTBAGAMA','desc')->result_array();
             $data = array(
-                'page_content'  => 'siswa/view',
-                'ribbon'        => '<li class="active">Pendaftaran Siswa</li>',
-                'page_name'     => 'Calon Siswa',
+                'page_content'  => 'mssiswa/view',
+                'ribbon'        => '<li class="active">Master Siswa</li>',
+                'page_name'     => 'Master Siswa',
                 'myagama'       => $myagama,
                 'myps'          => $myps,
                 'mysekolah'     => $mysekolah,
@@ -57,73 +56,7 @@ class Mssiswa extends CI_Controller
             $this->load->view('page/login'); //Memanggil function render_view
         }
     }
-    // public function import()
-    // {
-    //     if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-    //         $files = $_FILES;
-    //         $file = $files['file'];
-    //         $fname = $file['tmp_name'];
-    //         $file = $_FILES['file']['name'];
-    //         $fname = $_FILES['file']['tmp_name'];
-    //         $ext = explode('.', $file);
-    //         /** Include path **/
-    //         set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-    //         /** PHPExcel_IOFactory */
-    //         include 'PHPExcel/IOFactory.php';
-    //         $objPHPExcel = PHPExcel_IOFactory::load($fname);
-    //         $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-    //         $data_exist = [];
 
-    //         foreach ($allDataInSheet as $ads) {
-    //             if (array_filter($ads)) {
-    //                 array_push($data_exist, $ads);
-    //             }
-    //         }
-    //         foreach ($data_exist as $key => $value) {
-    //             if ($key == '0') {
-    //                 continue;
-    //             } else {
-    //                 $arrayCustomerQuote = array(
-    //                     'NOINDUK' => $value[0],
-    //                     'PASSWORD' => hash('sha512', md5($value[0])),
-    //                     'NOREG' => $value[1],
-    //                     'NMSISWA' => $value[2],
-    //                     'TPLHR' => $value[3],
-    //                     'TGLHR' => $value[4],
-    //                     'JK' => $value[5],
-    //                     'AGAMA' => $value[6],
-    //                     'TAHUN' => $value[7],
-    //                     'PS' => $value[8],
-    //                     'KDWARGA' => $value[9],
-    //                     'EMAIL' => $value[10],
-    //                     'TELP' => $value[11],
-    //                     'createdAt'    => date('Y-m-d H:i:s')
-    //                 );
-    //                 // $arrayCustomerQuote2 = array(
-    //                 //     'Noreg' => $value[0],
-    //                 //     // 'PASSWORD' => hash('sha512',md5($value[0])),
-    //                 //     'Namacasis' => $value[2],
-    //                 //     'tptlhr' => $value[3],
-    //                 //     'tgllhr' => $value[4],
-    //                 //     'agama' => $value[6],
-    //                 //     'thnmasuk' => $value[7],
-    //                 //     'kodesekolah' => $value[8],
-    //                 //     'TelpHp' => $value[11],
-    //                 //     'createdAt'    => date('Y-m-d H:i:s')
-    //                 // );
-    //                 $result = $this->model_siswa->insert($arrayCustomerQuote, 'mssiswa');
-    //                 // $result = $this->model_siswa->insert($arrayCustomerQuote2, 'calon_siswa');
-    //             }
-    //         }
-    //         if ($result) {
-    //             $result = 1;
-    //         }
-
-    //         echo json_encode($result);
-    //     } else {
-    //         echo json_encode($result);
-    //     }
-    // }
     public function import()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -150,27 +83,6 @@ class Mssiswa extends CI_Controller
                 if ($key == '0') {
                     continue;
                 } else {
-                    // $arrayCustomerQuote = array(
-                    //     'NOINDUK' => $value[0],
-                    //     'PASSWORD' => hash('sha512', md5($value[0])),
-                    //     'NOREG' => $value[1],
-                    //     'NMSISWA' => $value[2],
-                    //     'TPLHR' => $value[3],
-                    //     'TGLHR' => $value[4],
-                    //     'JK' => $value[5],
-                    //     'AGAMA' => $value[6],
-                    //     'TAHUN' => $value[7],
-                    //     'PS' => $value[8],
-                    //     'KDWARGA' => $value[9],
-                    //     'EMAIL' => $value[10],
-                    //     'TELP' => $value[11],
-                    //     'ALAMATRUMAH' => $value[12],
-                    //     'KELURAHAN' => $value[13],
-                    //     'KECAMATAN' => $value[14],
-                    //     'NMBAPAK'   => $value[15],
-                    //     'NMIBU' => $value[16],
-                    //     'createdAt'    => date('Y-m-d H:i:s')
-                    // );
                     $arrayCustomerQuote2 = array(
                         'Noreg' => $value[0],
                         // 'PASSWORD' => hash('sha512',md5($value[0])),
@@ -183,8 +95,7 @@ class Mssiswa extends CI_Controller
                         'TelpHp' => $value[11],
                         'createdAt'    => date('Y-m-d H:i:s')
                     );
-                    // $result = $this->model_siswa->insert($arrayCustomerQuote, 'mssiswa');
-                    $result = $this->model_siswa->insert($arrayCustomerQuote2, 'calon_siswa');
+                    $result = $this->model_mssiswa->insert($arrayCustomerQuote2, 'calon_siswa');
                 }
             }
             if ($result) {
@@ -200,7 +111,7 @@ class Mssiswa extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_siswa->viewOrdering('mssiswa', 'id', 'asc')->result();
+            $my_data = $this->model_mssiswa->viewOrdering('mssiswa', 'id', 'asc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -218,18 +129,17 @@ class Mssiswa extends CI_Controller
             );
             $this->load->library('Configfunction');
             $tampil_thnakad = $this->configfunction->getthnakd();
-            $mysekolah = $this->model_siswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
-            $mysiswa = $this->model_siswa->view_where('calon_siswa', $noreg)->row();
-            $myjeniskelamin = $this->model_siswa->view_where('msrev', $jk)->result_array();
-            $myagama = $this->model_guru->view('tbagama')->result_array();
-            $mytbpk = $this->model_siswa->viewOrdering('mspenghasilan', 'IDMSPENGHASILAN', 'desc')->result_array();
-            $myjob = $this->model_siswa->viewOrdering('mspekerjaan', 'IDMSPEKERJAAN', 'desc')->result_array();
-            $mytbkec = $this->model_siswa->viewOrdering('tbkec', 'IDKEC', 'desc')->result_array();
-            $mytbpro = $this->model_siswa->viewOrdering('tbpro', 'KDTBPRO', 'desc')->result_array();
-            $mypro = $this->model_siswa->getpro()->result_array();
-            // print_r($mysiswa);exit;
+            $mysekolah = $this->model_mssiswa->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
+            $mysiswa = $this->model_mssiswa->view_where('mssiswa', $noreg)->row();
+            $myjeniskelamin = $this->model_mssiswa->view_where('msrev', $jk)->result_array();
+            $myagama = $this->model_mssiswa->viewOrdering('tbagama','KDTBAGAMA','desc')->result_array();
+            $mytbpk = $this->model_mssiswa->viewOrdering('mspenghasilan', 'IDMSPENGHASILAN', 'desc')->result_array();
+            $myjob = $this->model_mssiswa->viewOrdering('mspekerjaan', 'IDMSPEKERJAAN', 'desc')->result_array();
+            $mytbkec = $this->model_mssiswa->viewOrdering('tbkec', 'IDKEC', 'desc')->result_array();
+            $mytbpro = $this->model_mssiswa->viewOrdering('tbpro', 'KDTBPRO', 'desc')->result_array();
+            $mypro = $this->model_mssiswa->getpro()->result_array();
             $data = array(
-                'page_content'  => 'siswa/edit',
+                'page_content'  => 'mssiswa/edit',
                 'ribbon'        => '<li class="active">Biodata Siswa</li>',
                 'page_name'     => 'Biodata Siswa',
                 'mysiswa'       => $mysiswa,
@@ -256,7 +166,7 @@ class Mssiswa extends CI_Controller
             $data_id = array(
                 'NOINDUK'  => $this->input->post('no_induk'),
             );
-            $count_id = $this->model_siswa->view_count('mssiswa', $data_id);
+            $count_id = $this->model_mssiswa->view_count('mssiswa', $data_id);
             if ($count_id < 1) {
                 $data = array(
                     'NOINDUK'  => $this->input->post('no_induk'),
@@ -275,7 +185,7 @@ class Mssiswa extends CI_Controller
                     'IDUSER'  => $this->session->userdata('nip'),
                     'createdAt' => date('Y-m-d H:i:s'),
                 );
-                $action = $this->model_siswa->insert($data, 'mssiswa');
+                $action = $this->model_mssiswa->insert($data, 'mssiswa');
                 echo json_encode($action);
             } else {
                 echo json_encode(401);
@@ -362,10 +272,10 @@ class Mssiswa extends CI_Controller
                 'NilaiNem' => $this->input->post('nem'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
-            $action2 = $this->model_siswa->update($data_id, $data2, 'calon_siswa');
+            $action2 = $this->model_mssiswa->update($data_id, $data2, 'calon_siswa');
             $ceksiswa = $this->db->query("select NOREG from mssiswa where NOREG = '$noreg'");
             if (count($ceksiswa) > 0) {
-                $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
+                $action = $this->model_mssiswa->update($data_id, $data, 'mssiswa');
             }
             echo json_encode(1);
         } else {
@@ -383,7 +293,7 @@ class Mssiswa extends CI_Controller
             $data = array(
                 'isdeleted'  => 1,
             );
-            $action = $this->model_siswa->update($data_id, $data, 'mssiswa');
+            $action = $this->model_mssiswa->update($data_id, $data, 'mssiswa');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
