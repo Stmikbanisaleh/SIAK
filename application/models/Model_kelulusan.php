@@ -28,6 +28,10 @@ class Model_kelulusan extends CI_model{
         ");
     }
 
+    public function get_sekjur(){
+        return $this->db->query('SELECT ps.id, ps.DESCRTBPS sekolah, js.DESCRTBJS jurusan from tbps ps JOIN tbjs js on js.kdtbjs = ps.kdtbjs WHERE ps.isdeleted != 1');
+    }
+
     public function getsemester(){
         return $this->db->query('SELECT DISTINCT SEMESTER FROM tbakadmk ORDER BY SEMESTER DESC');
     }

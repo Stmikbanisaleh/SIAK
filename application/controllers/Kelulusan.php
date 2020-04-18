@@ -19,7 +19,7 @@ class Kelulusan extends CI_Controller
 	{
 		$mythnakad = $this->model_kelulusan->getthnakad()->result_array();
 		$mysemester = $this->model_kelulusan->getsemester()->result_array();
-		$myps = $this->model_kelulusan->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
+		$myps = $this->model_kelulusan->get_sekjur()->result_array();
 		$data = array(
 			'page_content' 	=> 'kelulusan/view',
 			'ribbon' 		=> '<li class="active">Dashboard</li><li>Kelulusan Siswa</li>',

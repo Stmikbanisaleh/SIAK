@@ -1,11 +1,11 @@
 <div class="row">
-<!--     <div class="col-xs-1">
+    <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
-    </div> -->
-<!--     <br>
-    <br> -->
+    </div>
+     <br>
+    <br>
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
             <select class="form-control" name="tahun" id="tahun">
@@ -19,7 +19,7 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['id'] ?>><?= $value['DESCRTBPS'] ?></option>
+                    <option value=<?= $value['id'] ?>><?= "[".$value['sekolah']."-".$value['jurusan']."]" ?></option>
                 <?php } ?>
             </select>
         </div>
