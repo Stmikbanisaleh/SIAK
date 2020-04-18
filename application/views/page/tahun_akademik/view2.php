@@ -49,8 +49,8 @@
                             <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class="col-sm-6"> -->
-                                    <input type="hidden" maxlength="3" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
-                                <!-- </div>
+                            <input type="hidden" maxlength="3" id="uts_uas" name="uts_uas" placeholder="UTS / UAS" class="form-control" />
+                            <!-- </div>
                             </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Dapodik </label>
@@ -122,8 +122,8 @@
                             <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> UTS / UAS </label>
                                 <div class="col-sm-6"> -->
-                                    <input type="hidden" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
-                               <!--  </div>
+                            <input type="hidden" id="e_uts_uas" name="e_uts_uas" placeholder="UTS / UAS" class="form-control" />
+                            <!--  </div>
                             </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Indek </label>
@@ -175,23 +175,25 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Semester</th>
-            <th>Tahun</th>
-            <th>Tahun Akademik</th>
-            <!-- <th>UTS / UAS</th> -->
-            <th>Indek</th>
-            <th>Tahun Dapodik</th>
-            <th>Kode Sekolah</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Semester</th>
+                <th>Tahun</th>
+                <th>Tahun Akademik</th>
+                <!-- <th>UTS / UAS</th> -->
+                <th>Indek</th>
+                <th>Tahun Dapodik</th>
+                <th>Kode Sekolah</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
@@ -334,7 +336,7 @@
                         // '<td>' + data[i].UTSUAS + '</td>' +
                         '<td class="text-right">' + data[i].INDEK + '</td>' +
                         '<td>' + data[i].THNDAPODIK + '</td>' +
-                        '<td class="text-left">'+ data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '-' + data[i].KDSEKOLAH + '</td>' +
+                        '<td class="text-left">' + data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '-' + data[i].KDSEKOLAH + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +

@@ -6,6 +6,7 @@
     </div>
 </div>
 <br>
+<div class="table-responsive">
 <table id="table_id" class="display">
     <thead>
         <tr>
@@ -22,8 +23,10 @@
 
 </tbody>
 </table>
+</div>
 <hr>
 <br>
+<div class="table-responsive">
 <table id="table_id2" class="display">
     <thead>
         <tr>
@@ -41,8 +44,10 @@
 
     </tbody>
 </table>
+</div>
 <hr>
 <br>
+<div class="table-responsive">
 <table id="table_id3" class="display">
     <thead>
         <tr>
@@ -62,6 +67,7 @@
 
     </tbody>
 </table>
+</div>
 <script type="text/javascript">
     $(document).ready(function() {
         show_data();

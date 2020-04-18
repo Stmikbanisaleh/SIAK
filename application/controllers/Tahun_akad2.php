@@ -22,8 +22,8 @@ class Tahun_akad2 extends CI_Controller
             $mysekolah = $this->model_tahun_akademik->getsekolah()->result_array();
             $data = array(
                 'page_content'  => 'tahun_akademik/view2',
-                'ribbon'        => '<li class="active">Tahun Akademik 2</li>',
-                'page_name'     => 'Tahun Akademik 2',
+                'ribbon'        => '<li class="active">Tahun Akademik</li>',
+                'page_name'     => 'Tahun Akademik',
                 'mysekolah'     => $mysekolah
             );
             $this->render_view($data); //Memanggil function render_view

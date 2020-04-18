@@ -128,20 +128,22 @@
 		</div>
 	</div>
 </div>
-<table id="datatable_tabletools" class="display">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>No Bukti</th>
-			<th>Tanggal</th>
-			<th>Debet</th>
-			<th>Kredit</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="datatable_tabletools" class="display">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>No Bukti</th>
+				<th>Tanggal</th>
+				<th>Debet</th>
+				<th>Kredit</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// show_data();
@@ -189,32 +191,32 @@
 						var i = 0;
 						var no = 1;
 						if (data.length == 0) {
-							var a = $('#show_data').html('<tr>'+
-															'<td></td>'+
-															'<td></td>'+
-															'<td></td>'+
-															'<td></td>'+
-															'<td></td>'+
-															'<td></td>'+
-														'</tr>');
+							var a = $('#show_data').html('<tr>' +
+								'<td></td>' +
+								'<td></td>' +
+								'<td></td>' +
+								'<td></td>' +
+								'<td></td>' +
+								'<td></td>' +
+								'</tr>');
 							var b = $("#table_id").dataTable().fnDestroy();
-								$('#table_id').dataTable({
-									"bPaginate": true,
-									"bLengthChange": false,
-									"bFilter": true,
-									"bInfo": false,
-									"bAutoWidth": false
-								});
+							$('#table_id').dataTable({
+								"bPaginate": true,
+								"bLengthChange": false,
+								"bFilter": true,
+								"bInfo": false,
+								"bAutoWidth": false
+							});
 						} else {
 							for (i = 0; i < data.length; i++) {
-								if(data[i].posting=='T'){
+								if (data[i].posting == 'T') {
 									var button = '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_posting" id="item_posting" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
-									'Posting' +
-									'</button> &nbsp';
-								}else{
+										'Posting' +
+										'</button> &nbsp';
+								} else {
 									var button = '<button class="btn btn-xs btn-danger item_batalp" id="item_batalp" title="" data-bukti="' + data[i].bukti + '" data-tgl="' + data[i].tgl + '">' +
-									'Batal' +
-									'</button>';
+										'Batal' +
+										'</button>';
 								}
 								html += '<tr>' +
 									'<td class="text-center">' + no + '</td>' +
@@ -223,8 +225,8 @@
 									'<td>' + data[i].tdebet + '</td>' +
 									'<td>' + data[i].tkredit + '</td>' +
 									'<td class="text-center">' +
-									'<div id="info"></div>'+
-									button+
+									'<div id="info"></div>' +
+									button +
 									'</td>' +
 									'</tr>';
 								no++;
@@ -250,44 +252,46 @@
 		})
 	}
 
-    $('#show_data').on('click', '.item_posting', function() {
-        // document.getElementById("formEdit").reset();
-        var bukti = $(this).data('bukti');
-        var tgl = $(this).data('tgl');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('modulakunting/buk/posting') ?>",
-            async: true,
-            dataType: "JSON",
-            data: {
-                bukti: bukti, tgl: tgl,
-            },
-            success: function(data) {
-                $('#item_posting').hide();
-                $('#info').html('<div class="alert alert-info">'+
-								'This alert needs your attention, but its not super important.'+
-								'</div>');
-            }
-        });
-    });
+	$('#show_data').on('click', '.item_posting', function() {
+		// document.getElementById("formEdit").reset();
+		var bukti = $(this).data('bukti');
+		var tgl = $(this).data('tgl');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('modulakunting/buk/posting') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				bukti: bukti,
+				tgl: tgl,
+			},
+			success: function(data) {
+				$('#item_posting').hide();
+				$('#info').html('<div class="alert alert-info">' +
+					'This alert needs your attention, but its not super important.' +
+					'</div>');
+			}
+		});
+	});
 
-    $('#show_data').on('click', '.item_batalp', function() {
-        var bukti = $(this).data('bukti');
-        var tgl = $(this).data('tgl');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('modulakunting/buk/batal_posting') ?>",
-            async: true,
-            dataType: "JSON",
-            data: {
-                bukti: bukti, tgl: tgl,
-            },
-            success: function(data) {
-            	$('#item_batalp').hide();
-                $('#info').html('<div class="alert alert-info">'+
-								data+
-								'</div>');
-            }
-        });
-    });
+	$('#show_data').on('click', '.item_batalp', function() {
+		var bukti = $(this).data('bukti');
+		var tgl = $(this).data('tgl');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('modulakunting/buk/batal_posting') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				bukti: bukti,
+				tgl: tgl,
+			},
+			success: function(data) {
+				$('#item_batalp').hide();
+				$('#info').html('<div class="alert alert-info">' +
+					data +
+					'</div>');
+			}
+		});
+	});
 </script>

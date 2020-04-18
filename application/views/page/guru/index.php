@@ -34,7 +34,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
 								<div class="col-sm-9">
-									<a href="<?php echo base_url().'assets/guru.xls'?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+									<a href="<?php echo base_url() . 'assets/guru.xls' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
 								</div>
 							</div>
 					</div>
@@ -349,24 +349,26 @@
 		</div>
 	</div>
 </div>
-<table id="datatable_tabletools" class="display">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>Program Sekolah</th>
-			<th>Kode</th>
-			<th>Kode Dapodik</th>
-			<th>Nama</th>
-			<th>Telp</th>
-			<th>Alamat</th>
-			<th>Jenis Kelamin</th>
-			<th>Pendidikan Terakhir</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="datatable_tabletools" class="display">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Program Sekolah</th>
+				<th>Kode</th>
+				<th>Kode Dapodik</th>
+				<th>Nama</th>
+				<th>Telp</th>
+				<th>Alamat</th>
+				<th>Jenis Kelamin</th>
+				<th>Pendidikan Terakhir</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script type="text/javascript">
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({

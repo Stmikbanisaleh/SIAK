@@ -19,10 +19,12 @@ class Tahun_akad3 extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $mysekolah = $this->model_tahun_akademik->getsekolah()->result_array();
             $data = array(
                 'page_content'  => 'tahun_akademik/view3',
-                'ribbon'        => '<li class="active">Tahun Akademik 3</li>',
-                'page_name'     => 'Tahun Akademik 3'
+                'ribbon'        => '<li class="active">Tahun Penerimaan Siswa Baru</li>',
+                'page_name'     => 'Tahun Penerimaan Siswa Baru',
+                'mysekolah'     => $mysekolah
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
@@ -33,8 +35,7 @@ class Tahun_akad3 extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-            $my_data = $this->model_tahun_akademik->viewOrdering('tbakadmk3', 'id', 'desc')->result();
+            $my_data = $this->model_tahun_akademik->viewjoin('tbakadmk3')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view

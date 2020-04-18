@@ -80,7 +80,7 @@
 									<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjurnal as $value) { ?>
-											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal']." - ".$value['nama_jurnal'] ?></option>
+											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -122,7 +122,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-							<input type="hidden" class="form-control" name="e_id" id="e_id"/>
+							<input type="hidden" class="form-control" name="e_id" id="e_id" />
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
@@ -137,7 +137,7 @@
 									<select class="form-control" name="e_no_jurnal" id="e_pendidikan_terakhir">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjurnal as $value) { ?>
-											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal']." - ".$value['nama_jurnal'] ?></option>
+											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -174,20 +174,22 @@
 		</div>
 	</div>
 </div>
-<table id="datatable_tabletools" class="display">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>Jenis Transaksi</th>
-			<th>Nama Transaksi</th>
-			<th>Kode Rekening</th>
-			<th>Nama Rekening</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="datatable_tabletools" class="display">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Jenis Transaksi</th>
+				<th>Nama Transaksi</th>
+				<th>Kode Rekening</th>
+				<th>Nama Rekening</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script type="text/javascript">
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({

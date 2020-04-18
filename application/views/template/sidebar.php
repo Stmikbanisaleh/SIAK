@@ -99,7 +99,7 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'tahun_akad1'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Tahun Akademik 1
+						Tahun Keuangan
 					</a>
 
 					<b class="arrow"></b>
@@ -108,7 +108,7 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'tahun_akad2'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Tahun Akademik 2
+						Tahun Akademik
 					</a>
 
 					<b class="arrow"></b>
@@ -116,7 +116,7 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'tahun_akad3'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Tahun Akademik 3
+						Tahun PSB
 					</a>
 
 					<b class="arrow"></b>

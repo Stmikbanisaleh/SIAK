@@ -249,22 +249,24 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Kode</th>
-            <th>Nama</th>
-            <th>Jabatan</th>
-            <th>Username</th>
-            <th>Level</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Username</th>
+                <th>Level</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
     if ($("#formImport").length > 0) {
         $("#formImport").validate({

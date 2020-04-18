@@ -4,6 +4,11 @@
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
     </div>
+    <div class="col-xs-1">
+        <button id="item-proses" role="button" data-toggle="modal" class="btn btn-xs btn-info">
+            <a class="ace-icon fa fa-plus bigger-120"></a>Proses Data
+        </button>
+    </div>
      <br>
     <br>
     <form class="form-horizontal" role="form" id="formSearch">
@@ -19,8 +24,15 @@
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <option value=>--Pilih Program --</option>
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['id'] ?>><?= "[".$value['sekolah']."-".$value['jurusan']."]" ?></option>
+                    <option value=<?= $value['id'] ?>><?= "[" . $value['sekolah'] . "-" . $value['jurusan'] . "]" ?></option>
                 <?php } ?>
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="gangenap" id="gangenap">
+                <option value=>-- Semester --</option>
+                <option value="1">Ganjil</option>
+                <option value="2">Genap</option>
             </select>
         </div>
         <div class="col-xs-1">
@@ -46,7 +58,7 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Lulus </label>
                                 <div class="col-sm-6">
                                     <select class="form-control" name="tahun" id="tahun">
                                         <option value=>--Pilih Tahun --</option>
@@ -87,6 +99,101 @@
                     <button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
                         <i class="ace-icon fa fa-save"></i>
                         Simpan
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div id="modalProses" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Proses Masal Data <?= $page_name; ?></h3>
+            </div>
+            <form class="form-horizontal" role="form" id="formProses">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="tahun_masuk" id="tahun_masuk">
+                                        <option value=>--Pilih Tahun --</option>
+                                        <?php foreach ($mythnmasuk as $value) { ?>
+                                            <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Lulus </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="tahun_lulus" id="tahun_lulus">
+                                        <option value=>--Pilih Tahun --</option>
+                                        <?php foreach ($mythnakad as $value) { ?>
+                                            <option value=<?= $value['THNAKAD'] ?>><?= $value['THNAKAD'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value=>--Pilih Semester --</option>
+                                        <?php foreach ($mysemester as $value) { ?>
+                                            <option value=<?= $value['SEMESTER'] ?>>Semester <?= $value['SEMESTER'] ?> </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <input type="hidden" id="semester" name="semester" value="2" class="form-control" />
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="programsekolah" id="programsekolah">
+                                        <option value=>--Pilih Program --</option>
+                                        <?php foreach ($myps as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= "[".$value['sekolah']."-".$value['jurusan']."]" ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Proses</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="tipeproses" id="tipeproses">
+                                        <option value="L">Proses Kelulusan</option>
+                                        <option value="B">Batalkan Proses Kelulusan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal </label>
+                                <div class="col-sm-9">
+                                    <input type="date" id="tanggal" name="tanggal" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_proses" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Proses
                     </button>
                     <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
                         <i class="ace-icon fa fa-times"></i>
@@ -172,11 +279,11 @@
         <tr>
             <th class="col-md-1">No</th>
             <th>No Induk</th>
-            <th>Nama</th>
+            <th class="col-md-4">Nama</th>
             <th>Tahun</th>
             <th>Program Sekolah</th>
-            <th>Lulus</th>
-            <th>Keluar</th>
+            <th>Aksi Lulus</th>
+            <th>Aksi Keluar</th>
         </tr>
     </thead>
     <tbody id="show_data">
@@ -194,6 +301,9 @@
                 tahun: {
                     required: true
                 },
+                gangenap: {
+                    required: true
+                },
             },
             messages: {
 
@@ -201,7 +311,10 @@
                     required: "Program sekolah harus diisi!"
                 },
                 tahun: {
-                    required: "tahun harus diisi!"
+                    required: "Tahun harus dipilih!"
+                },
+                tahun: {
+                    required: "Semester harus dipilih!"
                 },
             },
             submitHandler: function(form) {
@@ -221,25 +334,24 @@
                         var i = 0;
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
-                            console.log(data[i].STATUSCALONSISWA);
-                            if(data[i].STATUSCALONSISWA == '4'){
+                            if(data[i].STATUSCALONSISWA == '1'){
                                 st_calsis_lulus = '<button class="btn btn-xs btn-warning item_lulus" title="Batal" data-noreg="' + data[i].NOREG + '">' +
                                             '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
                                             '</button>';
-                            }else if(data[i].STATUSCALONSISWA == '1'){
+                            }else if(data[i].STATUSCALONSISWA == '4'){
                                 st_calsis_lulus = '<button class="btn btn-xs btn-success item_lulus" title="Lulus" data-noreg="' + data[i].NOREG + '">' +
-                                            '<i class="ace-icon fa fa-check bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon fa fa-check bigger-120"></i>' +
+                                    '</button>';
                             }
 
-                            if(data[i].STATUSCALONSISWA == 3){
+                            if (data[i].STATUSCALONSISWA == 3) {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-success item_keluarkan" title="Batal" data-noreg="' + data[i].NOREG + '" data-n="4">' +
-                                            '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
-                                            '</button>';
-                            }else{
+                                    '<i class="ace-icon glyphicon glyphicon-repeat bigger-120"></i>' +
+                                    '</button>';
+                            } else {
                                 st_calsis_keluar = '<button class="btn btn-xs btn-danger item_keluarkan" title="Keluarkan" data-noreg="' + data[i].NOREG + '" data-n="3">' +
-                                            '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
-                                            '</button>';
+                                    '<i class="ace-icon glyphicon glyphicon-share bigger-120"></i>' +
+                                    '</button>';
                             }
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
@@ -248,10 +360,10 @@
                                 '<td>' + data[i].THNAKDRKP + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_lulus+
+                                st_calsis_lulus +
                                 '</td>' +
                                 '<td class="text-center">' +
-                                st_calsis_keluar+
+                                st_calsis_keluar +
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -322,6 +434,52 @@
         })
     }
 
+    if ($("#formProses").length > 0) {
+        $("#formProses").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                tahun_masuk: {
+                    required: true
+                },
+                tahun_lulus: {
+                    required: true
+                },
+                programsekolah: {
+                    required: true
+                },
+                tipeproses: {
+                    required: true
+                },
+                tanggal: {
+                    required: true,
+                }
+            },
+            submitHandler: function(form) {
+                $('#btn_proses').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('kelulusan/proses') ?>",
+                    type: "POST",
+                    data: $('#formProses').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_proses').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        if (response == true) {
+                            document.getElementById("formProses").reset();
+                            swalprosessukses('Proses Berhasil!');
+                            $('#modalProses').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Data sudah pernah di proses!!');
+                        } else {
+                            swalInputFailed();
+                        }
+                    }
+                });
+            }
+        })
+    }
+
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -334,71 +492,75 @@
         $('#modalTambah').modal('show');
     });
 
+    $('#item-proses').on('click', function() {
+        $('#modalProses').modal('show');
+    });
+
     $('#show_data').on('click', '.item_lulus', function() {
         var noreg = $(this).data('noreg');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/lulus') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/lulus') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 
     $('#show_data').on('click', '.item_keluarkan', function() {
         var noreg = $(this).data('noreg');
         var n = $(this).data('n');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('kelulusan/keluarkan') ?>",
-                async: true,
-                dataType: "JSON",
-                data: {
-                    noreg: noreg,
-                    n: n,
-                },
-                success: function(response) {
-                    if (response == true) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('kelulusan/keluarkan') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                noreg: noreg,
+                n: n,
+            },
+            success: function(response) {
+                if (response == true) {
                     swalEditSuccess();
                     $("#table_id").dataTable().fnDestroy();
                     var a = $('#show_data').html('');
-                    if(a){
+                    if (a) {
                         $('#table_id').dataTable({
-                                    "bPaginate": true,
-                                    "bLengthChange": false,
-                                    "bFilter": true,
-                                    "bInfo": false,
-                                    "bAutoWidth": false
-                                });
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": true,
+                            "bInfo": false,
+                            "bAutoWidth": false
+                        });
                     }
-                    } else if (response == 401) {
-                        swalSuccessKosong('Eror!');
-                    } else {
-                        swalEditFailed();
-                    }
+                } else if (response == 401) {
+                    swalSuccessKosong('Eror!');
+                } else {
+                    swalEditFailed();
                 }
-            });
+            }
+        });
     })
 </script>

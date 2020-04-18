@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar </label>
                                 <div class="col-xs-6">
-                                    <input type="hidden"  name="e_id" id="e_id" placeholder="Kode Jenis Bayar"></textarea>
+                                    <input type="hidden" name="e_id" id="e_id" placeholder="Kode Jenis Bayar"></textarea>
                                     <input type="text" class="form-control" name="e_kdjenisbayar" id="e_kdjenisbayar" placeholder="Kode Jenis Bayar"></textarea>
                                 </div>
                             </div>
@@ -101,18 +101,20 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>Kode Jenis Bayar</th>
-            <th>Nama Jenis Bayar</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>Kode Jenis Bayar</th>
+                <th>Nama Jenis Bayar</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

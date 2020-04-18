@@ -27,7 +27,7 @@
                     <select class="form-control" name="mapel" id="mapel">
                         <option value="">-- Pilih Pelajaran --</option>
                         <?php foreach ($mypelajaran as $value) { ?>
-                            <option value=<?= $value['id'] ?>><?= $value['ps'] .'-'. $value['nama'] .'['. $value['kelas'] .']'.' Jam Ke ['.$value['jam'].']'?></option>
+                            <option value=<?= $value['id'] ?>><?= $value['ps'] . '-' . $value['nama'] . '[' . $value['kelas'] . ']' . ' Jam Ke [' . $value['jam'] . ']' ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -48,31 +48,32 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Hari</th>
-            <th>Nama Kelas</th>
-            <th>Jam</th>
-            <th>Nama Siswa</th>
-            <th>UTS</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tbody>
-    <?php
-    if ($this->input->get('mapel')) {
-        $mapel = $this->input->get('mapel');
-        $data = $this->db->query("SELECT
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Hari</th>
+                <th>Nama Kelas</th>
+                <th>Jam</th>
+                <th>Nama Siswa</th>
+                <th>UTS</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tbody>
+        <?php
+        if ($this->input->get('mapel')) {
+            $mapel = $this->input->get('mapel');
+            $data = $this->db->query("SELECT
         tbjadwal.hari,
         tbjadwal.NMKLSTRJDK,
         tbjadwal.JAM,
@@ -90,34 +91,55 @@
         LEFT JOIN trnilai ON tbkrs.id_krs = trnilai.IDKRS
         WHERE
         tbjadwal.id = '" . $mapel . "'")->result_array(); ?>
-        <tbody>
-            <tr>
-                <?php
-                $no = 1;
-                foreach ($data as $value) { ?>
-                    <td><?= $no; ?></td>
-                    <td><?= $value['hari']; ?></td>
-                    <td><?= $value['NMKLSTRJDK']; ?></td>
-                    <td><?= $value['JAM']; ?></td>
-                    <td><?= $value['NMSISWA']; ?></td>
-                    <input name="id_krs" id="id_krs<?= $no ?>" type="hidden" value="<?= $value['id_krs'] ?>" />
-                    <input name="NMKLSTRJDK" id="NMKLSTRJDK<?= $no ?>" type="hidden" value="<?= $value['NMKLSTRJDK'] ?>" />
-                    <input name="nis" id="nis<?= $no ?>" type="hidden" value="<?= $value['NOINDUK'] ?>" />
-                    <input name="id_mapel" id="id_mapel<?= $no ?>" type="hidden" value="<?= $value['id_mapel'] ?>" />
-                    <input name="idjadwal" id="idjadwal<?= $no ?>" type="hidden" value="<?= $value['id'] ?>" />
-                    <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
-                    <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
-                    <td style="text-align:center">
-                        <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
-                            Simpan
-                        </button>
-                        <div id="pes<?= $no ?>">
-                    </td>
-            </tr>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $("#uts<?= $no ?>").keypress(function(event) {
-                        if (event.keyCode == 13) {
+            <tbody>
+                <tr>
+                    <?php
+                    $no = 1;
+                    foreach ($data as $value) { ?>
+                        <td><?= $no; ?></td>
+                        <td><?= $value['hari']; ?></td>
+                        <td><?= $value['NMKLSTRJDK']; ?></td>
+                        <td><?= $value['JAM']; ?></td>
+                        <td><?= $value['NMSISWA']; ?></td>
+                        <input name="id_krs" id="id_krs<?= $no ?>" type="hidden" value="<?= $value['id_krs'] ?>" />
+                        <input name="NMKLSTRJDK" id="NMKLSTRJDK<?= $no ?>" type="hidden" value="<?= $value['NMKLSTRJDK'] ?>" />
+                        <input name="nis" id="nis<?= $no ?>" type="hidden" value="<?= $value['NOINDUK'] ?>" />
+                        <input name="id_mapel" id="id_mapel<?= $no ?>" type="hidden" value="<?= $value['id_mapel'] ?>" />
+                        <input name="idjadwal" id="idjadwal<?= $no ?>" type="hidden" value="<?= $value['id'] ?>" />
+                        <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
+                        <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UTSTRNIL'] ?>"></td>
+                        <td style="text-align:center">
+                            <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
+                                Simpan
+                            </button>
+                            <div id="pes<?= $no ?>">
+                        </td>
+                </tr>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $("#uts<?= $no ?>").keypress(function(event) {
+                            if (event.keyCode == 13) {
+                                var nilai = $("#nilai<?= $no ?>").val();
+                                var nis = $("#nis<?= $no ?>").val();
+                                var idjadwal = $("#idjadwal<?= $no ?>").val();
+                                var id_krs = $("#id_krs<?= $no ?>").val();
+                                var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
+                                var id_mapel = $("#id_mapel<?= $no ?>").val();
+                                var idnilai = $("#idnilai<?= $no ?>").val();
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url('modulguru/uts/simpannilai') ?>',
+                                    data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai,
+                                    cache: false,
+                                    success: function(data) {
+                                        $("#pes<?= $no ?>").html("Tersimpan").show();
+                                    }
+                                });
+                                //	return false;
+                                $("#nilai<?= $no + 1 ?>").focus();
+                            }
+                        });
+                        $("#simpan<?= $no ?>").click(function(event) {
                             var nilai = $("#nilai<?= $no ?>").val();
                             var nis = $("#nis<?= $no ?>").val();
                             var idjadwal = $("#idjadwal<?= $no ?>").val();
@@ -132,41 +154,21 @@
                                 cache: false,
                                 success: function(data) {
                                     $("#pes<?= $no ?>").html("Tersimpan").show();
+                                    // $("#pesan<?= $no ?>").html(data);
                                 }
                             });
                             //	return false;
                             $("#nilai<?= $no + 1 ?>").focus();
-                        }
-                    });
-                    $("#simpan<?= $no ?>").click(function(event) {
-                        var nilai = $("#nilai<?= $no ?>").val();
-                        var nis = $("#nis<?= $no ?>").val();
-                        var idjadwal = $("#idjadwal<?= $no ?>").val();
-                        var id_krs = $("#id_krs<?= $no ?>").val();
-                        var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
-                        var id_mapel = $("#id_mapel<?= $no ?>").val();
-                        var idnilai = $("#idnilai<?= $no ?>").val();
-                        $.ajax({
-                            type: "POST",
-                            url: '<?php echo site_url('modulguru/uts/simpannilai') ?>',
-                            data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai,
-                            cache: false,
-                            success: function(data) {
-                                $("#pes<?= $no ?>").html("Tersimpan").show();
-                                // $("#pesan<?= $no ?>").html(data);
-                            }
                         });
-                        //	return false;
-                        $("#nilai<?= $no + 1 ?>").focus();
                     });
-                });
-            </script>
-        <?php $no++;
-                } ?>
+                </script>
+            <?php $no++;
+                    } ?>
 
-        </tbody>
-    <?php } ?>
-</table>
+            </tbody>
+        <?php } ?>
+    </table>
+</div>
 <script type="text/javascript">
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({

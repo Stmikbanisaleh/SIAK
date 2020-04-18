@@ -20,6 +20,7 @@ class Kelulusan extends CI_Controller
 		$mythnakad = $this->model_kelulusan->getthnakad()->result_array();
 		$mysemester = $this->model_kelulusan->getsemester()->result_array();
 		$myps = $this->model_kelulusan->get_sekjur()->result_array();
+		$mythnmasuk = $this->model_kelulusan->getthnmasuk()->result_array();
 		$data = array(
 			'page_content' 	=> 'kelulusan/view',
 			'ribbon' 		=> '<li class="active">Dashboard</li><li>Kelulusan Siswa</li>',
@@ -27,7 +28,8 @@ class Kelulusan extends CI_Controller
 			'js' 			=> 'js_file',
 			'mythnakad'	=> $mythnakad,
 			'myps'			=> $myps,
-			'mysemester'	=> $mysemester
+			'mysemester'	=> $mysemester,
+			'mythnmasuk'	=> $mythnmasuk,
 		);
 		$this->render_view($data);
 	}
@@ -44,6 +46,40 @@ class Kelulusan extends CI_Controller
 		);
 		$action = $this->model_kelulusan->insert($data, 'rkpaktvsiswa');
 		echo json_encode($action);
+	}
+
+	public function proses()
+	{
+		$validate = $this->model_kelulusan->validate()->result_array();
+		if($this->input->post('tipeproses') == 'L'){
+			if(count($validate)<1){
+				$kd_sekolah = $this->input->post('programsekolah');
+				$thn_masuk = $this->input->post('tahun_masuk');
+				$hasil_checksiswa = $this->model_kelulusan->check_siswaaktif($kd_sekolah, $thn_masuk)->result_array();
+				foreach($hasil_checksiswa as $row){
+					$data = array(
+						'NISRKP'  => $row['NOINDUK'],
+						'THNAKDRKP'  => $this->input->post('tahun_lulus'),
+						'GANGENRKP'  => $this->input->post('semester'),
+						'STSRKP'  => 'L',
+						'TANGGAL_KELUAR'  => $this->input->post('tanggal'),
+						'createdAt' => date('Y-m-d H:i:s'),
+					);
+					$action = $this->model_kelulusan->insert($data, 'rkpaktvsiswa');
+				}
+				echo json_encode($action);
+			}else{
+				echo json_encode(401);
+			}
+		}else{
+			foreach($validate as $row){
+				$data = array(
+					'NISRKP'  => $row['NOINDUK']
+				);
+				$action = $this->model_kelulusan->delete($data, 'rkpaktvsiswa');
+			}
+			echo json_encode($action);
+		}
 	}
 
 	public function tampil_byid()
@@ -121,26 +157,26 @@ class Kelulusan extends CI_Controller
 	{
 		$tahun = $this->input->post('tahun');
 		$programsekolah = $this->input->post('programsekolah');
-		$result = $this->model_kelulusan->getsearch($tahun, $programsekolah)->result();
-		// echo $this->db->last_query();exit;
+		$gangenap = $this->input->post('gangenap');
+		$result = $this->model_kelulusan->getsearch($tahun, $gangenap, $programsekolah)->result();
 		echo json_encode($result);
 	}
 
 	public function lulus()
 	{
-		$query = $this->db->query("SELECT*FROM calon_siswa where Noreg='".$this->input->post('noreg')."'");
+		$query = $this->db->query("SELECT*FROM mssiswa where NOREG='".$this->input->post('noreg')."'");
 		$row = $query->row();
 
-			$v_StatusCalsisw = $row->StatusCalsisw;
+			$v_StatusCalsisw = $row->STATUSCALONSISWA;
 
 		if ($v_StatusCalsisw == 1) {
-			$data = array(
-	            'StatusCalsisw'  => 4,
-	        );
-	        $where = array(
-	            'Noreg'  => $this->input->post('noreg'),
-	        );
-	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+			// $data = array(
+	        //     'StatusCalsisw'  => 4,
+	        // );
+	        // $where = array(
+	        //     'Noreg'  => $this->input->post('noreg'),
+	        // );
+	        // $action = $this->model_kelulusan->update($where, $data, 'calon_siswa'); // Remarked karena sudah tidak menggunakan calon siswa, jadi langsung dari siswwa
 
 	        //Update Siswa
 	        $data = array(
@@ -152,13 +188,13 @@ class Kelulusan extends CI_Controller
 	        $action = $this->model_kelulusan->update($where, $data, 'mssiswa');
 	        echo json_encode($action);
 		} else {
-			$data = array(
-	            'StatusCalsisw'  => 1,
-	        );
-	        $where = array(
-	            'Noreg'  => $this->input->post('noreg'),
-	        );
-	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+			// $data = array(
+	        //     'StatusCalsisw'  => 1,
+	        // );
+	        // $where = array(
+	        //     'Noreg'  => $this->input->post('noreg'),
+	        // );
+	        // $action = $this->model_kelulusan->update($where, $data, 'calon_siswa'); // Remarked karena sudah tidak menggunakan calon siswa, jadi langsung dari siswwa
 
 	        //Update Siswa
 	        $data = array(
@@ -174,13 +210,13 @@ class Kelulusan extends CI_Controller
 
 	public function keluarkan()
 	{
-			$data = array(
-	            'StatusCalsisw'  => $this->input->post('n'),
-	        );
-	        $where = array(
-	            'Noreg'  => $this->input->post('noreg'),
-	        );
-	        $action = $this->model_kelulusan->update($where, $data, 'calon_siswa');
+			// $data = array(
+	        //     'StatusCalsisw'  => $this->input->post('n'),
+	        // );
+	        // $where = array(
+	        //     'Noreg'  => $this->input->post('noreg'),
+	        // );
+	        // $action = $this->model_kelulusan->update($where, $data, 'calon_siswa'); // Sudah tidak digunakan, karena hanya menggunakan table ms siswa
 
 	        //Update Siswa
 	        $data = array(

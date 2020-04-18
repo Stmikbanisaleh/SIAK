@@ -17,7 +17,7 @@
         <div class="col-xs-3">
             <select class="form-control" name="programsekolah" id="programsekolah">
                 <?php foreach ($myps as $value) { ?>
-                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['SINGKTBPS']?></option>
+                    <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['SINGKTBPS'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -45,34 +45,35 @@
         </div>
     </div>
 </div>
-<table id="datatable_tabletools" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama Siswa</th>
-            <th>Mata Ajar</th>
-            <th>Kelas</th>
-            <th>UTS</th>
-            <th>UAS</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="datatable_tabletools" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Siswa</th>
+                <th>Mata Ajar</th>
+                <th>Kelas</th>
+                <th>UTS</th>
+                <th>UAS</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
-
     $('#kirimemail').click(function() {
         $('#kirimemail').html('Proses..');
-        var periode =  $('#tahun').val();
-        var ps =  $('#programsekolah').val();
-        var semester =  $('#semester').val();
+        var periode = $('#tahun').val();
+        var ps = $('#programsekolah').val();
+        var semester = $('#semester').val();
         $.ajax({
             type: 'POST',
             url: '<?php echo site_url('permataajar/kirim_email') ?>',
             data: {
-                ps:ps,
-                periode:periode,
-                semester:semester
+                ps: ps,
+                periode: periode,
+                semester: semester
             },
             dataType: 'json',
             success: function(response) {

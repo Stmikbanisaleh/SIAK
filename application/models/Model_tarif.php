@@ -10,7 +10,19 @@ class Model_tarif extends CI_model
 
     public function getdata()
     {
-        return  $this->db->query("SELECT * ,CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v from tarif_berlaku where isdeleted != 1 order by idtarif desc ");
+        return  $this->db->query("SELECT
+                                    kodesekolah,
+                                    Kodejnsbayar,
+                                    ThnMasuk,
+                                    Nominal,
+                                    TA,
+                                    tglentri,
+                                    createdAt,
+                                    status,
+                                    (select tp.nama from tbpengawas tp where tp.nip = tarif_berlaku.userridd) userridd,
+                                    CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v
+                                from tarif_berlaku
+                                where isdeleted != 1 order by idtarif desc");
     }
 
     public function getsekolah()

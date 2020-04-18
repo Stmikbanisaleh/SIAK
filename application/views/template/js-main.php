@@ -108,6 +108,14 @@
 		});
 	}
 
+	function swalprosessukses(message){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: message,
+		});
+	}
+
 	function swalDeleteSuccess(){
 		Swal.fire({
 		  icon: 'success',

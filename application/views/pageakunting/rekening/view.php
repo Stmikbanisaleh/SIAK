@@ -87,7 +87,7 @@
 									<select class="form-control" name="JR" id="JR">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjenisrek as $value) { ?>
-											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
+											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -99,7 +99,7 @@
 									<select class="form-control" name="type" id="type">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) { ?>
-											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
+											<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -134,7 +134,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-							<input type="hidden" class="form-control" name="e_no_jurnal" id="e_no_jurnal"/>
+							<input type="hidden" class="form-control" name="e_no_jurnal" id="e_no_jurnal" />
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Rekening</label>
@@ -156,7 +156,7 @@
 									<select class="form-control" name="e_JR" id="e_JR">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjenisrek as $value) { ?>
-											<option id='<?= 'ej_'.$value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
+											<option id='<?= 'ej_' . $value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -168,7 +168,7 @@
 									<select class="form-control" name="e_type" id="e_type">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) { ?>
-											<option id='<?= 'et_'.$value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV']?></option>
+											<option id='<?= 'et_' . $value['KETERANGAN'] ?>' value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -198,20 +198,22 @@
 		</div>
 	</div>
 </div>
-<table id="datatable_tabletools" class="display">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>Kode Rekening</th>
-			<th>Nama Rekening</th>
-			<th>Jenis Rekening</th>
-			<th>Type</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody id="show_data">
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table id="datatable_tabletools" class="display">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Kode Rekening</th>
+				<th>Nama Rekening</th>
+				<th>Jenis Rekening</th>
+				<th>Type</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="show_data">
+		</tbody>
+	</table>
+</div>
 <script type="text/javascript">
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({
@@ -431,7 +433,7 @@
 	})
 
 	$('#show_data').on('click', '.item_edit', function() {
-		console.log('aa'+'bb');
+		console.log('aa' + 'bb');
 		var id = $(this).data('id');
 		$('#modalEdit').modal('show');
 		$.ajax({
@@ -443,14 +445,14 @@
 				id: id,
 			},
 			success: function(data) {
-				var jr = 'ej_'+data[0].JR;
+				var jr = 'ej_' + data[0].JR;
 				var type = data[0].type;
 				console.log(jr);
 				$('#e_no_jurnal').val(data[0].no_jurnal);
 				$('#e_kode_jurnal').val(data[0].kode_jurnal);
 				$('#e_nama_jurnal').val(data[0].nama_jurnal);
 				document.getElementById(jr).selected = "true";
-				document.getElementById('et_'+type).selected = "true";
+				document.getElementById('et_' + type).selected = "true";
 			}
 		});
 	});

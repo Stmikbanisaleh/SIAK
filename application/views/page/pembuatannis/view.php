@@ -169,21 +169,23 @@
     </div>
 </div>
 <br>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th class="col-md-1">No</th>
-            <th>No Registrasi</th>
-            <th>Nama</th>
-            <th>Tanggal Bayar</th>
-            <th>Total Bayar</th>
-            <th>Sekolah</th>
-            <th>Tahun Masuk</th>
-        </tr>
-    </thead>
-    <tbody id="show_data">
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th class="col-md-1">No</th>
+                <th>No Registrasi</th>
+                <th>Nama</th>
+                <th>Tanggal Bayar</th>
+                <th>Total Bayar</th>
+                <th>Sekolah</th>
+                <th>Tahun Masuk</th>
+            </tr>
+        </thead>
+        <tbody id="show_data">
+        </tbody>
+    </table>
+</div>
 <script>
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
