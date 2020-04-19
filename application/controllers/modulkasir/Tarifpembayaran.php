@@ -58,7 +58,7 @@ class Tarifpembayaran extends CI_Controller
             'TA'  => $this->input->post('tahunakad'),
             'tglentri'  => date('Y-m-d H:i:s'),
             'status'  => 'T',
-            'userridd'  => $this->session->userdata('nip'),
+            'userridd'  => $this->session->userdata('kodekaryawan'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_tarif->insert($data, 'tarif_berlaku');
@@ -77,7 +77,7 @@ class Tarifpembayaran extends CI_Controller
             'Nominal'  => $this->input->post('e_nominal_v'),
             'TA'  => $this->input->post('e_tahunakad'),
             'status'  => $this->input->post('e_status'),
-            'userridd'  => $this->session->userdata('nip'),
+            'userridd'  =>  $this->session->userdata('kodekaryawan'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_tarif->update($data_id, $data, 'tarif_berlaku');

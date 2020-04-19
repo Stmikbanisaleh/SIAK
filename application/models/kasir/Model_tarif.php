@@ -11,6 +11,7 @@ class Model_tarif extends CI_model
     public function getdata()
     {
         return  $this->db->query("SELECT
+                                    idtarif,
                                     kodesekolah,
                                     Kodejnsbayar,
                                     ThnMasuk,
