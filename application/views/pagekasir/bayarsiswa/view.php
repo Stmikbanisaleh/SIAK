@@ -490,7 +490,7 @@
                         var i = 0;
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
-                            if(data[i].pemb_buk == '1'){
+                            if(data[i].pemb_buk == '0'){
                                 var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
                                                     '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                                                     '</a>' ;
@@ -732,7 +732,7 @@
                                 var i = 0;
                                 var no = 1;
                                 for (i = 0; i < data.length; i++) {
-                                    if(data[i].pemb_buk == '1'){
+                                    if(data[i].pemb_buk == '0'){
                                         var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
                                                             '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                                                             '</a>' ;
