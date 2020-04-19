@@ -134,6 +134,16 @@ $Kelas = $row->Kelas;
     $v_idtarif_KGT = $cari1->idtarif;
   }
 
+  $cari1 = $this->db->query("SELECT SUM(Nominal) Nominal FROM tarif_berlaku WHERE ThnMasuk='$v_thnmasuk' AND kodesekolah='$v_kodesekolah' AND Kodejnsbayar NOT IN ('SPP', 'GDG', 'SRG', 'KGT')")->row();
+
+  if($cari1 == null){
+    $v_Nominal_lain = 0;
+    // $v_idtarif_lain = '';
+  }else{
+    $v_Nominal_lain = $cari1->Nominal;
+    // $v_idtarif_KGT = $cari1->idtarif;
+  }
+
   $row = $this->db->query("SELECT detail_bayar_sekolah.nominalbayar FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar='SPP'")->row();
 
   if (isset($row)) {
@@ -164,6 +174,14 @@ $Kelas = $row->Kelas;
     $KGT_nominalbayar = $row->nominalbayar;
   } else {
     $KGT_nominalbayar = 0;
+  }
+
+  $row = $this->db->query("SELECT SUM(detail_bayar_sekolah.nominalbayar) lain_lain FROM detail_bayar_sekolah WHERE Nopembayaran='6869' AND kodejnsbayar NOT IN ('SPP', 'GDG', 'SRG', 'KGT')")->row();
+
+  if (isset($row)) {
+    $lain_nominalbayar = $row->lain_lain;
+  } else {
+    $lain_nominalbayar = 0;
   }
 
   $cari1 = $this->db->query("SELECT SUM(SPP)AS SPP,SUM(GDG)AS GDG,SUM(SRG)AS SRG,SUM(KGT)AS KGT FROM(
@@ -217,16 +235,17 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
   $vap_Nominal_GDG = $v_Nominal_GDG - ($v_Nominal_GDG * $pot_gdg / 100);
   $vap_Nominal_SRG = $v_Nominal_SRG - ($v_Nominal_SRG * $pot_modul / 100);
   $vap_Nominal_KGT = $v_Nominal_KGT - ($v_Nominal_KGT * $pot_kgt / 100);
+  $vap_Nominal_lain = $v_Nominal_lain;
 
   $s_SPP = $vap_Nominal_SPP - $t_SPP;
   $s_GDG = $vap_Nominal_GDG - $t_GDG;
   $s_SRG = $vap_Nominal_SRG - $t_SRG;
   $s_KGT = $vap_Nominal_KGT - $t_KGT;
   $f_tot = ($s_KGT + $s_SRG + $s_GDG + $s_SPP);
-  $tot_byr = $SPP_nominalbayar + $GDG_nominalbayar + $SRG_nominalbayar + $KGT_nominalbayar;
+  $tot_byr = $SPP_nominalbayar + $GDG_nominalbayar + $SRG_nominalbayar + $KGT_nominalbayar + $lain_nominalbayar;
   $tot_dbyr = $t_SPP + $t_GDG + $t_SRG + $t_KGT + $tot_byr;
 
-  $tot_tag = $vap_Nominal_SPP + $vap_Nominal_GDG + $vap_Nominal_SRG + $vap_Nominal_KGT;
+  $tot_tag = $vap_Nominal_SPP + $vap_Nominal_GDG + $vap_Nominal_SRG + $vap_Nominal_KGT + $vap_Nominal_lain;
   $sisa_tag = $tot_tag - $tot_dbyr;
   ?>
   <tr>
@@ -256,6 +275,12 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($KGT_nominalbayar, 0, ',', '.'); ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Kegiatan</th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_KGT, 0, ',', '.'); ?></th>
+  </tr>
+  <tr>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Lain - lain</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($lain_nominalbayar, 0, ',', '.'); ?></th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Lain - lain</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($vap_Nominal_lain, 0, ',', '.'); ?></th>
   </tr>
   <tr>
     <td colspan=6><u>
