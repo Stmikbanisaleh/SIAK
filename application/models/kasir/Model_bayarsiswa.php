@@ -150,6 +150,7 @@ class Model_bayarsiswa extends CI_model
                                     pembayaran_sekolah.Noreg,
                                     (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
                                     DATE_FORMAT(pembayaran_sekolah.tglentri,'%d-%m-%Y')tglentri,
+                                    (SELECT COUNT(DISTINCT No_bukti)AS cnt FROM transaksi_buk WHERE transaksi_buk.No_bukti=pembayaran_sekolah.Nopembayaran) pemb_buk,
                                     pembayaran_sekolah.useridd,
                                     pembayaran_sekolah.TotalBayar,
                                     pembayaran_sekolah.TA
