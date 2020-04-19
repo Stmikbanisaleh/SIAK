@@ -85,12 +85,14 @@
 
 									<div class="toolbar clearfix">
 										<div>
-											<a href="#" data-target="#forgot-box" class="forgot-password-link">
+											<a href="<?php echo base_url() ?>" data-target="#forgot-box" class="forgot-password-link">
 												<i class="ace-icon fa fa-arrow-left"></i>
-												Lupa Password
+												Menu Utama
 											</a>
+
 										</div>
 									</div>
+
 								</div><!-- /.widget-body -->
 							</div><!-- /.login-box -->
 

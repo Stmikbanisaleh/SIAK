@@ -49,8 +49,8 @@
                                             <div class="alert alert-danger"> <?= $this->session->flashdata('category_error') ?> </div>
                                         <?php } ?>
                                         <?php if ($this->session->flashdata('category_success')) { ?>
-											<div class="alert alert-success"> <?= $this->session->flashdata('category_success') ?> </div>
-										<?php } ?>
+                                            <div class="alert alert-success"> <?= $this->session->flashdata('category_success') ?> </div>
+                                        <?php } ?>
                                         <form class="form-horizontal" role="form" method="post" action="<?php echo base_url() . 'modulguru/dashboard/login'; ?>">
                                             <fieldset>
                                                 <label class="block clearfix">
@@ -87,6 +87,12 @@
                                     </div><!-- /.widget-main -->
 
                                     <div class="toolbar clearfix">
+                                        <div>
+                                            <a href="<?php echo base_url() ?>" class="forgot-password-link">
+                                                <i class="ace-icon fa fa-arrow-left"></i>
+                                                Menu Utama
+                                            </a>
+                                        </div>
                                         <div>
                                             <a href="#" data-target="#forgot-box" class="forgot-password-link">
                                                 <i class="ace-icon fa fa-arrow-left"></i>
