@@ -231,6 +231,7 @@ class Mssiswa extends CI_Controller
                 'NMASLSKL'  => $this->input->post('aslsekolah'),
                 'PROVINSISEKOLAHASAL'  => $this->input->post('provinsi2'),
                 'KABUPATENSEKOLAHASAL' => $this->input->post('kabupaten2'),
+                'KELURAHANSEKOLAHASAL' => $this->input->post('kelurahan2'),
                 'KECAMATANSEKOLAHASAL' => $this->input->post('kecamatan2'),
                 'ALMASLSKL' => $this->input->post('alamat3'),
                 'NOIJAZAH' => $this->input->post('noijazah'),
@@ -238,45 +239,8 @@ class Mssiswa extends CI_Controller
                 'NILNEMASLSKL' => $this->input->post('nem'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
-            $data2 = array(
-                'Noreg'  => $this->input->post('noreg'),
-                'Namacasis'  => $this->input->post('nama'),
-                'agama'  => $this->input->post('agama'),
-                'Jk'  => $this->input->post('jk'),
-                'tgllhr'  => $this->input->post('tglhr'),
-                'kodesekolah'  => $this->input->post('sekolah'),
-                'tptlhr'  => $this->input->post('tempat'),
-                'NmBapak' => $this->input->post('ayah'),
-                'GajiOrtu'  => $this->input->post('penghasilan'),
-                'NmIbu' => $this->input->post('ibu'),
-                'Kelurahan' => $this->input->post('kelurahan'),
-                'Kecamatan' => $this->input->post('kecamatan'),
-                'Kabupaten' => $this->input->post('kabupaten'),
-                'Propinsi' => $this->input->post('provinsi'),
-                'Kodepos'  => $this->input->post('kdpos'),
-                'TelpHp'  => $this->input->post('nohp'),
-                'NamaWali'  => $this->input->post('wali'),
-                'Pekerjaan'  => $this->input->post('pekerjaan'),
-                'Perkerjaanortu'  => $this->input->post('pekerjaan'),
-                'AlamatRumah'  => $this->input->post('alamat2'),
-                'TelpRumah'  => $this->input->post('telprmh'),
-                'TelpWali'  => $this->input->post('telpwali'),
-                'AsalSekolah'  => $this->input->post('aslsekolah'),
-                'ASlKelurahan'  => $this->input->post('aslsekolah'),
-                'aslsekpropinsi'  => $this->input->post('provinsi2'),
-                'aslsekkabupaten' => $this->input->post('kabupaten2'),
-                'Aslsekkecamatan' => $this->input->post('kecamatan2'),
-                'AlamatASalSek' => $this->input->post('alamat3'),
-                'NoIjazah' => $this->input->post('noijazah'),
-                'thnmasuk' => $this->input->post('thnmassuk'),
-                'NilaiNem' => $this->input->post('nem'),
-                'updatedAt' => date('Y-m-d H:i:s'),
-            );
-            $action2 = $this->model_mssiswa->update($data_id, $data2, 'calon_siswa');
+            $action2 = $this->model_mssiswa->update($data_id, $data, 'mssiswa');
             $ceksiswa = $this->db->query("select NOREG from mssiswa where NOREG = '$noreg'");
-            if (count($ceksiswa) > 0) {
-                $action = $this->model_mssiswa->update($data_id, $data, 'mssiswa');
-            }
             echo json_encode(1);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
