@@ -11,7 +11,7 @@
                     antara data-data pembayaran siswa hingga laporan, dari front office hingga back office. Sehingga tujuan aplikasi ini adalah untuk
                     mendukung proses pembayaran siswa yang merupakan debet dan pengeluaran kas perusahaan yang dikenal dengan kredit perusahaan.
                     <br><br>
-                    Aplikasi ini merupakan Versi 1.0 dari aplikasi Sistem Informasi Akuntansi.
+                    Aplikasi ini merupakan Versi 1.0 dari aplikasi Sistem Informasi Akuntansi (SIA).
                 </div>
             </div>
         </div>
