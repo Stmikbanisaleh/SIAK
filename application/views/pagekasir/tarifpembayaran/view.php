@@ -263,7 +263,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tarifpembayaran/simpan') ?>",
+                    url: "<?php echo base_url('modulkasir/tarifpembayaran/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -304,7 +304,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tarifpembayaran/update') ?>",
+                    url: "<?php echo base_url('modulkasir/tarifpembayaran/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -337,7 +337,7 @@
     function show_data() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('tarifpembayaran/tampil') ?>',
+            url: '<?php echo site_url('modulkasir/tarifpembayaran/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
@@ -396,7 +396,7 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('tarifpembayaran/tampil_byid') ?>",
+            url: "<?php echo base_url('modulkasir/tarifpembayaran/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
@@ -432,7 +432,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('tarifpembayaran/delete') ?>",
+                    url: "<?php echo base_url('modulkasir/tarifpembayaran/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {
@@ -450,34 +450,4 @@
             }
         })
     })
-
-
-    //Simpan guru
-    // $('#btn_simpan1').on('click', function() {
-    // 	var id = $('#id').val();
-    // 	var nama = $('#nama').val();
-    // 	$.ajax({
-    // 		type: "POST",
-    // 		url: "<?php echo base_url('jabatan/simpan_jabatan') ?>",
-    // 		dataType: "JSON",
-    // 		data: {
-    // 			id: id,
-    // 			nama: nama,
-    // 		},
-    // 		success: function(response) {
-    // 			if(response == true){
-    // 				swalInputSuccess();
-    // 				show_data();
-    // 				$('[name="id"]').val("");
-    // 				$('[name="nama"]').val("");
-    // 				$('#modalTambah').modal('hide');
-    // 			}else if(response == 1048){
-    // 				swalIdDouble('ID Jabatan Sudah digunakan!');
-    // 			}else{
-    // 				swalInputFailed();
-    // 			}
-    // 		}
-    // 	});
-    // 	return false;
-    // });
 </script>

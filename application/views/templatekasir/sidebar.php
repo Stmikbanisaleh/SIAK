@@ -44,6 +44,31 @@
 	</li>
 	<li class="">
 		<a href="javascript:void(0);" class="dropdown-toggle">
+			<i class="menu-icon glyphicon glyphicon-list-alt "></i>
+			<span class="menu-text">
+				Master
+			</span>
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+		<b class="arrow"></b>
+		<ul class="submenu">
+			<li class="">
+				<a href="<?= base_url() . 'modulkasir/tarifpembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tarif Pembayaran
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulkasir/jenispembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Jenis Pembayaran
+				</a>
+				<b class="arrow"></b>
+			</li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="javascript:void(0);" class="dropdown-toggle">
 			<i class="menu-icon fa fa-exchange"></i>
 			<span class="menu-text">
 				Transaksi
@@ -75,6 +100,13 @@
 				<a href="<?= base_url() . 'modulkasir/potongan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Potongan
+				</a>
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulkasir/tagihanpembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tagihan Siswa
 				</a>
 				<b class="arrow"></b>
 			</li>
