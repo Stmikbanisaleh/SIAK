@@ -301,6 +301,7 @@
         <thead>
             <tr>
                 <th class="col-md-1">No</th>
+                <th>No Pembayaran</th>
                 <th>No Induk</th>
                 <th>Kelas</th>
                 <th>Tanggal</th>
@@ -484,12 +485,21 @@
                     success: function(data) {
                         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
                             'Periksa');
+                        
                         var html = '';
                         var i = 0;
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
+                            if(data[i].pemb_buk == '1'){
+                                var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
+                                                    '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                                                    '</a>' ;
+                            }else{
+                                var button_hapus = '';
+                            }
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].Nopembayaran + '</td>' +
                                 '<td>' + data[i].NIS + '</td>' +
                                 '<td>' + data[i].Kelas + '</td>' +
                                 '<td>' + data[i].tglentri + '</td>' +
@@ -500,6 +510,7 @@
                                 '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].Noreg + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
                                 '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                 '</a> &nbsp' +
+                                button_hapus+
                                 '</td>' +
                                 '</tr>';
                             no++;
@@ -679,5 +690,93 @@
         }
 
     }
+
+    $('#table_id2').on('click', '.item_hapus', function() {
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Anda tidak akan dapat mengembalikan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('modulkasir/bayarsiswa/delete') ?>",
+                    async: true,
+                    dataType: "JSON",
+                    data: {
+                        id: id,
+                    },
+                    success: function(data) {
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data sudah dihapus.',
+                            'success'
+                        )
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo site_url('modulkasir/bayarsiswa/search_pemb_sekolah') ?>',
+                            data: $('#formSearch').serialize(),
+                            async: true,
+                            dataType: 'json',
+                            success: function(data) {
+                                $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                                    'Periksa');
+                                
+                                var html = '';
+                                var i = 0;
+                                var no = 1;
+                                for (i = 0; i < data.length; i++) {
+                                    if(data[i].pemb_buk == '1'){
+                                        var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
+                                                            '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                                                            '</a>' ;
+                                    }else{
+                                        var button_hapus = '';
+                                    }
+                                    html += '<tr>' +
+                                        '<td class="text-center">' + no + '</td>' +
+                                        '<td>' + data[i].Nopembayaran + '</td>' +
+                                        '<td>' + data[i].NIS + '</td>' +
+                                        '<td>' + data[i].Kelas + '</td>' +
+                                        '<td>' + data[i].tglentri + '</td>' +
+                                        '<td>' + formatRupiah(data[i].TotalBayar) + '</td>' +
+                                        '<td>' + data[i].useridd + '</td>' +
+                                        '<td>' + data[i].TA + '</td>' +
+                                        '<td>' +
+                                        '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].Noreg + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
+                                        '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                        '</a> &nbsp' +
+                                        button_hapus+
+                                        '</td>' +
+                                        '</tr>';
+                                    no++;
+                                }
+                                $("#table_id2").dataTable().fnDestroy();
+                                var a = $('#show_data2').html(html);
+                                //                    $('#mydata').dataTable();
+                                if (a) {
+                                    $('#table_id2').dataTable({
+                                        "bPaginate": true,
+                                        "bLengthChange": false,
+                                        "bFilter": true,
+                                        "bInfo": false,
+
+                                    });
+
+                                }
+                                /* END TABLETOOLS */
+                            }
+                        });
+                    }
+                });
+            }
+        })
+    })
 </script>
 <!-- End Select2

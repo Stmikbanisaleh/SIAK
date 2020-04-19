@@ -190,4 +190,18 @@ class Bayarsiswa extends CI_Controller {
             header("Location: ".base_url()."modulkasir/bayarsiswa");            
             // echo json_encode(true);    
     }
+
+    public function delete()
+    {
+        $data_id = array(
+            'Nopembayaran'  => $this->input->post('id')
+        );
+        $action = $this->model_bayarsiswa->delete($data_id, 'detail_bayar_sekolah');
+        if($action){
+            $hasil = $this->model_bayarsiswa->delete($data_id, 'pembayaran_sekolah');
+            echo json_encode($hasil);
+        }else{
+            echo json_encode($action);
+        }
+    }
 }
