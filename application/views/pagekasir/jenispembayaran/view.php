@@ -125,7 +125,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('jenispembayaran/simpan') ?>",
+                    url: "<?php echo base_url('modulkasir/jenispembayaran/simpan') ?>",
                     type: "POST",
                     data: $('#formTambah').serialize(),
                     dataType: "json",
@@ -156,7 +156,7 @@
                 formdata = new FormData(form);
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('jadwal/import') ?>",
+                    url: "<?php echo base_url('modulkasir/jadwal/import') ?>",
                     data: formdata,
                     processData: false,
                     contentType: false,
@@ -190,7 +190,7 @@
             submitHandler: function(form) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('jenispembayaran/update') ?>",
+                    url: "<?php echo base_url('modulkasir/jenispembayaran/update') ?>",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
                     success: function(data) {
@@ -224,7 +224,7 @@
     function show_data() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('jenispembayaran/tampil') ?>',
+            url: '<?php echo site_url('modulkasir/jenispembayaran/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
@@ -277,7 +277,7 @@
         $('#modalEdit').modal('show');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('jenispembayaran/tampil_byid') ?>",
+            url: "<?php echo base_url('modulkasir/jenispembayaran/tampil_byid') ?>",
             async: true,
             dataType: "JSON",
             data: {
@@ -306,7 +306,7 @@
             if (result.value) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('jenispembayaran/delete') ?>",
+                    url: "<?php echo base_url('modulkasir/jenispembayaran/delete') ?>",
                     async: true,
                     dataType: "JSON",
                     data: {

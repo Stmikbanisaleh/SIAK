@@ -60,7 +60,7 @@
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('tagihanpembayaran/search') ?>",
+                    url: "<?php echo base_url('modulkasir/tagihanpembayaran/search') ?>",
                     type: "POST",
                     data: $('#formSearch').serialize(),
                     dataType: "json",
@@ -109,7 +109,7 @@
     function show_data() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('tarifpembayaran/tampil') ?>',
+            url: '<?php echo site_url('modulkasir/tarifpembayaran/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {
