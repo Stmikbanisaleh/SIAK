@@ -184,27 +184,9 @@ if ($jabatan == 19) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'jenispembayaran'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Jenis Pembayaran
-					</a>
-				</li>
-				<li class="">
-					<a href="<?= base_url() . 'tarifpembayaran'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Tarif Pembayaran
-					</a>
-				</li>
-				<li class="">
 					<a href="<?= base_url() . 'jeniskelas'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Jenis Kelas
-					</a>
-				</li>
-				<li class="">
-					<a href="<?= base_url() . 'tagihanpembayaran'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Tagihan Pembayaran Siswa
 					</a>
 				</li>
 
