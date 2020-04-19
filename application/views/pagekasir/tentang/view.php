@@ -7,7 +7,11 @@
 
             <div class="widget-body">
                 <div class="widget-main padding-6 no-padding-left no-padding-right">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis. Nullam interdum massa vel nisl fringilla sed viverra erat tincidunt. Phasellus in ipsum velit. Maecenas id erat vel sem convallis blandit. Nunc aliquam enim ut arcu aliquet adipiscing. Fusce dignissim volutpat justo non consectetur.
+                    Aplikasi Sistem Informasi Akuntansi (SIA) Software Cashier yang mengintegrasikan keseluruhan proses bisnis perusahaan,
+                    antara data-data pembayaran siswa hingga laporan, dari front office hingga back office. Sehingga tujuan aplikasi ini adalah untuk
+                    mendukung proses pembayaran siswa yang merupakan debet dan pengeluaran kas perusahaan yang dikenal dengan kredit perusahaan.
+                    <br><br>
+                    Aplikasi ini merupakan Versi 1.0 dari aplikasi Sistem Informasi Akuntansi.
                 </div>
             </div>
         </div>

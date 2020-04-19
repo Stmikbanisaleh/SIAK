@@ -176,7 +176,7 @@ $Kelas = $row->Kelas;
     $KGT_nominalbayar = 0;
   }
 
-  $row = $this->db->query("SELECT SUM(detail_bayar_sekolah.nominalbayar) lain_lain FROM detail_bayar_sekolah WHERE Nopembayaran='6869' AND kodejnsbayar NOT IN ('SPP', 'GDG', 'SRG', 'KGT')")->row();
+  $row = $this->db->query("SELECT SUM(detail_bayar_sekolah.nominalbayar) lain_lain FROM detail_bayar_sekolah WHERE Nopembayaran='$nopem' AND kodejnsbayar NOT IN ('SPP', 'GDG', 'SRG', 'KGT')")->row();
 
   if (isset($row)) {
     $lain_nominalbayar = $row->lain_lain;

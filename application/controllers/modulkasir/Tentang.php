@@ -10,7 +10,7 @@ class Tentang extends CI_Controller {
 	public function index() {
         $data = array(
         			'page_content' 	=> '../pagekasir/tentang/view',
-        			'ribbon' 		=> '<li class="active">Tentang Aplikasi</li><li>Sample</li>',
+        			'ribbon' 		=> '<li class="active">Tentang Aplikasi</li>',
 					'page_name' 	=> 'Tentang Aplikasi',
         		);
         $this->render_view($data); //Memanggil function render_view
