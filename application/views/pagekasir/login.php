@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<title>Login Page Kasir</title>
 	<link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
+	<link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 	<meta name="description" content="User login page" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<!-- bootstrap & fontawesome -->
@@ -91,8 +91,14 @@
 
 									<div class="toolbar clearfix">
 										<div>
-											<a href="#" data-target="#forgot-box" class="forgot-password-link">
+										<a href="<?php echo base_url() ?>" class="forgot-password-link">
 												<i class="ace-icon fa fa-arrow-left"></i>
+												Menu Utama
+											</a>
+										</div>
+										<div>
+											<a href="#" data-target="#forgot-box" class="forgot-password-link">
+												<i class="ace-icon fa fa-arrow-right"></i>
 												Lupa Password
 											</a>
 										</div>
@@ -117,7 +123,7 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="email" name ="email" required class="form-control" placeholder="Email" />
+														<input type="email" name="email" required class="form-control" placeholder="Email" />
 														<i class="ace-icon fa fa-envelope"></i>
 													</span>
 												</label>

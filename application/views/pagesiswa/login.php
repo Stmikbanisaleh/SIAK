@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<title>Login Page Siswa</title>
 	<link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
+	<link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 	<meta name="description" content="User login page" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<!-- bootstrap & fontawesome -->
@@ -87,6 +87,12 @@
 									</div><!-- /.widget-main -->
 
 									<div class="toolbar clearfix">
+										<div>
+											<a href="<?php echo base_url() ?>" class="forgot-password-link">
+												<i class="ace-icon fa fa-arrow-left"></i>
+												Menu Utama
+											</a>
+										</div>
 										<div>
 											<a href="#" data-target="#forgot-box" class="forgot-password-link">
 												<i class="ace-icon fa fa-arrow-left"></i>
