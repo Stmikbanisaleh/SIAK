@@ -156,7 +156,7 @@ class Model_bayarsiswa extends CI_model
                                     pembayaran_sekolah.TA
                                     FROM pembayaran_sekolah
                                     WHERE pembayaran_sekolah.NIS='".$siswa."' OR pembayaran_sekolah.Noreg='".$siswa."' AND pembayaran_sekolah.Kelas IS NOT NULL
-                                    ORDER BY UNIX_TIMESTAMP(tglentri) desc");
+                                    ORDER BY UNIX_TIMESTAMP(pembayaran_sekolah.tglentri) desc");
     }
 
     public function pemb_sekolah_q2($siswa, $kelas){
@@ -177,7 +177,7 @@ class Model_bayarsiswa extends CI_model
                                     INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
                                     INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
                                     WHERE jenispembayaran.Kodejnsbayar NOT IN('SPP') and pembayaran_sekolah.NIS='$siswa'
-                                    ORDER BY UNIX_TIMESTAMP(tglentri) desc");
+                                    ORDER BY UNIX_TIMESTAMP(pembayaran_sekolah.tglentri) desc");
     }
 
     public function view($table)
