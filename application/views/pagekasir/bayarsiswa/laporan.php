@@ -211,6 +211,11 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
                       saldopembayaran_sekolah
                       WHERE NIS='$id' AND Kelas='$Kelas'")->row();
 
+  $totbayar = $this->db->query("SELECT sum(Totalbayar) as total
+  FROM
+  pembayaran_sekolah
+  WHERE NIS='$id'")->row();
+
   if (isset($cari)) {
     if($cari1 == null){
       $pot_spp = 0;
@@ -244,9 +249,9 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
   $f_tot = ($s_KGT + $s_SRG + $s_GDG + $s_SPP);
   $tot_byr = $SPP_nominalbayar + $GDG_nominalbayar + $SRG_nominalbayar + $KGT_nominalbayar + $lain_nominalbayar;
   $tot_dbyr = $t_SPP + $t_GDG + $t_SRG + $t_KGT + $tot_byr;
-
+  $tot_byr2 = $totbayar->total;
   $tot_tag = $vap_Nominal_SPP + $vap_Nominal_GDG + $vap_Nominal_SRG + $vap_Nominal_KGT + $vap_Nominal_lain;
-  $sisa_tag = $tot_tag - $tot_dbyr;
+  $sisa_tag = $tot_tag - $tot_byr2;
   ?>
   <tr>
     <th colspan=2 width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Telah Dibayarkan :</th>
