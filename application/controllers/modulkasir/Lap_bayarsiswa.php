@@ -56,6 +56,7 @@ class Lap_bayarsiswa extends CI_Controller
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', 'Tahun Pelajaran');
 
                 foreach ($data as $dataExcel) {
+                    $total +=  $dataExcel['nominalbayar'];
                     $nobukti = $dataExcel['Nopembayaran'];
                     $sekolah = $dataExcel['kodesekolah'];
                     $jenisbayar = $dataExcel['namajenisbayar'];
@@ -98,6 +99,16 @@ class Lap_bayarsiswa extends CI_Controller
                     $row++;
                     $no++;
                 }
+                $rows = $row + 2;
+
+                $objPHPExcel->getActiveSheet(0)->getStyle('E'.$rows)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E'.$rows, 'Total', PHPExcel_Cell_DataType::TYPE_STRING);
+                $objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setAutoSize(true);
+
+                $objPHPExcel->getActiveSheet(0)->getStyle('F'.$row + 1)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F'.$rows, number_format($total, 2), PHPExcel_Cell_DataType::TYPE_STRING);
+                $objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
+
                 header('Content-Type: application/vnd.ms-excel; charset=utf-8');
                 header('Content-Disposition: attachment; filename=report.xls');
                 header('Cache-Control: max-age=0');
