@@ -13,7 +13,6 @@ tbjs.DESCRTBJS
 FROM
 mssiswa
 INNER JOIN tbps ON mssiswa.PS = tbps.KDTBPS
-LEFT JOIN mssiswa siswa ON mssiswa.NOREG = mssiswa.NOREG
 INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
                           WHERE mssiswa.NOREG='$id' OR  mssiswa.NOINDUK='$id'")->row();
 
@@ -64,7 +63,7 @@ $Kelas = $row->Kelas;
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <th width="50%" align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">No. Transaksi : <?= $Nopembayaran ?></th>
-    <th width="50%" colspan='2' align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">NIS/No Registrasi : <?php echo $v_NIS; ?>/<?php echo $v_Noreg; ?></th>
+    <th width="50%" colspan='2' align="left" scope="col"><span style="font-family:Rockwell;font-size: 12px;">NIS/No Registrasi : <?php echo $v_NIS; ?>/<?php echo $v_NIS; ?></th>
   </tr>
   <tr align="left">
     <th scope="col"><span style="font-family:Rockwell;font-size: 12px;">Tanggal : <?= $tglentri ?></th>
