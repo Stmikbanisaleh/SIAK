@@ -511,7 +511,7 @@
                                 '<td>' + data[i].useridd + '</td>' +
                                 '<td>' + data[i].TA + '</td>' +
                                 '<td>' +
-                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].Noreg + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
+                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].NIS + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
                                 '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                 '</a> &nbsp' +
                                 button_hapus+
