@@ -17,6 +17,7 @@ class Model_bayar extends CI_model
         return $this->db->query("SELECT
                                 tarif_berlaku.idtarif,
                                 kodesekolah,
+                                ThnMasuk,
                                 (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =tarif_berlaku.kodesekolah)AS sekolah,
                                 (SELECT z.namajenisbayar FROM jenispembayaran z WHERE z.Kodejnsbayar=tarif_berlaku.Kodejnsbayar)AS namajenisbayar,
                                 tarif_berlaku.Kodejnsbayar,

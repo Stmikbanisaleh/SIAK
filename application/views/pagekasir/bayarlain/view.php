@@ -40,7 +40,7 @@
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <select class="form-control" name="nik2" id="nik2">
                                         <option value="">--Pilih NIK / No Induk--</option>
                                         <?php foreach ($mysiswa as $value) { ?>
@@ -51,13 +51,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Siswa </label>
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <input type="text" readonly class="form-control" name="nama" id="nama" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <input type="text" id="nominal" required name="nominal" placeholder="Rp.65.000" class="form-control" />
                                     <input type="hidden" id="nominal_v" name="nominal_v" class="form-control" />
                                     <script language="JavaScript">
@@ -91,7 +91,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <select class="form-control" name="ket" id="ket">
                                         <option value="0">-- Pilih Data --</option>
                                     </select>
@@ -99,13 +99,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <input type="text" value=<?= $ta ?> readonly class="form-control" name="thnakad" id="thnakad" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal bayar </label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-6">
                                     <input type="date" class="form-control" name="tglbayar" id="tglbayar" placeholder="">
                                 </div>
                             </div>

@@ -231,7 +231,7 @@ class Model_laporan extends CI_model
                 INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
                 INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
                 WHERE tglentri BETWEEN '$p_awal' AND '$p_akhir'
-            ORDER BY pembayaran_sekolah.Nopembayaran,detail_bayar_sekolah.kodejnsbayar,tglentri");
+            ORDER BY tglentri asc");
     }
 
 }
