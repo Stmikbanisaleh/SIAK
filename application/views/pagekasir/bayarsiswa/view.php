@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="spp" required name="spp" placeholder="SPP" class="form-control" />
+                        <input type="number" id="spp" name="spp" placeholder="SPP" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="gedung" required name="gedung" placeholder="Gedung" class="form-control" />
+                        <input type="number" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="seragam" required name="seragam" placeholder="Seragam" class="form-control" />
+                        <input type="number" id="seragam" name="seragam" placeholder="Seragam" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="kegiatan" required name="kegiatan" placeholder="Kegiatan" class="form-control" />
+                        <input type="number" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
                     </div>
                 </div>
             </div>

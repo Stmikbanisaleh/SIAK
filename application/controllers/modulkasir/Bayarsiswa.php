@@ -106,7 +106,7 @@ class Bayarsiswa extends CI_Controller {
             );
             $action = $this->db->insert('pembayaran_sekolah',$data);
             $id = $this->db->insert_id();
-            if($this->input->post('spp') != 0 || $this->input->post('spp')!= ''){
+            if($this->input->post('spp') > 0 ){
                 $ins1 = array(
                     'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'SPP',
@@ -118,7 +118,7 @@ class Bayarsiswa extends CI_Controller {
             }
 
 
-            if($this->input->post('gedung') != 0 || $this->input->post('gedung')!= ''){
+            if($this->input->post('gedung') > 0){
                 $ins2 = array(
                     'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'GDG',
@@ -129,7 +129,7 @@ class Bayarsiswa extends CI_Controller {
                 $action = $this->db->insert('detail_bayar_sekolah',$ins2);
             }
 
-            if($this->input->post('seragam') != 0 || $this->input->post('seragam')!= ''){
+            if($this->input->post('seragam') > 0){
                 $ins3 = array(
                     'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'SRG',
@@ -140,7 +140,7 @@ class Bayarsiswa extends CI_Controller {
                 $action = $this->db->insert('detail_bayar_sekolah',$ins3);
             }
 
-            if($this->input->post('kegiatan') != 0 || $this->input->post('kegiatan')!= ''){
+            if($this->input->post('kegiatan') > 0){
                 $ins4 = array(
                     'Nopembayaran'           => $id,
                     'kodejnsbayar'         => 'KGT',
