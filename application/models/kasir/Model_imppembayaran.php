@@ -8,6 +8,16 @@ class Model_imppembayaran extends CI_model
         $this->db->where('jenis =', '1');
         return $this->db->get($table);
     }
+
+    public function getidtarif()
+    {
+        return $this->db->query("select a.idtarif,a.kodejnsbayar,a.ThnMasuk,b.DESCRTBPS,c.DESCRTBJS,d.namajenisbayar from tarif_berlaku a
+        join tbps b on  b.KDTBPS = a.kodesekolah
+        join tbjs c on c.KDTBJS = b.KDTBJS
+        join jenispembayaran d on a.Kodejnsbayar = d.Kodejnsbayar
+        ORDER by a.ThnMasuk desc ");
+    }
+
     public function view_misi($table)
     {
         $this->db->where('jenis =', '2');
