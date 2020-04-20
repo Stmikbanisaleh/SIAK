@@ -211,6 +211,11 @@ WHERE NIS='$id' OR Noreg='" . $id . "' AND Kelas='$Kelas' AND TA='$v_TA')AS kl")
                       saldopembayaran_sekolah
                       WHERE NIS='$id' AND Kelas='$Kelas'")->row();
 
+  $totbayar = $this->db->query("SELECT sum(Totalbayar) as total
+  FROM
+  pembayaran_sekolah
+  WHERE NIS='$id'")->row();
+
   if (isset($cari)) {
     if($cari1 == null){
       $pot_spp = 0;
