@@ -151,12 +151,12 @@ class Model_bayarsiswa extends CI_model
                                     (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
                                     DATE_FORMAT(pembayaran_sekolah.tglentri,'%d-%m-%Y')tglentri,
                                     (SELECT COUNT(DISTINCT No_bukti)AS cnt FROM transaksi_buk WHERE transaksi_buk.No_bukti=pembayaran_sekolah.Nopembayaran) pemb_buk,
-                                    pembayaran_sekolah.useridd,
+                                    (SELECT nama from tbpengawas where nip = pembayaran_sekolah.useridd) useridd,
                                     pembayaran_sekolah.TotalBayar,
                                     pembayaran_sekolah.TA
                                     FROM pembayaran_sekolah
                                     WHERE pembayaran_sekolah.NIS='".$siswa."' OR pembayaran_sekolah.Noreg='".$siswa."' AND pembayaran_sekolah.Kelas IS NOT NULL
-                                    ORDER BY tglentri desc");
+                                    ORDER BY UNIX_TIMESTAMP(pembayaran_sekolah.tglentri) desc");
     }
 
     public function pemb_sekolah_q2($siswa, $kelas){
@@ -168,7 +168,7 @@ class Model_bayarsiswa extends CI_model
                                     detail_bayar_sekolah.nominalbayar as nominalbayar,
                                     tarif_berlaku.Nominal,
                                     (tarif_berlaku.Nominal- detail_bayar_sekolah.nominalbayar)AS sisa,
-                                    pembayaran_sekolah.useridd,
+                                    (SELECT nama from tbpengawas where nip = pembayaran_sekolah.useridd) useridd,
                                     detail_bayar_sekolah.NodetailBayar,
                                     pembayaran_sekolah.TA
                                     FROM
@@ -177,7 +177,7 @@ class Model_bayarsiswa extends CI_model
                                     INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
                                     INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
                                     WHERE jenispembayaran.Kodejnsbayar NOT IN('SPP') and pembayaran_sekolah.NIS='$siswa'
-                                    ORDER BY tglentri desc");
+                                    ORDER BY UNIX_TIMESTAMP(pembayaran_sekolah.tglentri) desc");
     }
 
     public function view($table)

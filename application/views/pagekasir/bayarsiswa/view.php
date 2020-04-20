@@ -97,7 +97,8 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="spp" required name="spp" placeholder="SPP" class="form-control" />
+                        <input type="text" id="spp_v" name="spp_v" placeholder="SPP" class="form-control" />
+                        <input type="hidden" id="spp" name="spp" placeholder="SPP" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -123,7 +124,8 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="gedung" required name="gedung" placeholder="Gedung" class="form-control" />
+                        <input type="text" id="gedung_v" name="gedung_v" placeholder="Gedung" class="form-control" />
+                        <input type="hidden" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -149,7 +151,8 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="seragam" required name="seragam" placeholder="Seragam" class="form-control" />
+                        <input type="text" id="seragam_v" name="seragam_v" placeholder="Seragam" class="form-control" />
+                        <input type="hidden" id="seragam" name="seragam" placeholder="Seragam" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -175,7 +178,8 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="input-group">
-                        <input type="number" id="kegiatan" required name="kegiatan" placeholder="Kegiatan" class="form-control" />
+                        <input type="text" id="kegiatan_v" name="kegiatan_v" placeholder="Kegiatan" class="form-control" />
+                        <input type="hidden" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -778,5 +782,59 @@
             }
         })
     })
+</script>
+<script language="JavaScript">
+var rupiah1 = document.getElementById('spp_v');
+var rupiah2 = document.getElementById('gedung_v');
+var rupiah3 = document.getElementById('seragam_v');
+var rupiah4 = document.getElementById('kegiatan_v');
+rupiah1.addEventListener('keyup', function(e) {
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rup3 = this.value.replace(/\D/g, '');
+    $('#spp').val(rup3);
+    rupiah1.value = formatRupiah3(this.value, 'Rp. ');
+});
+
+rupiah2.addEventListener('keyup', function(e) {
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rup3 = this.value.replace(/\D/g, '');
+    $('#gedung').val(rup3);
+    rupiah2.value = formatRupiah3(this.value, 'Rp. ');
+});
+
+rupiah3.addEventListener('keyup', function(e) {
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rup3 = this.value.replace(/\D/g, '');
+    $('#seragam').val(rup3);
+    rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+});
+
+rupiah4.addEventListener('keyup', function(e) {
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rup3 = this.value.replace(/\D/g, '');
+    $('#kegiatan').val(rup3);
+    rupiah4.value = formatRupiah3(this.value, 'Rp. ');
+});
+
+function formatRupiah3(angka, prefix) {
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah3 = split[0].substr(0, sisa),
+        ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan3) {
+        separator = sisa ? '.' : '';
+        rupiah3 += separator + ribuan3.join('.');
+    }
+
+    rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+    return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+}
 </script>
 <!-- End Select2
