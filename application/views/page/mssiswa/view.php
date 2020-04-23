@@ -32,24 +32,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+                <h3 class="smaller lighter blue no-margin">Form Export Data <?= $page_name; ?></h3>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+                        <form class="form-horizontal" role="form" method="POST" action="<?php echo base_url().'mssiswa/export'; ?>">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Export Excel FIle </label>
                                 <div class="col-sm-6">
-                                    <input type="file" id="file" required name="file" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-                                <div class="col-sm-9">
-                                    <a href="<?php echo base_url() . 'assets/siswa.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
+                                    <select class="form-control" name="ps" id="ps">
+                                        <option value="">-- Pilih Program --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS']  ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                     </div>
@@ -58,7 +56,7 @@
             <div class="modal-footer">
                 <button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
                     <i class="ace-icon fa fa-save"></i>
-                    Simpan
+                    Export
                 </button>
                 <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
                     <i class="ace-icon fa fa-times"></i>
@@ -69,132 +67,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
-<div id="modalTambah" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
-            </div>
-            <form class="form-horizontal" role="form" id="formTambah">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <!-- PAGE CONTENT BEGINS -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Induk </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="no_induk" name="no_induk" placeholder="1234567" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="noreg" name="noreg" placeholder="32123132121" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Registrasi </label>
-                                <div class="col-sm-6">
-                                    <input type="date" id="tglreg" name="tglreg" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="nmsiswa" name="nmsiswa" placeholder="Nama Siswa" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="tplhr" name="tplhr" placeholder="Bekasi" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Lahir </label>
-                                <div class="col-sm-6">
-                                    <input type="date" id="tglhr" name="tglhr" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="jk" id="jk">
-                                        <option value="">-- Status --</option>
-                                        <option value="P">Perempuan</option>
-                                        <option value="L">Laki-Laki</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="agama" id="agama">
-                                        <option value="">-- Pilih Agama --</option>
-                                        <?php foreach ($myagama as $value) { ?>
-                                            <option value=<?= $value['KDTBAGAMA'] ?>><?= $value['DESCRTBAGAMA'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
-                                <div class="col-sm-6">
-                                    <input type="number" id="tahun" name="tahun" placeholder="2020" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="programsekolah" id="programsekolah">
-                                        <option value="">-- Pilih Program --</option>
-                                        <?php foreach ($myps as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="kdwarga" id="kdwarga">
-                                        <option value="">-- Status --</option>
-                                        <option value="1">WNI</option>
-                                        <option value="2">WNA</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-                                <div class="col-sm-6">
-                                    <input type="email" id="email" name="email" id="form-field-1" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Telepon </label>
-                                <div class="col-sm-6">
-                                    <input type="number" id="telp" name="telp" id="form-field-1" placeholder="" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
-                        <i class="ace-icon fa fa-save"></i>
-                        Simpan
-                    </button>
-                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                        <i class="ace-icon fa fa-times"></i>
-                        Batal
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-
 <div id="modalEdit" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -347,34 +219,22 @@
     </tbody>
 </table>
 <script>
-    if ($("#formImport").length > 0) {
-        $("#formImport").validate({
+    if ($("#formExport").length > 0) {
+        $("#formExport").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             submitHandler: function(form) {
                 formdata = new FormData(form);
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('siswa/import') ?>",
+                    url: "<?php echo base_url('mssiswa/export') ?>",
                     data: formdata,
                     processData: false,
                     contentType: false,
                     cache: false,
                     async: false,
                     success: function(data) {
-                        console.log(data);
-                        $('#my-modal2').modal('hide');
-                        if (data == 1 || data == true) {
-                            document.getElementById("formImport").reset();
-                            swalInputSuccess();
-                            show_data();
-                        } else if (data == 401) {
-                            document.getElementById("formImport").reset();
-                            swalIdDouble();
-                        } else {
-                            document.getElementById("formImport").reset();
-                            swalInputFailed();
-                        }
+                       
                     }
                 });
                 return false;

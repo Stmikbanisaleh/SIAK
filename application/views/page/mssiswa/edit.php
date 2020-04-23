@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row-9">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
         <form class="form-horizontal" role="form" id="formTambah">
@@ -9,6 +9,12 @@
                         <input type="text" name="noreg" readonly value="<?= $mysiswa->NOREG; ?>" id="noreg" />
                         <i class="ace-icon fa fa-check-square-o blue"></i>
                     </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-4">NIK / KTP</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->NIK; ?>" required class="col-xs-10 col-sm-5" id="nik" name="nik" />
                 </div>
             </div>
             <div class="form-group">
@@ -81,13 +87,66 @@
                     <input type="file" name="file1" id="file1" class="col-xs-12" id="form-field-icon-2" />
                 </div>
             </div>
+            <?php
+            if ($mysiswa) { ?>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <span style="margin-left:300px"><img height="75px" width="75px" id="form-field-icon-2" src="<?= $mysiswa->IMG ?>" /></span>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <span style="margin-left:300px"><img height="75px" width="75px" id="form-field-icon-2" src="<?php echo base_url().'assets/gambar/no-image.png'; ?>" /></span>
+                    </div>
+                </div>
+            <?php }  ?>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
                 <div class="col-sm-9">
-                    <span class="input-icon">
-                        <input type="text" value="<?= $mysiswa->TPLHR ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
-                        <i class="ace-icon fa fa-home blue"></i>
-                    </span>
+                    <input type="text" value="<?= $mysiswa->TPLHR ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Anak Ke</label>
+                <div class="col-sm-9">
+                    <input type="number" value="<?= $mysiswa->ANAKKE ?>" required name="anakke" id="anakke" placeholder="1" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Status Anak</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->STATUSANAK ?>" required name="statusanak" id="statusanak" placeholder="Kandung" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Tinggi Badan</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->TINGGIBADAN ?>" name="tinggi" id="tinggi" placeholder="Kandung" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Berat Badan</label>
+                <div class="col-sm-9">
+                    <input type="number" value="<?= $mysiswa->BERATBADAN ?>" name="berat" id="berat" placeholder="45Kg" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Kendaraan</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->KENDARAAN ?>" name="kendaraan" id="kendaraan" placeholder="Sepeda / Sepeda Motor" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Jarak</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->JARAK ?>" name="jarak" id="jarak" placeholder="Meter" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field">Waktu</label>
+                <div class="col-sm-9">
+                    <input type="text" value="<?= $mysiswa->WAKTU ?>" name="waktu" id="waktu" placeholder="Menit" />
                 </div>
             </div>
             <hr />
@@ -102,9 +161,9 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan</label>
-                <div class="col-sm-6">
-                    <select class="form-control" name="penghasilan" id="penghasilan">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ayah</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="penghasilan1" id="penghasilan1">
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
@@ -117,11 +176,77 @@
                     </select>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Lahir Ayah </label>
+                <div class="col-sm-9">
+                    <input type="date" value="<?= $mysiswa->TGLLHRBAPAK ?>" name="tgllhrbapak" id="tgllhrbapak" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Pekerjaan Ayah</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="pekerjaan1" id="pekerjaan1">
+                        <option value="">-- Pilih Pekerjaan --</option>
+                        <?php
+                        foreach ($myjob as $value) { ?>
+                            <?php if ($mysiswa->PEKERJAANORTU == $value['IDMSPEKERJAAN']) {
+                                echo "<option value='" . $value['IDMSPEKERJAAN'] . "' selected>" . $value['NMMSPEKERJAAN'] . "</option>";
+                            } else {
+                                echo "<option value='" . $value['IDMSPEKERJAAN'] . "'>" . $value['NMMSPEKERJAAN'] . "</option>";
+                            } ?>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
             <div class="space-4"></div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nama Ibu </label>
                 <div class="col-sm-9">
                     <input type="text" value="<?= $mysiswa->NMIBU ?>" required name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ibu</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="penghasilan" id="penghasilan">
+                        <option value="">-- Pilih Penghasilan --</option>
+                        <?php
+                        foreach ($mytbpk as $value) { ?>
+                            <?php if ($mysiswa->GAJIORTU2 == $value['IDMSPENGHASILAN']) {
+                                echo "<option value='" . $value['IDMSPENGHASILAN'] . "' selected>" . $value['NMMSPENGHASILAN'] . "</option>";
+                            } else {
+                                echo "<option value='" . $value['IDMSPENGHASILAN'] . "'>" . $value['NMMSPENGHASILAN'] . "</option>";
+                            } ?>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Lahir Ibu </label>
+                <div class="col-sm-9">
+                    <input type="date" value="<?= $mysiswa->TGLLHRIBU ?>" name="tgllhribu" id="tgllhribu" class="col-xs-10 col-sm-5" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Pekerjaan Ibu</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="pekerjaan2" id="pekerjaan2">
+                        <option value="">-- Pilih Pekerjaan --</option>
+                        <?php
+                        foreach ($myjob as $value) { ?>
+                            <?php if ($mysiswa->PEKERJAANORTU2 == $value['IDMSPEKERJAAN']) {
+                                echo "<option value='" . $value['IDMSPEKERJAAN'] . "' selected>" . $value['NMMSPEKERJAAN'] . "</option>";
+                            } else {
+                                echo "<option value='" . $value['IDMSPEKERJAAN'] . "'>" . $value['NMMSPEKERJAAN'] . "</option>";
+                            } ?>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
 
@@ -133,10 +258,10 @@
                 </div>
             </div>
             <div class="space-4"></div>
-            
+
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Provinsi</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <select class="form-control" name="provinsi" id="provinsi">
                         <option value="">-- Pilih Provinsi --</option>
                         <?php
@@ -153,10 +278,10 @@
 
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Kabupaten</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <select class="form-control" name="kabupaten" id="kabupaten">
                         <option value="">-- Pilih Kabupaten --</option>
-                        <?php 
+                        <?php
                         foreach ($mytbpro as $value) { ?>
                             <?php if ($mysiswa->KABUPATEN == $value['KDTBPRO']) {
                                 echo "<option value='" . $value['KDTBPRO'] . "' selected>" . $value['KOTATBPRO'] . "</option>";
@@ -169,7 +294,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Kecamatan</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <select class="form-control" name="kecamatan" id="kecamatan">
                         <option value="">-- Pilih Kecamatan --</option>
                         <?php
@@ -226,7 +351,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Alamat</label>
                 <div class="col-sm-8">
-                    <input type ="text" value="<?=$mysiswa->ALAMATRUMAH?>" id="alamat2" name="alamat2" class="form-control"/>
+                    <input type="text" value="<?= $mysiswa->ALAMATRUMAH ?>" id="alamat2" name="alamat2" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -257,7 +382,7 @@
 
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Provinsi </label>
-                <div class="col-sm-9">
+                <div class="col-sm-3">
                     <select class="form-control" name="provinsi2" id="provinsi2">
                         <option value="">-- Pilih Provinsi --</option>
                         <?php
@@ -276,7 +401,7 @@
 
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Kabupaten</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <select class="form-control" name="kabupaten2" id="kabupaten2">
                         <option value="">-- Pilih Kabupaten --</option>
                         <?php
@@ -295,7 +420,7 @@
 
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Kecamatan</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <select class="form-control" name="kecamatan2" id="kecamatan2">
                         <option value="">-- Pilih Kecamatan --</option>
                         <?php
@@ -311,7 +436,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Kelurahan </label>
-                <div class="col-sm-9">
+                <div class="col-sm-3">
                     <input type="text" value="<?= $mysiswa->KELURAHANSEKOLAHASAL ?>" name="kelurahan2" id="kelurahan2" placeholder="kelurahan" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
@@ -321,7 +446,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Alamat</label>
 
                 <div class="col-sm-8">
-                    <input class="form-control" type="text" value="<?= $mysiswa->ALMASLSKL ?>" name ="alamat3" id="alamat3" placeholder="" />
+                    <input class="form-control" type="text" value="<?= $mysiswa->ALMASLSKL ?>" name="alamat3" id="alamat3" placeholder="" />
                 </div>
             </div>
 
@@ -347,7 +472,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Tahun Masuk</label>
                 <div class="col-sm-9">
-                    <input type="number" readonly id="thnmasuk" value="<?= $mysiswa->TAHUN ?>" name="thnmassuk" placeholder="Tahun masuk"  />
+                    <input type="number" readonly id="thnmasuk" value="<?= $mysiswa->TAHUN ?>" name="thnmassuk" placeholder="Tahun masuk" />
                 </div>
             </div>
 
@@ -407,8 +532,8 @@
                         console.log(response);
                         $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
                             'Simpan');
-                            swalEditSuccess();
-                            location.reload();
+                        swalEditSuccess();
+                        location.reload();
                     }
                 });
             }
