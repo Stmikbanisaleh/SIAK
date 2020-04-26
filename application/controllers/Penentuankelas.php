@@ -40,6 +40,7 @@ class Penentuankelas extends CI_Controller
         $tahun = $this->input->post('thn');
         $jurusan = $this->input->post('jurusan');
         $result = $this->model_penentuan->getkelas($tahun, $jurusan)->result();
+        // print_r($result);exit;
         echo json_encode($result);
     }
 

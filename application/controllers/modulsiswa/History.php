@@ -18,7 +18,7 @@ class History extends CI_Controller {
 	public function index() {
         $data = array(
             'page_content' 	=> '../pagesiswa/historypembayaran/view',
-            'ribbon' 		=> '<li class="active">History Pembayaran</li><li>Sample</li>',
+            'ribbon' 		=> '<li class="active">History Pembayaran</li>',
             'page_name' 	=> 'History Pembayaran',
         );
         $this->render_view($data); //Memanggil function render_view

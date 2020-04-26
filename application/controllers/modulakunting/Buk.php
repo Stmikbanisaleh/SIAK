@@ -73,10 +73,8 @@ class Buk extends CI_Controller
         $s_bln = ltrim($f_bln, '0');
 
         $query="SELECT*FROM detail_akuntansi WHERE no_akuntansi='$bukti'";   
-            // $hasil = mysql_query($query);
             $hasil = $this->model_buk->dyn_query($query)->result_array();
             $no=1;
-            // while($r=mysql_fetch_array($hasil)){
             foreach ($hasil as $r) {
                 $sql="INSERT INTO transaksi_buk(
                 transaksi_buk.no_rek,
@@ -87,8 +85,6 @@ class Buk extends CI_Controller
                 transaksi_buk.DK) 
                 VALUES('".$r['rek']."','".date('Y-m-d')."','".$bukti."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
-                // mysql_query($sql);
-
                 $query="SELECT COUNT(*)as jmlh,
                 Debet01,
                 Debet02,

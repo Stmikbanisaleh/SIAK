@@ -11,15 +11,16 @@ class Model_uas extends CI_model
     {
         return $this->db->query("SELECT
         tbjadwal.id,
+        msruang.RUANG,
         (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel=tbjadwal.id_mapel)AS nama,
         (SELECT x.SINGKTBPS FROM tbps x WHERE x.KDTBPS = tbjadwal.ps)AS ps,
         tbjadwal.nmklstrjdk as kelas,
         tbjadwal.jam as jam,
         tbjadwal.hari as hari
         FROM
-        tbjadwal
+        tbjadwal join msruang on tbjadwal.id_ruang = msruang.ID
         WHERE
-        tbjadwal.id_guru = '" . $session . "'");
+        tbjadwal.id_guru = '" . $session . "' and tbjadwal.isdeleted != 1 order by tbjadwal.id desc");
     }
 
     public function getuts($mapel)

@@ -38,7 +38,7 @@ class Profile extends CI_Controller
     {
         $data = array(
             'page_content'     => '../pageguru/profile/view',
-            'ribbon'         => '<li class="active">Profil Guru</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Profil Guru</li>',
             'page_name'     => 'Profil Guru',
         );
         $this->render_view($data); //Memanggil function render_view

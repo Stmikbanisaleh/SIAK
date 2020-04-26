@@ -87,4 +87,9 @@ class Model_jadwal extends CI_model
     {
         $this->db->truncate($table);
     }
+
+    public function getsekolah()
+    {
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
+    }
 }

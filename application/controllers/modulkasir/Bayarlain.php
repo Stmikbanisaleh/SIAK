@@ -23,7 +23,7 @@ class Bayarlain extends CI_Controller {
 		$ta = $this->configfunction->getthnakd();
         $data = array(
         			'page_content' 	=> '../pagekasir/bayarlain/view',
-        			'ribbon' 		=> '<li class="active">Pembayaran Lain-Lain</li><li>Sample</li>',
+        			'ribbon' 		=> '<li class="active">Pembayaran Lain-Lain</li>',
 					'page_name' 	=> 'Pembayaran Lain-Lain',
 					'mysiswa'		=> $mysiswa,
 					'ta'			=> $ta[0]['THNAKAD'],

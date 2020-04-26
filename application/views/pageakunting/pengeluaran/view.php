@@ -4,57 +4,9 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
 		</button>
 	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-			<a class="ace-icon fa fa-plus bigger-120"></a>Import Data
-		</button>
-	</div>
 	<br>
 	<br>
 </div>
-<div id="my-modal2" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Jenis Pengeluaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
-								<div class="col-sm-6">
-									<input type="file" id="file" required name="file" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-								<div class="col-sm-9">
-									<a label class="col-sm-3" for="form-field-1"> Download Sample Format </label></a>
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Simpan
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">

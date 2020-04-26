@@ -15,7 +15,7 @@
             ?>
         <br>
         SMP - SMA - SMK <?= $nama_sekolah;?></span></th>
-        <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 16px;"><b>LAPORAN LABA RUGI</b></th>
+        <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 16px;"><b>LAPORAN NERACA</b></th>
             <th width="30%"></th>
         </tr>
         <tr>
