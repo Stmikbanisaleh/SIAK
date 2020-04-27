@@ -1,4 +1,11 @@
 <div class="row">
+	<div class="col-xs-1">
+		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
+			<a class="ace-icon fa fa-refresh bigger-120"></a> Proses
+		</button>
+	</div>
+	<br>
+	<br>
 	<form class="form-horizontal" role="form" id="formSearch">
 		<div class="col-xs-3">
 			<select class="form-control tahun" name="tahun" id="tahun">
@@ -23,91 +30,37 @@
 			<br>
 	</form>
 </div>
-<div id="my-modal2" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Jenis Pengeluaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
-								<div class="col-sm-6">
-									<input type="file" id="file" required name="file" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-								<div class="col-sm-9">
-									<a label class="col-sm-3" for="form-field-1"> Download Sample Format </label></a>
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Simpan
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
 
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Jenis Pengeluaran</h3>
+				<h3 class="smaller lighter blue no-margin">Proses BUK</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formTambah">
+						<form class="form-horizontal" role="form">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pilih Periode Awal </label>
 								<div class="col-sm-6">
-									<input type="text" id="JnsTransaksi" required name="JnsTransaksi" placeholder="Jenis Transaksi" class="form-control" />
+									<input class="form-control date-picker" id="periode_awal" required type="date" name="periode_awal" data-date-format="dd-mm-yyyy" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="no_jurnal" id="pendidikan_terakhir">
-										<option value="">-- Pilih --</option>
-										<?php foreach ($myjurnal as $value) { ?>
-											<option value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Transaksi </label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="NamaTransaksi" id="NamaTransaksi" placeholder="Nama Transaksi" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pilih Periode Akhir </label>
+								<div class="col-sm-6">
+									<input class="form-control date-picker" id="periode_akhir" required type="date" name="periode_akhir" data-date-format="dd-mm-yyyy" />
 								</div>
 							</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
+				<button type="button" id="btn_simpan" class="btn btn-sm btn-success pull-left">
 					<i class="ace-icon fa fa-save"></i>
 					Simpan
 				</button>
@@ -294,4 +247,46 @@
 			}
 		});
 	});
+
+	$('#btn_simpan').on('click', function() {
+		var p_awal = $('#periode_awal').val();
+		var p_akhir = $('#periode_akhir').val();
+		if (p_awal == null || p_awal == '') {
+			alert('Periode Awal Wajib di isi');
+		} else if (p_akhir == null || p_awal == '') {
+			alert('Periode Akhir Wajib di isi');
+		} else {
+			Swal.fire({
+				title: 'Apakah anda yakin?',
+				text: "Anda tidak akan dapat mengembalikan ini!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Ya, Lanjutkan!',
+				cancelButtonText: 'Batal'
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						type: "POST",
+						url: "<?php echo base_url('modulakunting/buk/proses') ?>",
+						async: true,
+						dataType: "JSON",
+						data: {
+							p_awal: p_awal,
+							p_akhir: p_akhir
+						},
+						success: function(data) {
+							if (data == 1) {
+								swalInputSuccess();
+							} else {
+								swalInputFailed();
+							}
+						}
+					});
+				}
+			})
+		}
+
+	})
 </script>

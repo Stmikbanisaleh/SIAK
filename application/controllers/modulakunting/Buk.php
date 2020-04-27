@@ -58,12 +58,138 @@ class Buk extends CI_Controller
         }
     }
 
-    public function posting(){
+    public function proses(){
+        $a = 0;
+        $datee = $this->input->post('p_awal');
+        $datee2 = $this->input->post('p_akhir');
+        $kdo = 1;
+        $date=date_create($datee);
+        $v_thn=date_format($date,"Y");
+        $date=date_create($datee); 
+        // $bukti = $bkt;
+        $v_bln=date_format($date,"m");
+        $f_bln = $v_bln;
+        $s_bln = ltrim($f_bln, '0');
 
-        $datee = $this->input->post('tanggal');
+        $query="SELECT a.* FROM detail_akuntansi a join akuntansi b on a.no_akuntansi = b.bukti  WHERE  b.posting = 'T' and a.tgl_input between '$datee' and '$datee2'  ";   
+            $hasil = $this->model_buk->dyn_query($query)->result_array();
+
+            $no=1;
+            foreach ($hasil as $r) {
+                $sql="INSERT INTO transaksi_buk(
+                transaksi_buk.no_rek,
+                transaksi_buk.Tgl_bukti,
+                transaksi_buk.No_bukti,
+                transaksi_buk.Ket,
+                transaksi_buk.Nilai,
+                transaksi_buk.DK) 
+                VALUES('".$r['rek']."','".date('Y-m-d')."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                $this->model_buk->dyn_query($sql);
+                $query="SELECT COUNT(*)as jmlh,
+                Debet01,
+                Debet02,
+                Debet03,
+                Debet04,
+                Debet05,
+                Debet06,
+                Debet07,
+                Debet08,
+                Debet09,
+                Debet10,
+                Debet11,
+                Debet12,
+                Kredit01,
+                Kredit02,
+                Kredit03,
+                Kredit04,
+                Kredit05,
+                Kredit06,
+                Kredit07,
+                Kredit08,
+                Kredit09,
+                Kredit10,
+                Kredit11,
+                Kredit12 FROM posting WHERE THN=$v_thn AND no_jurnal=".$r['rek'];  
+                
+                    $row = $this->model_buk->dyn_query($query)->row();
+                    $v_jmlh = $row->jmlh;     
+                    $v_Debet[1] = $row->Debet01;  
+                    $v_Debet[2] = $row->Debet02;  
+                    $v_Debet[3] = $row->Debet03;  
+                    $v_Debet[4] = $row->Debet04;  
+                    $v_Debet[5] = $row->Debet05;  
+                    $v_Debet[6] = $row->Debet06;  
+                    $v_Debet[7] = $row->Debet07;  
+                    $v_Debet[8] = $row->Debet08;  
+                    $v_Debet[9] = $row->Debet09;  
+                    $v_Debet[10] = $row->Debet10;  
+                    $v_Debet[11] = $row->Debet11;  
+                    $v_Debet[12] = $row->Debet12; 
+                    $v_Kredit[1] = $row->Kredit01;      
+                    $v_Kredit[2] = $row->Kredit02;      
+                    $v_Kredit[3] = $row->Kredit03;      
+                    $v_Kredit[4] = $row->Kredit04;      
+                    $v_Kredit[5] = $row->Kredit05;      
+                    $v_Kredit[6] = $row->Kredit06;      
+                    $v_Kredit[7] = $row->Kredit07;      
+                    $v_Kredit[8] = $row->Kredit08;      
+                    $v_Kredit[9] = $row->Kredit09;      
+                    $v_Kredit[10] = $row->Kredit10;     
+                    $v_Kredit[11] = $row->Kredit11;     
+                    $v_Kredit[12] = $row->Kredit12;
+
+                if($v_jmlh==0){
+
+                    if($r['dk']=="K"){
+                        $sql1="INSERT INTO posting(
+                        THN,
+                        no_jurnal,
+                        Kredit".$v_bln.") 
+                        VALUES('".$v_thn."','".$r['rek']."','".$r['nilai']."')";                    
+                    }else{
+                        $sql1="INSERT INTO posting(
+                        THN,
+                        no_jurnal,
+                        Debet".$v_bln.") 
+                        VALUES('".$v_thn."','".$r['rek']."','".$r['nilai']."')";    
+                    }
+
+                    $this->model_buk->dyn_query($sql1);
+
+                }elseif($v_jmlh==1){
+
+                    if($r['dk']=="K"){
+                        $f_kredit=$v_Kredit[$s_bln];
+                        $s_kredit=$f_kredit+$r['nilai'];
+                        $sql3="update posting set
+                        Kredit".$v_bln."='".$s_kredit."'
+                        WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
+
+                        $this->model_buk->dyn_query($sql3);
+                    }else{
+                        $f_Debet=$v_Debet[$s_bln];
+                        $s_Debet=$f_Debet+$r['nilai'];
+                        $sql3="update posting set
+                        Debet".$v_bln."='".$s_Debet."'
+                        WHERE THN=".$v_thn." AND no_jurnal='".$r['rek']."'";
+
+                        $this->model_buk->dyn_query($sql3);
+                    }
+                }
+                $sql3="update akuntansi set
+                posting='Y'
+                WHERE bukti='".$r['no_akuntansi']."'";
+    
+                $this->model_buk->dyn_query($sql3); 
+                $a=1;
+            }
+            echo json_encode($a);
+    }
+
+    public function posting(){
+        $datee = $this->input->post('tgl');
         $bkt = $this->input->post('bukti');
         $kdo = 1;
-
         $date=date_create($datee);
         $v_thn=date_format($date,"Y");
         $date=date_create($datee); 
