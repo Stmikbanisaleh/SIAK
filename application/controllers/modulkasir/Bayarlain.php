@@ -7,6 +7,7 @@ class Bayarlain extends CI_Controller {
     {
         parent::__construct();
 		$this->load->model('kasir/model_bayar');
+		$this->load->library('Configfunction');
 		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
@@ -97,6 +98,19 @@ class Bayarlain extends CI_Controller {
 			$action = $this->model_bayar->insert($data2, 'detail_bayar_sekolah');
 		}
         echo json_encode($action);
+	}
+	
+	public function cetak(){
+        $this->load->library('pdf');
+        $tampil_thnakad = $this->configfunction->getthnakd();
+        $thnakad = $tampil_thnakad[0]['THNAKAD'];
+        $data = array(
+            'ThnAkademik'         => $thnakad,
+		);
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Rekap-Pembayaran.pdf";
+        $this->pdf->load_view('pagekasir/bayarlain/laporan', $data);
     }
 
 

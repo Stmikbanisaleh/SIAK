@@ -193,6 +193,7 @@
                 <th>Tarif</th>
                 <th>Bayar</th>
                 <th>TA</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -333,6 +334,10 @@
                                 '<td>' + data[i].Nominal2 + '</td>' +
                                 '<td>' + data[i].TotalBayar2 + '</td>' +
                                 '<td>' + data[i].TA + '</td>' +
+                                '<td>' +
+                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarlain/cetak?noreg=' ?>' + data[i].NOINDUK + '&nm_siswa=' + data[i].NMSISWA + '&jenis_bayar=' + data[i].Kodejnsbayar +'&desc_jenis_bayar=' + data[i].namajenisbayar + '&tarif=' + data[i].Nominal + '&total_bayar=' + data[i].TotalBayar + '&no=' + data[i].Nopembayaran +'" class="btn btn-xs btn-info" title="Print">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a> &nbsp' +
                                 '</tr>';
                             no++;
                         }

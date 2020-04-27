@@ -41,12 +41,15 @@ class Model_bayar extends CI_model
         return $this->db->query("SELECT DISTINCT
                                 mssiswa.NOINDUK,
                                 pembayaran_sekolah.Noreg,
+                                pembayaran_sekolah.Nopembayaran,
                                 mssiswa.NMSISWA,
                                 tbps.DESCRTBPS NamaSek,
                                 CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) AS Nominal2,
+                                tarif_berlaku.Nominal,
                                 pembayaran_sekolah.TA,
                                 tbkelas.nama,
                                 jenispembayaran.namajenisbayar,
+                                jenispembayaran.Kodejnsbayar,
                                 detail_bayar_sekolah.kodejnsbayar,
                                 CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) AS TotalBayar2,
                                 SUM(pembayaran_sekolah.TotalBayar)AS TotalBayar
@@ -58,7 +61,7 @@ class Model_bayar extends CI_model
                                 INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
                                 INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
                                 INNER JOIN jenispembayaran ON jenispembayaran.Kodejnsbayar = tarif_berlaku.Kodejnsbayar $v_cek 
-                                GROUP BY kodejnsbayar");
+                                GROUP BY jenispembayaran.kodejnsbayar");
     }
 
     public function view($table)
