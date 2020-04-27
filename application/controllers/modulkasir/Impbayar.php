@@ -135,7 +135,7 @@ class Impbayar extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$data = array(
 				'page_content' 	=> '../pagekasir/impbayar/view',
-				'ribbon' 		=> '<li class="active">Import Pembayaran</li><li>Sample</li>',
+				'ribbon' 		=> '<li class="active">Import Pembayaran</li>',
 				'page_name' 	=> 'Import Pembayaran',
 			);
 			$this->render_view($data); //Memanggil function render_view

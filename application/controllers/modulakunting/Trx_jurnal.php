@@ -65,7 +65,6 @@ class Trx_jurnal extends CI_Controller
 
     public function simpanjurnal()
     {
-        // print_r($this->input->post());exit;
         $kdo = $this->input->post('kdo');
         $kod = $this->input->post('kod');
         $nopem = $this->input->post('nopem');
@@ -115,7 +114,7 @@ class Trx_jurnal extends CI_Controller
                         $datainsert2 = array(
                             'no_akuntansi' => $nopem,
                             'no' => $datanya[0]['NodetailBayar'],
-                            'rek' => $kod,
+                            'rek' => $datanya[0]['kode_jurnal'],
                             'urai' => $this->input->post('uraian_2'),
                             'dk'   => 'K',
                             'kurs' => 'ID',

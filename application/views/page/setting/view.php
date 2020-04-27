@@ -2,7 +2,7 @@
     <div id="edit-password" class="tab-pane">
         <div class="space-10"></div>
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Password Baru</label>
             <div class="col-sm-9">
                 <input minlength="6" required type="password" name="password1" id="form-field-pass1" />
             </div>
@@ -11,7 +11,7 @@
         <div class="space-4"></div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Ulangi Passsword Baru</label>
 
             <div class="col-sm-9">
                 <input minlength="6" required type="password" name="password2" id="form-field-pass2" />

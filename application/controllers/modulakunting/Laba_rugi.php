@@ -37,15 +37,20 @@ class Laba_rugi extends CI_Controller {
         $tahun = $this->input->post('tahun');
         $myrekening = $this->model_laporan->view_rekeninglist()->result_array();
         $myrekening4 = $this->model_laporan->view_rekeninglist4()->result_array();
-        $data = array(
-            'v_awal'      => $blnawal,
-            'v_akhir'     => $blnakhir,
-            'tahun'       => $tahun,
-            'myrekening' => $myrekening,
-            'myrekening4' => $myrekening4,
-            'my_sysconfig' => $sysconfig,
-        );
-        $this->load->view('pageakunting/laba_rugi/laporan', $data);
+        if(count($myrekening) > 0){
+            $data = array(
+                'v_awal'      => $blnawal,
+                'v_akhir'     => $blnakhir,
+                'tahun'       => $tahun,
+                'myrekening' => $myrekening,
+                'myrekening4' => $myrekening4,
+                'my_sysconfig' => $sysconfig,
+            );
+            $this->load->view('pageakunting/laba_rugi/laporan', $data);
+        } else {
+            $this->session->set_flashdata('category_error', 'Data tidak ditemukan');
+            redirect('modulakunting/laba_rugi');
+        }
     }   
 
     function format_bulan($bulan){

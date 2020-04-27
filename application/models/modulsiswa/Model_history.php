@@ -5,20 +5,27 @@ class Model_history extends CI_model
    
     public function view($nip)
     {
-        return $this->db->query(" SELECT
-        saldo_pembayaran.SLNNo,
-        saldo_pembayaran.SLNIS,
-        saldo_pembayaran.SLNoregis,
-        saldo_pembayaran.SlSemester,
-        saldo_pembayaran.SLTotalTagihan,
-        saldo_pembayaran.SLTotalBayar,
-        saldo_pembayaran.SLSISA,
-        saldo_pembayaran.SlPotongan,
-        saldo_pembayaran.SLStatus,
-        saldo_pembayaran.SLTA
-        FROM saldo_pembayaran
-        WHERE SLNIS='$nip'
-        ORDER BY SlSemester DESC");
+        return $this->db->query("SELECT
+        pembayaran_sekolah.NIS,Noreg,
+        (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
+        DATE_FORMAT(pembayaran_sekolah.tglentri,'%d-%m-%Y')tglentri,
+        jenispembayaran.namajenisbayar,
+        detail_bayar_sekolah.nominalbayar as nominalbayar,
+        CONCAT('Rp. ',FORMAT(detail_bayar_sekolah.nominalbayar,2)) as nominalbayar2,
+        CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) as Nominal2,
+        tarif_berlaku.Nominal,
+        (tarif_berlaku.Nominal- detail_bayar_sekolah.nominalbayar)AS sisa,
+        CONCAT('Rp. ',FORMAT((tarif_berlaku.Nominal - detail_bayar_sekolah.nominalbayar),2)) as sisa2,
+        (SELECT nama from tbpengawas where nip = pembayaran_sekolah.useridd) useridd,
+        detail_bayar_sekolah.NodetailBayar,
+        pembayaran_sekolah.TA
+        FROM
+        pembayaran_sekolah
+        INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+        INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
+        INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+        WHERE jenispembayaran.Kodejnsbayar NOT IN('SPP') and pembayaran_sekolah.NIS='$nip'
+        ORDER BY UNIX_TIMESTAMP(pembayaran_sekolah.tglentri) desc");
     }
 
     public function viewOrdering($table, $order, $ordering)

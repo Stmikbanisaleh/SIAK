@@ -18,12 +18,12 @@ class Jadwal extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_jadwal->view('tbps')->result_array();
+        $my_data = $this->model_jadwal->getsekolah()->result_array();
         $myakadmk = $this->model_jadwal->view_custome()->result_array();
         $mypendidikan = $this->model_jadwal->view('mspendidikan')->result_array();
         $data = array(
             'page_content'     => '../pageguru/jadwal/view',
-            'ribbon'         => '<li class="active">Jadwal Mengajar</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Jadwal Mengajar</li>',
             'page_name'     => 'Jadwal Mengajar',
             'myprogram'     => $my_data,
             'myakadmk'        => $myakadmk,

@@ -9,12 +9,12 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="<?= base_url().'modulsiswa/dashboard'; ?>" class="navbar-brand">
+	<a href="<?= base_url() . 'modulsiswa/dashboard'; ?>" class="navbar-brand">
 		<small>
-		<img src="<?php echo base_url() ?>global/images/group.png" width="32" height="32"/></div>
-			Siswa
-		</small>
-	</a>
+			<img src="<?php echo base_url() ?>global/images/group.png" width="32" height="32" /></div>
+Siswa
+</small>
+</a>
 </div>
 
 <div class="navbar-buttons navbar-header pull-right" role="navigation">
@@ -32,7 +32,7 @@
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<li>
-					<a href="javascript:void(0);">
+					<a href="<?= base_url() . 'modulsiswa/setting'; ?>">
 						<i class="ace-icon fa fa-cog"></i>
 						Settings
 					</a>

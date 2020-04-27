@@ -27,7 +27,7 @@
                     <select class="form-control" name="mapel" id="mapel">
                         <option value="">-- Pilih Pelajaran --</option>
                         <?php foreach ($mypelajaran as $value) { ?>
-                            <option value=<?= $value['id'] ?>><?= $value['ps'] . '-' . $value['nama'] . '[' . $value['kelas'] . ']' . ' Jam Ke [' . $value['jam'] . ']' ?></option>
+                            <option value=<?= $value['id'] ?>><?= $value['ps'] . '-' . $value['nama'] . '[' . $value['kelas'] . '' . $value['RUANG'] . ']' . ' Jam Ke [' . $value['jam'] . ']' ?></option>
                         <?php } ?>
                     </select>
                 </div>

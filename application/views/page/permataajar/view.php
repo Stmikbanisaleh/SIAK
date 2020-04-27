@@ -9,6 +9,7 @@
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="semester" id="semester">
+                <option value="">-- Pilih semester --</option>
                 <?php foreach ($mysemester as $value) { ?>
                     <option value=<?= $value['SEMESTER'] ?>><?= $value['SEMESTER'] ?></option>
                 <?php } ?>

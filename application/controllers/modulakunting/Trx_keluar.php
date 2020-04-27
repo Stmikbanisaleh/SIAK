@@ -70,23 +70,22 @@ class Trx_keluar extends CI_Controller {
                     'Tgl_bukti' => $v_date,
                     'No_bukti'  => $this->input->post('no_bukti'),
                     'Ket'       => $this->input->post('ket'),
-                    'Nilai'     => $this->input->post('nominal'),
+                    'Nilai'     => $this->input->post('nominal_v'),
                     'DK'        => $dk,
                 );
             $action = $this->model_trx_keluar->insert($data, 'transaksi_buk');
-
             $data = array(
-                    'no_rek'    => $v_kode_jurnal,
+                    'no_rek'    => $this->input->post('jenis'),
                     'Tgl_bukti' => $v_date,
                     'No_bukti'  => $this->input->post('no_bukti'),
                     'Ket'       => $this->input->post('ket'),
-                    'Nilai'     => $this->input->post('nominal'),
+                    'Nilai'     => $this->input->post('nominal_v'),
                     'DK'        => $this->input->post('dk'),
                 );
+
             $action = $this->model_trx_keluar->insert($data, 'transaksi_buk');
 
-
-            $query="SELECT*FROM transaksi_buk WHERE No_bukti='".$this->input->post('no_bukti')."'";
+            $query="SELECT * FROM transaksi_buk WHERE No_bukti='".$this->input->post('no_bukti')."'";
             $hasil = $this->db->query($query)->result_array();
             
             foreach ($hasil as $r){

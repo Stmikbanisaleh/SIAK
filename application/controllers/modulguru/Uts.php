@@ -54,7 +54,7 @@ class Uts extends CI_Controller
         $mypelajaran = $this->model_uts->getmapel($session)->result_array();
         $data = array(
             'page_content'     => '../pageguru/uts/view',
-            'ribbon'         => '<li class="active">Nilai Uts</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Nilai Uts</li>',
             'page_name'     => 'Nilai Uts',
             'mypelajaran'     => $mypelajaran,
             'guru'  => $nodapodik

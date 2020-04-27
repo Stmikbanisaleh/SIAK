@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
 			$my_data1 = $this->model_dashboard->view_misi('visimisi')->result_array();
 			$data = array(
 				'page_content' 	=> 'dashboard',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Sample</li>',
+				'ribbon' 		=> '<li class="active">Dashboard</li>',
 				'page_name' 	=> 'Dashboard',
 				'myvisimisi'     => $my_data,
 				'mymisi'     => $my_data1,

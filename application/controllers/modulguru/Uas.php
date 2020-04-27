@@ -54,7 +54,7 @@ class Uas extends CI_Controller
         $mypelajaran = $this->model_uas->getmapel($session)->result_array();
         $data = array(
             'page_content'     => '../pageguru/uas/view',
-            'ribbon'         => '<li class="active">Nilai UAS</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Nilai UAS</li>',
             'page_name'     => 'Nilai UAS',
             'mypelajaran'     => $mypelajaran,
             'guru'  => $nodapodik

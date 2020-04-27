@@ -11,8 +11,9 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Nama Induk</th>
+				<th>No Induk</th>
 				<th>Kelas</th>
+				<th>Nama Tagihan</th>
 				<th>Tagihan</th>
 				<th>Bayar</th>
 				<th>Sisa</th>
@@ -43,12 +44,13 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td>' + data[i].SLNIS + '</td>' +
-						'<td>' + data[i].SlSemester + '</td>' +
-						'<td>' + data[i].SLTotalTagihan + '</td>' +
-						'<td>' + data[i].SLTotalBayar + '</td>' +
-						'<td>' + data[i].SLSISA + '</td>' +
-						'<td>' + data[i].SLTA + '</td>' +
+						'<td>' + data[i].Noreg + '</td>' +
+						'<td>' + data[i].Kelas + '</td>' +
+						'<td>' + data[i].namajenisbayar + '</td>' +
+						'<td>' + data[i].Nominal2 + '</td>' +
+						'<td>' + data[i].nominalbayar2 + '</td>' +
+						'<td>' + data[i].sisa2 + '</td>' +
+						'<td>' + data[i].TA + '</td>' +
 						'</tr>';
 					no++;
 				}

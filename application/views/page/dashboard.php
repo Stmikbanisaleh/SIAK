@@ -62,7 +62,7 @@
 			<div class="infobox-data">
 				<span class="infobox-data-number"><a href="<?php echo base_url() . 'kurikulum/index'; ?>"><?php $guru = $this->db->query('select count(id_krs) as total from tbkrs where isdeleted != 1')->result_array();
 																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'kurikulum/index'; ?>">Jumlah Kurikulum Aktif</a></div>
+				<div class="infobox-content"><a href="<?php echo base_url() . 'kurikulum/index'; ?>">Jumlah Kurikulum</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-blue2">
@@ -122,41 +122,73 @@
 					<div class="hr hr8 hr-double"></div>
 
 					<div class="clearfix">
-						<div class="grid3">
+
+					<div class="grid2">
+							<div class="infobox infobox-red">
+								<div class="infobox-chart">
+									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
+								</div>
+								<div class="infobox-data">
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
+									 or PS = 05 or PS = 06 or PS = 07 or PS = 08 or PS = 09
+									 or PS = 10 or PS = 11 or PS = 12
+									 or PS = 13 or PS = 14 or PS = 15
+									 or PS = 16 or PS = 17'
+									 )->result_array();
+																															echo $guru[0]['total']; ?></a></span>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">TK</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="grid2">
 							<div class="infobox infobox-green">
 								<div class="infobox-chart">
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18')->result_array();
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">SD Reguler</a></div>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">SD</a></div>
 								</div>
 							</div>
 						</div>
 
-						<div class="grid3">
+						<div class="grid2">
 							<div class="infobox infobox-blue">
 								<div class="infobox-chart">
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>"><?php $guru = $this->db->query('select count(ID) as total from tbakadmk2 where isdeleted != 1')->result_array();
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>">Tahun Akademik 2</a></div>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>">SMP</a></div>
 								</div>
 							</div>
 						</div>
 
-						<div class="grid3">
+						<div class="grid2">
 							<div class="infobox infobox-purple">
 								<div class="infobox-chart">
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>"><?php $guru = $this->db->query('select count(ID) as total from tbakadmk3 where isdeleted != 1')->result_array();
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>">Tahun Akademik 3</a></div>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>">SMA</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="grid2">
+							<div class="infobox infobox-pink">
+								<div class="infobox-chart">
+									<span class="sparkline" data-values="196,111,111,177,154,94,111,111,111"></span>
+								</div>
+								<div class="infobox-data">
+									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
+																															echo $guru[0]['total']; ?></a></span>
+									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">QUBA</a></div>
 								</div>
 							</div>
 						</div>
@@ -205,22 +237,38 @@
 			'min-height': '150px'
 		});
 		var data = [{
-				label: "Tahun Akademik 1",
-				data: <?php $tbakadmk = $this->db->query('select count(ID) as total from tbakadmk where isdeleted != 1')->result_array();
+				label: "TK",
+				data: <?php $tbakadmk = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
+									 or PS = 05 or PS = 06 or PS = 07 or PS = 08 or PS = 09
+									 or PS = 10 or PS = 11 or PS = 12
+									 or PS = 13 or PS = 14 or PS = 15
+									 or PS = 16 or PS = 17')->result_array();
 						echo $tbakadmk[0]['total']; ?>,
+				color: "red"
+			},
+			{
+				label: "SD",
+				data: <?php $tbakadmk2 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
+						echo $tbakadmk2[0]['total']; ?>,
 				color: "green"
 			},
 			{
-				label: "Tahun Akademik 2",
-				data: <?php $tbakadmk2 = $this->db->query('select count(ID) as total from tbakadmk2 where isdeleted != 1')->result_array();
-						echo $tbakadmk2[0]['total']; ?>,
+				label: "SMP",
+				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
+						echo $tbakadmk3[0]['total']; ?>,
 				color: "blue"
 			},
 			{
-				label: "Tahun Akademik 3",
-				data: <?php $tbakadmk3 = $this->db->query('select count(id) as total from tbakadmk3 where isdeleted != 1')->result_array();
+				label: "SMA",
+				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
 						echo $tbakadmk3[0]['total']; ?>,
 				color: "purple"
+			},
+			{
+				label: "QUBA",
+				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
+						echo $tbakadmk3[0]['total']; ?>,
+				color: "pink"
 			},
 		]
 

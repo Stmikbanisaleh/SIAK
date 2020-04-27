@@ -36,7 +36,7 @@ class Profile extends CI_Controller {
 	public function index() {
         $data = array(
             'page_content' 	=> '../pagesiswa/profile/view',
-            'ribbon' 		=> '<li class="active">Profile</li><li>Sample</li>',
+            'ribbon' 		=> '<li class="active">Profile</li>',
             'page_name' 	=> 'Profile',
         );
         $this->render_view($data); //Memanggil function render_view

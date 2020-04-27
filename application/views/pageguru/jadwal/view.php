@@ -9,7 +9,7 @@
                     <select class="form-control" name="programsekolah" id="programsekolah">
                         <option value="">-- Pilih Program --</option>
                         <?php foreach ($myprogram as $value) { ?>
-                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .' '. $value['DESCRTBJS']?> </option>
                         <?php } ?>
                     </select>
                 </div>

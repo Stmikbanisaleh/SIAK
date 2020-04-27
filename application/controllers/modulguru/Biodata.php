@@ -22,7 +22,7 @@ class Biodata extends CI_Controller
         $mypendidikan = $this->model_biodata->viewOrdering('mspendidikan','IDMSPENDIDIKAN','asc')->result_array();
         $data = array(
             'page_content'     => '../pageguru/biodata/view',
-            'ribbon'         => '<li class="active">Biodata Guru</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Biodata Guru</li>',
             'page_name'     => 'Biodata Guru',
             'myprogram'     => $my_data,
             'myagama'        => $myagama,

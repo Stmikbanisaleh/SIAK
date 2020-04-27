@@ -15,7 +15,8 @@ class Model_imppembayaran extends CI_model
         join tbps b on  b.KDTBPS = a.kodesekolah
         join tbjs c on c.KDTBJS = b.KDTBJS
         join jenispembayaran d on a.Kodejnsbayar = d.Kodejnsbayar
-        ORDER by a.ThnMasuk desc ");
+        where a.isdeleted != 1
+        ORDER by a.idtarif desc ");
     }
 
     public function view_misi($table)
