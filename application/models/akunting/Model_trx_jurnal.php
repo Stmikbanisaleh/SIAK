@@ -79,6 +79,37 @@ FROM pembayaran_sekolah WHERE Nopembayaran='$nopembayaran') TotalBayar
                                     Order by JnsTransaksi desc");
     }
 
+    public function get_pembayaransekolah($period_awal, $period_akhir)
+    {
+        return  $this->db->query("SELECT 
+                                    pembayaran_sekolah.Nopembayaran,
+                                    pembayaran_sekolah.NIS,
+                                    pembayaran_sekolah.Noreg,
+                                    pembayaran_sekolah.Kelas,
+                                    pembayaran_sekolah.tglentri,
+                                    pembayaran_sekolah.useridd,
+                                    pembayaran_sekolah.TotalBayar,
+                                    pembayaran_sekolah.kodesekolah,
+                                    pembayaran_sekolah.TA
+                                    FROM pembayaran_sekolah WHERE tglentri BETWEEN '$period_awal' AND '$period_akhir' AND
+                                    NOT EXISTS (SELECT bukti FROM akuntansi WHERE pembayaran_sekolah.Nopembayaran = akuntansi.bukti)");
+    }
+
+    public function get_kode_jurnal()
+    {
+        $hasil =  $this->db->query("SELECT
+                                    jurnal.kode_jurnal
+                                    FROM
+                                    parameter 
+                                INNER JOIN jurnal ON parameter.no_jurnal = jurnal.no_jurnal where parameter.isdeleted != 1")->row();
+
+        if($hasil == null){
+            return '';
+        }else{
+            return $hasil->kode_jurnal;
+        }
+    }
+
     public function view_count($table, $field, $data_id)
     {
         return $this->db->query('select '.$field.' from ' . $table . ' where '.$field.' = "' . $data_id . '" and isdeleted != 1')->num_rows();
