@@ -83,6 +83,14 @@
 		});
 	}
 
+	function swalKosong(message){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Tidak ada data yang di proses',
+		  text: message,
+		});
+	}
+
 	function swalDeleteSuccess(){
 		Swal.fire({
 		  icon: 'success',
