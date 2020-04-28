@@ -59,7 +59,7 @@
                                     <select class="form-control" name="programsekolahs" id="programsekolahs">
                                         <option value=>--Pilih Program --</option>
                                         <?php foreach ($myps as $value) { ?>
-                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -67,16 +67,21 @@
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Mata ajar </label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
                                     <select class="form-control" name="kodemataajar" id="kodemataajar">
                                         <option value="0">-- Pilih Mata Ajar --</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="semester" name="semester" placeholder="1/2/3/4/5/6" class="form-control" />
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value=>--Pilih Kelas --</option>
+                                        <?php foreach ($mykelas as $value) { ?>
+                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -134,9 +139,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="e_semester" name="e_semester" placeholder="1/2/3/4/5/6" class="form-control" />
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="e_semester" id="esemester">
+                                        <option value=>--Pilih Kelas --</option>
+                                        <?php foreach ($mykelas as $value) { ?>
+                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -173,9 +183,9 @@
                 <th>Kode Mata ajar</th>
                 <th>Nama Mata ajar</th>
                 <th>Tahun</th>
-                <th>Periode</th>
-                <th>Program Sekolah</th>
                 <th>Semester</th>
+                <th>Program Sekolah</th>
+                <th>Kelas</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -233,7 +243,7 @@
                                 '<td>' + data[i].THNAKDTRMKA + '</td>' +
                                 '<td>' + data[i].GANGENTRMKA + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
-                                '<td class="text-right">' + data[i].SMTTRMKA + '</td>' +
+                                '<td class="text-center">' + data[i].SMTTRMKA + '</td>' +
                                 '<td class="text-center">' +
                                 '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                                 '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -284,9 +294,6 @@
                 },
                 semester: {
                     required: true,
-                    maxlength: 1,
-                    minlength: 1,
-                    max: 6,
                 }
             },
             submitHandler: function(form) {
@@ -333,9 +340,6 @@
                 },
                 e_semester: {
                     required: true,
-                    maxlength: 1,
-                    minlength: 1,
-                    max: 6,
                 }
             },
             messages: {

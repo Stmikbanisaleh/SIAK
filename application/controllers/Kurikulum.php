@@ -16,11 +16,13 @@ class Kurikulum extends CI_Controller {
 
 	public function index() {
         $myps = $this->model_kurikulum->getsekolah()->result_array();
+        $mykelas = $this->model_kurikulum->viewOrdering('tbkelas','id_kelas','asc')->result_array();
         $data = array(
                     'page_content'  => 'kurikulum/view',
                     'ribbon'        => '<li class="active">Master Kurikulum</li>',
                     'page_name'     => 'Master Kurikulum',
-                    'myps'          => $myps
+                    'myps'          => $myps,
+                    'mykelas'       => $mykelas
                 );
         $this->render_view($data); //Memanggil function render_view
     }

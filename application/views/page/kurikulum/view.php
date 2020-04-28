@@ -33,16 +33,15 @@
 									<input type="text" id="namamataajar" name="namamataajar" placeholder="Nama Mataajar" class="form-control" />
 								</div>
 							</div>
-							<!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam</label>
-								<div class="col-sm-9">
-									<input type="number" id="jam" name="jam" placeholder="hh:mm" class="form-control" />
-								</div>
-							</div> -->
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
-								<div class="col-sm-9">
-									<input type="number" max="6" maxlength="1" id="semester" name="semester" placeholder="" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
+								<div class="col-sm-6">
+									<select class="form-control" name="semester" id="semester">
+										<option value=>--Pilih Kelas --</option>
+										<?php foreach ($mykelas as $value) { ?>
+											<option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -101,9 +100,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Semester</label>
-								<div class="col-sm-9">
-									<input type="number" id="e_semester" name="e_semester" placeholder="" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
+								<div class="col-sm-6">
+									<select class="form-control" name="e_semester" id="e_semester">
+										<option value=>--Pilih Kelas --</option>
+										<?php foreach ($mykelas as $value) { ?>
+											<option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -151,7 +155,7 @@
 				<th>Kode Kurikulim</th>
 				<th>Nama Kurikulum</th>
 				<th>Program Sekolah</th>
-				<th>Semester</th>
+				<th>Kelas</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -179,9 +183,6 @@
 				},
 				semester: {
 					required: true,
-					maxlength: 1,
-					minlength: 1,
-					max: 6,
 				}
 			},
 			messages: {
@@ -192,15 +193,7 @@
 				},
 				nama: {
 					required: "Nama jabatan harus diisi!"
-					// ,minlength: "The contact number should be 10 digits",
-					// digits: "Please enter only numbers",
-					// maxlength: "The contact number should be 12 digits",
 				},
-				// email: {
-				//     required: "Please enter valid email",
-				//     email: "Please enter valid email",
-				//     maxlength: "The email name should less than or equal to 50 characters",
-				//   },
 
 			},
 			submitHandler: function(form) {
@@ -248,9 +241,6 @@
 				},
 				e_semester: {
 					required: true,
-					maxlength: 1,
-					minlength: 1,
-					max: 6,
 				}
 			},
 			messages: {

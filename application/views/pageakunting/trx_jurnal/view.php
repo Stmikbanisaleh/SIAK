@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-			<a class="ace-icon fa fa-plus bigger-120"></a> Proses
+			<a class="ace-icon fa fa-plus bigger-120"></a> Generate
 		</button>
 	</div>
 </div>
@@ -37,7 +37,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Jenis Pengeluaran</h3>
+				<h3 class="smaller lighter blue no-margin">Generate Jurnal</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">

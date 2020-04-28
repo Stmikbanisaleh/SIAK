@@ -152,27 +152,29 @@ class Trx_jurnal extends CI_Controller
     {
         $period_awal = $this->input->post('periode_awal');
         $period_akhir = $this->input->post('periode_akhir');
+        // print_r($this->input->post());exit;
+
         $hasil_pembsek = $this->model_trx_jurnal->get_pembayaransekolah($period_awal, $period_akhir)->result_array();
         $kd_jurnal = $this->model_trx_jurnal->get_kode_jurnal();
-
         if(count($hasil_pembsek) > 0){
             foreach($hasil_pembsek AS $row){
                 //Insert into akuntansi
                 $mydata = array(
                     'bukti' => $row['Nopembayaran'],
-                    'tgl'   => date('Y-m-d'),
+                    'tgl'   => $row['tglentri'],
                     'jurnal' => $kd_jurnal,
                     'tdebet' => $row['TotalBayar'],
                     'tkredit'   => $row['TotalBayar'],
                     'posting'   => 'T',
                     'userid'    => $this->session->userdata('nip'),
-                    'tgl_input' => date('Y-m-d')
+                    'tgl_input' => $row['tglentri']
                 );
                 $insert = $this->model_trx_jurnal->insert($mydata, 'akuntansi');
                 if ($insert) {
                     $datanya = $this->db->query("SELECT
                     detail_bayar_sekolah.NodetailBayar,
                     jurnal.kode_jurnal,
+                    pembayaran_sekolah.tglentri,
                     detail_bayar_sekolah.nominalbayar
                     FROM
                     pembayaran_sekolah
@@ -193,7 +195,7 @@ class Trx_jurnal extends CI_Controller
                             'dk'   => 'K',
                             'kurs' => 'ID',
                             'nilai' => $datanya[0]['nominalbayar'],
-                            'tgl_input' => date('Y-m-d'),
+                            'tgl_input' => $datanya[0]['tglentri'],
                             'UserId' => $this->session->userdata('nip')
                         );
                         $insert = $this->model_trx_jurnal->insert($datainsert2,'detail_akuntansi');
@@ -206,7 +208,7 @@ class Trx_jurnal extends CI_Controller
                                 'dk'   => 'D',
                                 'kurs' => 'ID',
                                 'nilai' => $datanya[0]['nominalbayar'],
-                                'tgl_input' => date('Y-m-d'),
+                                'tgl_input' => $datanya[0]['tglentri'],
                                 'UserId' => $this->session->userdata('nip')
                             );
                             $insert = $this->model_trx_jurnal->insert($datainsert3,'detail_akuntansi');

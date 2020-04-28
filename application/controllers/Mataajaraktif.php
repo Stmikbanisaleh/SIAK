@@ -19,9 +19,9 @@ class Mataajaraktif extends CI_Controller
 	{
 		$mysemester = $this->model_mataajaraktif->getsemester()->result_array();
 		$mythnakad = $this->model_mataajaraktif->getthnakad()->result_array();
-		$myps = $this->model_mataajaraktif->viewOrdering('tbps', 'KDTBPS', 'asc')->result_array();
+		$myps = $this->model_mataajaraktif->getsekolah()->result_array();
 		$mypelajaran = $this->model_mataajaraktif->viewOrdering('mspelajaran', 'id_mapel', 'asc')->result_array();
-
+		$mykelas = $this->model_mataajaraktif->viewOrdering('tbkelas','id_kelas','asc')->result_array();
 
 		$data = array(
 			'page_content' 	=> '/mataajaraktif/view',
@@ -31,7 +31,8 @@ class Mataajaraktif extends CI_Controller
 			'mysemester'	=> $mysemester,
 			'mythnakad'		=> $mythnakad,
 			'myps'			=> $myps,
-			'mypelajaran'	=> $mypelajaran
+			'mypelajaran'	=> $mypelajaran,
+			'mykelas'		=> $mykelas
 		);
 		$this->render_view($data);
 	}

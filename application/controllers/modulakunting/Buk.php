@@ -71,9 +71,9 @@ class Buk extends CI_Controller
         $f_bln = $v_bln;
         $s_bln = ltrim($f_bln, '0');
 
-        $query="SELECT a.* FROM detail_akuntansi a join akuntansi b on a.no_akuntansi = b.bukti  WHERE  b.posting = 'T' and a.tgl_input between '$datee' and '$datee2'  ";   
+        $query="SELECT a.*,b.tgl FROM detail_akuntansi a join akuntansi b on a.no_akuntansi = b.bukti  WHERE  b.posting = 'T' and a.tgl_input between '$datee' and '$datee2'  ";   
             $hasil = $this->model_buk->dyn_query($query)->result_array();
-
+            // print_r($hasil);exit;
             $no=1;
             foreach ($hasil as $r) {
                 $sql="INSERT INTO transaksi_buk(
@@ -83,7 +83,7 @@ class Buk extends CI_Controller
                 transaksi_buk.Ket,
                 transaksi_buk.Nilai,
                 transaksi_buk.DK) 
-                VALUES('".$r['rek']."','".date('Y-m-d')."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                VALUES('".$r['rek']."','".$r['tgl']."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
                 $query="SELECT COUNT(*)as jmlh,
                 Debet01,
@@ -209,7 +209,7 @@ class Buk extends CI_Controller
                 transaksi_buk.Ket,
                 transaksi_buk.Nilai,
                 transaksi_buk.DK) 
-                VALUES('".$r['rek']."','".date('Y-m-d')."','".$bukti."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                VALUES('".$r['rek']."','".$datee."','".$bukti."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
                 $query="SELECT COUNT(*)as jmlh,
                 Debet01,

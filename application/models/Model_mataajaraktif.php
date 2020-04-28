@@ -28,6 +28,12 @@ class Model_mataajaraktif extends CI_model{
         ORDER BY semester");
     }
 
+    public function getsekolah()
+    {
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS order by a.id desc");
+    }
+    
+
     public function getsemester(){
         return $this->db->query('SELECT DISTINCT SEMESTER FROM tbakadmk2 ORDER BY SEMESTER DESC');
     }
