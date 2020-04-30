@@ -13,17 +13,20 @@ class Model_tarif extends CI_model
         return  $this->db->query("SELECT
                                     idtarif,
                                     kodesekolah,
+                                    DESCRTBPS,
+                                    DESCRTBJS,
                                     Kodejnsbayar,
                                     ThnMasuk,
                                     Nominal,
                                     TA,
                                     tglentri,
-                                    createdAt,
+                                    tarif_berlaku.createdAt,
                                     status,
                                     (select tp.nama from tbpengawas tp where tp.nip = tarif_berlaku.userridd) userridd,
                                     CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v
-                                from tarif_berlaku
-                                where isdeleted != 1 order by idtarif desc");
+                                from tarif_berlaku join tbps on tarif_berlaku.kodesekolah = tbps.KDTBPS
+                                join tbjs on tbps.KDTBJS = tbjs.KDTBJS
+                                where tarif_berlaku.isdeleted != 1 order by idtarif desc");
     }
 
     public function getsekolah()

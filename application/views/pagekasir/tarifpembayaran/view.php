@@ -227,11 +227,12 @@
         <thead>
             <tr>
                 <th class="col-md-1">No</th>
+                <th>Sekolah</th>
                 <th>Kode Sekolah</th>
                 <th>Kode Jenis Bayar</th>
                 <th>Tahun Masuk</th>
                 <th>Nominal</th>
-                <th>Tahun Akademik</th>
+                <th>TA</th>
                 <th>Tanggal Input</th>
                 <th>User Input</th>
                 <th>Status</th>
@@ -347,6 +348,7 @@
                 for (i = 0; i < data.length; i++) {
                     html += '<tr>' +
                         '<td class="text-center">' + no + '</td>' +
+                        '<td>' + data[i].DESCRTBPS + '-' + data[i].DESCRTBJS +  '</td>' +
                         '<td>' + data[i].kodesekolah + '</td>' +
                         '<td>' + data[i].Kodejnsbayar + '</td>' +
                         '<td>' + data[i].ThnMasuk + '</td>' +
