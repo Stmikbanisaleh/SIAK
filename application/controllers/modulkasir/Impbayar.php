@@ -8,6 +8,7 @@ class Impbayar extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('kasir/model_imppembayaran');
+		$this->load->model('kasir/model_tarif');
 		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
 			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
 			redirect('modulkasir/dashboard/login');
@@ -133,10 +134,12 @@ class Impbayar extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+			$sekolah = $this->model_tarif->getsekolah()->result_array();
 			$data = array(
 				'page_content' 	=> '../pagekasir/impbayar/view',
 				'ribbon' 		=> '<li class="active">Import Pembayaran</li>',
 				'page_name' 	=> 'Import Pembayaran',
+				'sekolah'		=> $sekolah
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {

@@ -29,7 +29,7 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.userridd,
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
-                                WHERE `status`='T' AND TA='$ta' AND kodesekolah='$ps' AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+                                WHERE `status`='T' AND TA='$ta' AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
     }
 
     public function getsiswa1($noreg){

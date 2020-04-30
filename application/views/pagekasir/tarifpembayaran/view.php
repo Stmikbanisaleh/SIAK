@@ -22,8 +22,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sekolah </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="sekolah" id="sekolah">
-                                        <option value="0">-- Status --</option>
+                                    <select class="form-control" required name="sekolah" id="sekolah">
+                                        <option value="">-- Status --</option>
                                         <?php foreach ($sekolah as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?> - <?= $value['DESCRTBJS'] ?></option>
                                         <?php } ?>
