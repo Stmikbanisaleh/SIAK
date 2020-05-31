@@ -44,10 +44,43 @@ class Dashboard extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+            $my_akdmk = $this->model_dashboard->view('tbakadmk')->result_array();
+            $max_akdmk = $this->model_dashboard->max_th_akdmk()->row();
+
+            $ta = $this->input->post('ta');
+            if(isset($ta)){
+                $year = $ta;
+            }else{
+                $year = $max_akdmk->tahun;
+            }
+
+            $bulan = array();
+            $spp = array();
+            $gdg = array();
+            $srg = array();
+            $kgt = array();
+            $lain = array();
+            $mygraph = $this->model_dashboard->view_graph($year, $year+1)->result_array();
+            foreach($mygraph as $row){
+                array_push($bulan,$row['bulan_nama']);
+                array_push($spp,$row['spp']);
+                array_push($gdg,$row['gdg']);
+                array_push($srg,$row['srg']);
+                array_push($kgt,$row['kgt']);
+                array_push($lain,$row['lain']);
+            }
+            
             $data = array(
-                'page_content'     => 'dashboard',
-                'ribbon'         => '<li class="active">Dashboard</li>',
-                'page_name'     => 'Dashboard',
+                'page_content'      => '../pagekasir/dashboard',
+                'ribbon'            => '<li class="active">Dashboard</li>',
+                'page_name'         => 'Dashboard',
+                'tahun_akademik'    => $my_akdmk,
+                'bulan'             => $bulan,
+                'spp'               => $spp,
+                'gdg'               => $gdg,
+                'srg'               => $srg,
+                'kgt'               => $kgt,
+                'lain'              => $lain
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
