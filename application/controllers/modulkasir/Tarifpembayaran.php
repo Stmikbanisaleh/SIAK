@@ -61,7 +61,12 @@ class Tarifpembayaran extends CI_Controller
             'userridd'  => $this->session->userdata('kodekaryawan'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_tarif->insert($data, 'tarif_berlaku');
+        $checkexist = $this->model_tarif->check($data);
+        if (count($checkexist)  > 0) {
+            $action = 401;
+        } else {
+            $action = $this->model_tarif->insert($data, 'tarif_berlaku');
+        }
         echo json_encode($action);
     }
 

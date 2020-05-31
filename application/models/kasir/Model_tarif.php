@@ -3,9 +3,11 @@
 class Model_tarif extends CI_model
 {
 
-    public function view()
+    public function check($data)
     {
-        return  $this->db->query('select * from tarif where isdeleted != 1 ');
+        return  $this->db->query("select * from tarif_berlaku where kodesekolah ='$data[kodesekolah]' and Kodejnsbayar ='$data[Kodejnsbayar]' 
+        and ThnMasuk = '$data[ThnMasuk]' and  Nominal ='$data[Nominal]'
+        and TA = '$data[TA]' ");
     }
 
     public function getdata()
@@ -21,11 +23,13 @@ class Model_tarif extends CI_model
                                     TA,
                                     tglentri,
                                     tarif_berlaku.createdAt,
-                                    status,
-                                    (select tp.nama from tbpengawas tp where tp.nip = tarif_berlaku.userridd) userridd,
+                                    tarif_berlaku.status,
+                                    tp.nama as userridd,
+                                    -- (select tp.nama from tbpengawas tp where tp.nip = tarif_berlaku.userridd) userridd,
                                     CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v
                                 from tarif_berlaku join tbps on tarif_berlaku.kodesekolah = tbps.KDTBPS
                                 join tbjs on tbps.KDTBJS = tbjs.KDTBJS
+                                join tbpengawas tp on tarif_berlaku.userridd = tp.nip
                                 where tarif_berlaku.isdeleted != 1 order by idtarif desc");
     }
 
