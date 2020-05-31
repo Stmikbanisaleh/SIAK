@@ -277,7 +277,7 @@
                             show_data();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama Jenjang sudah terdaftar!');
+                            swalIdDouble('Kode Tarif Sudah Terdaftar');
                         } else {
                             swalInputFailed();
                         }
@@ -318,7 +318,7 @@
                             show_data();
                             $('#modalEdit').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama Jenjang Sudah digunakan!');
+                            swalIdDouble('Kode Tarif Sudah Terdaftar');
                         } else {
                             swalEditFailed();
                         }

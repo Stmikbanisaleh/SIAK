@@ -5,9 +5,9 @@ class Model_tarif extends CI_model
 
     public function check($data)
     {
-        return  $this->db->query("select * from tarif_berlaku where kodesekolah ='$data[kodesekolah]' and Kodejnsbayar ='$data[Kodejnsbayar]' 
-        and ThnMasuk = '$data[ThnMasuk]' and  Nominal ='$data[Nominal]'
-        and TA = '$data[TA]' ");
+        return  $this->db->query("select count(*) as total from tarif_berlaku where kodesekolah ='$data[kodesekolah]' and Kodejnsbayar ='$data[Kodejnsbayar]' 
+        and ThnMasuk = '$data[ThnMasuk]'
+        and TA = '$data[TA]' ")->result_array();
     }
 
     public function getdata()
