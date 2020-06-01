@@ -72,6 +72,14 @@
 		});
 	}
 
+	function swalGenerateFailed(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Tidak Ada data yang digenerate',
+		});
+	}
+
 	function swalDatanull(){
 		Swal.fire({
 		  icon: 'error',

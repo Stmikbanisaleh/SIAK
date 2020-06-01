@@ -6,8 +6,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="smaller lighter blue no-margin">Form Import Data Pembayaran</h3>
                 </div>
+
                 <div class="modal-body">
                     <div class="row">
+                    <?php if ($this->session->flashdata('message')) { ?>
+                                            <div class="alert alert-danger"> <?= $this->session->flashdata('message') ?> </div>
+                                        <?php } ?>
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
@@ -104,6 +108,7 @@
                             } else {
                                 document.getElementById("formImport").reset();
                                 swalInputFailed();
+                                window.location.href='<?php echo base_url("modulkasir/impbayar"); ?>';
                             }
                         }
                     });

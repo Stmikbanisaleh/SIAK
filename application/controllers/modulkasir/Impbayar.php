@@ -91,7 +91,7 @@ class Impbayar extends CI_Controller
 					$namajenisbayar = $dataExcel['namajenisbayar'];
 
 
-			
+
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('O' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('O' . $row, $idtarif, PHPExcel_Cell_DataType::TYPE_STRING);
@@ -125,7 +125,7 @@ class Impbayar extends CI_Controller
 				ob_end_clean();
 				ob_start();
 				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-				$filename = 'Sample'.'csv';
+				$filename = 'Sample' . 'csv';
 				$objWriter->save('php://output');
 			}
 		}
@@ -163,46 +163,81 @@ class Impbayar extends CI_Controller
 			$objPHPExcel = PHPExcel_IOFactory::load($fname);
 			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
 			$data_exist = [];
+			$empty_message = [];
 
 			foreach ($allDataInSheet as $ads) {
 				if (array_filter($ads)) {
 					array_push($data_exist, $ads);
 				}
 			}
-			foreach ($data_exist as $key => $value) {
-				if ($key == '0') {
+			foreach ($data_exist as $keys => $value) {
+				if ($keys == '0') {
 					continue;
 				} else {
-					if ($value[0] == '') {
+					if (!$value[0]) {
+						array_push($empty_message, "No at row "  . $keys . " NIS harus di isi");
+					}
+					if (!$value[1]) {
+						array_push($empty_message, "No at row "  . $keys . " NOREG harus di isi");
+					}
+					if (!$value[3]) {
+						array_push($empty_message, "No at row "  . $keys . "Nama harus di isi");
+					}
+					if (!$value[4]) {
+						array_push($empty_message, "No at row "  . $keys . " Tgl Terima harus di isi");
+					}
+					if (!$value[5]) {
+						array_push($empty_message, "No at row "  . $keys . " Kode Sekolah harus di isi");
+					}
+					if (!$value[6]) {
+						array_push($empty_message, "No at row "  . $keys . "Tahun Pendidikan harus di isi");
+					}
+
+					if (!$value[7]) {
+						array_push($empty_message, "No at row "  . $keys . "kode Pembayaran harus di isi");
+					}
+
+					if (!$value[8]) {
+						array_push($empty_message, "No at row "  . $keys . "ID Tarif harus di isi");
+					}
+
+					if (!$value[9]) {
+						array_push($empty_message, "No at row "  . $keys . " Nominal harus di isi");
+					}
+
+					if (!empty($empty_message)) {
+						$ret['msg'] = $empty_message;
+						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
+						$result = 2;
 					} else {
-						$arrayCustomerQuote = array(
-							'NIS' => $value[0],
-							'Noreg' => $value[1],
-							'Kelas' => $value[3],
-							'tglentri' => date("Y-m-d", strtotime($value[4])),
-							'useridd' => $this->session->userdata('kodekaryawan'),
-							'TotalBayar' => $value[9],
-							'kodesekolah' => $value[5],
-							'TA' => $value[6],
+							
+					$arrayCustomerQuote = array(
+						'NIS' => $value[0],
+						'Noreg' => $value[1],
+						'Kelas' => $value[3],
+						'tglentri' => date("Y-m-d", strtotime($value[4])),
+						'useridd' => $this->session->userdata('kodekaryawan'),
+						'TotalBayar' => $value[9],
+						'kodesekolah' => $value[5],
+						'TA' => $value[6],
+						'createdAt'	=> date('Y-m-d H:i:s')
+					);
+					$result = $this->model_imppembayaran->insert($arrayCustomerQuote, 'pembayaran_sekolah');
+					$result = 1;
+					$id = $this->db->insert_id();
+					if ($id) {
+						$arrayCustomerQuotedetail = array(
+							'Nopembayaran' => $id,
+							'kodejnsbayar' => $value[7],
+							'idtarif' => $value[8],
+							'nominalbayar' => $value[9],
 							'createdAt'	=> date('Y-m-d H:i:s')
 						);
-						$result = $this->model_imppembayaran->insert($arrayCustomerQuote, 'pembayaran_sekolah');
-						$id = $this->db->insert_id();
-						if ($id) {
-							$arrayCustomerQuotedetail = array(
-								'Nopembayaran' => $id,
-								'kodejnsbayar' => $value[7],
-								'idtarif' => $value[8],
-								'nominalbayar' => $value[9],
-								'createdAt'	=> date('Y-m-d H:i:s')
-							);
-							$result = $this->model_imppembayaran->insert($arrayCustomerQuotedetail, 'detail_bayar_sekolah');
-						}
+						$result = $this->model_imppembayaran->insert($arrayCustomerQuotedetail, 'detail_bayar_sekolah');
+						$result = 1;
+					}
 					}
 				}
-			}
-			if ($result) {
-				$result = 1;
 			}
 			echo json_encode($result);
 		} else {

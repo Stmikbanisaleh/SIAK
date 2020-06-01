@@ -58,7 +58,7 @@
                     swalIdDouble('Nama Ruangan Sudah digunakan!');
                     document.getElementById("btn_generate").removeAttribute("disabled");
                 } else {
-                    swalInputFailed();
+                    swalGenerateFailed();
                     document.getElementById("btn_generate").removeAttribute("disabled");
                 }
             }

@@ -49,7 +49,6 @@ class Tunggakan extends CI_Controller
 			(TA)as tas,
 			(SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA)AS TA
 			FROM saldopembayaran_sekolah
-			WHERE TA= " . $IdTA . "
 			Order by Noreg desc")->result_array();
 			echo json_encode($my_data);
 		} else {
@@ -65,7 +64,6 @@ class Tunggakan extends CI_Controller
 			$idtea = $IdTA[0]['ID'];
 			$thnakademik = $IdTA[0]['THNAKAD'];
 			$thn = $IdTA[0]['TAHUN'];
-			$this->db->query('delete from saldopembayaran_sekolah');
 			$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thn' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
 											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
@@ -85,7 +83,6 @@ class Tunggakan extends CI_Controller
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
 						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.NOREG= $value[NOREG]");
-						// print_r($this->db->last_query());exit;
 						if (count($naikkelas->result_array()) > 0) {
 							$kelas = $naikkelas->result_array();
 							$vkelas = $kelas[0]['Kelas'];
@@ -116,6 +113,11 @@ class Tunggakan extends CI_Controller
 								$t_kelas = $vkelas;
 							}
 							$vsisa = $vtotal - $nominal->bayar;
+							//jika ada datanya di delete lalu di insert
+							$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
+							if(count($checkdata) > 0 ) {
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
+							}
 							$data = array(
 								'NIS' => $vnis,
 								'Noreg' => $value['NOREG'],
@@ -126,9 +128,7 @@ class Tunggakan extends CI_Controller
 								'Kelas' => $t_kelas,
 								'createdAt' => date('Y-m-d H:i:s')
 							);
-
 							// print_r($data);
-
 							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');	
 							
 						} 
