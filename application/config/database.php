@@ -79,8 +79,6 @@ $db['default'] = array(
 	'username' => 'u9415859_root',
 	'password' => 'imam6325',
 	'database' => 'u9415859_siak_prod',
-	// 'database' => 'u9415859_testing',
-
 	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',

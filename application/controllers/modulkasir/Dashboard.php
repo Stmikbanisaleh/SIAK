@@ -44,10 +44,79 @@ class Dashboard extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+            $my_akdmk = $this->model_dashboard->th_akdmk()->result_array();
+            $max_akdmk = $this->model_dashboard->max_th_akdmk()->row();
+            $th_akdmk = '';
+
+            $ta = $this->input->post('ta');
+            if(isset($ta)){
+                $year = $ta;
+                $year1 = $ta+1;
+                $th_akdmk = $ta.'/'.$year1;
+            }else{
+                $year = $max_akdmk->tahun;
+                $year1 = $ta+1;
+                $th_akdmk = $year.'/'.$year1;
+            }
+
+            $bulan = array();
+            $spp = array();
+            $gdg = array();
+            $srg = array();
+            $kgt = array();
+            $lain = array();
+            $mygraph = $this->model_dashboard->view_graph($year, $year+1)->result_array();
+            foreach($mygraph as $row){
+                if($row['bulan_nama'] == null){
+                    array_push($bulan,0);
+                }else{
+                    array_push($bulan,$row['bulan_nama']);
+                }
+
+                if($row['spp'] == null){
+                    array_push($spp,0);
+                }else{
+                    array_push($spp,$row['spp']);
+                }
+
+                if($row['gdg'] == null){
+                    array_push($gdg,0);
+                }else{
+                    array_push($gdg,$row['gdg']);
+                }
+
+                if($row['srg'] == null){
+                    array_push($srg,0);
+                }else{
+                    array_push($srg,$row['srg']);
+                }
+
+                if($row['kgt'] == null){
+                    array_push($kgt,0);
+                }else{
+                    array_push($kgt,$row['kgt']);
+                }
+
+                if($row['lain'] == null){
+                    array_push($lain,0);
+                }else{
+                    array_push($lain,$row['lain']);
+                }
+            }
+            
             $data = array(
-                'page_content'     => 'dashboard',
-                'ribbon'         => '<li class="active">Dashboard</li>',
-                'page_name'     => 'Dashboard',
+                'page_content'      => '../pagekasir/dashboard',
+                'ribbon'            => '<li class="active">Dashboard</li>',
+                'page_name'         => 'Dashboard',
+                'tahun_akademik'    => $my_akdmk,
+                'bulan'             => $bulan,
+                'spp'               => $spp,
+                'gdg'               => $gdg,
+                'srg'               => $srg,
+                'kgt'               => $kgt,
+                'lain'              => $lain,
+                'tahun'             => $year,
+                'th_akdmk'          => $th_akdmk
             );
             $this->render_view($data); //Memanggil function render_view
         } else {

@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
 	<div class="space-6"></div>
 
 	<div class="col-sm-7 infobox-container">
@@ -205,12 +205,162 @@
 							</span>
 							<h4 class="bigger pull-right">1,050</h4>
 						</div>
-					</div>
-				</div><!-- /.widget-main -->
-			</div><!-- /.widget-body -->
-		</div><!-- /.widget-box -->
-	</div><!-- /.col -->
-</div><!-- /.row -->
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
 
 <!-- <div class="hr hr32 hr-dotted"></div> -->
+<div class="row">
+	<form class="form-horizontal" role="form" id="formSearch" action="<?= base_url() ?>modulkasir/dashboard" method="POST">
+		<div class="col-xs-3">
+			<select class="form-control" name="ta" id="ta">
+				<option value=<?= $tahun ?>><?= $th_akdmk ?></option>
+				<?php foreach ($tahun_akademik as $value) { ?>
+					<option value=<?= $value['TAHUN'] ?>><?= $value['THNAKAD'] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="col-xs-1">
+			<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
+				<a class="ace-icon fa fa-search bigger-120"></a>Periksa
+			</button>
+		</div>
+		<br>
+		<br>
+	</form>
+</div>
+<hr>
+<div class="col-md-10">
+	<canvas id="lineChart"></canvas>
+</div>
 
+<script>
+	//line
+	var ctxL = document.getElementById("lineChart").getContext('2d');
+	var myLineChart = new Chart(ctxL, {
+		type: 'line',
+		data: {
+			labels: <?php echo json_encode($bulan) ?>,
+			datasets: [{
+					label: "SPP",
+					data: <?php echo json_encode($spp) ?>,
+					backgroundColor: [
+						'rgba(105, 0, 132, .2)',
+					],
+					borderColor: [
+						'rgba(200, 99, 132, .7)',
+					],
+					borderWidth: 2
+				},
+				{
+					label: "Seragam",
+					data: <?php echo json_encode($srg) ?>,
+					backgroundColor: [
+						'rgba(240, 255, 240, .2)',
+					],
+					borderColor: [
+						'rgba(249, 0, 255, .7)',
+					],
+					borderWidth: 2
+				},
+				{
+					label: "Gedung",
+					data: <?php echo json_encode($gdg) ?>,
+					backgroundColor: [
+						'rgba(127, 255, 1, .2)',
+					],
+					borderColor: [
+						'rgba(27, 128, 1, .7)',
+					],
+					borderWidth: 2
+				},
+				{
+					label: "Kegiatan",
+					data: <?php echo json_encode($kgt) ?>,
+					backgroundColor: [
+						'rgba(222, 184, 135, .2)',
+					],
+					borderColor: [
+						'rgba(75, 0, 130, .7)',
+					],
+					borderWidth: 2
+				},
+				{
+					label: "Lain-Lain",
+					data: <?php echo json_encode($lain) ?>,
+					backgroundColor: [
+						'rgba(0, 255, 254, .2)',
+					],
+					borderColor: [
+						'rgba(115, 255, 216, .7)',
+					],
+					borderWidth: 2
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Pemasukan Tahun Akademik '+<?php echo "'".$th_akdmk."'"; ?>
+			},
+			scales: {
+				// xAxes: [{
+					// type: 'logarithmic',
+					// position: 'bottom',
+				// 	ticks: {
+				// 		userCallback: function(tick) {
+				// 			var remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
+				// 			if (remain === 1 || remain === 2 || remain === 5) {
+				// 				return tick.toString() + 'Hz';
+				// 			}
+				// 			return '';
+				// 		},
+				// 	},
+				// 	scaleLabel: {
+				// 		labelString: 'Frequency',
+				// 		display: true,
+				// 	}
+				// }],
+				yAxes: [{
+					type: 'linear',
+					ticks: {
+						userCallback: function(tick) {
+							// return tick.toString() + 'dB';
+							return formatRupiah3(tick.toString(), 'Rp. ');
+						}
+					},
+					scaleLabel: {
+						labelString: 'Jumlah Pemasukan',
+						display: true
+					}
+				}]
+			}
+		}
+	});
+
+	//Sample
+	//https://mdbootstrap.com/docs/jquery/javascript/charts/
+
+
+
+function formatRupiah3(angka, prefix) {
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah3 = split[0].substr(0, sisa),
+        ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan3) {
+        separator = sisa ? '.' : '';
+        rupiah3 += separator + ribuan3.join('.');
+    }
+
+    rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+    return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+}
+</script>
