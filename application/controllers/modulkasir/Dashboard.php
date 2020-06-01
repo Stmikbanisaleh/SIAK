@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-            $my_akdmk = $this->model_dashboard->view('tbakadmk')->result_array();
+            $my_akdmk = $this->model_dashboard->th_akdmk()->result_array();
             $max_akdmk = $this->model_dashboard->max_th_akdmk()->row();
 
             $ta = $this->input->post('ta');
@@ -62,12 +62,41 @@ class Dashboard extends CI_Controller
             $lain = array();
             $mygraph = $this->model_dashboard->view_graph($year, $year+1)->result_array();
             foreach($mygraph as $row){
-                array_push($bulan,$row['bulan_nama']);
-                array_push($spp,$row['spp']);
-                array_push($gdg,$row['gdg']);
-                array_push($srg,$row['srg']);
-                array_push($kgt,$row['kgt']);
-                array_push($lain,$row['lain']);
+                if($row['bulan_nama'] == null){
+                    array_push($bulan,0);
+                }else{
+                    array_push($bulan,$row['bulan_nama']);
+                }
+
+                if($row['spp'] == null){
+                    array_push($spp,0);
+                }else{
+                    array_push($spp,$row['spp']);
+                }
+
+                if($row['gdg'] == null){
+                    array_push($gdg,0);
+                }else{
+                    array_push($gdg,$row['gdg']);
+                }
+
+                if($row['srg'] == null){
+                    array_push($srg,0);
+                }else{
+                    array_push($srg,$row['srg']);
+                }
+
+                if($row['kgt'] == null){
+                    array_push($kgt,0);
+                }else{
+                    array_push($kgt,$row['kgt']);
+                }
+
+                if($row['lain'] == null){
+                    array_push($lain,0);
+                }else{
+                    array_push($lain,$row['lain']);
+                }
             }
             
             $data = array(
