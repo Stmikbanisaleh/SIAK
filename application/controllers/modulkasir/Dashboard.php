@@ -46,12 +46,17 @@ class Dashboard extends CI_Controller
         if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
             $my_akdmk = $this->model_dashboard->th_akdmk()->result_array();
             $max_akdmk = $this->model_dashboard->max_th_akdmk()->row();
+            $th_akdmk = '';
 
             $ta = $this->input->post('ta');
             if(isset($ta)){
                 $year = $ta;
+                $year1 = $ta+1;
+                $th_akdmk = $ta.'/'.$year1;
             }else{
                 $year = $max_akdmk->tahun;
+                $year1 = $ta+1;
+                $th_akdmk = $year.'/'.$year1;
             }
 
             $bulan = array();
@@ -109,7 +114,9 @@ class Dashboard extends CI_Controller
                 'gdg'               => $gdg,
                 'srg'               => $srg,
                 'kgt'               => $kgt,
-                'lain'              => $lain
+                'lain'              => $lain,
+                'tahun'             => $year,
+                'th_akdmk'          => $th_akdmk
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
