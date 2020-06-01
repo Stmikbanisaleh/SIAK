@@ -56,7 +56,7 @@
 <!-- Bootstrap core JavaScript -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/template/MDB-Free_4.19.0/cdn_js/mdb.min.js"></script>
 
 
 <script type="text/javascript">
