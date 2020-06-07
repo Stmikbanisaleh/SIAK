@@ -32,14 +32,14 @@
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/biodata_karyawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Master Biodata Karyawan
 				</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/jadwal'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/syncron'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Syncron
 				</a>
@@ -58,13 +58,13 @@
 		<b class="arrow"></b>
 		<ul class="submenu">
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uts'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/master_potongan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Master Potongan
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/cuti'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tugas Dinas / Cuti
 				</a>
@@ -83,41 +83,41 @@
 		<b class="arrow"></b>
 		<ul class="submenu">
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uts'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/honor_gurutetap'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Honorarium Guru Tetap
 				</a>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/kehadiran_karyawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Laporan Kehadiran Karyawan
 				</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/slip_gaji'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Slip Gaji
 				</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/potong_gaji'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Laporan Potongan Gaji
 				</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/rekap_gajiguru'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Rekap Gaji Guru
 				</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulguru/uas'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/rekap_gajikaryawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Rekap Gaji Karyawan
 				</a>
