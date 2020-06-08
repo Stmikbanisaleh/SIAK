@@ -55,7 +55,7 @@ class Dashboard extends CI_Controller
                 $th_akdmk = $ta.'/'.$year1;
             }else{
                 $year = $max_akdmk->tahun;
-                $year1 = $ta+1;
+                $year1 = $year+1;
                 $th_akdmk = $year.'/'.$year1;
             }
 

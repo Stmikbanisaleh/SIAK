@@ -217,9 +217,9 @@
 	<form class="form-horizontal" role="form" id="formSearch" action="<?= base_url() ?>modulkasir/dashboard" method="POST">
 		<div class="col-xs-3">
 			<select class="form-control" name="ta" id="ta">
-				<option value=<?= $tahun ?>><?= $th_akdmk ?></option>
+				<option value=<?= $tahun ?>>-- Pilih Tahun --</option>
 				<?php foreach ($tahun_akademik as $value) { ?>
-					<option value=<?= $value['TAHUN'] ?>><?= $value['THNAKAD'] ?></option>
+					<option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
 				<?php } ?>
 			</select>
 		</div>
@@ -305,7 +305,7 @@
 			responsive: true,
 			title: {
 				display: true,
-				text: 'Pemasukan Tahun Akademik '+<?php echo "'".$th_akdmk."'"; ?>
+				text: 'Pemasukan Tahun Keuangan '+<?php echo "'".$th_akdmk."'"; ?>
 			},
 			scales: {
 				// xAxes: [{
