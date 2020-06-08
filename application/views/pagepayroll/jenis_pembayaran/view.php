@@ -147,7 +147,7 @@
 	<table id="datatable_tabletools" class="display">
 		<thead>
 			<tr>
-				<th>No</th>
+				<th class="col-xs-1">No</th>
 				<th>Nama</th>
 				<th class="text-center">Action</th>
 			</tr>
@@ -174,10 +174,10 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
-					html += '<tr class="text-center">' +
+					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].nama_pembayaran + '</td>' +
-						'<td >' +
+						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-book bigger-120"> Edit </i>' +
                         '</button> ' + 
@@ -210,7 +210,7 @@
 		$('#modalEdit').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byid') ?>",
+			url: "<?php echo base_url('modulpayroll/jenis_pembayaran/tampil_byid') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -218,19 +218,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
-				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-				$('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
+				$('#e_nama').val(data[0].nama_pembayaran);
 			}
 		});
     });

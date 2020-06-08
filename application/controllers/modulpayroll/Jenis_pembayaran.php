@@ -35,6 +35,15 @@ class Jenis_pembayaran extends CI_Controller
 	{
 		$my_data = $this->model_jnspembayaran->view('jnspembayaran')->result_array();
 		echo json_encode($my_data);
+    }
+    
+    public function tampil_byid()
+	{
+        $data = array(
+            'id'  => $this->input->post('id'),
+        );
+        $my_data = $this->model_jnspembayaran->view_where('jnspembayaran', $data)->result();
+        echo json_encode($my_data);
 	}
 
 }
