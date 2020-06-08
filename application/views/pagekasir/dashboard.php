@@ -305,7 +305,7 @@
 			responsive: true,
 			title: {
 				display: true,
-				text: 'Pemasukan Tahun Akademik '+<?php echo "'".$th_akdmk."'"; ?>
+				text: 'Pemasukan Tahun Keuangan '+<?php echo "'".$th_akdmk."'"; ?>
 			},
 			scales: {
 				// xAxes: [{
