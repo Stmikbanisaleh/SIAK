@@ -23,7 +23,6 @@ class Model_tarif extends CI_model
                                     TA,
                                     tglentri,
                                     tarif_berlaku.createdAt,
-                                    tarif_berlaku.status,
                                     tp.nama as userridd,
                                     -- (select tp.nama from tbpengawas tp where tp.nip = tarif_berlaku.userridd) userridd,
                                     CONCAT('Rp. ',FORMAT(Nominal,2)) as nominal_v

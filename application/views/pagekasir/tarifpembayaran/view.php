@@ -228,6 +228,7 @@
             <tr>
                 <th class="col-md-1">No</th>
                 <th>Sekolah</th>
+                <th>ID Tarif</th>
                 <th>Kode Sekolah</th>
                 <th>Kode Jenis Bayar</th>
                 <th>Tahun Masuk</th>
@@ -235,7 +236,6 @@
                 <th>TA</th>
                 <th>Tanggal Input</th>
                 <th>User Input</th>
-                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -349,14 +349,14 @@
                     html += '<tr>' +
                         '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].DESCRTBPS + '-' + data[i].DESCRTBJS +  '</td>' +
-                        '<td>' + data[i].kodesekolah + '</td>' +
+                        '<td  class="text-center">' + data[i].kodesekolah + '</td>' +
+                        '<td>' + data[i].idtarif + '</td>' +
                         '<td>' + data[i].Kodejnsbayar + '</td>' +
                         '<td>' + data[i].ThnMasuk + '</td>' +
                         '<td>' + data[i].nominal_v + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
                         '<td>' + data[i].createdAt + '</td>' +
                         '<td>' + data[i].userridd + '</td>' +
-                        '<td>' + data[i].status + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].idtarif + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
