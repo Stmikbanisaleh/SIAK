@@ -217,7 +217,7 @@
 	<form class="form-horizontal" role="form" id="formSearch" action="<?= base_url() ?>modulkasir/dashboard" method="POST">
 		<div class="col-xs-3">
 			<select class="form-control" name="ta" id="ta">
-				<option value=<?= $tahun ?>><?= $tahun ?></option>
+				<option value=<?= $tahun ?>>-- Pilih Tahun --</option>
 				<?php foreach ($tahun_akademik as $value) { ?>
 					<option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN'] ?></option>
 				<?php } ?>
