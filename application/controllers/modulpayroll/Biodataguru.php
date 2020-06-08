@@ -40,7 +40,7 @@ class Biodataguru extends CI_Controller
 
 	public function simpan()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$data = array(
 				'IdGuru'  => $this->input->post('IdGuru'),
@@ -77,7 +77,7 @@ class Biodataguru extends CI_Controller
 
 	public function tampil_byid()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$data = array(
 				'id'  => $this->input->post('id'),
@@ -91,7 +91,7 @@ class Biodataguru extends CI_Controller
 
 	public function import()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$files = $_FILES;
 			$file = $files['file'];
 			$fname = $file['tmp_name'];
@@ -172,7 +172,7 @@ class Biodataguru extends CI_Controller
 	}
 	public function tampil()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$my_data = $this->model_guru->view_guru('tbguru')->result_array();
 			echo json_encode($my_data);
@@ -184,7 +184,7 @@ class Biodataguru extends CI_Controller
 
 	public function update()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
@@ -215,7 +215,7 @@ class Biodataguru extends CI_Controller
 
 	public function delete()
 	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
 				'id'  => $this->input->post('id')
