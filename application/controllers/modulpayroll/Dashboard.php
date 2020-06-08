@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller
 		$email = $this->input->post('email');
 		$password = hash('sha512', md5($this->input->post('password')));
 		try {
-			$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '" . $password . "' and level ='payroll' and isdeleted != 1 and status = 1");
+			$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '" . $password . "' and level ='hrd' and isdeleted != 1 and status = 1");
 			if ($query->num_rows() == 1) {
 				$data = $query->result_array();
 				foreach ($data as $value) {

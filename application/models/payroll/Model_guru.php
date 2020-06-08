@@ -35,11 +35,13 @@ class Model_guru extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_where_v2($data)
+    public function view_where_v2($table, $data)
     {
-        return  $this->db->query('select a.*,b.*,c.* from tbguru a 
+        return  $this->db->query('select a.*, e.*, from tbguru a 
         left join tbagama b on a.GuruAgama = b.KDTBAGAMA
         left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
+        left join tbps d on a.GuruBase = d.KDTBPS
+        join tbgururiwayat e on a.IdGuru = e.IdGuru
         where a.isdeleted != 1 and a.id = ' . $data['id'] .'
         ');
     }
