@@ -9,7 +9,7 @@
 </button>
 
 <div class="navbar-header pull-left">
-	<a href="<?= base_url() . 'modulguru/dashboard'; ?>" class="navbar-brand">
+	<a href="<?= base_url() . 'modulpayroll/dashboard'; ?>" class="navbar-brand">
 		<small>
 		<img src="<?php echo base_url() ?>global/images/teacher.png" width="32" height="32"/></div>
 			Payroll
@@ -49,7 +49,7 @@
 				<li class="divider"></li>
 
 				<li>
-					<a href="<?= base_url() . 'modulguru/dashboard/logout'; ?>">
+					<a href="<?= base_url() . 'modulpayroll/dashboard/logout'; ?>">
 						<i class="ace-icon fa fa-power-off"></i>
 						Logout
 					</a>

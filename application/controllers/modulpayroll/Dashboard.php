@@ -60,7 +60,7 @@ class Dashboard extends CI_Controller
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('modulguru/dashboard/index');
+		redirect('modulpayroll/dashboard/index');
 	}
 
 	private function _token($length = 12)
