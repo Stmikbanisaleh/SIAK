@@ -39,6 +39,13 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/jenis_pembayaran'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Jenis Pembayaran
+				</a>
+				<b class="arrow"></b>
+			</li>
+			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/syncron'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Syncron
