@@ -34,7 +34,7 @@
 								<div class="col-sm-9">
 									<select class="form-control" name="IdGuru" id="IdGuru">
 										<option value="">-- Pilih Guru --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
+										<?php foreach ($my_guru as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
@@ -120,7 +120,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" name="IdGuru" id="IdGuru">
                                         <option value="">-- Pilih Guru --</option>
-                                        <?php foreach ($mypendidikan as $value) { ?>
+                                        <?php foreach ($my_guru as $value) { ?>
                                             <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
                                         <?php } ?>
                                     </select>
