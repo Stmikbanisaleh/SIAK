@@ -7,7 +7,7 @@ class Master_potongan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('payroll/model_karyawan');
+		$this->load->model('payroll/model_mastpotongan');
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			// continue;
 		} else {
@@ -22,18 +22,20 @@ class Master_potongan extends CI_Controller
 
 	public function index()
 	{
+		$my_guru = $this->model_mastpotongan->view('tbguru')->result_array();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/master_potongan/view',
 			'ribbon' 		=> '<li class="active">Master Potongan</li><li>Potongan</li>',
 			'page_name' 	=> 'Potongan',
-			'js' 			=> 'js_file'
+			'js' 			=> 'js_file',
+			'my_guru'		=> $my_guru
 		);
 		$this->render_view($data); 
 	}
 
 	public function tampil()
 	{
-		$my_data = $this->model_karyawan->view('tbgurupot')->result_array();
+		$my_data = $this->model_mastpotongan->view_potongan()->result_array();
 		echo json_encode($my_data);
 	}
 

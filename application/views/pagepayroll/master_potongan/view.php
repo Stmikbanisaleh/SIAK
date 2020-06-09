@@ -27,37 +27,57 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-                            <input type="hidden" id="e_id" required name="e_id" />
+                            <input type="hidden" id="id" required name="e_id" />
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Posisi </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<div class="col-sm-9">
-                                <input type="text" id="e_posisi" required name="e_posisi" placeholder="Posisi" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="Jabatan" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif </label>
-								<div class="col-sm-9">
-                                <input type="number" id="e_tarif" required name="e_tarif" placeholder="Tarif" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih Cara Pembayaran --</option>
+									<select class="form-control" name="IdGuru" id="IdGuru">
+										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
+											<option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
+									</select>
+								</div>
+                            </div>
+                            
+                            <div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Potongan </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Jenis Potongan --</option>
+                                        <option value="Arisan">Arisan</option>
+                                        <option value="Asuransi Kesehatan">Asuransi Kesehatan</option>
+                                        <option value="Kasbon">Kasbon</option>
+									</select>
+								</div>
+							</div>
+
+                            <div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Potongan </label>
+								<div class="col-sm-9">
+                                <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tarif Potongan" class="form-control" />
+								</div>
+                            </div>
+                            
+                            <div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Periode --</option>
+                                        <option value="Bulanan">Bulanan</option>
+                                        <option value="Periodik">Periodik</option>
+									</select>
+								</div>
+                            </div>
+                            
+                            <div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Keterangan --</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Non-aktif">Non-aktif</option>
 									</select>
 								</div>
 							</div>
@@ -66,69 +86,6 @@
 			</div>
 			<div class="modal-footer">
 				<button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Update
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-
-<!-- Modal Input Data -->
-<div id="my-modal" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Guru</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-
-                        <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Posisi </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_posisi" required name="e_posisi" placeholder="Posisi" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="Jabatan" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif </label>
-								<div class="col-sm-9">
-                                <input type="number" id="e_tarif" required name="e_tarif" placeholder="Tarif" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih Cara Pembayaran --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
 					<i class="ace-icon fa fa-save"></i>
 					Simpan
 				</button>
@@ -156,167 +113,61 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIPP </label>
-								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_nip" required name="e_nip" readonly placeholder="NIPP" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_jabatan" id="e_jabatan">
-										<option value="">-- Pilih Jabatan --</option>
-										<?php foreach ($myprogram as $value) { ?>
-											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
+                            <input type="hidden" id="id" required name="e_id" />
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_jenis_kelamin" id="e_jenis_kelamin">
-										<option value="">-- Pilih Pengguna --</option>
-										<option value="L">Laki-Laki</option>
-										<option value="P">Perempuan</option>
-									</select>
-								</div>
-							</div>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="IdGuru" id="IdGuru">
+                                        <option value="">-- Pilih Guru --</option>
+                                        <?php foreach ($mypendidikan as $value) { ?>
+                                            <option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_agama" required name="e_agama" placeholder="Agama" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-								<div class="col-sm-9">
-									<input type="email" id="e_email" required name="e_email" placeholder="Email" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_telp" required name="e_telp" placeholder="No. Telp" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-								<div class="col-sm-9">
-									<textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Alamat"></textarea>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih Pendidikan --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Potongan </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Jenis Potongan --</option>
+                                        <option value="Arisan">Arisan</option>
+                                        <option value="Asuransi Kesehatan">Asuransi Kesehatan</option>
+                                        <option value="Kasbon">Kasbon</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
-								<div class="col-sm-9">
-									<input type="date" class="form-control" name="e_tgl_lahir" id="e_tgl_lahir" placeholder="24/10/1995"></textarea>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_status" id="e_status">
-										<option value="">-- Pilih Status --</option>
-										<option value="T">Aktif</option>
-										<option value="F">Tidak</option>
-									</select>
-								</div>
-							</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Update
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-
-<!-- Modal Edit Tarif -->
-<div id="modalEditTarif" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Tarif Karyawan</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formEdit">
-                            <input type="hidden" id="e_id" required name="e_id" />
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Potongan </label>
+                                <div class="col-sm-9">
+                                <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tarif Potongan" class="form-control" />
+                                </div>
+                            </div>
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Posisi </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_posisi" required name="e_posisi" placeholder="Posisi" class="form-control" />
-								</div>
-							</div>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Periode --</option>
+                                        <option value="Bulanan">Bulanan</option>
+                                        <option value="Periodik">Periodik</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="Jabatan" class="form-control" />
-								</div>
-							</div>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="PotonganNama" id="PotonganNama">
+                                        <option value="">-- Pilih Keterangan --</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Non-aktif">Non-aktif</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif </label>
-								<div class="col-sm-9">
-                                <input type="number" id="e_tarif" required name="e_tarif" placeholder="Tarif" class="form-control" />
-								</div>
-							</div>
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih Cara Pembayaran --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
@@ -338,7 +189,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="table-header">
-			Semua Data guru
+			Semua Data Potongan guru
 		</div>
 	</div>
 </div>
@@ -379,20 +230,15 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td class="text-center">' + data[i].IdGuru + '</td>' +
+						'<td class="text-center">' + data[i].GuruNama + '</td>' +
 						'<td>' + data[i].PotongTarif + '</td>' +
 						'<td>' + data[i].PotongNama + '</td>' +
 						'<td>' + data[i].PotongPeriode + '</td>' +
                         '<td>' + data[i].PotongStatus + '</td>' +
 						'<td >' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-book bigger-120"> Edit Biodata </i>' +
+						'<i class="ace-icon fa fa-pencil bigger-120"> Edit </i>' +
                         '</button> ' + 
-                        '<br>' + '<br>' + 
-                        '<button  href="#my-modal-edit_tarif" class="btn btn-xs btn-success item_edit_tarif" title="Edit" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-pencil bigger-120"> Edit Tarif</i>' +
-                        '</button> ' + 
-                        '<br>' + '<br>' + 
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
 						'</button> ' + 
