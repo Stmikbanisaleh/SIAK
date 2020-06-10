@@ -50,7 +50,6 @@ class Jadwal extends CI_Controller
         $ps = $this->input->post('ps');
         $data = array('ps' => $ps);
         $my_data = $this->model_jadwal->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
-        print_r(json_encode($my_data));
         echo "<option value='0'>--Pilih Mapel --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] .'-'. $value['kode']."] </option>";
