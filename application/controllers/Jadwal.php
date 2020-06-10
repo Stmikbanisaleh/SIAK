@@ -48,8 +48,9 @@ class Jadwal extends CI_Controller
     public function showmapel()
     {
         $ps = $this->input->post('ps');
-        $data = array('PS' => $ps);
+        $data = array('ps' => $ps);
         $my_data = $this->model_jadwal->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
+        print_r(json_encode($my_data));
         echo "<option value='0'>--Pilih Mapel --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] .'-'. $value['kode']."] </option>";
@@ -174,9 +175,16 @@ class Jadwal extends CI_Controller
             'id'  => $this->input->post('e_id')
         );
         $data = array(
-            'nama'  => $this->input->post('e_nama'),
+            'ps'  => $this->input->post('e_programsekolahs'),
+            'id_mapel'  => $this->input->post('e_mataajar'),
+            'id_ruang'  => $this->input->post('e_ruang'),
+            'id_guru'  => $this->input->post('e_guru'),
+            'hari'  => $this->input->post('e_hari'),
+            'jam'  => $this->input->post('e_jam'),
+            'nmklstrjdk'  => $this->input->post('e_kelas'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
+
         $action = $this->model_jadwal->update($data_id, $data, 'tbjadwal');
         echo json_encode($action);
     }

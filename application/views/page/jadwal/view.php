@@ -129,6 +129,103 @@
     </div><!-- /.modal-dialog -->
 </div>
 
+<div id="modalUpdate" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Input Data <?= $page_name; ?></h3>
+            </div>
+            <form class="form-horizontal" role="form" id="formUpdate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <input type="hidden" name="e_id" id="e_id">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_programsekolahs" id="e_programsekolahs">
+                                        <option value="0">Pilih Program</option>
+                                        <?php foreach ($myps as $value) { ?>
+                                            <option id="ep_<?= $value['KDTBPS'] ?>" value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_guru" id="e_guru">
+                                        <option value="0">-- Pilih Guru --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mata Ajar </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_mataajar" id="e_mataajar">
+                                        <option value="0">-- Pilih Mata Ajar --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_hari" id="e_hari">
+                                        <option value="0">-- Pilih Hari --</option>
+                                        <?php foreach ($myhari as $value) { ?>
+                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_ruang" id="e_ruang">
+                                        <option value="0">-- Pilih Ruang --</option>
+                                        <?php foreach ($myruang as $value) { ?>
+                                            <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="e_kelas" id="e_kelas">
+                                        <option value="0">-- Pilih Kelas --</option>
+                                        <?php foreach ($mykelas as $value) { ?>
+                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam Ke </label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="e_jam" id="e_jam" placeholder="8.30"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Simpan
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
 <div id="modalEdit" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -259,6 +356,54 @@
         })
     }
 
+    if ($("#formUpdate").length > 0) {
+        $("#formUpdate").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                e_nama: {
+                    required: true
+                },
+                e_kelas: {
+                    required: true
+                },
+                e_ruang: {
+                    required: true
+                },
+                e_jam: {
+                    required: true
+                },
+                e_hari: {
+                    required: true
+                },
+                e_guru: {
+                    required: true
+                },
+            },
+            submitHandler: function(form) {
+                $('#btn_update').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('jadwal/update') ?>",
+                    type: "POST",
+                    data: $('#formUpdate').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_update').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        if (response == true) {
+                            document.getElementById("formUpdate").reset();
+                            swalInputSuccess();
+                            show_data();
+                            $('#modalUpdate').modal('hide');
+                        } else {
+                            swalIdDouble('Tidak ada Tahun akademik , Harap input dahulu');
+                        }
+                    }
+                });
+            }
+        })
+    }
+
 
     if ($("#formSearch").length > 0) {
         $("#formSearch").validate({
@@ -298,8 +443,11 @@
                                 '<td>' + data[i].JAM + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-successs item_edit" title="Upload" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+                                '</button> &nbsp' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_update" title="Edit" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                                 '</button> &nbsp' +
                                 '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
@@ -479,7 +627,6 @@
         $('#modalTambah').modal('show');
     });
 
-    //get data for update record
     $('#show_data').on('click', '.item_edit', function() {
         document.getElementById("formEdit").reset();
         var id = $(this).data('id');
@@ -498,6 +645,37 @@
                 $('#e_nama').val(data[0].NAMAJABATAN);
                 $('#e_keterangan').val(data[0].KET);
 
+            }
+        });
+    });
+
+        //get data for update record
+        $('#show_data').on('click', '.item_update', function() {
+        document.getElementById("formEdit").reset();
+        var id = $(this).data('id');
+        $('#modalUpdate').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('jadwal/tampil_byid') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                $('#e_id').val(data[0].id);
+                $('#e_programsekolahs').val(data[0].ps);
+                $('#e_hari').val(data[0].hari);
+                $('#e_ruang').val(data[0].id_ruang);
+                $('#e_kelas').val(data[0].nmklstrjdk);
+                $('#e_jam').val(data[0].JAM);
+                show_data_guru(data[0].ps, function(a){
+                    $('#e_guru').val(data[0].id_guru);
+                });
+
+                show_data_mataajar(data[0].ps, function(a){
+                    $('#e_mataajar').val(data[0].id_mapel);
+                });
             }
         });
     });
@@ -535,4 +713,34 @@
             }
         })
     })
+
+    function show_data_guru(id, callback) {
+        var ps = id;
+        $.ajax({
+            type: "POST",
+            url: "jadwal/showguru",
+            data: {
+                ps: ps
+            }
+        }).done(function(data) {
+            $("#e_guru").html(data);
+            callback()
+        });
+
+        
+    }
+
+    function show_data_mataajar(id, callback) {
+        var ps = id;
+        $.ajax({
+            type: "POST",
+            url: "jadwal/showmapel",
+            data: {
+                ps: ps
+            }
+        }).done(function(data) {
+            $("#e_mataajar").html(data);
+            callback()
+        });
+    }
 </script>
