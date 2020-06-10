@@ -192,6 +192,58 @@ if ($jabatan == 19) { ?>
 
 			</ul>
 		</li>
+
+		<li class="">
+			<a href="javascript:void(0);" class="dropdown-toggle">
+				<i class="menu-icon fa fa-calendar"></i>
+				<span class="menu-text">
+					Absensi
+				</span>
+
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				<li class="">
+					<a href="<?= base_url() . 'generateguru'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Generate Kehadiran Guru
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'kehadiranguru'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Kehadiran Guru
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'kehadiranpengganti'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Daftar kehadiran pengganti
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'periksakehadiranguru'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Periksa Kehadiran Guru
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'rekapkehadiranguru'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rekapitulasi Kehadiran Guru
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'generategajiguru'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Generate Gaji Guru 
+					</a>
+				</li>
+
+			</ul>
+		</li>
 		<li class="">
 			<a href="javascript:void(0);" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-user"></i>

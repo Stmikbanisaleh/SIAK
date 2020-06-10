@@ -5,57 +5,8 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a> Tambah Data
 		</button>
 	</div>
-	<!-- <div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
-	</div> -->
 	<br>
 	<br>
-</div>
-
-<!-- Modal Import Data -->
-<div id="my-modal2" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Jenis Pembayaran</h3>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xs-12">
-						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
-								<div class="col-sm-6">
-									<input type="file" id="file" required name="file" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-								<div class="col-sm-9">
-									<a href="<?php echo base_url() . 'assets/guru.xls' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
-					<i class="ace-icon fa fa-save"></i>
-					Simpan
-				</button>
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-					<i class="ace-icon fa fa-times"></i>
-					Batal
-				</button>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
 </div>
 
 <!-- Modal Input Data -->
@@ -64,12 +15,13 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Input <?= $page_name; ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" id="formTambah">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Pembayaran </label>
                             <div class="col-sm-9">
@@ -108,11 +60,11 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Pembayaran </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama" class="form-control" />
+									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
+									<input type="text" id="e_nama_pembayaran" required name="e_nama_pembayaran" placeholder="Nama" class="form-control" />
 								</div>
 							</div>
 							
@@ -162,6 +114,76 @@
 		$('#datatable_tabletools').DataTable();
 	});
 
+
+    if ($("#formEdit").length > 0) {
+        $("#formEdit").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                formdata = new FormData(form);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('modulpayroll/jenis_pembayaran/update') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        console.log(data);
+                        $('#modalEdit').modal('hide');
+                        if (data == 1 || data == true) {
+                            document.getElementById("formEdit").reset();
+                            swalInputSuccess();
+                            show_data();
+                        } else if (data == 401) {
+                            document.getElementById("formEdit").reset();
+                            swalIdDouble();
+                        } else {
+                            document.getElementById("formEdit").reset();
+                            swalInputFailed();
+                        }
+                    }
+                });
+                return false;
+            }
+        })
+	}
+	
+	if ($("#formTambah").length > 0) {
+        $("#formTambah").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+                nama: {
+                    required: true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function(form) {
+                $('#btn_simpan').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulpayroll/jenis_pembayaran/simpan') ?>",
+                    type: "POST",
+                    data: $('#formTambah').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Simpan');
+                        if (response == true) {
+                            document.getElementById("formTambah").reset();
+                            swalInputSuccess();
+                            show_data();
+                            $('#my-modal').modal('hide');
+                        } else {
+                            swalIdDouble('Tidak ada Tahun akademik , Harap input dahulu');
+                        }
+                    }
+                });
+            }
+        })
+    }
 	//function show all Data
 	function show_data() {
 		$.ajax({
@@ -218,7 +240,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
-				$('#e_nama').val(data[0].nama_pembayaran);
+				$('#e_nama_pembayaran').val(data[0].nama_pembayaran);
 			}
 		});
     });

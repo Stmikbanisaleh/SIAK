@@ -1,11 +1,11 @@
 <?php
 
-class Model_jnspembayaran extends CI_model
+class Model_generateguru extends CI_model
 {
-    public function view($table)
+
+    public function view()
     {
-        $this->db->where('isdeleted !=', 1);
-        return $this->db->get($table);
+        return  $this->db->query('select g.*, j.nama as nama_jabatan from guru g join jabatan j on g.jabatan = j.id where g.isdeleted != 1 ');
     }
 
     public function viewOrdering($table, $order, $ordering)
@@ -30,6 +30,11 @@ class Model_jnspembayaran extends CI_model
         return $this->db->get($table);
     }
 
+    public function view_count($table, $data_id)
+    {
+        return $this->db->query('select nik from ' . $table . ' where nik = ' . $data_id . ' and isdeleted != 1')->num_rows();
+    }
+
     public function insert($data, $table)
     {
         $result = $this->db->insert($table, $data);
@@ -51,10 +56,5 @@ class Model_jnspembayaran extends CI_model
     function truncate($table)
     {
         $this->db->truncate($table);
-    }
-
-    public function view_count($field, $table, $data_id)
-    {
-        return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
     }
 }
