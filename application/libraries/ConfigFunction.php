@@ -170,4 +170,11 @@ class Configfunction
         $result = $this->CI->db->query('SELECT address, UPPER(name_school) name_school, no_telp FROM sys_config WHERE 1')->row();
         return $result;
     }
+
+    public function insertlog($username, $nip,$date)
+    {
+        $result = $this->CI->db->query("INSERT INTO user_log
+        VALUES ('','$nip','$username','login','$date')");
+        return $result;
+    }
 }

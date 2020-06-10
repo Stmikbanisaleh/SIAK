@@ -34,7 +34,9 @@ class Dashboard extends CI_Controller
 		$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '" . $password . "' and level ='operator' and isdeleted != 1 and status = 1");
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
+			$this->load->library('Configfunction');
 			foreach ($data as $value) {
+				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'));
 				$data = [
 					'username' => $value['username'],
 					'nama' => $value['nama'],
