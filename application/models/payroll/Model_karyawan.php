@@ -4,13 +4,7 @@ class Model_karyawan extends CI_model
 {
     public function view($table)
     {
-        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
-    }
-
-    public function getsekolah()
-    {
-        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
     }
 
     public function viewOrdering($table, $order, $ordering)
@@ -37,11 +31,27 @@ class Model_karyawan extends CI_model
 
     public function view_karyawan()
     {
-        return  $this->db->query('select a.*,b.*,c.* from tbpengawas a 
-        left join tbagama b on a.kdtbagama = b.KDTBAGAMA
-        left join mspendidikan c on a.id_pend_akhir = c.IDMSPENDIDIKAN
-        where a.isdeleted != 1
+        return  $this->db->query('select a.*,b.*,c.* from biodata_karyawan a 
+        left join tbagama b on a.agama = b.KDTBAGAMA
+        left join mspendidikan c on a.pendidikan = c.IDMSPENDIDIKAN
         ');
+    }
+
+    public function view_karyawan_where($id)
+    {
+        return  $this->db->query("select a.*,b.*,c.* from biodata_karyawan a 
+        left join tbagama b on a.agama = b.KDTBAGAMA
+        left join mspendidikan c on a.pendidikan = c.IDMSPENDIDIKAN
+        where nip = '$id[id]'
+        ");
+    }
+
+    public function view_tarif_where($id)
+    {
+        return  $this->db->query("select a.*,b.nama_pembayaran from tarifkaryawan a
+        join jnspembayaran b on a.cara_pembayaran = b.id
+        where a.id_karyawan = '$id[id]'
+        ");
     }
 
     public function view_count($table, $data_id)
