@@ -212,6 +212,13 @@ if ($jabatan == 19) { ?>
 				</li>
 
 				<li class="">
+					<a href="<?= base_url() . 'generatekaryawan'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Generate Kehadiran Karyawan
+					</a>
+				</li>
+
+				<li class="">
 					<a href="<?= base_url() . 'kehadiranguru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Kehadiran Guru
@@ -239,6 +246,13 @@ if ($jabatan == 19) { ?>
 					<a href="<?= base_url() . 'generategajiguru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Generate Gaji Guru 
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'generategajikaryawan'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Generate Gaji Karyawan 
 					</a>
 				</li>
 

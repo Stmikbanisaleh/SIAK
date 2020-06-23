@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Generateguru extends CI_Controller
+class Generategajiguru extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model('model_generateguru');
+        $this->load->model('model_Generategajiguru');
     }
 
     function render_view($data)
@@ -19,9 +19,9 @@ class Generateguru extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
-                'page_content'  => 'generateguru/view',
-                'ribbon'        => '<li class="active">Generate Kehadiran Guru</li>',
-                'page_name'     => 'Generate Kehadiran Guru'
+                'page_content'  => 'generategajiguru/view',
+                'ribbon'        => '<li class="active">Generate Gaji Guru</li>',
+                'page_name'     => 'Generate Gaji Guru'
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
