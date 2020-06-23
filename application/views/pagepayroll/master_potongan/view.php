@@ -20,22 +20,21 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Tarif Karyawan</h3>
+				<h3 class="smaller lighter blue no-margin">Form Tambah Tarif Potongan</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formEdit">
+						<form class="form-horizontal" role="form" id="formTambah">
                             <input type="hidden" id="id" required name="e_id" />
-
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Karyawan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="IdGuru" id="IdGuru">
-										<option value="">-- Pilih Guru --</option>
-										<?php foreach ($my_guru as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+									<select class="form-control" name="id_karyawan" id="id_karyawan">
+										<option value="">-- Pilih Karyawan --</option>
+										<?php foreach ($mykaryawan as $value) { ?>
+											<option value=<?= $value['nip'] ?>><?= $value['nama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -54,16 +53,108 @@
 							</div>
 
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Potongan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
 								<div class="col-sm-9">
-                                <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tarif Potongan" class="form-control" />
+								<input type="text" id="infaq_masjid" required name="infaq_masjid" placeholder="Tarif Potongan" class="form-control" />
+                                <input type="hidden" id="infaq_masjid_v" required name="infaq_masjid_v"/>
+								<script language="JavaScript">
+										var rupiah3 = document.getElementById('PotongTarif');
+										rupiah3.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#infaq_masjid_v').val(rup3);
+											rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan3.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Anggota Koperasi</label>
+								<div class="col-sm-9">
+								<input type="text" id="anggota_koperasi" required name="anggota_koperasi" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="anggota_koperasi_v" required name="anggota_koperasi_v"/>
+								<script language="JavaScript">
+										var rupiah4 = document.getElementById('anggota_koperasi');
+										rupiah4.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#anggota_koperasi_v').val(rup4);
+											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+										});
+
+										function formatRupiah4(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan4) {
+												separator = sisa ? '.' : '';
+												rupiah4 += separator + ribuan4.join('.');
+											}
+
+											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kas / Bon</label>
+								<div class="col-sm-9">
+								<input type="text" id="kas_bon" required name="kas_bon" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="kas_bon_v" required name="kas_bon_v"/>
+								<script language="JavaScript">
+										var rupiah5 = document.getElementById('kas_bon');
+										rupiah5.addEventListener('keyup', function(e) {
+											rup5 = this.value.replace(/\D/g, '');
+											$('#kas_bon_v').val(rup5);
+											rupiah5.value = formatRupiah5(this.value, 'Rp. ');
+										});
+
+										function formatRupiah5(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah5 = split[0].substr(0, sisa),
+												ribuan5 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan5) {
+												separator = sisa ? '.' : '';
+												rupiah5 += separator + ribuan5.join('.');
+											}
+
+											rupiah5 = split[1] != undefined ? rupiah5 + ',' + split[1] : rupiah5;
+											return prefix == undefined ? rupiah5 : (rupiah5 ? 'Rp. ' + rupiah5 : '');
+										}
+									</script>
 								</div>
                             </div>
                             
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="PotonganNama" id="PotonganNama">
+									<select class="form-control" required name="potong_periode" id="potong_periode">
                                         <option value="">-- Pilih Periode --</option>
                                         <option value="Bulanan">Bulanan</option>
                                         <option value="Periodik">Periodik</option>
@@ -74,7 +165,7 @@
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="PotonganNama" id="PotonganNama">
+									<select class="form-control" required name="potong_status" id="potong_status">
                                         <option value="">-- Pilih Keterangan --</option>
                                         <option value="Aktif">Aktif</option>
                                         <option value="Non-aktif">Non-aktif</option>
@@ -140,9 +231,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Potongan </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid </label>
                                 <div class="col-sm-9">
-                                <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tarif Potongan" class="form-control" />
+                                <input type="text" id="infaq_masjid" required name="infaq_masjid" placeholder="Tarif Potongan" class="form-control" />
+
                                 </div>
                             </div>
 
@@ -198,8 +290,8 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Guru</th>
-				<th>Potongan</th>
+				<th>Kode Karyawan</th>
+				<th>Nama Karyawan</th>
 				<th>Jenis Potongan</th>
 				<th>Periode</th>
 				<th>Status Potongan</th>
@@ -211,6 +303,36 @@
 	</table>
 </div>
 <script type="text/javascript">
+	if ($("#formTambah").length > 0) {
+		$("#formTambah").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('modulpayroll/master_potongan/simpan') ?>",
+					dataType: "JSON",
+					data: $('#formTambah').serialize(),
+					success: function(data) {
+						$('#my-modal').modal('hide');
+						if (data == 1) {
+							document.getElementById("formTambah").reset();
+							swalInputSuccess();
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formTambah").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formTambah").reset();
+							swalInputFailed();
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
+
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
@@ -230,16 +352,16 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td class="text-center">' + data[i].GuruNama + '</td>' +
-						'<td>' + data[i].PotongTarif + '</td>' +
-						'<td>' + data[i].PotongNama + '</td>' +
-						'<td>' + data[i].PotongPeriode + '</td>' +
-                        '<td>' + data[i].PotongStatus + '</td>' +
-						'<td >' +
-						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<td class="text-center">' + data[i].id_karyawan + '</td>' +
+						'<td>' + data[i].nama + '</td>' +
+						'<td>' + data[i].potong_nama + '</td>' +
+						'<td>' + data[i].potong_periode + '</td>' +
+                        '<td>' + data[i].potong_status + '</td>' +
+						'<td>' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_potong + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"> Edit </i>' +
                         '</button> ' + 
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id_potong + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
 						'</button> ' + 
 						'</td>' +

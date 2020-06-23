@@ -22,15 +22,15 @@ class Master_potongan extends CI_Controller
 
 	public function index()
 	{
-		$my_guru = $this->model_mastpotongan->view('tbguru')->result_array();
+		$mykaryawan = $this->model_mastpotongan->view('biodata_karyawan')->result_array();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/master_potongan/view',
 			'ribbon' 		=> '<li class="active">Master Potongan</li><li>Potongan</li>',
-			'page_name' 	=> 'Potongan',
+			'page_name' 	=> 'Master Potongan',
 			'js' 			=> 'js_file',
-			'my_guru'		=> $my_guru
+			'mykaryawan'		=> $mykaryawan
 		);
-		$this->render_view($data); 
+		$this->render_view($data);
 	}
 
 	public function tampil()
@@ -39,4 +39,25 @@ class Master_potongan extends CI_Controller
 		echo json_encode($my_data);
 	}
 
+	public function simpan()
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$data = array(
+				'id_karyawan'  => $this->input->post('id_karyawan'),
+				'infaq_masjid'  => $this->input->post('infaq_masjid_v'),
+				'potong_nama'  => $this->input->post('PotonganNama'),
+				'potong_periode'  => $this->input->post('potong_periode'),
+				'potong_status'  => $this->input->post('potong_status'),
+				'createdAt' => date('Y-m-d H:i:s')
+			);
+			$result = $this->model_mastpotongan->insert($data, 'tbkaryawanpot');
+			if ($result) {
+				echo $result;
+			} else {
+				echo 'insert gagal';
+			}
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
+	}
 }
