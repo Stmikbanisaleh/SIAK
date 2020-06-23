@@ -7,20 +7,7 @@
     <br>
     <br>
 </div>
-<div class="row">
-	<div class="col-xs-1">
-		<button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-			<a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
-		</button>
-	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
-	</div>
-	<br>
-	<br>
-</div>
+
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
