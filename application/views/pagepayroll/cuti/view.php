@@ -20,7 +20,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Tarif Karyawan</h3>
+				<h3 class="smaller lighter blue no-margin">Tambah Data Dinas / Cuti</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -44,7 +44,7 @@
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Kehadiran </label>
 								<div class="col-sm-9">
-                                <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tanggal Date Time" class="form-control" />
+                                <input type="date" id="PotongTarif" required name="PotongTarif" placeholder="Tanggal Date Time" class="form-control" />
 								</div>
                             </div>
                             
@@ -83,7 +83,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Data Karyawan</h3>
+				<h3 class="smaller lighter blue no-margin">Tambah Data Dinas / Cuti</h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -108,7 +108,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Kehadiran </label>
                             <div class="col-sm-9">
-                            <input type="text" id="PotongTarif" required name="PotongTarif" placeholder="Tanggal Date Time" class="form-control" />
+                            <input type="date" id="PotongTarif" required name="PotongTarif" placeholder="Tanggal Date Time" class="form-control" />
                             </div>
                         </div>
 

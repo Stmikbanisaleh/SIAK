@@ -237,7 +237,7 @@ class Generateguru extends CI_Controller
 				echo json_encode(false);
 			}
 		} else {
-			$this->load->view('pagekasir/login'); //Memanggil function render_view
+			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
 }
