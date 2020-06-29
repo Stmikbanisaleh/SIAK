@@ -214,10 +214,10 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].IdGuru + '</td>' +
 						'<td class="text-left">' + data[i].GuruNama + '</td>' +
-						'<td >' + data[i].tarif + '</td>' +
+						'<td >' + data[i].Nominal2 + '</td>' +
                         '<td>' + data[i].nama_pembayaran + '</td>' +
 						'<td >' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].idt + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
 						'</button> ' + 
 						'</td>' +
@@ -257,7 +257,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/cuti/delete') ?>",
+					url: "<?php echo base_url('modulpayroll/tarif_guru/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {

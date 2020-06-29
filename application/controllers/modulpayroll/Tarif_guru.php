@@ -64,4 +64,15 @@ class Tarif_guru extends CI_Controller
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
 	}
+
+	public function delete()
+    {
+        $data_id = array(
+            'id'  => $this->input->post('id')
+        );
+        $action = $this->model_tarifguru->delete($data_id, 'tarifguru');
+        if($action){
+            echo json_encode($action);
+        }
+    }
 }

@@ -42,6 +42,7 @@ class Dashboard extends CI_Controller
 				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'));
 
 					$data = [
+						'nip' => $value['nip'],
 						'username_payroll' => $value['username'],
 						'nama' => $value['nama'],
 						'jabatan' => $value['jabatan'],

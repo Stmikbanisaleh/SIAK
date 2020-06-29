@@ -5,41 +5,35 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">No Induk</label>
                     <div class="col-sm-4">
-                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['IdGuru']; ?>" id="e_id" class="form-control" />
-                        <input readonly type="text" name="nip" value="<?php echo $mydata[0]['IdGuru']; ?>" id="nip" class="form-control" />
+                        <input type="hidden" name="e_id" value="<?php echo $mydata[0]['nip']; ?>" id="e_id" class="form-control" />
+                        <input readonly type="text" name="nip" value="<?php echo $mydata[0]['nip']; ?>" id="nip" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Nama</label>
                     <div class="col-sm-4">
-                        <input minlength="4" readonly type="text" value="<?php echo $mydata[0]['GuruNama']; ?>" name="nama" id="nama" class="form-control" />
+                        <input minlength="4" readonly type="text" value="<?php echo $mydata[0]['nama']; ?>" name="nama" id="nama" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Email</label>
                     <div class="col-sm-4">
-                        <input minlength="4" type="text" value="<?php echo $mydata[0]['GuruEmail']; ?>" name="email" id="email" class="form-control" />
+                        <input minlength="4" type="text" value="<?php echo $mydata[0]['email']; ?>" name="email" id="email" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Telp</label>
                     <div class="col-sm-4">
-                        <input minlength="4" type="text" value="<?php echo $mydata[0]['GuruTelp']; ?>" name="telp" id="telp" class="form-control" />
+                        <input minlength="4" type="text" value="<?php echo $mydata[0]['telp']; ?>" name="telp" id="telp" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Alamat</label>
                     <div class="col-sm-4">
-                        <input type="text" value="<?php echo $mydata[0]['GuruAlamat']; ?>" name="alamat" id="alamat" class="form-control" />
+                        <input type="text" value="<?php echo $mydata[0]['alamat']; ?>" name="alamat" id="alamat" class="form-control" />
                     </div>
                 </div>
                 <div class="space-4"></div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Foto Profile</label>
-                    <div class="col-sm-9">
-                        <input type="file" name="file" id="file" />
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button id="btn_simpan" class="btn btn-info" type="submit">
@@ -83,7 +77,7 @@
                 $('#btn_simpan').html('Sending..');
                 formdata = new FormData(form);
                 $.ajax({
-                    url: "<?php echo base_url('modulguru/profile/update') ?>",
+                    url: "<?php echo base_url('modulpayroll/profile/update') ?>",
                     type: "POST",
                     data: formdata,
                     processData: false,
