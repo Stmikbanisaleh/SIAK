@@ -32,6 +32,12 @@
 				</a>
 			</li>
 			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/tarif_guru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Tarif Guru
+				</a>
+			</li>
+			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/biodata_karyawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Master Biodata Karyawan

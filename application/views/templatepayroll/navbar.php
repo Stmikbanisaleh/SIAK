@@ -24,7 +24,8 @@
 				<img class="nav-user-photo" src="<?= base_url() ?>assets/image/avatars/avatar2.png" alt="Jason's Photo" />
 				<span class="user-info">
 					<small>Welcome,</small>
-					<?php echo $this->session->userdata('username_guru'); ?>
+					<?php  
+					echo $this->session->userdata('nama'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
@@ -32,7 +33,7 @@
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<li class="">
-					<a href="<?= base_url() . 'modulguru/profile'; ?>">
+					<a href="<?= base_url() . 'modulpayroll/profile'; ?>">
 						<i class="ace-icon fa fa-user"></i>
 						Profile
 					</a>
@@ -40,7 +41,7 @@
 				<li class="divider"></li>
 
 				<li class="">
-					<a href="<?= base_url() . 'modulguru/setting'; ?>">
+					<a href="<?= base_url() . 'modulpayroll/setting'; ?>">
 						<i class="ace-icon fa fa-cog"></i>
 						Password
 					</a>

@@ -20,7 +20,7 @@
                     <i class="ace-icon fa fa-save bigger-110"></i>
                     Ubah
                 </button> &nbsp;&nbsp;&nbsp;
-                <a href="<?php echo base_url() . 'modulguru/profile/index'; ?>" class="ace-icon fa fa-back bigger-110">
+                <a href="<?php echo base_url() . 'modulpayroll/profile/index'; ?>" class="ace-icon fa fa-back bigger-110">
                     Kembali</a>
             </div>
         </form>
@@ -43,7 +43,7 @@
                 formdata = new FormData(form);
                 
                 $.ajax({
-                    url: "<?php echo base_url('modulguru/setting/update') ?>",
+                    url: "<?php echo base_url('modulpayroll/setting/update') ?>",
                     type: "POST",
                     data: formdata,
                     processData: false,

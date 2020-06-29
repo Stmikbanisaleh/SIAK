@@ -20,7 +20,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Import <?=$page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -37,7 +37,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
 								<div class="col-sm-9">
-									<a href="<?php echo base_url() . 'assets/guru.xls' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+									<a href="<?php echo base_url() . 'modulpayroll/biodata_karyawan/downloadsample' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
 								</div>
 							</div>
 					</div>
@@ -64,150 +64,251 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Input <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formTambah">
-                        <div class="text-center">
-                            BIODATA KARYAWAN
-                        </div>
-                        <hr>
+							<div class="text-center">
+								BIODATA KARYAWAN
+							</div>
+							<hr>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIPP </label>
-                            <div class="col-sm-6">
-                                <!-- <input type="hidden" id="e_id" required name="e_id" /> -->
-                                <input type="text" id="nip" required name="nip" readonly placeholder="NIPP" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK KTP</label>
+								<div class="col-sm-9">
+									<input type="text" id="nik" required name="nik" placeholder="NIK KTP" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-                            <div class="col-sm-9">
-                                <input type="text" id="nama" required name="nama" placeholder="Nama" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIP Pegawai</label>
+								<div class="col-sm-9">
+									<input type="text" id="nip" required name="nip" placeholder="NIP Pegawai" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="jabatan" id="jabatan">
-                                    <option value="">-- Pilih Jabatan --</option>
-                                    <?php foreach ($myprogram as $value) { ?>
-                                        <option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+								<div class="col-sm-9">
+									<input type="text" id="nama" required name="nama" placeholder="Nama" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                    <option value="">-- Pilih Pengguna --</option>
-                                    <option value="L">Laki-Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="jabatan" id="jabatan">
+										<option value="">-- Pilih Jabatan --</option>
+										<?php foreach ($my_jabatan as $value) { ?>
+											<option value=<?= $value['ID'] ?>> <?= $value['NAMAJABATAN']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-                            <div class="col-sm-9">
-                                <input type="text" id="agama" required name="agama" placeholder="Agama" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+										<option value="">-- Pilih Pengguna --</option>
+										<option value="L">Laki-Laki</option>
+										<option value="P">Perempuan</option>
+									</select>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-                            <div class="col-sm-9">
-                                <input type="email" id="email" required name="email" placeholder="Email" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="agama" id="agama">
+										<option value="">-- Pilih Agama --</option>
+										<?php foreach ($myagama as $value) { ?>
+											<option value=<?= $value['KDTBAGAMA'] ?>><?= $value['DESCRTBAGAMA'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
-                            <div class="col-sm-9">
-                            <input type="text" id="telp" required name="telp" placeholder="No. Telp" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
+								<div class="col-sm-9">
+									<input type="email" id="email" required name="email" placeholder="Email" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" required name="alamat" id="alamat" placeholder="Alamat"></textarea>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
+								<div class="col-sm-9">
+									<input type="text" id="telp" required name="telp" placeholder="No. Telp" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir">
-                                    <option value="">-- Pilih Pendidikan --</option>
-                                    <?php foreach ($mypendidikan as $value) { ?>
-                                        <option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
+								<div class="col-sm-9">
+									<textarea class="form-control" required name="alamat" id="alamat" placeholder="Alamat"></textarea>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" placeholder="24/10/1995"></textarea>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir">
+										<option value="">-- Pilih Pendidikan --</option>
+										<?php foreach ($my_pendidikan as $value) { ?>
+											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="status" id="status">
-                                    <option value="">-- Pilih Status --</option>
-                                    <option value="T">Aktif</option>
-                                    <option value="F">Tidak</option>
-                                </select>
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" placeholder="24/10/1995"></textarea>
+								</div>
+							</div>
 
-                        <hr>
-                            <div class="text-center"> TARIF KARYAWAN </div>
-                        <hr>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="status" id="status">
+										<option value="">-- Pilih Status --</option>
+										<option value="1">Aktif</option>
+										<option value="0">Tidak</option>
+									</select>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Posisi </label>
-                            <div class="col-sm-9">
-                            <input type="text" id="posisi" required name="posisi" placeholder="Posisi" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Mulai Kerja </label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" name="tgl_mulai" id="tgl_mulai" placeholder="24/10/1995"></textarea>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-                            <div class="col-sm-9">
-                            <input type="text" id="jabatan" required name="jabatan" placeholder="Detail Jabatan" class="form-control" />
-                            </div>
-                        </div>
+							<hr>
+							<div class="text-center"> TARIF KARYAWAN </div>
+							<hr>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif </label>
-                            <div class="col-sm-9">
-                            <input type="number" id="tarif" required name="tarif" placeholder="Tarif" class="form-control" />
-                            </div>
-                        </div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gaji Karyawan </label>
+								<div class="col-sm-9">
+									<input type="text" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
+									<script language="JavaScript">
+										var rupiah1 = document.getElementById('tarif_karyawan');
+										rupiah1.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tarif_karyawan_v').val(rup1);
+											rupiah1.value = formatRupiah1(this.value, 'Rp. ');
+										});
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir">
-                                    <option value="">-- Pilih Cara Pembayaran --</option>
-                                    <?php foreach ($mypendidikan as $value) { ?>
-                                        <option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah1 = split[0].substr(0, sisa),
+												ribuan1 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan1) {
+												separator = sisa ? '.' : '';
+												rupiah1 += separator + ribuan1.join('.');
+											}
+
+											rupiah1 = split[1] != undefined ? rupiah1 + ',' + split[1] : rupiah1;
+											return prefix == undefined ? rupiah1 : (rupiah1 ? 'Rp. ' + rupiah1 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Jabatan </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunjangan_jabatan" required name="tunjangan_jabatan" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="tunjangan_jabatan_v" required name="tunjangan_jabatan_v" />
+									<script language="JavaScript">
+										var rupiah2 = document.getElementById('tunjangan_jabatan');
+										rupiah2.addEventListener('keyup', function(e) {
+											rup2 = this.value.replace(/\D/g, '');
+											$('#tunjangan_jabatan_v').val(rup2);
+											rupiah2.value = formatRupiah2(this.value, 'Rp. ');
+										});
+
+										function formatRupiah2(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah2 = split[0].substr(0, sisa),
+												ribuan2 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan2) {
+												separator = sisa ? '.' : '';
+												rupiah2 += separator + ribuan2.join('.');
+											}
+
+											rupiah2 = split[1] != undefined ? rupiah2 + ',' + split[1] : rupiah2;
+											return prefix == undefined ? rupiah2 : (rupiah2 ? 'Rp. ' + rupiah2 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunjangan_masa_kerja" required name="tunjangan_masa_kerja" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunjangan_masa_kerja_v" required name="tunjangan_masa_kerja_v" />
+									<script language="JavaScript">
+										var rupiah3 = document.getElementById('tunjangan_masa_kerja');
+										rupiah3.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#tunjangan_masa_kerja_v').val(rup3);
+											rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan3.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="nama_pembayaran" id="nama_pembayaran">
+										<option value="">-- Pilih Cara Pembayaran --</option>
+										<?php foreach ($my_pembayaran as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama_pembayaran'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening / Akun </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="no_rekening" id="no_rekening" placeholder="No Rekening / Akun"></textarea>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -232,109 +333,133 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Data Karyawan</h3>
+				<h3 class="smaller lighter blue no-margin">Form Edit <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIPP </label>
-								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_nip" required name="e_nip" readonly placeholder="NIPP" class="form-control" />
+							<form class="form-horizontal" role="form" id="formTambah">
+								<div class="text-center">
+									BIODATA KARYAWAN
 								</div>
-							</div>
+								<hr>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama" class="form-control" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK KTP</label>
+									<div class="col-sm-9">
+										<input type="hidden" id="e_id" required name="e_id" />
+										<input type="text" id="e_nik" required name="e_nik" placeholder="NIK KTP" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_jabatan" id="e_jabatan">
-										<option value="">-- Pilih Jabatan --</option>
-										<?php foreach ($myprogram as $value) { ?>
-											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
-										<?php } ?>
-									</select>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIP Pegawai</label>
+									<div class="col-sm-9">
+										<input type="text" id="e_nip" required name="e_nip" placeholder="NIP Pegawai" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_jenis_kelamin" id="e_jenis_kelamin">
-										<option value="">-- Pilih Pengguna --</option>
-										<option value="L">Laki-Laki</option>
-										<option value="P">Perempuan</option>
-									</select>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+									<div class="col-sm-9">
+										<input type="text" id="e_nama" required name="e_nama" placeholder="Nama" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_agama" required name="e_agama" placeholder="Agama" class="form-control" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="e_jabatan" id="e_jabatan">
+											<option value="">-- Pilih Jabatan --</option>
+											<?php foreach ($my_jabatan as $value) { ?>
+												<option value=<?= $value['ID'] ?>> <?= $value['NAMAJABATAN']; ?></option>
+											<?php } ?>
+										</select>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
-								<div class="col-sm-9">
-									<input type="email" id="e_email" required name="e_email" placeholder="Email" class="form-control" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="e_jenis_kelamin" id="e_jenis_kelamin">
+											<option value="">-- Pilih Pengguna --</option>
+											<option value="L">Laki-Laki</option>
+											<option value="P">Perempuan</option>
+										</select>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
-								<div class="col-sm-9">
-                                <input type="text" id="e_telp" required name="e_telp" placeholder="No. Telp" class="form-control" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Agama </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="e_agama" id="e_agama">
+											<option value="">-- Pilih Agama --</option>
+											<?php foreach ($myagama as $value) { ?>
+												<option value=<?= $value['KDTBAGAMA'] ?>><?= $value['DESCRTBAGAMA'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-								<div class="col-sm-9">
-									<textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Alamat"></textarea>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
+									<div class="col-sm-9">
+										<input type="email" id="e_email" required name="e_email" placeholder="Email" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
-										<option value="">-- Pilih Pendidikan --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
-										<?php } ?>
-									</select>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
+									<div class="col-sm-9">
+										<input type="text" id="e_telp" required name="e_telp" placeholder="No. Telp" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
-								<div class="col-sm-9">
-									<input type="date" class="form-control" name="e_tgl_lahir" id="e_tgl_lahir" placeholder="24/10/1995"></textarea>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
+									<div class="col-sm-9">
+										<textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Alamat"></textarea>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_status" id="e_status">
-										<option value="">-- Pilih Status --</option>
-										<option value="T">Aktif</option>
-										<option value="F">Tidak</option>
-									</select>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendidikan Terakhir </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
+											<option value="">-- Pilih Pendidikan --</option>
+											<?php foreach ($my_pendidikan as $value) { ?>
+												<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
 								</div>
-							</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+									<div class="col-sm-9">
+										<input type="date" class="form-control" name="e_tgl_lahir" id="e_tgl_lahir" placeholder="24/10/1995"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
+									<div class="col-sm-9">
+										<select class="form-control" name="e_status" id="e_status">
+											<option value="">-- Pilih Status --</option>
+											<option value="1">Aktif</option>
+											<option value="0">Tidak</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Mulai Kerja </label>
+									<div class="col-sm-9">
+										<input type="date" class="form-control" name="e_tgl_mulai" id="e_tgl_mulai" placeholder="24/10/1995"></textarea>
+									</div>
+								</div>
 
 					</div>
 				</div>
@@ -366,40 +491,123 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" id="formEdit">
-                            <input type="hidden" id="e_id" required name="e_id" />
-
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Posisi </label>
+						<form class="form-horizontal" role="form" id="formEditTarif">
+							<input type="hidden" id="e_niptarif" required name="e_niptarif" />
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gaji Karyawan </label>
 								<div class="col-sm-9">
-                                <input type="text" id="e_posisi" required name="e_posisi" placeholder="Posisi" class="form-control" />
+									<input type="text" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
+									<script language="JavaScript">
+										var rupiah10 = document.getElementById('e_tarif_karyawan');
+										rupiah10.addEventListener('keyup', function(e) {
+											rup10 = this.value.replace(/\D/g, '');
+											$('#e_tarif_karyawan_v').val(rup10);
+											rupiah10.value = formatRupiah10(this.value, 'Rp. ');
+										});
+
+										function formatRupiah10(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah10 = split[0].substr(0, sisa),
+												ribuan10 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan10) {
+												separator = sisa ? '.' : '';
+												rupiah10 += separator + ribuan10.join('.');
+											}
+
+											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+											return prefix == undefined ? rupiah10 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+										}
+									</script>
 								</div>
 							</div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Jabatan </label>
 								<div class="col-sm-9">
-                                <input type="text" id="e_jabatan" required name="e_jabatan" placeholder="Jabatan" class="form-control" />
+									<input type="text" id="e_tunjangan_jabatan" required name="e_tunjangan_jabatan" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_tunjangan_jabatan_v" required name="e_tunjangan_jabatan_v" />
+									<script language="JavaScript">
+										var rupiah20 = document.getElementById('e_tunjangan_jabatan');
+										rupiah20.addEventListener('keyup', function(e) {
+											rup20 = this.value.replace(/\D/g, '');
+											$('#e_tunjangan_jabatan_v').val(rup20);
+											rupiah20.value = formatRupiah20(this.value, 'Rp. ');
+										});
+
+										function formatRupiah20(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah20 = split[0].substr(0, sisa),
+												ribuan20 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan20) {
+												separator = sisa ? '.' : '';
+												rupiah20 += separator + ribuan20.join('.');
+											}
+
+											rupiah20 = split[1] != undefined ? rupiah2 + ',' + split[1] : rupiah20;
+											return prefix == undefined ? rupiah2 : (rupiah20 ? 'Rp. ' + rupiah20 : '');
+										}
+									</script>
 								</div>
 							</div>
 
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif </label>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja </label>
 								<div class="col-sm-9">
-                                <input type="number" id="e_tarif" required name="e_tarif" placeholder="Tarif" class="form-control" />
+									<input type="text" id="e_tunjangan_masa_kerja" required name="tunjangan_masa_kerja" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_tunjangan_masa_kerja_v" required name="e_tunjangan_masa_kerja_v" />
+									<script language="JavaScript">
+										var rupiah30 = document.getElementById('e_tunjangan_masa_kerja');
+										rupiah30.addEventListener('keyup', function(e) {
+											rup30 = this.value.replace(/\D/g, '');
+											$('#e_tunjangan_masa_kerja_v').val(rup30);
+											rupiah30.value = formatRupiah30(this.value, 'Rp. ');
+										});
+
+										function formatRupiah30(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah30 = split[0].substr(0, sisa),
+												ribuan30 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan30) {
+												separator = sisa ? '.' : '';
+												rupiah30 += separator + ribuan30.join('.');
+											}
+
+											rupiah30 = split[1] != undefined ? rupiah30 + ',' + split[1] : rupiah30;
+											return prefix == undefined ? rupiah30 : (rupiah30 ? 'Rp. ' + rupiah30 : '');
+										}
+									</script>
 								</div>
 							</div>
-
-                            <div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan_terakhir" id="e_pendidikan_terakhir">
+									<select class="form-control" name="e_nama_pembayaran" id="e_nama_pembayaran">
 										<option value="">-- Pilih Cara Pembayaran --</option>
-										<?php foreach ($mypendidikan as $value) { ?>
-											<option value=<?= $value['IDMSPENDIDIKAN'] ?>><?= $value['NMMSPENDIDIKAN'] ?></option>
+										<?php foreach ($my_pembayaran as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama_pembayaran'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
+							</div>
+
+							<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="e_no_rekening" id="e_no_rekening" placeholder="No rekening / Akun"></textarea>
+									</div>
 							</div>
 					</div>
 				</div>
@@ -431,12 +639,13 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>NIPP</th>
+				<th>NIP (Pegawai)</th>
+				<th>NIK (KTP)</th>
 				<th>Nama</th>
 				<th>Email</th>
 				<th>No. Telp</th>
 				<th>Pendidikan Terakhir</th>
-                <th>Alamat</th>
+				<th>Alamat</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -465,39 +674,24 @@
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].nip + '</td>' +
+						'<td class="text-center">' + data[i].nik + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].email + '</td>' +
-						'<td>' + data[i].telp + '</td>' +
-                        '<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
-                        '<td>' + data[i].alamat + '</td>' +
+						'<td>' + data[i].no_telp + '</td>' +
+						'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
+						'<td>' + data[i].alamat + '</td>' +
 						'<td >' +
-						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].nip + '">' +
 						'<i class="ace-icon fa fa-book bigger-120"> Edit Biodata </i>' +
-                        '</button> ' + 
-                        '<br>' + '<br>' + 
-                        '<button  href="#my-modal-edit_tarif" class="btn btn-xs btn-success item_edit_tarif" title="Edit" data-id="' + data[i].id + '">' +
+						'</button> ' +
+						'<br>' + '<br>' +
+						'<button  href="#my-modal-edit_tarif" class="btn btn-xs btn-success item_edit_tarif" title="Edit" data-id="' + data[i].nip + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"> Edit Tarif</i>' +
-                        '</button> ' + 
-                        '<br>' + '<br>' + 
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
+						'</button> ' +
+						'<br>' + '<br>' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].nip + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
-						'</button> ' + 
-                        // '<br>' + '<br>' + 
-						// '<button class="btn btn-xs btn-success item_riwayatpendidikan" title="Riwayatp" data-id="' + data[i].id + '">' +
-						// 'Riwayat Pendidikan' +
-                        // '</button>' + '<br>' + '<br>' + 
-                        // '<button class="btn btn-xs btn-warning item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						// 'Riwayat Jabatan <br>' +
-                        // '</button>' + '<br>' + '<br>' + 
-                        // '<button class="btn btn-xs btn-info item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						// 'Riwayat Seminar <br>' +
-                        // '</button>' + '<br>' + '<br>' + 
-                        // '<button class="btn btn-xs btn-primary item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						// 'Riwayat Sertifikasi <br>' +
-                        // '</button>' + '<br>' + '<br>' + 
-                        // '<button class="btn btn-xs btn-default item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						// 'Riwayat Senat <br>' +
-						// '</button>' +
+						'</button> ' +
 						'</td>' +
 						'</tr>';
 					no++;
@@ -518,69 +712,124 @@
 			}
 
 		});
-    }
-    
-    $('#show_data').on('click', '.item_edit', function() {
+	}
+
+	if ($("#formTambah").length > 0) {
+		$("#formTambah").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/simpan') ?>",
+					dataType: "JSON",
+					data: $('#formTambah').serialize(),
+					success: function(data) {
+						$('#my-modal').modal('hide');
+						if (data == 1) {
+							document.getElementById("formTambah").reset();
+							swalInputSuccess();
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formTambah").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formTambah").reset();
+							swalInputFailed();
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
+
+	$('#show_data').on('click', '.item_edit', function() {
 		var id = $(this).data('id');
 		$('#modalEdit').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byid') ?>",
+			url: "<?php echo base_url('modulpayroll/biodata_karyawan/tampil_byid') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
-				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-				$('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
+				$('#e_id').val(data[0].id_biodata);
+				$('#e_nik').val(data[0].nik);
+				$('#e_nip').val(data[0].nip);
+				$('#e_nama').val(data[0].nama);
+				$('#e_jabatan').val(data[0].jabatan);
+				$('#e_jenis_kelamin').val(data[0].jenis_kelamin);
+				$('#e_agama').val(data[0].agama);
+				$('#e_email').val(data[0].email);
+				$('#e_telp').val(data[0].no_telp);
+				$('#e_alamat').val(data[0].alamat);
+				$('#e_pendidikan_terakhir').val(data[0].pendidikan);
+				$('#e_tgl_lahir').val(data[0].tgl_lhr);
+				$('#e_status').val(data[0].status);
+				$('#e_tgl_mulai').val(data[0].tgl_mulai_kerja);
 			}
 		});
-    });
+	});
 
-    $('#show_data').on('click', '.item_edit_tarif', function() {
+	$('#show_data').on('click', '.item_edit_tarif', function() {
 		var id = $(this).data('id');
 		$('#modalEditTarif').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byid') ?>",
+			url: "<?php echo base_url('modulpayroll/biodata_karyawan/tampil_byidtarif') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
-				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-				$('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
+				$('#e_niptarif').val(data[0].id_karyawan);
+				$('#e_tarif_karyawan').val(data[0].tarif);
+				$('#e_tarif_karyawan_v').val(data[0].tarif);
+				$('#e_tunjangan_jabatan').val(data[0].tunjangan_jabatan);
+				$('#e_tunjangan_jabatan_v').val(data[0].tunjangan_jabatan);
+				$('#e_tunjangan_masa_kerja').val(data[0].tunjangan_masakerja);
+				$('#e_tunjangan_masa_kerja_v').val(data[0].tunjangan_masakerja);
+				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
+				$('#e_no_rekening').val(data[0].no_rekening);
 			}
 		});
-    });
+	});
 
-    $('#show_data').on('click', '.item_hapus', function() {
+	if ($("#formEditTarif").length > 0) {
+        $("#formEditTarif").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                $('#btn_edit').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatetarif') ?>",
+                    type: "POST",
+                    data: $('#formEditTarif').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Ubah');
+                        if (response == true) {
+                            document.getElementById("formEditTarif").reset();
+                            swalEditSuccess();
+                            show_data();
+                            $('#modalEditTarif').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Kode Tarif Sudah Terdaftar');
+                        } else {
+                            swalEditFailed();
+                        }
+                    }
+                });
+            }
+        })
+	}
+	
+	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
 		Swal.fire({
 			title: 'Apakah anda yakin?',
@@ -595,7 +844,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/biodataguru/delete') ?>",
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
@@ -608,5 +857,41 @@
 				});
 			}
 		})
-	})
+	});
+
+	if ($("#formImport").length > 0) {
+            $("#formImport").validate({
+                errorClass: "my-error-class",
+                validClass: "my-valid-class",
+                submitHandler: function(form) {
+                    formdata = new FormData(form);
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url('modulpayroll/biodata_karyawan/import') ?>",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            console.log(data);
+                            if (data == 1 || data == true) {
+                                document.getElementById("formImport").reset();
+								swalInputSuccess();
+								$('#my-modal2').modal('hide');
+								
+                            } else if (data == 401) {
+                                document.getElementById("formImport").reset();
+                                swalIdDouble();
+                            } else {
+                                document.getElementById("formImport").reset();
+                                swalInputFailed();
+                                window.location.href='<?php echo base_url("modulpayroll/biodata_karyawan"); ?>';
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        }
 </script>

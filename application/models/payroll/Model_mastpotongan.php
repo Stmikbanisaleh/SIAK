@@ -4,7 +4,6 @@ class Model_mastpotongan extends CI_model
 {
     public function view($table)
     {
-        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
     }
 
@@ -26,7 +25,6 @@ class Model_mastpotongan extends CI_model
     public function view_where($table, $data)
     {
         $this->db->where($data);
-        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
     }
 
@@ -59,11 +57,6 @@ class Model_mastpotongan extends CI_model
     }
 
     public function view_potongan(){
-        return $this->db->query('SELECT a.*, b.GuruNama
-                                FROM
-                                tbgurupot a,
-                                tbguru b
-                                Where
-                                a.IdGuru = b.id');
+        return $this->db->query("select a.*, b.nama from tbkaryawanpot a join biodata_karyawan b on a.id_karyawan = b.nip");
     }
 }

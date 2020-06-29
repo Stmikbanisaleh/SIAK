@@ -347,12 +347,11 @@
 		show_data();
 		$('#table_id').DataTable();
 	});
-
-	function generate() {
+    function generate() {
         $('#btn_generate').html('Generating...');
         document.getElementById("btn_generate").setAttribute("disabled", true);
         $.ajax({
-            url: "<?php echo base_url('generateguru/generate') ?>",
+            url: "<?php echo base_url('generategajiguru/generate') ?>",
             type: "POST",
             dataType: "json",
             success: function(response) {
@@ -372,8 +371,7 @@
                 }
             }
         });
-	};
-	
+    };
 	//function show all Data
 	function show_data() {
 		$.ajax({
