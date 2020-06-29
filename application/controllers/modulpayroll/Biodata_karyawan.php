@@ -9,7 +9,7 @@ class Biodata_karyawan extends CI_Controller
 		parent::__construct();
 		$this->load->model('payroll/model_karyawan');
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
+
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
