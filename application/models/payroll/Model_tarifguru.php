@@ -1,16 +1,16 @@
 <?php
 
-class Model_cuti extends CI_model
+class Model_tarifguru extends CI_model
 {
     public function view($table)
     {
+        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
     }
 
-    public function view_cuti()
+    public function view_guru()
     {
-        return $this->db->query("select a.*,b.*,c.keterangan,d.NAMAJABATAN, DATE_FORMAT(b.tanggal, '%d-%m-%Y') as tanggal_f from biodata_karyawan a join tbkehadiran b on a.nip = b.pin 
-        join tbcuti c on b.status = c.id join msjabatan d on a.jabatan = d.ID");
+        return $this->db->query("select a.*,b.tarif,c.nama_pembayaran from tbguru a join tarifguru b on a.id = b.IdGuru join jnspembayaran c on b.cara_pembayaran = c.id ");
     }
 
     public function viewOrdering($table, $order, $ordering)
@@ -56,5 +56,10 @@ class Model_cuti extends CI_model
     function truncate($table)
     {
         $this->db->truncate($table);
+    }
+
+    public function view_count($field, $table, $data_id)
+    {
+        return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "'")->num_rows();
     }
 }

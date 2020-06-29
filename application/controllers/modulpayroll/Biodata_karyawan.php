@@ -71,6 +71,7 @@ class Biodata_karyawan extends CI_Controller
 				'tunjangan_jabatan'  => $this->input->post('tunjangan_jabatan_v'),
 				'tarif'  => $this->input->post('tarif_karyawan_v'),
 				'cara_pembayaran'  => $this->input->post('nama_pembayaran'),
+				'no_rekening' => $this->input->post('no_rekening'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 
