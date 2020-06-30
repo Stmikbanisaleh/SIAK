@@ -7,7 +7,36 @@
     <br>
     <br>
 </div>
-
+<div class="row">
+	<form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/lap_bayarsiswa/laporan_pdf">
+		<div class="form-group">
+			<label class="col-xs-3 control-label no-padding-left" for="form-field-select-1"> Pilih Nama Guru </label>
+			<div class="col-sm-5">
+				<select class="form-control" id="nama" name="nama">
+					<option value=""></option>
+					<option value="A">A</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-3 control-label no-padding-left" for="form-field-select-1"> Pilih Mata Pelajaran </label>
+			<div class="col-sm-5">
+				<select class="form-control" id="id_mapel" name="id_mapel">
+					<option value=""></option>
+					<option value="1">1</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-10">
+			<br>
+			<button type="submit" id="btn_search" class="btn btn-sm btn-primary pull-right">
+				<a class="ace-icon fa fa-search bigger-120"></a>Periksa
+			</button>
+		</div>
+		<br>
+		<br>
+	</form>
+</div>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -152,9 +181,15 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Nama Jabatan</th>
-				<th>Keterangan</th>
-				<th>Action</th>
+				<th>Nama Guru</th>
+				<th>Mata Pelajaran</th>
+				<th>Tanggal</th>
+				<th>Mulai</th>
+				<th>Inval</th>
+				<th>Ket. Tidak Hadir</th>
+				<th>Ganti Hari</th>
+				<th>Tambahan</th>
+				<th>Batal</th>
 			</tr>
 		</thead>
 		<tbody id="show_data">
@@ -390,6 +425,12 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].NAMAJABATAN + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td> <input  type="text" id="e_id" name="e_id"> </td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
