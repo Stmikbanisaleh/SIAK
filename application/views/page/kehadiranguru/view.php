@@ -1,17 +1,34 @@
 <div class="row">
-	<div class="col-xs-1">
-		<button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-			<a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
-		</button>
-	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
+    <form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/lap_bayarsiswa/laporan_pdf">
+        <div class="col-xs-3">
+            Tanggal Awal
+            <div class="input-group">
+                <input class="form-control date-picker" id="id-date-picker-1" name="periode_awal" type="date" data-date-format="dd-mm-yyyy" />
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar bigger-110"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            Tanggal Akhir
+            <div class="input-group">
+                <input class="form-control date-picker" id="id-date-picker-1" type="date" name="periode_akhir" data-date-format="dd-mm-yyyy" />
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar bigger-110"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <br>
+            <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
+                <a class="ace-icon fa fa-success bigger-120"></a>Hitung
+            </button>
+        </div>
+        <br>
+        <br>
+    </form>
 	</div>
 	<br>
-	<br>
-</div>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -156,8 +173,12 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Nama Jabatan</th>
-				<th>Keterangan</th>
+				<th>Bulan ke</th>
+				<th>Tahun</th>
+				<th>Semester</th>
+				<th>Tanggal Input</th>
+				<th>Tanggal Awal</th>
+				<th>Tanggal Akhir</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -367,6 +388,10 @@
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].NAMAJABATAN + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +

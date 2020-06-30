@@ -68,21 +68,40 @@
 							<!-- PAGE CONTENT BEGINS -->
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Nama Guru </label>
 								<div class="col-sm-6">
-									<input type="text" id="nama" name="nama" placeholder="Nama Jabatan" class="form-control" />
+									<select class="form-control" id="nama" name="nama">
+										<option value=""></option>
+										<option value="A">A</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Kelas </label>
 								<div class="col-sm-6">
-									<input type="text" id="keterangan" name="keterangan" placeholder="Keterangan" class="form-control" />
+									<select class="form-control" id="id_kelas" name="id_kelas">
+										<option value=""></option>
+										<option value="1">1</option>
+									</select>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Tanggal Mengajar kosong </label>
+								<div class="col-sm-6">
+									<select class="form-control" id="id_jadwal" name="id_jadwal">
+										<option value=""></option>
+										<option value="1">1</option>
+									</select>
+								</div>
+							</div>
+								<button type="submit" id="btn_simpan" class="btn btn-sm btn-primary pull-right">
+									<i class="ace-icon fa fa-search"></i>
+									Tampilkan
+								</button>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
+				<!-- <div class="modal-footer">
 					<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
 						<i class="ace-icon fa fa-save"></i>
 						Simpan
@@ -91,7 +110,7 @@
 						<i class="ace-icon fa fa-times"></i>
 						Batal
 					</button>
-				</div>
+				</div> -->
 			</form>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -110,25 +129,42 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-
+							<input type="hidden" id="e_id" name="e_id">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jabatan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Nama Guru </label>
 								<div class="col-sm-6">
-									<input type="hidden" id="e_id" name="e_id" />
-									<input type="text" id="e_nama" name="e_nama" placeholder="Nama Jabatan" class="form-control" />
+									<select class="form-control" id="e_nama" name="e_nama">
+										<option value=""></option>
+										<option value="A">A</option>
+									</select>
 								</div>
 							</div>
-
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_keterangan" name="e_keterangan" placeholder="Keterangan Jabatan" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Kelas </label>
+								<div class="col-sm-6">
+									<select class="form-control" id="e_id_kelas" name="e_id_kelas">
+										<option value=""></option>
+										<option value="1">1</option>
+									</select>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Tanggal Mengajar kosong </label>
+								<div class="col-sm-6">
+									<select class="form-control" id="e_id_jadwal" name="e_id_jadwal">
+										<option value=""></option>
+										<option value="1">1</option>
+									</select>
+								</div>
+							</div>
+								<button type="submit" id="btn_simpan" class="btn btn-sm btn-primary pull-right">
+									<i class="ace-icon fa fa-search"></i>
+									Tampilkan
+								</button>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
+				<!-- <div class="modal-footer">
 					<button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
 						<i class="ace-icon fa fa-save"></i>
 						Ubah
@@ -137,7 +173,7 @@
 						<i class="ace-icon fa fa-times"></i>
 						Batal
 					</button>
-				</div>
+				</div> -->
 			</form>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -156,8 +192,10 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Nama Jabatan</th>
-				<th>Keterangan</th>
+				<th>Nama Guru</th>
+				<th>Mata Pelajaran</th>
+				<th>Asal tanggal</th>
+				<th>Ingin Ganti Hari</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -368,6 +406,8 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].NAMAJABATAN + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].KET + '</td>' +
+						'<td> <input  type="text" id="e_id" name="e_id"> </td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
