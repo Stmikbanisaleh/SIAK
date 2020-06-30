@@ -19,9 +19,9 @@ class Kehadiranpengganti extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
-                'page_content'  => 'kehadiranguru/view',
-                'ribbon'        => '<li class="active">Kehadiran Guru</li>',
-                'page_name'     => 'Kehadiran Guru'
+                'page_content'  => 'kehadiranpengganti/view',
+                'ribbon'        => '<li class="active">Kehadiran Pengganti Hari</li>',
+                'page_name'     => 'Kehadiran Pengganti'
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
