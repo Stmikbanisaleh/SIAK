@@ -47,7 +47,7 @@ class Rekap_gajikaryawan extends CI_Controller
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Nama');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'YAYASAN ASASI INDONESIA');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'NPWP');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', '016506990407000');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', "'016506990407000");
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', 'Alamat');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E3', 'Pejuang Jaya Blok B No. 30 RT. 014  RW. 011 Pejuang Bekasi');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D4', 'Masa Pajak');
@@ -1138,7 +1138,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//NPWP
 			$var_d = 'E'.$baris;
-			$var_e = $row['npwp'];
+			$var_e = "'".$row['npwp'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
