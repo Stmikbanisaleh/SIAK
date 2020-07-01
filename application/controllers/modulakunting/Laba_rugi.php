@@ -23,7 +23,7 @@ class Laba_rugi extends CI_Controller {
     public function index() {
         $data = array(
            'page_content' 	=> '../pageakunting/laba_rugi/view',
-           'ribbon' 		=> '<li class="active">Laporan Laba Rugi</li><li>Sample</li>',
+           'ribbon' 		=> '<li class="active">Laporan Laba Rugi</li>',
            'page_name' 	=> 'Laporan Laba Rugi',
        );
         $this->render_view($data); //Memanggil function render_view

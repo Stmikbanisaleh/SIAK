@@ -18,7 +18,7 @@ class Tahunajaran extends CI_Controller
     {
         $data = array(
             'page_content'     => '../pagetu/tahunajaran/view',
-            'ribbon'         => '<li class="active">Tahun Ajaran</li><li>Sample</li>',
+            'ribbon'         => '<li class="active">Tahun Ajaran</li>',
             'page_name'     => 'Tahun Ajaran',
         );
         $this->render_view($data); //Memanggil function render_view

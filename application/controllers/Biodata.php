@@ -21,7 +21,7 @@ class Biodata extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
                 'page_content'     => 'biodata/view',
-                'ribbon'         => '<li class="active">Biodata Sekolah</li><li>Sample</li>',
+                'ribbon'         => '<li class="active">Biodata Sekolah</li>',
                 'page_name'     => 'Biodata Sekolah',
             );
             $this->render_view($data); //Memanggil function render_view

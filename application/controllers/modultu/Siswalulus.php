@@ -10,7 +10,7 @@ class Siswalulus extends CI_Controller {
 	public function index() {
         $data = array(
         			'page_content' 	=> '../pagetu/siswalulus/view',
-        			'ribbon' 		=> '<li class="active">Pernyataan Siswa Lulus</li><li>Sample</li>',
+        			'ribbon' 		=> '<li class="active">Pernyataan Siswa Lulus</li>',
 					'page_name' 	=> 'Pernyataan Siswa Lulus',
         		);
         $this->render_view($data); //Memanggil function render_view
