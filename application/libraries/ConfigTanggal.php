@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class ConfigTanggal
+class Configtanggal
 {
     function tgl_indo($tgl)
     {
@@ -17,7 +17,7 @@ class ConfigTanggal
         return $tahun . '-' . $bulan . '-' . $tanggal;
     }
 
-    function getBulan($bln)
+    function getbulan($bln)
     {
         switch ($bln) {
             case 1:

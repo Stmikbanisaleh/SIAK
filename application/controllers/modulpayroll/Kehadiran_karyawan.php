@@ -8,6 +8,7 @@ class Kehadiran_karyawan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_kehadirankaryawan');
+		$this->load->library('Configfunction');
 	}
 
 	function render_view($data)
@@ -59,14 +60,12 @@ class Kehadiran_karyawan extends CI_Controller
 						$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Jam Keluar');
 
 						foreach ($data as $dataExcel) {
-							$nip = $dataExcel['id_karyawan'];
+							$nip = $dataExcel['nip'];
 							$nama = $dataExcel['nama'];
 							$tanggal = $dataExcel['tanggal'];
-							$hari = $dataExcel['hari'];
-							$jam_masuk = $dataExcel['jam_masuk'];
-							$jam_keluar = $dataExcel['jam_keluar'];
-
-
+							$hari = $this->configfunction->gethari($dataExcel['hari']);
+							$getjammasuk = $this->model_kehadirankaryawan->view_jammasuk($tanggal, $nip)->result_array();
+							$getjamkeluar = $this->model_kehadirankaryawan->view_jamkeluar($tanggal, $nip)->result_array();
 							$objPHPExcel->getActiveSheet(0)->getStyle('A' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 							$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $row, $no, PHPExcel_Cell_DataType::TYPE_STRING);
 							$objPHPExcel->getActiveSheet(0)->getColumnDimension('A')->setAutoSize(true);
@@ -86,14 +85,16 @@ class Kehadiran_karyawan extends CI_Controller
 							$objPHPExcel->getActiveSheet(0)->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 							$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E' . $row, $hari, PHPExcel_Cell_DataType::TYPE_STRING);
 							$objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setAutoSize(true);
-
-							$objPHPExcel->getActiveSheet(0)->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-							$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $jam_masuk, PHPExcel_Cell_DataType::TYPE_STRING);
-							$objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
-
-							$objPHPExcel->getActiveSheet(0)->getStyle('G' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-							$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $jam_keluar, PHPExcel_Cell_DataType::TYPE_STRING);
-							$objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setAutoSize(true);
+							foreach ($getjammasuk as $rows) {
+								$objPHPExcel->getActiveSheet(0)->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+								$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $rows['jam_masuk'], PHPExcel_Cell_DataType::TYPE_STRING);
+								$objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
+							}
+							foreach ($getjamkeluar as $rows1) {
+								$objPHPExcel->getActiveSheet(0)->getStyle('G' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+								$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $rows1['jam_keluar'], PHPExcel_Cell_DataType::TYPE_STRING);
+								$objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setAutoSize(true);
+							}
 							$row++;
 							$no++;
 						}

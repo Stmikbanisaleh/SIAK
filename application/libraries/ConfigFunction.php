@@ -183,4 +183,71 @@ class Configfunction
         VALUES ('','$nip','$username','login','$date')");
         return $result;
     }
+
+    function getbulan($bln)
+    {
+        switch ($bln) {
+            case 1:
+                return "Januari";
+                break;
+            case 2:
+                return "Februari";
+                break;
+            case 3:
+                return "Maret";
+                break;
+            case 4:
+                return "April";
+                break;
+            case 5:
+                return "Mei";
+                break;
+            case 6:
+                return "Juni";
+                break;
+            case 7:
+                return "Juli";
+                break;
+            case 8:
+                return "Agustus";
+                break;
+            case 9:
+                return "September";
+                break;
+            case 10:
+                return "Oktober";
+                break;
+            case 11:
+                return "November";
+                break;
+            case 12:
+                return "Desember";
+                break;
+        }
+    }
+
+    function gethari($tgl)
+    {
+        if (date("D", strtotime($tgl)) == 'Sun') {
+            return "Minggu";
+        }
+        if (date("D", strtotime($tgl)) == 'Mon') {
+            return "Senin";
+        }
+        if (date("D", strtotime($tgl)) == 'Tue') {
+            return "Selasa";
+        }
+        if (date("D", strtotime($tgl)) == 'Wed') {
+            return "Rabu";
+        }
+        if (date("D", strtotime($tgl)) == 'thu') {
+            return "Kamis";
+        }
+        if (date("D", strtotime($tgl)) == 'Fri') {
+            return "Jum`at";
+        }
+        if (date("D", strtotime($tgl)) == 'Sat') {
+            return "Sabtu";
+        }
+    }
 }

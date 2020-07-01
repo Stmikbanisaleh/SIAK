@@ -28,13 +28,25 @@ class Model_kehadirankaryawan extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_kehadirankaryawan($tahun, $blnawal, $blnakhir, $karyawan)
-    {
-        if($karyawan  == ''){
-            return $this->db->query("select b.nip.b.nama from tbkehadiran a join biodata_karyawan b on a.pin = b.nip where YEAR(a.periode) = '" . $tahun . "' and Month(a.periode) between '".$blnawal."' and '".$blnakhir."'");
+    public function view_kehadirankaryawan($tahun, $blnawal, $blnakhir, $karyawan){
+
+        if($karyawan == 'none'){
+            return $this->db->query("select a.id,b.nip,b.nama,DATE(a.tanggal) as tanggal ,DATE_FORMAT(a.tanggal, '%a') as hari from tbkehadiran a join biodata_karyawan b on a.pin = b.nip where YEAR(a.tanggal) = '" . $tahun . "' and Month(a.tanggal) between '".$blnawal."' and '".$blnakhir."' and time(a.tanggal) BETWEEN '05:00:00' and '10:00:00'");
         } else {
-            return $this->db->query("select b.nip.b.nama from tbkehadiran where YEAR(a.periode) = '" . $tahun . "' and Month(a.periode) between '".$blnawal."' and '".$blnakhir."' and pin ='".$karyawan."'");
+            return $this->db->query("select a.id,b.nip,b.nama,DATE(a.tanggal) as tanggal, DATE_FORMAT(a.tanggal, '%a') as hari from tbkehadiran a join biodata_karyawan b on a.pin = b.nip where YEAR(a.tanggal) = '" . $tahun . "' and Month(a.tanggal) between '".$blnawal."' and '".$blnakhir."' and b.nip ='".$karyawan."' and time(a.tanggal) BETWEEN '05:00:00' and '10:00:00'");
         }
+    }
+
+    public function view_jammasuk($tanggal, $nip)
+    {
+        return $this->db->query("select time(a.tanggal) as jam_masuk from tbkehadiran a left join biodata_karyawan
+        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '05:00:00' and '10:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."'");
+    }
+
+    public function view_jamkeluar($tanggal, $nip)
+    {
+        return $this->db->query("select time(a.tanggal) as jam_keluar from tbkehadiran a left join biodata_karyawan
+        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '15:00:00' and '18:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."'");
     }
 
     public function insert($data, $table)
