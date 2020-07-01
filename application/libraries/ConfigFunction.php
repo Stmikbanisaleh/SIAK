@@ -153,6 +153,12 @@ class Configfunction
         return $result;
     }
 
+    public function getthnpsb()
+    {
+        $result = $this->CI->db->query('SELECT distinct(THNAKAD) FROM tbakadmk3 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk3)')->result_array();
+        return $result;
+    }
+
     public function getidthnakd()
     {
         $result = $this->CI->db->query('SELECT ID FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();

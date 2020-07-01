@@ -66,7 +66,7 @@ class Model_pengambilanformulir extends CI_model
 
     public function get_thnakad3()
     {
-        return  $this->db->query("SELECT THNAKAD FROM tbakadmk3 where isdeleted != 1");
+        return  $this->db->query("SELECT distinct(THNAKAD) FROM tbakadmk3 where isdeleted != 1");
     }
 
     public function viewOrdering($table, $order, $ordering)

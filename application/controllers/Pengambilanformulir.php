@@ -82,7 +82,7 @@ class Pengambilanformulir extends CI_Controller
     public function tampil()
     {
         $this->load->library('Configfunction');
-        $tampil_thnakad = $this->configfunction->getthnakd();
+        $tampil_thnakad = $this->configfunction->getthnpsb();
         $my_data = $this->model_pengambilanformulir->getdata($tampil_thnakad[0]['THNAKAD'])->result_array();
         echo json_encode($my_data);
     }

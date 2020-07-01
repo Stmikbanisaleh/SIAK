@@ -45,7 +45,7 @@ class Potong_gaji extends CI_Controller
 		if (count($data) > 0) {
 			if ($data) {
 				$key = array_keys($data[0]);
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'NIP');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'No');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'NIP');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Nama');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Anggota Koperasi');
