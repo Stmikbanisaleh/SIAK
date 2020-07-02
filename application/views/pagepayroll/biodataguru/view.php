@@ -4,11 +4,6 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a> Tambah Data
 		</button>
 	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
-	</div>
 	<br>
 	<br>
 </div>
@@ -17,7 +12,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Import <?=$page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -169,17 +164,6 @@
 									<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Jakarta" />
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="status" id="status">
-										<option value="">-- Pilih Status --</option>
-										<option value="T">Aktif</option>
-										<option value="F">Tidak</option>
-									</select>
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
@@ -203,7 +187,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Edit <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -214,7 +198,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode </label>
 								<div class="col-sm-6">
 									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_IdGuru" required name="e_IdGuru" readonly placeholder="Kode Guru" class="form-control" />
+									<input type="text" id="e_IdGuru" required name="e_IdGuru" placeholder="Kode Guru" class="form-control" />
 								</div>
 							</div>
 
@@ -313,17 +297,6 @@
 									<input type="text" class="form-control" name="e_tempat_lahir" id="e_tempat_lahir" placeholder="Jakarta" />
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_status" id="e_status">
-										<option value="">-- Pilih Status --</option>
-										<option value="T">Aktif</option>
-										<option value="F">Tidak</option>
-									</select>
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
@@ -391,7 +364,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gelar </label>
 								<div class="col-sm-9">
-									<textarea class="form-control" required name="e_alamat" id="e_alamat" placeholder="Masukan Alamat"></textarea>
+									<textarea class="form-control" required name="e_gelar" id="e_gelar" placeholder="S.Kom. , S.Pd."></textarea>
 								</div>
 							</div>
 
@@ -598,42 +571,10 @@
 
 	if ($("#formEdit").length > 0) {
 		$("#formEdit").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true,
-				},
-				telepon: {
-					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
-				},
-				alamat: {
-					required: true,
-					minlength: 10,
-				},
-				email: {
-					required: true,
-					email: true,
-				},
-			},
-			messages: {
-				nama: {
-					required: "Nama Guru harus diisi!"
-				},
-				telepon: {
-					required: "Telepon harus diisi!"
-				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
-				},
-			},
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/biodataguru/update') ?>",
+					url: "<?php echo base_url('modulpayroll/biodataguru/updatebiodata') ?>",
 					dataType: "JSON",
 					data: $('#formEdit').serialize(),
 					success: function(data) {
@@ -706,7 +647,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
+				$('#e_IdGuru').val(data[0].aidiguru);
 				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
 				$('#e_nama').val(data[0].GuruNama);
 				$('#e_telepon').val(data[0].GuruTelp);
@@ -728,7 +669,7 @@
 		$('#modalRiwayatpendidikan').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byid') ?>",
+			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byidrp') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -736,19 +677,41 @@
 			},
 			success: function(data) {
 				$('#e_idrp').val(data[0].id);
-				$('#e_IdGururp').val(data[0].IdGuru);
+				$('#e_IdGururp').val(data[0].aidiguru);
 				$('#e_GuruNoDapodikrp').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
 				$('#e_pendidikan_terakhirrp').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
+				$('#e_prodirp').val(data[0].RiwayatProdi);
+				$('#e_gelar').val(data[0].RiawayatGelar);
+				$('#e_tahunmasuk').val(data[0].RiwayatTahun);
+				$('#e_noijazah').val(data[0].RiwayatNoIjazah);
+				$('#e_tahunlulus').val(data[0].RiwayatTglLulus);
+				$('#e_status').val(data[0].RiwayatKompetensi);
+			}
+		});
+	});
+
+	$('#show_data').on('click', '.item_riwayatjabatan', function() {
+		var id = $(this).data('id');
+		$('#modalRiwayatpendidikan').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byidrp') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_idrp').val(data[0].id);
+				$('#e_IdGururp').val(data[0].aidiguru);
+				$('#e_GuruNoDapodikrp').val(data[0].GuruNoDapodik);
+				$('#e_pendidikan_terakhirrp').val(data[0].GuruPendidikanAkhir);
+				$('#e_prodirp').val(data[0].RiwayatProdi);
+				$('#e_gelar').val(data[0].RiawayatGelar);
+				$('#e_tahunmasuk').val(data[0].RiwayatTahun);
+				$('#e_noijazah').val(data[0].RiwayatNoIjazah);
+				$('#e_tahunlulus').val(data[0].RiwayatTglLulus);
+				$('#e_status').val(data[0].RiwayatKompetensi);
 			}
 		});
 	});
@@ -776,23 +739,14 @@
 						'<td>' + data[i].GuruJeniskelamin + '</td>' +
 						'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
 						'<td >' +
-						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].IdGuru + '">' +
 						'<i class="ace-icon fa fa-pencil-square-o bigger-120"> Edit</i>' +
 						'</button> ' + '<br>' + '<br>' + 
-						'<button class="btn btn-xs btn-success item_riwayatpendidikan" title="Riwayatp" data-id="' + data[i].id + '">' +
+						'<button class="btn btn-xs btn-success item_riwayatpendidikan" title="Riwayatp" data-id="' + data[i].IdGuru + '">' +
 						'Riwayat Pendidikan' +
                         '</button>' + '<br>' + '<br>' + 
-                        '<button class="btn btn-xs btn-warning item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						'Riwayat Jabatan <br>' +
-                        '</button>' + '<br>' + '<br>' + 
-                        '<button class="btn btn-xs btn-info item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						'Riwayat Seminar <br>' +
-                        '</button>' + '<br>' + '<br>' + 
-                        '<button class="btn btn-xs btn-primary item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						'Riwayat Sertifikasi <br>' +
-                        '</button>' + '<br>' + '<br>' + 
-                        '<button class="btn btn-xs btn-default item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-						'Riwayat Senat <br>' +
+						'<button class="btn btn-xs btn-warning item_riwayatjabatan" title="Riwayatp" data-id="' + data[i].IdGuru + '">' +
+						'Riwayat Jabatan' +
 						'</button>' +
 						'</td>' +
 						'</tr>';

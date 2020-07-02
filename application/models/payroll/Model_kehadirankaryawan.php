@@ -40,13 +40,13 @@ class Model_kehadirankaryawan extends CI_model
     public function view_jammasuk($tanggal, $nip)
     {
         return $this->db->query("select time(a.tanggal) as jam_masuk from tbkehadiran a left join biodata_karyawan
-        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '05:00:00' and '10:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."'");
+        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '05:00:00' and '10:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."' limit 1");
     }
 
     public function view_jamkeluar($tanggal, $nip)
     {
         return $this->db->query("select time(a.tanggal) as jam_keluar from tbkehadiran a left join biodata_karyawan
-        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '15:00:00' and '18:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."'");
+        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '15:00:00' and '18:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."' limit 1");
     }
 
     public function insert($data, $table)

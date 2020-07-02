@@ -80,9 +80,23 @@ class Biodataguru extends CI_Controller
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
 			$data = array(
-				'id'  => $this->input->post('id'),
+				'IdGuru'  => $this->input->post('id'),
 			);
-            $my_data = $this->model_guru->view_where_v2('tbguru', $data)->result();
+			$my_data = $this->model_guru->view_where_v2('tbguru', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
+	}
+
+	public function tampil_byidrp()
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+			$data = array(
+				'IdGuru'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_guru->view_where_v3('tbgururiwayat', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -182,10 +196,9 @@ class Biodataguru extends CI_Controller
 		}
 	}
 
-	public function update()
+	public function updatebiodata()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
