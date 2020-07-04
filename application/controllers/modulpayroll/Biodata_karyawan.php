@@ -71,6 +71,7 @@ class Biodata_karyawan extends CI_Controller
 				'tunjangan_jabatan'  => $this->input->post('tunjangan_jabatan_v'),
 				'tarif'  => $this->input->post('tarif_karyawan_v'),
 				'cara_pembayaran'  => $this->input->post('nama_pembayaran'),
+				'transport'  => $this->input->post('transport_v'),
 				'no_rekening' => $this->input->post('no_rekening'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
@@ -159,6 +160,7 @@ class Biodata_karyawan extends CI_Controller
 				'tarif'  => $this->input->post('e_tarif_karyawan_v'),
 				'tunjangan_jabatan'  => $this->input->post('e_tunjangan_jabatan_v'),
 				'tunjangan_masakerja'  => $this->input->post('e_tunjangan_masa_kerja_v'),
+				'transport'  => $this->input->post('e_transport_v'),
 				'cara_pembayaran'  => $this->input->post('e_nama_pembayaran'),
 				'no_rekening'  => $this->input->post('e_no_rekening'),
 			);

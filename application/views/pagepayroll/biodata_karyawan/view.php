@@ -293,6 +293,38 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Transport </label>
+								<div class="col-sm-9">
+									<input type="text" id="transport" required name="transport" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="transport_v" required name="transport_v" />
+									<script language="JavaScript">
+										var rupiah4 = document.getElementById('transport');
+										rupiah4.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#transport_v').val(rup4);
+											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+										});
+
+										function formatRupiah4(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan4) {
+												separator = sisa ? '.' : '';
+												rupiah4 += separator + ribuan4.join('.');
+											}
+
+											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="nama_pembayaran" id="nama_pembayaran">
@@ -591,6 +623,39 @@
 									</script>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Transport </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_transport" required name="e_transport" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_transport_v" required name="e_transport_v" />
+									<script language="JavaScript">
+										var rupiah40 = document.getElementById('e_transport');
+										rupiah40.addEventListener('keyup', function(e) {
+											rup40 = this.value.replace(/\D/g, '');
+											$('#e_transport_v').val(rup40);
+											rupiah40.value = formatRupiah40(this.value, 'Rp. ');
+										});
+
+										function formatRupiah40(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah40 = split[0].substr(0, sisa),
+												ribuan40 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan40) {
+												separator = sisa ? '.' : '';
+												rupiah40 += separator + ribuan40.join('.');
+											}
+
+											rupiah40 = split[1] != undefined ? rupiah40 + ',' + split[1] : rupiah40;
+											return prefix == undefined ? rupiah40 : (rupiah40 ? 'Rp. ' + rupiah40 : '');
+										}
+									</script>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
@@ -795,6 +860,10 @@
 				$('#e_tunjangan_masa_kerja_v').val(data[0].tunjangan_masakerja);
 				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
 				$('#e_no_rekening').val(data[0].no_rekening);
+				$('#e_transport').val(data[0].transport);
+				$('#e_transport_v').val(data[0].transport);
+
+
 			}
 		});
 	});

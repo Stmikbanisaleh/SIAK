@@ -3,72 +3,16 @@
 class Model_kehadiran extends CI_model
 {
 
-    public function view($session)
+   public function view_jadwal($idguru)
     {
-        return $this->db->query("SELECT
-        tbguru.id,
-        tbguru.IdGuru,
-        tbguru.GuruNoDapodik,
-        tbguru.GuruNama,
-        tbguru.GuruTelp,
-        tbguru.GuruAlamat,
-        tbguru.GuruWaktu,
-        tbguru.GuruJenisKelamin,
-        tbguru.GuruPendidikanAkhir,
-        tbguru.GuruAgama,
-        TBAGAMA.DESCRTBAGAMA,
-        tbguru.GuruEmail,
-        tbguru.GuruTempatLahir,
-        tbguru.GuruTglLahir,
-        tbguru.GuruStatus
-        FROM
-        guru
-        LEFT JOIN tbguru ON guru.IdGuru = tbguru.IdGuru
-        LEFT JOIN tbagama ON tbguru.GuruAgama = tbagama.KDTBAGAMA
-
-        LEFT JOIN tbguruRIWAYAT ON tbguru.IdGuru = tbguruRIWAYAT.IdGuru where tbguru.IdGuru='".$session."'");
-    }
-
-    public function viewOrdering($table, $order, $ordering)
-    {
-        $this->db->where('isdeleted !=', 1);
-        $this->db->order_by($order, $ordering);
-        return $this->db->get($table);
-    }
-
-    public function viewWhereOrdering($table, $data, $order, $ordering)
-    {
-        $this->db->where($data);
-        $this->db->where('isdeleted !=', 1);
-        $this->db->order_by($order, $ordering);
-        return $this->db->get($table);
-    }
-
-    public function view_where($table, $data)
-    {
-        $this->db->where($data);
-        $this->db->where('isdeleted !=', 1);
-        return $this->db->get($table);
-    }
-
-    public function view_where_v2($table, $data)
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1 and a.id = ' . $data['id'] . '
-        ');
-    }
-
-    public function view_guru()
-    {
-        return  $this->db->query('select * from tbguru a 
-        left join tbagama b on a.GuruAgama = b.KDTBAGAMA
-        left join mspendidikan c on a.GuruPendidikanAkhir = c.IDMSPENDIDIKAN
-        left join tbps d on a.GuruBase = d.KDTBPS
-        where a.isdeleted != 1
-        ');
+        return  $this->db->query("
+        select a.*,d.GuruNama,b.nama as namamapel, c.RUANG,e.nama as nmkls from tbjadwal a
+        join mspelajaran b on a.id_mapel = b.id_mapel
+        join msruang c on a.id_mapel = b.id_mapel
+        join tbguru d on a.id_guru = d.IdGuru
+        join tbkelas e on a.nmklstrjdk = e.id_kelas
+        where a.id_guru = '".$idguru."'
+        ");
     }
 
     public function view_count($table, $data_id)

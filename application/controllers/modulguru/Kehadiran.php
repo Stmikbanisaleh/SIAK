@@ -7,7 +7,11 @@ class Kehadiran extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('guru/model_jadwal');
+        $this->load->model('guru/model_kehadiran');
+        if ($this->session->userdata('username_guru') != null && $this->session->userdata('idguru') != null) {
+        } else {
+            $this->load->view('pageguru/login'); //Memanggil function render_view
+        }
     }
 
     function render_view($data)
@@ -18,23 +22,44 @@ class Kehadiran extends CI_Controller
 
     public function index()
     {
-        $my_data = $this->model_jadwal->getsekolah()->result_array();
-        $myakadmk = $this->model_jadwal->view_custome()->result_array();
-        $mypendidikan = $this->model_jadwal->view('mspendidikan')->result_array();
         $data = array(
-            'page_content'     => '../pageguru/jadwal/view',
-            'ribbon'         => '<li class="active">Jadwal Mengajar</li>',
-            'page_name'     => 'Jadwal Mengajar',
-            'myprogram'     => $my_data,
-            'myakadmk'        => $myakadmk,
-            'mypendidikan'     => $mypendidikan
+            'page_content'     => '../pageguru/kehadiran/view',
+            'ribbon'         => '<li class="active">Isi Kehadiran</li>',
+            'page_name'     => 'Isi Materi & Kehadiran',
         );
         $this->render_view($data); //Memanggil function render_view
     }
 
+
+    public function simpan()
+    {
+        $data = array(
+            'idJadwal'  => $this->input->post('e_id'),
+            'TGLHADIR' => date('Y-m-d H:i:s'),
+            'IdGuru' => $this->session->userdata('idguru'),
+            'WKTHADIR' => 1,
+            'MSKHADIR' => date('Y-m-d H:i:s'),
+
+        );
+        $result = $this->model_kehadiran->insert($data, 'trdsrm');
+        if ($result) {
+            echo $result;
+        } else {
+            echo 'insert gagal';
+        }
+    }
+
     public function tampil()
     {
-        $my_data = $this->model_jadwal->view_guru('tbguru')->result_array();
+        $idguru = $this->session->userdata('idguru');
+        $my_data = $this->model_kehadiran->view_jadwal($idguru)->result_array();
+        echo json_encode($my_data);
+    }
+
+    public function tampil_byidselesai()
+    {
+        $idguru = $this->session->userdata('idguru');
+        $my_data = $this->model_kehadiran->view_jadwal($idguru)->result_array();
         echo json_encode($my_data);
     }
 
