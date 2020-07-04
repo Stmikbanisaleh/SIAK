@@ -8,6 +8,7 @@ class Kehadiran extends CI_Controller
     {
         parent::__construct();
         $this->load->model('guru/model_kehadiran');
+        $this->load->library('Configfunction');
         if ($this->session->userdata('username_guru') != null && $this->session->userdata('idguru') != null) {
         } else {
             $this->load->view('pageguru/login'); //Memanggil function render_view
@@ -33,67 +34,84 @@ class Kehadiran extends CI_Controller
 
     public function simpan()
     {
-        $data = array(
-            'idJadwal'  => $this->input->post('e_id'),
-            'TGLHADIR' => date('Y-m-d H:i:s'),
-            'IdGuru' => $this->session->userdata('idguru'),
-            'WKTHADIR' => 1,
-            'MSKHADIR' => date('Y-m-d H:i:s'),
+        $idguru = $this->session->userdata('idguru');
+        $idjadwal = $this->input->post('e_id');
+        $cek = $this->db->query("select count(ID) as total from trdsrm  where IdJadwal ='" . $idjadwal . "' and IdGuru = '" . $idguru . "' ")->result_array();
+        // print_r($cek);exit;
+        if ($cek[0]['total'] == 0 ) {
+            $data = array(
+                'idJadwal'  => $this->input->post('e_id'),
+                'TGLHADIR' => date('Y-m-d H:i:s'),
+                'IdGuru' => $this->session->userdata('idguru'),
+                'WKTHADIR' => 1,
+                'MSKHADIR' => date('Y-m-d H:i:s'),
 
-        );
-        $result = $this->model_kehadiran->insert($data, 'trdsrm');
-        if ($result) {
-            echo $result;
+            );
+            $result = $this->model_kehadiran->insert($data, 'trdsrm');
+            echo json_encode($result);
         } else {
-            echo 'insert gagal';
+            $result = 0;
+            echo json_encode($result);
+
         }
     }
 
     public function tampil()
     {
+        $date = date("Y-m-d");
+        $hari = $this->configfunction->gethari($date);
         $idguru = $this->session->userdata('idguru');
-        $my_data = $this->model_kehadiran->view_jadwal($idguru)->result_array();
+        $my_data = $this->model_kehadiran->view_jadwal($idguru, $hari)->result_array();
+        echo json_encode($my_data);
+    }
+
+    public function tampil_byidbahasan()
+    {
+        $idguru = $this->session->userdata('idguru');
+        $id = $this->input->post('id');
+        $my_data = $this->model_kehadiran->view_bahasan($idguru, $id)->result_array();
+        echo json_encode($my_data);
+    }
+
+    public function tampil_byidrincian()
+    {
+        $idguru = $this->session->userdata('idguru');
+        $id = $this->input->post('id');
+        $my_data = $this->model_kehadiran->view_rincian($idguru, $id)->result_array();
         echo json_encode($my_data);
     }
 
     public function tampil_byidselesai()
     {
-        $idguru = $this->session->userdata('idguru');
-        $my_data = $this->model_kehadiran->view_jadwal($idguru)->result_array();
+        $id = $this->input->post('id');
+        $my_data = $this->model_kehadiran->view_jadwal2($id)->result_array();
         echo json_encode($my_data);
     }
 
-    public function update()
+    public function tampil_byidstart()
     {
-        $data_id = array(
-            'id'  => $this->input->post('e_id')
-        );
-        $data = array(
-            'IdGuru'  => $this->input->post('e_IdGuru'),
-            'GuruNoDapodik'  => $this->input->post('e_GuruNoDapodik'),
-            'GuruNama'  => $this->input->post('e_nama'),
-            'GuruTelp'  => $this->input->post('e_telepon'),
-            'GuruAlamat'  => $this->input->post('e_alamat'),
-            'GuruBase' => $this->input->post('e_program_sekolah'),
-            // 'GuruWaktu'  => $this->input->post('alamat'),
-            'GuruJeniskelamin'  => $this->input->post('e_jenis_kelamin'),
-            'GuruPendidikanAkhir'  => $this->input->post('e_pendidikan_terakhir'),
-            'GuruAgama'  => $this->input->post('e_agama'),
-            'GuruEmail' => $this->input->post('e_email'),
-            'GuruTglLahir'  => $this->input->post('e_tgl_lahir'),
-            'GuruTempatLahir'  => $this->input->post('e_tempat_lahir'),
-            'GuruStatus'  => $this->input->post('e_status'),
-            'updatedAt' => date('Y-m-d H:i:s')
-        );
-        $action = $this->model_jadwal->update($data_id, $data, 'tbguru');
-        echo json_encode($action);
+        $id = $this->input->post('id');
+        $my_data = $this->model_kehadiran->view_jadwal2($id)->result_array();
+        echo json_encode($my_data);
     }
 
-    public function search()
+    public function selesai()
     {
-        $tahun = $this->input->post('tahun');
-        $programsekolah = $this->input->post('programsekolah');
-        $result = $this->model_jadwal->getjadwal($tahun, $programsekolah)->result();
-        echo json_encode($result);
+        $idguru = $this->session->userdata('idguru');
+        $data_id = array(
+            'ID'  => $this->input->post('e_id2')
+        );
+        $date =  $this->db->query("Select MAX(TGLHADIR) as tglh FROM trdsrm where IdGuru ='" . $idguru . "' and IdJadwal ='" . $data_id['ID'] . "'")->result_array();
+        $ID = $this->db->query("Select ID from trdsrm where TGLHADIR = '" . $date[0]['tglh'] . "' ")->result_array();
+        $data_id = array(
+            'ID'  => $ID[0]['ID']
+        );
+        $data = array(
+            'SLSHADIR'  => date('Y-m-d H:i:s'),
+            'PKBAHASAN'  => $this->input->post('pkbahasan'),
+            'RINCIAN'  => $this->input->post('rincian'),
+        );
+        $action = $this->model_kehadiran->update($data_id, $data, 'trdsrm');
+        echo json_encode($action);
     }
 }
