@@ -13,6 +13,8 @@ class Model_kehadiranguru extends CI_model
         ");
     }
 
+  
+
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
