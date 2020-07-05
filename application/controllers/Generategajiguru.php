@@ -29,54 +29,10 @@ class Generategajiguru extends CI_Controller
         }
     }
 
-    public function import()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$files = $_FILES;
-			$file = $files['file'];
-			$fname = $file['tmp_name'];
-			$file = $_FILES['file']['name'];
-			$fname = $_FILES['file']['tmp_name'];
-			$ext = explode('.', $file);
-			/** Include path **/
-			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-			/** PHPExcel_IOFactory */
-			include 'PHPExcel/IOFactory.php';
-			$objPHPExcel = PHPExcel_IOFactory::load($fname);
-			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-			$data_exist = [];
-
-			foreach ($allDataInSheet as $ads) {
-				if (array_filter($ads)) {
-					array_push($data_exist, $ads);
-				}
-			}
-			foreach ($data_exist as $key => $value) {
-				if ($key == '0') {
-					continue;
-				} else {
-					$arrayCustomerQuote = array(
-						'NAMAJABATAN' => $value[0],
-						'KET' => $value[1],
-						'createdAt'	=> date('Y-m-d H:i:s')
-					);
-                    $result = $this->model_generateguru->insert($arrayCustomerQuote, 'msjabatan');
-				}
-			}
-			if ($result) {
-				$result = 1;
-			}
-
-			echo json_encode($result);
-		} else {
-			echo json_encode($result);
-		}
-    }
-    
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_generateguru->viewOrdering('msjabatan', 'id', 'asc')->result();
+            $my_data = $this->model_Generategajiguru->viewOrdering('generate_log2', 'id', 'asc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -155,89 +111,61 @@ class Generategajiguru extends CI_Controller
     }
 
     public function generate()
-	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-			$this->load->library('Configfunction');
-			$IdTA = $this->configfunction->getidta();
-			$idtea = $IdTA[0]['ID'];
-			$thnakademik = $IdTA[0]['THNAKAD'];
-			$thn = $IdTA[0]['TAHUN'];
-			$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thn' AND NOT EXISTS (SELECT a.Noreg
-											FROM saldopembayaran_sekolah a where
-											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
-			if (count($calonsiswa) > 0) {
-				foreach ($calonsiswa as $value) {
-					$tarif = $this->db->query("SELECT
-					SUM(tarif_berlaku.Nominal)AS total
-					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' AND Kodejnsbayar IN('SRG','SPP','KGT','GDG')");
-					$n = $tarif->num_rows();
-					if ($tarif) {
-						$v = $tarif->result_array();
-						$vtotal = $v[0]['total'];
-						$naikkelas = $this->db->query("SELECT
-						baginaikkelas.Kelas,
-						baginaikkelas.NIS
-						FROM baginaikkelas
-						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
-						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.NOREG= $value[NOREG]");
-						if (count($naikkelas->result_array()) > 0) {
-							$kelas = $naikkelas->result_array();
-							$vkelas = $kelas[0]['Kelas'];
-							$vnis = $kelas[0]['NIS'];
-							$kdsk = "select KDSK from tbps WHERE kdtbps = '".$value['PS']."'";
-							$kdsk = $this->db->query($kdsk)->row();
-							$bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."' and TA= '$thnakademik' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ";
-							$nominal = $this->db->query($bayar)->row();
-							if($kdsk==NULL){
-								$kdsk = '';
-							}else{
-								$kdsk = $kdsk->KDSK;
-							}
-							// print_r(json_encode($kdsk));exit;
-							if ($vkelas == '') {
-								if ($value['PS'] == '1') {
-									$t_kelas = 1;
-								}else if($kdsk = '2'){
-									$t_kelas = 1;
-								}else if($kdsk = '3'){
-									$t_kelas = 7;
-								}else if($kdsk = '2'){
-									$t_kelas = 10;
-								} else {
-									$t_kelas = 0;
-								}
-							} else {
-								$t_kelas = $vkelas;
-							}
-							$vsisa = $vtotal - $nominal->bayar;
-							//jika ada datanya di delete lalu di insert
-							$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
-							if(count($checkdata) > 0 ) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
-							}
-							$data = array(
-								'NIS' => $vnis,
-								'Noreg' => $value['NOREG'],
-								'TotalTagihan' => $vtotal,
-								'TA' => $idtea,
-								'Bayar' => $nominal->bayar,
-								'Sisa' => $vsisa,
-								'Kelas' => $t_kelas,
-								'createdAt' => date('Y-m-d H:i:s')
-							);
-							// print_r($data);
-							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');	
-							
-						} 
-					}
-				}
-				echo json_encode(true);	
-			} else {
-				echo json_encode(false);
-			}
-		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
-		}
-	}
+    {
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $year = $this->input->post('tahun');
+            $bulan = $this->input->post('bln');
+            $refresh = $this->db->query("delete from tb_pendapatan_guru where YEAR(effective_date) = '" . $year . "' and MONTH(effective_date) = '" . $bulan . "' ");
+            if ($refresh) {
+                $getgaji = $this->db->query("Select 
+                ")->result_array();
+                if ($getgaji) {
+                    foreach ($getgaji as $data) {
+                        $data = array(
+                            "employee_number" => $data['id_karyawan'],
+                            "nama"    => $data['nama'],
+                            "npwp" => $data['npwp'],
+                            "pot_taawun" => $data['tawun'],
+                            "jabatan" => $data['NAMAJABATAN'],
+                            "status" => "",
+                            "effective_date" => $data['periode'],
+                            "awal_kerja" => $data['tgl_mulai_kerja'],
+                            "gaji" => $data['gaji'],
+                            "jumlah_jam" => "",
+                            "tunj_jabatan" => $data['tunjangan_jabatan'],
+                            "tunj_transport" => $data['transport'],
+                            "tunj_masakerja" => $data['tunjangan_masakerja'],
+                            "thr"  => $data['thr'],
+                            "pot_inval" => $data['inval'],
+                            "pot_anggotakoperasi" => $data['anggota_koperasi'],
+                            "pot_infaqmasjid" => $data['infaq_masjid'],
+                            "pot_kasbon" => $data['kas_bon'],
+                            "pot_ijintelat" => $data['ijin_telat'],
+                            "pot_bmt" => $data['bmt'],
+                            "pot_koperasi" => $data['koperasi'],
+                            "pot_tokoalhamra" => $data['toko'],
+                            "pot_lain" => $data['lain'],
+                            "pot_bpjs" => $data['bpjs'],
+                            "pph21_bulanan" => $data['pph21'],
+                            "updatedWith" => $this->session->userdata('nama')
+
+                        );
+                        $insert = $this->model_Generategajikaryawan->insert($data, 'tb_pendapatan');
+                    }
+                }
+            }
+
+            if ($insert) {
+                $log = array(
+                    "username" => $this->session->userdata('nama'),
+                    "nip" => $this->session->userdata('nip'),
+                    "waktu" => date('Y-m-d H:i:s')
+                );
+                $insertlog = $this->model_Generategajikaryawan->insert($log, 'generate_log');
+                echo json_encode($insert);
+            }
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
+    }
 }

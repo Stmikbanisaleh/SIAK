@@ -1,4 +1,6 @@
 <!-- Button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -135,6 +137,38 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Transport </label>
+								<div class="col-sm-9">
+									<input type="text" id="transport" required name="transport" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="transport_v" required name="transport_v" />
+									<script language="JavaScript">
+										var rupiah4 = document.getElementById('transport');
+										rupiah4.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#transport_v').val(rup4);
+											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+										});
+
+										function formatRupiah4(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan4) {
+												separator = sisa ? '.' : '';
+												rupiah4 += separator + ribuan4.join('.');
+											}
+
+											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="nama_pembayaran" id="nama_pembayaran">
@@ -196,6 +230,11 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$('select').select2({
+            width: '100%',
+            placeholder: "Masukan Nama Guru",
+            allowClear: true
+        });
 	});
 
 	//function show all Data

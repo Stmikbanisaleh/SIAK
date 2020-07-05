@@ -1,4 +1,6 @@
 <!-- Button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -28,29 +30,17 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formTambah">
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Karyawan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="id_karyawan" id="id_karyawan">
-										<option value="">-- Pilih Karyawan --</option>
-										<?php foreach ($mykaryawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?= $value['nama'] ?></option>
+									<select class="form-control" name="id_guru" id="id_guru">
+										<option value="">-- Pilih Guru --</option>
+										<?php foreach ($myguru as $value) { ?>
+											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
                             </div>
                             
-                            <!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Potongan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="PotonganNama" id="PotonganNama">
-                                        <option value="">-- Pilih Jenis Potongan --</option>
-                                        <option value="Arisan">Arisan</option>
-                                        <option value="Asuransi Kesehatan">Asuransi Kesehatan</option>
-                                        <option value="Kasbon">Kasbon</option>
-									</select>
-								</div>
-							</div> -->
-
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
 								<div class="col-sm-9">
@@ -908,6 +898,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+ 
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -941,6 +932,11 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+        $('select').select2({
+            width: '100%',
+            placeholder: "Masukan Nama Guru",
+            allowClear: true
+        });
 	});
 
 	//function show all Data

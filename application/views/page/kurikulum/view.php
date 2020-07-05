@@ -33,6 +33,14 @@
 									<input type="text" id="namamataajar" name="namamataajar" placeholder="Nama Mataajar" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Jumlah Jam Pelajaran</label>
+								<div class="col-sm-9">
+									<input type="number" id="jam" name="jam" placeholder="Jumlah Jam Pelajaran" class="form-control" />
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
 								<div class="col-sm-6">
@@ -99,6 +107,14 @@
 									<input type="text" id="e_namamataajar" name="e_namamataajar" placeholder="Nama Mataajar" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Jumlah Jam Pelajaran</label>
+								<div class="col-sm-9">
+									<input type="number" id="e_jam" name="e_jam" placeholder="Jumlah Jam Pelajaran" class="form-control" />
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
 								<div class="col-sm-6">
@@ -155,6 +171,7 @@
 				<th>Kode Kurikulim</th>
 				<th>Nama Kurikulum</th>
 				<th>Program Sekolah</th>
+				<th>Jam Pelajaran</th>
 				<th>Kelas</th>
 				<th>Action</th>
 			</tr>
@@ -302,6 +319,7 @@
 						'<td class="text-center">' + data[i].kode + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].DESCRTBPS + '-' + data[i].DESCRTBJS + '</td>' +
+						'<td>' + data[i].jam +'</td>' +
 						'<td>' + data[i].semester + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_mapel + '">' +

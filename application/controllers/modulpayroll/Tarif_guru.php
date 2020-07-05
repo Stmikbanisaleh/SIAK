@@ -48,6 +48,9 @@ class Tarif_guru extends CI_Controller
 				'tarif'  => $this->input->post('tarif_guru_v'),
 				'cara_pembayaran'  => $this->input->post('nama_pembayaran'),
 				'no_rekening' => $this->input->post('no_rekening'),
+				'transport' => $this->input->post('transport_v'),
+				'tunjangan_masakerja' => $this->input->post('tunjangan_masa_kerja_v'),
+				'tunjangan_jabatan' => $this->input->post('tunjangan_jabatan_v'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 

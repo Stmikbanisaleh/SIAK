@@ -1,12 +1,3 @@
-<!-- <div class="row">
-    <div class="col-xs-1">
-        <button role="button" id="btn_generate" onclick="generate();" class="btn btn-xs btn-warning">
-            <a class="ace-icon fa fa-plus bigger-120"></a> Generate
-        </button>
-    </div>
-    <br>
-    <br>
-</div> -->
 <div class="row">
 	<div class="col-xs-1">
 		<button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-warning">

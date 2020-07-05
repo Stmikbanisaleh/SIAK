@@ -73,7 +73,13 @@
 			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/master_potongan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Master Potongan
+					Master Potongan Karyawan
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/master_potongan_guru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Potongan Guru
 				</a>
 			</li>
 			<li class="">

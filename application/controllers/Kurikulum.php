@@ -54,6 +54,7 @@ class Kurikulum extends CI_Controller {
                 'nama'  => $this->input->post('namamataajar'),
                 'semester'  => $this->input->post('semester'),
                 'ps'  => $this->input->post('programsekolah'),
+                'jam'  => $this->input->post('jam'),
                 'createdAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_kurikulum->insert($data,'mspelajaran');
