@@ -148,6 +148,14 @@
             </select>
             <small  class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Jenis Laporan</label>
+            <select class="form-control" required name="tipe_laporan" id="tipe_laporan">
+                <option value="P">PDF</option>
+                <option value="E">Excel</option>
+            </select>
+            <small  class="form-text text-muted">Tipe file output.</small>
+        </div>
         <!-- <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
