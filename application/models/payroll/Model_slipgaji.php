@@ -4,6 +4,7 @@ class Model_slipgaji extends CI_model
 {
     public function view($table)
     {
+        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
     }
 
