@@ -39,7 +39,7 @@ class Rekap_gajikaryawan extends CI_Controller
 		$no = 1;
 		$row = 2;
 		
-		$key = array_keys($data[0]);
+		// $key = array_keys($data[0]);
 		
 		//******************************************************************************************************//
 									//-------------------Header Page---------------------//
@@ -1120,7 +1120,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//No Register
 			$var_d = 'C'.$baris;
-			$var_e = $row['no_register'];
+			$var_e = $row['employee_number'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1265,7 +1265,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//Tetap
 			$var_d = 'S'.$baris;
-			$var_e = $row['tetap'];
+			$var_e = $row['tunj_tetap'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1542,9 +1542,9 @@ class Rekap_gajikaryawan extends CI_Controller
 		//======================================================//
 		//-------------------- End Body ------------------------//
 		//======================================================//
-
+		date_default_timezone_set("Asia/Bangkok");
 		header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-		header('Content-Disposition: attachment; filename=report.xls');
+		header('Content-Disposition: attachment; filename=Laporan rekap gaji karyawan '.date("dmY-his").'.xls');
 		header('Cache-Control: max-age=0');
 		ob_end_clean();
 		ob_start();

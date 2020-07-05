@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <style>
@@ -79,7 +80,12 @@
 </style>
 </head>
 <body>
-
+<?php
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("pragma:no-cache");
+header("Expires:0");
+?>
 <?php
 	$baris = $mygaji->num_rows();
 	$flag = 1;

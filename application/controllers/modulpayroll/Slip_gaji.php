@@ -36,23 +36,41 @@ class Slip_gaji extends CI_Controller
 	}
 
 	public function laporan(){
+		$this->laporan_pdf_karyawan();
+	}
+	
+	public function laporan_pdf_karyawan(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-        // $my_pembsiswa = $this->model_surattagihan->view_siswatg($nis, $kelas)->row();
-        $this->load->library('pdf');
-
-        // $setting = $this->model_surattagihan->view('sys_config','id','asc')->row();
-		// $data = array(
-		// 	'mydata'      => $my_pembsiswa,
-		// 	'tgl'         => $tgl,
-		// 	'setting'     => $setting,
-		// 	'thnakad'     => $thnakad[0]['THNAKAD']
-
-		// );
+        $my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+		$this->load->library('pdf');
+		
+		$data = array(
+			'mygaji'      	=> $my_gaji,
+		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
 		// $this->pdf->set_paper($customPaper);
-		$this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
-		$this->pdf->load_view('pagepayroll/slip_gaji/laporan');
-    }
+		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
+		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
+
+		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+	}
+
+	public function laporan_pdf_guru(){
+		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+        $my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+		$this->load->library('pdf');
+		
+		$data = array(
+			'mygaji'      	=> $my_gaji,
+		);
+		$this->pdf->setPaper('FOLIO', 'potrait');
+		// $customPaper = array(0,0,254,396);
+		// $this->pdf->set_paper($customPaper);
+		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
+		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
+
+		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+	}
 
 }
