@@ -58,10 +58,17 @@ class Master_potongan extends CI_Controller
 				'periode'  => $this->input->post('periode'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_mastpotongan->insert($data, 'tbkaryawanpot');
-			if ($result) {
-				echo $result;
-			} 
+			
+			$hasil = $this->model_mastpotongan->cek_karyawan($this->input->post('id_karyawan'), $this->input->post('periode'))->num_rows();
+			if($hasil>0){
+				echo 401;
+			}else{
+				$result = $this->model_mastpotongan->insert($data, 'tbkaryawanpot');
+				if ($result) {
+					echo $result;
+				} 
+			}
+			
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
