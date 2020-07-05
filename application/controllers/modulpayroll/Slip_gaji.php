@@ -36,12 +36,26 @@ class Slip_gaji extends CI_Controller
 	}
 
 	public function laporan(){
-		$this->laporan_pdf_karyawan();
+		if($this->input->post('tipe_gaji') == 'K'){
+			$this->laporan_pdf_karyawan();
+		}else{
+			$this->laporan_pdf_guru();
+		}
 	}
 	
 	public function laporan_pdf_karyawan(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-        $my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+		if($this->input->post('employee') == 'none'){
+			$my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+		}else{
+			$where = array(
+				'employee_number'	=> $this->input->post('employee')
+			);
+			$my_gaji = $this->model_slipgaji->view_where('tb_pendapatan', $where);
+		}
+
+		echo $this->input->post('employee');exit;
+        
 		$this->load->library('pdf');
 		
 		$data = array(
@@ -58,7 +72,7 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_guru(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-        $my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+        $my_gaji = $this->model_slipgaji->view('tb_pendapatan_guru');
 		$this->load->library('pdf');
 		
 		$data = array(
