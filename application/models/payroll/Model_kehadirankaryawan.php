@@ -49,6 +49,28 @@ class Model_kehadirankaryawan extends CI_model
         b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '15:00:00' and '18:00:00' and date(a.tanggal) = '".$tanggal."' and b.nip = '".$nip."' limit 1");
     }
 
+    public function view_jamfinger_kar($tanggal, $nip, $jam_masuk, $jam_keluar)
+    {
+        return $this->db->query("SELECT
+                                q.*,
+                                timediff(q.jam_keluar, q.jam_masuk) selisih,
+                                timediff(q.jam_masuk, '".$jam_masuk."') telat_masuk,
+                                timediff(q.jam_keluar, '".$jam_keluar."') telat_keluar,
+                                timediff('".$jam_masuk."', q.jam_masuk) cepat_masuk,
+                                timediff('".$jam_keluar."', q.jam_keluar) cepat_keluar
+                                FROM(select
+                                        DISTINCT d.nip,
+                                        date(c.tanggal),
+                                        (select time(a.tanggal) as jam_masuk from tbkehadiran a left join biodata_karyawan
+                                                        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '05:00:00' and '10:00:00'
+                                                        and date(a.tanggal) = date(c.tanggal) and b.nip = d.nip limit 1) as jam_masuk,
+                                        (select time(a.tanggal) as jam_keluar from tbkehadiran a left join biodata_karyawan
+                                                        b on a.pin = b.nip WHERE time(a.tanggal) BETWEEN '15:00:00' and '18:00:00'
+                                                        and date(a.tanggal) = date(c.tanggal) and b.nip = d.nip limit 1) as jam_keluar
+                                    from tbkehadiran c left join biodata_karyawan
+                                            d on c.pin = d.nip WHERE date(c.tanggal) = '".$tanggal."' and d.nip = '".$nip."') q");
+    }
+
     public function insert($data, $table)
     {
         $result = $this->db->insert($table, $data);
