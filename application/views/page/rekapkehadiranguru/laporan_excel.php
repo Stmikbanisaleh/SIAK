@@ -58,7 +58,7 @@ font-family:Arial, Helvetica, sans-serif;
 <body>
 <table style="width:100%;">
     <tr>
-        <td style="width: 100%; text-align:center;" colspan="10"><b>REKAPITULASI KEHADIRAN GURU YAYASAN GEMA NURANI</b></td>
+        <td style="width: 100%; text-align:center;" colspan="10"><b>REKAPITULASI KEHADIRAN GURU SEKOLAH ISLAM TERPADU GEMA NURANI</b></td>
     </tr>
     <tr>
         <td style="width: 100%; text-align:center;" colspan="10"><b>TAHUN AJARAN 2020/2021 SEMESTER GENAP</b></td>
