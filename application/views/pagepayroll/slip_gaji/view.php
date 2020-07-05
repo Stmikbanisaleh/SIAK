@@ -90,7 +90,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Bulan Awal</label>
-            <select class="form-control" required name="blnakhir" id="blnakhir">
+            <select class="form-control" required name="blnawal" id="blnawal">
                 <option value="0">--Pilih Periode Bulan--</option>
                 <option value="1">Januari</option>
                 <option value="2">Februari</option>
@@ -127,9 +127,9 @@
             <small id="emailHelp" class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Bulan Akhir</label>
+            <label for="exampleInputEmail1">Karyawan / Guru</label>
             <select class="form-control" name="employee" id="employee">
-                <option value="none">--Pilih Karyawan--</option>
+                <option value="none">--Pilih Karyawan / Guru--</option>
                 <?php
                     foreach($my_karyawan as $row){
                 ?>
@@ -138,7 +138,7 @@
                     }
                 ?>
             </select>
-            <small  class="form-text text-muted">Periode Akhir bulan gaji (Tidak wajib diisi).</small>
+            <small  class="form-text text-muted">Pilih karyawan atau guru yang akan ditampilkan (Tidak wajib diisi).</small>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Tipe Gaji</label>

@@ -46,15 +46,18 @@ class Slip_gaji extends CI_Controller
 	public function laporan_pdf_karyawan(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view('tb_pendapatan');
+			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan',
+														$this->input->post('blnawal'),
+														$this->input->post('blnakhir'));
 		}else{
 			$where = array(
-				'employee_number'	=> $this->input->post('employee')
+				'employee_number'	=> $this->input->post('employee'),
 			);
-			$my_gaji = $this->model_slipgaji->view_where('tb_pendapatan', $where);
+			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan',
+															$this->input->post('blnawal'),
+															$this->input->post('blnakhir'),
+															$this->input->post('employee'));
 		}
-
-		echo $this->input->post('employee');exit;
         
 		$this->load->library('pdf');
 		
@@ -72,7 +75,19 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_guru(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-        $my_gaji = $this->model_slipgaji->view('tb_pendapatan_guru');
+		if($this->input->post('employee') == 'none'){
+			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
+														$this->input->post('blnawal'),
+														$this->input->post('blnakhir'));
+		}else{
+			$where = array(
+				'employee_number'	=> $this->input->post('employee'),
+			);
+			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
+															$this->input->post('blnawal'),
+															$this->input->post('blnakhir'),
+															$this->input->post('employee'));
+		}
 		$this->load->library('pdf');
 		
 		$data = array(
