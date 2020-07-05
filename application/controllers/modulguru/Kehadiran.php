@@ -34,10 +34,10 @@ class Kehadiran extends CI_Controller
 
     public function simpan()
     {
+        $date = date("Y-m-d");
         $idguru = $this->session->userdata('idguru');
         $idjadwal = $this->input->post('e_id');
-        $cek = $this->db->query("select count(ID) as total from trdsrm  where IdJadwal ='" . $idjadwal . "' and IdGuru = '" . $idguru . "' ")->result_array();
-        // print_r($cek);exit;
+        $cek = $this->db->query("select count(ID) as total from trdsrm  where IdJadwal ='" . $idjadwal . "' and IdGuru = '" . $idguru . "' and DATE(TGLHADIR) = '".$date."'")->result_array();
         if ($cek[0]['total'] == 0 ) {
             $data = array(
                 'idJadwal'  => $this->input->post('e_id'),
