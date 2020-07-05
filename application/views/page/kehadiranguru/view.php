@@ -1,34 +1,42 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
-    <form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/lap_bayarsiswa/laporan_pdf">
-        <div class="col-xs-3">
-            Tanggal Awal
-            <div class="input-group">
-                <input class="form-control date-picker" id="id-date-picker-1" name="periode_awal" type="date" data-date-format="dd-mm-yyyy" />
-                <span class="input-group-addon">
-                    <i class="fa fa-calendar bigger-110"></i>
-                </span>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            Tanggal Akhir
-            <div class="input-group">
-                <input class="form-control date-picker" id="id-date-picker-1" type="date" name="periode_akhir" data-date-format="dd-mm-yyyy" />
-                <span class="input-group-addon">
-                    <i class="fa fa-calendar bigger-110"></i>
-                </span>
-            </div>
-        </div>
-        <div class="col-xs-1">
-            <br>
-            <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
-                <a class="ace-icon fa fa-success bigger-120"></a>Hitung
-            </button>
-        </div>
-        <br>
-        <br>
-    </form>
-	</div>
-	<br>
+	<form class="form-horizontal" method="POST" role="form" id="formSearch">
+		<div class="col-xs-3">
+			Guru
+			<div class="form-group">
+				<select class="form-control" name="guru" id="guru">
+					<option value="0">-- Pilih Guru --</option>
+					<?php foreach ($myguru as $value) { ?>
+						<option value=<?= $value['IdGuru'] ?>><?= $value['IdGuru'] . $value['GuruNama'] ?></option>
+					<?php } ?>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-3">
+			Mata Pelajaran
+			<div class="form-group">
+				<span>
+					<select class="form-control" name="mapel" id="mapel">
+						<option value="0">-- Pilih MataPelajaran --</option>
+					</select>
+				</span>
+
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<br>
+			<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
+				<a class="ace-icon fa fa-success bigger-120"></a>Tampilkan
+			</button>
+		</div>
+		<br>
+		<br>
+	</form>
+</div>
+<br>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -173,13 +181,14 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Bulan ke</th>
-				<th>Tahun</th>
-				<th>Semester</th>
-				<th>Tanggal Input</th>
-				<th>Tanggal Awal</th>
-				<th>Tanggal Akhir</th>
-				<th>Action</th>
+				<th>Nama Guru</th>
+				<th>Mengajar</th>
+				<th>Tanggal</th>
+				<th>Mulai (WIB)</th>
+				<th>Inval</th>
+				<th>Ket. Tidak Hadir</th>
+				<th>Ganti Hari</th>
+				<th>Tambahan</th>
 			</tr>
 		</thead>
 		<tbody id="show_data">
@@ -187,6 +196,59 @@
 	</table>
 </div>
 <script>
+	   if ($("#formSearch").length > 0) {
+        $("#formSearch").validate({
+            submitHandler: function(form) {
+                $('#btn_search').html('Searching..');
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo site_url('kehadiranguru/search') ?>',
+                    data: $('#formSearch').serialize(),
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                            'Periksa');
+                        var html = '';
+                        var i = 0;
+                        var no = 1;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<tr>' +
+                                '<td class="text-center">' + no + '</td>' +
+                                '<td>' + data[i].GuruNama + '</td>' +
+                                '<td>' + data[i].nama + '</td>' +
+                                '<td>' + data[i].TGLHADIR + '</td>' +
+                                '<td>' + data[i].MSKHADIR + '</td>' +
+                                '<td>' + data[i].STINVAL + '</td>' +
+                                '<td class="text-center">' + data[i].KETTDKHDR + '</td>' +
+                                '<td class="text-center">' + data[i].TAMBAHAN + '</td>' +
+                                '<td class="text-center">' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
+                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                                '</td>' +
+                                '</tr>';
+                            no++;
+                        }
+                        $("#table_id").dataTable().fnDestroy();
+                        var a = $('#show_data').html(html);
+                        //                    $('#mydata').dataTable();
+                        if (a) {
+                            $('#table_id').dataTable({
+                                "bPaginate": true,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false
+                            });
+                        }
+                        /* END TABLETOOLS */
+                    }
+                });
+
+            }
+        })
+    }
+
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({
 			errorClass: "my-error-class",
@@ -369,15 +431,33 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('select').select2({
+			width: '100%',
+			placeholder: "Masukan Matapelajaran",
+			allowClear: true
+		});
 		show_data();
 		$('#table_id').DataTable();
 	});
 
+	$("#guru").change(function() {
+		var guru = $('#guru').val();
+		$.ajax({
+			type: "POST",
+			url: '<?php echo site_url('kehadiranguru/showmapel') ?>',
+			data: {
+				guru: guru
+			}
+		}).done(function(data) {
+			// console.log(data);
+			$("#mapel").html(data);
+		});
+	});
 	//function show all Data
 	function show_data() {
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo site_url('jabatan/tampil') ?>',
+			url: '<?php echo site_url('kehadiranguru/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -387,19 +467,16 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td>' + data[i].NAMAJABATAN + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].GuruNama + '</td>' +
+						'<td>' + data[i].nama + '</td>' +
+						'<td>' + data[i].TGLHADIR + '</td>' +
+						'<td>' + data[i].MSKHADIR + '</td>' +
+						'<td>' + data[i].STINVAL + '</td>' +
+						'<td>' + data[i].TAMBAHAN + '</td>' +
+						'<td></td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
-						'</button> &nbsp' +
-						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
-						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-						'</button>' +
 						'</td>' +
 						'</tr>';
 					no++;

@@ -4,11 +4,6 @@
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
     </div>
-    <!-- <div class="col-xs-1">
-        <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-            <a class="ace-icon fa fa-plus bigger-120"></a>Import Data
-        </button>
-    </div> -->
     <br>
     <br>
 </div>

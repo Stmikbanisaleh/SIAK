@@ -53,6 +53,7 @@ class Master_potongan extends CI_Controller
 				'inval'  => $this->input->post('inval_v'),
 				'toko' => $this->input->post('toko_v'),
 				'lain' => $this->input->post('lain_v'),
+				'tawun'  => $this->input->post('tawun_v'),
 				'pph21'  => $this->input->post('pph21_v'),
 				'periode'  => $this->input->post('periode'),
 				'createdAt' => date('Y-m-d H:i:s')
@@ -94,9 +95,11 @@ class Master_potongan extends CI_Controller
 				'bmt'  => $this->input->post('e_bmt_v'),
 				'koperasi'  => $this->input->post('e_koperasi_v'),
 				'inval'  => $this->input->post('e_inval_v'),
+				'tawun' => $this->input->post('e_tawun_v'),
 				'toko'  => $this->input->post('e_toko_v'),
 				'lain'  => $this->input->post('e_lain_v'),
 				'pph21'  => $this->input->post('e_pph21_v'),
+				'bpjs'  => $this->input->post('e_bpjs_v'),
 				'periode'  => $this->input->post('e_periode'),
 			);
 

@@ -83,7 +83,7 @@
 			<tr>
 				<th>No</th>
 				<th>Kode Karyawan</th>
-				<th>nama Lengkap</th>
+				<th>Nama Lengkap</th>
 				<th>Jabatan</th>
                 <th>Tanggal Kehadiran</th>
                 <th>Status</th>
