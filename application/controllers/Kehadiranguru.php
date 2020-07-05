@@ -18,16 +18,28 @@ class Kehadiranguru extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $myguru = $this->model_kehadiranguru->viewOrdering('tbguru', 'id', 'asc')->result_array();
             $data = array(
                 'page_content'  => 'kehadiranguru/view',
-                'ribbon'        => '<li class="active">Kehadiran Guru</li>',
-                'page_name'     => 'Kehadiran Guru'
+                'ribbon'        => '<li class="active">Daftar Kehadiran Guru</li>',
+                'page_name'     => 'Daftar Kehadiran Guru',
+                'myguru'        => $myguru
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }
     }
+
+    public function showmapel()
+    {
+		$guru = $this->input->post('guru');
+        $result = $this->model_kehadiranguru->getguru($guru)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+        foreach ($result as $value) {
+            echo "<option value='" . $value['id_mapel'] . "'>[".$value['nama']."] - [".$value['hari']."] - Jam Ke [".$value['JAM']."] - Kelas [".$value['nmklstrjdk']."] - [".$value['SINGKTBPS']."] </option>";
+        }
+	}
 
     public function import()
 	{
@@ -76,7 +88,7 @@ class Kehadiranguru extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_generateguru->viewOrdering('msjabatan', 'id', 'asc')->result();
+            $my_data = $this->model_kehadiranguru->viewtrdsm('tbguru', 'id', 'asc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -153,4 +165,12 @@ class Kehadiranguru extends CI_Controller
             $this->load->view('page/login'); //Memanggil function render_view
         }
     }
+
+    public function search()
+	{
+		$idguru = $this->input->post('guru');
+        $mapel = $this->input->post('mapel');
+        $result = $this->model_kehadiranguru->getsearch($idguru, $mapel)->result();
+		echo json_encode($result);
+	}
 }

@@ -52,6 +52,7 @@ class Biodata_karyawan extends CI_Controller
 			$data = array(
 				'nik'  => $this->input->post('nik'),
 				'nip'  => $this->input->post('nip'),
+				'npwp'  => $this->input->post('npwp'),
 				'nama'  => $this->input->post('nama'),
 				'jabatan'  => $this->input->post('jabatan'),
 				'jenis_kelamin'  => $this->input->post('jenis_kelamin'),
@@ -134,6 +135,7 @@ class Biodata_karyawan extends CI_Controller
 				'jenis_kelamin'  => $this->input->post('e_jenis_kelamin'),
 				'agama'  => $this->input->post('e_agama'),
 				'email'  => $this->input->post('e_email'),
+				'npwp'  => $this->input->post('e_npwp'),
 				'no_telp'  => $this->input->post('e_telp'),
 				'alamat'  => $this->input->post('e_alamat'),
 				'pendidikan'  => $this->input->post('e_pendidikan_terakhir'),

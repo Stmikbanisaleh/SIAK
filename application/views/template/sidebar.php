@@ -210,18 +210,18 @@ if ($jabatan == 19) { ?>
 						Generate Kehadiran Guru
 					</a>
 				</li>
-
+<!-- 
 				<li class="">
 					<a href="<?= base_url() . 'generatekaryawan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Generate Kehadiran Karyawan
 					</a>
-				</li>
+				</li> -->
 
 				<li class="">
 					<a href="<?= base_url() . 'kehadiranguru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Kehadiran Guru
+						Daftar Kehadiran Guru
 					</a>
 				</li>
 				<li class="">

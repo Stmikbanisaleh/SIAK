@@ -380,24 +380,47 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<div class="col-sm-9">
+								<input type="text" id="tawun" required name="tawun" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="text" id="tawun_v" required name="tawun_v"/>
+								<script language="JavaScript">
+										var rupiah13 = document.getElementById('tawun');
+										rupiah13.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#tawun_v').val(rup8);
+											rupiah13.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah13 = split[0].substr(0, sisa),
+												ribuan13 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan13) {
+												separator = sisa ? '.' : '';
+												rupiah13 += separator + ribuan13.join('.');
+											}
+
+											rupiah13 = split[1] != undefined ? rupiah13 + ',' + split[1] : rupiah13;
+											return prefix == undefined ? rupiah13 : (rupiah13 ? 'Rp. ' + rupiah13 : '');
+										}
+									</script>
+								</div>
+							</div>
+							
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
 								<div class="col-sm-9">
 									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
 								</div>
                             </div>
-                            
-                            <!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
-								<div class="col-sm-9">
-									<select class="form-control" required name="potong_status" id="potong_status">
-                                        <option value="">-- Pilih Keterangan --</option>
-                                        <option value="Aktif">Aktif</option>
-                                        <option value="Non-aktif">Non-aktif</option>
-									</select>
-								</div>
-							</div> -->
 					</div>
 				</div>
 			</div>
@@ -770,7 +793,74 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<div class="col-sm-9">
+								<input type="text" id="e_tawun" required name="e_tawun" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tawun_v" required name="e_tawun_v"/>
+								<script language="JavaScript">
+										var rupiah131 = document.getElementById('e_tawun');
+										rupiah131.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#e_tawun_v').val(rup8);
+											rupiah131.value = formatRupiah131(this.value, 'Rp. ');
+										});
+
+										function formatRupiah131(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah131 = split[0].substr(0, sisa),
+												ribuan131 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan131) {
+												separator = sisa ? '.' : '';
+												rupiah131 += separator + ribuan131.join('.');
+											}
+
+											rupiah131 = split[1] != undefined ? rupiah131 + ',' + split[1] : rupiah131;
+											return prefix == undefined ? rupiah131 : (rupiah131 ? 'Rp. ' + rupiah131 : '');
+										}
+									</script>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">BPJS</label>
+								<div class="col-sm-9">
+								<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_bpjs_v" required name="e_bpjs_v"/>
+								<script language="JavaScript">
+										var rupiah141 = document.getElementById('e_bpjs');
+										rupiah141.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#e_bpjs_v').val(rup8);
+											rupiah141.value = formatRupiah141(this.value, 'Rp. ');
+										});
+
+										function formatRupiah141(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah141 = split[0].substr(0, sisa),
+												ribuan141 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan141) {
+												separator = sisa ? '.' : '';
+												rupiah141 += separator + ribuan141.join('.');
+											}
+
+											rupiah141 = split[1] != undefined ? rupiah141 + ',' + split[1] : rupiah141;
+											return prefix == undefined ? rupiah141 : (rupiah141 ? 'Rp. ' + rupiah141 : '');
+										}
+									</script>
+								</div>
+							</div>
+							
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
 								<div class="col-sm-9">
@@ -934,7 +1024,10 @@
 				$('#e_pph21').val(data[0].pph21);
 				$('#e_pph21_v').val(data[0].pph21);
 				$('#e_periode').val(data[0].periode);
-
+				$('#e_tawun').val(data[0].tawun);
+				$('#e_tawun_v').val(data[0].tawun);
+				$('#e_bpjs').val(data[0].bpjs);
+				$('#e_bpjs_v').val(data[0].bpjs);
 			}
 		});
     });

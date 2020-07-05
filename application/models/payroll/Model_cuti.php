@@ -10,7 +10,7 @@ class Model_cuti extends CI_model
     public function view_cuti()
     {
         return $this->db->query("select a.*,b.*,c.keterangan,d.NAMAJABATAN, DATE_FORMAT(b.tanggal, '%d-%m-%Y') as tanggal_f from biodata_karyawan a join tbkehadiran b on a.nip = b.pin 
-        join tbcuti c on b.status = c.id join msjabatan d on a.jabatan = d.ID");
+        join tbcuti c on b.status = c.id join msjabatan d on a.jabatan = d.ID where b.status != '0' ");
     }
 
     public function viewOrdering($table, $order, $ordering)

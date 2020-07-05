@@ -84,6 +84,13 @@
 							</div>
 
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP</label>
+								<div class="col-sm-9">
+									<input type="text" id="npwp" required name="npwp" placeholder="NPWP" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIP Pegawai</label>
 								<div class="col-sm-9">
 									<input type="text" id="nip" required name="nip" placeholder="NIP Pegawai" class="form-control" />
@@ -372,7 +379,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-							<form class="form-horizontal" role="form" id="formTambah">
+							<form class="form-horizontal" role="form" id="formEdit">
 								<div class="text-center">
 									BIODATA KARYAWAN
 								</div>
@@ -383,6 +390,13 @@
 									<div class="col-sm-9">
 										<input type="hidden" id="e_id" required name="e_id" />
 										<input type="text" id="e_nik" required name="e_nik" placeholder="NIK KTP" class="form-control" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
+									<div class="col-sm-9">
+										<input type="text" id="e_npwp" required name="e_npwp" placeholder="NPWP" class="form-control" />
 									</div>
 								</div>
 
@@ -823,6 +837,7 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id_biodata);
 				$('#e_nik').val(data[0].nik);
+				$('#e_npwp').val(data[0].npwp);
 				$('#e_nip').val(data[0].nip);
 				$('#e_nama').val(data[0].nama);
 				$('#e_jabatan').val(data[0].jabatan);
@@ -887,6 +902,36 @@
                             swalEditSuccess();
                             show_data();
                             $('#modalEditTarif').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('Kode Tarif Sudah Terdaftar');
+                        } else {
+                            swalEditFailed();
+                        }
+                    }
+                });
+            }
+        })
+	}
+
+	if ($("#formEdit").length > 0) {
+        $("#formEdit").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                $('#btn_edit').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatebiodata') ?>",
+                    type: "POST",
+                    data: $('#formEdit').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Ubah');
+                        if (response == true) {
+                            document.getElementById("formEdit").reset();
+                            swalEditSuccess();
+                            show_data();
+                            $('#modalEdit').modal('hide');
                         } else if (response == 401) {
                             swalIdDouble('Kode Tarif Sudah Terdaftar');
                         } else {
