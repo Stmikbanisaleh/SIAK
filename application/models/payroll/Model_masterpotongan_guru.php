@@ -57,6 +57,6 @@ class Model_masterpotongan_guru extends CI_model
     }
 
     public function view_potongan(){
-        return $this->db->query("select a.*, b.nama from tbkaryawanpot a join biodata_karyawan b on a.id_karyawan = b.nip");
+        return $this->db->query("select a.*, b.GuruNama from tbgurupot a join tbguru b on a.IdGuru = b.IdGuru");
     }
 }

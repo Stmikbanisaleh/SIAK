@@ -702,7 +702,7 @@
 								<input type="text" id="e_toko" required name="e_toko" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_toko_v" required name="e_toko_v"/>
 								<script language="JavaScript">
-										var rupiah101 = document.getElementById('toko');
+										var rupiah101 = document.getElementById('e_toko');
 										rupiah101.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
 											$('#e_toko_v').val(rup8);

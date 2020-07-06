@@ -43,7 +43,7 @@ class Master_potongan_guru extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$data = array(
-				'id_karyawan'  => $this->input->post('id_karyawan'),
+				'IdGUru'  => $this->input->post('id_guru'),
 				'infaq_masjid'  => $this->input->post('infaq_masjid_v'),
 				'anggota_koperasi'  => $this->input->post('anggota_koperasi_v'),
 				'kas_bon' => $this->input->post('kas_bon_v'),
@@ -56,9 +56,8 @@ class Master_potongan_guru extends CI_Controller
 				'tawun'  => $this->input->post('tawun_v'),
 				'pph21'  => $this->input->post('pph21_v'),
 				'periode'  => $this->input->post('periode'),
-				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$result = $this->model_masterpotongan_guru->insert($data, 'tbkaryawanpot');
+			$result = $this->model_masterpotongan_guru->insert($data, 'tbgurupot');
 			if ($result) {
 				echo $result;
 			} 
@@ -70,11 +69,10 @@ class Master_potongan_guru extends CI_Controller
 	public function tampil_byid()
     {
         if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-
             $data = array(
                 'id_potong'  => $this->input->post('id'),
             );
-            $my_data = $this->model_masterpotongan_guru->view_where('tbkaryawanpot', $data)->result();
+            $my_data = $this->model_masterpotongan_guru->view_where('tbgurupot', $data)->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('pagekasir/login'); //Memanggil function render_view
@@ -103,7 +101,7 @@ class Master_potongan_guru extends CI_Controller
 				'periode'  => $this->input->post('e_periode'),
 			);
 
-			$my_data = $this->model_mastpotongan_guru->update($data,$dataupdate,'tbkaryawanpot');
+			$my_data = $this->model_masterpotongan_guru->update($data,$dataupdate,'tbgurupot');
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -115,7 +113,7 @@ class Master_potongan_guru extends CI_Controller
         $data_id = array(
             'id_potong'  => $this->input->post('id')
 		);
-		$action = $this->model_mastpotongan_guru->delete($data_id, 'tbkaryawanpot');
+		$action = $this->model_masterpotongan_guru->delete($data_id, 'tbgurupot');
 		if($action){
 			echo json_encode($action);
 		}

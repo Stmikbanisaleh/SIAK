@@ -443,13 +443,13 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Karyawan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<input type="hidden" id="e_id_potong"  required name="e_id_potong"  />
 								<div class="col-sm-9">
-									<select  disabled class="form-control" name="e_id_karyawan" id="e_id_karyawan">
-										<option value="">-- Pilih Karyawan --</option>
-										<?php foreach ($mykaryawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?= $value['nama'] ?></option>
+                                    <select class="form-control" name="e_id_guru" id="e_id_guru">
+										<option value="">-- Pilih Guru --</option>
+										<?php foreach ($myguru as $value) { ?>
+											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -692,7 +692,7 @@
 								<input type="text" id="e_toko" required name="e_toko" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_toko_v" required name="e_toko_v"/>
 								<script language="JavaScript">
-										var rupiah101 = document.getElementById('toko');
+										var rupiah101 = document.getElementById('e_toko');
 										rupiah101.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
 											$('#e_toko_v').val(rup8);
@@ -887,8 +887,8 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Kode Karyawan</th>
-				<th>Nama Karyawan</th>
+				<th>Kode Guru</th>
+				<th>Nama Guru</th>
 				<th>Periode</th>
 				<th>Action</th>
 			</tr>
@@ -906,7 +906,7 @@
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/master_potongan/simpan') ?>",
+					url: "<?php echo base_url('modulpayroll/master_potongan_guru/simpan') ?>",
 					dataType: "JSON",
 					data: $('#formTambah').serialize(),
 					success: function(data) {
@@ -932,18 +932,14 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
-        $('select').select2({
-            width: '100%',
-            placeholder: "Masukan Nama Guru",
-            allowClear: true
-        });
+    
 	});
 
 	//function show all Data
 	function show_data() {
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo site_url('modulpayroll/master_potongan/tampil') ?>',
+			url: '<?php echo site_url('modulpayroll/master_potongan_guru/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -953,8 +949,8 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td class="text-center">' + data[i].id_karyawan + '</td>' +
-						'<td>' + data[i].nama + '</td>' +
+						'<td class="text-center">' + data[i].IdGuru + '</td>' +
+						'<td>' + data[i].GuruNama + '</td>' +
 						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_potong + '">' +
@@ -990,7 +986,7 @@
 		$('#modalEdit').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('modulpayroll/master_potongan/tampil_byid') ?>",
+			url: "<?php echo base_url('modulpayroll/master_potongan_guru/tampil_byid') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -998,7 +994,7 @@
 			},
 			success: function(data) {
 				$('#e_id_potong').val(data[0].id_potong);
-				$('#e_id_karyawan').val(data[0].id_karyawan);
+				$('#e_id_guru').val(data[0].IdGuru);
 				$('#e_infaq_masjid').val(data[0].infaq_masjid);
 				$('#e_anggota_koperasi').val(data[0].anggota_koperasi);
 				$('#e_anggota_koperasi_v').val(data[0].anggota_koperasi);
@@ -1035,7 +1031,7 @@
             submitHandler: function(form) {
                 $('#btn_edit').html('Sending..');
                 $.ajax({
-                    url: "<?php echo base_url('modulpayroll/master_potongan/update') ?>",
+                    url: "<?php echo base_url('modulpayroll/master_potongan_guru/update') ?>",
                     type: "POST",
                     data: $('#formEdit').serialize(),
                     dataType: "json",
@@ -1073,7 +1069,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/master_potongan/delete') ?>",
+					url: "<?php echo base_url('modulpayroll/master_potongan_guru/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
