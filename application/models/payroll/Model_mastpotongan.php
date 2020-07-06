@@ -59,4 +59,8 @@ class Model_mastpotongan extends CI_model
     public function view_potongan(){
         return $this->db->query("select a.*, b.nama from tbkaryawanpot a join biodata_karyawan b on a.id_karyawan = b.nip");
     }
+
+    public function cek_karyawan($id, $period){
+        return $this->db->query("SELECT * FROM tbkaryawanpot WHERE id_karyawan = '".$id."' AND MONTH(periode) = DATE_FORMAT('".$period."', '%m')");
+    }
 }
