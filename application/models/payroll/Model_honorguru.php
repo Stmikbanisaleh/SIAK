@@ -4,7 +4,6 @@ class Model_honorguru extends CI_model
 {
     public function view($table)
     {
-        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
     }
 
@@ -58,20 +57,14 @@ class Model_honorguru extends CI_model
         return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
     }
 
-    public function view_gaji($table, $bulan_awal, $bulan_akhir)
+    public function view_honor($bulan, $tahun)
     {
-        return $this->db->query("SELECT
-                                * FROM ".$table." tp
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                AND tp.isDeleted != 1");
-    }
+        return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
+                                FROM htguru a
+                                JOIN tbguru b ON a.IdGuru = b.IdGuru
+                                AND MONTH(a.PERIODE) = $bulan
+                                AND YEAR(a.PERIODE) = $tahun");
 
-    public function view_gaji_byemp($table, $bulan_awal, $bulan_akhir, $emp)
-    {
-        return $this->db->query("SELECT
-                                    * FROM ".$table." tp
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND tp.employee_number = '".$emp."'
-                                    AND tp.isDeleted != 1");
+// return $this->db->last_query();
     }
 }

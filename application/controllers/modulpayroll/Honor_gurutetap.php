@@ -34,19 +34,16 @@ class Honor_gurutetap extends CI_Controller
 
 	public function laporan_pdf(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		// 	$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan',
-		// 													$this->input->post('blnawal'),
-		// 													$this->input->post('blnakhir'),
-		// 													$this->input->post('employee'));
-		// }
+		$my_data = $this->model_honorguru->view_honor($this->input->post('bln'), $this->input->post('tahun'));
+		// print_r($my_data);exit;
         
 		$this->load->library('pdf');
 		
 		$data = array(
-			'mygaji'      	=> 'a',
+			'mydata'      	=> $my_data,
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
-		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
+		$this->pdf->load_view('pagepayroll/honor_gurutetap/laporan_pdf', $data);
 	}
 
 }
