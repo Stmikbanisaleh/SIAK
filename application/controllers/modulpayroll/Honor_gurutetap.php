@@ -7,6 +7,8 @@ class Honor_gurutetap extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('payroll/model_honorguru');
+		$this->load->library('mainfunction');
 	}
 
 	function render_view($data)
@@ -28,6 +30,23 @@ class Honor_gurutetap extends CI_Controller
 		} else {
 			$this->load->view('pagepayroll/login'); //Memanggil function render_view
 		}
+	}
+
+	public function laporan_pdf(){
+		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+		// 	$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan',
+		// 													$this->input->post('blnawal'),
+		// 													$this->input->post('blnakhir'),
+		// 													$this->input->post('employee'));
+		// }
+        
+		$this->load->library('pdf');
+		
+		$data = array(
+			'mygaji'      	=> 'a',
+		);
+		$this->pdf->setPaper('FOLIO', 'potrait');
+		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
 	}
 
 }
