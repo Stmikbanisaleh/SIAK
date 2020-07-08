@@ -39,21 +39,26 @@ class Slip_gaji extends CI_Controller
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$bulan = $this->mainfunction->periode_bulan(date('m'));
 		$tahun = $this->input->post('tahun');
+		$tabel = '';
+		if($this->input->post('tipe_gaji')=='K'){
+			$tabel = 'tb_pendapatan_karyawan';
+		}else{
+			$tabel = 'tb_pendapatan_guru';
+		}
 		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
+			$my_gaji = $this->model_slipgaji->view_gaji($tabel,
 														$this->input->post('blnawal'),
 														$this->input->post('blnakhir'),
-														$this->input->post('tahun'),
-													);
+														$this->input->post('tahun'));
 		}else{
 			$where = array(
 				'employee_number'	=> $this->input->post('employee'),
 			);
-			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
+			$my_gaji = $this->model_slipgaji->view_gaji_byemp($tabel,
 															$this->input->post('blnawal'),
 															$this->input->post('blnakhir'),
 															$this->input->post('employee'),
-															$this->input->post('tahun'),
+															$this->input->post('tahun')
 														);
 		}
 
