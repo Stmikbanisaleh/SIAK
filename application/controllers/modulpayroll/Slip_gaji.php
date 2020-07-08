@@ -36,37 +36,38 @@ class Slip_gaji extends CI_Controller
 	}
 
 	public function laporan(){
+		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+		if($this->input->post('employee') == 'none'){
+			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
+														$this->input->post('blnawal'),
+														$this->input->post('blnakhir'));
+		}else{
+			$where = array(
+				'employee_number'	=> $this->input->post('employee'),
+			);
+			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
+															$this->input->post('blnawal'),
+															$this->input->post('blnakhir'),
+															$this->input->post('employee'));
+		}
+
 		if($this->input->post('tipe_laporan') == 'P'){
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_pdf_karyawan();
+				$this->laporan_pdf_karyawan($my_gaji);
 			}else{
-				$this->laporan_pdf_guru();
+				$this->laporan_pdf_guru($my_gaji);
 			}
 		}else{
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_excel_karyawan();
+				$this->laporan_excel_karyawan($my_gaji);
 			}else{
-				$this->laporan_excel_guru();
+				$this->laporan_excel_guru($my_gaji);
 			}
 		}
 		
 	}
 	
-	public function laporan_pdf_karyawan(){
-		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan',
-														$this->input->post('blnawal'),
-														$this->input->post('blnakhir'));
-		}else{
-			$where = array(
-				'employee_number'	=> $this->input->post('employee'),
-			);
-			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan',
-															$this->input->post('blnawal'),
-															$this->input->post('blnakhir'),
-															$this->input->post('employee'));
-		}
+	public function laporan_pdf_karyawan($my_gaji){
         
 		$this->load->library('pdf');
 		
@@ -82,92 +83,31 @@ class Slip_gaji extends CI_Controller
 		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
-	public function laporan_pdf_guru(){
+	public function laporan_pdf_guru($my_gaji){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
-														$this->input->post('blnawal'),
-														$this->input->post('blnakhir'));
-		}else{
-			$where = array(
-				'employee_number'	=> $this->input->post('employee'),
-			);
-			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
-															$this->input->post('blnawal'),
-															$this->input->post('blnakhir'),
-															$this->input->post('employee'));
-		}
 		$this->load->library('pdf');
 		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
-		// $customPaper = array(0,0,254,396);
-		// $this->pdf->set_paper($customPaper);
-		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
 		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
-
-		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
-	public function laporan_excel_karyawan(){
-		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan',
-														$this->input->post('blnawal'),
-														$this->input->post('blnakhir'));
-		}else{
-			$where = array(
-				'employee_number'	=> $this->input->post('employee'),
-			);
-			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan',
-															$this->input->post('blnawal'),
-															$this->input->post('blnakhir'),
-															$this->input->post('employee'));
-		}
-        
-		$this->load->library('pdf');
+	public function laporan_excel_karyawan($my_gaji){
 		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 		);
-		$this->pdf->setPaper('FOLIO', 'potrait');
-		// $customPaper = array(0,0,254,396);
-		// $this->pdf->set_paper($customPaper);
-		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
-		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
-
-		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
 	public function laporan_excel_guru(){
-		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		if($this->input->post('employee') == 'none'){
-			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
-														$this->input->post('blnawal'),
-														$this->input->post('blnakhir'));
-		}else{
-			$where = array(
-				'employee_number'	=> $this->input->post('employee'),
-			);
-			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
-															$this->input->post('blnawal'),
-															$this->input->post('blnakhir'),
-															$this->input->post('employee'));
-		}
-		$this->load->library('pdf');
-		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 		);
-		$this->pdf->setPaper('FOLIO', 'potrait');
-		// $customPaper = array(0,0,254,396);
-		// $this->pdf->set_paper($customPaper);
-		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
-		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
 
-		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
 }

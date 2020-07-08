@@ -6,7 +6,12 @@ class Model_kehadiran extends CI_model
    public function view_jadwal($idguru, $hari)
     {
         return  $this->db->query("
-        select a.*,d.GuruNama,b.nama as namamapel,e.nama as nmkls from tbjadwal a
+        select a.*,d.GuruNama,b.nama as namamapel,e.nama as nmkls,
+        (select f.PKBAHASAN from trdsrm f
+                where f.IdGuru = d.IdGuru and f.IdJadwal = a.id) pokok_bahasan,
+        (select f.RINCIAN from trdsrm f
+                where f.IdGuru = d.IdGuru and f.IdJadwal = a.id) rincian
+        from tbjadwal a
         join mspelajaran b on a.id_mapel = b.id_mapel
         join tbguru d on a.id_guru = d.IdGuru
         join tbkelas e on a.nmklstrjdk = e.id_kelas

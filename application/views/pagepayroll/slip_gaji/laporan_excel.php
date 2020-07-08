@@ -2,81 +2,9 @@
 <html>
 <head>
 <style>
-	.baris1{
-			clear:both;
-			margin:1px;
-			font-size:6px;
-			margin-top:12px;
-	}
-
-	.baris2{
-			clear:both;
-			margin:1px;
-			font-size:6px;
-	}
-
-	.baris3{
-			clear:both;
-			margin:1px;
-			font-size:6px;
-	}
-
-   .content_left{
-	height:9.6cm;
-	width:48%;
-	/* border: 2px solid red; */
-	/* margin: 9px; */
-	float: left;
-	margin-right:5px;
-	margin-bottom:5px;
-	background-clip: padding-box;
-   }
-
-   .content_right{
-	height:9.6cm;
-	width:48%;
-	/* border: 2px solid red; */
-	margin-left:5px;
-	margin-bottom:5px;
-	float: right;
-	background-clip: padding-box;
-   }
-
-   .informasi{
-		width:100%;
-		/* clear:both; */
-   }
-
-   .isidata{
-		width:100%;
-		/* clear:both; */
-   }
-
-   .tablekiri{
-	   width:50%;
-	   /* border: 2px solid red; */
-	   /* margin:1px;
-	   float:left;
-	   clear:both; */
-   }
-
-   .tablekanan{
-	   width:150px;
-	   /* border: 2px solid blue; */
-	   /* margin:1px;
-	   float:right;
-	   clear:both; */
-   }
-
-   .footerslip{
-		width:100%;
-		margin-top:0px;
-   }
-
-   td{
-	   font-size:6px;
-	   
-   }
+.text{
+  mso-number-format:"\@";/*force text*/
+}
 </style>
 </head>
 <body>
@@ -147,39 +75,36 @@ header("Expires:0");
 	}
 ?>
 	<div class="<?php echo $content; ?>">
-		<div>
+		<div style="width: 100%;">
 			<center><font size="1"><b>PERGURUAN ISLAM GEMA TERPADU</b><font></center>
 			<center><font size="1">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
 			<hr></hr>
 		</div>
-		
+		<font size="1">
 		<div class="informasi">
 			<table style="width:100%; float:left;">
 				<tr>
-					<td>NIK</td>
-					<td>:</td>
-					<td style=""><?= $row['employee_number']?></td>
+					<td colspan="2">NIK</td>
+					<td colspan="3" class="text"><?php echo $row['employee_number']?></td>
 					<td style="text-align:right">Gaji Januari 2012</td>
 				</tr>
-				<tr style="width:70%">
-					<td>Nama</td>
-					<td>:</td>
-					<td><?= $row['nama'] ?></td>
+				<tr>
+					<td colspan="2">Nama</td>
+					<td colspan="4"><?= $row['nama'] ?></td>
 				</tr>
-				<tr style="width:70%">
-					<td>Unit Kerja</td>
-					<td>:</td>
-					<td><?= $row['status'] ?></td>
+				<tr>
+					<td colspan="2">Jabatan</td>
+					<td colspan="4"><?= $row['status'] ?></td>
 				</tr>
 			</table>
-			<hr style="margin-top:40px;"></hr>
+			<hr></hr>
 		</div>
 		<div class="isidata">
 			<div class="tablekiri">
 				<table>
 					<tr>
-						<td colspan="4">Perincian</td>
-						<td colspan="4">Potongan-potongan</td>
+						<td colspan="3">Perincian</td>
+						<td colspan="3">Potongan-potongan</td>
 					</tr>
 					<tr>
 						<td width="9px;">No</td>
@@ -288,7 +213,7 @@ header("Expires:0");
 				</table>
 			</div>
 			<hr style="margin-top:1px;"></hr>
-			<table>
+			<!-- <table>
 					<tr>
 						<td width="125px;">Jumlah</td>
 						<td width="141px;"><?= $jumlah_pend; ?></td>
@@ -302,9 +227,9 @@ header("Expires:0");
 						<td width="141px;"> </td>
 						<td width="50px;"><?= $total; ?></td>
 					</tr>
-			</table>
+			</table> -->
 		</div>
-		<div class="footerslip">
+		<!-- <div class="footerslip">
 			<table>
 				<tr>
 					<td width="160px; text-align:center;">Penerima</td>
@@ -335,7 +260,8 @@ header("Expires:0");
 					<td width="160px; text-align:center;">(.......................................)</td>
 				</tr>
 			</table>
-		</div>
+		</div> -->
+		</font>
 	</div>
 <?php
 if($flag == 2){
