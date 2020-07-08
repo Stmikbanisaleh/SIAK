@@ -37,10 +37,14 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+		$bulan = $this->mainfunction->periode_bulan(date('m'));
+		$tahun = $this->input->post('tahun');
 		if($this->input->post('employee') == 'none'){
 			$my_gaji = $this->model_slipgaji->view_gaji('tb_pendapatan_guru',
 														$this->input->post('blnawal'),
-														$this->input->post('blnakhir'));
+														$this->input->post('blnakhir'),
+														$this->input->post('tahun'),
+													);
 		}else{
 			$where = array(
 				'employee_number'	=> $this->input->post('employee'),
@@ -48,31 +52,36 @@ class Slip_gaji extends CI_Controller
 			$my_gaji = $this->model_slipgaji->view_gaji_byemp('tb_pendapatan_guru',
 															$this->input->post('blnawal'),
 															$this->input->post('blnakhir'),
-															$this->input->post('employee'));
+															$this->input->post('employee'),
+															$this->input->post('tahun'),
+														);
 		}
 
 		if($this->input->post('tipe_laporan') == 'P'){
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_pdf_karyawan($my_gaji);
+				$this->laporan_pdf_karyawan($my_gaji, $bulan, $tahun);
 			}else{
-				$this->laporan_pdf_guru($my_gaji);
+				$this->laporan_pdf_guru($my_gaji, $bulan, $tahun);
 			}
 		}else{
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_excel_karyawan($my_gaji);
+				$this->laporan_excel_karyawan($my_gaji, $bulan, $tahun);
 			}else{
-				$this->laporan_excel_guru($my_gaji);
+				$this->laporan_excel_guru($my_gaji, $bulan, $tahun);
 			}
 		}
 		
 	}
 	
-	public function laporan_pdf_karyawan($my_gaji){
+	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun){
         
 		$this->load->library('pdf');
 		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
+			'bulan'		=> $bulan,
+			'tahun'		=> $tahun,
+			'ket'		=> 'K'
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
@@ -83,28 +92,37 @@ class Slip_gaji extends CI_Controller
 		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
-	public function laporan_pdf_guru($my_gaji){
+	public function laporan_pdf_guru($my_gaji, $bulan, $tahun){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$this->load->library('pdf');
 		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
+			'bulan'		=> $bulan,
+			'tahun'		=> $tahun,
+			'ket'		=> 'G'
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
 	}
 
-	public function laporan_excel_karyawan($my_gaji){
+	public function laporan_excel_karyawan($my_gaji, $bulan, $tahun){
 		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
+			'bulan'		=> $bulan,
+			'tahun'		=> $tahun,
+			'ket'		=> 'K'
 		);
 		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
 
-	public function laporan_excel_guru(){
+	public function laporan_excel_guru($my_gaji, $bulan, $tahun){
 		$data = array(
 			'mygaji'      	=> $my_gaji,
+			'bulan'		=> $bulan,
+			'tahun'		=> $tahun,
+			'ket'		=> 'G'
 		);
 
 		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);

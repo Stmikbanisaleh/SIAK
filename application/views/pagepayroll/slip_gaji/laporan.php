@@ -103,33 +103,27 @@
 		}
 
 		//Pendapatan
-		$pend_gaji_pokok = $row['gaji']+$row['rapel'];
+		$pend_gaji_pokok = $row['gaji']+$row['rapel']+$row['premi'];
+		$pend_pajak = $row['tunj_pajak'];
 		$pend_tunjabatan = $row['tunj_jabatan'];
-		$pend_pegawai_tetap = $row['tunj_tetap'];
-		$pend_tunjkeluarga = $row['tunj_keluarga'];
-		$pend_masakerja = $row['tunj_masakerja'];
-		$pend_kesehatan = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
-		$pend_pembinaan = $row['tunj_pembinaan'];
+		$pend_tunjsansos = $row['tunj_sansos'];
+		$pend_strukturalkhusus = $row['tunj_struktural_khusus'];
 		$pend_transportasi = $row['tunj_transport'];
-		$pend_invalkhusus = $row['inval_khusus'];
-		$pend_thr = $row['thr'];
-		// $pend_strukturalkhusus = $row['tunj_struktural_khusus'];
-		$pend_khusus = $row['tunj_khusus'];
+		$pend_pegawai_tetap = $row['tunj_tetap'];
+		$pend_peralihan = $row['tunj_peralihan'];
+		$pend_utility = $row['tunj_utility'];
+		$pend_honorarium = $row['honorarium_imb'];
+		$pend_asuransi = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
+		$pend_bonus = $row['bonus']+$row['thr']+$row['cuti_jubelium'];
 		$pend_lain = $row['tunj_lain'];
-		$jumlah_pend = $pend_gaji_pokok+$pend_tunjabatan+$pend_pegawai_tetap+$pend_tunjkeluarga+$pend_masakerja+$pend_kesehatan+$pend_kesehatan+$pend_pembinaan+$pend_transportasi+$pend_invalkhusus+$pend_thr+$pend_khusus+$pend_lain;
+		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_lain;
 
 		//Potongan
-		$pot_infaqmasjid = $row['pot_infaqmasjid'];
-		$pot_kasbon = $row['pot_kasbon'];
-		$pot_ijintelat = $row['pot_ijintelat'];
-		$pot_bmt = $row['pot_bmt'];
-		$pot_koperasi = $row['pot_koperasi'];
-		$pot_diinval = $row['pot_inval'];
-		$pot_tokoalhamra = $row['pot_tokoalhamra'];
-		$pot_taawun = $row['pot_taawun'];
-		$pot_bpjs = $row['pot_bpjs'];
+		$pot_asuransi = $row['pot_iuran_pensiun']+$row['pot_iuran_jht'];
+		$pot_pensiun = $row['pot_pensiun_27']+$row['pot_pensiun_32'];
+		$pot_pph21 = $row['pph21_bulanan'];
 		$pot_lain = $row['pot_lain'];
-		$jumlah_pot = $pot_infaqmasjid+$pot_kasbon+$pot_ijintelat+$pot_bmt+$pot_koperasi+$pot_diinval+$pot_tokoalhamra+$pot_taawun+$pot_bpjs+$pot_lain;
+		$jumlah_pot = $pot_asuransi+$pot_pensiun+$pot_lain;
 
 		$total = $jumlah_pend-$jumlah_pot;
 ?>
@@ -150,21 +144,35 @@
 		<div class="informasi">
 			<table style="width:100%; float:left;">
 				<tr>
-					<td>NIK</td>
-					<td>:</td>
+					<td style="width: 35px;">NIK</td>
+					<td style="width: 5px;">:</td>
 					<td style=""><?= $row['employee_number']?></td>
-					<td style="text-align:right">Gaji Januari 2012</td>
+					<td style="text-align:right">Gaji <?= $bulan.' '.$tahun ?></td>
 				</tr>
 				<tr style="width:70%">
 					<td>Nama</td>
 					<td>:</td>
 					<td><?= $row['nama'] ?></td>
 				</tr>
+				<?php
+				if($ket=='K'){
+				?>
+				<tr style="width:70%">
+					<td>Jabatan</td>
+					<td>:</td>
+					<td><?= $row['jabatan'] ?></td>
+				</tr>
+				<?php
+				}else{
+				?>
 				<tr style="width:70%">
 					<td>Unit Kerja</td>
 					<td>:</td>
 					<td><?= $row['status'] ?></td>
 				</tr>
+				<?php
+				}
+				?>
 			</table>
 			<hr style="margin-top:40px;"></hr>
 		</div>
@@ -186,95 +194,120 @@
 					<tr>
 						<td>1</td>
 						<td>Gaji Pokok</td>
-						<td><?= $pend_gaji_pokok ?></td>
+						<td style="text-align:right"><?= number_format($pend_gaji_pokok) ?></td>
 						<td>1</td>
-						<td>Infaq Masjid</td>
-						<td><?= $pot_infaqmasjid ?></td>
+						<td>Asuransi</td>
+						<td style="text-align:right"><?= number_format($pot_asuransi) ?></td>
 					</tr>
 					<tr>
 						<td>2</td>
+						<td>T. Pajak</td>
+						<td style="text-align:right"><?= number_format($pend_pajak) ?></td>
+						<td>2</td>
+						<td>Potongan pensiun angka 27/32</td>
+						<td style="text-align:right"><?= number_format($pot_pensiun) ?></td>
+					</tr>
+					<tr>
+						<td>3</td>
 						<td>T. Jabatan</td>
-						<td><?= $pend_tunjabatan ?></td>
-						<td>2</td>
-						<td>Anggota Koperasi</td>
-						<td><?= $pot_koperasi ?></td>
-					</tr>
-					<tr>
+						<td style="text-align:right"><?= number_format($pend_tunjabatan) ?></td>
 						<td>3</td>
-						<td>T. Pegawai Tetap</td>
-						<td><?= $pend_pegawai_tetap ?></td>
-						<td>3</td>
-						<td>Kas Bon</td>
-						<td><?= $pot_kasbon ?></td>
+						<td>Lain-lain</td>
+						<td style="text-align:right"><?= number_format($pot_lain) ?></td>
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>T. Keluarga</td>
-						<td><?= $pend_tunjkeluarga ?></td>
-						<td>4</td>
-						<td>Ijin/Telat</td>
-						<td><?= $pot_ijintelat ?></td>
+						<td>Sansos</td>
+						<td style="text-align:right"><?= number_format($pend_tunjsansos) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>5</td>
-						<td>T. Masa Kerja</td>
-						<td><?= $pend_masakerja ?></td>
-						<td>5</td>
-						<td>BMT</td>
-						<td><?= $pot_bmt ?></td>
+						<td>Struktural/Khusus</td>
+						<td style="text-align:right"><?= number_format($pend_strukturalkhusus) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>6</td>
 						<td>Transportasi</td>
-						<td><?= $pend_pembinaan ?></td>
-						<td>6</td>
-						<td>Koperasi</td>
-						<td><?= $pot_koperasi ?></td>
+						<td style="text-align:right"><?= number_format($pend_transportasi) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>7</td>
-						<td>T. Inval/Khusus</td>
-						<td><?= $pend_invalkhusus?></td>
-						<td>7</td>
-						<td>Diinval</td>
-						<td><?= $pot_diinval ?></td>
+						<td>T. Tentap</td>
+						<td style="text-align:right"><?= number_format($pend_pegawai_tetap) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>8</td>
-						<td>THR</td>
-						<td><?= $pend_thr ?></td>
-						<td>8</td>
-						<td>Toko Al Hamra</td>
-						<td><?= $pot_tokoalhamra ?></td>
+						<td>Peralihan</td>
+						<td style="text-align:right"><?= number_format($pend_peralihan) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>9</td>
-						<td>T. Khusus</td>
-						<td><?= $pend_khusus ?></td>
-						<td>9</td>
-						<td>Ta'awun</td>
-						<td><?= $pot_taawun ?></td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>Lain-lain</td>
-						<td><?= $pend_lain ?></td>
-						<td>10</td>
-						<td>Lain-lain</td>
-						<td><?= $pot_lain ?></td>
-					</tr>
-					<tr>
+						<td>Utility</td>
+						<td style="text-align:right"><?= number_format($pend_utility) ?></td>
 						<td></td>
 						<td></td>
-						<td><?= $pend_khusus ?></td>
+						<td></td>
+					</tr>
+					<?php
+					if($ket=='K'){
+					?>
+					<tr>
+						<td>10</td>
+						<td>Honorarium</td>
+						<td style="text-align:right"><?= number_format($pend_honorarium) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<?php
+					}else{
+					?>
+					<tr>
+						<td>10</td>
+						<td>Honorarium (Jumlah jam)</td>
+						<td style="text-align:right"><?= number_format($pend_honorarium).' ('.$row["jumlah_jam"].')' ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<?php
+					}
+					?>
+					<tr>
 						<td>11</td>
-						<td>BPJS</td>
-						<td><?= $pot_bpjs ?></td>
+						<td>Asuransi Perusahaan</td>
+						<td style="text-align:right"><?= number_format($pend_asuransi) ?></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
+						<td>12</td>
+						<td>Bonus+THR+Cuti</td>
+						<td style="text-align:right"><?= number_format($pend_bonus) ?></td>
+						<td></td>
+						<td></td>
 						<td> </td>
-						<td></td>
-						<td></td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td>Lain-lain</td>
+						<td style="text-align:right"><?= number_format($pend_lain) ?></td>
 						<td></td>
 						<td></td>
 						<td> </td>
@@ -285,16 +318,16 @@
 			<table>
 					<tr>
 						<td width="125px;">Jumlah</td>
-						<td width="141px;"><?= $jumlah_pend; ?></td>
-						<td width="50px;"><?= $jumlah_pot; ?></td>
+						<td width="44px;" style="text-align:right"><?= number_format($jumlah_pend) ?></td>
+						<td width="50px;" style="text-align:right"><?= number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
 			<hr style="margin-top:1px;"></hr>
 			<table>
 					<tr>
-						<td width="125px;">Total</td>
+						<td width="125px;">Total pendapatan</td>
 						<td width="141px;"> </td>
-						<td width="50px;"><?= $total; ?></td>
+						<td width="50px;" style="text-align:right"><?= number_format($total) ?></td>
 					</tr>
 			</table>
 		</div>
