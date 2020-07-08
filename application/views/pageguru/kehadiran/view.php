@@ -332,14 +332,8 @@
                             '<tr>' +
                             '<td class="text-center">' + no + '</td>' +
                             '<td>' + data[i].GuruNama + '</td>' +
-                            '<td class="text-center">' +
-                            '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_bahasan" title="Edit" data-id="' + data[i].id + '">' +
-                            '<i class="ace-icon fa fa-eye bigger-120"></i> Lihat Bahasan' +
-                            '</button> &nbsp' +
-                            '<td class="text-center">' +
-                            '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_rincian" title="Edit" data-id="' + data[i].id + '">' +
-                            '<i class="ace-icon fa fa-eye bigger-120"></i> Lihat Rincian' +
-                            '</button> &nbsp' +
+                            '<td>' + data[i].pokok_bahasan + '</td>' +
+                            '<td>' + data[i].rincian + '</td>' +
                             '<td>' + data[i].namamapel + ' <br> Jam ke ' + data[i].JAM + '<br> ' + data[i].nmkls + ' </td>' +
                             '<td class="text-center">' +
                             '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
