@@ -19,7 +19,7 @@ class Tarif_guru extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$my_pembayaran = $this->model_tarifguru->view('jnspembayaran')->result_array();
-			$my_guru = $this->model_tarifguru->view('tbguru')->result_array();
+			$my_guru = $this->model_tarifguru->viewOrdering('tbguru','GuruNama' ,'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '../pagepayroll/tarifguru/view',
 				'ribbon' 		=> '<li class="active">Master Tarif Guru</li>',

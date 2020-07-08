@@ -1,6 +1,3 @@
-<!-- Button -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -32,7 +29,7 @@
 									<select class="form-control" required name="guru" id="guru">
 										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($my_guru as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['GuruNama'] ?></option>
+											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -230,11 +227,6 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
-		$('select').select2({
-            width: '100%',
-            placeholder: "Masukan Nama Guru",
-            allowClear: true
-        });
 	});
 
 	//function show all Data

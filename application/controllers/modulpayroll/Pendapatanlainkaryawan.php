@@ -1,0 +1,78 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Pendapatanlainkaryawan extends CI_Controller
+{
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('payroll/model_pendapatanlainkaryawan');
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			// continue;
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
+	}
+
+	function render_view($data)
+	{
+		$this->template->load('templatepayroll', $data); //Display Page
+	}
+
+	public function index()
+	{
+		$mykaryawan = $this->model_pendapatanlainkaryawan->viewOrdering('biodata_karyawan','nama','asc')->result_array();
+		$data = array(
+			'page_content' 	=> '../pagepayroll/pendapatanlainkaryawan/view',
+			'ribbon' 		=> '<li class="active">Master Pendapatan Lain Karyawan </li>',
+			'page_name' 	=> 'Master Pendapatan Lain Karyawan',
+			'js' 			=> 'js_file',
+			'mykaryawan'		=> $mykaryawan
+		);
+		$this->render_view($data);
+	}
+
+	public function tampil()
+	{
+		$my_data = $this->model_pendapatanlainkaryawan->view_pendapatanlain()->result_array();
+		echo json_encode($my_data);
+	}
+
+	public function simpan()
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$periode = date("m",strtotime($this->input->post('periode')));
+			$data = array(
+				'nip'  => $this->input->post('nip'),
+				'thr'  => $this->input->post('thr_v'),
+				'tunjangan'  => $this->input->post('tjkinerja_v'),
+				'lain' => $this->input->post('tjlain_v'),
+				'periode' => $this->input->post('periode'),
+				'createdAt' => date('Y-m-d H:i:s')
+			);
+			$hasil = $this->model_pendapatanlainkaryawan->cek_karyawan($this->input->post('nip'), $periode)->num_rows();
+			if($hasil>0){
+				echo 401;
+			}else{
+				$result = $this->model_pendapatanlainkaryawan->insert($data, 'tbpendapatanlainkaryawan');
+				if ($result) {
+					echo $result;
+				} 
+			}
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
+	}
+
+	public function delete()
+    {
+        $data_id = array(
+            'id'  => $this->input->post('id')
+		);
+		$action = $this->model_pendapatanlainkaryawan->delete($data_id, 'tbpendapatanlainkaryawan');
+		if($action){
+			echo json_encode($action);
+		}
+	}
+}

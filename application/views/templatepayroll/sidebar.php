@@ -83,6 +83,24 @@
 				</a>
 			</li>
 			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/honoriumguru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Honorium Guru
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/pendapatanlain'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Pendapatan Lain Guru
+				</a>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/pendapatanlainkaryawan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Master Pendapatan Lain Karyawan
+				</a>
+			</li>
+			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/cuti'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tugas Dinas / Cuti

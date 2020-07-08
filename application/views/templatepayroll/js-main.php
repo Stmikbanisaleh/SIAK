@@ -61,6 +61,14 @@
 		});
 	}
 
+	function swalInputFailedCustom(message){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: message,
+		});
+	}
+
 	function swalEditSuccess(){
 		Swal.fire({
 		  icon: 'success',
