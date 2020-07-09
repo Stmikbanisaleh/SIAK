@@ -29,7 +29,7 @@
 									<select class="form-control" required name="guru" id="guru">
 										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($my_guru as $value) { ?>
-											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
+											<option value=<?= $value['IdGuru'] ?>><?php echo "[".$value['IdGuru']."] - ".$value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
