@@ -89,7 +89,7 @@ class Kehadiranpengganti extends CI_Controller
                 'ASALTGL'  => $this->input->post('e_tanggal_awal'),
                 'GANTIHARI'  => $this->input->post('e_tanggal_akhir'),
             );
-            $action = $this->model_generateguru->update($data_id, $data, 'trdsrm');
+            $action = $this->model_kehadiranpengganti->update($data_id, $data, 'trdsrm');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view

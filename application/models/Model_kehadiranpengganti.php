@@ -5,7 +5,7 @@ class Model_kehadiranpengganti extends CI_model
 
     public function view_kehadiranpengganti()
     {
-        return  $this->db->query('SELECT td.ID, tg.IdGuru, tg.GuruNama nama_guru, mp.nama matapelajaran, td.ASALTGL, td.GANTIHARI, mr.RUANG, tk.nama kelas
+        return  $this->db->query('SELECT td.ID, td.IdGuru, (SELECT GuruNama FROM tbguru WHERE IdGuru = td.IdGuru) nama_guru, mp.nama matapelajaran, td.ASALTGL, td.GANTIHARI, mr.RUANG, tk.nama kelas
         FROM trdsrm td
         JOIN tbjadwal tj ON tj.id = td.idJadwal
         JOIN tbguru tg ON tj.id_guru = tg.IdGuru

@@ -165,7 +165,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Ganti tanggal </label>
 								<div class="col-sm-6">
-									<input type="date" id="e_tanggal_khir" name="e_tanggal_akhir">
+									<input type="date" id="e_tanggal_akhir" name="e_tanggal_akhir">
 								</div>
 							</div>
 								<button type="submit" id="btn_simpan" class="btn btn-sm btn-primary pull-right">
