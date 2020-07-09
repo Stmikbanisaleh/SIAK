@@ -62,7 +62,7 @@ class Model_honorguru extends CI_model
         return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
                                 FROM htguru a
                                 JOIN tbguru b ON a.IdGuru = b.IdGuru
-                                JOIN tbps ps ON ps.id = b.GuruBase
+                                JOIN tbps ps ON ps.KDSK = b.GuruBase
                                 AND MONTH(a.PERIODE) = $bulan
                                 AND YEAR(a.PERIODE) = $tahun
                                 WHERE ps.id = $unit");
@@ -72,7 +72,7 @@ class Model_honorguru extends CI_model
     {
         return $this->db->query("SELECT DISTINCT ps.id, ps.DESCRTBPS, js.DESCRTBJS
         FROM tbguru tg
-        JOIN tbps ps ON ps.id = tg.GuruBase
-				JOIN tbjs js ON ps.KDTBJS = js.KDTBJS");
+        JOIN tbps ps ON ps.KDSK = tg.GuruBase
+		JOIN tbjs js ON ps.KDTBJS = js.KDTBJS");
     }
 }
