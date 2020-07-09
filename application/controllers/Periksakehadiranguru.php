@@ -19,9 +19,9 @@ class Periksakehadiranguru extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
-                'page_content'  => 'generateguru/view',
-                'ribbon'        => '<li class="active">Generate Kehadiran Guru</li>',
-                'page_name'     => 'Generate Kehadiran Guru'
+                'page_content'  => 'periksakehadiranguru/view',
+                'ribbon'        => '<li class="active">Periksa Kehadiran Guru</li>',
+                'page_name'     => 'Periksa Kehadiran Guru'
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
@@ -76,7 +76,7 @@ class Periksakehadiranguru extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_generateguru->viewOrdering('msjabatan', 'id', 'asc')->result();
+            $my_data = $this->model_generateguru->viewOrdering('trdsrm', 'ID', 'asc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
