@@ -240,7 +240,7 @@ class Configfunction
         if (date("D", strtotime($tgl)) == 'Wed') {
             return "Rabu";
         }
-        if (date("D", strtotime($tgl)) == 'thu') {
+        if (date("D", strtotime($tgl)) == 'Thu') {
             return "Kamis";
         }
         if (date("D", strtotime($tgl)) == 'Fri') {

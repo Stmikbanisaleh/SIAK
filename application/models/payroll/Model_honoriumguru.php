@@ -10,22 +10,24 @@ class Model_honoriumguru extends CI_model
 
     public function getjmljam($idguru , $tglawal, $tglakhir)
     {
-        return $this->db->query("SELECT SUM(c.WKTHADIR+c.TAMBAHAN) as jmljam
-        FROM trdsrm c
-        WHERE c.TGLHADIR BETWEEN '$tglawal' AND '$tglakhir'
-        AND c.IdGuru = '$idguru'");
+        return $this->db->query("select SUM(c.jam) as jmljam ,SUM(a.TAMBAHAN) as tambahan
+        from trdsrm a 
+        join tbjadwal c on a.idJadwal = c.id
+        join mspelajaran d on c.id_mapel = d.id_mapel 
+        WHERE a.TGLHADIR BETWEEN '$tglawal' AND '$tglakhir'
+        AND a.IdGuru = '$idguru' and a.STINVAL = 0");
     }
 
     public function viewhonorium()
     {
-        return $this->db->query("SELECT a.IDRD,b.GuruNama, CONCAT('Rp. ',FORMAT(a.TARIF * a.JMLJAM,2)) as tarif2 ,DATE_FORMAT(a.TGLAWAL, '%d-%b-%Y') as TGLAWAL ,DATE_FORMAT(a.TGLAKHIR, '%d-%b-%Y') as TGLAKHIR,a.JMLJAM,CONCAT('Rp. ',FORMAT(a.TARIF,2)) as tarif from htguru a
+        return $this->db->query("SELECT a.IDRD,b.GuruNama, CONCAT('Rp. ',FORMAT(a.HONOR,2)) as tarif2,CONCAT('Rp. ',FORMAT(a.TAMBAHANJAM,2)) as inval ,DATE_FORMAT(a.TGLAWAL, '%d-%b-%Y') as TGLAWAL ,DATE_FORMAT(a.TGLAKHIR, '%d-%b-%Y') as TGLAKHIR,a.JMLJAM,CONCAT('Rp. ',FORMAT(a.TARIF,2)) as tarif from htguru a
         JOIN tbguru b on b.IdGuru = a.IdGuru
         ");
     }
 
     public function gethonor($idguru)
     {
-        return $this->db->query("SELECT tarif
+        return $this->db->query("SELECT tarif_perjam,tarif_inval
         FROM tarifguru c
         WHERE c.IdGuru = '$idguru'");
     }

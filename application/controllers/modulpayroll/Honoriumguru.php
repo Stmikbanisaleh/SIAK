@@ -41,31 +41,42 @@ class Honoriumguru extends CI_Controller
     public function simpan()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-            $idguru = $this->input->post('id_guru');
-            $periode = $this->input->post('tglawal');
             $tglawal = $this->input->post('tglawal');
-            $tglakhir = $this->input->post('tglakhir');
-            $jmljam = $this->model_honoriumguru->getjmljam($idguru , $tglawal,$tglakhir)->result_array();
-            $honor = $this->model_honoriumguru->gethonor($idguru)->result_array();
-            if(empty($honor)){
-                echo 401;
-            } else {
-                $data = array(
-                    'IdGuru'  =>  $idguru,
-                    'TARIF'  => $this->input->post('tarif_per_jam_v'),
-                    'JMLJAM ' => $jmljam[0]['jmljam'],
-                    'TGLAWAL'  => $this->input->post('tglawal'),
-                    'TGLAKHIR ' => $this->input->post('tglakhir'),
-                    'periode'  => $periode,
-                    'HONOR'  => $honor[0]['tarif'],
-                    'TAMBAHANJAM'  => $this->input->post('tambahanjam_v'),
-                    'TAMBAHANHADIR'  => $this->input->post('tambahanhadir_v'),
-                );
-                $result = $this->model_honoriumguru->insert($data, 'htguru');
-                if ($result) {
-                    echo $result;
-                } 
-            }
+			$tglakhir = $this->input->post('tglakhir');
+			$delete = $this->db->query("delete from htguru where PERIODE between '".$tglawal."' and '".$tglakhir."'");
+			if($delete){
+				$idguru = $this->db->query("select distinct(IdGuru) from trdsrm")->result_array();
+				foreach($idguru as $value){
+					$jmljam = $this->model_honoriumguru->getjmljam($value['IdGuru'],$tglawal,$tglakhir)->result_array();
+					$honor = $this->model_honoriumguru->gethonor($value['IdGuru'])->result_array();
+					$inval = $this->db->query("select sum(c.jam) as jmljam from trdsrm a
+					join tbjadwal b on a.idJadwal = b.id
+					join mspelajaran c on b.id_mapel = c.id_mapel
+					where IdGuru = '".$value['IdGuru']."' and a.STINVAL = 1")->result_array();
+					if(empty($jmljam)){
+						echo 401;
+					} else {
+					
+						$tarif_inval = $inval[0]['jmljam'] * $honor[0]['tarif_inval'];
+						$honorguru = $honor[0]['tarif_perjam']*$jmljam[0]['jmljam']+$tarif_inval;
+						$data = array(
+							'IdGuru'  =>  $value['IdGuru'],
+							'TARIF'  => $honor[0]['tarif_perjam'],
+							'JMLJAM ' => $jmljam[0]['jmljam'],
+							'TGLAWAL'  => $this->input->post('tglawal'),
+							'TGLAKHIR ' => $this->input->post('tglakhir'),
+							'periode'  => $tglakhir,
+							'TAMBAHANJAM'  => $tarif_inval,
+							'HONOR'  => $honorguru,
+						);
+						$result = $this->model_honoriumguru->insert($data, 'htguru');
+					}
+				}
+			}
+			if ($result) {
+				echo $result;
+			} 
+            // $honor = $this->model_honoriumguru->gethonor($idguru)->result_array();
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}

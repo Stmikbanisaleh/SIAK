@@ -166,6 +166,70 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Per Jam </label>
+								<div class="col-sm-9">
+									<input type="text" id="tarif_jam" required name="tarif_jam" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tarif_jam_v" required name="tarif_jam_v" />
+									<script language="JavaScript">
+										var rupiah01 = document.getElementById('tarif_jam');
+										rupiah01.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tarif_jam_v').val(rup1);
+											rupiah01.value = formatRupiah1(this.value, 'Rp. ');
+										});
+
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah01= split[0].substr(0, sisa),
+												ribuan01= split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan01) {
+												separator = sisa ? '.' : '';
+												rupiah01 += separator + ribuan01.join('.');
+											}
+
+											rupiah01 = split[1] != undefined ? rupiah01 + ',' + split[1] : rupiah01;
+											return prefix == undefined ? rupiah01 : (rupiah01 ? 'Rp. ' + rupiah01 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Inval Per Jam </label>
+								<div class="col-sm-9">
+									<input type="text" id="tarif_inval" required name="tarif_inval" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tarif_inval_v" required name="tarif_inval_v" />
+									<script language="JavaScript">
+										var rupiah0 = document.getElementById('tarif_inval');
+										rupiah0.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tarif_inval_v').val(rup1);
+											rupiah0.value = formatRupiah1(this.value, 'Rp. ');
+										});
+
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah0= split[0].substr(0, sisa),
+												ribuan0 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan0) {
+												separator = sisa ? '.' : '';
+												rupiah0 += separator + ribuan0.join('.');
+											}
+
+											rupiah0 = split[1] != undefined ? rupiah0 + ',' + split[1] : rupiah0;
+											return prefix == undefined ? rupiah0 : (rupiah0 ? 'Rp. ' + rupiah0 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="nama_pembayaran" id="nama_pembayaran">
