@@ -322,7 +322,7 @@
 						<td width="165px;" style="text-align:right" colspan=""><?= number_format($jumlah_pend) ?></td>
 					</tr>
 					<tr>
-						<td width="125px;">Gaji bersih</td>
+						<td width="125px;">Total Potongan</td>
 						<td width="44px;" style="text-align:right"> </td>
 						<td width="165px;" style="text-align:right" colspan=""><?= number_format($jumlah_pot) ?></td>
 					</tr>
