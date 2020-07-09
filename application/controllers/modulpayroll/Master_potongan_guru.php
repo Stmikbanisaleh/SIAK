@@ -22,7 +22,7 @@ class Master_potongan_guru extends CI_Controller
 
 	public function index()
 	{
-		$myguru = $this->model_masterpotongan_guru->view('tbguru')->result_array();
+		$myguru = $this->model_masterpotongan_guru->viewOrdering('tbguru','GuruNama','asc')->result_array();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/master_potongan_guru/view',
 			'ribbon' 		=> '<li class="active">Master Potongan Guru</li>',

@@ -76,7 +76,7 @@ class Periksakehadiranguru extends CI_Controller
     public function tampil()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_generateguru->viewOrdering('trdsrm', 'ID', 'asc')->result();
+            $my_data = $this->model_periksakehadiranguru->view_kehadiran()->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -124,14 +124,12 @@ class Periksakehadiranguru extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data_id = array(
-                'ID'  => $this->input->post('e_id')
+                'ID'  => $this->input->post('id')
             );
             $data = array(
-                'NAMAJABATAN'  => $this->input->post('e_nama'),
-                'KET'  => $this->input->post('e_keterangan'),
-                'updatedAt' => date('Y-m-d H:i:s'),
+                'TAMBAHAN'  => $this->input->post('tambahan'),
             );
-            $action = $this->model_generateguru->update($data_id, $data, 'msjabatan');
+            $action = $this->model_periksakehadiranguru->update($data_id, $data, 'trdsrm');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -145,9 +143,16 @@ class Periksakehadiranguru extends CI_Controller
                 'ID'  => $this->input->post('id')
             );
             $data = array(
-                'isdeleted'  => 1,
+                'MSKHADIR'  => null,
+                'SLSHADIR'  => null,
+                'STINVAL'  => null,
+                'PKBAHASAN'  => null,
+                'TGLBAHASAN'  => null,
+                'KETTDKHDR'  => null,
+                'ASALTGL'  => null,
+                'TAMBAHAN'  => null
             );
-            $action = $this->model_generateguru->update($data_id, $data, 'msjabatan');
+            $action = $this->model_periksakehadiranguru->update($data_id, $data, 'trdsrm');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view

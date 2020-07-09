@@ -151,7 +151,7 @@
 			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/potong_gaji'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Laporan Potongan Gaji
+					Laporan Potongan Gaji Karyawan
 				</a>
 				<b class="arrow"></b>
 			</li>

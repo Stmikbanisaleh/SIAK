@@ -122,10 +122,10 @@ class Generategajiguru extends CI_Controller
                 ,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval, e.toko, e.lain,e.tawun, e.pph21
                 from tarifguru a
                 join tbguru b on a.IdGuru = b.IdGuru
-                join htguru c on a.IdGuru = c.IdGuru
-                join tbpendapatanlainguru d on a.IdGuru = d.IdGuru
-                join tbgurupot e on a.IdGuru = e.IdGuru
-                where d.periode between '".$tglawal."' and '" . $tglakhir . "' and c.PERIODE between '".$tglawal."' and '" . $tglakhir . "'
+                left join htguru c on a.IdGuru = c.IdGuru
+                left join tbpendapatanlainguru d on a.IdGuru = d.IdGuru
+                left join tbgurupot e on a.IdGuru = e.IdGuru
+                where d.periode between '".$tglawal."' and '" . $tglakhir . "' and c.PERIODE between '".$tglawal."' and '" . $tglakhir . "' and e.periode between '".$tglawal."' and '" . $tglakhir . "'
                 ")->result_array();
                 if ($getgaji) {
                     foreach ($getgaji as $data) {
@@ -162,13 +162,11 @@ class Generategajiguru extends CI_Controller
                                 "waktu" => date('Y-m-d H:i:s')
                             );
                             $insertlog = $this->model_Generategajiguru->insert($log, 'generate_log2');
-                            echo json_encode($insert);
                         }
                     }
                 }
             }
-
-      
+            echo json_encode($insert);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }

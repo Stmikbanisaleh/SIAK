@@ -7,11 +7,6 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a> Tambah Data
 		</button>
 	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
-	</div>
 	<br>
 	<br>
 </div>
@@ -22,7 +17,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Tambah Tarif Potongan</h3>
+				<h3 class="smaller lighter blue no-margin">Form Tambah <?=$page_name?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">

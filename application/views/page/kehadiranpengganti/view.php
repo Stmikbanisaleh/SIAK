@@ -4,14 +4,8 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
 		</button>
 	</div>
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
-		</button>
-	</div>
-	<br>
-	<br>
 </div>
+<br>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -54,6 +48,9 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+<?php
+// echo json_encode($myjadwal);exit;	
+?>
 <div id="modalTambah" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -71,32 +68,39 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Nama Guru </label>
 								<div class="col-sm-6">
 									<select class="form-control" id="nama" name="nama">
-										<option value=""></option>
-										<option value="A">A</option>
+									<option value="0">-- Pilih Guru --</option>
+									<?php foreach ($myguru as $value) { ?>
+										<option value=<?= $value['IdGuru'] ?>><?= $value['IdGuru'] . $value['GuruNama'] ?></option>
+									<?php } ?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Kelas </label>
-								<div class="col-sm-6">
-									<select class="form-control" id="id_kelas" name="id_kelas">
-										<option value=""></option>
-										<option value="1">1</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Tanggal Mengajar kosong </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih jadwal </label>
 								<div class="col-sm-6">
 									<select class="form-control" id="id_jadwal" name="id_jadwal">
-										<option value=""></option>
-										<option value="1">1</option>
+										<option value="0">-- Pilih Jadwal --</option>
+										<?php foreach ($myjadwal as $row) { ?>
+											<option value=<?= $row['id'] ?>><?php echo "[".$row['nama_guru']."]".$row['matapelajaran'] ."-". $row['kelas'] ?></option>
+										<?php } ?>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Asal tanggal </label>
+								<div class="col-sm-6">
+									<input type="date" id="tanggal_awal" name="tanggal_awal">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Ganti tanggal </label>
+								<div class="col-sm-6">
+									<input type="date" id="tanggal_khir" name="tanggal_akhir">
 								</div>
 							</div>
 								<button type="submit" id="btn_simpan" class="btn btn-sm btn-primary pull-right">
-									<i class="ace-icon fa fa-search"></i>
-									Tampilkan
+									<i class="ace-icon fa fa-save"></i>
+									Simpan
 								</button>
 						</div>
 					</div>
@@ -125,41 +129,48 @@
 			</div>
 			<form class="form-horizontal" role="form" id="formEdit">
 				<div class="modal-body">
-					<div class="row">
+				<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<input type="hidden" id="e_id" name="e_id">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Nama Guru </label>
 								<div class="col-sm-6">
+									<input type="hidden" id="e_id" name="e_id">
 									<select class="form-control" id="e_nama" name="e_nama">
-										<option value=""></option>
-										<option value="A">A</option>
+									<option value="0">-- Pilih Guru --</option>
+									<?php foreach ($myguru as $value) { ?>
+										<option value=<?= $value['IdGuru'] ?>><?= $value['IdGuru'] . $value['GuruNama'] ?></option>
+									<?php } ?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Kelas </label>
-								<div class="col-sm-6">
-									<select class="form-control" id="e_id_kelas" name="e_id_kelas">
-										<option value=""></option>
-										<option value="1">1</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih Tanggal Mengajar kosong </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Pilih jadwal </label>
 								<div class="col-sm-6">
 									<select class="form-control" id="e_id_jadwal" name="e_id_jadwal">
-										<option value=""></option>
-										<option value="1">1</option>
+										<option value="0">-- Pilih Jadwal --</option>
+										<?php foreach ($myjadwal as $row) { ?>
+											<option value=<?= $row['id'] ?>><?php echo "[".$row['nama_guru']."]".$row['matapelajaran'] ."-". $row['kelas'] ?></option>
+										<?php } ?>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Asal tanggal </label>
+								<div class="col-sm-6">
+									<input type="date" id="e_tanggal_awal" name="e_tanggal_awal">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1"> Ganti tanggal </label>
+								<div class="col-sm-6">
+									<input type="date" id="e_tanggal_akhir" name="e_tanggal_akhir">
 								</div>
 							</div>
 								<button type="submit" id="btn_simpan" class="btn btn-sm btn-primary pull-right">
-									<i class="ace-icon fa fa-search"></i>
-									Tampilkan
+									<i class="ace-icon fa fa-save"></i>
+									Update
 								</button>
 						</div>
 					</div>
@@ -195,7 +206,8 @@
 				<th>Nama Guru</th>
 				<th>Mata Pelajaran</th>
 				<th>Asal tanggal</th>
-				<th>Ingin Ganti Hari</th>
+				<th>Tanggal pengganti</th>
+				<!-- <th>Ingin Ganti Hari</th> -->
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -204,115 +216,42 @@
 	</table>
 </div>
 <script>
-	if ($("#formImport").length > 0) {
-		$("#formImport").validate({
+	if ($("#formTambah").length > 0) {
+		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			rules: {
 				nama: {
 					required: true,
 				},
-				telepon: {
+				id_jadwal: {
 					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
 				},
-				alamat: {
+				tanggal_awal: {
 					required: true,
-					minlength: 10,
 				},
-				email: {
+				tanggal_akhir: {
 					required: true,
-					email: true,
 				},
 			},
 			messages: {
 				nama: {
 					required: "Nama Guru harus diisi!"
 				},
-				telepon: {
-					required: "Telepon harus diisi!"
+				id_jadwal: {
+					required: "Jadwal harus diisi!"
 				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
+				tanggal_awal: {
+					required: "Tanggal awal harus diisi!"
 				},
-			},
-			submitHandler: function(form) {
-				formdata = new FormData(form);
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('jabatan/import') ?>",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					cache: false,
-					async: false,
-					success: function(data) {
-						console.log(data);
-						$('#my-modal2').modal('hide');
-						if (data == 1 || data == true) {
-							document.getElementById("formImport").reset();
-							swalInputSuccess();
-							show_data();
-						} else if (data == 401) {
-							document.getElementById("formImport").reset();
-							swalIdDouble();
-						} else {
-							document.getElementById("formImport").reset();
-							swalInputFailed();
-						}
-					}
-				});
-				return false;
-			}
-		});
-	}
-	if ($("#formTambah").length > 0) {
-		$("#formTambah").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				id: {
-					required: true
-					// ,maxlength: 50
+				tanggal_akhir: {
+					required: "Tanggal akhir harus diisi!"
 				},
-
-				nama: {
-					required: true
-					// , digits:true,
-					// minlength: 10,
-					// maxlength:12,
-				},
-				// email: {
-				//         required: true,
-				//         maxlength: 50,
-				//         email: true,
-				//     },    
-			},
-			messages: {
-
-				id: {
-					required: "Kode jabatan harus diisi!"
-					// ,maxlength: "Your last name maxlength should be 50 characters long."
-				},
-				nama: {
-					required: "Nama jabatan harus diisi!"
-					// ,minlength: "The contact number should be 10 digits",
-					// digits: "Please enter only numbers",
-					// maxlength: "The contact number should be 12 digits",
-				},
-				// email: {
-				//     required: "Please enter valid email",
-				//     email: "Please enter valid email",
-				//     maxlength: "The email name should less than or equal to 50 characters",
-				//   },
-
 			},
 			submitHandler: function(form) {
 				$('#btn_simpan').html('Sending..');
 				$.ajax({
-					url: "<?php echo base_url('jabatan/simpan') ?>",
+					url: "<?php echo base_url('kehadiranpengganti/simpan') ?>",
 					type: "POST",
 					data: $('#formTambah').serialize(),
 					dataType: "json",
@@ -325,7 +264,7 @@
 							show_data();
 							$('#modalTambah').modal('hide');
 						} else if (response == 401) {
-							swalIdDouble('Nama Jabatan Sudah digunakan!');
+							swalIdDouble('Data duplicate!');
 						} else {
 							swalInputFailed();
 						}
@@ -344,24 +283,37 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			rules: {
-				e_id: {
-					required: true
-				},
 				e_nama: {
-					required: true
+					required: true,
+				},
+				e_id_jadwal: {
+					required: true,
+				},
+				e_tanggal_awal: {
+					required: true,
+				},
+				e_tanggal_akhir: {
+					required: true,
 				},
 			},
 			messages: {
-
 				e_nama: {
-					required: "Nama jabatan harus diisi!"
+					required: "Nama Guru harus diisi!"
 				},
-
+				e_id_jadwal: {
+					required: "Jadwal harus diisi!"
+				},
+				e_tanggal_awal: {
+					required: "Tanggal awal harus diisi!"
+				},
+				e_tanggal_akhir: {
+					required: "Tanggal akhir harus diisi!"
+				},
 			},
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
 				$.ajax({
-					url: "<?php echo base_url('jabatan/update') ?>",
+					url: "<?php echo base_url('kehadiranpengganti/update') ?>",
 					type: "POST",
 					data: $('#formEdit').serialize(),
 					dataType: "json",
@@ -394,7 +346,7 @@
 	function show_data() {
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo site_url('jabatan/tampil') ?>',
+			url: '<?php echo site_url('kehadiranpengganti/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -404,10 +356,11 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td>' + data[i].NAMAJABATAN + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td>' + data[i].KET + '</td>' +
-						'<td> <input  type="text" id="e_id" name="e_id"> </td>' +
+						'<td>[' + data[i].IdGuru + ']' + data[i].nama_guru + '</td>' +
+						'<td>' + data[i].matapelajaran + '</td>' +
+						'<td>' + data[i].ASALTGL + '</td>' +
+						'<td>' + data[i].GANTIHARI + '</td>' +
+						// '<td> <input  type="text" id="e_id" name="e_id"> </td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -449,7 +402,7 @@
 		$('#modalEdit').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('jabatan/tampil_byid') ?>",
+			url: "<?php echo base_url('kehadiranpengganti/tampil_byid') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -457,8 +410,10 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].ID);
-				$('#e_nama').val(data[0].NAMAJABATAN);
-				$('#e_keterangan').val(data[0].KET);
+				$('#e_nama').val(data[0].IdGuru);
+				$('#e_id_jadwal').val(data[0].idJadwal);
+				$('#e_tanggal_awal').val(data[0].ASALTGL);
+				$('#e_tanggal_akhir').val(data[0].GANTIHARI);
 
 			}
 		});
@@ -479,7 +434,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('jabatan/delete') ?>",
+					url: "<?php echo base_url('kehadiranpengganti/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {

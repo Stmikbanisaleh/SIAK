@@ -3,8 +3,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
-		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-			<a class="ace-icon fa fa-plus bigger-120"></a> Tambah Data
+		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-warning">
+			<a class="ace-icon fa fa-plus bigger-120"></a> Generate
 		</button>
 	</div>
 	<br>
@@ -24,7 +24,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formTambah">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="id_guru" id="id_guru">
@@ -34,7 +34,7 @@
 										<?php } ?>
 									</select>
 								</div>
-                            </div>
+                            </div> -->
 
                             <!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jumlah Jam</label>
@@ -43,7 +43,7 @@
 								</div>
                             </div> -->
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tarif Per Jam</label>
 								<div class="col-sm-9">
 								<input type="text" id="tarif_per_jam" required name="tarif_per_jam" placeholder="Rp. 10.000" class="form-control" />
@@ -74,7 +74,7 @@
 										}
 									</script>
 								</div>
-                            </div>
+                            </div> -->
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tanggal Awal </label>
@@ -89,7 +89,7 @@
 								<input type="date" id="tglakhir" required name="tglakhir" placeholder="" class="form-control" />
 								</div>
                             </div>
-                            
+<!--                             
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tambahan Jam</label>
 								<div class="col-sm-9">
@@ -121,9 +121,9 @@
 										}
 									</script>
 								</div>
-							</div>
+							</div> -->
 							
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tambahan Hadir</label>
 								<div class="col-sm-9">
 								<input type="text" id="tambahanhadir" required name="tambahanhadir" placeholder="Rp. 10.000" class="form-control" />
@@ -154,7 +154,7 @@
 										}
 									</script>
 								</div>
-							</div>
+							</div> -->
 					</div>
 				</div>
 			</div>
@@ -633,6 +633,7 @@
 				<th>No</th>
 				<th>Nama Guru</th>
 				<th>Jml Jam X Tarif </th>
+				<th>Inval </th>
                 <th>Total</th>
 				<th>Periode</th>
 				<th>Action</th>
@@ -694,7 +695,8 @@
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].GuruNama + '</td>' +
-                        '<td>' + data[i].JMLJAM + ' X ' + data[i].tarif +  '</td>' +
+						'<td>' + data[i].JMLJAM + ' X ' + data[i].tarif +  '</td>' +
+						'<td>' + data[i].inval + '</td>' +
 						'<td>' + data[i].tarif2 + '</td>' +
 						'<td>' + data[i].TGLAWAL + ' - '+ data[i].TGLAKHIR  + '</td>' +
 						'<td>' +
