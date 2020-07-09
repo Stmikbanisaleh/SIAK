@@ -64,21 +64,21 @@ class Slip_gaji extends CI_Controller
 
 		if($this->input->post('tipe_laporan') == 'P'){
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_pdf_karyawan($my_gaji, $bulan, $tahun);
+				$this->laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl);
 			}else{
-				$this->laporan_pdf_guru($my_gaji, $bulan, $tahun);
+				$this->laporan_pdf_guru($my_gaji, $bulan, $tahun, $tgl);
 			}
 		}else{
 			if($this->input->post('tipe_gaji') == 'K'){
-				$this->laporan_excel_karyawan($my_gaji, $bulan, $tahun);
+				$this->laporan_excel_karyawan($my_gaji, $bulan, $tahun, $tgl);
 			}else{
-				$this->laporan_excel_guru($my_gaji, $bulan, $tahun);
+				$this->laporan_excel_guru($my_gaji, $bulan, $tahun, $tgl);
 			}
 		}
 		
 	}
 	
-	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun){
+	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl){
         
 		$this->load->library('pdf');
 		
@@ -86,7 +86,8 @@ class Slip_gaji extends CI_Controller
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
-			'ket'		=> 'K'
+			'ket'		=> 'K',
+			'tgl'		=> $tgl
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
@@ -105,7 +106,8 @@ class Slip_gaji extends CI_Controller
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
-			'ket'		=> 'G'
+			'ket'		=> 'G',
+			'tgl'		=> $tgl
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
@@ -117,7 +119,8 @@ class Slip_gaji extends CI_Controller
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
-			'ket'		=> 'K'
+			'ket'		=> 'K',
+			'tgl'		=> $tgl
 		);
 		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
 	}
@@ -127,7 +130,8 @@ class Slip_gaji extends CI_Controller
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
-			'ket'		=> 'G'
+			'ket'		=> 'G',
+			'tgl'		=> $tgl
 		);
 
 		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
