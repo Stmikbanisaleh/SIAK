@@ -39,10 +39,7 @@ class Slip_gaji extends CI_Controller
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$bulan = $this->mainfunction->periode_bulan(date('m'));
 		$tahun = $this->input->post('tahun');
-<<<<<<< HEAD
-=======
 		$tabel = '';
->>>>>>> bba463f2dd5d4ca80f7b3c6b5698c68b5f485598
 		if($this->input->post('tipe_gaji')=='K'){
 			$tabel = 'tb_pendapatan_karyawan';
 		}else{
