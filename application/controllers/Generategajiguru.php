@@ -113,57 +113,62 @@ class Generategajiguru extends CI_Controller
     public function generate()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $year = $this->input->post('tahun');
-            $bulan = $this->input->post('bln');
-            $refresh = $this->db->query("delete from tb_pendapatan_guru where YEAR(effective_date) = '" . $year . "' and MONTH(effective_date) = '" . $bulan . "' ");
+            $tglawal = $this->input->post('tglawal');
+            $tglakhir = $this->input->post('tglakhir');
+
+            $refresh = $this->db->query("delete from tb_pendapatan_guru where effective_date between '" . $tglawal . "' and '" . $tglakhir . "'");
             if ($refresh) {
-                $getgaji = $this->db->query("Select 
+                $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, (a.tunjangan_masakerja + d.lain + d.tunjangan ) as tunj_lain , a.tunjangan_jabatan,b.GuruNama
+                ,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval, e.toko, e.lain,e.tawun, e.pph21
+                from tarifguru a
+                join tbguru b on a.IdGuru = b.IdGuru
+                join htguru c on a.IdGuru = c.IdGuru
+                join tbpendapatanlainguru d on a.IdGuru = d.IdGuru
+                join tbgurupot e on a.IdGuru = e.IdGuru
+                where d.periode between '".$tglawal."' and '" . $tglakhir . "' and c.PERIODE between '".$tglawal."' and '" . $tglakhir . "'
                 ")->result_array();
                 if ($getgaji) {
                     foreach ($getgaji as $data) {
+                        $gettotalngajar = $this->db->query("select SUM(c.jam) as jam ,SUM(a.TAMBAHAN) as tambahan
+                        from trdsrm a 
+                        join tbjadwal c on a.idJadwal = c.id
+                        join mspelajaran d on c.id_mapel = d.id_mapel 
+                        where a.TGLHADIR between '".$tglawal."' and '".$tglakhir."' and a.IdGuru = '".$data['IdGuru']."' group by a.IdGuru")->result_array();
+                        $pot_lain = $data['infaq_masjid']+$data['anggota_koperasi']+$data['kas_bon']+$data['ijin_telat']+$data['koperasi']+$data['bmt']+$data['inval']+$data['toko']+$data['lain']+$data['tawun'];
                         $data = array(
-                            "employee_number" => $data['id_karyawan'],
-                            "nama"    => $data['nama'],
-                            "npwp" => $data['npwp'],
-                            "pot_taawun" => $data['tawun'],
-                            "jabatan" => $data['NAMAJABATAN'],
+                            "employee_number" => $data['IdGuru'],
+                            "nama"    => $data['GuruNama'],
+                            "npwp" => $data['NPWP'],
+                            // "jabatan" => $data['NAMAJABATAN'],
                             "status" => "",
-                            "effective_date" => $data['periode'],
-                            "awal_kerja" => $data['tgl_mulai_kerja'],
+                            "effective_date" => $tglakhir,
+                            // "awal_kerja" => $data['tgl_mulai_kerja'],
                             "gaji" => $data['gaji'],
-                            "jumlah_jam" => "",
+                            "jumlah_jam" => $gettotalngajar[0]['jam']+$gettotalngajar[0]['tambahan'],
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
                             "tunj_transport" => $data['transport'],
-                            "tunj_masakerja" => $data['tunjangan_masakerja'],
+                            "tunj_lain" => $data['tunj_lain'],
                             "thr"  => $data['thr'],
-                            "pot_inval" => $data['inval'],
-                            "pot_anggotakoperasi" => $data['anggota_koperasi'],
-                            "pot_infaqmasjid" => $data['infaq_masjid'],
-                            "pot_kasbon" => $data['kas_bon'],
-                            "pot_ijintelat" => $data['ijin_telat'],
-                            "pot_bmt" => $data['bmt'],
-                            "pot_koperasi" => $data['koperasi'],
-                            "pot_tokoalhamra" => $data['toko'],
-                            "pot_lain" => $data['lain'],
-                            "pot_bpjs" => $data['bpjs'],
                             "pph21_bulanan" => $data['pph21'],
+                            "pot_lain" => $pot_lain,
                             "updatedWith" => $this->session->userdata('nama')
 
                         );
-                        $insert = $this->model_Generategajikaryawan->insert($data, 'tb_pendapatan');
+                        $insert = $this->model_Generategajiguru->insert($data, 'tb_pendapatan_guru');
+                        if ($insert) {
+                            $log = array(
+                                "username" => $this->session->userdata('nama'),
+                                "nip" => $this->session->userdata('nip'),
+                                "waktu" => date('Y-m-d H:i:s')
+                            );
+                            $insertlog = $this->model_Generategajiguru->insert($log, 'generate_log2');
+                            echo json_encode($insert);
+                        }
                     }
                 }
             }
 
-            if ($insert) {
-                $log = array(
-                    "username" => $this->session->userdata('nama'),
-                    "nip" => $this->session->userdata('nip'),
-                    "waktu" => date('Y-m-d H:i:s')
-                );
-                $insertlog = $this->model_Generategajikaryawan->insert($log, 'generate_log');
-                echo json_encode($insert);
-            }
+      
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }

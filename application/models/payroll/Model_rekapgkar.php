@@ -61,7 +61,7 @@ class Model_rekapgkar extends CI_model
                                     MONTH(awal_kerja) bulan_awal,
                                     MONTH(akhir_kerja) bulan_akhir
                                 FROM
-                                tb_pendapatan tp
+                                tb_pendapatan_karyawan tp
                                 WHERE
                                 tp.isDeleted != 1
                                 AND MONTH(effective_date) >= $bulan_awal

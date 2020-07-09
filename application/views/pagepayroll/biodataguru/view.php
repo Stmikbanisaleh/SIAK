@@ -55,7 +55,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Input Data Guru</h3>
+				<h3 class="smaller lighter blue no-margin">Form Input <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -73,6 +73,20 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
 								<div class="col-sm-9">
 									<input type="text" id="GuruNoDapodik" required name="GuruNoDapodik" placeholder="kode Dapodik" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
+								<div class="col-sm-9">
+									<input type="text" id="npwp"  name="npwp" placeholder="NPWP" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
+								<div class="col-sm-9">
+									<input type="text" id="nik"  name="nik" placeholder="NIK KTP" class="form-control" />
 								</div>
 							</div>
 
@@ -164,6 +178,13 @@
 									<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Jakarta" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Awal Kerja </label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" name="awal_kerja" id="awal_kerja" placeholder="" />
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -206,6 +227,20 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Dapodik </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_GuruNoDapodik" required name="e_GuruNoDapodik" placeholder="kode Dapodik" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_npwp"  name="e_npwp" placeholder="NPWP" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
+								<div class="col-sm-9">
+									<input type="text" required id="e_nik"  name="e_nik" placeholder="NIK KTP" class="form-control" />
 								</div>
 							</div>
 
@@ -295,6 +330,13 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="e_tempat_lahir" id="e_tempat_lahir" placeholder="Jakarta" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Awal Kerja </label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control" name="e_awal_kerja" id="e_awal_kerja" placeholder="" />
 								</div>
 							</div>
 					</div>
@@ -660,6 +702,9 @@
 				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
 				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
 				$('#e_status').val(data[0].GuruStatus);
+				$('#e_npwp').val(data[0].GuruNPWP);
+				$('#e_nik').val(data[0].GuruNik);
+				$('#e_awal_kerja').val(data[0].awal_kerja);
 			}
 		});
     });
