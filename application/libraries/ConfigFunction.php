@@ -244,7 +244,7 @@ class Configfunction
             return "Kamis";
         }
         if (date("D", strtotime($tgl)) == 'Fri') {
-            return "Jum`at";
+            return "Jumat";
         }
         if (date("D", strtotime($tgl)) == 'Sat') {
             return "Sabtu";
