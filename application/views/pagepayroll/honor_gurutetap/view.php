@@ -24,6 +24,20 @@
             </select>
             <small id="emailHelp" class="form-text text-muted">Periode bulan honor guru.</small>
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
+            <select class="form-control" required name="unit" id="unit">
+                <option value="0">--Pilih--</option>
+                <?php
+                    foreach($myunit->result_array() as $row){
+                ?>
+                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['DESCRTBPS']."] - ".$row['DESCRTBJS'] ?></option>
+                <?php
+                    }
+                ?>
+            </select>
+            <small id="emailHelp" class="form-text text-muted">Periode bulan honor guru.</small>
+        </div>
         <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
             <a class="ace-icon fa fa-search bigger-120"></a>Periksa
         </button>

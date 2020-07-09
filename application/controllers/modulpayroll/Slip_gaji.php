@@ -35,6 +35,34 @@ class Slip_gaji extends CI_Controller
 		
 	}
 
+	public function guru()
+	{
+		$my_karyawan = $this->model_slipgaji->view('tbguru')->result_array();
+		$data = array(
+			'page_content' 	=> '../pagepayroll/slip_gaji/view_guru',
+			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji</li>',
+			'page_name' 	=> 'Slip Gaji',
+			'js' 			=> 'js_file',
+			'my_karyawan'	=> $my_karyawan
+		);
+		$this->render_view($data); //Memanggil function render_view
+		
+	}
+
+	public function karyawan()
+	{
+		$my_karyawan = $this->model_slipgaji->view('biodata_karyawan')->result_array();
+		$data = array(
+			'page_content' 	=> '../pagepayroll/slip_gaji/view_karyawan',
+			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji</li>',
+			'page_name' 	=> 'Slip Gaji',
+			'js' 			=> 'js_file',
+			'my_karyawan'	=> $my_karyawan
+		);
+		$this->render_view($data); //Memanggil function render_view
+		
+	}
+
 	public function laporan(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$bulan = $this->mainfunction->periode_bulan(date('m'));

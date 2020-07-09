@@ -19,11 +19,7 @@ class Periksakehadiranguru extends CI_Controller
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
-<<<<<<< HEAD
-                'page_content'  => 'generateguru/view',
-=======
                 'page_content'  => 'periksakehadiranguru/view',
->>>>>>> bba463f2dd5d4ca80f7b3c6b5698c68b5f485598
                 'ribbon'        => '<li class="active">Periksa Kehadiran Guru</li>',
                 'page_name'     => 'Periksa Kehadiran Guru'
             );

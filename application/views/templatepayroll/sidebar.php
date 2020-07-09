@@ -133,12 +133,21 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?= base_url() . 'modulpayroll/slip_gaji'; ?>">
+				<a href="<?= base_url() . 'modulpayroll/slip_gaji/karyawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Slip Gaji
+					Slip Gaji Karyawan
 				</a>
 				<b class="arrow"></b>
 			</li>
+
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/slip_gaji/guru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Slip Gaji Guru
+				</a>
+				<b class="arrow"></b>
+			</li>
+
 			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/potong_gaji'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>

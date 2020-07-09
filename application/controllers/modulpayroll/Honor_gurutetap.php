@@ -19,12 +19,13 @@ class Honor_gurutetap extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-
+			$myunit = $this->model_honorguru->view_unit();
 			$data = array(
 				'page_content' 	=> '../pagepayroll/honor_gurutetap/view',
 				'ribbon' 		=> '<li class="active">Honor Guru Tetap</li><li>Honor Guru Tetap</li>',
 				'page_name' 	=> 'Honor Guru Tetap',
-				'js' 			=> 'js_file'
+				'js' 			=> 'js_file',
+				'myunit'		=>  $myunit
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -34,7 +35,7 @@ class Honor_gurutetap extends CI_Controller
 
 	public function laporan_pdf(){
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-		$my_data = $this->model_honorguru->view_honor($this->input->post('bln'), $this->input->post('tahun'));
+		$my_data = $this->model_honorguru->view_honor($this->input->post('bln'), $this->input->post('tahun'), $this->input->post('unit'));
 		// print_r($my_data);exit;
         
 		$this->load->library('pdf');

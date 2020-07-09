@@ -57,14 +57,22 @@ class Model_honorguru extends CI_model
         return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
     }
 
-    public function view_honor($bulan, $tahun)
+    public function view_honor($bulan, $tahun, $unit)
     {
         return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
                                 FROM htguru a
                                 JOIN tbguru b ON a.IdGuru = b.IdGuru
+                                JOIN tbps ps ON ps.id = b.GuruBase
                                 AND MONTH(a.PERIODE) = $bulan
-                                AND YEAR(a.PERIODE) = $tahun");
+                                AND YEAR(a.PERIODE) = $tahun
+                                WHERE ps.id = $unit");
+    }
 
-// return $this->db->last_query();
+    public function view_unit()
+    {
+        return $this->db->query("SELECT DISTINCT ps.id, ps.DESCRTBPS, js.DESCRTBJS
+        FROM tbguru tg
+        JOIN tbps ps ON ps.id = tg.GuruBase
+				JOIN tbjs js ON ps.KDTBJS = js.KDTBJS");
     }
 }
