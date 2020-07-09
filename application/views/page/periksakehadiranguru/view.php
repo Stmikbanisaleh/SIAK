@@ -1,16 +1,8 @@
-<div class="row">
-    <div class="col-xs-1">
-        <button role="button" id="btn_generate" onclick="generate();" class="btn btn-xs btn-warning">
-            <a class="ace-icon fa fa-plus bigger-120"></a> Generate
-        </button>
-    </div>
-    <br>
-    <br>
-</div>
+
 <div class="row">
 	<form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>modulkasir/lap_bayarsiswa/laporan_pdf">
 		<div class="form-group">
-			<label class="col-xs-3 control-label no-padding-left" for="form-field-select-1"> Pilih Nama Guru </label>
+			<label class="col-xs-2 control-label" for="form-field-select-1"> Pilih Nama Guru </label>
 			<div class="col-sm-5">
 				<select class="form-control" id="nama" name="nama">
 					<option value=""></option>
@@ -19,7 +11,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label no-padding-left" for="form-field-select-1"> Pilih Mata Pelajaran </label>
+			<label class="col-xs-2 control-label" for="form-field-select-1"> Pilih Mata Pelajaran </label>
 			<div class="col-sm-5">
 				<select class="form-control" id="id_mapel" name="id_mapel">
 					<option value=""></option>
@@ -27,16 +19,17 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-xs-10">
-			<br>
-			<button type="submit" id="btn_search" class="btn btn-sm btn-primary pull-right">
+		<div class="form-group">
+		<label class="col-xs-2 control-label" for="form-field-select-1"> </label>
+		<div class="col-sm-5">
+			<button type="submit" id="btn_search" class="btn btn-sm btn-primary">
 				<a class="ace-icon fa fa-search bigger-120"></a>Periksa
 			</button>
 		</div>
-		<br>
-		<br>
+		</div>
 	</form>
 </div>
+<hr>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -413,7 +406,7 @@
 	function show_data() {
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo site_url('jabatan/tampil') ?>',
+			url: '<?php echo site_url('periksakehadiranguru/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -430,7 +423,9 @@
 						'<td>' + data[i].KET + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
-						'<td> <input  type="text" id="e_id" name="e_id"> </td>' +
+						'<td>' +
+						'<button class="btn btn-xs btn-info item_edit_tambahan" title="Edit" data-id="' + data[i].ID + '">' +
+						'</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -467,6 +462,28 @@
 
 	//get data for update record
 	$('#show_data').on('click', '.item_edit', function() {
+		document.getElementById("formEdit").reset();
+		var id = $(this).data('id');
+		$('#modalEdit').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('jabatan/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id').val(data[0].ID);
+				$('#e_nama').val(data[0].NAMAJABATAN);
+				$('#e_keterangan').val(data[0].KET);
+
+			}
+		});
+	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_edit_tambahan', function() {
 		document.getElementById("formEdit").reset();
 		var id = $(this).data('id');
 		$('#modalEdit').modal('show');

@@ -115,24 +115,24 @@ class Generategajikaryawan extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $year = $this->input->post('tahun');
             $bulan = $this->input->post('bln');
-            $refresh = $this->db->query("delete from tb_pendapatan where YEAR(effective_date) = '" . $year . "' and MONTH(effective_date) = '" . $bulan . "' ");
+            $refresh = $this->db->query("delete from tb_pendapatan_karyawan where YEAR(effective_date) = '" . $year . "' and MONTH(effective_date) = '" . $bulan . "' ");
             if ($refresh) {
-                // $cek = $this->db->query("select employee_number, MONTHNAME(effective_date) from tb_pendapatan where MONTHNAME(effective_date) != '" . $bulan . "' and YEAR(effective_date) != '" . $year . "'");
                 $getgaji = $this->db->query("Select a.id_karyawan, a.tarif as gaji , a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , 
-                d.inval as inval_khusus, d.toko, d.lain, d.infaq_masjid, d.anggota_koperasi, d.kas_bon, d.ijin_telat, d.bmt, d.koperasi, d.inval, d.pph21 ,d.periode,d.tawun,d.bpjs,a.thr
+                (d.toko + d.lain + d.infaq_masjid + d.tawun + d.bpjs + d.anggota_koperasi + d.kas_bon + d.ijin_telat + d.bmt + d.koperasi + d.inval) as potongan, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain
                 from tarifkaryawan a 
                 join biodata_karyawan b on a.id_karyawan = b.nip
                 join msjabatan c on b.jabatan = c.ID
                 join tbkaryawanpot d on d.id_karyawan = b.nip
+                join tbpendapatanlainkaryawan e on a.id_karyawan = e.nip
                 where MONTH(d.periode) = '".$bulan."' and YEAR(d.periode) = '" . $year . "'
                 ")->result_array();
-                if ($getgaji) {
+                if (!empty($getgaji)) {
                     foreach ($getgaji as $data) {
                         $data = array(
                             "employee_number" => $data['id_karyawan'],
                             "nama"    => $data['nama'],
                             "npwp" => $data['npwp'],
-                            "pot_taawun" => $data['tawun'],
+                            "pot_lain" => $data['potongan'],
                             "jabatan" => $data['NAMAJABATAN'],
                             "status" => "",
                             "effective_date" => $data['periode'],
@@ -140,25 +140,19 @@ class Generategajikaryawan extends CI_Controller
                             "gaji" => $data['gaji'],
                             "jumlah_jam" => "",
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
+                            "tunj_lain" => $data['tunj_lain'],
+                            "tunj_utility" => $data['tunj_kinerja'],
                             "tunj_transport" => $data['transport'],
-                            "tunj_masakerja" => $data['tunjangan_masakerja'],
                             "thr"  => $data['thr'],
-                            "pot_inval" => $data['inval'],
-                            "pot_anggotakoperasi" => $data['anggota_koperasi'],
-                            "pot_infaqmasjid" => $data['infaq_masjid'],
-                            "pot_kasbon" => $data['kas_bon'],
-                            "pot_ijintelat" => $data['ijin_telat'],
-                            "pot_bmt" => $data['bmt'],
-                            "pot_koperasi" => $data['koperasi'],
-                            "pot_tokoalhamra" => $data['toko'],
-                            "pot_lain" => $data['lain'],
-                            "pot_bpjs" => $data['bpjs'],
                             "pph21_bulanan" => $data['pph21'],
                             "updatedWith" => $this->session->userdata('nama')
 
                         );
-                        $insert = $this->model_Generategajikaryawan->insert($data, 'tb_pendapatan');
+                        $insert = $this->model_Generategajikaryawan->insert($data, 'tb_pendapatan_karyawan');
+
                     }
+                } else {
+                    $insert = false;
                 }
             }
 
@@ -170,6 +164,8 @@ class Generategajikaryawan extends CI_Controller
                 );
                 $insertlog = $this->model_Generategajikaryawan->insert($log, 'generate_log');
                 echo json_encode($insert);
+            } else {
+                echo json_encode(false);
             }
         } else {
             $this->load->view('page/login'); //Memanggil function render_view

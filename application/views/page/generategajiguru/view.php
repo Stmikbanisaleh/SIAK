@@ -21,29 +21,15 @@
 							<!-- PAGE CONTENT BEGINS -->
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode Awal </label>
 								<div class="col-sm-6">
-									<input type="text" id="tahun" maxlength="4" name="tahun" required placeholder="2020" class="form-control" />
+									<input type="date" id="tglawal"  name="tglawal" required placeholder="2020" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bulan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode Akhir </label>
 								<div class="col-sm-6">
-									<select class="form-control" required name="bln" id="bln">
-										<option value="0">--Bulan Awal--</option>
-										<option value="1">Januari</option>
-										<option value="2">Februari</option>
-										<option value="3">Maret</option>
-										<option value="4">April</option>
-										<option value="5">Mei</option>
-										<option value="6">Juni</option>
-										<option value="7">Juli</option>
-										<option value="8">Agustus</option>
-										<option value="9">September</option>
-										<option value="10">Oktober</option>
-										<option value="11">November</option>
-										<option value="12">Desember</option>
-									</select>
+									<input type="date" id="tglakhir"  name="tglakhir" required class="form-control" />
 								</div>
 							</div>
 						</div>

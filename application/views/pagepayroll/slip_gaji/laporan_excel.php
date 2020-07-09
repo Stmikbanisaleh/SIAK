@@ -4,6 +4,21 @@
 .text{
   mso-number-format:"\@";/*force text*/
 }
+
+.baris1{
+	font-size: 1em;
+	font-style: normal;
+	line-height: normal;
+	font-family:"Times New Roman", Times, serif;
+}
+
+.baris2{
+	font-size:1;
+}
+
+.baris3{
+	font-size:1;
+}
 </style>
 </head>
 <body>
@@ -69,52 +84,46 @@ header("Expires:0");
 ?>
 	<div class="<?php echo $content; ?>">
 		<div>
-			<center><font size="1"><b>PERGURUAN ISLAM GEMA TERPADU</b><font></center>
-			<center><font size="1">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
-			<hr></hr>
+			<center><font size="1em"><b>PERGURUAN ISLAM GEMA TERPADU</b><font></center>
+			<center><font size="1em">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
 		</div>
 		
 		<div class="informasi">
 			<table style="width:100%; float:left;">
-				<tr>
-					<td style="width: 35px;">NIK</td>
-					<td style="width: 5px;">:</td>
-					<td class="text"><?= $row['employee_number']?></td>
+				<tr style="border-top:1px solid;">
+					<td style="width: 35px;" colspan="2">NIK</td>
+					<td class="text" colspan="3"><?= $row['employee_number']?></td>
 					<td style="text-align:right">Gaji <?= $bulan.' '.$tahun ?></td>
 				</tr>
 				<tr style="width:70%">
-					<td>Nama</td>
-					<td>:</td>
+					<td colspan="2">Nama</td>
 					<td><?= $row['nama'] ?></td>
 				</tr>
 				<?php
 				if($ket=='K'){
 				?>
 				<tr style="width:70%">
-					<td>Jabatan</td>
-					<td>:</td>
+					<td colspan="2">Jabatan</td>
 					<td><?= $row['jabatan'] ?></td>
 				</tr>
 				<?php
 				}else{
 				?>
 				<tr style="width:70%">
-					<td>Unit Kerja</td>
-					<td>:</td>
+					<td colspan="2">Unit Kerja</td>
 					<td><?= $row['status'] ?></td>
 				</tr>
 				<?php
 				}
 				?>
 			</table>
-			<hr style="margin-top:40px;"></hr>
 		</div>
 		<div class="isidata">
 			<div class="tablekiri">
 				<table>
-					<tr>
-						<td colspan="4">Perincian</td>
-						<td colspan="4">Potongan-potongan</td>
+					<tr style="border-top:1px solid;">
+						<td colspan="3">Perincian</td>
+						<td colspan="3">Potongan-potongan</td>
 					</tr>
 					<tr>
 						<td width="9px;">No</td>
@@ -247,56 +256,51 @@ header("Expires:0");
 					</tr>
 				</table>
 			</div>
-			<hr style="margin-top:1px;"></hr>
 			<table>
-					<tr>
-						<td width="125px;">Jumlah</td>
+					<tr style="border-top:1px solid;">
+						<td colspan="2">Jumlah</td>
 						<td width="44px;" style="text-align:right"><?= number_format($jumlah_pend) ?></td>
-						<td width="50px;" style="text-align:right"><?= number_format($jumlah_pot) ?></td>
+						<td colspan="3" style="text-align:right"><?= number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
-			<hr style="margin-top:1px;"></hr>
 			<table>
-					<tr>
-						<td width="125px;">Total pendapatan</td>
-						<td width="141px;"> </td>
+					<tr style="border-top:1px solid;">
+						<td width="125px;" colspan="5">Total pendapatan</td>
 						<td width="50px;" style="text-align:right"><?= number_format($total) ?></td>
 					</tr>
 			</table>
 		</div>
+		<br>
 		<div class="footerslip">
 			<table>
 				<tr>
-					<td width="160px; text-align:center;">Penerima</td>
-					<td width="160px; text-align:center;">Keuangan</td>
+					<td style="vertical-align : middle;text-align:center;" colspan="3">Penerima</td>
+					<td style="vertical-align : middle;text-align:center;" colspan="3">Keuangan</td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
+					<td width="150px; text-align:center;" colspan="3"></td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
-				</tr>
-				<tr>
-					<td width="160px; text-align:center;">(.......................................)</td>
-					<td width="160px; text-align:center;">(.......................................)</td>
+					<td style="vertical-align : middle;text-align:center;" colspan="3">(.......................................)</td>
+					<td style="vertical-align : middle;text-align:center;" colspan="3">(.......................................)</td>
 				</tr>
 			</table>
 		</div>
 	</div>
+	<br>
 <?php
 if($flag == 2){
 ?>

@@ -46,6 +46,7 @@ class Biodataguru extends CI_Controller
 				'IdGuru'  => $this->input->post('IdGuru'),
 				'GuruNoDapodik'  => $this->input->post('GuruNoDapodik'),
 				'GuruNama'  => $this->input->post('nama'),
+				'GuruNPWP'  => $this->input->post('npwp'),
 				'GuruTelp'  => $this->input->post('telepon'),
 				'GuruAlamat'  => $this->input->post('alamat'),
 				'GuruBase' => $this->input->post('program_sekolah'),
@@ -57,6 +58,8 @@ class Biodataguru extends CI_Controller
 				'GuruTglLahir'  => $this->input->post('tgl_lahir'),
 				'GuruTempatLahir'  => $this->input->post('tempat_lahir'),
 				'GuruStatus'  => $this->input->post('status'),
+				'awal_kerja'  => $this->input->post('awal_kerja'),
+				'GuruNik'  => $this->input->post('nik'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			$count_id = $this->model_guru->view_count('tbguru', $data['IdGuru']);
@@ -209,7 +212,9 @@ class Biodataguru extends CI_Controller
 				'GuruTelp'  => $this->input->post('e_telepon'),
 				'GuruAlamat'  => $this->input->post('e_alamat'),
 				'GuruBase' => $this->input->post('e_program_sekolah'),
-				// 'GuruWaktu'  => $this->input->post('alamat'),
+				'GuruNik' => $this->input->post('e_nik'),
+				'GuruNPWP' => $this->input->post('e_npwp'),
+				'awal_kerja' => $this->input->post('e_awal_kerja'),
 				'GuruJeniskelamin'  => $this->input->post('e_jenis_kelamin'),
 				'GuruPendidikanAkhir'  => $this->input->post('e_pendidikan_terakhir'),
 				'GuruAgama'  => $this->input->post('e_agama'),
