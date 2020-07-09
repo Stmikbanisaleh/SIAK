@@ -59,13 +59,23 @@ class Model_honorguru extends CI_model
 
     public function view_honor($bulan, $tahun, $unit)
     {
-        return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
+        if(!empty($unit)){
+            return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
                                 FROM htguru a
                                 JOIN tbguru b ON a.IdGuru = b.IdGuru
                                 JOIN tbps ps ON ps.KDSK = b.GuruBase
                                 AND MONTH(a.PERIODE) = $bulan
                                 AND YEAR(a.PERIODE) = $tahun
                                 WHERE ps.id = $unit");
+        }else{
+            return $this->db->query("SELECT a.*, b.GuruNama, a.JMLJAM+a.TAMBAHANJAM as totaljam
+                                FROM htguru a
+                                JOIN tbguru b ON a.IdGuru = b.IdGuru
+                                JOIN tbps ps ON ps.KDSK = b.GuruBase
+                                AND MONTH(a.PERIODE) = $bulan
+                                AND YEAR(a.PERIODE) = $tahun");
+        }
+        
     }
 
     public function view_unit()
