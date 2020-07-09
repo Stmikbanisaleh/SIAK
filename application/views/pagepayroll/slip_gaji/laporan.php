@@ -147,7 +147,7 @@
 					<td style="width: 35px;">NIK</td>
 					<td style="width: 5px;">:</td>
 					<td style=""><?= $row['employee_number']?></td>
-					<td style="text-align:right">Gaji <?= $bulan.' '.$tahun ?></td>
+					<td style="text-align:right">Periode <?= $bulan.' '.$tahun ?></td>
 				</tr>
 				<tr style="width:70%">
 					<td>Nama</td>
@@ -186,16 +186,16 @@
 					<tr>
 						<td width="9px;">No</td>
 						<td width="110px;">Keterangan</td>
-						<td width="45px;">Nominal (Rp)</td>
-						<td width="9px;">No</td>
+						<td width="45px;" style="text-align : right;">Nominal (Rp)</td>
+						<td width="9px;"></td>
 						<td width="80px;">Keterangan</td>
-						<td width="50px;">Nominal (Rp)</td>
+						<td width="70px;" style="text-align : right;">Nominal (Rp)</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>Gaji Pokok</td>
 						<td style="text-align:right"><?= number_format($pend_gaji_pokok) ?></td>
-						<td>1</td>
+						<td></td>
 						<td>Asuransi</td>
 						<td style="text-align:right"><?= number_format($pot_asuransi) ?></td>
 					</tr>
@@ -203,7 +203,7 @@
 						<td>2</td>
 						<td>T. Pajak</td>
 						<td style="text-align:right"><?= number_format($pend_pajak) ?></td>
-						<td>2</td>
+						<td></td>
 						<td>Potongan pensiun angka 27/32</td>
 						<td style="text-align:right"><?= number_format($pot_pensiun) ?></td>
 					</tr>
@@ -211,7 +211,7 @@
 						<td>3</td>
 						<td>T. Jabatan</td>
 						<td style="text-align:right"><?= number_format($pend_tunjabatan) ?></td>
-						<td>3</td>
+						<td></td>
 						<td>Lain-lain</td>
 						<td style="text-align:right"><?= number_format($pot_lain) ?></td>
 					</tr>
@@ -317,25 +317,34 @@
 			<hr style="margin-top:1px;"></hr>
 			<table>
 					<tr>
-						<td width="125px;">Jumlah</td>
-						<td width="44px;" style="text-align:right"><?= number_format($jumlah_pend) ?></td>
-						<td width="50px;" style="text-align:right"><?= number_format($jumlah_pot) ?></td>
+						<td width="125px;">Gaji kotor</td>
+						<td width="44px;" style="text-align:right"> </td>
+						<td width="165px;" style="text-align:right" colspan=""><?= number_format($jumlah_pend) ?></td>
+					</tr>
+					<tr>
+						<td width="125px;">Gaji bersih</td>
+						<td width="44px;" style="text-align:right"> </td>
+						<td width="165px;" style="text-align:right" colspan=""><?= number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
 			<hr style="margin-top:1px;"></hr>
 			<table>
 					<tr>
-						<td width="125px;">Total pendapatan</td>
+						<td width="125px;">Gaji bersih</td>
 						<td width="141px;"> </td>
-						<td width="50px;" style="text-align:right"><?= number_format($total) ?></td>
+						<td width="68px;" style="text-align:right">Rp_ <?= number_format($total) ?></td>
 					</tr>
 			</table>
 		</div>
 		<div class="footerslip">
 			<table>
 				<tr>
+					<td width="160px; text-align:center;"> </td>
+					<td width="160px; text-align:center;"><?= $tgl ?></td>
+				</tr>
+				<tr>
+					<td width="160px; text-align:center;"></td>
 					<td width="160px; text-align:center;">Penerima</td>
-					<td width="160px; text-align:center;">Keuangan</td>
 				</tr>
 				<tr>
 					<td width="150px; text-align:center;"></td>
@@ -354,11 +363,7 @@
 					<td width="150px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="150px; text-align:center;"></td>
-					<td width="150px; text-align:center;"></td>
-				</tr>
-				<tr>
-					<td width="160px; text-align:center;">(.......................................)</td>
+					<td width="160px; text-align:center;"></td>
 					<td width="160px; text-align:center;">(.......................................)</td>
 				</tr>
 			</table>
@@ -368,6 +373,7 @@
 if($flag == 2){
 ?>
 </div>
+
 <?php
 }
 ?>

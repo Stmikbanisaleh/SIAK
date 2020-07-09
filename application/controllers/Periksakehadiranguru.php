@@ -20,8 +20,8 @@ class Periksakehadiranguru extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $data = array(
                 'page_content'  => 'generateguru/view',
-                'ribbon'        => '<li class="active">Generate Kehadiran Guru</li>',
-                'page_name'     => 'Generate Kehadiran Guru'
+                'ribbon'        => '<li class="active">Periksa Kehadiran Guru</li>',
+                'page_name'     => 'Periksa Kehadiran Guru'
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
