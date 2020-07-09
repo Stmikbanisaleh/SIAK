@@ -3,14 +3,17 @@
 class Model_periksakehadiranguru extends CI_model
 {
 
-    public function view()
+    public function view_kehadiran()
     {
-        return  $this->db->query('select g.*, j.nama as nama_jabatan from guru g join jabatan j on g.jabatan = j.id where g.isdeleted != 1 ');
+        return  $this->db->query('SELECT ts.*, tg.GuruNama, mp.nama mapel FROM trdsrm ts
+        JOIN tbguru tg ON ts.IdGuru = tg.IdGuru
+        JOIN tbjadwal tj ON ts.idJadwal = tj.id
+        JOIN mspelajaran mp ON tj.id_mapel = mp.id_mapel');
     }
 
     public function viewOrdering($table, $order, $ordering)
     {
-        $this->db->where('isdeleted !=', 1);
+        // $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
     }
