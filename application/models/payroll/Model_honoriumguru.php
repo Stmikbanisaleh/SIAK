@@ -10,7 +10,7 @@ class Model_honoriumguru extends CI_model
 
     public function getjmljam($idguru , $tglawal, $tglakhir)
     {
-        return $this->db->query("select SUM(c.jam) as jmljam ,SUM(a.TAMBAHAN) as tambahan
+        return $this->db->query("select SUM(d.jam) as jmljam ,SUM(a.TAMBAHAN) as tambahan
         from trdsrm a 
         join tbjadwal c on a.idJadwal = c.id
         join mspelajaran d on c.id_mapel = d.id_mapel 
