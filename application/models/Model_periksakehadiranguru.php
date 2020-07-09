@@ -11,6 +11,23 @@ class Model_periksakehadiranguru extends CI_model
         JOIN mspelajaran mp ON tj.id_mapel = mp.id_mapel');
     }
 
+
+    public function getguru($guru)
+    {
+        return $this->db->query("select a.JAM, a.id_mapel, b.nama,c.SINGKTBPS,a.nmklstrjdk, a.hari from tbjadwal a 
+        join mspelajaran b on a.id_mapel = b.id_mapel
+        join tbps c on a.ps = c.KDTBPS 
+        where id_guru = '".$guru."' ");
+    }
+    
+    public function getjadwal($guru, $mapel)
+    {
+        return  $this->db->query("SELECT mp.id_mapel,ts.*, tg.GuruNama, mp.nama mapel FROM trdsrm ts
+        JOIN tbguru tg ON ts.IdGuru = tg.IdGuru
+        JOIN tbjadwal tj ON ts.idJadwal = tj.id
+        JOIN mspelajaran mp ON tj.id_mapel = mp.id_mapel where ts.IdGuru = '".$guru."' and mp.id_mapel ='".$mapel."' ");
+    }
+
     public function viewOrdering($table, $order, $ordering)
     {
         // $this->db->where('isdeleted !=', 1);
