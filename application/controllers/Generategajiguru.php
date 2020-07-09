@@ -129,7 +129,7 @@ class Generategajiguru extends CI_Controller
                 ")->result_array();
                 if ($getgaji) {
                     foreach ($getgaji as $data) {
-                        $gettotalngajar = $this->db->query("select SUM(c.jam) as jam ,SUM(a.TAMBAHAN) as tambahan
+                        $gettotalngajar = $this->db->query("select SUM(d.jam) as jam ,SUM(a.TAMBAHAN) as tambahan
                         from trdsrm a 
                         join tbjadwal c on a.idJadwal = c.id
                         join mspelajaran d on c.id_mapel = d.id_mapel 
