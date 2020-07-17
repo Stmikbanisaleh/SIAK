@@ -7,7 +7,7 @@ class Penghapusannilai extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_permataajar');
+		$this->load->model('model_penghapusannilai');
 	}
 
 	function render_view($data)
@@ -17,9 +17,9 @@ class Penghapusannilai extends CI_Controller
 
 	public function index()
 	{
-		$mytahun = $this->model_permataajar->gettahun()->result_array();
-		$mysemester = $this->model_permataajar->getsemester()->result_array();
-		$myps = $this->model_permataajar->getps()->result_array();
+		$mytahun = $this->model_penghapusannilai->gettahun()->result_array();
+		$mysemester = $this->model_penghapusannilai->getsemester()->result_array();
+		$myps = $this->model_penghapusannilai->getps()->result_array();
 
 		$data = array(
 			'page_content' 	=> 'penghapusannilai/view',
@@ -37,7 +37,7 @@ class Penghapusannilai extends CI_Controller
 		$tahun = $this->input->post('tahun');
 		$semester = $this->input->post('semester');
 		$programsekolah = $this->input->post('programsekolah');
-		$result = $this->model_permataajar->getpermataajar($tahun, $semester, $programsekolah)->result();
+		$result = $this->model_penghapusannilai->getpermataajar($tahun, $semester, $programsekolah)->result();
 		echo json_encode($result);
 	}
 	public function simpan()
@@ -142,12 +142,9 @@ class Penghapusannilai extends CI_Controller
 	public function delete()
     {
         $data_id = array(
-            'id_pengawas'  => $this->input->post('id')
+            'id'  => $this->input->post('id')
         );
-        $data = array(
-            'isdeleted'  => 1,
-        );
-		$action = $this->model_karyawan->update($data_id,$data,'tbpengawas');
+		$action = $this->model_penghapusannilai->delete($data_id,'trnilai');
         echo json_encode($action);
         
     }
