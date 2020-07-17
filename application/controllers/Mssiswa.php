@@ -62,7 +62,8 @@ class Mssiswa extends CI_Controller
         include 'PHPExcel/IOFactory.php';
         $objPHPExcel = new PHPExcel();
         $ps = $this->input->post('ps');
-        $my_pembsiswa = $this->model_mssiswa->exportsiswa($ps)->result_array();
+        $tahun = $this->input->post('tahun');
+        $my_pembsiswa = $this->model_mssiswa->exportsiswa($ps,$tahun)->result_array();
         $data = $my_pembsiswa;
         $no = 1;
         $row = 3;
@@ -434,6 +435,16 @@ class Mssiswa extends CI_Controller
             //photonem
             $data = array(
                 'NOREG'  => $this->input->post('noreg'),
+                'NIK' => $this->input->post('nik'),
+                'STATUSANAK' => $this->input->post('statusanak'),
+                'TINGGIBADAN' => $this->input->post('tinggi'),
+                'BERATBADAN' => $this->input->post('berat'),
+                'KENDARAAN' => $this->input->post('kendaraan'),
+                'JARAK' => $this->input->post('jarak'),
+                'WAKTU' => $this->input->post('waktu'),
+                'TGLLHRBAPAK' => $this->input->post('tgllhrbapak'),
+                'TGLLHRIBU' => $this->input->post('tgllhribu'),
+                'GAJIORTU2' => $this->input->post('penghasilan2'),
                 'NMSISWA'  => $this->input->post('nama'),
                 'AGAMA'  => $this->input->post('agama'),
                 'JK'  => $this->input->post('jk'),
@@ -451,7 +462,7 @@ class Mssiswa extends CI_Controller
                 'NOHP'  => $this->input->post('nohp'),
                 'NMWALI'  => $this->input->post('wali'),
                 'NISN'  => $this->input->post('nisn'),
-                'PEKERJAANORTU'  => $this->input->post('pekerjaan'),
+                'PEKERJAANORTU'  => $this->input->post('pekerjaan1'),
                 'PEKERJAANORTU2'  => $this->input->post('pekerjaan2'),
                 'PEKERJAANWALI'  => $this->input->post('pekerjaan3'),
                 'ALAMATRUMAH'  => $this->input->post('alamat2'),

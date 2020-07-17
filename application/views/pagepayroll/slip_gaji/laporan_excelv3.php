@@ -135,28 +135,28 @@ header("Expires:0");
 					<tr>
 						<td>1</td>
 						<td>Gaji Pokok</td>
-						<td style="text-align:right"><?= $pend_gaji_pokok?></td>
+						<td style="text-align:right"><?= number_format($pend_gaji_pokok) ?></td>
 						<td colspan="2">Asuransi</td>
-						<td style="text-align:right"><?= $pot_asuransi ?></td>
+						<td style="text-align:right"><?= number_format($pot_asuransi) ?></td>
 					</tr>
 					<tr>
 						<td>2</td>
 						<td>T. Pajak</td>
-						<td style="text-align:right"><?= $pend_pajak ?></td>
+						<td style="text-align:right"><?= number_format($pend_pajak) ?></td>
 						<td colspan="2">Potongan pensiun angka 27/32</td>
-						<td style="text-align:right"><?= $pot_pensiun ?></td>
+						<td style="text-align:right"><?= number_format($pot_pensiun) ?></td>
 					</tr>
 					<tr>
 						<td>3</td>
 						<td>T. Jabatan</td>
-						<td style="text-align:right"><?= $pend_tunjabatan ?></td>
+						<td style="text-align:right"><?= number_format($pend_tunjabatan) ?></td>
 						<td colspan="2">Lain-lain</td>
-						<td style="text-align:right"><?= $pot_lain ?></td>
+						<td style="text-align:right"><?= number_format($pot_lain) ?></td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>Sansos</td>
-						<td style="text-align:right"><?= $pend_tunjsansos ?></td>
+						<td style="text-align:right"><?= number_format($pend_tunjsansos) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -164,7 +164,7 @@ header("Expires:0");
 					<tr>
 						<td>5</td>
 						<td>Struktural/Khusus</td>
-						<td style="text-align:right"><?= $pend_strukturalkhusus ?></td>
+						<td style="text-align:right"><?= number_format($pend_strukturalkhusus) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -172,7 +172,7 @@ header("Expires:0");
 					<tr>
 						<td>6</td>
 						<td>Transportasi</td>
-						<td style="text-align:right"><?= $pend_transportasi ?></td>
+						<td style="text-align:right"><?= number_format($pend_transportasi) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -180,7 +180,7 @@ header("Expires:0");
 					<tr>
 						<td>7</td>
 						<td>T. Tentap</td>
-						<td style="text-align:right"><?= $pend_pegawai_tetap ?></td>
+						<td style="text-align:right"><?= number_format($pend_pegawai_tetap) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -188,7 +188,7 @@ header("Expires:0");
 					<tr>
 						<td>8</td>
 						<td>Peralihan</td>
-						<td style="text-align:right"><?= $pend_peralihan ?></td>
+						<td style="text-align:right"><?= number_format($pend_peralihan) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -196,7 +196,7 @@ header("Expires:0");
 					<tr>
 						<td>9</td>
 						<td>Utility</td>
-						<td style="text-align:right"><?= $pend_utility ?></td>
+						<td style="text-align:right"><?= number_format($pend_utility) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -207,7 +207,7 @@ header("Expires:0");
 					<tr>
 						<td>10</td>
 						<td>Honorarium</td>
-						<td style="text-align:right"><?= $pend_honorarium ?></td>
+						<td style="text-align:right"><?= number_format($pend_honorarium) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -218,7 +218,7 @@ header("Expires:0");
 					<tr>
 						<td>10</td>
 						<td>Honorarium (Jumlah jam)</td>
-						<td style="text-align:right"><?= $pend_honorarium.' ('.$row["jumlah_jam"].')' ?></td>
+						<td style="text-align:right"><?= number_format($pend_honorarium).' ('.$row["jumlah_jam"].')' ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -229,7 +229,7 @@ header("Expires:0");
 					<tr>
 						<td>11</td>
 						<td>Asuransi Perusahaan</td>
-						<td style="text-align:right"><?= $pend_asuransi ?></td>
+						<td style="text-align:right"><?= number_format($pend_asuransi) ?></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -237,7 +237,7 @@ header("Expires:0");
 					<tr>
 						<td>12</td>
 						<td>Bonus+THR+Cuti</td>
-						<td style="text-align:right"><?= $pend_bonus ?></td>
+						<td style="text-align:right"><?= number_format($pend_bonus) ?></td>
 						<td></td>
 						<td></td>
 						<td> </td>
@@ -245,7 +245,7 @@ header("Expires:0");
 					<tr>
 						<td>13</td>
 						<td>Lain-lain</td>
-						<td style="text-align:right"><?= $pend_lain ?></td>
+						<td style="text-align:right"><?= number_format($pend_lain) ?></td>
 						<td></td>
 						<td></td>
 						<td> </td>
@@ -256,18 +256,18 @@ header("Expires:0");
 					<tr style="border-top:1px solid;">
 						<td colspan="2">Gaji kotor</td>
 						<td width="44px;" style="text-align:right"></td>
-						<td colspan="3" style="text-align:right"><?= $jumlah_pend ?></td>
+						<td colspan="3" style="text-align:right"><?= number_format($jumlah_pend) ?></td>
 					</tr>
 					<tr style="border-top:1px solid;">
 						<td colspan="2">Total Potongan</td>
 						<td width="44px;" style="text-align:right"></td>
-						<td colspan="3" style="text-align:right"><?= $jumlah_pot ?></td>
+						<td colspan="3" style="text-align:right"><?= number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
 			<table>
 					<tr style="border-top:1px solid;">
 						<td width="125px;" colspan="5">Gaji bersih</td>
-						<td width="50px;" style="text-align:right"><?= $total ?></td>
+						<td width="50px;" style="text-align:right"><?= number_format($total) ?></td>
 					</tr>
 			</table>
 		</div>

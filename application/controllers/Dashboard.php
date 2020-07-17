@@ -36,14 +36,14 @@ class Dashboard extends CI_Controller
 			$data = $query->result_array();
 			$this->load->library('Configfunction');
 			foreach ($data as $value) {
-				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'));
+				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'),$this->input->ip_address());
 				$data = [
 					'username' => $value['username'],
 					'nama' => $value['nama'],
 					'nip' => $value['nip'],
 					'jabatan' => $value['jabatan'],
 					'level' => $value['level'],
-					'gambar' => $value['gambar'],
+					'gambar' => $value['gambar']
 				];
 			}
 			$this->session->set_userdata($data);

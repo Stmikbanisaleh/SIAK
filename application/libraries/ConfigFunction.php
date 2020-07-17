@@ -177,10 +177,10 @@ class Configfunction
         return $result;
     }
 
-    public function insertlog($username, $nip,$date)
+    public function insertlog($username, $nip,$date,$ip)
     {
         $result = $this->CI->db->query("INSERT INTO user_log
-        VALUES ('','$nip','$username','login','$date')");
+        VALUES ('','$nip','$username','login','$ip','$date')");
         return $result;
     }
 

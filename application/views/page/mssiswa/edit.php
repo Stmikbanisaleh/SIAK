@@ -81,13 +81,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right">Photo Siswa</label>
                 <div class="col-sm-9">
                     <input type="file" name="file1" id="file1" class="col-xs-12" id="form-field-icon-2" />
                 </div>
-            </div>
-            <?php
+            </div> -->
+            <!-- <?php
             if ($mysiswa) { ?>
                 <div class="form-group">
                     <div class="col-sm-9">
@@ -100,7 +100,7 @@
                         <span style="margin-left:300px"><img height="75px" width="75px" id="form-field-icon-2" src="<?php echo base_url().'assets/gambar/no-image.png'; ?>" /></span>
                     </div>
                 </div>
-            <?php }  ?>
+            <?php }  ?> -->
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
                 <div class="col-sm-9">
@@ -122,7 +122,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field">Tinggi Badan</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->TINGGIBADAN ?>" name="tinggi" id="tinggi" placeholder="Kandung" />
+                    <input type="text" value="<?= $mysiswa->TINGGIBADAN ?>" name="tinggi" id="tinggi" placeholder="140 CM" />
                 </div>
             </div>
             <div class="form-group">
@@ -163,7 +163,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ayah</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="penghasilan1" id="penghasilan1">
+                    <select class="form-control" name="penghasilan" id="penghasilan">
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
@@ -212,7 +212,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ibu</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="penghasilan" id="penghasilan">
+                    <select class="form-control" name="penghasilan2" id="penghasilan2">
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
@@ -320,7 +320,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Hp</label>
                 <div class="col-sm-9">
-                    <input type="number" name="nohp" value="<?= $mysiswa->TELP ?>" id="nohp" />
+                    <input type="number" name="nohp" value="<?= $mysiswa->NOHP ?>" id="nohp" />
                 </div>
             </div>
 
@@ -460,12 +460,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right">Photo Ijazah</label>
                 <div class="col-sm-9">
                     <input type="file" id="photoijazah" name="photoijazah" />
                 </div>
-            </div>
+            </div> -->
 
             <div class="space-4"></div>
 
@@ -487,7 +487,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Photo NEM</label>
 
                 <div class="col-sm-9">
@@ -495,7 +495,7 @@
                         <input type="file" name="photonem" id="photonem" value="" />
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="clearfix form-actions">
                 <div class="col-md-offset-3 col-md-9">
                     <button class="btn btn-info" type="submit">
