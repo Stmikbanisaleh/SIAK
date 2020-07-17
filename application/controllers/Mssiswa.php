@@ -468,6 +468,7 @@ class Mssiswa extends CI_Controller
                 'ALAMATRUMAH'  => $this->input->post('alamat2'),
                 'TLPRUMAH'  => $this->input->post('telprmh'),
                 'TLPWALI'  => $this->input->post('telpwali'),
+                'EMAIL'  => $this->input->post('email'),
                 'NMASLSKL'  => $this->input->post('aslsekolah'),
                 'PROVINSISEKOLAHASAL'  => $this->input->post('provinsi2'),
                 'KABUPATENSEKOLAHASAL' => $this->input->post('kabupaten2'),
