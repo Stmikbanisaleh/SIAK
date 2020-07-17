@@ -193,86 +193,87 @@ class Penentuankelas extends CI_Controller
         // print_r($this->db->last_query());exit;
         if($this->db->query($sql)->num_rows() < 1){
             echo json_encode(401);
-        }
-        foreach ($hasil as $rl){
-            $query = "SELECT COUNT(*)AS jml,Naikkelas,idbagiNaikKelas,Kelas FROM baginaikkelas WHERE NIS ='".$rl['NOINDUK']."' AND TA='".$ThnAkademik."' ORDER BY idbagiNaikKelas DESC LIMIT 1";
-            $cari1 = $this->db->query($query)->row();
+        }else{
+            foreach ($hasil as $rl){
+                $query = "SELECT COUNT(*)AS jml,Naikkelas,idbagiNaikKelas,Kelas FROM baginaikkelas WHERE NIS ='".$rl['NOINDUK']."' AND TA='".$ThnAkademik."' ORDER BY idbagiNaikKelas DESC LIMIT 1";
+                $cari1 = $this->db->query($query)->row();
 
-            $jml = $cari1->jml;
-            $Naikkelas = $cari1->Naikkelas;
-            $idbagiNaikKelas = $cari1->idbagiNaikKelas;
-            $Kelas = $cari1->Kelas;
+                $jml = $cari1->jml;
+                $Naikkelas = $cari1->Naikkelas;
+                $idbagiNaikKelas = $cari1->idbagiNaikKelas;
+                $Kelas = $cari1->Kelas;
 
-            if ($jml != 1) {
+                if ($jml != 1) {
 
-                $str = $ThnAkademik;
-                $pieces = (explode("/", $str));
-                $v_hasil = $pieces[0] - $rl['TAHUN'];
+                    $str = $ThnAkademik;
+                    $pieces = (explode("/", $str));
+                    $v_hasil = $pieces[0] - $rl['TAHUN'];
 
-                $query_kdsk = $this->db->query("select kdsk from tbps where kdtbps = '".$rl['PS']."'");
-                $hasil_kdsk = $query_kdsk->row();
+                    $query_kdsk = $this->db->query("select kdsk from tbps where kdtbps = '".$rl['PS']."'");
+                    $hasil_kdsk = $query_kdsk->row();
 
-                if($hasil_kdsk == null){
-                    $kls = '';
-                }else{
-                    $kdsk = $hasil_kdsk->kdsk;
-                }
-                    
-                    if($kdsk == 1){
-                        $kls = 1;
-                    }else if($kdsk == 2){
-                        $kls = 1;
-                    }else if($kdsk == 3){
-                        $kls = 7;
-                    }else if($kdsk == 4){
-                        $kls = 10;
+                    if($hasil_kdsk == null){
+                        $kls = '';
                     }else{
-                        $kls = 0;
+                        $kdsk = $hasil_kdsk->kdsk;
                     }
+                        
+                        if($kdsk == 1){
+                            $kls = 1;
+                        }else if($kdsk == 2){
+                            $kls = 1;
+                        }else if($kdsk == 3){
+                            $kls = 7;
+                        }else if($kdsk == 4){
+                            $kls = 10;
+                        }else{
+                            $kls = 0;
+                        }
 
-                // if ($v_hasil == '0') {
-                //     if ($rl['PS'] == '01') {
-                //         $kls = 1;
-                //     } else {
-                //         $kls = 4;
-                //     }
-                // } elseif ($v_hasil == 1) {
-                //     if ($rl['PS'] == '01') {
-                //         $kls = 2;
-                //     } else {
-                //         $kls = 5;
-                //     }
-                // } elseif ($v_hasil == 2) {
-                //     if ($rl['PS'] == '01') {
-                //         $kls = 3;
-                //     } else {
-                //         $kls = 6;
-                //     }
-                // }
+                    // if ($v_hasil == '0') {
+                    //     if ($rl['PS'] == '01') {
+                    //         $kls = 1;
+                    //     } else {
+                    //         $kls = 4;
+                    //     }
+                    // } elseif ($v_hasil == 1) {
+                    //     if ($rl['PS'] == '01') {
+                    //         $kls = 2;
+                    //     } else {
+                    //         $kls = 5;
+                    //     }
+                    // } elseif ($v_hasil == 2) {
+                    //     if ($rl['PS'] == '01') {
+                    //         $kls = 3;
+                    //     } else {
+                    //         $kls = 6;
+                    //     }
+                    // }
 
-                if ($rl['Naikkelas'] == '') {
-                    $vt_kelas = $kls;
-                } else {
-                    if ($kls >= $rl['Naikkelas']) {
-                        $vt_kelas = $rl['Naikkelas'];
-                    } else {
+                    if ($rl['Naikkelas'] == '') {
                         $vt_kelas = $kls;
+                    } else {
+                        if ($kls >= $rl['Naikkelas']) {
+                            $vt_kelas = $rl['Naikkelas'];
+                        } else {
+                            $vt_kelas = $kls;
+                        }
                     }
-                }
 
-                $data = array(
-                    'Thnmasuk'  => $rl['TAHUN'],
-                    'Kelas'  => $vt_kelas,
-                    'Kodesekolah'  => $rl['PS'],
-                    'TA'  => $ThnAkademik,
-                    'tglentri'  => date('Y-m-d H:i:s'),
-                    'userentri'  => $this->session->userdata('nip'),
-                    'NIS'  => $rl['NOINDUK'],
-                );
-                $action = $this->model_penentuan->insert($data, 'baginaikkelas');
+                    $data = array(
+                        'Thnmasuk'  => $rl['TAHUN'],
+                        'Kelas'  => $vt_kelas,
+                        'Kodesekolah'  => $rl['PS'],
+                        'TA'  => $ThnAkademik,
+                        'tglentri'  => date('Y-m-d H:i:s'),
+                        'userentri'  => $this->session->userdata('nip'),
+                        'NIS'  => $rl['NOINDUK'],
+                    );
+                    $action = $this->model_penentuan->insert($data, 'baginaikkelas');
+                }
             }
+            echo json_encode(true);
         }
-        echo json_encode(true);
     }
 
     public function import()
