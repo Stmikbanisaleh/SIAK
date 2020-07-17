@@ -50,6 +50,17 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="tahun" id="tahun">
+                                        <option value="">-- Pilih tahun akademik --</option>
+                                        <?php foreach ($thakad as $value) { ?>
+                                            <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN']  ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

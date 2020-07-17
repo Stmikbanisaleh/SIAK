@@ -42,12 +42,14 @@ class Mssiswa extends CI_Controller
             $tampil_thnakad = $this->configfunction->getthnakd();
             $mysekolah = $this->model_mssiswa->getsekolah()->result_array();
             $myagama = $this->model_mssiswa->viewOrdering('tbagama', 'KDTBAGAMA', 'desc')->result_array();
+            $thn_akad = $this->model_mssiswa->thnakad2()->result_array();
             $data = array(
                 'page_content'  => 'mssiswa/view',
                 'ribbon'        => '<li class="active">Master Siswa</li>',
                 'page_name'     => 'Master Siswa',
                 'myagama'       => $myagama,
                 'mysekolah'     => $mysekolah,
+                'thakad'        => $thn_akad,
             );
             $this->render_view($data); //Memanggil function render_view
         } else {

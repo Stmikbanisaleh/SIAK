@@ -2,7 +2,7 @@
     <div class="col-sm-6" id="default-buttons">
         <p>
             <button id="btn_proses" class="btn btn-sm btn-warning pull-left">
-                <a class="ace-icon fa fa-exchange bigger-120 btn_proses"></a>Proses
+                <a class="ace-icon fa fa-exchange bigger-120 btn_proses"> Proses</a>
             </button>
             <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-sm btn-light pull-left">
                 <a class="ace-icon fa fa-cloud-download bigger-120"></a>
@@ -314,7 +314,7 @@
 
 
     $('.btn_proses').click(function() {
-        $('#btn_proses').html('Proses..');
+        // $('#btn_proses').html('Proses..');
         $.ajax({
             type: 'POST',
             url: '<?php echo site_url('penentuankelas/validasi') ?>',
@@ -322,7 +322,7 @@
             async: true,
             dataType: 'json',
             success: function(response) {
-                $('#btn_proses').html('<a class="ace-icon fa fa-exchange bigger-120 btn_proses"></a>Proses');
+                // $('#btn_proses').html('<a class="ace-icon fa fa-exchange bigger-120 btn_proses"> Proses</a>');
                 if (response == true) {
                     swalInputSuccess();
                 } else if (response == 401) {
