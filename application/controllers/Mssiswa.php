@@ -49,7 +49,7 @@ class Mssiswa extends CI_Controller
                 'page_name'     => 'Master Siswa',
                 'myagama'       => $myagama,
                 'mysekolah'     => $mysekolah,
-                'thakad'        => $thn_akad;
+                'thakad'        => $thn_akad,
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
