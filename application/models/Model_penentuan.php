@@ -20,6 +20,20 @@ class Model_penentuan extends CI_model
         ");
     }
 
+    public function getformatexcel()
+    {
+        return $this->db->query("Select * from msruang");
+    }
+
+    public function getformatexcel2()
+    {
+        return $this->db->query("Select * from tbjs");
+    }
+    public function getformatexcel3()
+    {
+        return $this->db->query("Select * from tbps");
+    }
+
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
