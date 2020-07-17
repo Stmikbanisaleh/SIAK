@@ -216,6 +216,7 @@
 <table id="table_id" class="display">
     <thead>
         <tr>
+            <th>No</th>
             <th>NIS</th>
             <th>Nama</th>
             <th>Agama</th>
@@ -282,6 +283,7 @@
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
+                                '<td>' + no + '</td>' +
                                 '<td>' + data[i].NOINDUK + '</td>' +
                                 '<td>' + data[i].NMSISWA + '</td>' +
                                 '<td>' + data[i].DESCRTBAGAMA + '</td>' +
