@@ -135,12 +135,10 @@ class Permataajar extends CI_Controller
 		$mail->SMTPSecure = 'tls';
 		$mail->Port = EMAIL_PORT;
 		foreach ($type as $value) {
-			print_r($value);
-			$mail->setFrom(EMAIL_NILAI, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
-			$mail->addReplyTo(EMAIL_LOG, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
-			$mail->addAddress($value['EMAIL']);
-
-			if (!empty($value)) {
+			if (!empty($value['EMAIL'])) {
+				$mail->setFrom(EMAIL_NILAI, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
+				$mail->addReplyTo(EMAIL_LOG, 'Mata Pelajaran ' . $value['KLSTRNIL'] . "-" . $value['nama_siswa']);
+				$mail->addAddress($value['EMAIL']);
 				// Subjek email
 				$mail->Subject = 'Nilai Siswa Mata Pelajaran';
 				// Mengatur format email ke HTML
@@ -186,14 +184,13 @@ class Permataajar extends CI_Controller
 					$no++;
 				}
 				$mail->Body = $mailContent . $vm[1] . $vm[2] . $vm[3] . $vm[4] . $vm[5] . $vm[6] . $vm[7] . $vm[8] . $vm[9] . $vm[10] . $vm[11] . $vm[12] . $vm[13] . $vm[14] . $mailFooter;
-			}
-
-			// Kirim email
-			if (!$mail->send()) {
-				$pes = 'Pesan tidak dapat dikirim.';
-				$mai = 'Mailer Error: ' . $mail->ErrorInfo;
-			} else {
-				$pes = 'Pesan telah terkirim';
+				// Kirim email
+				if (!$mail->send()) {
+					$pes = 'Pesan tidak dapat dikirim.';
+					$mai = 'Mailer Error: ' . $mail->ErrorInfo;
+				} else {
+					$pes = 'Pesan telah terkirim';
+				}
 			}
 		}
 	}
