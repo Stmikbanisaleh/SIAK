@@ -163,7 +163,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ayah</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="penghasilan1" id="penghasilan1">
+                    <select class="form-control" name="penghasilan" id="penghasilan">
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
@@ -212,7 +212,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Penghasilan Ibu</label>
                 <div class="col-sm-3">
-                    <select class="form-control" name="penghasilan" id="penghasilan">
+                    <select class="form-control" name="penghasilan2" id="penghasilan2">
                         <option value="">-- Pilih Penghasilan --</option>
                         <?php
                         foreach ($mytbpk as $value) { ?>
@@ -320,7 +320,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Hp</label>
                 <div class="col-sm-9">
-                    <input type="number" name="nohp" value="<?= $mysiswa->TELP ?>" id="nohp" />
+                    <input type="number" name="nohp" value="<?= $mysiswa->NOHP ?>" id="nohp" />
                 </div>
             </div>
 

@@ -432,6 +432,16 @@ class Mssiswa extends CI_Controller
             //photonem
             $data = array(
                 'NOREG'  => $this->input->post('noreg'),
+                'NIK' => $this->input->post('nik'),
+                'STATUSANAK' => $this->input->post('statusanak'),
+                'TINGGIBADAN' => $this->input->post('tinggi'),
+                'BERATBADAN' => $this->input->post('berat'),
+                'KENDARAAN' => $this->input->post('kendaraan'),
+                'JARAK' => $this->input->post('jarak'),
+                'WAKTU' => $this->input->post('waktu'),
+                'TGLLHRBAPAK' => $this->input->post('tgllhrbapak'),
+                'TGLLHRIBU' => $this->input->post('tgllhribu'),
+                'GAJIORTU2' => $this->input->post('penghasilan2'),
                 'NMSISWA'  => $this->input->post('nama'),
                 'AGAMA'  => $this->input->post('agama'),
                 'JK'  => $this->input->post('jk'),
