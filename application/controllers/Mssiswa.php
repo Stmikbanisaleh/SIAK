@@ -459,7 +459,7 @@ class Mssiswa extends CI_Controller
                 'NOHP'  => $this->input->post('nohp'),
                 'NMWALI'  => $this->input->post('wali'),
                 'NISN'  => $this->input->post('nisn'),
-                'PEKERJAANORTU'  => $this->input->post('pekerjaan'),
+                'PEKERJAANORTU'  => $this->input->post('pekerjaan1'),
                 'PEKERJAANORTU2'  => $this->input->post('pekerjaan2'),
                 'PEKERJAANWALI'  => $this->input->post('pekerjaan3'),
                 'ALAMATRUMAH'  => $this->input->post('alamat2'),
