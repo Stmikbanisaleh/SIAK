@@ -603,7 +603,7 @@
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id);
+				$('#e_id').val(data[0].id_guru);
 				$('#e_IdGuru').val(data[0].IdGuru);
 				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
 				$('#e_nama').val(data[0].GuruNama);
