@@ -81,13 +81,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right">Photo Siswa</label>
                 <div class="col-sm-9">
                     <input type="file" name="file1" id="file1" class="col-xs-12" id="form-field-icon-2" />
                 </div>
-            </div>
-            <?php
+            </div> -->
+            <!-- <?php
             if ($mysiswa) { ?>
                 <div class="form-group">
                     <div class="col-sm-9">
@@ -100,7 +100,7 @@
                         <span style="margin-left:300px"><img height="75px" width="75px" id="form-field-icon-2" src="<?php echo base_url().'assets/gambar/no-image.png'; ?>" /></span>
                     </div>
                 </div>
-            <?php }  ?>
+            <?php }  ?> -->
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
                 <div class="col-sm-9">
@@ -460,12 +460,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right">Photo Ijazah</label>
                 <div class="col-sm-9">
                     <input type="file" id="photoijazah" name="photoijazah" />
                 </div>
-            </div>
+            </div> -->
 
             <div class="space-4"></div>
 
@@ -487,7 +487,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Photo NEM</label>
 
                 <div class="col-sm-9">
@@ -495,7 +495,7 @@
                         <input type="file" name="photonem" id="photonem" value="" />
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="clearfix form-actions">
                 <div class="col-md-offset-3 col-md-9">
                     <button class="btn btn-info" type="submit">
