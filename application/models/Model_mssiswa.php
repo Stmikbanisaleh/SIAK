@@ -28,7 +28,7 @@ class Model_mssiswa extends CI_model
     }
 
     public function thnakad2(){
-        return $this->db->query("SELECT DISTINCT TAHUN from tbakadmk2");
+        return $this->db->query("SELECT DISTINCT TAHUN from tbakadmk2 ORDER BY TAHUN DESC");
     }
 
     public function getsekolah()
