@@ -89,7 +89,7 @@ class Jadwal extends CI_Controller
     public function import()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $id = $this->input->post('e_id');
+            $id = $this->input->post('e_id2');
             $this->load->library('Configfunction');
             $tampil_thnakad = $this->configfunction->getthnakd();
             $files = $_FILES;

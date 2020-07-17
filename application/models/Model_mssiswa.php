@@ -12,9 +12,9 @@ class Model_mssiswa extends CI_model
     public function getsiswa($noreg,$ps)
     {
         if(!empty($noreg)){
-            $where = "WHERE PS = '".$ps."' and NOINDUK ='".$noreg."' or NOINDUK = '".$noreg."' Order by Noreg desc";
+            $where = "WHERE PS = '".$ps."' and NOINDUK ='".$noreg."' or NOINDUK = '".$noreg."' Order by createdAt desc";
         } else {
-            $where = "WHERE PS = '".$ps."' Order by Noreg desc";
+            $where = "WHERE PS = '".$ps."' Order by createdAt desc";
         } 
         return  $this->db->query("SELECT mssiswa.*,tbagama.DESCRTBAGAMA,tbps.DESCRTBPS,tbjs.DESCRTBJS from mssiswa 
         join tbagama on mssiswa.agama = tbagama.KDTBAGAMA

@@ -242,7 +242,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
                                 <div class="col-sm-6">
                                     <input type="file" id="file" required name="file" class="form-control" />
-                                    <input type="hidden" id="e_id" required name="e_id" class="form-control" />
+                                    <input type="hidden" id="e_id2" required name="e_id2" class="form-control" />
 
                                 </div>
                             </div>
@@ -490,7 +490,6 @@
                     cache: false,
                     async: false,
                     success: function(data) {
-                        console.log(data);
                         $('#my-modal2').modal('hide');
                         if (data == 1 || data == true) {
                             document.getElementById("formImport").reset();
@@ -525,7 +524,6 @@
                     cache: false,
                     async: false,
                     success: function(data) {
-                        console.log(data);
                         $('#modalEdit').modal('hide');
                         if (data == 1 || data == true) {
                             document.getElementById("formEdit").reset();
@@ -640,8 +638,7 @@
                 id: id,
             },
             success: function(data) {
-                console.log(data);
-                $('#e_id').val(data[0].id);
+                $('#e_id2').val(data[0].id);
                 $('#e_nama').val(data[0].NAMAJABATAN);
                 $('#e_keterangan').val(data[0].KET);
 
