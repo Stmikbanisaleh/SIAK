@@ -122,7 +122,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field">Tinggi Badan</label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->TINGGIBADAN ?>" name="tinggi" id="tinggi" placeholder="Kandung" />
+                    <input type="text" value="<?= $mysiswa->TINGGIBADAN ?>" name="tinggi" id="tinggi" placeholder="140 CM" />
                 </div>
             </div>
             <div class="form-group">
