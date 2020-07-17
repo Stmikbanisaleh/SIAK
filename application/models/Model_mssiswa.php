@@ -27,6 +27,10 @@ class Model_mssiswa extends CI_model
         return  $this->db->query("SELECT * FROM mssiswa where PS = $PS");
     }
 
+    public function thnakad2(){
+        return $this->db->query("SELECT DISTINCT TAHUN from tbakadmk2");
+    }
+
     public function getsekolah()
     {
         return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
