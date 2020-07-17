@@ -22,9 +22,9 @@ class Model_mssiswa extends CI_model
         join tbjs on tbps.KDTBJS = tbjs.KDTBJS
         $where");
     }
-    public function exportsiswa($PS)
+    public function exportsiswa($PS, $tahun)
     {
-        return  $this->db->query("SELECT * FROM mssiswa where PS = $PS");
+        return  $this->db->query("SELECT * FROM mssiswa where PS = $PS and TAHUN = $tahun ");
     }
 
     public function getsekolah()

@@ -60,7 +60,8 @@ class Mssiswa extends CI_Controller
         include 'PHPExcel/IOFactory.php';
         $objPHPExcel = new PHPExcel();
         $ps = $this->input->post('ps');
-        $my_pembsiswa = $this->model_mssiswa->exportsiswa($ps)->result_array();
+        $tahun = $this->input->post('tahun');
+        $my_pembsiswa = $this->model_mssiswa->exportsiswa($ps,$tahun)->result_array();
         $data = $my_pembsiswa;
         $no = 1;
         $row = 3;
