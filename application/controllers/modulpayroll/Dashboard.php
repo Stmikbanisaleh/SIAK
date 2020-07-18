@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller
 				$this->load->library('Configfunction');
 				$data = $query->result_array();
 				foreach ($data as $value) {
-				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'));
+				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'),$this->input->ip_address());
 
 					$data = [
 						'nip' => $value['nip'],
