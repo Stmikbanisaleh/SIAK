@@ -95,12 +95,16 @@
                         for (i = 0; i < data.length; i++) {
                             html += '<tr>' +
                                 '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].nip + '</td>' +
-                                '<td>' + data[i].nama + '</td>' +
-                                '<td>' + data[i].jabatan + '</td>' +
-                                '<td>' + data[i].username + '</td>' +
-                                '<td>' + data[i].level + '</td>' +
-                                '<td>' + data[i].statusv2 + '</td>' +
+                                '<td>' + data[i].nama_siswa + '</td>' +
+                                '<td>' + data[i].nama_mapel + '</td>' +
+                                '<td>' + data[i].KLSTRNIL + '</td>' +
+                                '<td>' + data[i].UTSTRNIL + '</td>' +
+                                '<td>' + data[i].UASTRNIL + '</td>' +
+                                '<td >' +
+                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].ID + '">' +
+                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                                '</button>' +
+                                '</td>' +
                                 '</tr>';
                             no++;
                         }
@@ -154,7 +158,7 @@
                         id: id,
                     },
                     success: function(data) {
-                        show_data();
+                        // show_data();
                         swalDeleteSuccess();
                     }
                 });

@@ -108,6 +108,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">E-mail</label>
+                <div class="col-sm-9">
+                    <input type="email" value="<?= $mysiswa->EMAIL ?>" required name="email" id="email" placeholder="E-mail" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field">Anak Ke</label>
                 <div class="col-sm-9">
                     <input type="number" value="<?= $mysiswa->ANAKKE ?>" required name="anakke" id="anakke" placeholder="1" />

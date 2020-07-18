@@ -15,6 +15,7 @@ class Model_penghapusannilai extends CI_model
         SMTTRNIL, KLSTRNIL, UTSTRNIL, UASTRNIL, TGLUTSTRNIL, TGLUASTRNIL, USERUTSTRNIL, USERUASTRNIL, C.GuruNama 
         FROM trnilai A JOIN tbjadwal B ON A.IDJDK = B.id LEFT JOIN tbguru C ON B.id_guru = C.IdGuru JOIN mssiswa D ON A.NPMTRNIL = D.NOINDUK 
         WHERE B.periode = ". $tahun ." AND B.semester= '" .$semester. "' AND D.PS = '". $programsekolah ."'
+        AND A.isdeleted != 1
         ORDER BY A.NPMTRNIL");
     }
 
@@ -32,7 +33,7 @@ class Model_penghapusannilai extends CI_model
     {
         return  $this->db->query('SELECT DISTINCT 
         KDTBPS, DESCRTBPS,SINGKTBPS 
-        FROM TBPS ORDER BY KDTBPS DESC ');
+        FROM tbps ORDER BY KDTBPS DESC ');
     }
 
     public function viewOrdering($table, $order, $ordering)
