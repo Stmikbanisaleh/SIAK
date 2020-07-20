@@ -141,7 +141,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="e_semester" id="esemester">
+                                    <select class="form-control" name="e_semester" id="e_semester">
                                         <option value=>--Pilih Kelas --</option>
                                         <?php foreach ($mykelas as $value) { ?>
                                             <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>

@@ -139,10 +139,10 @@ class Slip_gaji extends CI_Controller
 			'ket'		=> 'K',
 			'tgl'		=> $tgl
 		);
-		$this->pdf->setPaper('FOLIO', 'potrait');
+		// $this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
 		// $this->pdf->set_paper($customPaper);
-		// $this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
+		$this->pdf->filename = "Slip Gaji ".$tgl.".pdf";
 		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
 
 		// $this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
