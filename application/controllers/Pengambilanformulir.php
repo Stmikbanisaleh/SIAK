@@ -59,6 +59,8 @@ class Pengambilanformulir extends CI_Controller
                 $data_calon = array(
                     'Noreg' => $this->input->post('noreg'),
                     'Namacasis' => strtoupper($this->input->post('nama')),
+                    'email' => $this->input->post('email'),
+                    'TelpHp' => strtoupper($this->input->post('telp')),
                     'thnmasuk' => $tahun,
                     'kodesekolah'  => $this->input->post('sekolah'),
                     'tglentri' => date('Y-m-d H:i:s'),

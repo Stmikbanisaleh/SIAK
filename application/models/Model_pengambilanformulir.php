@@ -36,6 +36,8 @@ class Model_pengambilanformulir extends CI_model
 		pembayaran_sekolah.Noreg,
 		pembayaran_sekolah.Kelas,
 		(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS Namacasis,
+        (SELECT z.TelpHp FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS TelpHp,
+        (SELECT z.email FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS email,
 		DATE_FORMAT(tglentri,'%d-%m-%Y')tglbayar,
 		pembayaran_sekolah.useridd,
 		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=pembayaran_sekolah.kodesekolah)AS NamaSek,
