@@ -45,6 +45,13 @@ if ($jabatan == 19) { ?>
 						Pengembalian Formulir
 					</a>
 				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'impbayar'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Import Pembayaran Formulir
+					</a>
+				</li>
 			</ul>
 		</li>
 
@@ -204,20 +211,6 @@ if ($jabatan == 19) { ?>
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu">
-				<!-- <li class="">
-					<a href="<?= base_url() . 'generateguru'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Generate Kehadiran Guru
-					</a>
-				</li> -->
-<!-- 
-				<li class="">
-					<a href="<?= base_url() . 'generatekaryawan'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Generate Kehadiran Karyawan
-					</a>
-				</li> -->
-
 				<li class="">
 					<a href="<?= base_url() . 'kehadiranguru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -271,15 +264,14 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 
 			<ul class="submenu">
-
 				<li class="">
-					<a href="<?= base_url() . 'siswa'; ?>">
+				<a href="<?= base_url() . 'impbayarpsb'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Biodata Siswa
+						Import Pembayaran Formulir
 					</a>
-
 					<b class="arrow"></b>
 				</li>
+			
 				<li class="">
 					<a href="<?= base_url() . 'pengambilanformulir'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -305,7 +297,13 @@ if ($jabatan == 19) { ?>
 						Penentuan Kelas
 					</a>
 				</li>
-
+				<li class="">
+					<a href="<?= base_url() . 'siswa'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Biodata Siswa
+					</a>
+					<b class="arrow"></b>
+				</li>
 
 			</ul>
 		</li>
