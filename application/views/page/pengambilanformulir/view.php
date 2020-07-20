@@ -43,7 +43,17 @@
                                     <input type="text" id="nama" required name="nama" placeholder="Nama Siswa" class="form-control" />
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sekolah </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="sekolah" id="sekolah">
+                                        <option value="">-- Pilih Sekolah --</option>
+                                        <?php foreach ($mysekolah as $value) { ?>
+                                            <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan'] . "- Rp. " . $value['Nominal'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
                                 <div class="col-sm-9">
@@ -79,17 +89,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sekolah </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="sekolah" id="sekolah">
-                                        <option value="">-- Pilih Sekolah --</option>
-                                        <?php foreach ($mysekolah as $value) { ?>
-                                            <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan'] . "- Rp. " . $value['Nominal'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
+                     
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
@@ -108,6 +108,18 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Bayar </label>
                                 <div class="col-sm-9">
                                     <input type="date" id="tanggal" required name="tanggal" placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Telp </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="telp" required name="telp" placeholder="No Telp" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
+                                <div class="col-sm-9">
+                                    <input type="email" id="email" required name="email" placeholder="Email" class="form-control" />
                                 </div>
                             </div>
                     </div>
@@ -289,6 +301,8 @@
                 <th>Tanggal Bayar</th>
                 <th>Sekolah</th>
                 <th>Tahun Akademik</th>
+                <th>No Telp</th>
+                <th>Email</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -538,6 +552,8 @@
                         '<td>' + data[i].tglbayar + '</td>' +
                         '<td>' + data[i].NamaSek + '-' + data[i].NamaJurusan + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
+                        '<td>' + data[i].TelpHp + '</td>' +
+                        '<td>' + data[i].email + '</td>' +
                         '<td >' +
                         '<a  href="<?php echo base_url() ?>pengambilanformulir/cetak/' + data[i].Noreg + '" class="btn btn-xs btn-info" target="_blank" title="Print" data-id="' + data[i].Noreg + '">' +
                         '<i class="ace-icon fa fa-print bigger-120"></i>' +
