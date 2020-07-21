@@ -236,7 +236,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Inval</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Diinval</label>
 								<div class="col-sm-9">
 								<input type="text" id="inval" required name="inval" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="inval_v" required name="inval_v"/>
@@ -395,6 +395,72 @@
 
 											rupiah13 = split[1] != undefined ? rupiah13 + ',' + split[1] : rupiah13;
 											return prefix == undefined ? rupiah13 : (rupiah13 ? 'Rp. ' + rupiah13 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">LTQ</label>
+								<div class="col-sm-9">
+								<input type="text" id="ltq" required name="ltq" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="ltq_v" required name="ltq_v"/>
+								<script language="JavaScript">
+										var rupiah14 = document.getElementById('ltq');
+										rupiah14.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#ltq_v').val(rup8);
+											rupiah14.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah14 = split[0].substr(0, sisa),
+												ribuan14 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan14) {
+												separator = sisa ? '.' : '';
+												rupiah14 += separator + ribuan14.join('.');
+											}
+
+											rupiah14 = split[1] != undefined ? rupiah14 + ',' + split[1] : rupiah14;
+											return prefix == undefined ? rupiah14 : (rupiah14 ? 'Rp. ' + rupiah14 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">BPJS</label>
+								<div class="col-sm-9">
+								<input type="text" id="bpjs" required name="bpjs" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="bpjs_v" required name="bpjs_v"/>
+								<script language="JavaScript">
+										var rupiah15 = document.getElementById('bpjs');
+										rupiah15.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#bpjs_v').val(rup8);
+											rupiah15.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah15 = split[0].substr(0, sisa),
+												ribuan15 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan15) {
+												separator = sisa ? '.' : '';
+												rupiah15 += separator + ribuan15.join('.');
+											}
+
+											rupiah15 = split[1] != undefined ? rupiah15 + ',' + split[1] : rupiah15;
+											return prefix == undefined ? rupiah15 : (rupiah15 ? 'Rp. ' + rupiah15 : '');
 										}
 									</script>
 								</div>
@@ -649,7 +715,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Inval</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Diinval</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_inval" required name="e_inval" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_inval_v" required name="e_inval_v"/>
@@ -845,6 +911,39 @@
 									</script>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">LTQ</label>
+								<div class="col-sm-9">
+								<input type="text" id="e_ltq" required name="e_ltq" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_ltq_v" required name="e_ltq_v"/>
+								<script language="JavaScript">
+										var rupiah151 = document.getElementById('e_ltq');
+										rupiah151.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#e_ltq_v').val(rup8);
+											rupiah151.value = formatRupiah131(this.value, 'Rp. ');
+										});
+
+										function formatRupiah15(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah151 = split[0].substr(0, sisa),
+												ribuan151 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan151) {
+												separator = sisa ? '.' : '';
+												rupiah151 += separator + ribuan151.join('.');
+											}
+
+											rupiah151 = split[1] != undefined ? rupiah151 + ',' + split[1] : rupiah151;
+											return prefix == undefined ? rupiah151 : (rupiah151 ? 'Rp. ' + rupiah151 : '');
+										}
+									</script>
+								</div>
+							</div>
 							
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
@@ -1015,6 +1114,8 @@
 				$('#e_tawun_v').val(data[0].tawun);
 				$('#e_bpjs').val(data[0].bpjs);
 				$('#e_bpjs_v').val(data[0].bpjs);
+				$('#e_ltq').val(data[0].ltq);
+				$('#e_ltq').val(data[0].ltq);
 			}
 		});
     });

@@ -55,6 +55,8 @@ class Master_potongan_guru extends CI_Controller
 				'lain' => $this->input->post('lain_v'),
 				'tawun'  => $this->input->post('tawun_v'),
 				'pph21'  => $this->input->post('pph21_v'),
+				'ltq'  => $this->input->post('ltq_v'),
+				'bpjs'  => $this->input->post('bpjs_v'),
 				'periode'  => $this->input->post('periode'),
 			);
 			$result = $this->model_masterpotongan_guru->insert($data, 'tbgurupot');
@@ -98,6 +100,7 @@ class Master_potongan_guru extends CI_Controller
 				'lain'  => $this->input->post('e_lain_v'),
 				'pph21'  => $this->input->post('e_pph21_v'),
 				'bpjs'  => $this->input->post('e_bpjs_v'),
+				'ltq'  => $this->input->post('e_ltq_v'),
 				'periode'  => $this->input->post('e_periode'),
 			);
 
