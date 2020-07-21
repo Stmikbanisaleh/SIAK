@@ -50,7 +50,7 @@ class Setting extends CI_Controller
                     'username' => $this->session->userdata('username')
                 );
                 $data = array(
-                    'password'  => md5($this->input->post('password1')),
+                    'password'  => hash('sha512',md5($this->input->post('password1'))),
                     'updatedAt' => date('Y-m-d H:i:s')
                 );
                 $result = $this->model_profile->update($data_id, $data, 'tbpengawas');
