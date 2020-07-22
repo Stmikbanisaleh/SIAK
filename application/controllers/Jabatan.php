@@ -108,6 +108,7 @@ class Jabatan extends CI_Controller
                     'id'  => $this->input->post('id'),
                     'NAMAJABATAN'  => $this->input->post('nama'),
                     'KET'  => $this->input->post('keterangan'),
+                    'jumlah_jam'  => $this->input->post('jam'),
                     'createdAt' => date('Y-m-d H:i:s'),
                 );
                 $action = $this->model_jabatan->insert($data, 'msjabatan');
@@ -129,6 +130,7 @@ class Jabatan extends CI_Controller
             $data = array(
                 'NAMAJABATAN'  => $this->input->post('e_nama'),
                 'KET'  => $this->input->post('e_keterangan'),
+                'jumlah_jam'  => $this->input->post('e_jam'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_jabatan->update($data_id, $data, 'msjabatan');

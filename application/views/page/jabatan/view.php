@@ -79,6 +79,13 @@
 									<input type="text" id="keterangan" name="keterangan" placeholder="Keterangan" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jumlah Jam Kerja </label>
+								<div class="col-sm-6">
+									<input type="number" id="jam" name="jam" placeholder="Jumlah Jam Kerja Karyawan" class="form-control" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -125,6 +132,12 @@
 									<input type="text" id="e_keterangan" name="e_keterangan" placeholder="Keterangan Jabatan" class="form-control" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jumlah Jam Kerja </label>
+								<div class="col-sm-6">
+									<input type="number" id="e_jam" name="e_jam" placeholder="Jumlah Jam Kerja Karyawan" class="form-control" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -158,6 +171,7 @@
 				<th class="col-md-1">No</th>
 				<th>Nama Jabatan</th>
 				<th>Keterangan</th>
+				<th>Jumlah Jam Kerja</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -170,36 +184,6 @@
 		$("#formImport").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true,
-				},
-				telepon: {
-					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
-				},
-				alamat: {
-					required: true,
-					minlength: 10,
-				},
-				email: {
-					required: true,
-					email: true,
-				},
-			},
-			messages: {
-				nama: {
-					required: "Nama Guru harus diisi!"
-				},
-				telepon: {
-					required: "Telepon harus diisi!"
-				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
-				},
-			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
@@ -235,40 +219,26 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			rules: {
-				id: {
-					required: true
-					// ,maxlength: 50
-				},
-
 				nama: {
 					required: true
-					// , digits:true,
-					// minlength: 10,
-					// maxlength:12,
 				},
-				// email: {
-				//         required: true,
-				//         maxlength: 50,
-				//         email: true,
-				//     },    
+				keterangan: {
+					required: true
+				},
+				jam: {
+				        required: true,
+				},    
 			},
 			messages: {
-
-				id: {
-					required: "Kode jabatan harus diisi!"
-					// ,maxlength: "Your last name maxlength should be 50 characters long."
-				},
 				nama: {
 					required: "Nama jabatan harus diisi!"
-					// ,minlength: "The contact number should be 10 digits",
-					// digits: "Please enter only numbers",
-					// maxlength: "The contact number should be 12 digits",
 				},
-				// email: {
-				//     required: "Please enter valid email",
-				//     email: "Please enter valid email",
-				//     maxlength: "The email name should less than or equal to 50 characters",
-				//   },
+				keterangan: {
+					required: "Keterangan jabatan harus diisi!"
+				},
+				jam: {
+				    required: "Jam tidak boleh kosong",
+				},
 
 			},
 			submitHandler: function(form) {
@@ -291,10 +261,6 @@
 						} else {
 							swalInputFailed();
 						}
-						// setTimeout(function(){
-						// // $('#res_message').hide();
-						// // $('#msg_div').hide();
-						// },3000);
 					}
 				});
 			}
@@ -306,17 +272,26 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			rules: {
-				e_id: {
-					required: true
-				},
 				e_nama: {
 					required: true
 				},
+				e_keterangan: {
+					required: true
+				},
+				e_jam: {
+					required: true
+				}
 			},
 			messages: {
 
 				e_nama: {
 					required: "Nama jabatan harus diisi!"
+				},
+				e_keterangan: {
+					required: "Keterangan jabatan harus diisi!"
+				},
+				e_jam: {
+					required: "Jumlah Jam harus diisi!"
 				},
 
 			},
@@ -368,6 +343,7 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].NAMAJABATAN + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
+						'<td>' + data[i].jumlah_jam + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -417,6 +393,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].ID);
+				$('#e_jam').val(data[0].jumlah_jam);
 				$('#e_nama').val(data[0].NAMAJABATAN);
 				$('#e_keterangan').val(data[0].KET);
 

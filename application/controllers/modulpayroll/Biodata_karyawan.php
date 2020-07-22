@@ -26,6 +26,7 @@ class Biodata_karyawan extends CI_Controller
 		$my_pembayaran = $this->model_karyawan->view('jnspembayaran')->result_array();
 		$mspendidikan = $this->model_karyawan->view('mspendidikan')->result_array();
 		$myagama = $this->model_karyawan->view('tbagama')->result_array();
+		$myunit = $this->model_karyawan->view('sekolah')->result_array();
 
 		$data = array(
 			'page_content' 	=> '../pagepayroll/biodata_karyawan/view',
@@ -36,6 +37,7 @@ class Biodata_karyawan extends CI_Controller
 			'my_pembayaran'	=> $my_pembayaran,
 			'my_pendidikan'	=> $mspendidikan,
 			'myagama'	=> $myagama,
+			'myunit' => $myunit
 		);
 		$this->render_view($data); //Memanggil function render_view
 	}
@@ -58,11 +60,12 @@ class Biodata_karyawan extends CI_Controller
 				'jenis_kelamin'  => $this->input->post('jenis_kelamin'),
 				'agama'  => $this->input->post('agama'),
 				'email' => $this->input->post('email'),
-				'no_telp'  => hash('sha512',md5($this->input->post('telp'))),
+				'no_telp'  => $this->input->post('telp'),
 				'alamat'  => $this->input->post('alamat'),
 				'pendidikan'  => $this->input->post('pendidikan_terakhir'),
 				'tgl_lhr'  => $this->input->post('tgl_lahir'),
 				'status' => $this->input->post('status'),
+				'unit_kerja' => $this->input->post('unit_kerja'),
 				'tgl_mulai_kerja'  => $this->input->post('tgl_mulai'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
@@ -138,6 +141,7 @@ class Biodata_karyawan extends CI_Controller
 				'npwp'  => $this->input->post('e_npwp'),
 				'no_telp'  => $this->input->post('e_telp'),
 				'alamat'  => $this->input->post('e_alamat'),
+				'unit_kerja' => $this->input->post('e_unit_kerja'),
 				'pendidikan'  => $this->input->post('e_pendidikan_terakhir'),
 				'tgl_lhr'  => $this->input->post('e_tgl_lahir'),
 				'tgl_mulai_kerja'  => $this->input->post('e_tgl_mulai'),

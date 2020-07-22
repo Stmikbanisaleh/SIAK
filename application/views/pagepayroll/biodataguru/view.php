@@ -185,6 +185,13 @@
 									<input type="date" class="form-control" name="awal_kerja" id="awal_kerja" placeholder="" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Tahun Masa Kerja </label>
+								<div class="col-sm-9">
+									<input type="number" class="form-control" name="Tahunmasakerja" id="Tahunmasakerja" placeholder="Masukan dalam jumlah Tahun" />
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -337,6 +344,12 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Awal Kerja </label>
 								<div class="col-sm-9">
 									<input type="date" class="form-control" name="e_awal_kerja" id="e_awal_kerja" placeholder="" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Tahun Masa Kerja </label>
+								<div class="col-sm-9">
+									<input type="number" class="form-control" name="e_Tahunmasakerja" id="e_Tahunmasakerja" placeholder="Masukan dalam jumlah Tahun" />
 								</div>
 							</div>
 					</div>
@@ -689,6 +702,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
+				$('#e_Tahunmasakerja').val(data[0].Tahunmasakerja);
 				$('#e_IdGuru').val(data[0].aidiguru);
 				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
 				$('#e_nama').val(data[0].GuruNama);

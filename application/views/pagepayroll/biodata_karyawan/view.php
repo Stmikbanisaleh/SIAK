@@ -197,6 +197,18 @@
 								</div>
 							</div>
 
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
+								<div class="col-sm-9">
+									<select required class="form-control" name="unit_kerja" id="unit_kerja">
+										<option value="">-- Pilih Unit Kerja --</option>
+										<?php foreach ($myunit as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['deskripsi'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+
 							<hr>
 							<div class="text-center"> TARIF KARYAWAN </div>
 							<hr>
@@ -490,23 +502,23 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
-									<div class="col-sm-9">
-										<select class="form-control" name="e_status" id="e_status">
-											<option value="">-- Pilih Status --</option>
-											<option value="1">Aktif</option>
-											<option value="0">Tidak</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Mulai Kerja </label>
 									<div class="col-sm-9">
 										<input type="date" class="form-control" name="e_tgl_mulai" id="e_tgl_mulai" placeholder="24/10/1995"></textarea>
 									</div>
 								</div>
 
+								<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
+								<div class="col-sm-9">
+									<select required class="form-control" name="e_unit_kerja" id="e_unit_kerja">
+										<option value="">-- Pilih Unit Kerja --</option>
+										<?php foreach ($myunit as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['deskripsi'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -836,6 +848,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id_biodata);
+				$('#e_unit_kerja').val(data[0].unit_kerja);
 				$('#e_nik').val(data[0].nik);
 				$('#e_npwp').val(data[0].npwp);
 				$('#e_nip').val(data[0].nip);

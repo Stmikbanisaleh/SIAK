@@ -251,7 +251,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Inval</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Di Inval</label>
 								<div class="col-sm-9">
 								<input type="text" id="inval" required name="inval" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="inval_v" required name="inval_v"/>

@@ -45,6 +45,7 @@ class Biodataguru extends CI_Controller
 			$data = array(
 				'IdGuru'  => $this->input->post('IdGuru'),
 				'GuruNoDapodik'  => $this->input->post('GuruNoDapodik'),
+				'Tahunmasakerja'  => $this->input->post('Tahunmasakerja'),
 				'GuruNama'  => $this->input->post('nama'),
 				'GuruNPWP'  => $this->input->post('npwp'),
 				'GuruTelp'  => $this->input->post('telepon'),
@@ -208,6 +209,7 @@ class Biodataguru extends CI_Controller
 			$data = array(
 				'IdGuru'  => $this->input->post('e_IdGuru'),
 				'GuruNoDapodik'  => $this->input->post('e_GuruNoDapodik'),
+				'Tahunmasakerja'  => $this->input->post('e_Tahunmasakerja'),
 				'GuruNama'  => $this->input->post('e_nama'),
 				'GuruTelp'  => $this->input->post('e_telepon'),
 				'GuruAlamat'  => $this->input->post('e_alamat'),
