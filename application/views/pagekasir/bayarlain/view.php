@@ -56,6 +56,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
+                                <div class="col-xs-9">
+                                    <select class="form-control" name="ket" id="ket">
+                                        <option value="0">-- Pilih Data --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
                                 <div class="col-xs-9">
                                     <input type="text" id="nominal" required name="nominal" placeholder="Rp.65.000" class="form-control" />
@@ -90,17 +98,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
-                                <div class="col-xs-9">
-                                    <select class="form-control" name="ket" id="ket">
-                                        <option value="0">-- Pilih Data --</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-xs-9">
-                                    <input type="text" value=<?= $ta ?> readonly class="form-control" name="thnakad" id="thnakad" placeholder="">
+                                    <input type="text" value=<?= $ta ?> class="form-control" name="thnakad" id="thnakad" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -285,7 +285,7 @@
                             swalInputSuccess();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama Jabatan Sudah digunakan!');
+                            swalIdDouble('Input Gagal!');
                         } else {
                             swalInputFailed();
                         }
@@ -335,7 +335,7 @@
                                 '<td>' + data[i].TotalBayar2 + '</td>' +
                                 '<td>' + data[i].TA + '</td>' +
                                 '<td>' +
-                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarlain/cetak?noreg=' ?>' + data[i].NOINDUK + '&nm_siswa=' + data[i].NMSISWA + '&jenis_bayar=' + data[i].Kodejnsbayar +'&desc_jenis_bayar=' + data[i].namajenisbayar + '&tarif=' + data[i].Nominal + '&total_bayar=' + data[i].TotalBayar + '&no=' + data[i].Nopembayaran +'" class="btn btn-xs btn-info" title="Print">' +
+                                '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarlain/cetak?noreg=' ?>' + data[i].NOINDUK + '&nm_siswa=' + data[i].NMSISWA + '&jenis_bayar=' + data[i].Kodejnsbayar +'&desc_jenis_bayar=' + data[i].namajenisbayar + '&tarif=' + data[i].Nominal + '&total_bayar=' + data[i].TotalBayar + '&nominal_bayar=' + data[i].nominalbayar + '&no=' + data[i].Nopembayaran +'" class="btn btn-xs btn-info" title="Print">' +
                                 '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                 '</a> &nbsp' +
                                 '</tr>';

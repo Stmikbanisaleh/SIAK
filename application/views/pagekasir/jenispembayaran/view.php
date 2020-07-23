@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar </label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="kdjenisbayar" id="kdjenisbayar" placeholder="Kode Jenis Bayar"></textarea>
+                                    <input type="text" class="form-control" name="kdjenisbayar" id="kdjenisbayar" placeholder="Kode Jenis Bayar" maxlength="10"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">

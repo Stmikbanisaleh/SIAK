@@ -258,7 +258,7 @@ $Kelas = $row->Kelas;
   </tr>
   <tr>
     <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;"><?= $_GET['desc_jenis_bayar'] ?></th>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['total_bayar'], 0, ',', '.'); ?></th>
+    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['nominal_bayar'], 0, ',', '.'); ?></th>
     <th width="20%" align="left"><span style="font-family:Rockwell;font-size: 12px;"><?= $_GET['desc_jenis_bayar'] ?></th>
     <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['tarif'], 0, ',', '.'); ?></th>
   </tr>
@@ -286,14 +286,20 @@ $Kelas = $row->Kelas;
   </tr>
   <tr>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jumlah Bayar</th>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['total_bayar'], 0, ',', '.'); ?></th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['nominal_bayar'], 0, ',', '.'); ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Tagihan</th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['tarif'], 0, ',', '.'); ?></th>
   </tr>
   <tr>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Dibayar</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Sudah Dibayar</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['total_bayar']-$_GET['nominal_bayar'], 0, ',', '.'); ?></th>
+  </tr>
+  <tr>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Total Dibayarkan</th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Rp. <?php echo number_format($_GET['total_bayar'], 0, ',', '.'); ?></th>
   </tr>
   <tr>
