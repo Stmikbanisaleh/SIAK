@@ -36,6 +36,7 @@ class Bayarlain extends CI_Controller {
     {
 		$noreg = $this->input->post('nik');
 		$result = $this->model_bayar->getsiswa1($noreg)->result();
+		// print_r($this->db->last_query());exit;
         echo json_encode($result);
 	}
 
@@ -50,7 +51,7 @@ class Bayarlain extends CI_Controller {
 		$result = $this->model_bayar->getsiswa2($ta[0]['THNAKAD'],$siswa)->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
-            echo "<option value='" . $value['Kodejnsbayar'] . "'>[".$value['sekolah']."] - [".$value['ThnMasuk']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
+            echo "<option value='" . $value['Kodejnsbayar'] . "'>[".$value['sekolah']."] - [".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
         }
 	}
 
@@ -89,15 +90,26 @@ class Bayarlain extends CI_Controller {
 		if($action){
 			$gettarif = $this->db->query("SELECT * FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='$ket'
 			 AND kodesekolah='$kdsekolah' AND TA='$ThnAkademik'")->result_array();
-			$data2 = array(
-				'Nopembayaran' => $id,
-				'kodejnsbayar' => $this->input->post('ket'),
-				'idtarif'	=>	$gettarif[0]['idtarif'],
-				'nominalbayar' => $this->input->post('nominal_v')
-			);
-			$action = $this->model_bayar->insert($data2, 'detail_bayar_sekolah');
+			 if(!empty($gettarif)){
+				//  print_r($this->db->last_query());exit;
+				$data2 = array(
+					'Nopembayaran' => $id,
+					'kodejnsbayar' => $this->input->post('ket'),
+					'idtarif'	=>	$gettarif[0]['idtarif'],
+					'nominalbayar' => $this->input->post('nominal_v')
+				);
+				$action = $this->model_bayar->insert($data2, 'detail_bayar_sekolah');
+				echo json_encode($action);
+			}else{
+				$where = array(
+					'Nopembayaran' => $id,
+				);
+				$this->model_bayar->delete($where, 'pembayaran_sekolah');
+				echo json_encode(500);
+			}
+		}else{
+			echo json_encode(500);
 		}
-        echo json_encode($action);
 	}
 	
 	public function cetak(){
