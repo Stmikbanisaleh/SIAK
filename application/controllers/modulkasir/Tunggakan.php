@@ -22,11 +22,14 @@ class Tunggakan extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-
+			$my_tahun = $this->model_tunggakan->gettahun('tbakadmk2')->result_array();
+			$my_tahun2 = $this->model_tunggakan->gettahun2('tbakadmk2')->result_array();
 			$data = array(
 				'page_content' 	=> '../pagekasir/tunggakan/view',
 				'ribbon' 		=> '<li class="active">Tunggakan</li><li>Sample</li>',
 				'page_name' 	=> 'Tunggakan',
+				'my_tahun'		=> $my_tahun,
+				'my_tahun2'		=> $my_tahun2
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -59,12 +62,9 @@ class Tunggakan extends CI_Controller
 	public function generate()
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
-			$this->load->library('Configfunction');
-			$IdTA = $this->configfunction->getidta();
-			$idtea = $IdTA[0]['ID'];
-			$thnakademik = $IdTA[0]['THNAKAD'];
-			$thn = $IdTA[0]['TAHUN'];
-			$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thn' AND NOT EXISTS (SELECT a.Noreg
+			$thnmasuk = $this->input->post('thnmasuk');
+			$thn = $this->input->post('thnakad');
+			$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
 											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 			if (count($calonsiswa) > 0) {
@@ -82,15 +82,19 @@ class Tunggakan extends CI_Controller
 						baginaikkelas.NIS
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
-						WHERE baginaikkelas.TA='" . $thnakademik . "'  AND mssiswa.NOREG= $value[NOREG]");
+						WHERE baginaikkelas.TA='" .$thn."'  AND mssiswa.NOREG='" .$value['NOREG']."' ");
 						if (count($naikkelas->result_array()) > 0) {
 							$kelas = $naikkelas->result_array();
 							$vkelas = $kelas[0]['Kelas'];
 							$vnis = $kelas[0]['NIS'];
 							$kdsk = "select KDSK from tbps WHERE kdtbps = '".$value['PS']."'";
 							$kdsk = $this->db->query($kdsk)->row();
-							$bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."' and TA= '$thnakademik' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ";
-							$nominal = $this->db->query($bayar)->row();
+							// print_r($value['NOINDUK']);
+							// print_r($thn);exit;
+							// $bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."'
+							// and TA= '".$thn."' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ";
+							$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."'
+							and TA= '".$thn."' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
 							if($kdsk==NULL){
 								$kdsk = '';
 							}else{
@@ -122,7 +126,7 @@ class Tunggakan extends CI_Controller
 								'NIS' => $vnis,
 								'Noreg' => $value['NOREG'],
 								'TotalTagihan' => $vtotal,
-								'TA' => $idtea,
+								'TA' => $thn,
 								'Bayar' => $nominal->bayar,
 								'Sisa' => $vsisa,
 								'Kelas' => $t_kelas,
@@ -130,7 +134,6 @@ class Tunggakan extends CI_Controller
 							);
 							// print_r($data);
 							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');	
-							
 						} 
 					}
 				}

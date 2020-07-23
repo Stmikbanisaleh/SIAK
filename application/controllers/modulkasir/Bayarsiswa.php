@@ -22,20 +22,21 @@ class Bayarsiswa extends CI_Controller {
     public function index() {
         $my_siswa = $this->model_surattagihan->view('mssiswa')->result_array();
         $my_kelas = $this->model_surattagihan->view('tbkelas')->result_array();
+        $my_tahun = $this->model_surattagihan->gettahun('tbakadmk2')->result_array();
         $data = array(
          'page_content' 	=> '../pagekasir/bayarsiswa/view',
          'ribbon' 		=> '<li class="active">Pembayaran Siswa</li>',
          'page_name' 	=> 'Pembayaran Siswa',
          'my_siswa'      => $my_siswa,
-         'my_kelas'     => $my_kelas
+         'my_kelas'     => $my_kelas,
+         'my_tahun'     => $my_tahun
      );
         $this->render_view($data); //Memanggil function render_view
     }
 
     public function view_tagihan()
     {
-        $tampil_thnakad = $this->configfunction->getthnakd();
-        $thnakad = $tampil_thnakad[0]['THNAKAD'];
+        $thnakad = $this->input->post('thnakad');
         $siswa = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');
         $result = $this->model_bayarsiswa->view_tagihan($siswa, $kelas, $thnakad)->result();

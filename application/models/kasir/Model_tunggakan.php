@@ -40,6 +40,16 @@ class Model_tunggakan extends CI_model
         return $this->db->query('select IdGuru from ' . $table . ' where IdGuru = ' . $data_id . ' and isdeleted != 1')->num_rows();
     }
 
+    public function gettahun($table)
+    {
+        return $this->db->query("select distinct THNAKAD from .$table");
+    }
+
+    public function gettahun2($table)
+    {
+        return $this->db->query("select distinct TAHUN from .$table");
+    }
+
     public function insert($data, $table)
     {
         $result = $this->db->insert($table, $data);
