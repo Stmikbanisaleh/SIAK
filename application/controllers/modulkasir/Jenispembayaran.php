@@ -40,7 +40,7 @@ class Jenispembayaran extends CI_Controller
 
     public function tampil()
     {
-        $my_data = $this->model_jenis->viewOrdering('jenispembayaran', 'Kodejnsbayar', 'asc')->result();
+        $my_data = $this->model_jenis->viewOrdering('jenispembayaran', 'createdAt', 'DESC')->result();
         echo json_encode($my_data);
     }
 

@@ -29,7 +29,10 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.userridd,
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
-                                WHERE `status`='T' AND TA='$ta' AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+                                WHERE `status`='T'
+                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+
+                                //AND TA='$ta' -- Coment for this
     }
 
     public function getsiswa1($noreg){
@@ -51,8 +54,15 @@ class Model_bayar extends CI_model
                                 jenispembayaran.namajenisbayar,
                                 jenispembayaran.Kodejnsbayar,
                                 detail_bayar_sekolah.kodejnsbayar,
-                                CONCAT('Rp. ',FORMAT(SUM(pembayaran_sekolah.TotalBayar),2)) AS TotalBayar2,
-                                SUM(pembayaran_sekolah.TotalBayar)AS TotalBayar
+                                CONCAT('Rp. ',FORMAT(pembayaran_sekolah.TotalBayar,2)) AS TotalBayar2,
+                                detail_bayar_sekolah.nominalbayar,
+                                (SELECT SUM(ps.TotalBayar) TotalBayar
+                                    FROM pembayaran_sekolah ps
+                                    JOIN detail_bayar_sekolah dbs
+                                    WHERE  ps.NIS = '$noreg'
+                                    AND ps.Nopembayaran = dbs.Nopembayaran
+                                    AND dbs.idtarif = tarif_berlaku.idtarif
+                                    AND dbs.Nopembayaran <= pembayaran_sekolah.Nopembayaran) TotalBayar
                                 FROM
                                 pembayaran_sekolah
                                 INNER JOIN mssiswa ON mssiswa.Noreg = pembayaran_sekolah.Noreg
@@ -61,7 +71,8 @@ class Model_bayar extends CI_model
                                 INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
                                 INNER JOIN tarif_berlaku ON detail_bayar_sekolah.idtarif = tarif_berlaku.idtarif
                                 INNER JOIN jenispembayaran ON jenispembayaran.Kodejnsbayar = tarif_berlaku.Kodejnsbayar $v_cek 
-                                GROUP BY jenispembayaran.kodejnsbayar");
+                                GROUP BY detail_bayar_sekolah.nominalbayar, jenispembayaran.Kodejnsbayar, detail_bayar_sekolah.createdAt
+                                ORDER BY Nopembayaran DESC");
     }
 
     public function view($table)
