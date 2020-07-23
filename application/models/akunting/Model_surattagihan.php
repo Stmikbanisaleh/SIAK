@@ -12,6 +12,11 @@ class Model_surattagihan extends CI_model
 	{
 		return $this->db->query("SELECT sp.nis,sp.Kelas,sp.sisa,s.nmsiswa,jk.nama kelas, sk.DESCRTBPS NamaSek, sp.Kelas FROM saldopembayaran_sekolah sp JOIN mssiswa s ON sp.NIS = s.NOINDUK JOIN tbkelas jk ON sp.Kelas = jk.id_kelas JOIN tbps sk ON s.PS = sk.KDTBPS WHERE sp.NIS = '$nis' AND sp.Kelas  = '$kelas'");
 	}
+
+	public function gettahun($table)
+    {
+        return $this->db->query("SELECT DISTINCT THNAKAD from ".$table."");
+    }
 }
 
 ?>

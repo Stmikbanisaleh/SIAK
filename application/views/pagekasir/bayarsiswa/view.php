@@ -28,6 +28,17 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="col-xs-6">
+                    Tahun Akademik
+                    <select class="form-control" name="thnakad" id="thnakad">
+                        <option>--Pilih Tahun Akademik--</option>
+                        <?php foreach ($my_tahun as $value) { ?>
+                            <option value=<?= $value['THNAKAD'] ?>><?= $value['THNAKAD'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-xs-1">
                     <br>
                     <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
