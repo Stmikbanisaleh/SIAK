@@ -411,6 +411,12 @@ class Penentuankelas extends CI_Controller
                 if ($key == '0') {
                     continue;
                 } else {
+                    $where = array(
+                        'NIS' => $value[8]
+                    );
+                    $result = $this->model_penentuan->view_where_noisdelete($arrayCustomerQuote, 'baginaikkelas')->numrows();
+                    echo json_encode($result);exit;
+
                     $arrayCustomerQuote = array(
                         'Thnmasuk' => $value[0],
                         'Ruangan' => $value[1],
