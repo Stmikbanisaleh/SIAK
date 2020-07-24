@@ -100,13 +100,21 @@ class Jenispembayaran extends CI_Controller
     public function simpan()
     {
         $this->load->library('Configfunction');
-        $data = array(
+        $where = array(
             'Kodejnsbayar'  => $this->input->post('kdjenisbayar'),
-            'namajenisbayar'  => $this->input->post('nmjenisbayar'),
-            'createdAt' => date('Y-m-d H:i:s'),
         );
-        $action = $this->model_jenis->insert($data, 'jenispembayaran');
-        echo json_encode($action);
+        $cek = $this->model_jenis->view_where('jenispembayaran', $where);
+        if(empty($cek)){
+            $data = array(
+                'Kodejnsbayar'  => $this->input->post('kdjenisbayar'),
+                'namajenisbayar'  => $this->input->post('nmjenisbayar'),
+                'createdAt' => date('Y-m-d H:i:s'),
+            );
+            $action = $this->model_jenis->insert($data, 'jenispembayaran');
+            echo json_encode($action);
+        }else{
+            echo json_encode(401);
+        }
     }
 
     public function update()
