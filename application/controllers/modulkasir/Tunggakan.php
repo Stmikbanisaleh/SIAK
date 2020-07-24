@@ -83,6 +83,7 @@ class Tunggakan extends CI_Controller
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
 						WHERE baginaikkelas.TA='" .$thn."'  AND mssiswa.NOREG='" .$value['NOREG']."' ");
+						print_r($this->db->last_query());exit;
 						if (count($naikkelas->result_array()) > 0) {
 							$kelas = $naikkelas->result_array();
 							$vkelas = $kelas[0]['Kelas'];
@@ -122,6 +123,8 @@ class Tunggakan extends CI_Controller
 							if(count($checkdata) > 0 ) {
 									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
 							}
+
+							echo json_encode("data");exit;
 							$data = array(
 								'NIS' => $vnis,
 								'Noreg' => $value['NOREG'],

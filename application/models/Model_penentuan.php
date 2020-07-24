@@ -110,6 +110,12 @@ class Model_penentuan extends CI_model
         return $this->db->get($table);
     }
 
+    public function view_where_noisdelete($data, $table)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
+    }
+
     public function view_count($table, $data_id)
     {
         return $this->db->query("select RUANG from " . $table . " where RUANG = '" . $data_id['RUANG'] . "' and isdeleted != 1")->num_rows();
