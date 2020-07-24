@@ -39,6 +39,18 @@
                 <option value="12">Desember</option>
             </select>
         </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="unit" id="unit">
+            	<option value="0">--Pilih Unit--</option>
+                <?php
+                    foreach($my_sekolah as $row){
+                ?>
+                <option value="<?= $row['id'] ?>"><?= $row['deskripsi'] ?></option>
+                <?php
+                    }
+                ?>
+            </select>
+        </div>
         <div class="col-xs-1">
             <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
                 <a class="ace-icon fa fa-search bigger-120"></a>Periksa

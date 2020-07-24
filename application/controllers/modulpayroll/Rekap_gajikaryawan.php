@@ -22,11 +22,13 @@ class Rekap_gajikaryawan extends CI_Controller
 
 	public function index()
 	{
+		$my_sekolah = $this->model_rekapgkar->view_sekolah()->result_array();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/rekap_gajikaryawan/view',
 			'ribbon' 		=> '<li class="active">Rekap Gaji Karyawan</li><li>Rekap Gaji Karyawan</li>',
 			'page_name' 	=> 'Rekap Gaji Karyawan',
-			'js' 			=> 'js_file'
+			'js' 			=> 'js_file',
+			'my_sekolah'	=> $my_sekolah
 		);
 		$this->render_view($data); //Memanggil function render_view
 	}
@@ -44,15 +46,25 @@ class Rekap_gajikaryawan extends CI_Controller
 		//******************************************************************************************************//
 									//-------------------Header Page---------------------//
 		//***************************************************************************************************** //
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Nama');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'YAYASAN ASASI INDONESIA');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'NPWP');
+		$this->load->library('mainfunction');
+		$bln_awal = $this->mainfunction->periode_bulan($this->input->post('blnawal'));
+		$bln_akhir = $this->mainfunction->periode_bulan($this->input->post('blnakhir'));
+		$tahun = $this->input->post('tahun');
+
+		// echo $tahun;exit;
+
+		$this->load->model('model_biodata');
+		$my_data = $this->model_biodata->viewOrdering('sys_config', 'id', 'asc')->row();
+
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'GAJI PEGAWAI '.strtoupper($my_data->name_school));
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Periode '.$bln_awal.' - '.$bln_akhir.' '.$tahun);
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Unit ');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', "'016506990407000");
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', 'Alamat');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', 'Alamat');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E3', 'Pejuang Jaya Blok B No. 30 RT. 014  RW. 011 Pejuang Bekasi');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D4', 'Masa Pajak');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B4', 'Masa Pajak');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E4', 'Mar-2020');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E5', 'Bulan');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B5', 'Bulan');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D5', 'MARET');
 		//*****************************************************************************************************//
 										//-------------------Header Page---------------------//
@@ -1405,7 +1417,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//Jumlah
 			$var_d = 'AH'.$baris;
-			$var_e = $jum_pengh_teratur+jum_pengh_t_teratur;
+			$var_e = $jum_pengh_teratur+$jum_pengh_t_teratur;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
