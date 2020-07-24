@@ -42,12 +42,12 @@ class Model_tunggakan extends CI_model
 
     public function gettahun($table)
     {
-        return $this->db->query("select distinct THNAKAD from .$table");
+        return $this->db->query("select distinct THNAKAD from .$table ORDER BY THNAKAD DESC");
     }
 
     public function gettahun2($table)
     {
-        return $this->db->query("select distinct TAHUN from .$table");
+        return $this->db->query("select distinct TAHUN from .$table ORDER BY TAHUN DESC");
     }
 
     public function insert($data, $table)

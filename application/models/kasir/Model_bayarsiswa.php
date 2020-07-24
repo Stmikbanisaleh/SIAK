@@ -136,7 +136,7 @@ class Model_bayarsiswa extends CI_model
                                     saldopembayaran_sekolah.TotalTagihan TotalTagihan,
                                     saldopembayaran_sekolah.Bayar Bayar,
                                     saldopembayaran_sekolah.Sisa Sisa,
-                                    (SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA)AS TA,
+                                    saldopembayaran_sekolah.TA,
                                     (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=saldopembayaran_sekolah.Kelas)AS Kelas
                                     FROM saldopembayaran_sekolah
                                     WHERE NIS='$siswa' OR saldopembayaran_sekolah.Noreg='$siswa'

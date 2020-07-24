@@ -50,7 +50,7 @@ class Tunggakan extends CI_Controller
 			saldopembayaran_sekolah.Bayar,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Bayar,2)) as bayar2,
 			saldopembayaran_sekolah.Sisa,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Sisa,2)) as sisa2,
 			(TA)as tas,
-			(SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA)AS TA
+			saldopembayaran_sekolah.TA
 			FROM saldopembayaran_sekolah
 			Order by Noreg desc")->result_array();
 			echo json_encode($my_data);
