@@ -69,6 +69,11 @@ class Model_rekapgkar extends CI_model
                                 AND YEAR(effective_date) = $tahun");
     }
 
+    public function view_sekolah()
+    {
+        return $this->db->query("SELECT DISTINCT s.id, s.deskripsi FROM biodata_karyawan bk, sekolah s WHERE s.id = bk.unit_kerja");
+    }
+
     public function view_count($field, $table, $data_id)
     {
         return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();

@@ -110,7 +110,7 @@ class Model_penentuan extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_where_noisdelete($table, $data)
+    public function view_where_noisdelete($data, $table)
     {
         $this->db->where($data);
         return $this->db->get($table);

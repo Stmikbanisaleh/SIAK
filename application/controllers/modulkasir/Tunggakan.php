@@ -9,9 +9,9 @@ class Tunggakan extends CI_Controller
 		parent::__construct();
 		$this->load->model('kasir/model_tunggakan');
 		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('modulkasir/dashboard/login');
-        }
+			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+			redirect('modulkasir/dashboard/login');
+		}
 	}
 
 	function render_view($data)
@@ -64,80 +64,82 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
-			$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
+			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
+			if (count($getsiswa) > 0) {
+				foreach ($getsiswa as $value){	
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' ");
+				}
+				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
 											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
-			if (count($calonsiswa) > 0) {
-				foreach ($calonsiswa as $value) {
-					$tarif = $this->db->query("SELECT
+				if (count($calonsiswa) > 0) {
+					foreach ($calonsiswa as $value) {
+						$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
 					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' AND Kodejnsbayar IN('SRG','SPP','KGT','GDG')");
-					$n = $tarif->num_rows();
-					if ($tarif) {
-						$v = $tarif->result_array();
-						$vtotal = $v[0]['total'];
-						$naikkelas = $this->db->query("SELECT
+						$n = $tarif->num_rows();
+						if ($tarif) {
+							$v = $tarif->result_array();
+							$vtotal = $v[0]['total'];
+							$naikkelas = $this->db->query("SELECT
 						baginaikkelas.Kelas,
 						baginaikkelas.NIS
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
-						WHERE baginaikkelas.TA='" .$thn."'  AND mssiswa.NOREG='" .$value['NOREG']."' ");
-						if (count($naikkelas->result_array()) > 0) {
-							$kelas = $naikkelas->result_array();
-							$vkelas = $kelas[0]['Kelas'];
-							$vnis = $kelas[0]['NIS'];
-							$kdsk = "select KDSK from tbps WHERE kdtbps = '".$value['PS']."'";
-							$kdsk = $this->db->query($kdsk)->row();
-							// print_r($value['NOINDUK']);
-							// print_r($thn);exit;
-							// $bayar = "select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."'
-							// and TA= '".$thn."' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ";
-							$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '".$value['NOINDUK']."'
-							and TA= '".$thn."' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
-							if($kdsk==NULL){
-								$kdsk = '';
-							}else{
-								$kdsk = $kdsk->KDSK;
-							}
-							// print_r(json_encode($kdsk));exit;
-							if ($vkelas == '') {
-								if ($value['PS'] == '1') {
-									$t_kelas = 1;
-								}else if($kdsk = '2'){
-									$t_kelas = 1;
-								}else if($kdsk = '3'){
-									$t_kelas = 7;
-								}else if($kdsk = '2'){
-									$t_kelas = 10;
+						WHERE baginaikkelas.TA='" . $thn . "'  AND mssiswa.NOREG='" . $value['NOREG'] . "' ");
+							if (count($naikkelas->result_array()) > 0) {
+								$kelas = $naikkelas->result_array();
+								$vkelas = $kelas[0]['Kelas'];
+								$vnis = $kelas[0]['NIS'];
+								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
+								$kdsk = $this->db->query($kdsk)->row();
+								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
+								if ($kdsk == NULL) {
+									$kdsk = '';
 								} else {
-									$t_kelas = 0;
+									$kdsk = $kdsk->KDSK;
 								}
-							} else {
-								$t_kelas = $vkelas;
-							}
-							$vsisa = $vtotal - $nominal->bayar;
-							//jika ada datanya di delete lalu di insert
-							$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
-							if(count($checkdata) > 0 ) {
+								// print_r(json_encode($kdsk));exit;
+								if ($vkelas == '') {
+									if ($value['PS'] == '1') {
+										$t_kelas = 1;
+									} else if ($kdsk = '2') {
+										$t_kelas = 1;
+									} else if ($kdsk = '3') {
+										$t_kelas = 7;
+									} else if ($kdsk = '2') {
+										$t_kelas = 10;
+									} else {
+										$t_kelas = 0;
+									}
+								} else {
+									$t_kelas = $vkelas;
+								}
+								$vsisa = $vtotal - $nominal->bayar;
+								//jika ada datanya di delete lalu di insert
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
+								if (count($checkdata) > 0) {
 									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
+								}
+								$data = array(
+									'NIS' => $vnis,
+									'Noreg' => $value['NOREG'],
+									'TotalTagihan' => $vtotal,
+									'TA' => $thn,
+									'Bayar' => $nominal->bayar,
+									'Sisa' => $vsisa,
+									'Kelas' => $t_kelas,
+									'createdAt' => date('Y-m-d H:i:s')
+								);
+								// print_r($data);
+								$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');
 							}
-							$data = array(
-								'NIS' => $vnis,
-								'Noreg' => $value['NOREG'],
-								'TotalTagihan' => $vtotal,
-								'TA' => $thn,
-								'Bayar' => $nominal->bayar,
-								'Sisa' => $vsisa,
-								'Kelas' => $t_kelas,
-								'createdAt' => date('Y-m-d H:i:s')
-							);
-							// print_r($data);
-							$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');	
-						} 
+						}
 					}
 				}
-				echo json_encode(true);	
+				echo json_encode(true);
 			} else {
 				echo json_encode(false);
 			}

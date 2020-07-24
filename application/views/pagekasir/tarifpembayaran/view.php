@@ -228,8 +228,8 @@
             <tr>
                 <th class="col-md-1">No</th>
                 <th>Sekolah</th>
-                <th>ID Tarif</th>
                 <th>Kode Sekolah</th>
+                <th>ID Tarif</th>
                 <th>Kode Jenis Bayar</th>
                 <th>Tahun Masuk</th>
                 <th>Nominal</th>

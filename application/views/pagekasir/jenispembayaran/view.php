@@ -21,15 +21,19 @@
                             <!-- PAGE CONTENT BEGINS -->
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Jenis Bayar</label>
                                 <div class="col-xs-6">
+<<<<<<< HEAD
+                                    <input type="text" class="form-control" name="kdjenisbayar" id="kdjenisbayar" placeholder="Kode Jenis Bayar">
+=======
                                     <input type="text" class="form-control" name="kdjenisbayar" id="kdjenisbayar" placeholder="Kode Jenis Bayar" maxlength="10"></textarea>
+>>>>>>> 8c51ff010689c081d91072a4087a45db8ec36bbf
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Jenis Bayar </label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="nmjenisbayar" id="nmjenisbayar" placeholder="Nama Jenis Bayar"></textarea>
+                                    <input type="text" class="form-control" name="nmjenisbayar" id="nmjenisbayar" placeholder="Nama Jenis Bayar">
                                 </div>
                             </div>
                         </div>

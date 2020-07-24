@@ -414,23 +414,38 @@ class Penentuankelas extends CI_Controller
                     $where = array(
                         'NIS' => $value[8]
                     );
-                    $result = $this->model_penentuan->view_where_noisdelete($arrayCustomerQuote, 'baginaikkelas')->numrows();
-                    echo json_encode($result);exit;
-
-                    $arrayCustomerQuote = array(
-                        'Thnmasuk' => $value[0],
-                        'Ruangan' => $value[1],
-                        'kelas' => $value[2],
-                        'Naikkelas' => $value[3],
-                        'GolKelas' => $value[4],
-                        'Jurusan' => $value[5],
-                        'Kodesekolah' => $value[6],
-                        'TA' => $value[7],
-                        'userentri' => $this->session->userdata('nip'),
-                        'NIS' => $value[8],
-                        'tglentri' => date('Y-m-d H:i:s')
-                    );
-                    $result = $this->model_penentuan->insert($arrayCustomerQuote, 'baginaikkelas');
+                    $result = $this->model_penentuan->view_where_noisdelete($where, 'baginaikkelas')->result();
+                    if($result > 0){
+                        $arrayCustomerQuote = array(
+                            'Thnmasuk' => $value[0],
+                            'Ruangan' => $value[1],
+                            'kelas' => $value[2],
+                            'Naikkelas' => $value[3],
+                            'GolKelas' => $value[4],
+                            'Jurusan' => $value[5],
+                            'Kodesekolah' => $value[6],
+                            'TA' => $value[7],
+                            'userentri' => $this->session->userdata('nip'),
+                            'NIS' => $value[8],
+                            'tglentri' => date('Y-m-d H:i:s')
+                        );
+                        $result = $this->model_penentuan->update($arrayCustomerQuote, $where, 'baginaikkelas');
+                    }else{
+                        $arrayCustomerQuote = array(
+                            'Thnmasuk' => $value[0],
+                            'Ruangan' => $value[1],
+                            'kelas' => $value[2],
+                            'Naikkelas' => $value[3],
+                            'GolKelas' => $value[4],
+                            'Jurusan' => $value[5],
+                            'Kodesekolah' => $value[6],
+                            'TA' => $value[7],
+                            'userentri' => $this->session->userdata('nip'),
+                            'NIS' => $value[8],
+                            'tglentri' => date('Y-m-d H:i:s')
+                        );
+                        $result = $this->model_penentuan->insert($arrayCustomerQuote, 'baginaikkelas');
+                    }
                 }
             }
             if ($result) {
