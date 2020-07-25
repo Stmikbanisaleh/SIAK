@@ -103,8 +103,8 @@ class Jenispembayaran extends CI_Controller
         $where = array(
             'Kodejnsbayar'  => $this->input->post('kdjenisbayar'),
         );
-        $cek = $this->model_jenis->view_where('jenispembayaran', $where);
-        if(empty($cek)){
+        $cek = $this->model_jenis->view_where('jenispembayaran', $where)->num_rows();
+        if(count($cek < 1)){
             $data = array(
                 'Kodejnsbayar'  => $this->input->post('kdjenisbayar'),
                 'namajenisbayar'  => $this->input->post('nmjenisbayar'),
