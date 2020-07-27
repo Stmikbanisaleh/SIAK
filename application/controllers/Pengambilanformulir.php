@@ -38,7 +38,7 @@ class Pengambilanformulir extends CI_Controller
         $idtarifq = $this->model_pengambilanformulir->getidtarif($this->input->post('sekolah'))->result_array();
         $data = array(
             'Noreg'  => $this->input->post('noreg'),
-            'tglentri'  => date('Y-m-d H:i:s'),
+            'tglentri'  => $this->input->post('tanggal'),
             'useridd'  => $this->session->userdata('nip'),
             'TotalBayar'  => $this->input->post('nominal_v'),
             'kodesekolah'  => $this->input->post('sekolah'),
@@ -63,7 +63,7 @@ class Pengambilanformulir extends CI_Controller
                     'TelpHp' => strtoupper($this->input->post('telp')),
                     'thnmasuk' => $tahun,
                     'kodesekolah'  => $this->input->post('sekolah'),
-                    'tglentri' => date('Y-m-d H:i:s'),
+                    'tglentri' => $this->input->post('tanggal'),
                     'userentri' => $this->session->userdata('kodekaryawan')
                 );
                 $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
