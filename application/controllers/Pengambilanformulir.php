@@ -64,7 +64,7 @@ class Pengambilanformulir extends CI_Controller
                     'thnmasuk' => $tahun,
                     'kodesekolah'  => $this->input->post('sekolah'),
                     'tglentri' => $this->input->post('tanggal'),
-                    'userentri' => $this->session->userdata('kodekaryawan')
+                    'userentri' => $this->session->userdata('nip')
                 );
                 $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
                 echo json_encode($insertcalon);
