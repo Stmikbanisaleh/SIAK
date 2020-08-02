@@ -32,21 +32,20 @@ class Model_pengambilanformulir extends CI_model
     {
         return  $this->db->query("SELECT 
 		DISTINCT
-		pembayaran_sekolah.NIS,
-		pembayaran_sekolah.Noreg,
-		pembayaran_sekolah.Kelas,
-		(SELECT z.Namacasis FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS Namacasis,
-        (SELECT z.TelpHp FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS TelpHp,
-        (SELECT z.email FROM calon_siswa z WHERE z.Noreg=pembayaran_sekolah.Noreg)AS email,
-		DATE_FORMAT(tglentri,'%d-%m-%Y')tglbayar,
-		pembayaran_sekolah.useridd,
-		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=pembayaran_sekolah.kodesekolah)AS NamaSek,
-        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=pembayaran_sekolah.kodesekolah)AS NamaJurusan,
-		pembayaran_sekolah.kodesekolah,
-		pembayaran_sekolah.TA FROM pembayaran_sekolah
-        INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-        WHERE pembayaran_sekolah.TA='$ThnAkademik' AND detail_bayar_sekolah.kodejnsbayar='FRM'
-		ORDER BY pembayaran_sekolah.Nopembayaran DESC");
+		a.Noreg,
+	    a.Namacasis,
+        a.TelpHp,
+        a.email,
+		a.tglentri,
+		a.userentri,
+		a.TA,
+		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=a.kodesekolah)AS NamaSek,
+        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=a.kodesekolah)AS NamaJurusan,
+		a.kodesekolah,
+		a.thnmasuk FROM calon_siswa a
+        WHERE a.TA ='$ThnAkademik'
+        order by a.Noreg desc
+	");
     }
 
     public function getsekolah($ThnAkademik)

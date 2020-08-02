@@ -76,6 +76,7 @@ class Impbayar extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I4', '32');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J4', '735000');
 
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'ID TARIF');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'ID TARIF');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'KODE PEMBAYARAN');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'NAMA JENIS BAYAR');
@@ -84,6 +85,7 @@ class Impbayar extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'TAHUN MASUK');
 				foreach ($data as $dataExcel) {
 					$idtarif = $dataExcel['idtarif'];
+					$tarif = $dataExcel['tarif'];
 					$ThnMasuk = $dataExcel['ThnMasuk'];
 					$kodejnsbayar = $dataExcel['kodejnsbayar'];
 					$DESCRTBPS = $dataExcel['DESCRTBPS'];
@@ -93,8 +95,12 @@ class Impbayar extends CI_Controller
 
 
 
+					$objPHPExcel->getActiveSheet(0)->getStyle('N' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('N' . $row, $idtarif, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('N')->setAutoSize(true);
+
 					$objPHPExcel->getActiveSheet(0)->getStyle('O' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('O' . $row, $idtarif, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('O' . $row, $tarif, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('O')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('P' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
@@ -149,7 +155,7 @@ class Impbayar extends CI_Controller
 
 	public function import()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null )  {
 			$files = $_FILES;
 			$file = $files['file'];
 			$fname = $file['tmp_name'];

@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="smaller lighter blue no-margin">Form Import Data Pembayaran</h3>
+                    <h3 class="smaller lighter blue no-margin">Form <?= $page_name ?></h3>
                 </div>
 
                 <div class="modal-body">
@@ -21,11 +21,10 @@
                                         <input type="file" id="file" required name="file" class="form-control" />
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
                                     <div class="col-sm-9">
-                                        <a href="<?php echo base_url() . 'modulkasir/impbayar/downloadsample' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+                                        <a href="<?php echo base_url() . 'imppsb/downloadsample' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
                                     </div>
                                 </div>
                         </div>
@@ -80,7 +79,7 @@
                     formdata = new FormData(form);
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo base_url('impbayarpsb/import') ?>",
+                        url: "<?php echo base_url('imppsb/import') ?>",
                         data: formdata,
                         processData: false,
                         contentType: false,
@@ -97,7 +96,7 @@
                             } else {
                                 document.getElementById("formImport").reset();
                                 swalInputFailed();
-                                window.location.href='<?php echo base_url("impbayar"); ?>';
+                                window.location.href='<?php echo base_url("imppsb"); ?>';
                             }
                         }
                     });

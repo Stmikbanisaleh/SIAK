@@ -271,6 +271,14 @@ if ($jabatan == 19) { ?>
 					</a>
 					<b class="arrow"></b>
 				</li>
+
+				<li class="">
+				<a href="<?= base_url() . 'imppsb'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Import PSB Online
+					</a>
+					<b class="arrow"></b>
+				</li>
 			
 				<li class="">
 					<a href="<?= base_url() . 'pengambilanformulir'; ?>">

@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Bayar </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Daftar </label>
                                 <div class="col-sm-9">
                                     <input type="date" id="tanggal" required name="tanggal" placeholder="" class="form-control" />
                                 </div>
@@ -298,7 +298,7 @@
                 <th>No</th>
                 <th>No Regsistrasi</th>
                 <th>Nama</th>
-                <th>Tanggal Bayar</th>
+                <th>Tanggal Daftar</th>
                 <th>Sekolah</th>
                 <th>Tahun Akademik</th>
                 <th>No Telp</th>
@@ -549,7 +549,7 @@
                         '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].Noreg + '</td>' +
                         '<td>' + data[i].Namacasis + '</td>' +
-                        '<td>' + data[i].tglbayar + '</td>' +
+                        '<td>' + data[i].tglentri + '</td>' +
                         '<td>' + data[i].NamaSek + '-' + data[i].NamaJurusan + '</td>' +
                         '<td>' + data[i].TA + '</td>' +
                         '<td>' + data[i].TelpHp + '</td>' +

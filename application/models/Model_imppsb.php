@@ -1,23 +1,22 @@
 <?php
 
-class Model_imppembayaran extends CI_model
+class Model_imppsb extends CI_model
 {
 
-    public function view_visi($table)
+    public function getnoreg()
     {
-        $this->db->where('jenis =', '1');
-        return $this->db->get($table);
+       return $this->db->query("select max(Noreg)+1 as noreg from calon_siswa")->result_array();
     }
 
-    public function getidtarif()
+    public function ceknoreg($noreg)
     {
-        return $this->db->query("select a.idtarif,a.nominal as tarif, a.kodejnsbayar,a.ThnMasuk,b.DESCRTBPS,c.DESCRTBJS,d.namajenisbayar 
-        from tarif_berlaku a
-        join tbps b on  b.KDTBPS = a.kodesekolah
-        join tbjs c on c.KDTBJS = b.KDTBJS
-        join jenispembayaran d on a.Kodejnsbayar = d.Kodejnsbayar
-        where a.isdeleted != 1
-        ORDER by a.ThnMasuk desc ");
+       return $this->db->query("select Noreg from calon_siswa where Noreg = '".$noreg."'")->result_array();
+    }
+
+    public function getkodesekolah()
+    {
+        return $this->db->query("select a.KDTBPS, a.DESCRTBPS,b.DESCRTBJS from tbps a
+        join tbjs b on a.KDTBJS = b.KDTBJS  ")->result_array();
     }
 
     public function view_misi($table)
