@@ -74,18 +74,21 @@
                     </select>
                 </div>
             </div>
-
-            <!-- <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right">Photo Siswa</label>
-                <div class="col-sm-9">
-                    <input type="file" name="file1" id="file1" class="col-xs-12" id="form-field-icon-2" />
-                </div>
-            </div> -->
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
                 <div class="col-sm-9">
                     <span class="input-icon">
                         <input type="text" value="<?= $mysiswa->tptlhr ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
+                        <i class="ace-icon fa fa-home blue"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Email</label>
+                <div class="col-sm-9">
+                    <span class="input-icon">
+                        <input type="text" value="<?= $mysiswa->email ?>" name="email" id="email" placeholder="Harap masukkan Email" />
                         <i class="ace-icon fa fa-home blue"></i>
                     </span>
                 </div>
@@ -281,7 +284,7 @@
                         <option value="">-- Pilih Kabupaten --</option>
                         <?php
                         foreach ($mytbpro as $value) { ?>
-                            <?php if ($mysiswa->KABUPATEN == $value['KDTBPRO']) {
+                            <?php if ($mysiswa->aslsekkabupaten == $value['KDTBPRO']) {
                                 echo "<option value='" . $value['KDTBPRO'] . "' selected>" . $value['KOTATBPRO'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['KDTBPRO'] . "'>" . $value['KOTATBPRO'] . "</option>";
@@ -300,7 +303,7 @@
                         <option value="">-- Pilih Kecamatan --</option>
                         <?php
                         foreach ($mytbkec as $value) { ?>
-                            <?php if ($mysiswa->KECAMATAN == $value['IDKEC']) {
+                            <?php if ($mysiswa->Aslsekkecamatan == $value['IDKEC']) {
                                 echo "<option value='" . $value['IDKEC'] . "' selected>" . $value['NMKEC'] . "</option>";
                             } else {
                                 echo "<option value='" . $value['IDKEC'] . "'>" . $value['NMKEC'] . "</option>";

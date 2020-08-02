@@ -343,6 +343,7 @@ class Siswa extends CI_Controller
                 'Kabupaten' => $this->input->post('kabupaten'),
                 'Propinsi' => $this->input->post('provinsi'),
                 'Kodepos'  => $this->input->post('kdpos'),
+                'email'  => $this->input->post('email'),
                 'TelpHp'  => $this->input->post('nohp'),
                 'NamaWali'  => $this->input->post('wali'),
                 'Pekerjaan'  => $this->input->post('pekerjaan'),
