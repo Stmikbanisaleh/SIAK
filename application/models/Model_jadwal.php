@@ -79,6 +79,13 @@ class Model_jadwal extends CI_model
         return $this->db->get($table);
     }
 
+
+    public function getmapelaktif($data)
+    {
+        return  $this->db->query("select a.ID,b.id_mapel , b.nama from trmka a join mspelajaran b on a.KDMKTRMKA = b.id_mapel where PSTRMKA ='".$data."'");
+        
+    }
+
     public function view_where($table, $data)
     {
         $this->db->where($data);

@@ -96,13 +96,13 @@
 				</a>
 				<b class="arrow"></b>
 			</li>
-			<li class="">
+			<!-- <li class="">
 				<a href="<?= base_url() . 'modulkasir/potongan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Potongan
 				</a>
 				<b class="arrow"></b>
-			</li>
+			</li> -->
 			<li class="">
 				<a href="<?= base_url() . 'modulkasir/tagihanpembayaran'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
@@ -139,6 +139,13 @@
 				<a href="<?= base_url() . 'modulkasir/surattagihan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Surat Tagihan
+				</a>
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulkasir/lap_rekapbayarsiswa'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Laporan Rekap Bayar Siswa
 				</a>
 				<b class="arrow"></b>
 			</li>

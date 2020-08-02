@@ -384,7 +384,7 @@
             var ps = $('#programsekolahs').val();
             $.ajax({
                 type: "POST",
-                url: "jadwal/showmapel",
+                url: "mataajaraktif/showmapel",
                 data: {
                     ps: ps
                 }

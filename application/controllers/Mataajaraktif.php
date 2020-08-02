@@ -25,7 +25,7 @@ class Mataajaraktif extends CI_Controller
 
 		$data = array(
 			'page_content' 	=> '/mataajaraktif/view',
-			'ribbon' 		=> '<li class="active">Dashboard</li><li>Mataajar Aktif</li>',
+			'ribbon' 		=> '<li class="active"></li><li>Mataajar Aktif</li>',
 			'page_name' 	=> 'Mataajar Aktif',
 			'js' 			=> 'js_file',
 			'mysemester'	=> $mysemester,
@@ -78,6 +78,17 @@ class Mataajaraktif extends CI_Controller
 		$my_data = $this->model_mataajaraktif->view_karyawan()->result_array();
 		echo json_encode($my_data);
 	}
+
+	public function showmapel()
+    {
+        $ps = $this->input->post('ps');
+        $data = array('ps' => $ps);
+        $my_data = $this->model_mataajaraktif->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
+        echo "<option value='0'>--Pilih Mapel --</option>";
+        foreach ($my_data as $value) {
+            echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] .'-'. $value['kode']."] </option>";
+        }
+    }
 
 	public function update()
 	{
