@@ -30,16 +30,16 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
                                 WHERE `status`='T'
-                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('SPP','GDG','KGT','FRM','SRG')");
+                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('GDG','KGT','FRM','SRG')");
 
                                 //AND TA='$ta' -- Coment for this
     }
 
     public function getsiswa1($noreg){
         if(empty($noreg)){
-            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM')";
+            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('GDG','KGT','FRM')";
         } else {
-            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM') AND pembayaran_sekolah.NIS='$noreg' OR mssiswa.Noinduk='$noreg' AND detail_bayar_sekolah.kodejnsbayar NOT IN('SPP','GDG','KGT','FRM') ";
+            $v_cek = "WHERE detail_bayar_sekolah.kodejnsbayar NOT IN('GDG','KGT','FRM') AND pembayaran_sekolah.NIS='$noreg' OR mssiswa.Noinduk='$noreg' ";
         }
         return $this->db->query("SELECT DISTINCT
                                 mssiswa.NOINDUK,

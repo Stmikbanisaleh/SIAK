@@ -84,6 +84,14 @@
 		});
 	}
 
+	function swalInputFailedakd(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Tarif Berlaku pada Kode Pembayaran / TA belum terdaftar',
+		});
+	}
+
 	function swalGenerateFailed(){
 		Swal.fire({
 		  icon: 'error',
