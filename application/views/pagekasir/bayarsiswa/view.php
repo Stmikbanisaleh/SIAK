@@ -269,6 +269,7 @@
                 </div>
             </div>
             <input type="hidden" name="nilai" value='1'>
+            <input type="hidden" name="ta" id="ta">
             <input type="hidden" name="idtarif_spp" id="idtarif_spp">
             <input type="hidden" name="idtarif_gdg" id="idtarif_gdg">
             <input type="hidden" name="idtarif_srg" id="idtarif_srg">
@@ -357,6 +358,10 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#thnakad").change(function() {
+            var thn = $('#thnakad').val();
+            $('#ta').val(thn);
+        });
         $('#table_id').DataTable();
         $('#table_id2').DataTable();
         $('#table_id3').DataTable();

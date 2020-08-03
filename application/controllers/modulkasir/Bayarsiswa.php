@@ -86,9 +86,8 @@ class Bayarsiswa extends CI_Controller {
     }
 
     public function insert(){
-            $tampil_thnakad = $this->configfunction->getthnakdkeuangan();
-            $thnakad = $tampil_thnakad[0]['THNAKAD'];
-
+            // $tampil_thnakad = $this->configfunction->getthnakdkeuangan();
+            $thnakad = $this->input->post('ta');
             $tot = $this->input->post('spp') + $this->input->post('gedung') + $this->input->post('seragam') + $this->input->post('kegiatan');
             // print_r(json_encode($tot));exit;
             $ss = $this->input->post('sisa')-$tot;
@@ -165,8 +164,6 @@ class Bayarsiswa extends CI_Controller {
                     pembayaran_sekolah
                     WHERE NIS='".$nis."' AND Kelas='".$kelas."' AND TA='".$thnakad."')AS kl";
             $q3 = $this->db->query($query)->row();
-            // print_r(json_encode($q3));exit;
-
             $t_SPP = $q3->SPP;
             $t_GDG = $q3->GDG;
             $t_SRG = $q3->SRG;
@@ -187,7 +184,6 @@ class Bayarsiswa extends CI_Controller {
             }else{
                 $this->session->set_flashdata('cat_error', 'EROR!!!');
             }
-
             header("Location: ".base_url()."modulkasir/bayarsiswa");            
             // echo json_encode(true);    
     }
