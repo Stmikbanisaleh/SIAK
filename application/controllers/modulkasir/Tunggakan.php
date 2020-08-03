@@ -64,10 +64,10 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
-			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk' limit 1")->result_array();
+			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' limit 1 ");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' ");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
@@ -95,7 +95,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','KGT','GDG') ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
@@ -119,9 +119,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
 								}
 								$data = array(
 									'NIS' => $vnis,

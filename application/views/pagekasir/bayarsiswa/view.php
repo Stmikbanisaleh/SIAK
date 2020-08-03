@@ -86,33 +86,7 @@
                     <b>Bayar</b>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        SPP
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="tghn_spp">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="dbyr_spp">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <input type="text" id="spp_v" name="spp_v" placeholder="SPP" class="form-control" />
-                        <input type="hidden" id="spp" name="spp" placeholder="SPP" class="form-control" />
-                    </div>
-                </div>
-            </div>
+            
             <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
@@ -270,7 +244,6 @@
             </div>
             <input type="hidden" name="nilai" value='1'>
             <input type="hidden" name="ta" id="ta">
-            <input type="hidden" name="idtarif_spp" id="idtarif_spp">
             <input type="hidden" name="idtarif_gdg" id="idtarif_gdg">
             <input type="hidden" name="idtarif_srg" id="idtarif_srg">
             <input type="hidden" name="idtarif_kgt" id="idtarif_kgt">
@@ -403,17 +376,17 @@
                         if (data == 0) {
                             swalDatanull();
                             $('#namasiswa').html('');
-                            $('#tghn_spp').html('0');
+                            // $('#tghn_spp').html('0');
                             $('#tghn_gedung').html('0');
                             $('#tghn_seragam').html('0');
                             $('#tghn_kegiatan').html('0');
-                            $('#dbyr_spp').html('0');
+                            // $('#dbyr_spp').html('0');
                             $('#dbyr_gedung').html('0');
                             $('#dbyr_seragam').html('0');
                             $('#dbyr_kegiatan').html('0');
                             $('#tot_tagihan').html('0');
                             $('#blm_dibayarkan').html('0');
-                            $('#idtarif_spp').val('0');
+                            // $('#idtarif_spp').val('0');
                             $('#idtarif_gdg').val('0');
                             $('#idtarif_srg').val('0');
                             $('#idtarif_kgt').val('0');
@@ -423,24 +396,20 @@
                             $('#sisa').val('0');
                             $('#kodesekolah').val('0');
                         } else {
-
-                            var sdh_dibayarkan = Number(null_tonumber(data[0].byr_spp)) + Number(null_tonumber(data[0].byr_gdg)) + Number(null_tonumber(data[0].byr_srg)) + Number(null_tonumber(data[0].byr_kgt));
+                            var sdh_dibayarkan = Number(null_tonumber(data[0].byr_gdg)) + Number(null_tonumber(data[0].byr_srg)) + Number(null_tonumber(data[0].byr_kgt));
                             var total_tghn = data[0].TotalTagihan;
                             var blm_dbyrkn = data[0].blm_bayar;
                             $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
                                 'Periksa');
                             $('#namasiswa').html(data[0].NMSISWA);
-                            $('#tghn_spp').html(data[0].nominal_spp);
                             $('#tghn_gedung').html(data[0].nominal_gdg);
                             $('#tghn_seragam').html(data[0].nominal_srg);
                             $('#tghn_kegiatan').html(data[0].nominal_kgt);
-                            $('#dbyr_spp').html(data[0].blmbyr_spp);
                             $('#dbyr_gedung').html(data[0].blmbyr_gdg);
                             $('#dbyr_seragam').html(data[0].blmbyr_srg);
                             $('#dbyr_kegiatan').html(data[0].blmbyr_kgt);
                             $('#tot_tagihan').html(total_tghn);
                             $('#blm_dibayarkan').html(data[0].Sisa);
-                            $('#idtarif_spp').val(data[0].id_spp);
                             $('#idtarif_gdg').val(data[0].id_gdg);
                             $('#idtarif_srg').val(data[0].id_srg);
                             $('#idtarif_kgt').val(data[0].id_kgt);
@@ -600,38 +569,26 @@
         })
     }
 
-    $('#spp').keyup(function() {
-        var spp = Number($('#spp').val());
-        var gedung = Number($('#gedung').val());
-        var kegiatan = Number($('#kegiatan').val());
-        var seragam = Number($('#seragam').val());
-        var total_bayar = spp + gedung + kegiatan + seragam;
-        $('#ttotal').val(total_bayar);
-    });
-
     $('#gedung').keyup(function() {
-        var spp = Number($('#spp').val());
         var gedung = Number($('#gedung').val());
         var kegiatan = Number($('#kegiatan').val());
         var seragam = Number($('#seragam').val());
-        var total_bayar = spp + gedung + kegiatan + seragam;
+        var total_bayar =  gedung + kegiatan + seragam;
         $('#ttotal').val(total_bayar);
     });
 
     $('#seragam').keyup(function() {
-        var spp = Number($('#spp').val());
         var gedung = Number($('#gedung').val());
         var kegiatan = Number($('#kegiatan').val());
         var seragam = Number($('#seragam').val());
-        var total_bayar = spp + gedung + kegiatan + seragam;
+        var total_bayar = gedung + kegiatan + seragam;
         $('#ttotal').val(total_bayar);
     });
     $('#kegiatan').keyup(function() {
-        var spp = Number($('#spp').val());
         var gedung = Number($('#gedung').val());
         var kegiatan = Number($('#kegiatan').val());
         var seragam = Number($('#seragam').val());
-        var total_bayar = spp + gedung + kegiatan + seragam;
+        var total_bayar = gedung + kegiatan + seragam;
         $('#ttotal').val(total_bayar);
     });
 
@@ -640,9 +597,6 @@
             errorClass: "my-error-class",
             validClass: "my-valid-class",
             rules: {
-                spp: {
-                    required: false
-                },
                 gedung: {
                     required: false
                 },
@@ -800,18 +754,10 @@
     })
 </script>
 <script language="JavaScript">
-var rupiah1 = document.getElementById('spp_v');
+           
 var rupiah2 = document.getElementById('gedung_v');
 var rupiah3 = document.getElementById('seragam_v');
 var rupiah4 = document.getElementById('kegiatan_v');
-rupiah1.addEventListener('keyup', function(e) {
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rup3 = this.value.replace(/\D/g, '');
-    $('#spp').val(rup3);
-    rupiah1.value = formatRupiah3(this.value, 'Rp. ');
-});
-
 rupiah2.addEventListener('keyup', function(e) {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka

@@ -399,39 +399,6 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//-----------End Header Content Header PPh 21 Sebulan-------------//
 
-		//-----------Add Variable ----------------//
-			$jml_pend_gaji_pokok = 0;
-			$jml_pend_pajak = 0;
-			$jml_pend_tunjabatan = 0;
-			$jml_pend_tunjsansos = 0;
-			$jml_pend_strukturalkhusus = 0;
-			$jml_pend_transportasi = 0;
-			$jml_pend_pegawai_tetap = 0;
-			$jml_pend_peralihan = 0;
-			$jml_pend_utility = 0;
-			$jml_pend_honorarium = 0;
-			$jml_pend_asuransi = 0;
-			$jml_pend_bonus = 0;
-			$jml_pend_thr = 0;
-			$jml_pend_cuti = 0;
-			$jml_tunj_bpjs = 0;
-			$jml_pend_lain = 0;
-			$jml_gaji_kotor = 0;
-
-
-			$jml_pot_infaq_masjid = 0;
-			$jml_pot_anggota_koperasi = 0;
-			$jml_pot_kas_bon = 0;
-			$jml_pot_ijin_telat = 0;
-			$jml_pot_koperasi = 0;
-			$jml_pot_bmt = 0;
-			$jml_pot_tawun = 0;
-			$jml_pot_pph21 = 0;
-			$jml_pot_bpjs = 0;
-			$jml_pot_ltq = 0;
-			$jml_pot_lain = 0;
-			$jml_jumlah_pot = 0;
-
 		//=======================================================//
 		//---------------------- Body ---------------------------//
 		//=======================================================//
@@ -743,22 +710,6 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//Cuti / Jubelium
 			$var_d = 'AI'.$baris;
-			$pend_gaji_pokok = $row['gaji']+$row['rapel']+$row['premi'];
-			$pend_pajak = $row['tunj_pajak'];
-			$pend_tunjabatan = $row['tunj_jabatan'];
-			$pend_tunjsansos = $row['tunj_sansos'];
-			$pend_strukturalkhusus = $row['tunj_struktural_khusus'];
-			$pend_transportasi = $row['tunj_transport'];
-			$pend_pegawai_tetap = $row['tunj_tetap'];
-			$pend_peralihan = $row['tunj_peralihan'];
-			$pend_utility = $row['tunj_utility'];
-			$pend_honorarium = $row['honorarium_imb'];
-			$pend_asuransi = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
-			$pend_bonus = $row['bonus'];
-			$pend_thr = $row['thr'];
-			$pend_cuti = $row['cuti_jubelium'];
-			$tunj_bpjs = $row['tunj_bpjs'];
-			$pend_lain = $row['tunj_lain'];
 			$gaji_kotor = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain;
 			$var_e = $gaji_kotor;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -769,59 +720,18 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//Jml Penghasilan Tidak teratur
 			$var_d = 'AJ'.$baris;
-			$pot_infaq_masjid = $row['pot_infaq_masjid'];
-			$pot_anggota_koperasi = $row['pot_anggota_koperasi'];
-			$pot_kas_bon = $row['pot_kas_bon'];
-			$pot_ijin_telat = $row['pot_ijin_telat'];
-			$pot_koperasi = $row['pot_koperasi'];
-			$pot_bmt = $row['pot_bmt'];
-			$pot_tawun = $row['pot_tawun'];
-			$pot_pph21 = $row['pph21_bulanan'];
-			$pot_bpjs = $row['pot_bpjs'];
-			$pot_ltq = $row['pot_ltq'];
-			$pot_lain = $row['pot_lain'];
-			$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_lain;
-			$var_e = $gaji_kotor-$jumlah_pot;
+			$potongan = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_lain;
+			$var_e = $gaji_kotor-$potongan;
+			$jum_pengh_t_teratur = $var_e;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-			$jml_pend_gaji_pokok = $jml_pend_gaji_pokok+$pend_gaji_pokok;
-			$jml_pend_pajak = $jml_pend_pajak+$pend_pajak;
-			$jml_pend_tunjabatan = $jml_pend_tunjabatan+$pend_tunjabatan;
-			$jml_pend_tunjsansos = $jml_pend_tunjsansos+$pend_tunjsansos;
-			$jml_pend_strukturalkhusus = $jml_pend_strukturalkhusus+$pend_strukturalkhusus;
-			$jml_pend_transportasi = $jml_pend_transportasi+$pend_transportasi;
-			$jml_pend_pegawai_tetap = $jml_pend_pegawai_tetap+$pend_pegawai_tetap;
-			$jml_pend_peralihan = $jml_pend_peralihan+$pend_peralihan;
-			$jml_pend_utility = $jml_pend_utility+$pend_utility;
-			$jml_pend_honorarium = $jml_pend_honorarium+$pend_honorarium;
-			$jml_pend_asuransi = $jml_pend_asuransi+$pend_asuransi;
-			$jml_pend_bonus = $jml_pend_bonus+$pend_bonus;
-			$jml_pend_thr = $jml_pend_thr+$pend_thr;
-			$jml_pend_cuti = $jml_pend_cuti+$pend_cuti;
-			$jml_tunj_bpjs = $jml_tunj_bpjs+$tunj_bpjs;
-			$jml_pend_lain = $jml_pend_lain+$pend_lain;
-			$jml_gaji_kotor = $jml_gaji_kotor+$gaji_kotor;
-
-
-			$jml_pot_infaq_masjid = $jml_pot_infaq_masjid+$pot_infaq_masjid;
-			$jml_pot_anggota_koperasi = $jml_pot_anggota_koperasi+$pot_anggota_koperasi;
-			$jml_pot_kas_bon = $jml_pot_kas_bon+$pot_kas_bon;
-			$jml_pot_ijin_telat = $jml_pot_ijin_telat+$pot_ijin_telat;
-			$jml_pot_koperasi = $jml_pot_koperasi+$pot_koperasi;
-			$jml_pot_bmt = $jml_pot_bmt+$pot_bmt;
-			$jml_pot_tawun = $jml_pot_tawun+$pot_tawun;
-			$jml_pot_pph21 = $jml_pot_pph21+$pot_pph21;
-			$jml_pot_bpjs = $jml_pot_bpjs+$pot_bpjs;
-			$jml_pot_ltq = $jml_pot_ltq+$pot_ltq;
-			$jml_pot_lain = $jml_pot_lain+$pot_lain;
-			$jml_jumlah_pot = $jml_jumlah_pot+$jumlah_pot;
-
 			$baris++;
 			$no++;
+<<<<<<< HEAD
 		}
 		
 		//-------------------- Jumlah -------------------------//
@@ -1144,6 +1054,9 @@ class Rekap_gajikaryawan extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+=======
+	    }
+>>>>>>> af6d439fb759e6805a8d9c0fb154c01347c310ed
 		
 		//======================================================//
 		//-------------------- End Body ------------------------//
