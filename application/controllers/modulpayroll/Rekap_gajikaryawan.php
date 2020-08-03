@@ -840,7 +840,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//No Register
 		$var_d = 'C'.$baris;
-		$var_e = $row['nama'];
+		$var_e = '';
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -849,7 +849,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Nama Pegawai
 		$var_d = 'D'.$baris;
-		$var_e = $row['employee_number'];
+		$var_e = '';
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -858,7 +858,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//NPWP
 		$var_d = 'E'.$baris;
-		$var_e = "'".$row['no_rekening'];
+		$var_e = '';
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -867,7 +867,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jabatan
 		$var_d = 'F'.$baris;
-		$var_e = $row['gaji']+$row['rapel']+$row['premi'];
+		$var_e = $jml_pend_gaji_pokok;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -876,7 +876,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Status
 		$var_d = 'G'.$baris;
-		$var_e = $row['tunj_pajak'];
+		$var_e = $jml_pend_pajak;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -885,7 +885,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Mulai kerja
 		$var_d = 'H'.$baris;
-		$var_e = $row['tunj_jabatan'];
+		$var_e = $jml_pend_tunjabatan;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -894,7 +894,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Mulai kerja
 		$var_d = 'I'.$baris;
-		$var_e = $row['tunj_sansos'];
+		$var_e = $jml_pend_tunjsansos;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -903,7 +903,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Akhir Kerja Bulan Ke
 		$var_d = 'J'.$baris;
-		$var_e = $row['tunj_struktural_khusus'];
+		$var_e = $jml_pend_strukturalkhusus;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -912,7 +912,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Gaji
 		$var_d = 'K'.$baris;
-		$var_e = $row['tunj_transport'];
+		$var_e = $jml_pend_transportasi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -921,7 +921,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Rapel
 		$var_d = 'L'.$baris;
-		$var_e = $row['tunj_tetap'];
+		$var_e = $jml_pend_pegawai_tetap;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -930,7 +930,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Premi
 		$var_d = 'M'.$baris;
-		$var_e = $row['tunj_peralihan'];
+		$var_e = $jml_pend_peralihan;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -939,7 +939,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jumlah Gaji
 		$var_d = 'N'.$baris;
-		$var_e = $row['tunj_utility'];
+		$var_e = $jml_pend_utility;
 		$jumlah_gaji = $var_e;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -949,7 +949,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Pajak
 		$var_d = 'O'.$baris;
-		$var_e = $row['honorarium_imb'];
+		$var_e = $jml_pend_honorarium;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -958,7 +958,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Sansos
 		$var_d = 'P'.$baris;
-		$var_e = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
+		$var_e = $jml_pend_asuransi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -967,7 +967,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jabatan
 		$var_d = 'Q'.$baris;
-		$var_e = $row['bonus'];
+		$var_e = $jml_pend_bonus;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -976,7 +976,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Struktural / Khusus
 		$var_d = 'R'.$baris;
-		$var_e = $row['thr'];
+		$var_e = $jml_pend_thr;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -985,7 +985,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Transport
 		$var_d = 'S'.$baris;
-		$var_e = $row['cuti_jubelium'];
+		$var_e = $jml_pend_cuti;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -994,7 +994,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Tetap
 		$var_d = 'T'.$baris;
-		$var_e = $row['tunj_bpjs'];
+		$var_e = $jml_tunj_bpjs;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1021,7 +1021,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Peralihan
 		$var_d = 'W'.$baris;
-		$var_e = $row['tunj_lain'];
+		$var_e = $jml_pend_lain;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1030,7 +1030,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Utility
 		$var_d = 'X'.$baris;
-		$var_e = $row['pot_infaq_masjid'];
+		$var_e = $jml_pot_infaq_masjid;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1039,7 +1039,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Lain - lain
 		$var_d = 'Y'.$baris;
-		$var_e = $row['pot_anggota_koperasi'];
+		$var_e = $jml_pot_anggota_koperasi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1048,7 +1048,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jumlah Tunjangan
 		$var_d = 'Z'.$baris;
-		$jumlah_tunjangan = $row['pot_kas_bon'];
+		$jumlah_tunjangan = $jml_pot_kas_bon;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1057,7 +1057,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Honorarium & IMB Sejenis
 		$var_d = 'AA'.$baris;
-		$var_e = $row['pot_ijin_telat'];
+		$var_e = $jml_pot_ijin_telat;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1066,7 +1066,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jamsostek
 		$var_d = 'AB'.$baris;
-		$var_e = $row['pot_koperasi'];
+		$var_e = $jml_pot_koperasi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1075,7 +1075,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Asuransi Lainnya
 		$var_d = 'AC'.$baris;
-		$var_e = $row['pot_bmt'];
+		$var_e = $jml_pot_bmt;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1084,7 +1084,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jumlah Asuransi
 		$var_d = 'AD'.$baris;
-		$jumlah_asuransi = $row['pot_tawun'];
+		$jumlah_asuransi = $jml_pot_tawun;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1093,7 +1093,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Natura yg Objek PPh 21
 		$var_d = 'AE'.$baris;
-		$var_e = $row['pph21_bulanan'];
+		$var_e = $jml_pot_pph21;
 		$objek_naturapph21 = $var_e;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1103,7 +1103,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Jumlah Penghasilan
 		$var_d = 'AF'.$baris;
-		$jum_pengh_teratur = $row['pot_bpjs'];
+		$jum_pengh_teratur = $jml_pot_bpjs;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1112,7 +1112,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Bonus/Tantiem
 		$var_d = 'AG'.$baris;
-		$var_e = $row['pot_ltq'];
+		$var_e = $jml_pot_ltq;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1121,7 +1121,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//THR
 		$var_d = 'AH'.$baris;
-		$var_e = $row['pot_lain'];
+		$var_e = $jml_pot_lain;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1130,24 +1130,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 		//Cuti / Jubelium
 		$var_d = 'AI'.$baris;
-		$pend_gaji_pokok = $row['gaji']+$row['rapel']+$row['premi'];
-		$pend_pajak = $row['tunj_pajak'];
-		$pend_tunjabatan = $row['tunj_jabatan'];
-		$pend_tunjsansos = $row['tunj_sansos'];
-		$pend_strukturalkhusus = $row['tunj_struktural_khusus'];
-		$pend_transportasi = $row['tunj_transport'];
-		$pend_pegawai_tetap = $row['tunj_tetap'];
-		$pend_peralihan = $row['tunj_peralihan'];
-		$pend_utility = $row['tunj_utility'];
-		$pend_honorarium = $row['honorarium_imb'];
-		$pend_asuransi = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
-		$pend_bonus = $row['bonus'];
-		$pend_thr = $row['thr'];
-		$pend_cuti = $row['cuti_jubelium'];
-		$tunj_bpjs = $row['tunj_bpjs'];
-		$pend_lain = $row['tunj_lain'];
-		$gaji_kotor = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain;
-		$var_e = $gaji_kotor;
+		$var_e = $jml_gaji_kotor;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1155,20 +1138,7 @@ class Rekap_gajikaryawan extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jml Penghasilan Tidak teratur
-		$var_d = 'AJ'.$baris;
-		$pot_infaq_masjid = $row['pot_infaq_masjid'];
-		$pot_anggota_koperasi = $row['pot_anggota_koperasi'];
-		$pot_kas_bon = $row['pot_kas_bon'];
-		$pot_ijin_telat = $row['pot_ijin_telat'];
-		$pot_koperasi = $row['pot_koperasi'];
-		$pot_bmt = $row['pot_bmt'];
-		$pot_tawun = $row['pot_tawun'];
-		$pot_pph21 = $row['pph21_bulanan'];
-		$pot_bpjs = $row['pot_bpjs'];
-		$pot_ltq = $row['pot_ltq'];
-		$pot_lain = $row['pot_lain'];
-		$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_lain;
-		$var_e = $gaji_kotor-$jumlah_pot;
+		$var_e = $jml_gaji_kotor-$jml_jumlah_pot;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
