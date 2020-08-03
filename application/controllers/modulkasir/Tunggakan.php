@@ -95,7 +95,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','KGT','GDG') ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
