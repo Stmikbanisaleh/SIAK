@@ -1,7 +1,11 @@
 <div class="row">
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
-            <input type="text" class="form-control" name="nis" id="nis" placeholder="NIS"></textarea>
+            <input type="text" class="form-control" name="nis" id="nis" placeholder="Masukkan NIS"></textarea>
+        </div>
+
+        <div class="col-xs-3">
+            <input type="text" class="form-control" maxlength="9" required name="ta" id="ta" placeholder="2021/2022"></textarea>
         </div>
         <div class="col-xs-1">
             <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">

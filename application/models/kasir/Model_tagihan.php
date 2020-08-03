@@ -12,9 +12,9 @@ class Model_tagihan extends CI_model
           where a.isdeleted != 1 ');
     }
 
-    public function getnis($where)
+    public function getnis($where, $ta)
     {
-        $where = "WHERE NIS='".$where."' OR Noreg='".$where."'";
+        $where = "WHERE NIS='".$where."' and saldopembayaran_sekolah.TA = '".$ta."' ";
         return  $this->db->query("SELECT saldopembayaran_sekolah.idsaldo,
 		saldopembayaran_sekolah.NIS,
 		saldopembayaran_sekolah.Noreg,
@@ -31,7 +31,7 @@ class Model_tagihan extends CI_model
 		(SELECT zx.nama FROM tbkelas zx WHERE zx.id_kelas = saldopembayaran_sekolah.Kelas)AS Kelas,
 		tbakadmk.THNAKAD
 		FROM saldopembayaran_sekolah 
-		INNER JOIN tbakadmk ON tbakadmk.ID = saldopembayaran_sekolah.TA ".$where."");
+		INNER JOIN tbakadmk ON tbakadmk.THNAKAD = saldopembayaran_sekolah.TA ".$where."");
     }
 
     public function viewOrdering($table, $order, $ordering)

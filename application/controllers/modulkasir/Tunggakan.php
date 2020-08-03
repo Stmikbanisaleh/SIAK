@@ -67,7 +67,7 @@ class Tunggakan extends CI_Controller
 			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' ");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' ");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where

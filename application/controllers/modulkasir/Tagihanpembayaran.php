@@ -34,7 +34,8 @@ class Tagihanpembayaran extends CI_Controller
     public function search()
     {
         $nis = $this->input->post('nis');
-        $result = $this->model_tagihan->getnis($nis)->result();
+        $ta = $this->input->post('ta');
+        $result = $this->model_tagihan->getnis($nis, $ta)->result();
         echo json_encode($result);
     }
 
