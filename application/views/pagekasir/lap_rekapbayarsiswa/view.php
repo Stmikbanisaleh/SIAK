@@ -46,6 +46,8 @@
                 <th>NOREG</th>
                 <th>NAMA SISWA</th>
                 <th>TAHUN MASUK</th>
+                <th>TAHUN AKADEMIK</th>
+                <th>KELAS</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -89,16 +91,12 @@
                                 '<td>' + data[i].NOREG + '</td>' +
                                 '<td>' + data[i].NMSISWA + '</td>' +
                                 '<td>' + data[i].TAHUN + '</td>' +
+                                '<td>' + data[i].TA + '</td>' +
+                                '<td>' + data[i].Kelas + '</td>' +
                                 '<td class="text-center">' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-successs item_edit" title="Upload" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
+                                '<button  href="#my-modal-edit" class="btn btn-xs btn-successs item_edit" title="Upload" data-ta="' + data[i].TA + '" data-id="' + data[i].NOREG + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                 '</button> &nbsp' +
-                                '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_update" title="Edit" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
-                                '</button> &nbsp' +
-                                '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-                                '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                '</button>' +
                                 '</td>' +
                                 '</tr>';
                             no++;

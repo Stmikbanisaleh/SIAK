@@ -48,7 +48,7 @@ class Model_rekapbayarsiswa extends CI_model
     }
 
     public function getsiswabyid($id){
-        return $this->db->query("select NOREG, NMSISWA, TAHUN from mssiswa where NOINDUK = '".$id."' ");
+        return $this->db->query("select a.NOREG, a.NMSISWA, a.TAHUN, b.Kelas, b.TA from mssiswa a join pembayaran_sekolah b on a.NOREG = b.Noreg where a.NOINDUK = '".$id."' group by b.TA");
     }
 
     public function viewOrdering($table, $order, $ordering)
