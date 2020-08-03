@@ -64,10 +64,10 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
-			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
+			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk' limit 1")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' ");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' limit 1 ");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
@@ -119,9 +119,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ");
 								}
 								$data = array(
 									'NIS' => $vnis,
