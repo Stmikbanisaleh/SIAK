@@ -71,7 +71,7 @@ class Tunggakan extends CI_Controller
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
-											a.Noreg = mssiswa.NOREG) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 				if (count($calonsiswa) > 0) {
 					foreach ($calonsiswa as $value) {
 						$tarif = $this->db->query("SELECT
