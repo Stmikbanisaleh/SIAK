@@ -121,8 +121,8 @@
 		$pend_utility = $row['tunj_utility'];
 		$pend_honorarium = $row['honorarium_imb'];
 		$pend_asuransi = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
-        $pend_bonus = $row['thr'];
-        $pend_thr = $row['cuti_jubelium'];
+        $pend_bonus = $row['bonus'];
+        $pend_thr = $row['thr'];
         $pend_cuti = $row['cuti_jubelium'];
         $tunj_bpjs = $row['tunj_bpjs'];
 		$pend_lain = $row['tunj_lain'];
