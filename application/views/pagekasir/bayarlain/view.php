@@ -285,9 +285,9 @@
                             swalInputSuccess();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Input Gagal!');
+                            swalIdDouble('Input Duplikat Gagal!');
                         } else {
-                            swalInputFailed();
+                            swalInputFailedakd();
                         }
                     }
                 });

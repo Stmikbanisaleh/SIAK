@@ -74,24 +74,24 @@ class Bayarlain extends CI_Controller {
 		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS = mssiswa.NOINDUK ORDER BY Kelas DESC LIMIT 1)AS Kelas2
 		FROM mssiswa WHERE NOINDUK='$nis' OR Noreg='$nis'")->result_array();
 		$kdsekolah = $getkelas[0]['PS'];
-        $data = array(
-            'NIS'  => $nis,
-            'Noreg'  => $getkelas[0]['NOREG'],
-            'Kelas'  => $getkelas[0]['Kelas2'],
-            'tglentri'  => date('Y-m-d'),
-            'useridd'  => $this->session->userdata('kodekaryawan'),
-            'TotalBayar'  => $this->input->post('nominal_v'),
-            'kodesekolah'  => $getkelas[0]['PS'],
-            'TA'  => $this->input->post('thnakad'),
-            'createdAt' => date('Y-m-d H:i:s'),
-		);
-		$action = $this->model_bayar->insert($data, 'pembayaran_sekolah');
-		$id = $this->db->insert_id();
-		if($action){
+		if($kdsekolah){
 			$gettarif = $this->db->query("SELECT * FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='$ket'
 			 AND kodesekolah='$kdsekolah' AND TA='$ThnAkademik'")->result_array();
 			 if(!empty($gettarif)){
-				//  print_r($this->db->last_query());exit;
+				$data = array(
+					'NIS'  => $nis,
+					'Noreg'  => $getkelas[0]['NOREG'],
+					'Kelas'  => $getkelas[0]['Kelas2'],
+					'tglentri'  => date('Y-m-d'),
+					'useridd'  => $this->session->userdata('kodekaryawan'),
+					'TotalBayar'  => $this->input->post('nominal_v'),
+					'kodesekolah'  => $getkelas[0]['PS'],
+					'TA'  => $this->input->post('thnakad'),
+					'createdAt' => date('Y-m-d H:i:s'),
+				);
+				$action = $this->model_bayar->insert($data, 'pembayaran_sekolah');
+				$id = $this->db->insert_id();
+
 				$data2 = array(
 					'Nopembayaran' => $id,
 					'kodejnsbayar' => $this->input->post('ket'),
@@ -101,10 +101,6 @@ class Bayarlain extends CI_Controller {
 				$action = $this->model_bayar->insert($data2, 'detail_bayar_sekolah');
 				echo json_encode($action);
 			}else{
-				$where = array(
-					'Nopembayaran' => $id,
-				);
-				$this->model_bayar->delete($where, 'pembayaran_sekolah');
 				echo json_encode(500);
 			}
 		}else{

@@ -77,7 +77,7 @@ class Tunggakan extends CI_Controller
 						$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' AND Kodejnsbayar IN('SRG','SPP','KGT','GDG')");
+					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SRG','KGT','GDG')");
 						$n = $tarif->num_rows();
 						if ($tarif) {
 							$v = $tarif->result_array();
@@ -95,7 +95,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','KGT','GDG') ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
