@@ -117,6 +117,7 @@ class Jenispembayaran extends CI_Controller
         }
     }
 
+    
     public function update()
     {
         $data_id = array(
