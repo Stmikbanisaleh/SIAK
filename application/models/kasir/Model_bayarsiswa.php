@@ -38,30 +38,35 @@ class Model_bayarsiswa extends CI_model
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='SPP') nom_spp,
+                                        AND Kodejnsbayar='SPP'
+                                        AND TA='$thnakad') nom_spp,
                                     (SELECT 
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_gdg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='GDG') nom_GDG,
+                                        AND Kodejnsbayar='GDG'
+                                        AND TA='$thnakad') nom_GDG,
                                     (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_srg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='SRG') nom_SRG,
+                                        AND Kodejnsbayar='SRG'
+                                        AND TA='$thnakad') nom_SRG,
                                     (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_kgt/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='KGT') nom_KGT,
+                                        AND Kodejnsbayar='KGT'
+                                        AND TA='$thnakad') nom_KGT,
                                     (SELECT
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='SPP'))
+                                            AND z.kodejnsbayar='SPP'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -71,7 +76,8 @@ class Model_bayarsiswa extends CI_model
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='GDG'))
+                                            AND z.kodejnsbayar='GDG'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -81,7 +87,8 @@ class Model_bayarsiswa extends CI_model
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='SRG'))
+                                            AND z.kodejnsbayar='SRG'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -91,7 +98,8 @@ class Model_bayarsiswa extends CI_model
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='KGT'))
+                                            AND z.kodejnsbayar='KGT'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -102,25 +110,29 @@ class Model_bayarsiswa extends CI_model
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
+                                        AND TA ='$thnakad'
                                         AND Kodejnsbayar='SPP') id_spp,
                                     (SELECT
                                         idtarif
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='GDG') id_gdg,
+                                        AND Kodejnsbayar='GDG'
+                                        AND TA='$thnakad') id_gdg,
                                     (SELECT
                                         idtarif
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='SRG') id_srg,
+                                        AND Kodejnsbayar='SRG'
+                                        AND TA='$thnakad') id_srg,
                                     (SELECT
                                         idtarif
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='KGT') id_kgt
+                                        AND Kodejnsbayar='KGT'
+                                        AND TA='$thnakad') id_kgt
                                     FROM saldopembayaran_sekolah
                                     INNER JOIN mssiswa ON saldopembayaran_sekolah.NOREG = mssiswa.NOREG
                                     WHERE NIS = '$siswa' AND Kelas='$kelas') mq");
