@@ -119,7 +119,7 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ")->result_array();
 								if (count($checkdata) > 0) {
 									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."'");
 								}
