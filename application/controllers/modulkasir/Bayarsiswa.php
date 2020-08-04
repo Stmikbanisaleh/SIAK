@@ -36,10 +36,12 @@ class Bayarsiswa extends CI_Controller {
 
     public function view_tagihan()
     {
+        $thnmasuk = $this->model_bayarsiswa->getkelas($this->input->post('siswa'))->result_array();
+        $thn = $thnmasuk[0]['TAHUN'];
         $thnakad = $this->input->post('thnakad');
         $siswa = $this->input->post('siswa');
         $kelas = $this->input->post('kelas');
-        $result = $this->model_bayarsiswa->view_tagihan($siswa, $kelas, $thnakad)->result();
+        $result = $this->model_bayarsiswa->view_tagihan($siswa, $kelas, $thnakad, $thn)->result();
         if(count($result) > 0){
             echo json_encode($result);
         } else {
