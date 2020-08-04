@@ -97,7 +97,7 @@ class Tarifpembayaran extends CI_Controller
         $data = array(
             'isdeleted'  => 1,
         );
-        $action = $this->model_tarif->update($data_id, $data, 'tarif_berlaku');
+        $action = $this->model_tarif->delete($data_id, 'tarif_berlaku');
         echo json_encode($action);
     }
 }
