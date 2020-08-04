@@ -121,7 +121,7 @@ class Tunggakan extends CI_Controller
 								//jika ada datanya di delete lalu di insert
 								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."');
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."'");
 								}
 								$data = array(
 									'NIS' => $vnis,
