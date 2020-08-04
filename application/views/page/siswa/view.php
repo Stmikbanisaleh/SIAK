@@ -4,11 +4,6 @@
             <a class="ace-icon fa fa-upload bigger-120"></a>Import Data
         </button>
     </div>
-    <div class="col-xs-1">
-        <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-            <a class="ace-icon fa fa-download bigger-120"></a>Export Data
-        </button>
-    </div>
     <br>
     <br>
     <form class="form-horizontal" role="form" id="formSearch">
