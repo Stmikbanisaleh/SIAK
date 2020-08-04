@@ -126,7 +126,6 @@ class Pengambilanformulir extends CI_Controller
             'useridd'  => $this->session->userdata('nip'),
             'TotalBayar'  => $this->input->post('nominal_v'),
             'kodesekolah'  => $this->input->post('sekolah'),
-            'TA' => $this->input->post('tahunakademik'),
             'createdAt' => date('Y-m-d H:i:s')
         );
         $insert = $this->model_pengambilanformulir->insert($data, 'pembayaran_sekolah');
@@ -148,7 +147,9 @@ class Pengambilanformulir extends CI_Controller
                     'thnmasuk' => $tahun,
                     'kodesekolah'  => $this->input->post('sekolah'),
                     'tglentri' => $this->input->post('tanggal'),
-                    'userentri' => $this->session->userdata('nip')
+                    'userentri' => $this->session->userdata('nip'),
+                      'TA' => $this->input->post('tahunakademik'),
+
                 );
                 $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
                 echo json_encode($insertcalon);
