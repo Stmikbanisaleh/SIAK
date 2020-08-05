@@ -343,6 +343,71 @@
 									</script>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Pegawai Tetap </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunj_pegawai_tetap" required name="tunj_pegawai_tetap" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunj_pegawai_tetap_v" required name="tunj_pegawai_tetap_v" />
+									<script language="JavaScript">
+										var rupiah5 = document.getElementById('tunj_pegawai_tetap');
+										rupiah5.addEventListener('keyup', function(e) {
+											rup5 = this.value.replace(/\D/g, '');
+											$('#tunj_pegawai_tetap_v').val(rup5);
+											rupiah5.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Keluarga </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunj_keluarga" required name="tunj_keluarga" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunj_keluarga_v" required name="tunj_keluarga_v" />
+									<script language="JavaScript">
+										var rupiah7 = document.getElementById('tunj_keluarga');
+										rupiah7.addEventListener('keyup', function(e) {
+											rup7 = this.value.replace(/\D/g, '');
+											$('#tunj_keluarga_v').val(rup7);
+											rupiah7.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Pembinaan </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunj_pembinaan" required name="tunj_pembinaan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunj_pembinaan_v" required name="tunj_pembinaan_v" />
+									<script language="JavaScript">
+										var rupiah8 = document.getElementById('tunj_pembinaan');
+										rupiah8.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#tunj_pembinaan_v').val(rup8);
+											rupiah8.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan BPJS </label>
+								<div class="col-sm-9">
+									<input type="text" id="bpjs" required name="bpjs" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="bpjs_v" required name="bpjs_v" />
+									<script language="JavaScript">
+										var rupiah6 = document.getElementById('bpjs');
+										rupiah6.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#bpjs_v').val(rup6);
+											rupiah6.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+							
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
@@ -682,6 +747,39 @@
 									</script>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Pegawai Tetap </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_tunj_pegawai_tetap" required name="e_tunj_pegawai_tetap" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_tunj_pegawai_tetap_v" required name="e_tunj_pegawai_tetap_v" />
+									<script language="JavaScript">
+										var e_rupiah5 = document.getElementById('e_tunj_pegawai_tetap');
+										e_rupiah5.addEventListener('keyup', function(e) {
+											e_rup5 = this.value.replace(/\D/g, '');
+											$('#e_tunj_pegawai_tetap_v').val(e_rup5);
+											e_rupiah5.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan BPJS </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_bpjs_v" required name="e_bpjs_v" />
+									<script language="JavaScript">
+										var e_rupiah6 = document.getElementById('e_bpjs');
+										e_rupiah6.addEventListener('keyup', function(e) {
+											e_rup6 = this.value.replace(/\D/g, '');
+											$('#e_bpjs_v').val(e_rup6);
+											e_rupiah6.value = formatRupiah4(this.value, 'Rp. ');
+										});
+									</script>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
@@ -890,6 +988,10 @@
 				$('#e_no_rekening').val(data[0].no_rekening);
 				$('#e_transport').val(data[0].transport);
 				$('#e_transport_v').val(data[0].transport);
+				$('#e_tunj_pegawai_tetap').val(data[0].tunj_pegawai_tetap);
+				$('#e_tunj_pegawai_tetap_v').val(data[0].tunj_pegawai_tetap);
+				$('#e_bpjs').val(data[0].bpjs);
+				$('#e_bpjs_v').val(data[0].bpjs);
 
 
 			}

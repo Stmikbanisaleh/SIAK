@@ -39,7 +39,7 @@
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> THR </label>
 								<div class="col-sm-9">
-								<input type="text" id="thr" required name="thr" placeholder="THR " class="form-control" />
+								<input type="text" id="thr" required name="thr" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="thr_v" required name="thr_v"/>
 								<script language="JavaScript">
 										var rupiah3 = document.getElementById('thr');
@@ -134,13 +134,126 @@
 									</script>
 								</div>
                             </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Malam / Lembur</label>
+								<div class="col-sm-9">
+								<input type="text" id="tj_malam_lembur" required name="tj_malam_lembur" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tj_malam_lembur_v" required name="tj_malam_lembur_v"/>
+								<script language="JavaScript">
+										var rupiah6 = document.getElementById('tj_malam_lembur');
+										rupiah6.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tj_malam_lembur_v').val(rup6);
+											rupiah6.value = formatRupiah6(this.value, 'Rp. ');
+										});
+
+										function formatRupiah6(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah6 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah6 += separator + ribuan6.join('.');
+											}
+
+											rupiah6 = split[1] != undefined ? rupiah6 + ',' + split[1] : rupiah6;
+											return prefix == undefined ? rupiah5 : (rupiah6 ? 'Rp. ' + rupiah6 : '');
+										}
+									</script>
+								</div>
+                            </div>
 							
-                            <div class="form-group">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 1 </label>
+								<div class="col-sm-9">
+									<input type="text" id="ket_tunj_khusus1" name="ket_tunj_khusus1" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 1</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus1" required name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus1_v" required name="tunj_khusus1_v"/>
+								<script language="JavaScript">
+										var rupiah9 = document.getElementById('tunj_khusus1');
+										rupiah9.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus1_v').val(rup6);
+											rupiah9.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah9 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah9 += separator + ribuan6.join('.');
+											}
+
+											rupiah9 = split[1] != undefined ? rupiah9 + ',' + split[1] : rupiah9;
+											return prefix == undefined ? rupiah5 : (rupiah9 ? 'Rp. ' + rupiah9 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 2 </label>
+								<div class="col-sm-9">
+									<input type="text" id="ket_tunj_khusus2" name="ket_tunj_khusus2" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 2</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus2" required name="tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus2" required name="tunj_khusus2"/>
+								<script language="JavaScript">
+										var rupiah10 = document.getElementById('tunj_khusus2');
+										rupiah10.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus2').val(rup6);
+											rupiah10.value = formatRupiah6(this.value, 'Rp. ');
+										});
+
+										function formatRupiah6(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah10 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah10 += separator + ribuan6.join('.');
+											}
+
+											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+											return prefix == undefined ? rupiah5 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+										}
+									</script>
+								</div>
+                            </div>
+							
+                            <!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
 								<div class="col-sm-9">
 									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
 								</div>
-                            </div>
+                            </div> -->
 					</div>
 				</div>
 			</div>
@@ -172,419 +285,228 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
+							<input type="hidden" id="e_id"  required name="e_id"/>
                             <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
-								<input type="hidden" id="e_id_potong"  required name="e_id_potong"  />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Karyawan </label>
 								<div class="col-sm-9">
-                                    <select class="form-control" name="e_id_guru" id="e_id_guru">
-										<option value="">-- Pilih Guru --</option>
-										<?php foreach ($myguru as $value) { ?>
-											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
+									<select class="form-control" name="e_nip" id="e_nip">
+										<option value="">-- Pilih Karyawan --</option>
+										<?php foreach ($mykaryawan as $value) { ?>
+											<option value=<?= $value['nip'] ?>><?= $value['nama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
                             </div>
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_infaq_masjid" required name="e_infaq_masjid" placeholder="Tarif Potongan" class="form-control" />
-                                <input type="hidden" id="e_infaq_masjid_v" required name="e_infaq_masjid_v"/>
-								<script language="JavaScript">
-										var rupiah31 = document.getElementById('e_infaq_masjid');
-										rupiah31.addEventListener('keyup', function(e) {
-											rup31 = this.value.replace(/\D/g, '');
-											$('#e_infaq_masjid_v').val(rup31);
-											rupiah31.value = formatRupiah31(this.value, 'Rp. ');
-										});
-
-										function formatRupiah31(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah31 = split[0].substr(0, sisa),
-												ribuan31 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan31) {
-												separator = sisa ? '.' : '';
-												rupiah31 += separator + ribuan31.join('.');
-											}
-
-											rupiah31 = split[1] != undefined ? rupiah31 + ',' + split[1] : rupiah31;
-											return prefix == undefined ? rupiah31 : (rupiah31 ? 'Rp. ' + rupiah31 : '');
-										}
-									</script>
-								</div>
-                            </div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Anggota Koperasi</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_anggota_koperasi" required name="e_anggota_koperasi" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_anggota_koperasi_v" required name="e_anggota_koperasi_v"/>
-								<script language="JavaScript">
-										var rupiah41 = document.getElementById('e_anggota_koperasi');
-										rupiah41.addEventListener('keyup', function(e) {
-											rup41 = this.value.replace(/\D/g, '');
-											$('#e_anggota_koperasi_v').val(rup41);
-											rupiah41.value = formatRupiah41(this.value, 'Rp. ');
-										});
-
-										function formatRupiah41(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah41 = split[0].substr(0, sisa),
-												ribuan41 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan41) {
-												separator = sisa ? '.' : '';
-												rupiah41 += separator + ribuan41.join('.');
-											}
-
-											rupiah41 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah41;
-											return prefix == undefined ? rupiah41 : (rupiah41 ? 'Rp. ' + rupiah41 : '');
-										}
-									</script>
-								</div>
-                            </div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kas / Bon</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_kas_bon" required name="e_kas_bon" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_kas_bon_v" required name="e_kas_bon_v"/>
-								<script language="JavaScript">
-										var rupiah51 = document.getElementById('e_kas_bon');
-										rupiah51.addEventListener('keyup', function(e) {
-											rup51 = this.value.replace(/\D/g, '');
-											$('#e_kas_bon_v').val(rup51);
-											rupiah51.value = formatRupiah51(this.value, 'Rp. ');
-										});
-
-										function formatRupiah51(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah51 = split[0].substr(0, sisa),
-												ribuan51 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan51) {
-												separator = sisa ? '.' : '';
-												rupiah51 += separator + ribuan51.join('.');
-											}
-
-											rupiah51 = split[1] != undefined ? rupiah51 + ',' + split[1] : rupiah51;
-											return prefix == undefined ? rupiah51 : (rupiah51 ? 'Rp. ' + rupiah51 : '');
-										}
-									</script>
-								</div>
-                            </div>
                             
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ijin / Telat</label>
+                            <div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> THR </label>
 								<div class="col-sm-9">
-								<input type="text" id="e_ijin_telat" required name="e_ijin_telat" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_ijin_telat_v" required name="e_ijin_telat_v"/>
+								<input type="text" id="e_thr" required name="e_thr" placeholder="THR " class="form-control" />
+                                <input type="hidden" id="e_thr_v" required name="e_thr_v"/>
 								<script language="JavaScript">
-										var rupiah61 = document.getElementById('e_ijin_telat');
-										rupiah61.addEventListener('keyup', function(e) {
-											rup61 = this.value.replace(/\D/g, '');
-											$('#e_ijin_telat_v').val(rup61);
-											rupiah61.value = formatRupiah51(this.value, 'Rp. ');
+										var e_rupiah3 = document.getElementById('e_thr');
+										e_rupiah3.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#e_thr_v').val(rup3);
+											e_rupiah3.value = formatRupiah3(this.value, 'Rp. ');
 										});
 
-										function formatRupiah51(angka, prefix) {
+										function formatRupiah3(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah61 = split[0].substr(0, sisa),
-												ribuan61 = split[0].substr(sisa).match(/\d{3}/gi);
+												e_rupiah3 = split[0].substr(0, sisa),
+												e_ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan61) {
+											if (e_ribuan3) {
 												separator = sisa ? '.' : '';
-												rupiah61 += separator + ribuan61.join('.');
+												e_rupiah3 += separator + e_ribuan3.join('.');
 											}
 
-											rupiah61 = split[1] != undefined ? rupiah61 + ',' + split[1] : rupiah61;
-											return prefix == undefined ? rupiah61 : (rupiah61 ? 'Rp. ' + rupiah61 : '');
+											e_rupiah3 = split[1] != undefined ? e_rupiah3 + ',' + split[1] : e_rupiah3;
+											return prefix == undefined ? e_rupiah3 : (e_rupiah3 ? 'Rp. ' + e_rupiah3 : '');
 										}
 									</script>
 								</div>
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> BMT</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Kinerja</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_bmt" required name="e_bmt" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_bmt_v" required name="e_bmt_v"/>
+								<input type="text" id="e_tjkinerja" required name="e_tjkinerja" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tjkinerja_v" required name="e_tjkinerja_v"/>
 								<script language="JavaScript">
-										var rupiah71 = document.getElementById('e_bmt');
-										rupiah71.addEventListener('keyup', function(e) {
-											rup71 = this.value.replace(/\D/g, '');
-											$('#e_bmt_v').val(rup71);
-											rupiah71.value = formatRupiah71(this.value, 'Rp. ');
+										var e_rupiah4 = document.getElementById('e_tjkinerja');
+										e_rupiah4.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#e_tjkinerja_v').val(rup4);
+											e_rupiah4.value = formatRupiah4(this.value, 'Rp. ');
 										});
 
-										function formatRupiah71(angka, prefix) {
+										function formatRupiah4(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah71 = split[0].substr(0, sisa),
-												ribuan71 = split[0].substr(sisa).match(/\d{3}/gi);
+												e_rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan71) {
+											if (ribuan4) {
 												separator = sisa ? '.' : '';
-												rupiah71 += separator + ribuan71.join('.');
+												e_rupiah4 += separator + ribuan4.join('.');
 											}
 
-											rupiah71 = split[1] != undefined ? rupiah71 + ',' + split[1] : rupiah71;
-											return prefix == undefined ? rupiah71 : (rupiah71 ? 'Rp. ' + rupiah71 : '');
+											e_rupiah4 = split[1] != undefined ? e_rupiah4 + ',' + split[1] : e_rupiah4;
+											return prefix == undefined ? e_rupiah4 : (e_rupiah4 ? 'Rp. ' + e_rupiah4 : '');
 										}
 									</script>
 								</div>
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Koperasi</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Lain Lanin</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_koperasi" required name="e_koperasi" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_koperasi_v" required name="e_koperasi_v"/>
+								<input type="text" id="e_tjlain" required name="e_tjlain" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tjlain_v" required name="e_tjlain_v"/>
 								<script language="JavaScript">
-										var rupiah81 = document.getElementById('e_koperasi');
-										rupiah81.addEventListener('keyup', function(e) {
-											rup81 = this.value.replace(/\D/g, '');
-											$('#e_koperasi_v').val(rup81);
-											rupiah81.value = formatRupiah8(this.value, 'Rp. ');
+										var e_rupiah5 = document.getElementById('e_tjlain');
+										e_rupiah5.addEventListener('keyup', function(e) {
+											rup5 = this.value.replace(/\D/g, '');
+											$('#e_tjlain_v').val(rup5);
+											e_rupiah5.value = formatRupiah5(this.value, 'Rp. ');
 										});
 
-										function formatRupiah81(angka, prefix) {
+										function formatRupiah5(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah81 = split[0].substr(0, sisa),
-												ribuan81 = split[0].substr(sisa).match(/\d{3}/gi);
+												e_rupiah5 = split[0].substr(0, sisa),
+												ribuan5 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan81) {
+											if (ribuan5) {
 												separator = sisa ? '.' : '';
-												rupiah81 += separator + ribuan81.join('.');
+												e_rupiah5 += separator + ribuan5.join('.');
 											}
 
-											rupiah81 = split[1] != undefined ? rupiah81 + ',' + split[1] : rupiah81;
-											return prefix == undefined ? rupiah81 : (rupiah81 ? 'Rp. ' + rupiah81 : '');
+											e_rupiah5 = split[1] != undefined ? e_rupiah5 + ',' + split[1] : e_rupiah5;
+											return prefix == undefined ? e_rupiah5 : (e_rupiah5 ? 'Rp. ' + e_rupiah5 : '');
 										}
 									</script>
 								</div>
-							</div>
-							
+                            </div>
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Inval</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Malam / Lembur</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_inval" required name="e_inval" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_inval_v" required name="e_inval_v"/>
+								<input type="text" id="e_tj_malam_lembur" required name="e_tj_malam_lembur" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tj_malam_lembur_v" required name="e_tj_malam_lembur_v"/>
 								<script language="JavaScript">
-										var rupiah91 = document.getElementById('e_inval');
-										rupiah91.addEventListener('keyup', function(e) {
-											rup81 = this.value.replace(/\D/g, '');
-											$('#e_inval_v').val(rup81);
-											rupiah91.value = formatRupiah9(this.value, 'Rp. ');
+										var e_rupiah6 = document.getElementById('e_tj_malam_lembur');
+										e_rupiah6.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#e_tj_malam_lembur_v').val(rup6);
+											e_rupiah6.value = formatRupiah6(this.value, 'Rp. ');
+										});
+
+										function formatRupiah6(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												e_rupiah6 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												e_rupiah6 += separator + ribuan6.join('.');
+											}
+
+											e_rupiah6 = split[1] != undefined ? e_rupiah6 + ',' + split[1] : e_rupiah6;
+											return prefix == undefined ? rupiah5 : (e_rupiah6 ? 'Rp. ' + e_rupiah6 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 1 </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_ket_tunj_khusus1" name="e_ket_tunj_khusus1" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 1</label>
+								<div class="col-sm-9">
+								<input type="text" id="e_tunj_khusus1" required name="e_tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tunj_khusus1_v" required name="e_tunj_khusus1_v"/>
+								<script language="JavaScript">
+										var e_rupiah9 = document.getElementById('e_tunj_khusus1');
+										e_rupiah9.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#e_tunj_khusus1_v').val(rup6);
+											e_rupiah9.value = formatRupiah9(this.value, 'Rp. ');
 										});
 
 										function formatRupiah9(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah91 = split[0].substr(0, sisa),
-												ribuan91 = split[0].substr(sisa).match(/\d{3}/gi);
+												e_rupiah9 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan91) {
+											if (ribuan6) {
 												separator = sisa ? '.' : '';
-												rupiah91 += separator + ribuan91.join('.');
+												e_rupiah9 += separator + ribuan6.join('.');
 											}
 
-											rupiah91 = split[1] != undefined ? rupiah91 + ',' + split[1] : rupiah91;
-											return prefix == undefined ? rupiah91 : (rupiah91 ? 'Rp. ' + rupiah91 : '');
+											e_rupiah9 = split[1] != undefined ? e_rupiah9 + ',' + split[1] : e_rupiah9;
+											return prefix == undefined ? rupiah5 : (e_rupiah9 ? 'Rp. ' + e_rupiah9 : '');
 										}
 									</script>
 								</div>
-							</div>
-							
+                            </div>
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Toko Al Hamra</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 2 </label>
 								<div class="col-sm-9">
-								<input type="text" id="e_toko" required name="e_toko" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_toko_v" required name="e_toko_v"/>
+									<input type="text" id="e_ket_tunj_khusus2" name="e_ket_tunj_khusus2" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 2</label>
+								<div class="col-sm-9">
+								<input type="text" id="e_tunj_khusus2" required name="e_tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_tunj_khusus2_v" required name="e_tunj_khusus2_v"/>
 								<script language="JavaScript">
-										var rupiah101 = document.getElementById('e_toko');
-										rupiah101.addEventListener('keyup', function(e) {
-											rup8 = this.value.replace(/\D/g, '');
-											$('#e_toko_v').val(rup8);
-											rupiah101.value = formatRupiah101(this.value, 'Rp. ');
+										var e_rupiah10 = document.getElementById('e_tunj_khusus2');
+										e_rupiah10.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#e_tunj_khusus2_v').val(rup6);
+											e_rupiah10.value = formatRupiah6(this.value, 'Rp. ');
 										});
 
-										function formatRupiah101(angka, prefix) {
+										function formatRupiah6(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah101 = split[0].substr(0, sisa),
-												ribuan101 = split[0].substr(sisa).match(/\d{3}/gi);
+												e_rupiah10 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan101) {
+											if (ribuan6) {
 												separator = sisa ? '.' : '';
-												rupiah101 += separator + ribuan101.join('.');
+												e_rupiah10 += separator + ribuan6.join('.');
 											}
 
-											rupiah101 = split[1] != undefined ? rupiah101 + ',' + split[1] : rupiah101;
-											return prefix == undefined ? rupiah101 : (rupiah101 ? 'Rp. ' + rupiah101 : '');
+											e_rupiah10 = split[1] != undefined ? e_rupiah10 + ',' + split[1] : e_rupiah10;
+											return prefix == undefined ? rupiah5 : (e_rupiah10 ? 'Rp. ' + e_rupiah10 : '');
 										}
 									</script>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Lain - Lain</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_lain" required name="e_lain" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_lain_v" required name="e_lain_v"/>
-								<script language="JavaScript">
-										var rupiah111 = document.getElementById('e_lain');
-										rupiah111.addEventListener('keyup', function(e) {
-											rup8 = this.value.replace(/\D/g, '');
-											$('#e_lain_v').val(rup8);
-											rupiah111.value = formatRupiah111(this.value, 'Rp. ');
-										});
-
-										function formatRupiah111(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah111 = split[0].substr(0, sisa),
-												ribuan111 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan111) {
-												separator = sisa ? '.' : '';
-												rupiah111 += separator + ribuan111.join('.');
-											}
-
-											rupiah111 = split[1] != undefined ? rupiah111 + ',' + split[1] : rupiah111;
-											return prefix == undefined ? rupiah111 : (rupiah111 ? 'Rp. ' + rupiah111 : '');
-										}
-									</script>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPH 21</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_pph21" required name="e_pph21" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_pph21_v" required name="e_pph21_v"/>
-								<script language="JavaScript">
-										var rupiah121 = document.getElementById('e_pph21');
-										rupiah121.addEventListener('keyup', function(e) {
-											rup8 = this.value.replace(/\D/g, '');
-											$('#e_pph21_v').val(rup8);
-											rupiah121.value = formatRupiah121(this.value, 'Rp. ');
-										});
-
-										function formatRupiah121(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah121 = split[0].substr(0, sisa),
-												ribuan121 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan121) {
-												separator = sisa ? '.' : '';
-												rupiah121 += separator + ribuan121.join('.');
-											}
-
-											rupiah121 = split[1] != undefined ? rupiah121 + ',' + split[1] : rupiah121;
-											return prefix == undefined ? rupiah121 : (rupiah121 ? 'Rp. ' + rupiah121 : '');
-										}
-									</script>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_tawun" required name="e_tawun" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_tawun_v" required name="e_tawun_v"/>
-								<script language="JavaScript">
-										var rupiah131 = document.getElementById('e_tawun');
-										rupiah131.addEventListener('keyup', function(e) {
-											rup8 = this.value.replace(/\D/g, '');
-											$('#e_tawun_v').val(rup8);
-											rupiah131.value = formatRupiah131(this.value, 'Rp. ');
-										});
-
-										function formatRupiah131(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah131 = split[0].substr(0, sisa),
-												ribuan131 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan131) {
-												separator = sisa ? '.' : '';
-												rupiah131 += separator + ribuan131.join('.');
-											}
-
-											rupiah131 = split[1] != undefined ? rupiah131 + ',' + split[1] : rupiah131;
-											return prefix == undefined ? rupiah131 : (rupiah131 ? 'Rp. ' + rupiah131 : '');
-										}
-									</script>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">BPJS</label>
-								<div class="col-sm-9">
-								<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_bpjs_v" required name="e_bpjs_v"/>
-								<script language="JavaScript">
-										var rupiah141 = document.getElementById('e_bpjs');
-										rupiah141.addEventListener('keyup', function(e) {
-											rup8 = this.value.replace(/\D/g, '');
-											$('#e_bpjs_v').val(rup8);
-											rupiah141.value = formatRupiah141(this.value, 'Rp. ');
-										});
-
-										function formatRupiah141(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah141 = split[0].substr(0, sisa),
-												ribuan141 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan141) {
-												separator = sisa ? '.' : '';
-												rupiah141 += separator + ribuan141.join('.');
-											}
-
-											rupiah141 = split[1] != undefined ? rupiah141 + ',' + split[1] : rupiah141;
-											return prefix == undefined ? rupiah141 : (rupiah141 ? 'Rp. ' + rupiah141 : '');
-										}
-									</script>
-								</div>
-							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
-								<div class="col-sm-9">
-									<input type="date" id="e_periode" required name="e_periode" placeholder="Rp. 10.000" class="form-control" />
 								</div>
                             </div>
 					</div>
@@ -619,7 +541,7 @@
 				<th>No</th>
 				<th>Kode Karyawan</th>
 				<th>Nama Karyawan</th>
-				<th>Periode</th>
+				<!-- <th>Periode</th> -->
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -681,8 +603,11 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].nip + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
+						// '<td>' + data[i].periode + '</td>' +
 						'<td>' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<i class="ace-icon fa fa-pencil bigger-120"> Edit</i>' +
+						'</button> ' + 
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
 						'</button> ' + 
@@ -707,6 +632,80 @@
 
 		});
     }
+
+	$('#show_data').on('click', '.item_edit', function() {
+		var id = $(this).data('id');
+		$('#modalEdit').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('modulpayroll/pendapatanlainkaryawan/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id').val(data[0].id);
+				$('#e_nip').val(data[0].nip);
+				$('#e_ket_tunj_khusus1').val(data[0].ket_tunj_khusus1);
+				$('#e_ket_tunj_khusus2').val(data[0].ket_tunj_khusus2);
+
+				var a = ConvertFormatRupiah(data[0].thr, 'Rp. ');
+				$('#e_thr').val(a);
+				$('#e_thr_v').val(data[0].thr);
+
+				var b = ConvertFormatRupiah(data[0].tunjangan, 'Rp. ');
+				$('#e_tjkinerja').val(b);
+				$('#e_tjkinerja_v').val(data[0].tunjangan);
+
+				var c = ConvertFormatRupiah(data[0].lain, 'Rp. ');
+				$('#e_tjlain').val(c);
+				$('#e_tjlain_v').val(data[0].lain);
+				
+				var d = ConvertFormatRupiah(data[0].tj_malam_lembur, 'Rp. ');
+				$('#e_tj_malam_lembur').val(d);
+				$('#e_tj_malam_lembur_v').val(data[0].tj_malam_lembur);
+
+				var e = ConvertFormatRupiah(data[0].tunj_khusus1, 'Rp. ');
+				$('#e_tunj_khusus1').val(e);
+				$('#e_tunj_khusus1_v').val(data[0].tunj_khusus1);
+				
+				var f = ConvertFormatRupiah(data[0].tunj_khusus2, 'Rp. ');
+				$('#e_tunj_khusus2').val(f);
+				$('#e_tunj_khusus2_v').val(data[0].tunj_khusus2);
+			}
+		});
+    });
+
+	if ($("#formEdit").length > 0) {
+        $("#formEdit").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                $('#btn_edit').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulpayroll/pendapatanlainkaryawan/update') ?>",
+                    type: "POST",
+                    data: $('#formEdit').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Ubah');
+                        if (response == true) {
+                            document.getElementById("formEdit").reset();
+                            swalEditSuccess();
+                            show_data();
+                            $('#modalEdit').modal('hide');
+                        } else if (response == 401) {
+                            swalIdDouble('NIP Sudah Terdaftar');
+                        } else {
+                            swalEditFailed();
+                        }
+                    }
+                });
+            }
+        })
+	}
     
     $('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
@@ -737,4 +736,21 @@
 			}
 		})
 	})
+
+	function ConvertFormatRupiah(angka, prefix) {
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if (ribuan) {
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+
+		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
 </script>

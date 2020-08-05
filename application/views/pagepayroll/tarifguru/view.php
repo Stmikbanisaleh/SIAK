@@ -229,6 +229,74 @@
 									</script>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Aksel </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunjangan_aksel" required name="tunjangan_aksel" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunjangan_aksel_v" required name="tunjangan_aksel_v" />
+									<script language="JavaScript">
+										var rupiah10 = document.getElementById('tunjangan_aksel');
+										rupiah10.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tunjangan_aksel_v').val(rup1);
+											rupiah10.value = formatRupiah1(this.value, 'Rp. ');
+										});
+
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah10= split[0].substr(0, sisa),
+												ribuan10 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan10) {
+												separator = sisa ? '.' : '';
+												rupiah10 += separator + ribuan10.join('.');
+											}
+
+											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+											return prefix == undefined ? rupiah10 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Internasional </label>
+								<div class="col-sm-9">
+									<input type="text" id="tunjangan_internasional" required name="tunjangan_internasional" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tunjangan_internasional_v" required name="tunjangan_internasional_v" />
+									<script language="JavaScript">
+										var rupiah11 = document.getElementById('tunjangan_internasional');
+										rupiah11.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tunjangan_internasional_v').val(rup1);
+											rupiah11.value = formatRupiah1(this.value, 'Rp. ');
+										});
+
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah11= split[0].substr(0, sisa),
+												ribuan11 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan11) {
+												separator = sisa ? '.' : '';
+												rupiah11 += separator + ribuan11.join('.');
+											}
+
+											rupiah11 = split[1] != undefined ? rupiah11 + ',' + split[1] : rupiah11;
+											return prefix == undefined ? rupiah11 : (rupiah11 ? 'Rp. ' + rupiah11 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Pembayaran </label>
 								<div class="col-sm-9">
