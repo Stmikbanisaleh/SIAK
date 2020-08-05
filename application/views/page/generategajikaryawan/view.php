@@ -91,75 +91,58 @@
 		$('#modalTambah').modal('show');
 	});
 
-	if ($("#formImport").length > 0) {
-		$("#formImport").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true,
-				},
-				telepon: {
-					required: true,
-					digits: true,
-					maxlength: 14,
-					minlength: 10,
-				},
-				alamat: {
-					required: true,
-					minlength: 10,
-				},
-				email: {
-					required: true,
-					email: true,
-				},
-			},
-			messages: {
-				nama: {
-					required: "Nama Guru harus diisi!"
-				},
-				telepon: {
-					required: "Telepon harus diisi!"
-				},
-				alamat: {
-					required: "Harap Masukan alamat dengan benar!"
-				},
-			},
-			submitHandler: function(form) {
-				formdata = new FormData(form);
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('jabatan/import') ?>",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					cache: false,
-					async: false,
-					success: function(data) {
-						console.log(data);
-						$('#my-modal2').modal('hide');
-						if (data == 1 || data == true) {
-							document.getElementById("formImport").reset();
-							swalInputSuccess();
-							show_data();
-						} else if (data == 401) {
-							document.getElementById("formImport").reset();
-							swalIdDouble();
-						} else {
-							document.getElementById("formImport").reset();
-							swalInputFailed();
-						}
-					}
-				});
-				return false;
-			}
-		});
-	}
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
+				// $('#btn_simpan').html('Sending..');
+				// $.ajax({
+				// 	url: "<?php echo base_url('generategajikaryawan/generate') ?>",
+				// 	type: "POST",
+				// 	data: $('#formTambah').serialize(),
+				// 	dataType: "json",
+				// 	success: function(response) {
+				// 		$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+				// 			'Simpan');
+				// 		if (response == true) {
+				// 			document.getElementById("formTambah").reset();
+				// 			swalInputSuccess();
+				// 			show_data();
+				// 			$('#modalTambah').modal('hide');
+				// 		} else if (response == 401) {
+				// 			swalIdDouble('Nama Jabatan Sudah digunakan!');
+				// 		} else {
+				// 			swalInputFailed();
+				// 		}
+				// 		// setTimeout(function(){
+				// 		// // $('#res_message').hide();
+				// 		// // $('#msg_div').hide();
+				// 		// },3000);
+				// 	}
+				// });
+			}
+		})
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		show_data();
+		$('#table_id').DataTable();
+	});
+
+	$('#btn_simpan').on('click', function() {
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda yakin aja mengenerate atau kemungkinan data gaji pada bulan ini akan berubah!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Generate!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
 				$('#btn_simpan').html('Sending..');
 				$.ajax({
 					url: "<?php echo base_url('generategajikaryawan/generate') ?>",
@@ -179,66 +162,11 @@
 						} else {
 							swalInputFailed();
 						}
-						// setTimeout(function(){
-						// // $('#res_message').hide();
-						// // $('#msg_div').hide();
-						// },3000);
 					}
 				});
 			}
 		})
-	}
-
-	if ($("#formEdit").length > 0) {
-		$("#formEdit").validate({
-			errorClass: "my-error-class",
-			validClass: "my-valid-class",
-			rules: {
-				e_id: {
-					required: true
-				},
-				e_nama: {
-					required: true
-				},
-			},
-			messages: {
-
-				e_nama: {
-					required: "Nama jabatan harus diisi!"
-				},
-
-			},
-			submitHandler: function(form) {
-				$('#btn_edit').html('Sending..');
-				$.ajax({
-					url: "<?php echo base_url('jabatan/update') ?>",
-					type: "POST",
-					data: $('#formEdit').serialize(),
-					dataType: "json",
-					success: function(response) {
-						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-							'Ubah');
-						if (response == true) {
-							document.getElementById("formEdit").reset();
-							swalEditSuccess();
-							show_data();
-							$('#modalEdit').modal('hide');
-						} else if (response == 401) {
-							swalIdDouble('Nama Jabatan Sudah digunakan!');
-						} else {
-							swalEditFailed();
-						}
-					}
-				});
-			}
-		})
-	}
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		show_data();
-		$('#table_id').DataTable();
-	});
+	})
 
 	function generate() {
 		$('#btn_generate').html('Generating...');
@@ -310,59 +238,4 @@
 		$('#modalTambah').modal('show');
 	});
 
-	//get data for update record
-	$('#show_data').on('click', '.item_edit', function() {
-		document.getElementById("formEdit").reset();
-		var id = $(this).data('id');
-		$('#modalEdit').modal('show');
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url('jabatan/tampil_byid') ?>",
-			async: true,
-			dataType: "JSON",
-			data: {
-				id: id,
-			},
-			success: function(data) {
-				$('#e_id').val(data[0].username);
-				$('#e_nama').val(data[0].NAMAJABATAN);
-				$('#e_keterangan').val(data[0].KET);
-
-			}
-		});
-	});
-
-	$('#show_data').on('click', '.item_hapus', function() {
-		var id = $(this).data('id');
-		Swal.fire({
-			title: 'Apakah anda yakin?',
-			text: "Anda tidak akan dapat mengembalikan ini!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Ya, Hapus!',
-			cancelButtonText: 'Batal'
-		}).then((result) => {
-			if (result.value) {
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('jabatan/delete') ?>",
-					async: true,
-					dataType: "JSON",
-					data: {
-						id: id,
-					},
-					success: function(data) {
-						show_data();
-						Swal.fire(
-							'Terhapus!',
-							'Data sudah dihapus.',
-							'success'
-						)
-					}
-				});
-			}
-		})
-	})
 </script>

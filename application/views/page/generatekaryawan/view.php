@@ -444,37 +444,5 @@
 		});
 	});
 
-	$('#show_data').on('click', '.item_hapus', function() {
-		var id = $(this).data('id');
-		Swal.fire({
-			title: 'Apakah anda yakin?',
-			text: "Anda tidak akan dapat mengembalikan ini!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Ya, Hapus!',
-			cancelButtonText: 'Batal'
-		}).then((result) => {
-			if (result.value) {
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url('jabatan/delete') ?>",
-					async: true,
-					dataType: "JSON",
-					data: {
-						id: id,
-					},
-					success: function(data) {
-						show_data();
-						Swal.fire(
-							'Terhapus!',
-							'Data sudah dihapus.',
-							'success'
-						)
-					}
-				});
-			}
-		})
-	})
+
 </script>
