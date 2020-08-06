@@ -107,8 +107,6 @@
                 <th>Agama</th>
                 <th>Kelas</th>
                 <th>Kelas Saat ini</th>
-                <th>Golongan Kelas</th>
-                <th class="col-sm-2 text-center">Action</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -250,45 +248,6 @@
                                 '<td>' + data[i].v_agama + '</td>' +
                                 '<td>' + data[i].Kelas + '.' + data[i].GolKelas + '</td>' +
                                 '<td>' + data[i].Kelas_naik + '</td>' +
-                                '<td class="text-center">';
-                            html += '<select class="form-control" name="gol" id="gol">';
-                            if (data[i].GolKelas == null) {
-
-                            } else {
-                                html += '<option value="' + data[i].GolKelas + '" selected=``>' + data[i].GolKelas + '</option>'
-                            }
-                            html += '<option value="">--Pilih--</option>' +
-                                <?php foreach ($myrev as $value) {
-                                    echo "'<option value=" . $value->NAMA_REV . ">" . $value->NAMA_REV . "</option>'+";
-                                }
-                                ?> '</select>' +
-                                '</td>' +
-                                // '<td>asd</td>'
-                                '<td>';
-                            if (data[i].Kelas != null) {
-                                html += '<button class="btn btn-xs btn-success item_ubah" title="Ubah" data-gol="' + data[i].GolKelas + '" data-id_Kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>' +
-                                    '</button> &nbsp' +
-                                    '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_naik" title="Naik" data-id_kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-                                    '</button> &nbsp' +
-                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas_turun + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
-                                    '</button>';
-                            } else {
-                                html += '<button class="btn btn-xs btn-success item_ubah" title="Ubah" data-gol="' + data[i].GolKelas + '" data-id_Kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>' +
-                                    '</button> &nbsp' +
-                                    '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_naik" title="Naik" data-id_kelas_naik="' + data[i].id_Kelas_naik + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-cloud-upload bigger-120"></i>' +
-                                    '</button> &nbsp' +
-                                    '<button class="btn btn-xs btn-warning item_tinggal" title="Tinggal" data-id_kelas="' + data[i].id_Kelas_turun + '" data-noreg="' + data[i].NOINDUK + '">' +
-                                    '<i class="ace-icon fa fa-cloud-download bigger-120"></i>' +
-                                    '</button>';
-                            }
-                            html += '</td>' +
-                                // '<td>' + data[i].Kelas_naik + '</td>' +
-
                                 '</tr>';
                             no++;
                         }

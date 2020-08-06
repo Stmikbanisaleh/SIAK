@@ -15,7 +15,7 @@ class Model_tagihan extends CI_model
     public function getnis($where, $ta)
     {
         $where = "WHERE NIS='".$where."' and saldopembayaran_sekolah.TA = '".$ta."' ";
-        return  $this->db->query("SELECT saldopembayaran_sekolah.idsaldo,
+        return  $this->db->query("SELECT distinct saldopembayaran_sekolah.idsaldo,
 		saldopembayaran_sekolah.NIS,
 		saldopembayaran_sekolah.Noreg,
 		(SELECT z.NMSISWA FROM mssiswa z WHERE z.Noreg = saldopembayaran_sekolah.Noreg)AS nama,

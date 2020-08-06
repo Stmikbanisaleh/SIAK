@@ -77,7 +77,7 @@ class Tunggakan extends CI_Controller
 						$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SRG','KGT','GDG')");
+					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SPP','SRG','KGT','GDG')");
 						$n = $tarif->num_rows();
 						if ($tarif) {
 							$v = $tarif->result_array();
@@ -119,9 +119,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '$vnis'");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."'");
 								}
 								$data = array(
 									'NIS' => $vnis,

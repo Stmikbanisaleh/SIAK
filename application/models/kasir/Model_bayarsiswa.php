@@ -3,21 +3,22 @@
 class Model_bayarsiswa extends CI_model
 {
 
-    public function view_visi($table)
+    public function getkelas($data)
     {
-        $this->db->where('jenis =', '1');
-        return $this->db->get($table);
+        return $this->db->query("select TAHUN from mssiswa where NOINDUK = '".$data."'");
     }
 
-    public function view_tagihan($siswa, $kelas, $thnakad){
+    public function view_tagihan($siswa, $kelas, $thnakad ,$thn){
         return $this->db->query("SELECT *,
+                                    FORMAT(mq.nom_spp-mq.byr_spp, 0) blmbyr_spp,
                                     FORMAT(mq.nom_gdg-mq.byr_gdg, 0) blmbyr_gdg,
                                     FORMAT(mq.nom_srg-mq.byr_srg, 0) blmbyr_srg,
                                     FORMAT(mq.nom_kgt-mq.byr_kgt, 0) blmbyr_kgt,
+                                    FORMAT(mq.nom_spp, 0) nominal_spp,
                                     FORMAT(mq.nom_gdg, 0) nominal_gdg,
                                     FORMAT(mq.nom_srg, 0) nominal_srg,
                                     FORMAT(mq.nom_kgt, 0) nominal_kgt,
-                                    FORMAT(TotalTagihan2-(byr_gdg+byr_srg+byr_kgt), 0) blm_bayar
+                                    FORMAT(TotalTagihan2-(byr_spp+byr_gdg+byr_srg+byr_kgt), 0) blm_bayar
                                 FROM
                                 (SELECT
                                     (SELECT z.THNAKAD FROM tbakadmk z WHERE z.ID=saldopembayaran_sekolah.TA) AS TAS,
@@ -32,28 +33,54 @@ class Model_bayarsiswa extends CI_model
                                     saldopembayaran_sekolah.TotalTagihan TotalTagihan2,
                                     FORMAT(saldopembayaran_sekolah.TotalTagihan, 0) TotalTagihan,
                                     (SELECT 
+                                        ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_spp/100), 0)
+                                        FROM tarif_berlaku
+                                        WHERE ThnMasuk = mssiswa.TAHUN
+                                        AND kodesekolah = mssiswa.PS
+                                        AND Kodejnsbayar='SPP'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') nom_spp,
+                                    (SELECT 
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_gdg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='GDG') nom_GDG,
+                                        AND Kodejnsbayar='GDG'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') nom_GDG,
                                     (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_srg/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='SRG') nom_srg,
+                                        AND Kodejnsbayar='SRG'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') nom_SRG,
                                     (SELECT
                                         ROUND(Nominal-(Nominal*saldopembayaran_sekolah.pot_kgt/100), 0)
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='KGT') nom_KGT,
+                                        AND Kodejnsbayar='KGT'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') nom_KGT,
                                     (SELECT
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='GDG'))
+                                            AND z.kodejnsbayar='SPP'
+                                            AND TA='$thnakad'))
+                                        FROM
+                                            pembayaran_sekolah
+                                        WHERE NIS = mssiswa.NOINDUK
+                                        AND Kelas = saldopembayaran_sekolah.Kelas
+                                        AND TA='$thnakad') byr_spp,
+                                    (SELECT
+                                        SUM((SELECT SUM(z.nominalbayar)
+                                            FROM detail_bayar_sekolah z
+                                            WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
+                                            AND z.kodejnsbayar='GDG'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -63,7 +90,8 @@ class Model_bayarsiswa extends CI_model
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='SRG'))
+                                            AND z.kodejnsbayar='SRG'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -73,7 +101,8 @@ class Model_bayarsiswa extends CI_model
                                         SUM((SELECT SUM(z.nominalbayar)
                                             FROM detail_bayar_sekolah z
                                             WHERE z.Nopembayaran=pembayaran_sekolah.Nopembayaran
-                                            AND z.kodejnsbayar='KGT'))
+                                            AND z.kodejnsbayar='KGT'
+                                            AND TA='$thnakad'))
                                         FROM
                                             pembayaran_sekolah
                                         WHERE NIS = mssiswa.NOINDUK
@@ -84,22 +113,36 @@ class Model_bayarsiswa extends CI_model
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='GDG') id_gdg,
+                                        AND TA ='$thnakad'
+                                        AND ThnMasuk='$thn'
+                                        AND Kodejnsbayar='SPP') id_spp,
                                     (SELECT
                                         idtarif
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='SRG') id_srg,
+                                        AND Kodejnsbayar='GDG'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') id_gdg,
                                     (SELECT
                                         idtarif
                                         FROM tarif_berlaku
                                         WHERE ThnMasuk = mssiswa.TAHUN
                                         AND kodesekolah = mssiswa.PS
-                                        AND Kodejnsbayar='KGT') id_kgt
+                                        AND Kodejnsbayar='SRG'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') id_srg,
+                                    (SELECT
+                                        idtarif
+                                        FROM tarif_berlaku
+                                        WHERE ThnMasuk = mssiswa.TAHUN
+                                        AND kodesekolah = mssiswa.PS
+                                        AND Kodejnsbayar='KGT'
+                                        AND ThnMasuk='$thn'
+                                        AND TA='$thnakad') id_kgt
                                     FROM saldopembayaran_sekolah
                                     INNER JOIN mssiswa ON saldopembayaran_sekolah.NOREG = mssiswa.NOREG
-                                    WHERE NIS = '$siswa' AND Kelas='$kelas') mq");
+                                    WHERE NIS = '$siswa' AND Kelas='$kelas' and TA = '$thnakad') mq");
     }
 
     public function pembsis_detail($siswa, $kelas){

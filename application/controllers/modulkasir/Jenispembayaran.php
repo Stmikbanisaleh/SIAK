@@ -117,6 +117,7 @@ class Jenispembayaran extends CI_Controller
         }
     }
 
+    
     public function update()
     {
         $data_id = array(
@@ -136,10 +137,7 @@ class Jenispembayaran extends CI_Controller
         $data_id = array(
             'Kodejnsbayar'  => $this->input->post('id')
         );
-        $data = array(
-            'isdeleted'  => 1,
-        );
-        $action = $this->model_jenis->update($data_id, $data, 'jenispembayaran');
+        $action = $this->model_jenis->delete($data_id, 'jenispembayaran');
         echo json_encode($action);
     }
 }

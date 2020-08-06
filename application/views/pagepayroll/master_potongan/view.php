@@ -38,19 +38,6 @@
 									</select>
 								</div>
                             </div>
-                            
-                            <!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Potongan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="PotonganNama" id="PotonganNama">
-                                        <option value="">-- Pilih Jenis Potongan --</option>
-                                        <option value="Arisan">Arisan</option>
-                                        <option value="Asuransi Kesehatan">Asuransi Kesehatan</option>
-                                        <option value="Kasbon">Kasbon</option>
-									</select>
-								</div>
-							</div> -->
-
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
 								<div class="col-sm-9">
@@ -383,7 +370,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Ta'wun</label>
 								<div class="col-sm-9">
 								<input type="text" id="tawun" required name="tawun" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="tawun_v" required name="tawun_v"/>
@@ -480,13 +467,38 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">JHT(Jaminan Hari Tua)</label>
 								<div class="col-sm-9">
-									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
+								<input type="text" id="jht" required name="jht" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="jht_v" required name="jht_v"/>
+								<script language="JavaScript">
+										var rupiah153 = document.getElementById('jht');
+										rupiah153.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#jht_v').val(rup8);
+											rupiah153.value = formatRupiah131(this.value, 'Rp. ');
+										});
+										function formatRupiah15(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah153 = split[0].substr(0, sisa),
+												ribuan153 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan153) {
+												separator = sisa ? '.' : '';
+												rupiah153 += separator + ribuan153.join('.');
+											}
+
+											rupiah153 = split[1] != undefined ? rupiah153 + ',' + split[1] : rupiah153;
+											return prefix == undefined ? rupiah153 : (rupiah153 ? 'Rp. ' + rupiah153 : '');
+										}
+									</script>
 								</div>
-                            </div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -959,13 +971,38 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">JHT(Jaminan Hari Tua)</label>
 								<div class="col-sm-9">
-									<input type="date" id="e_periode" required name="e_periode" placeholder="Rp. 10.000" class="form-control" />
+								<input type="text" id="e_jht" required name="e_jht" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_jht_v" required name="e_jht_v"/>
+								<script language="JavaScript">
+										var rupiah152 = document.getElementById('e_jht');
+										rupiah152.addEventListener('keyup', function(e) {
+											rup8 = this.value.replace(/\D/g, '');
+											$('#e_jht_v').val(rup8);
+											rupiah152.value = formatRupiah131(this.value, 'Rp. ');
+										});
+										function formatRupiah15(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah152 = split[0].substr(0, sisa),
+												ribuan152 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan152) {
+												separator = sisa ? '.' : '';
+												rupiah152 += separator + ribuan152.join('.');
+											}
+
+											rupiah152 = split[1] != undefined ? rupiah152 + ',' + split[1] : rupiah152;
+											return prefix == undefined ? rupiah152 : (rupiah152 ? 'Rp. ' + rupiah152 : '');
+										}
+									</script>
 								</div>
-                            </div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -998,7 +1035,6 @@
 				<th>No</th>
 				<th>Kode Karyawan</th>
 				<th>Nama Karyawan</th>
-				<th>Periode</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -1058,7 +1094,6 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].id_karyawan + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_potong + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"> Edit </i>' +
@@ -1116,13 +1151,14 @@
 				$('#e_koperasi_v').val(data[0].koperasi);
 				$('#e_inval').val(data[0].inval);
 				$('#e_inval_v').val(data[0].inval);
+				$('#e_jht').val(data[0].jht);
+				$('#e_jht_v').val(data[0].jht);
 				$('#e_toko').val(data[0].toko);
 				$('#e_toko_v').val(data[0].toko);
 				$('#e_lain').val(data[0].lain);
 				$('#e_lain_v').val(data[0].lain);
 				$('#e_pph21').val(data[0].pph21);
 				$('#e_pph21_v').val(data[0].pph21);
-				$('#e_periode').val(data[0].periode);
 				$('#e_tawun').val(data[0].tawun);
 				$('#e_tawun_v').val(data[0].tawun);
 				$('#e_ltq').val(data[0].ltq);
