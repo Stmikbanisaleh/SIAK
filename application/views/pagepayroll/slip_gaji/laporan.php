@@ -360,7 +360,15 @@
 				<tr style="width:70%">
 					<td>Unit Kerja</td>
 					<td>:</td>
-					<td><?= $row['status'] ?></td>
+					<td>
+					<?php
+					if($row['DESCRTBPS'] == 'HADHONAH'){
+						echo 'TAMAN KANAK IT';
+					}else{
+						echo $row['DESCRTBPS'];
+					}
+					?>
+					</td>
 				</tr>
 				<?php
 				}
