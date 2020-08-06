@@ -48,7 +48,6 @@ class Pendapatanlainkaryawan extends CI_Controller
 				$data = array(
 					'nip'  => $this->input->post('nip'),
 					'thr'  => $this->input->post('thr_v'),
-					'tunjangan'  => $this->input->post('tjkinerja_v'),
 					'lain' => $this->input->post('tjlain_v'),
 					'tj_malam_lembur' => $this->input->post('tj_malam_lembur_v'),
 					'tunj_khusus1' => $this->input->post('tunj_khusus1'),
@@ -97,7 +96,6 @@ class Pendapatanlainkaryawan extends CI_Controller
 		$data = array(
 			'nip'  => $this->input->post('e_nip'),
 			'thr'  => $this->input->post('e_thr_v'),
-			'tunjangan'  => $this->input->post('e_tjkinerja_v'),
 			'lain' => $this->input->post('e_tjlain_v'),
 			'tj_malam_lembur' => $this->input->post('e_tj_malam_lembur_v'),
 			'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),

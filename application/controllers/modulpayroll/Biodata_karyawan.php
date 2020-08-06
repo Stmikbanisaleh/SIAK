@@ -129,6 +129,7 @@ class Biodata_karyawan extends CI_Controller
 				'npwp'  => $this->input->post('e_npwp'),
 				'no_telp'  => $this->input->post('e_telp'),
 				'alamat'  => $this->input->post('e_alamat'),
+				'alamat'  => $this->input->post('e_alamat'),
 				'unit_kerja' => $this->input->post('e_unit_kerja'),
 				'pendidikan'  => $this->input->post('e_pendidikan_terakhir'),
 				'tgl_lhr'  => $this->input->post('e_tgl_lahir'),

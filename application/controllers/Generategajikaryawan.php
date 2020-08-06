@@ -123,8 +123,8 @@ class Generategajikaryawan extends CI_Controller
             $bulan = $this->input->post('bln');
             $refresh = $this->db->query("delete from tb_pendapatan_karyawan where tahun  = '" . $year . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
-                $getgaji = $this->db->query("Select a.id_karyawan,a.bpjs,a.tarif as gaji ,a.tunj_pembinaan, a.tunj_keluarga, a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,a.tunj_pegawai_tetap, b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , 
-                (d.toko + d.lain + d.infaq_masjid + d.tawun + d.bpjs + d.anggota_koperasi + d.kas_bon + d.ijin_telat + d.bmt + d.koperasi + d.inval) as potongan, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
+                $getgaji = $this->db->query("Select a.id_karyawan,a.bpjs,a.tarif+a.honor as gaji ,a.tunj_pembinaan, a.tunj_keluarga, a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,a.tunj_pegawai_tetap, b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , 
+                d.jht, d.inval, d.infaq_masjid as infaq_masjid , d.toko  as toko, d.tawun as tawun , d.bpjs as bpjs,  d.anggota_koperasi  as agt_koperasi, d.kas_bon as kas_bon,d.bmt,d.ijin_telat ,d.koperasi , d.lain as lain, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
                 from tarifkaryawan a 
                 join biodata_karyawan b on a.id_karyawan = b.nip
                 join msjabatan c on b.jabatan = c.ID
@@ -134,12 +134,23 @@ class Generategajikaryawan extends CI_Controller
                 $lastday = $this->getLastDateOfMonth($year, $bulan);
                 if (!empty($getgaji)) {
                     foreach ($getgaji as $data) {
+                        $jmljam = 
                         $data = array(
-
                             "employee_number" => $data['id_karyawan'],
                             "nama"    => $data['nama'],
                             "npwp" => $data['npwp'],
-                            "pot_lain" => $data['potongan'],
+                            "pot_lain" => $data['lain'],
+                            "pot_iuran_jht" => $data['jht'],
+                            "pot_infaq_masjid" => $data['infaq_masjid'],
+                            "pot_toko" => $data['toko'],
+                            "pot_tawun" => $data['tawun'],
+                            "pot_bpjs" => $data['bpjs'],
+                            "pot_kas_bon" => $data['kas_bon'],
+                            "pot_bmt" => $data['bmt'],
+                            "pot_inval" => $data['inval'],
+                            "pot_ijin_telat" => $data['ijin_telat'],
+                            "pot_anggota_koperasi" => $data['agt_koperasi'],
+                            "pot_koperasi" => $data['koperasi'],
                             "jabatan" => $data['NAMAJABATAN'],
                             "status" => "",
                             "effective_date" => $year.'-'.$bulan.'-'.$lastday,

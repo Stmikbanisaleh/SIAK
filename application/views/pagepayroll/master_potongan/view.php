@@ -38,19 +38,6 @@
 									</select>
 								</div>
                             </div>
-                            
-                            <!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Potongan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="PotonganNama" id="PotonganNama">
-                                        <option value="">-- Pilih Jenis Potongan --</option>
-                                        <option value="Arisan">Arisan</option>
-                                        <option value="Asuransi Kesehatan">Asuransi Kesehatan</option>
-                                        <option value="Kasbon">Kasbon</option>
-									</select>
-								</div>
-							</div> -->
-
                             <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
 								<div class="col-sm-9">
@@ -383,7 +370,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Ta'wun</label>
 								<div class="col-sm-9">
 								<input type="text" id="tawun" required name="tawun" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="tawun_v" required name="tawun_v"/>
@@ -480,13 +467,6 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
-								<div class="col-sm-9">
-									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
-								</div>
-                            </div>
 					</div>
 				</div>
 			</div>
@@ -959,13 +939,6 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
-								<div class="col-sm-9">
-									<input type="date" id="e_periode" required name="e_periode" placeholder="Rp. 10.000" class="form-control" />
-								</div>
-                            </div>
 					</div>
 				</div>
 			</div>
@@ -998,7 +971,6 @@
 				<th>No</th>
 				<th>Kode Karyawan</th>
 				<th>Nama Karyawan</th>
-				<th>Periode</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -1058,7 +1030,6 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].id_karyawan + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_potong + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"> Edit </i>' +
@@ -1122,7 +1093,6 @@
 				$('#e_lain_v').val(data[0].lain);
 				$('#e_pph21').val(data[0].pph21);
 				$('#e_pph21_v').val(data[0].pph21);
-				$('#e_periode').val(data[0].periode);
 				$('#e_tawun').val(data[0].tawun);
 				$('#e_tawun_v').val(data[0].tawun);
 				$('#e_ltq').val(data[0].ltq);

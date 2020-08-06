@@ -57,7 +57,6 @@ class Master_potongan extends CI_Controller
 				'ltq'  => $this->input->post('ltq_v'),
 				'bpjs'  => $this->input->post('bpjs_v'),
 				'pph21'  => $this->input->post('pph21_v'),
-				'periode'  => $this->input->post('periode'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			
