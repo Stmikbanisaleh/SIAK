@@ -134,39 +134,7 @@
 									</script>
 								</div>
 							</div>
-<!-- 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja </label>
-								<div class="col-sm-9">
-									<input type="text" id="tunjangan_masa_kerja" required name="tunjangan_masa_kerja" placeholder="Rp. 10.0000" class="form-control" />
-									<input type="hidden" id="tunjangan_masa_kerja_v" required name="tunjangan_masa_kerja_v" />
-									<script language="JavaScript">
-										var rupiah3 = document.getElementById('tunjangan_masa_kerja');
-										rupiah3.addEventListener('keyup', function(e) {
-											rup3 = this.value.replace(/\D/g, '');
-											$('#tunjangan_masa_kerja_v').val(rup3);
-											rupiah3.value = formatRupiah3(this.value, 'Rp. ');
-										});
 
-										function formatRupiah3(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah3 = split[0].substr(0, sisa),
-												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan3) {
-												separator = sisa ? '.' : '';
-												rupiah3 += separator + ribuan3.join('.');
-											}
-
-											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
-											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
-										}
-									</script>
-								</div>
-							</div> -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Transport </label>
 								<div class="col-sm-9">
