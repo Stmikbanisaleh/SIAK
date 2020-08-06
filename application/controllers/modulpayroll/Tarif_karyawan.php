@@ -68,6 +68,24 @@ class Tarif_karyawan extends CI_Controller
         }
 	}
 
+	public function gethonorjam($id)
+	{
+		$pendidikan = $this->model_tarif_karyawan->getpendidikan($id)->result_array();
+		$datakaryawan = $this->model_tarif_karyawan->getjenjang($pendidikan[0]['pendidikan'])->result_array();
+        $jabatan = $this->model_tarif_karyawan->getjabatanjam($id)->result_array();
+        if($datakaryawan){
+			$nominal = $datakaryawan[0]['nominal'];
+			$jabatan = $jabatan[0]['jumlah_jam'];
+			if($nominal > 0){
+				$convert = (int)$nominal * (int)$jabatan;
+			} else {
+				$convert = 0;
+			}
+		    return $convert;
+        }
+	}
+
+
 	public function tampil_byidtarif()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
@@ -87,12 +105,15 @@ class Tarif_karyawan extends CI_Controller
 			$honor = $this->input->post('tarif_karyawan_v');
 			$convert = $this->input->post('convert_v');
 			$hc = (int)$honor + (int)$convert;
+			$idkaryawan = $this->input->post('karyawan');
+			$honorjam = $this->gethonorjam($idkaryawan);
 			$datatarif = array(
-				'id_karyawan' => $this->input->post('karyawan'),
+				'id_karyawan' => $idkaryawan,
 				'tunjangan_masakerja' => $hc,
 				'tunjangan_jabatan'  => $this->input->post('tunjangan_jabatan_v'),
 				'convert' => $this->input->post('convert_v'),
 				'tarif'  => $this->input->post('tarif_karyawan_v'),
+				'honor'  => $honorjam,
 				'cara_pembayaran'  => $this->input->post('nama_pembayaran'),
 				'transport'  => $this->input->post('transport_v'),
 				'tunj_pegawai_tetap'  => $this->input->post('tunj_pegawai_tetap_v'),

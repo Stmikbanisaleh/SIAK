@@ -624,7 +624,8 @@
 				<th>Tunj. Jabatan</th>
 				<th>Honor (berkala)</th>
 				<th>Transport</th>
-				<th>Honor + Convert</th>
+				<th>Honor</th>
+				<th>Honor (berkala) + Convert</th>
 				<th>Tunj. Pegawa Tetap</th>
 				<th>Action</th>
 			</tr>
@@ -702,6 +703,7 @@
 						'<td>' + data[i].tunjangan_jabatan + '</td>' +
 						'<td>' + data[i].tarif + '</td>' +
 						'<td>' + data[i].transport + '</td>' +
+						'<td>' + data[i].honor + '</td>' +
                         '<td>' + data[i].hc + '</td>' +
 						'<td>' + data[i].tunj_pegawai_tetap + '</td>' +
 						'<td >' +

@@ -13,9 +13,29 @@ class Model_tarif_karyawan extends CI_model
         return $this->db->query("SELECT FLOOR(DATEDIFF(NOW(),tgl_mulai_kerja)/365) as masakerja  from biodata_karyawan where nip = '".$id."' ");
     }
 
+    public function  getpendidikan($id)
+    {
+        return $this->db->query("SELECT pendidikan from biodata_karyawan a join msjabatan b on a.jabatan = b.ID where nip = '".$id."'");
+    }
+
     public function  gethonor($masakerja)
     {
         return $this->db->query("SELECT honor_berkala from master_honor_berkala where masa_kerja = ".$masakerja." ");
+    }
+
+    public function  getjabatanjam($id)
+    {
+        return $this->db->query("SELECT b.jumlah_jam from biodata_karyawan a join msjabatan b on a.jabatan = b.ID where nip = '".$id."'   ");
+    }
+
+    public function  gettarifhonor($id)
+    {
+        return $this->db->query("SELECT nominal from master_honor where jenjang_alias = ".$id." ");
+    }
+
+    public function  getjenjang($id)
+    {
+        return $this->db->query("SELECT nominal from master_honor where jenjang_alias = ".$id." ");
     }
 
     public function view_karyawan()
@@ -25,6 +45,7 @@ class Model_tarif_karyawan extends CI_model
         CONCAT('Rp. ',FORMAT(a.tunjangan_jabatan,2)) as tunjangan_jabatan,
         CONCAT('Rp. ',FORMAT(a.tarif,2)) as tarif,
         CONCAT('Rp. ',FORMAT(a.transport,2)) as transport,
+        CONCAT('Rp. ',FORMAT(a.honor,2)) as honor,
         CONCAT('Rp. ',FORMAT(a.tarif + a.convert,2)) as hc,
         CONCAT('Rp. ',FORMAT(a.tunj_pegawai_tetap,2)) as tunj_pegawai_tetap,
          b.nama from tarifkaryawan a join biodata_karyawan b on a.id_karyawan = b.nip ");
