@@ -52,6 +52,22 @@ class Tarif_karyawan extends CI_Controller
         }
 	}
 
+	public function convert()
+	{
+        $idkaryawan = $this->input->post('id');
+        $datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
+        if($datakaryawan){
+			$masakerja = $datakaryawan[0]['masakerja'];
+			if($masakerja >= 10){
+				$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
+				$convert = $honor[0]['honor_berkala'] / 2;
+			} else {
+				$convert = 0;
+			}
+		    echo $convert;
+        }
+	}
+
 	public function tampil_byidtarif()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
@@ -68,10 +84,14 @@ class Tarif_karyawan extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$honor = $this->input->post('tarif_karyawan_v');
+			$convert = $this->input->post('convert_v');
+			$hc = (int)$honor + (int)$convert;
 			$datatarif = array(
 				'id_karyawan' => $this->input->post('karyawan'),
-				'tunjangan_masakerja' => $this->input->post('tunjangan_masa_kerja_v'),
+				'tunjangan_masakerja' => $hc,
 				'tunjangan_jabatan'  => $this->input->post('tunjangan_jabatan_v'),
+				'convert' => $this->input->post('convert_v'),
 				'tarif'  => $this->input->post('tarif_karyawan_v'),
 				'cara_pembayaran'  => $this->input->post('nama_pembayaran'),
 				'transport'  => $this->input->post('transport_v'),
@@ -109,6 +129,7 @@ class Tarif_karyawan extends CI_Controller
 				'tunjangan_jabatan'  => $this->input->post('e_tunjangan_jabatan_v'),
 				'tunjangan_masakerja'  => $this->input->post('e_tunjangan_masa_kerja_v'),
 				'transport'  => $this->input->post('e_transport_v'),
+				'convert'  => $this->input->post('e_convert'),
 				'cara_pembayaran'  => $this->input->post('e_nama_pembayaran'),
 				'tunj_pegawai_tetap'  => $this->input->post('e_tunj_pegawai_tetap_v'),
 				'tunj_keluarga'  => $this->input->post('e_tunj_keluarga_v'),

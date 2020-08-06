@@ -23,9 +23,9 @@ class Model_tarif_karyawan extends CI_model
         return $this->db->query("SELECT 
         a.id_karyawan,a.id,
         CONCAT('Rp. ',FORMAT(a.tunjangan_jabatan,2)) as tunjangan_jabatan,
-        CONCAT('Rp. ',FORMAT(a.thr,2)) as thr,
+        CONCAT('Rp. ',FORMAT(a.tarif,2)) as tarif,
         CONCAT('Rp. ',FORMAT(a.transport,2)) as transport,
-        CONCAT('Rp. ',FORMAT(a.tunjangan_masakerja,2)) as tunjangan_masakerja,
+        CONCAT('Rp. ',FORMAT(a.tarif + a.convert,2)) as hc,
         CONCAT('Rp. ',FORMAT(a.tunj_pegawai_tetap,2)) as tunj_pegawai_tetap,
          b.nama from tarifkaryawan a join biodata_karyawan b on a.id_karyawan = b.nip ");
     }
