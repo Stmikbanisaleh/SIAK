@@ -84,7 +84,7 @@ class Pendapatanlainkaryawan extends CI_Controller
             $my_data = $this->model_pendapatanlainkaryawan->view_where('tbpendapatanlainkaryawan', $data)->result();
             echo json_encode($my_data);
         } else {
-            $this->load->view('pagekasir/login'); //Memanggil function render_view
+            $this->load->view('pagepayroll/login'); //Memanggil function render_view
         }
 	}
 
@@ -104,11 +104,8 @@ class Pendapatanlainkaryawan extends CI_Controller
 			'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
 			'updatedAt' => date('Y-m-d H:i:s')
 		);
-		// echo json_encode($data);exit;
 		$action = $this->model_pendapatanlainkaryawan->update($data_id, $data, 'tbpendapatanlainkaryawan');
 		echo json_encode($action);
-		
-		
 	}
 
 	public function delete()

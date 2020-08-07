@@ -245,36 +245,6 @@
 		});
     });
 
-    $('#show_data').on('click', '.item_edit_tarif', function() {
-		var id = $(this).data('id');
-		$('#modalEditTarif').modal('show');
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url('modulpayroll/biodataguru/tampil_byid') ?>",
-			async: true,
-			dataType: "JSON",
-			data: {
-				id: id,
-			},
-			success: function(data) {
-				$('#e_id').val(data[0].id);
-				$('#e_IdGuru').val(data[0].IdGuru);
-				$('#e_GuruNoDapodik').val(data[0].GuruNoDapodik);
-				$('#e_nama').val(data[0].GuruNama);
-				$('#e_telepon').val(data[0].GuruTelp);
-				$('#e_alamat').val(data[0].GuruAlamat);
-				$('#e_program_sekolah').val(data[0].GuruBase);
-				$('#e_jenis_kelamin').val(data[0].GuruJeniskelamin);
-				$('#e_pendidikan_terakhir').val(data[0].GuruPendidikanAkhir);
-				$('#e_agama').val(data[0].GuruAgama);
-				$('#e_email').val(data[0].GuruEmail);
-				$('#e_tgl_lahir').val(data[0].GuruTglLahir);
-				$('#e_tempat_lahir').val(data[0].GuruTempatLahir);
-				$('#e_status').val(data[0].GuruStatus);
-			}
-		});
-    });
-
     $('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
 		Swal.fire({
@@ -290,7 +260,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('modulpayroll/biodataguru/delete') ?>",
+					url: "<?php echo base_url('modulpayroll/jenis_pembayaran/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {

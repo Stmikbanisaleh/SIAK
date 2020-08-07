@@ -84,8 +84,17 @@ class Jenis_pembayaran extends CI_Controller
 			}
 		} else {
 			echo json_encode(401);
-		}
-		
-		
+		}		
 	}
+
+	public function delete()
+    {
+        $data_id = array(
+            'id'  => $this->input->post('id')
+		);
+		$action = $this->model_jnspembayaran->delete($data_id, 'jnspembayaran');
+		if($action){
+			echo json_encode($action);
+		}
+    }
 }

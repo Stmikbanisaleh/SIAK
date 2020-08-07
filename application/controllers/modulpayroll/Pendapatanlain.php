@@ -86,4 +86,38 @@ class Pendapatanlain extends CI_Controller
 			echo json_encode($action);
 		}
 	}
+
+	public function update()
+	{
+		$data_id = array(
+			'id'  => $this->input->post('e_id')
+		);
+		$data = array(
+			'nip'  => $this->input->post('e_nip'),
+			'thr'  => $this->input->post('e_thr_v'),
+			'lain' => $this->input->post('e_tjlain_v'),
+			'tj_malam_lembur' => $this->input->post('e_tj_malam_lembur_v'),
+			'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
+			'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
+			'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
+			'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
+			'updatedAt' => date('Y-m-d H:i:s')
+		);
+		$action = $this->model_pendapatanlain->update($data_id, $data, 'tbpendapatanlainguru');
+		echo json_encode($action);
+	}
+
+	public function tampil_byid()
+    {
+        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+            $data = array(
+                'id'  => $this->input->post('id'),
+            );
+            $my_data = $this->model_pendapatanlain->view_where('tbpendapatanlainguru', $data)->result();
+            echo json_encode($my_data);
+        } else {
+            $this->load->view('pagepayroll/login'); //Memanggil function render_view
+        }
+	}
 }

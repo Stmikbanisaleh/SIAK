@@ -126,12 +126,12 @@
 		</a>
 		<b class="arrow"></b>
 		<ul class="submenu">
-			<li class="">
+			<!-- <li class="">
 				<a href="<?= base_url() . 'modulpayroll/honor_gurutetap'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Honorarium Guru Tetap
 				</a>
-			</li>
+			</li> -->
 			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/kehadiran_karyawan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
@@ -155,13 +155,13 @@
 				<b class="arrow"></b>
 			</li>
 
-			<li class="">
+			<!-- <li class="">
 				<a href="<?= base_url() . 'modulpayroll/potong_gaji'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Laporan Potongan Gaji Karyawan
 				</a>
 				<b class="arrow"></b>
-			</li>
+			</li> -->
 			<li class="">
 				<a href="<?= base_url() . 'modulpayroll/rekap_gajiguru'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>

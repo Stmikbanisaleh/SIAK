@@ -134,7 +134,6 @@ class Generategajikaryawan extends CI_Controller
                 $lastday = $this->getLastDateOfMonth($year, $bulan);
                 if (!empty($getgaji)) {
                     foreach ($getgaji as $data) {
-                        $jmljam = 
                         $data = array(
                             "employee_number" => $data['id_karyawan'],
                             "nama"    => $data['nama'],
