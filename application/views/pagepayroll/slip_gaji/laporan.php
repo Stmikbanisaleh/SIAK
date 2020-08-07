@@ -498,7 +498,7 @@
 		</div>
 		<div class="footerslip">
             <br><br><br>
-			<table>
+			<table> 
 				<tr>
 					<td width="220px; text-align:center;"> </td>
 					<td width="100px; text-align:center;"><?= $tgl ?></td>
