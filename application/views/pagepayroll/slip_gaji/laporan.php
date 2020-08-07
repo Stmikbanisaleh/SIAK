@@ -134,6 +134,7 @@
 		$pend_lain = $row['tunj_lain'];
 		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_khusus1+$tunj_khusus2;
 
+		
 		$tunj_nilai[1] = $pend_gaji_pokok;
 		$tunj_nilai[2] = $pend_pajak;
 		$tunj_nilai[3] = $pend_tunjabatan;
