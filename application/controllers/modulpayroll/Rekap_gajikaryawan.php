@@ -588,7 +588,7 @@ class Rekap_gajikaryawan extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Struktural / Khusus
-			$var_d = 'R'.$baris;
+			$var_d = 'R'.$baris; 
 			$var_e = $row['thr'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
