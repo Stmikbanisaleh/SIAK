@@ -106,8 +106,8 @@
             </select>
             <small id="emailHelp" class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Karyawan / Guru</label>
+        <!-- <div class="form-group">
+            <label for="exampleInputEmail1">Unit</label>
             <select class="form-control" name="unit" id="unit">
             	<option value="0">--Pilih Unit--</option>
                 <?php
@@ -119,7 +119,7 @@
                 ?>
             </select>
             <small  class="form-text text-muted">Pilih karyawan atau guru yang akan ditampilkan (Tidak wajib diisi).</small>
-        </div>
+        </div> -->
         <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
             <a class="ace-icon fa fa-search bigger-120"></a>Periksa
         </button>
