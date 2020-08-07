@@ -165,7 +165,7 @@ class Karyawan extends CI_Controller
 			$config['upload_path']          = './assets/gambar';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['encrypt_name'] = TRUE;
-
+			$password = hash('sha512',md5($this->input->post('e_password')));
 			$this->load->library('upload', $config);
 			if ($this->upload->do_upload("e_file")) {
 				$data = array('upload_data' => $this->upload->data());
@@ -175,11 +175,11 @@ class Karyawan extends CI_Controller
 					'nama'  => $this->input->post('nama'),
 					'jabatan'  => $this->input->post('jabatan'),
 					'username'  => $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
+					'password'  => $password,
 					'level' => $this->input->post('level'),
 					'status'  => 1,
 					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
@@ -189,11 +189,11 @@ class Karyawan extends CI_Controller
 					'nama'  => $this->input->post('e_nama'),
 					'jabatan'  => $this->input->post('e_jabatan'),
 					'username'  => $this->input->post('e_email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
+					'password'  => $password,
 					'level' => $this->input->post('e_level'),
 					'status'  => $this->input->post('e_status'),
 					'gambar'  => null,
-					'createdAt' => date('Y-m-d H:i:s')
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);

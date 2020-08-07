@@ -80,9 +80,11 @@ class Model_honorguru extends CI_model
 
     public function view_unit()
     {
-        return $this->db->query("SELECT DISTINCT ps.id, ps.DESCRTBPS, js.DESCRTBJS
+        return $this->db->query("SELECT ps.KDSK id, ps.DESCRTBPS
         FROM tbguru tg
         JOIN tbps ps ON ps.KDSK = tg.GuruBase
-		JOIN tbjs js ON ps.KDTBJS = js.KDTBJS");
+        JOIN tbjs js ON ps.KDTBJS = js.KDTBJS
+        GROUP BY ps.KDSK, ps.DESCRTBPS
+        ORDER BY ps.KDSK");
     }
 }

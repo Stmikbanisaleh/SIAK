@@ -24,24 +24,24 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formTambah">
-                            <div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="id_guru" id="id_guru">
+									<select class="form-control" required name="id_guru" id="id_guru">
 										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($myguru as $value) { ?>
 											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
-                            </div>
-                            
-                            <div class="form-group">
+							</div>
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> THR </label>
 								<div class="col-sm-9">
-								<input type="text" id="thr" required name="thr" placeholder="THR " class="form-control" />
-                                <input type="hidden" id="thr_v" required name="thr_v"/>
-								<script language="JavaScript">
+									<input type="text" id="thr" required name="thr" placeholder="THR " class="form-control" />
+									<input type="hidden" id="thr_v" required name="thr_v" />
+									<script language="JavaScript">
 										var rupiah3 = document.getElementById('thr');
 										rupiah3.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
@@ -67,14 +67,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Kinerja</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Penilaian Kinerja</label>
 								<div class="col-sm-9">
-								<input type="text" id="tjkinerja" required name="tjkinerja" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="tjkinerja_v" required name="tjkinerja_v"/>
-								<script language="JavaScript">
+									<input type="text" id="tjkinerja" required name="tjkinerja" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="tjkinerja_v" required name="tjkinerja_v" />
+									<script language="JavaScript">
 										var rupiah4 = document.getElementById('tjkinerja');
 										rupiah4.addEventListener('keyup', function(e) {
 											rup4 = this.value.replace(/\D/g, '');
@@ -100,14 +100,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Lain Lanin</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Lain Lain</label>
 								<div class="col-sm-9">
-								<input type="text" id="tjlain" required name="tjlain" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="tjlain_v" required name="tjlain_v"/>
-								<script language="JavaScript">
+									<input type="text" id="tjlain" required name="tjlain" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="tjlain_v" required name="tjlain_v" />
+									<script language="JavaScript">
 										var rupiah5 = document.getElementById('tjlain');
 										rupiah5.addEventListener('keyup', function(e) {
 											rup5 = this.value.replace(/\D/g, '');
@@ -133,14 +133,231 @@
 										}
 									</script>
 								</div>
-                            </div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 1 </label>
 								<div class="col-sm-9">
-									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
+									<input type="text" id="ket_tunj_khusus1" name="ket_tunj_khusus1" placeholder="Keterangan" class="form-control">
 								</div>
                             </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 1</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus1" name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus1_v" name="tunj_khusus1_v"/>
+								<script language="JavaScript">
+										var rupiah9 = document.getElementById('tunj_khusus1');
+										rupiah9.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus1_v').val(rup6);
+											rupiah9.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah9 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah9 += separator + ribuan6.join('.');
+											}
+
+											rupiah9 = split[1] != undefined ? rupiah9 + ',' + split[1] : rupiah9;
+											return prefix == undefined ? rupiah5 : (rupiah9 ? 'Rp. ' + rupiah9 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 2 </label>
+								<div class="col-sm-9">
+									<input type="text" id="ket_tunj_khusus2" name="ket_tunj_khusus2" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 2</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus2"  name="tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus2_v"  name="tunj_khusus2_v"/>
+								<script language="JavaScript">
+										var rupiah10 = document.getElementById('tunj_khusus2');
+										rupiah10.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus2_v').val(rup6);
+											rupiah10.value = formatRupiah6(this.value, 'Rp. ');
+										});
+
+										function formatRupiah6(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah10 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah10 += separator + ribuan6.join('.');
+											}
+
+											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+											return prefix == undefined ? rupiah5 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tambahan (1) </label>
+								<div class="col-sm-3">
+									<input type="number" id="jam1" name="jam1" placeholder="Jam" class="form-control" />
+								</div>
+								<div class="col-sm-6">
+									<input type="text" id="tarif1" name="tarif1" placeholder="Tarif Perjam(1) " class="form-control" />
+									<input type="hidden" id="tarif1_v" name="tarif1_v" />
+									<script language="JavaScript">
+										var rupiah31 = document.getElementById('tarif1');
+										rupiah31.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#tarif1_v').val(rup3);
+											rupiah31.value = formatRupiah31(this.value, 'Rp. ');
+										});
+
+										function formatRupiah31(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah31 = split[0].substr(0, sisa),
+												ribuan31 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan31) {
+												separator = sisa ? '.' : '';
+												rupiah31 += separator + ribuan31.join('.');
+											}
+
+											rupiah31 = split[1] != undefined ? rupiah31 + ',' + split[1] : rupiah31;
+											return prefix == undefined ? rupiah31 : (rupiah31 ? 'Rp. ' + rupiah31 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tambahan (2) </label>
+								<div class="col-sm-3">
+									<input type="number" id="jam2" name="jam2" placeholder="Jam" class="form-control" />
+								</div>
+								<div class="col-sm-6">
+									<input type="text" id="tarif2" name="tarif2" placeholder="Tarif Perjam(2) " class="form-control" />
+									<input type="hidden" id="tarif2_v" required name="tarif2_v" />
+									<script language="JavaScript">
+										var rupiah6 = document.getElementById('tarif2');
+										rupiah6.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#tarif2_v').val(rup3);
+											rupiah6.value = formatRupiah3(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan3.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tambahan (3) </label>
+								<div class="col-sm-3">
+									<input type="number" id="jam3" name="jam3" placeholder="Jam" class="form-control" />
+								</div>
+								<div class="col-sm-6">
+									<input type="text" id="tarif3" name="tarif3" placeholder="Tarif Perjam(3) " class="form-control" />
+									<input type="hidden" id="tarif3_v" required name="tarif3_v" />
+									<script language="JavaScript">
+										var rupiah7 = document.getElementById('tarif3');
+										rupiah7.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#tarif3_v').val(rup3);
+											rupiah7.value = formatRupiah3(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan3.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tambahan (4) </label>
+								<div class="col-sm-3">
+									<input type="number" id="jam4" name="jam4" placeholder="Jam" class="form-control" />
+								</div>
+								<div class="col-sm-6">
+									<input type="text" id="tarif4" name="tarif4" placeholder="Tarif Perjam(4) " class="form-control" />
+									<input type="hidden" id="tarif4_v" required name="tarif4_v" />
+									<script language="JavaScript">
+										var rupiah8 = document.getElementById('tarif4');
+										rupiah8.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#tarif4_v').val(rup3);
+											rupiah8.value = formatRupiah3(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan3.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -165,31 +382,31 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Edit <?=$page_name ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Edit <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-                            <div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
-								<input type="hidden" id="e_id_potong"  required name="e_id_potong"  />
+								<input type="hidden" id="e_id_potong" required name="e_id_potong" />
 								<div class="col-sm-9">
-                                    <select class="form-control" name="e_id_guru" id="e_id_guru">
+									<select class="form-control" name="e_id_guru" id="e_id_guru">
 										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($myguru as $value) { ?>
 											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
-                            </div>
-                            <div class="form-group">
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Infaq Masjid</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_infaq_masjid" required name="e_infaq_masjid" placeholder="Tarif Potongan" class="form-control" />
-                                <input type="hidden" id="e_infaq_masjid_v" required name="e_infaq_masjid_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_infaq_masjid" required name="e_infaq_masjid" placeholder="Tarif Potongan" class="form-control" />
+									<input type="hidden" id="e_infaq_masjid_v" required name="e_infaq_masjid_v" />
+									<script language="JavaScript">
 										var rupiah31 = document.getElementById('e_infaq_masjid');
 										rupiah31.addEventListener('keyup', function(e) {
 											rup31 = this.value.replace(/\D/g, '');
@@ -215,14 +432,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Anggota Koperasi</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_anggota_koperasi" required name="e_anggota_koperasi" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_anggota_koperasi_v" required name="e_anggota_koperasi_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_anggota_koperasi" required name="e_anggota_koperasi" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_anggota_koperasi_v" required name="e_anggota_koperasi_v" />
+									<script language="JavaScript">
 										var rupiah41 = document.getElementById('e_anggota_koperasi');
 										rupiah41.addEventListener('keyup', function(e) {
 											rup41 = this.value.replace(/\D/g, '');
@@ -248,14 +465,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kas / Bon</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_kas_bon" required name="e_kas_bon" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_kas_bon_v" required name="e_kas_bon_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_kas_bon" required name="e_kas_bon" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_kas_bon_v" required name="e_kas_bon_v" />
+									<script language="JavaScript">
 										var rupiah51 = document.getElementById('e_kas_bon');
 										rupiah51.addEventListener('keyup', function(e) {
 											rup51 = this.value.replace(/\D/g, '');
@@ -281,15 +498,15 @@
 										}
 									</script>
 								</div>
-                            </div>
-                            
+							</div>
+
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ijin / Telat</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_ijin_telat" required name="e_ijin_telat" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_ijin_telat_v" required name="e_ijin_telat_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_ijin_telat" required name="e_ijin_telat" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_ijin_telat_v" required name="e_ijin_telat_v" />
+									<script language="JavaScript">
 										var rupiah61 = document.getElementById('e_ijin_telat');
 										rupiah61.addEventListener('keyup', function(e) {
 											rup61 = this.value.replace(/\D/g, '');
@@ -315,14 +532,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> BMT</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_bmt" required name="e_bmt" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_bmt_v" required name="e_bmt_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_bmt" required name="e_bmt" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_bmt_v" required name="e_bmt_v" />
+									<script language="JavaScript">
 										var rupiah71 = document.getElementById('e_bmt');
 										rupiah71.addEventListener('keyup', function(e) {
 											rup71 = this.value.replace(/\D/g, '');
@@ -348,14 +565,14 @@
 										}
 									</script>
 								</div>
-                            </div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Koperasi</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_koperasi" required name="e_koperasi" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_koperasi_v" required name="e_koperasi_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_koperasi" required name="e_koperasi" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_koperasi_v" required name="e_koperasi_v" />
+									<script language="JavaScript">
 										var rupiah81 = document.getElementById('e_koperasi');
 										rupiah81.addEventListener('keyup', function(e) {
 											rup81 = this.value.replace(/\D/g, '');
@@ -382,13 +599,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Inval</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_inval" required name="e_inval" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_inval_v" required name="e_inval_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_inval" required name="e_inval" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_inval_v" required name="e_inval_v" />
+									<script language="JavaScript">
 										var rupiah91 = document.getElementById('e_inval');
 										rupiah91.addEventListener('keyup', function(e) {
 											rup81 = this.value.replace(/\D/g, '');
@@ -415,13 +632,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Toko Al Hamra</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_toko" required name="e_toko" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_toko_v" required name="e_toko_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_toko" required name="e_toko" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_toko_v" required name="e_toko_v" />
+									<script language="JavaScript">
 										var rupiah101 = document.getElementById('e_toko');
 										rupiah101.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
@@ -448,13 +665,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Lain - Lain</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_lain" required name="e_lain" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_lain_v" required name="e_lain_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_lain" required name="e_lain" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_lain_v" required name="e_lain_v" />
+									<script language="JavaScript">
 										var rupiah111 = document.getElementById('e_lain');
 										rupiah111.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
@@ -481,13 +698,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPH 21</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_pph21" required name="e_pph21" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_pph21_v" required name="e_pph21_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_pph21" required name="e_pph21" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_pph21_v" required name="e_pph21_v" />
+									<script language="JavaScript">
 										var rupiah121 = document.getElementById('e_pph21');
 										rupiah121.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
@@ -514,13 +731,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_tawun" required name="e_tawun" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_tawun_v" required name="e_tawun_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_tawun" required name="e_tawun" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_tawun_v" required name="e_tawun_v" />
+									<script language="JavaScript">
 										var rupiah131 = document.getElementById('e_tawun');
 										rupiah131.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
@@ -547,13 +764,13 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">BPJS</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_bpjs_v" required name="e_bpjs_v"/>
-								<script language="JavaScript">
+									<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_bpjs_v" required name="e_bpjs_v" />
+									<script language="JavaScript">
 										var rupiah141 = document.getElementById('e_bpjs');
 										rupiah141.addEventListener('keyup', function(e) {
 											rup8 = this.value.replace(/\D/g, '');
@@ -580,13 +797,13 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
 								<div class="col-sm-9">
 									<input type="date" id="e_periode" required name="e_periode" placeholder="Rp. 10.000" class="form-control" />
 								</div>
-                            </div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -619,7 +836,6 @@
 				<th>No</th>
 				<th>Kode Guru</th>
 				<th>Nama Guru</th>
-				<th>Periode</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -628,7 +844,6 @@
 	</table>
 </div>
 <script type="text/javascript">
- 
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -662,7 +877,7 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
-    
+
 	});
 
 	//function show all Data
@@ -681,11 +896,13 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].IdGuru + '</td>' +
 						'<td>' + data[i].GuruNama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-success item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<i class="ace-icon fa fa-trash-o bigger-120"> Edit</i>' +
+						'</button> ' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
-						'</button> ' + 
+						'</button> ' +
 						'</td>' +
 						'</tr>';
 					no++;
@@ -706,9 +923,9 @@
 			}
 
 		});
-    }
-    
-    $('#show_data').on('click', '.item_hapus', function() {
+	}
+
+	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
 		Swal.fire({
 			title: 'Apakah anda yakin?',

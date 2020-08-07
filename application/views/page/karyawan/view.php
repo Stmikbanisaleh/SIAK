@@ -187,7 +187,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Password </label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="e_password" id="e_password" placeholder=""></textarea>
+                                    <input type="password" class="form-control" name="e_password" id="e_password" placeholder="">
                                 </div>
                             </div>
 
@@ -366,36 +366,6 @@
         $("#formEdit").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
-            rules: {
-                nama: {
-                    required: true,
-                },
-                telepon: {
-                    required: true,
-                    digits: true,
-                    maxlength: 14,
-                    minlength: 10,
-                },
-                alamat: {
-                    required: true,
-                    minlength: 10,
-                },
-                email: {
-                    required: true,
-                    email: true,
-                },
-            },
-            messages: {
-                nama: {
-                    required: "Nama Guru harus diisi!"
-                },
-                telepon: {
-                    required: "Telepon harus diisi!"
-                },
-                alamat: {
-                    required: "Harap Masukan alamat dengan benar!"
-                },
-            },
             submitHandler: function(form) {
                 $.ajax({
                     type: "POST",
