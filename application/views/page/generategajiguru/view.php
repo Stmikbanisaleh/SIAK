@@ -42,7 +42,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bulan </label>
 								<div class="col-sm-6">
 									<select class="form-control" required name="bulan" id="bulan">
-										<option value="0">--Bulan Awal--</option>
+										<option value="0">--Periode--</option>
 										<option value="01">Januari</option>
 										<option value="02">Februari</option>
 										<option value="03">Maret</option>
