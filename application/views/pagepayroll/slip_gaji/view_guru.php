@@ -143,11 +143,11 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
             <select class="form-control" required name="unit" id="unit">
-                <option value="0">--Pilih--</option>
+                <!-- <option value="0">--Pilih--</option> -->
                 <?php
                     foreach($myunit->result_array() as $row){
                 ?>
-                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['DESCRTBPS']."] - ".$row['DESCRTBJS'] ?></option>
+                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['DESCRTBPS']."]"?></option>
                 <?php
                     }
                 ?>
