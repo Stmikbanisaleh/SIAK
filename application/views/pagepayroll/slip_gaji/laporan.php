@@ -213,7 +213,7 @@
 		$pot_inval = $row['pot_inval'];
 		$pot_toko = $row['pot_toko'];
 		$pot_lain = $row['pot_lain'];
-		$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_lain;
+		$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
 		
 		$pot_nilai[1] = $pot_infaq_masjid;
 		$pot_nilai[2] = $pot_anggota_koperasi;
