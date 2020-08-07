@@ -492,7 +492,7 @@
 					<tr>
 						<td width="125px;">Gaji bersih</td>
 						<td width="141px;"> </td>
-						<td width="68px;" style="text-align:right">Rp_ <?= number_format($total) ?></td>
+						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
 					</tr>
 			</table>
 		</div>
