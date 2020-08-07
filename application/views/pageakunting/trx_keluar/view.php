@@ -191,9 +191,8 @@
 							document.getElementById("formTambah").reset();
 							swalInputSuccess();
 							show_data();
-							// $('#modalTambah').modal('hide');
 						} else if (response == 401) {
-							swalIdDouble('Eror!');
+							swalIdDouble('No Bukti Telah Terfdaftar');
 						} else {
 							swalInputFailed();
 						}
