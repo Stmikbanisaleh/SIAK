@@ -156,7 +156,7 @@
         </div>
         <!-- <div class="form-group">
             <label for="exampleInputEmail1">Tipe Gaji</label> -->
-            <input type="hidden" id="tipe_gaji" name="tipe_gaji" value='Gx'>
+            <input type="hidden" id="tipe_gaji" name="tipe_gaji" value='G'>
             <!-- <select class="form-control" required name="tipe_gaji" id="tipe_gaji">
                 <option value="K">Karyawan</option>
                 <option value="G">Guru</option>

@@ -61,6 +61,6 @@ class Model_mastpotongan extends CI_model
     }
 
     public function cek_karyawan($id, $period){
-        return $this->db->query("SELECT * FROM tbkaryawanpot WHERE id_karyawan = '".$id."' AND MONTH(periode) = DATE_FORMAT('".$period."', '%m')");
+        return $this->db->query("SELECT * FROM tbkaryawanpot WHERE id_karyawan = '".$id."'");
     }
 }
