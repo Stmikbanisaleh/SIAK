@@ -46,9 +46,8 @@ class Pendapatanlain extends CI_Controller
 			$data = array(
 				'IdGuru'  => $this->input->post('id_guru'),
 				'thr'  => $this->input->post('thr_v'),
-				'tunjangan'  => $this->input->post('tjkinerja_v'),
 				'lain' => $this->input->post('tjlain_v'),
-				'periode' => $this->input->post('periode'),
+				'tambahan1' => $this->input->post('jam1'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			$hasil = $this->model_pendapatanlain->cek_guru($this->input->post('id_guru'), $periode)->num_rows();
