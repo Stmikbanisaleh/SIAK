@@ -52,6 +52,12 @@ class Generategajiguru extends CI_Controller
         }
     }
 
+    public function getLastDateOfMonth($year, $month)
+    {
+        $date = $year.'-'.$month.'-01';  //make date of month
+        return date('t', strtotime($date)); 
+    }
+
     public function generate()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -73,6 +79,7 @@ class Generategajiguru extends CI_Controller
                 if ($getgaji) {
                     foreach ($getgaji as $data) {
                         // $jam = $this->model
+                        $lastday = $this->getLastDateOfMonth($tahun, $bulan);
                         $pot_lain = $data['infaq_masjid']+$data['anggota_koperasi']+$data['kas_bon']+$data['ijin_telat']+$data['koperasi']+$data['bmt']+$data['inval']+$data['toko']+$data['lain']+$data['tawun'];
                         $data = array(
                             "employee_number" => $data['IdGuru'],
@@ -83,6 +90,7 @@ class Generategajiguru extends CI_Controller
                             "bulan" => $bulan,
                             "gaji" => $data['gaji'],
                             "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
+                            "effective_date" => $tahun.'-'.$bulan.'-'.$lastday,
                             // "tunjangan_masakerja" => $data['tunjangan_masakerja'],
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
                             "tunj_transport" => $data['transport'],
