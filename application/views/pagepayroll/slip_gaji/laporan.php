@@ -128,11 +128,13 @@
         $pend_bonus = $row['bonus'];
         $pend_thr = $row['thr'];
         $pend_cuti = $row['cuti_jubelium'];
-        $tunj_bpjs = $row['tunj_bpjs'];
+		$tunj_bpjs = $row['tunj_bpjs'];
+		$tunj_international = $row['tunj_international'];
+		$tunj_aksel = $row['tunj_aksel'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
 		$tunj_khusus2 = $row['tunj_khusus2'];
 		$pend_lain = $row['tunj_lain'];
-		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_khusus1+$tunj_khusus2;
+		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_international+$tunj_aksel+$tunj_khusus1+$tunj_khusus2;
 
 		
 		$tunj_nilai[1] = $pend_gaji_pokok;
@@ -154,9 +156,11 @@
 		$tunj_nilai[17] = $pend_thr;
 		$tunj_nilai[18] = $pend_cuti;
 		$tunj_nilai[19] = $tunj_bpjs;
-		$tunj_nilai[20] = $tunj_khusus1;
-		$tunj_nilai[21] = $tunj_khusus2;
-		$tunj_nilai[22] = $pend_lain;
+		$tunj_nilai[20] = $tunj_international;
+		$tunj_nilai[21] = $tunj_aksel;
+		$tunj_nilai[22] = $tunj_khusus1;
+		$tunj_nilai[23] = $tunj_khusus2;
+		$tunj_nilai[24] = $pend_lain;
 
 		$label_tunj[1] = 'Honor';
 		$label_tunj[2] = 'T. Pajak';
@@ -187,7 +191,9 @@
 		}else{
 			$label_tunj[21] = 'Tunj. Khusus';
 		}
-		$label_tunj[22] = 'Lain-lain';
+		$label_tunj[22] = 'T. Internasional';
+		$label_tunj[23] = 'T. Aksel';
+		$label_tunj[24] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -340,7 +346,11 @@
 					<td style="width: 35px;">NIK</td>
 					<td style="width: 5px;">:</td>
 					<td style=""><?= $row['employee_number']?></td>
-					<td style="text-align:right">Periode <?= $bulan.' '.$tahun ?></td>
+					<td style="text-align:right">Periode 
+					<?php
+					$bulan = $this->mainfunction->periode_bulan(date('m', strtotime($row['effective_date'])));
+					 echo $bulan.' '.$tahun
+					 ?></td>
 				</tr>
 				<tr style="width:70%">
 					<td>Nama</td>
@@ -363,11 +373,7 @@
 					<td>:</td>
 					<td>
 					<?php
-					if($row['DESCRTBPS'] == 'HADHONAH'){
-						echo 'TAMAN KANAK IT';
-					}else{
-						echo $row['DESCRTBPS'];
-					}
+						echo $row['status'];
 					?>
 					</td>
 				</tr>

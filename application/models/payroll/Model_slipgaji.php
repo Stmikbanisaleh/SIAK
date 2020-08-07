@@ -82,7 +82,6 @@ class Model_slipgaji extends CI_model
         if(!empty($unit)){
             return $this->db->query("SELECT * FROM ".$table." tp
                                 JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                JOIN tbps ps ON ps.KDSK = b.GuruBase
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                 AND YEAR(tp.effective_date) = '".$tahun."'
                                 AND b.GuruBase = $unit
@@ -90,7 +89,6 @@ class Model_slipgaji extends CI_model
         }else{
             return $this->db->query("SELECT * FROM ".$table." tp
                                 JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                JOIN tbps ps ON ps.KDSK = b.GuruBase
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                 AND YEAR(tp.effective_date) = '".$tahun."'
                                 AND tp.isDeleted != 1");
@@ -104,17 +102,15 @@ class Model_slipgaji extends CI_model
             return $this->db->query("SELECT
                                     * FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    JOIN tbps ps ON ps.KDSK = b.GuruBase
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
-                                    AND ps.id = $unit
+                                    AND b.GuruBase = $unit
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT
                                     * FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    JOIN tbps ps ON ps.KDSK = b.GuruBase
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
                                     AND YEAR(tp.effective_date) = '".$tahun."'
