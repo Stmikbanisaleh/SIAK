@@ -66,14 +66,11 @@ class Buk extends CI_Controller
         $date=date_create($datee);
         $v_thn=date_format($date,"Y");
         $date=date_create($datee); 
-        // $bukti = $bkt;
         $v_bln=date_format($date,"m");
         $f_bln = $v_bln;
         $s_bln = ltrim($f_bln, '0');
-
         $query="SELECT a.*,b.tgl FROM detail_akuntansi a join akuntansi b on a.no_akuntansi = b.bukti  WHERE  b.posting = 'T' and a.tgl_input between '$datee' and '$datee2'  ";   
             $hasil = $this->model_buk->dyn_query($query)->result_array();
-            // print_r($hasil);exit;
             $no=1;
             foreach ($hasil as $r) {
                 $sql="INSERT INTO transaksi_buk(

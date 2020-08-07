@@ -37,7 +37,6 @@ class Rekap_bukubesar extends CI_Controller {
         $tahun = $this->input->post('tahun');
         $myrekening = $this->model_laporan->view_rekeninglist_rbb()->result_array();
         $myrekening4 = $this->model_laporan->view_rekeninglist4()->result_array();
-
         $data_nsa = $this->model_laporan->get_saldoawalbukbes($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-01", $this->input->post('coa'))->result_array();
             $nml = $data_nsa[0]['nml']; //Nilai saldo awal
 
