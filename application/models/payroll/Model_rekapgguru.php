@@ -58,10 +58,12 @@ class Model_rekapgguru extends CI_model
     {
         return $this->db->query("select
                                     tp.*,
+                                    tg.no_rekening,
                                     MONTH(awal_kerja) bulan_awal,
                                     MONTH(akhir_kerja) bulan_akhir
                                 FROM
                                 tb_pendapatan_guru tp
+                                JOIN tarifguru tg ON tp.employee_number = tg.IdGuru
                                 WHERE
                                 tp.isDeleted != 1
                                 AND MONTH(effective_date) >= $bulan_awal

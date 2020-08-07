@@ -158,17 +158,8 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Tambahan
-		$var_d = 'J'.$baris;
-		$var_e = "T. PEMBINAAN";
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
-
 		//BPJS
-		$var_d = 'K'.$baris;
+		$var_d = 'J'.$baris;
 		$var_e = "T. BPJS";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -177,7 +168,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Piket Malam
-		$var_d = 'L'.$baris;
+		$var_d = 'K'.$baris;
 		$var_e = "T. KELUARGA";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -186,8 +177,44 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jumlah Gaji
+		$var_d = 'L'.$baris;
+		$var_e = "THR";
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Jumlah Gaji
 		$var_d = 'M'.$baris;
-		$jumlah_gaji = "THR";
+		$var_e = "T. INTERNASIONAL";
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Jumlah Gaji
+		$var_d = 'N'.$baris;
+		$var_e = "T. AKSEL";
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Jumlah Gaji
+		$var_d = 'O'.$baris;
+		$var_e = "WALAS";
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Jumlah Gaji
+		$var_d = 'P'.$baris;
+		$var_e = "INVAL";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -195,7 +222,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Pajak
-		$var_d = 'N'.$baris;
+		$var_d = 'Q'.$baris;
 		$var_e = "T. KHUSUS 1";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -204,7 +231,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Sansos
-		$var_d = 'O'.$baris;
+		$var_d = 'R'.$baris;
 		$var_e = "T. KHUSUS 2";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -213,7 +240,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jabatan
-		$var_d = 'P'.$baris;
+		$var_d = 'S'.$baris;
 		$var_e = "T. LAIN";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -222,7 +249,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Struktural / Khusus
-		$var_d = 'Q'.$baris;
+		$var_d = 'T'.$baris;
 		$var_e = "INFAQ";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -231,7 +258,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Transport
-		$var_d = 'R'.$baris;
+		$var_d = 'U'.$baris;
 		$var_e = "ANGGOTA KOPERASI";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -240,7 +267,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Tetap
-		$var_d = 'S'.$baris;
+		$var_d = 'V'.$baris;
 		$var_e = "KAS BON";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -249,7 +276,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Peralihan
-		$var_d = 'T'.$baris;
+		$var_d = 'W'.$baris;
 		$var_e = "IZIN / TELAT";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -258,7 +285,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Utility
-		$var_d = 'U'.$baris;
+		$var_d = 'X'.$baris;
 		$var_e = "POT. KOPERASI";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -267,7 +294,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Lain - lain
-		$var_d = 'V'.$baris;
+		$var_d = 'Y'.$baris;
 		$var_e = "POT. INVAL";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -276,8 +303,8 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jumlah Tunjangan
-		$var_d = 'W'.$baris;
-		$jumlah_tunjangan = "TOKO";
+		$var_d = 'Z'.$baris;
+		$var_e = "TOKO";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -285,7 +312,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Honorarium & IMB Sejenis
-		$var_d = 'X'.$baris;
+		$var_d = 'AA'.$baris;
 		$var_e = "TAAWUN";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -294,7 +321,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jamsostek
-		$var_d = 'Y'.$baris;
+		$var_d = 'AB'.$baris;
 		$var_e = "POT. BPJS";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -303,7 +330,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Asuransi Lainnya
-		$var_d = 'Z'.$baris;
+		$var_d = 'AC'.$baris;
 		$var_e = "LTQ";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -312,7 +339,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jumlah Asuransi
-		$var_d = 'AA'.$baris;
+		$var_d = 'AD'.$baris;
 		$var_e = "BMT";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -321,7 +348,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Natura yg Objek PPh 21
-		$var_d = 'AB'.$baris;
+		$var_d = 'AE'.$baris;
 		$var_e = "PPH21";
 		$objek_naturapph21 = $var_e;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -330,17 +357,17 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Jumlah Penghasilan
-		$var_d = 'AC'.$baris;
-		$var_e = "IURAN JHT";
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+		// //Jumlah Penghasilan
+		// $var_d = 'AF'.$baris;
+		// $var_e = "IURAN JHT";
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Bonus/Tantiem
-		$var_d = 'AD'.$baris;
+		$var_d = 'AF'.$baris;
 		$var_e = "POT LAIN";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -348,7 +375,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		$var_d = 'AE'.$baris;
+		$var_d = 'AG'.$baris;
 		$var_e = "GAJI KOTOR";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -356,7 +383,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		$var_d = 'AF'.$baris;
+		$var_d = 'AH'.$baris;
 		$var_e = "GAJI BERSIH";
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -371,10 +398,13 @@ class Rekap_gajiguru extends CI_Controller
 		$jml_pend_tunjabatan = 0;
 		$jml_pend_transportasi = 0;
 		$jml_pend_pegawai_tetap = 0;
-		$jml_pend_pembinaan = 0;
 		$jml_tunj_bpjs = 0;
-		$jml_pend_thr = 0;
 		$jml_pend_keluarga = 0;
+		$jml_pend_thr = 0;
+		$jml_pend_internasional = 0;
+		$jml_pend_aksel = 0;
+		$jml_pend_walas = 0;
+		$jml_pend_inval = 0;
 		$jml_pend_khusus1 = 0;
 		$jml_pend_khusus2 = 0;
 		$jml_pend_lain = 0;
@@ -407,6 +437,8 @@ class Rekap_gajiguru extends CI_Controller
 		$no = 1;
 		$baris = 8;
 		foreach($my_data as $row){
+
+			$nominal_inval = ($row['attribute_1']*$row['attribute_2'])+($row['attribute_3']*$row['attribute_4'])+($row['attribute_5']*$row['attribute_6'])+($row['attribute_7']*$row['attribute_8']);
 			
 			$var_d = 'B'.$baris;
 			$var_e = $no;
@@ -478,19 +510,18 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
-
-			//Akhir Kerja Bulan Ke
+			//Gaji
 			$var_d = 'J'.$baris;
-			$var_e = $row['tunj_pembinaan'];
+			$var_e = $row['tunj_bpjs'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-			//Gaji
+			//Premi
 			$var_d = 'K'.$baris;
-			$var_e = $row['tunj_bpjs'];
+			$var_e = $row['tunj_keluarga'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -506,9 +537,37 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-			//Premi
+			//Rapel
 			$var_d = 'M'.$baris;
-			$var_e = $row['tunj_keluarga'];
+			$var_e = $row['tunj_international'];
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+			//Rapel
+			$var_d = 'N'.$baris;
+			$var_e = $row['tunj_aksel'];
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+			//Rapel
+			$var_d = 'O'.$baris;
+			$var_e = $row['tunj_walas'];
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+			//Rapel
+			$var_d = 'P'.$baris;
+			// $var_e = $row['tunj_walas'];
+			$var_e = $nominal_inval;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -516,7 +575,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jumlah Gaji
-			$var_d = 'N'.$baris;
+			$var_d = 'Q'.$baris;
 			$var_e = $row['tunj_khusus1'];
 			$jumlah_gaji = $var_e;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -526,7 +585,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Pajak
-			$var_d = 'O'.$baris;
+			$var_d = 'R'.$baris;
 			$var_e = $row['tunj_khusus2'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -535,7 +594,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Sansos
-			$var_d = 'P'.$baris;
+			$var_d = 'S'.$baris;
 			$var_e = $row['tunj_lain'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -544,7 +603,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jabatan
-			$var_d = 'Q'.$baris;
+			$var_d = 'T'.$baris;
 			$var_e = $row['pot_infaq_masjid'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -553,7 +612,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Struktural / Khusus
-			$var_d = 'R'.$baris; 
+			$var_d = 'U'.$baris; 
 			$var_e = $row['pot_anggota_koperasi'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -562,7 +621,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Transport
-			$var_d = 'S'.$baris;
+			$var_d = 'V'.$baris;
 			$var_e = $row['pot_kas_bon'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -571,7 +630,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Tetap
-			$var_d = 'T'.$baris;
+			$var_d = 'W'.$baris;
 			$var_e = $row['pot_ijin_telat'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -580,8 +639,8 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Peralihan
-			$var_d = 'U'.$baris;
-			$var_e = "pot_koperasi";
+			$var_d = 'X'.$baris;
+			$var_e = $row['pot_koperasi'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -589,8 +648,8 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Utility
-			$var_d = 'V'.$baris;
-			$var_e = "pot_inval";
+			$var_d = 'Y'.$baris;
+			$var_e = $row['pot_inval'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -598,7 +657,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Peralihan
-			$var_d = 'W'.$baris;
+			$var_d = 'Z'.$baris;
 			$var_e = $row['pot_toko'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -607,7 +666,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Utility
-			$var_d = 'X'.$baris;
+			$var_d = 'AA'.$baris;
 			$var_e = $row['pot_tawun'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -616,7 +675,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Lain - lain
-			$var_d = 'Y'.$baris;
+			$var_d = 'AB'.$baris;
 			$var_e = $row['pot_bpjs'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -625,8 +684,8 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jumlah Tunjangan
-			$var_d = 'Z'.$baris;
-			$jumlah_tunjangan = $row['pot_ltq'];
+			$var_d = 'AC'.$baris;
+			$var_e = $row['pot_ltq'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -634,7 +693,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Honorarium & IMB Sejenis
-			$var_d = 'AA'.$baris;
+			$var_d = 'AD'.$baris;
 			$var_e = $row['pot_bmt'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -643,7 +702,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jamsostek
-			$var_d = 'AB'.$baris;
+			$var_d = 'AE'.$baris;
 			$var_e = $row['pph21_bulanan'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -651,18 +710,18 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-			//Asuransi Lainnya
-			$var_d = 'AC'.$baris;
-			$var_e = $row['pot_iuran_jht'];
-			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+			// //Asuransi Lainnya
+			// $var_d = 'AF'.$baris;
+			// $var_e = $row['pot_iuran_jht'];
+			// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+			// $objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jumlah Asuransi
-			$var_d = 'AD'.$baris;
-			$jumlah_asuransi = $row['pot_lain'];
+			$var_d = 'AF'.$baris;
+			$var_e = $row['pot_lain'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -671,19 +730,22 @@ class Rekap_gajiguru extends CI_Controller
 
 
 			//Cuti / Jubelium
-			$var_d = 'AE'.$baris;
+			$var_d = 'AG'.$baris;
 			$pend_gaji_pokok = $row['gaji'];
 			$pend_tunjabatan = $row['tunj_jabatan'];
 			$pend_transportasi = $row['tunj_transport'];
 			$pend_pegawai_tetap = $row['tunj_tetap'];
-			$pend_pembinaan = $row['tunj_pembinaan'];
 			$pend_bpjs = $row['tunj_bpjs'];
-			$pend_thr = $row['thr'];
 			$pend_keluarga = $row['tunj_keluarga'];
+			$pend_thr = $row['thr'];
+			$pend_internasional = $row['tunj_international'];
+			$pend_aksel = $row['tunj_aksel'];
+			$pend_walas = $row['tunj_walas'];
+			$pend_inval = $nominal_inval;
 			$pend_khusus1 = $row['tunj_khusus1'];
 			$pend_khusus2 = $row['tunj_khusus2'];
 			$pend_lain = $row['tunj_lain'];
-			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_pembinaan+$pend_bpjs+$pend_thr+$pend_keluarga+$pend_khusus1+$pend_khusus2+$pend_lain;
+			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_pembinaan+$pend_bpjs+$pend_thr+$pend_internasional+$pend_aksel+$pend_walas+$pend_keluarga+$nominal_inval+$pend_khusus1+$pend_khusus2+$pend_lain;
 			$var_e = $gaji_kotor;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -692,7 +754,7 @@ class Rekap_gajiguru extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 			//Jml Penghasilan Tidak teratur
-			$var_d = 'AF'.$baris;
+			$var_d = 'AH'.$baris;
 			$pot_infaq_masjid = $row['pot_infaq_masjid'];
 			$pot_anggota_koperasi = $row['pot_anggota_koperasi'];
 			$pot_kas_bon = $row['pot_kas_bon'];
@@ -707,7 +769,7 @@ class Rekap_gajiguru extends CI_Controller
 			$pot_pph21 = $row['pph21_bulanan'];
 			$pot_jht = $row['pot_iuran_jht'];
 			$pot_lain = $row['pot_lain'];
-			$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_jht+$pot_lain;
+			$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_lain;
 			$var_e = $gaji_kotor-$jumlah_pot;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -720,11 +782,15 @@ class Rekap_gajiguru extends CI_Controller
 			$jml_pend_transportasi = $jml_pend_transportasi+$pend_transportasi;
 			$jml_pend_pegawai_tetap = $jml_pend_pegawai_tetap+$pend_pegawai_tetap;
 			$jml_pend_pembinaan = $jml_pend_pembinaan+$pend_pembinaan;
-			$jml_tunj_bpjs = $jml_tunj_bpjs+$tunj_bpjs;
+			$jml_tunj_bpjs = $jml_tunj_bpjs+$pend_bpjs;
 			$jml_pend_thr = $jml_pend_thr+$pend_thr;
-			$jml_pend_keluarga = $jml_pend_keluarga;
-			$jml_pend_khusus1 = $jml_pend_khusus1;
-			$jml_pend_khusus2 = $jml_pend_khusus2;
+			$jml_pend_internasional = $jml_pend_internasional+$pend_internasional;
+			$jml_pend_aksel = $jml_pend_aksel+$pend_aksel;
+			$jml_pend_walas = $jml_pend_walas+$pend_walas;
+			$jml_pend_inval = $jml_pend_inval+$pend_inval;
+			$jml_pend_keluarga = $jml_pend_keluarga+$pend_keluarga;
+			$jml_pend_khusus1 = $jml_pend_khusus1+$pend_khusus1;
+			$jml_pend_khusus2 = $jml_pend_khusus2+$pend_khusus2;
 			$jml_pend_lain = $jml_pend_lain+$pend_lain;
 			$jml_gaji_kotor = $jml_gaji_kotor+$gaji_kotor;
 
@@ -826,18 +892,18 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Akhir Kerja Bulan Ke
+		//Gaji
 		$var_d = 'J'.$baris;
-		$var_e = $jml_pend_pembinaan;
+		$var_e = $jml_tunj_bpjs;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Gaji
+		//Premi
 		$var_d = 'K'.$baris;
-		$var_e = $jml_tunj_bpjs;
+		$var_e = $jml_pend_keluarga;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -853,9 +919,36 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Premi
+		//Rapel
 		$var_d = 'M'.$baris;
-		$var_e = $jml_pend_keluarga;
+		$var_e = $jml_pend_internasional;
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Rapel
+		$var_d = 'N'.$baris;
+		$var_e = $jml_pend_aksel;
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Rapel
+		$var_d = 'O'.$baris;
+		$var_e = $jml_pend_walas;
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+
+		//Rapel
+		$var_d = 'P'.$baris;
+		$var_e = $jml_pend_inval;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -863,7 +956,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jumlah Gaji
-		$var_d = 'N'.$baris;
+		$var_d = 'Q'.$baris;
 		$var_e = $jml_pend_khusus1;
 		$jumlah_gaji = $var_e;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -873,7 +966,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Pajak
-		$var_d = 'O'.$baris;
+		$var_d = 'R'.$baris;
 		$var_e = $jml_pend_khusus2;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -882,7 +975,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Sansos
-		$var_d = 'P'.$baris;
+		$var_d = 'S'.$baris;
 		$var_e = $jml_pend_lain;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -891,7 +984,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jabatan
-		$var_d = 'Q'.$baris;
+		$var_d = 'T'.$baris;
 		$var_e = $jml_pot_infaq_masjid;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -900,7 +993,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Struktural / Khusus
-		$var_d = 'R'.$baris;
+		$var_d = 'U'.$baris;
 		$var_e = $jml_pot_anggota_koperasi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -909,7 +1002,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Transport
-		$var_d = 'S'.$baris;
+		$var_d = 'V'.$baris;
 		$var_e = $jml_pot_kas_bon;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -918,7 +1011,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Tetap
-		$var_d = 'T'.$baris;
+		$var_d = 'W'.$baris;
 		$var_e = $jml_pot_ijin_telat;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -927,7 +1020,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Peralihan
-		$var_d = 'U'.$baris;
+		$var_d = 'X'.$baris;
 		$var_e = $jml_pot_koperasi;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -936,7 +1029,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Utility
-		$var_d = 'V'.$baris;
+		$var_d = 'Y'.$baris;
 		$var_e = $jml_pot_inval;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -945,7 +1038,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Peralihan
-		$var_d = 'W'.$baris;
+		$var_d = 'Z'.$baris;
 		$var_e = $jml_pot_toko;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -954,7 +1047,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Utility
-		$var_d = 'X'.$baris;
+		$var_d = 'AA'.$baris;
 		$var_e = $jml_pot_tawun;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -963,7 +1056,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Lain - lain
-		$var_d = 'Y'.$baris;
+		$var_d = 'AB'.$baris;
 		$var_e = $jml_pot_bpjs;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -972,8 +1065,8 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jumlah Tunjangan
-		$var_d = 'Z'.$baris;
-		$jumlah_tunjangan = $jml_pot_ltq;
+		$var_d = 'AC'.$baris;
+		$var_e = $jml_pot_ltq;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -981,7 +1074,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Honorarium & IMB Sejenis
-		$var_d = 'AA'.$baris;
+		$var_d = 'AD'.$baris;
 		$var_e = $jml_pot_bmt;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -990,7 +1083,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jamsostek
-		$var_d = 'AB'.$baris;
+		$var_d = 'AE'.$baris;
 		$var_e = $jml_pot_pph21;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -998,16 +1091,16 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		//Asuransi Lainnya
-		$var_d = 'AC'.$baris;
-		$var_e = $jml_pot_iuran_jht;
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
+		// //Asuransi Lainnya
+		// $var_d = 'AF'.$baris;
+		// $var_e = $jml_pot_iuran_jht;
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+		// $objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
-		$var_d = 'AD'.$baris;
+		$var_d = 'AF'.$baris;
 		$var_e = $jml_pot_lain;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1016,7 +1109,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Cuti / Jubelium
-		$var_d = 'AE'.$baris;
+		$var_d = 'AG'.$baris;
 		$var_e = $jml_gaji_kotor;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -1025,7 +1118,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//Jml Penghasilan Tidak teratur
-		$var_d = 'AF'.$baris;
+		$var_d = 'AH'.$baris;
 		$var_e = $jml_gaji_kotor-$jml_jumlah_pot;
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 		$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
