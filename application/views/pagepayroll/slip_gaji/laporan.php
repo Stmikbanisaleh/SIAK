@@ -32,7 +32,7 @@
 	margin-right:5px;
 	margin-bottom:5px;
 	background-clip: padding-box;
-    height:550px;
+    /* height:550px; */
     /* background-color:red; */
    }
 
@@ -44,7 +44,7 @@
 	margin-bottom:5px;
 	float: right;
 	background-clip: padding-box;
-    height:550px;
+    /* height:550px; */
     /* background-color:blue; */
    }
 
@@ -94,6 +94,7 @@
 	$no = 1;
 	$content = 'content_left';
 	$mydata = $mygaji->result_array();
+	// echo json_encode($mydata);exit;
 	foreach($mydata as $row){
 		if($bariske == 1){
 			$class_baris = 'baris1';
@@ -403,31 +404,70 @@
                     </tr>
 					<?php
 						$no = 1;
-						foreach($array_data_sliptemp as $row){
+						foreach($array_data_sliptemp as $rows){
 					?>
 					
 						<tr>
 							<td><?= $no ?></td>
-							<td><?= $row['label_tunj'] ?></td>
+							<td><?= $rows['label_tunj'] ?></td>
 							<td style="text-align:right">
 								<?php
-									if($row['tunj_nilai'] != ''){
-										echo number_format($row['tunj_nilai']);
+									if($rows['tunj_nilai'] != ''){
+										echo number_format($rows['tunj_nilai']);
 									}
 								?>
 							</td>
 							<td></td>
-							<td><?= $row['label_pot'] ?></td>
+							<td><?= $rows['label_pot'] ?></td>
 							<td style="text-align:right">
 							<?php
-									if($row['pot_nilai'] != ''){
-										echo number_format($row['pot_nilai']);
+									if($rows['pot_nilai'] != ''){
+										echo number_format($rows['pot_nilai']);
 									}
 								?>
 							</td>
 						</tr>
 					<?php
 						$no++;
+						}
+					?>
+					<?php
+						if($ket!='K'){
+							$tambahan = ($row['attribute_1']*$row['attribute_2'])+($row['attribute_3']*$row['attribute_4'])+($row['attribute_5']*$row['attribute_6'])+($row['attribute_7']*$row['attribute_8']);
+							$jumlah_pend = $jumlah_pend+$tambahan;
+					?>
+						<?php
+							if($row['attribute_1']!='' || $row['attribute_2']!=''){
+						?>
+						<tr>
+							<td><?= $no ?></td>
+							<td>
+								<?php
+									echo 'Tambahan ('.$row['attribute_1'].'X'.$row['attribute_2'].')+('.$row['attribute_3'].'X'.$row['attribute_4'].')+';
+								?>
+							</td>
+							<td style="text-align:right"><?= $tambahan ?></td>
+							<td></td>
+						</tr>
+						<?php
+							}
+						?>
+						<?php
+							if($row['attribute_5']!='' || $row['attribute_7']!=''){
+						?>
+						<tr>
+							<td></td>
+							<td>
+								<?php
+									echo '('.$row['attribute_5'].'X'.$row['attribute_6'].')+('.$row['attribute_7'].'X'.$row['attribute_8'].')';
+								?>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					<?php
+							}
+							
 						}
 					?>
 					
