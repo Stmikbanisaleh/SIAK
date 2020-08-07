@@ -52,107 +52,60 @@ class Generategajiguru extends CI_Controller
         }
     }
 
-    public function simpan()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $data_id = array(
-                'NAMAJABATAN'  => $this->input->post('nama')
-            );
-            $count_id = $this->model_generateguru->view_count('msjabatan', $data_id);
-            if ($count_id < 1) {
-                $data = array(
-                    'id'  => $this->input->post('id'),
-                    'NAMAJABATAN'  => $this->input->post('nama'),
-                    'KET'  => $this->input->post('keterangan'),
-                    'createdAt' => date('Y-m-d H:i:s'),
-                );
-                $action = $this->model_generateguru->insert($data, 'msjabatan');
-                echo json_encode($action);
-            } else {
-                echo json_encode(401);
-            }
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
-    public function update()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $data_id = array(
-                'ID'  => $this->input->post('e_id')
-            );
-            $data = array(
-                'NAMAJABATAN'  => $this->input->post('e_nama'),
-                'KET'  => $this->input->post('e_keterangan'),
-                'updatedAt' => date('Y-m-d H:i:s'),
-            );
-            $action = $this->model_generateguru->update($data_id, $data, 'msjabatan');
-            echo json_encode($action);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
-    public function delete()
-    {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $data_id = array(
-                'ID'  => $this->input->post('id')
-            );
-            $data = array(
-                'isdeleted'  => 1,
-            );
-            $action = $this->model_generateguru->update($data_id, $data, 'msjabatan');
-            echo json_encode($action);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
-
     public function generate()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $tglawal = $this->input->post('tglawal');
-            $tglakhir = $this->input->post('tglakhir');
-
-            $refresh = $this->db->query("delete from tb_pendapatan_guru where effective_date between '" . $tglawal . "' and '" . $tglakhir . "'");
+            $bulan = $this->input->post('bulan');
+            $tahun = $this->input->post('tahun');
+            $refresh = $this->db->query("delete from tb_pendapatan_guru where tahun  = '" . $tahun . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
-                $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, (a.tunjangan_masakerja + d.lain + d.tunjangan ) as tunj_lain , a.tunjangan_jabatan,b.GuruNama
-                ,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval, e.toko, e.lain,e.tawun, e.pph21
+                $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
+                a.tunjangan_internasional, a.tunjangan_keluarga, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
+                a.tunjangan_pegawai_tetap, a.tunjangan_masakerja, a.tunjangan_jabatan,b.GuruNama,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,
+                e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval, e.toko, e.lain,e.tawun, e.pph21,
+                d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4
                 from tarifguru a
                 join tbguru b on a.IdGuru = b.IdGuru
                 left join htguru c on a.IdGuru = c.IdGuru
                 left join tbpendapatanlainguru d on a.IdGuru = d.IdGuru
                 left join tbgurupot e on a.IdGuru = e.IdGuru
-                where d.periode between '".$tglawal."' and '" . $tglakhir . "' and c.PERIODE between '".$tglawal."' and '" . $tglakhir . "' and e.periode between '".$tglawal."' and '" . $tglakhir . "'
                 ")->result_array();
                 if ($getgaji) {
                     foreach ($getgaji as $data) {
-                        $gettotalngajar = $this->db->query("select SUM(d.jam) as jam ,SUM(a.TAMBAHAN) as tambahan
-                        from trdsrm a 
-                        join tbjadwal c on a.idJadwal = c.id
-                        join mspelajaran d on c.id_mapel = d.id_mapel 
-                        where a.TGLHADIR between '".$tglawal."' and '".$tglakhir."' and a.IdGuru = '".$data['IdGuru']."' group by a.IdGuru")->result_array();
+                        // $jam = $this->model
                         $pot_lain = $data['infaq_masjid']+$data['anggota_koperasi']+$data['kas_bon']+$data['ijin_telat']+$data['koperasi']+$data['bmt']+$data['inval']+$data['toko']+$data['lain']+$data['tawun'];
                         $data = array(
                             "employee_number" => $data['IdGuru'],
                             "nama"    => $data['GuruNama'],
                             "npwp" => $data['NPWP'],
-                            // "jabatan" => $data['NAMAJABATAN'],
                             "status" => "",
-                            "effective_date" => $tglakhir,
-                            // "awal_kerja" => $data['tgl_mulai_kerja'],
+                            "tahun" => $tahun,
+                            "bulan" => $bulan,
                             "gaji" => $data['gaji'],
-                            "jumlah_jam" => $gettotalngajar[0]['jam']+$gettotalngajar[0]['tambahan'],
+                            "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
+                            // "tunjangan_masakerja" => $data['tunjangan_masakerja'],
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
                             "tunj_transport" => $data['transport'],
+                            "tunj_international" => $data['tunjangan_internasional'],
+                            "tunj_aksel" => $data['tunjangan_aksel'],
+                            "tunj_keluarga" => $data['tunjangan_keluarga'],
+                            "tunj_khusus1" => $data['tunj_khusus1'],
+                            "tunj_khusus2" => $data['tunj_khusus2'],
+                            "ket_tunj_khusus1" => $data['ket_tunj_khusus1'],
+                            "ket_tunj_khusus2" => $data['ket_tunj_khusus2'],
+                            "attribute_1" => $data['jam1'],
+                            "attribute_2" => $data['tarif1'],
+                            "attribute_3" => $data['jam2'],
+                            "attribute_4" => $data['tarif2'],
+                            "attribute_5" => $data['jam3'],
+                            "attribute_6" => $data['tarif3'],
+                            "attribute_7" => $data['jam4'],
+                            "attribute_8" => $data['tarif4'],
                             "tunj_lain" => $data['tunj_lain'],
                             "thr"  => $data['thr'],
                             "pph21_bulanan" => $data['pph21'],
-                            "pot_lain" => $pot_lain,
+                            "pot_lain" => $data['lain'],
                             "updatedWith" => $this->session->userdata('nama')
-
                         );
                         $insert = $this->model_Generategajiguru->insert($data, 'tb_pendapatan_guru');
                         if ($insert) {

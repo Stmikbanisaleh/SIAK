@@ -368,7 +368,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Ta'wun</label>
 								<div class="col-sm-9">
 								<input type="text" id="tawun" required name="tawun" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="tawun_v" required name="tawun_v"/>
@@ -465,13 +465,6 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
-								<div class="col-sm-9">
-									<input type="date" id="periode" required name="periode" placeholder="Rp. 10.000" class="form-control" />
-								</div>
-                            </div>
 					</div>
 				</div>
 			</div>
@@ -944,13 +937,6 @@
 									</script>
 								</div>
 							</div>
-							
-                            <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
-								<div class="col-sm-9">
-									<input type="date" id="e_periode" required name="e_periode" placeholder="Rp. 10.000" class="form-control" />
-								</div>
-                            </div>
 					</div>
 				</div>
 			</div>
@@ -983,7 +969,6 @@
 				<th>No</th>
 				<th>Kode Guru</th>
 				<th>Nama Guru</th>
-				<th>Periode</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -1045,7 +1030,6 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].IdGuru + '</td>' +
 						'<td>' + data[i].GuruNama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id_potong + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"> Edit </i>' +

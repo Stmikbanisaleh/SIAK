@@ -20,7 +20,7 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode Awal </label>
 								<div class="col-sm-6">
 									<input type="date" id="tglawal"  name="tglawal" required placeholder="2020" class="form-control" />
@@ -30,6 +30,32 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode Akhir </label>
 								<div class="col-sm-6">
 									<input type="date" id="tglakhir"  name="tglakhir" required class="form-control" />
+								</div>
+							</div> -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun </label>
+								<div class="col-sm-6">
+									<input type="text" id="tahun" maxlength="4" name="tahun" required placeholder="2020" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bulan </label>
+								<div class="col-sm-6">
+									<select class="form-control" required name="bulan" id="bulan">
+										<option value="0">--Bulan Awal--</option>
+										<option value="01">Januari</option>
+										<option value="02">Februari</option>
+										<option value="03">Maret</option>
+										<option value="04">April</option>
+										<option value="05">Mei</option>
+										<option value="06">Juni</option>
+										<option value="07">Juli</option>
+										<option value="08">Agustus</option>
+										<option value="09">September</option>
+										<option value="10">Oktober</option>
+										<option value="11">November</option>
+										<option value="12">Desember</option>
+									</select>
 								</div>
 							</div>
 						</div>

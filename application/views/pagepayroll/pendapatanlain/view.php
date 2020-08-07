@@ -27,7 +27,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="id_guru" id="id_guru">
+									<select class="form-control" required name="id_guru" id="id_guru">
 										<option value="">-- Pilih Guru --</option>
 										<?php foreach ($myguru as $value) { ?>
 											<option value=<?= $value['IdGuru'] ?>><?= $value['GuruNama'] ?></option>
@@ -70,7 +70,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Kinerja</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Penilaian Kinerja</label>
 								<div class="col-sm-9">
 									<input type="text" id="tjkinerja" required name="tjkinerja" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tjkinerja_v" required name="tjkinerja_v" />
@@ -103,7 +103,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Lain Lain</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Lain Lain</label>
 								<div class="col-sm-9">
 									<input type="text" id="tjlain" required name="tjlain" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tjlain_v" required name="tjlain_v" />
@@ -136,36 +136,116 @@
 							</div>
 
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 1 </label>
+								<div class="col-sm-9">
+									<input type="text" id="ket_tunj_khusus1" name="ket_tunj_khusus1" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 1</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus1" name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus1_v" name="tunj_khusus1_v"/>
+								<script language="JavaScript">
+										var rupiah9 = document.getElementById('tunj_khusus1');
+										rupiah9.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus1_v').val(rup6);
+											rupiah9.value = formatRupiah9(this.value, 'Rp. ');
+										});
+
+										function formatRupiah9(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah9 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah9 += separator + ribuan6.join('.');
+											}
+
+											rupiah9 = split[1] != undefined ? rupiah9 + ',' + split[1] : rupiah9;
+											return prefix == undefined ? rupiah5 : (rupiah9 ? 'Rp. ' + rupiah9 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ket. Tunj Khusus 2 </label>
+								<div class="col-sm-9">
+									<input type="text" id="ket_tunj_khusus2" name="ket_tunj_khusus2" placeholder="Keterangan" class="form-control">
+								</div>
+                            </div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 2</label>
+								<div class="col-sm-9">
+								<input type="text" id="tunj_khusus2"  name="tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus2_v"  name="tunj_khusus2_v"/>
+								<script language="JavaScript">
+										var rupiah10 = document.getElementById('tunj_khusus2');
+										rupiah10.addEventListener('keyup', function(e) {
+											rup6 = this.value.replace(/\D/g, '');
+											$('#tunj_khusus2_v').val(rup6);
+											rupiah10.value = formatRupiah6(this.value, 'Rp. ');
+										});
+
+										function formatRupiah6(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah10 = split[0].substr(0, sisa),
+												ribuan6 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan6) {
+												separator = sisa ? '.' : '';
+												rupiah10 += separator + ribuan6.join('.');
+											}
+
+											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+											return prefix == undefined ? rupiah5 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+										}
+									</script>
+								</div>
+                            </div>
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tambahan (1) </label>
 								<div class="col-sm-3">
 									<input type="number" id="jam1" name="jam1" placeholder="Jam" class="form-control" />
 								</div>
 								<div class="col-sm-6">
 									<input type="text" id="tarif1" name="tarif1" placeholder="Tarif Perjam(1) " class="form-control" />
-									<input type="hidden" id="tarif1_v" required name="tarif1_v" />
+									<input type="hidden" id="tarif1_v" name="tarif1_v" />
 									<script language="JavaScript">
-										var rupiah3 = document.getElementById('tarif1');
-										rupiah3.addEventListener('keyup', function(e) {
+										var rupiah31 = document.getElementById('tarif1');
+										rupiah31.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#tarif1_v').val(rup3);
-											rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+											rupiah31.value = formatRupiah31(this.value, 'Rp. ');
 										});
 
-										function formatRupiah3(angka, prefix) {
+										function formatRupiah31(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
 												sisa = split[0].length % 3,
-												rupiah3 = split[0].substr(0, sisa),
-												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+												rupiah31 = split[0].substr(0, sisa),
+												ribuan31 = split[0].substr(sisa).match(/\d{3}/gi);
 
 											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan3) {
+											if (ribuan31) {
 												separator = sisa ? '.' : '';
-												rupiah3 += separator + ribuan3.join('.');
+												rupiah31 += separator + ribuan31.join('.');
 											}
 
-											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
-											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+											rupiah31 = split[1] != undefined ? rupiah31 + ',' + split[1] : rupiah31;
+											return prefix == undefined ? rupiah31 : (rupiah31 ? 'Rp. ' + rupiah31 : '');
 										}
 									</script>
 								</div>
@@ -180,7 +260,7 @@
 									<input type="text" id="tarif2" name="tarif2" placeholder="Tarif Perjam(2) " class="form-control" />
 									<input type="hidden" id="tarif2_v" required name="tarif2_v" />
 									<script language="JavaScript">
-										var rupiah6 = document.getElementById('tarif1');
+										var rupiah6 = document.getElementById('tarif2');
 										rupiah6.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#tarif2_v').val(rup3);
@@ -756,7 +836,6 @@
 				<th>No</th>
 				<th>Kode Guru</th>
 				<th>Nama Guru</th>
-				<th>Periode</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -817,8 +896,10 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td class="text-center">' + data[i].IdGuru + '</td>' +
 						'<td>' + data[i].GuruNama + '</td>' +
-						'<td>' + data[i].periode + '</td>' +
 						'<td>' +
+						'<button  href="#my-modal-edit" class="btn btn-xs btn-success item_edit" title="Edit" data-id="' + data[i].id + '">' +
+						'<i class="ace-icon fa fa-trash-o bigger-120"> Edit</i>' +
+						'</button> ' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-danger item_hapus" title="Hapus" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"> Hapus</i>' +
 						'</button> ' +

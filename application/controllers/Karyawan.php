@@ -179,7 +179,7 @@ class Karyawan extends CI_Controller
 					'level' => $this->input->post('level'),
 					'status'  => 1,
 					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);
@@ -193,7 +193,7 @@ class Karyawan extends CI_Controller
 					'level' => $this->input->post('e_level'),
 					'status'  => $this->input->post('e_status'),
 					'gambar'  => null,
-					'createdAt' => date('Y-m-d H:i:s')
+					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
 				echo json_decode($result);

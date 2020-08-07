@@ -144,8 +144,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 1</label>
 								<div class="col-sm-9">
-								<input type="text" id="tunj_khusus1" required name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="tunj_khusus1_v" required name="tunj_khusus1_v"/>
+								<input type="text" id="tunj_khusus1"  name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus1_v"  name="tunj_khusus1_v"/>
 								<script language="JavaScript">
 										var rupiah9 = document.getElementById('tunj_khusus1');
 										rupiah9.addEventListener('keyup', function(e) {
@@ -184,13 +184,13 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Khusus 2</label>
 								<div class="col-sm-9">
-								<input type="text" id="tunj_khusus2" required name="tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="tunj_khusus2" required name="tunj_khusus2"/>
+								<input type="text" id="tunj_khusus2"  name="tunj_khusus2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="tunj_khusus2_v"  name="tunj_khusus2_v"/>
 								<script language="JavaScript">
-										var rupiah10 = document.getElementById('tunj_khusus2');
+										var rupiah10 = document.getElementById('tunj_khusus2_v');
 										rupiah10.addEventListener('keyup', function(e) {
 											rup6 = this.value.replace(/\D/g, '');
-											$('#tunj_khusus2').val(rup6);
+											$('#tunj_khusus2_v').val(rup6);
 											rupiah10.value = formatRupiah6(this.value, 'Rp. ');
 										});
 

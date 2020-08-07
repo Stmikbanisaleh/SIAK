@@ -7,6 +7,9 @@ class Model_masterpotongan_guru extends CI_model
         return $this->db->get($table);
     }
 
+    public function cek($id){
+        return $this->db->query("select IdGuru from tbgurupot where IdGuru = '".$id."' ");
+    }
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
