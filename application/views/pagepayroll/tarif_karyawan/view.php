@@ -748,31 +748,41 @@
 				$('#e_tarif_karyawan').val(a);
 				$('#e_tarif_karyawan_v').val(data[0].tarif);
 
-				$('#e_tunjangan_jabatan').val(data[0].tunjangan_jabatan);
+				var b = ConvertFormatRupiah(data[0].tunjangan_jabatan, 'Rp. ');
+				$('#e_tunjangan_jabatan').val(b);
 				$('#e_tunjangan_jabatan_v').val(data[0].tunjangan_jabatan);
 
-				$('#e_tunjangan_masa_kerja').val(data[0].tunjangan_masakerja);
-				$('#e_tunjangan_masa_kerja_v').val(data[0].tunjangan_masakerja);
+				// var c = ConvertFormatRupiah(data[0].tunjangan_masakerja, 'Rp. ');
+				// $('#e_tunjangan_jabatan').val(c);
+				// $('#e_tunjangan_jabatan_v').val(data[0].tunjangan_masakerja);
 
-				$('#e_convert').val(data[0].convert);
+				var d = ConvertFormatRupiah(data[0].convert, 'Rp. ');
+				$('#e_convert').val(d);
 				$('#e_convert_v').val(data[0].convert);
 
-				$('#e_tunj_pegawai_tetap').val(data[0].tunj_pegawai_tetap);
+				var e = ConvertFormatRupiah(data[0].tunj_pegawai_tetap, 'Rp. ');
+				$('#e_tunj_pegawai_tetap').val(e);
 				$('#e_tunj_pegawai_tetap_v').val(data[0].tunj_pegawai_tetap);
 
-				$('#e_tunj_keluarga').val(data[0].tunj_keluarga);
+				var f = ConvertFormatRupiah(data[0].tunj_keluarga, 'Rp. ');
+				$('#e_tunj_keluarga').val(f);
 				$('#e_tunj_keluarga_v').val(data[0].tunj_keluarga);
 
-				$('#e_tunj_pembinaan').val(data[0].tunj_pembinaan);
+				var g = ConvertFormatRupiah(data[0].tunj_pembinaan, 'Rp. ');
+				$('#e_tunj_pembinaan').val(g);
 				$('#e_tunj_pembinaan_v').val(data[0].tunj_pembinaan);
 
-				$('#e_bpjs').val(data[0].bpjs);
+				var h = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
+				$('#e_bpjs').val(h);
+				$('#e_transport_v').val(data[0].bpjs);
+
+				var i = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
+				$('#e_transport').val(i);
 				$('#e_bpjs_v').val(data[0].bpjs);
 
 				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
 				$('#e_no_rekening').val(data[0].no_rekening);
-				$('#e_transport').val(data[0].transport);
-				$('#e_transport_v').val(data[0].transport);
+
 
 
 			}

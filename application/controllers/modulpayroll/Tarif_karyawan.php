@@ -150,7 +150,7 @@ class Tarif_karyawan extends CI_Controller
 				'tunjangan_jabatan'  => $this->input->post('e_tunjangan_jabatan_v'),
 				'tunjangan_masakerja'  => $this->input->post('e_tunjangan_masa_kerja_v'),
 				'transport'  => $this->input->post('e_transport_v'),
-				'convert'  => $this->input->post('e_convert'),
+				'convert'  => $this->input->post('e_convert_v'),
 				'cara_pembayaran'  => $this->input->post('e_nama_pembayaran'),
 				'tunj_pegawai_tetap'  => $this->input->post('e_tunj_pegawai_tetap_v'),
 				'tunj_keluarga'  => $this->input->post('e_tunj_keluarga_v'),
