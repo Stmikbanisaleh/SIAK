@@ -743,8 +743,11 @@
 			},
 			success: function(data) {
 				$('#e_karyawan').val(data[0].id_karyawan);
-				$('#e_tarif_karyawan').val(data[0].tarif);
+
+				var a = ConvertFormatRupiah(data[0].tarif, 'Rp. ');
+				$('#e_tarif_karyawan').val(a);
 				$('#e_tarif_karyawan_v').val(data[0].tarif);
+
 				$('#e_tunjangan_jabatan').val(data[0].tunjangan_jabatan);
 				$('#e_tunjangan_jabatan_v').val(data[0].tunjangan_jabatan);
 

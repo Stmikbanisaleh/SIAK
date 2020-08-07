@@ -925,7 +925,17 @@
 				$('#e_tarif1').val(g);
 				$('#e_tarif1_v').val(data[0].tarif1);
 
-				
+				var h = ConvertFormatRupiah(data[0].tarif2, 'Rp. ');
+				$('#e_tarif2').val(h);
+				$('#e_tarif2_v').val(data[0].tarif2);
+
+				var i = ConvertFormatRupiah(data[0].tarif3, 'Rp. ');
+				$('#e_tarif3').val(i);
+				$('#e_tarif3_v').val(data[0].tarif3);
+
+				var j = ConvertFormatRupiah(data[0].tarif4, 'Rp. ');
+				$('#e_tarif4').val(j);
+				$('#e_tarif4_v').val(data[0].tarif4);
 			}
 		});
     });

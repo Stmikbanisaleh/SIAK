@@ -19,7 +19,7 @@ class Tarif_guru extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$my_pembayaran = $this->model_tarifguru->view('jnspembayaran')->result_array();
-			$my_guru = $this->model_tarifguru->viewOrdering('tbguru','GuruNama' ,'asc')->result_array();
+			$my_guru = $this->model_tarifguru->viewOrdering('tbguru', 'GuruNama', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '../pagepayroll/tarifguru/view',
 				'ribbon' 		=> '<li class="active">Master Tarif Guru</li>',
@@ -61,9 +61,9 @@ class Tarif_guru extends CI_Controller
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 
-			$count_id = $this->model_tarifguru->view_count('IdGuru','tarifguru', $datatarif['IdGuru']);
+			$count_id = $this->model_tarifguru->view_count('IdGuru', 'tarifguru', $datatarif['IdGuru']);
 			if ($count_id < 1) {
-				$result = $this->model_tarifguru->insert($datatarif , 'tarifguru');
+				$result = $this->model_tarifguru->insert($datatarif, 'tarifguru');
 				if ($result) {
 					echo $result;
 				}
@@ -75,14 +75,53 @@ class Tarif_guru extends CI_Controller
 		}
 	}
 
-	public function delete()
+	public function update()
+	{
+		$data_id = array(
+			'id'  => $this->input->post('e_id')
+		);
+		$data = array(
+			'tarif'  => $this->input->post('e_tarif_guru_v'),
+			'cara_pembayaran'  => $this->input->post('e_nama_pembayaran'),
+			'no_rekening' => $this->input->post('e_no_rekening'),
+			'transport' => $this->input->post('e_transport_v'),
+			'convert' => $this->input->post('e_convert_v'),
+			'tunjangan_walas' => $this->input->post('e_tunjangan_walas_v'),
+			'tunjangan_bpjs' => $this->input->post('e_tunjangan_bpjs_v'),
+			'tunjangan_masakerja' => $this->input->post('e_tunjangan_masa_kerja_v'),
+			'tunjangan_jabatan' => $this->input->post('e_tunjangan_jabatan_v'),
+			'tunjangan_keluarga' => $this->input->post('e_tunjangan_keluarga_v'),
+			'tunjangan_pegawai_tetap' => $this->input->post('e_tunjangan_pegawai_tetap_v'),
+			'tunjangan_aksel' => $this->input->post('e_tunjangan_aksel_v'),
+			'tunjangan_internasional' => $this->input->post('e_tunjangan_internasional_v'),
+			'updatedAt' => date('Y-m-d H:i:s')
+		);
+		$action = $this->model_tarifguru->update($data_id, $data, 'tarifguru');
+		echo json_encode($action);
+	}
+
+	public function tampil_byid()
     {
-        $data_id = array(
-            'id'  => $this->input->post('id')
-        );
-        $action = $this->model_tarifguru->delete($data_id, 'tarifguru');
-        if($action){
-            echo json_encode($action);
+        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+            $data = array(
+                'id'  => $this->input->post('id'),
+            );
+            $my_data = $this->model_tarifguru->view_where('tarifguru', $data)->result();
+            echo json_encode($my_data);
+        } else {
+            $this->load->view('pagepayroll/login'); //Memanggil function render_view
         }
-    }
+	}
+
+	public function delete()
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
+		);
+		$action = $this->model_tarifguru->delete($data_id, 'tarifguru');
+		if ($action) {
+			echo json_encode($action);
+		}
+	}
 }

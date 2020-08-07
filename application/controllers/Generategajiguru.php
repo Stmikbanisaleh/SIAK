@@ -68,7 +68,7 @@ class Generategajiguru extends CI_Controller
                 $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
                 a.tunjangan_internasional, a.tunjangan_keluarga, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
                 a.tunjangan_pegawai_tetap, a.tunjangan_masakerja, a.tunjangan_jabatan,b.GuruNama,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,
-                e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval, e.toko, e.lain,e.tawun, e.pph21,
+                e.bpjs,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval,e.ltq, e.toko, e.lain,e.tawun, e.pph21,
                 d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4
                 from tarifguru a
                 join tbguru b on a.IdGuru = b.IdGuru
@@ -91,7 +91,6 @@ class Generategajiguru extends CI_Controller
                             "gaji" => $data['gaji'],
                             "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
                             "effective_date" => $tahun.'-'.$bulan.'-'.$lastday,
-                            // "tunjangan_masakerja" => $data['tunjangan_masakerja'],
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
                             "tunj_transport" => $data['transport'],
                             "tunj_international" => $data['tunjangan_internasional'],
@@ -113,6 +112,18 @@ class Generategajiguru extends CI_Controller
                             "thr"  => $data['thr'],
                             "pph21_bulanan" => $data['pph21'],
                             "pot_lain" => $data['lain'],
+                            "pot_ltq" => $data['ltq'],
+                            "pot_inval" => $data['inval'],
+                            "pot_infaq_masjid" => $data['infaq_masjid'],
+                            "pot_anggota_koperasi" => $data['anggota_koperasi'],
+                            "pot_kas_bon" => $data['kas_bon'],
+                            "pot_ijin_telat" => $data['ijin_telat'],
+                            "pot_bmt" => $data['bmt'],
+                            "pot_koperasi" => $data['koperasi'],
+                            "pot_toko" => $data['toko'],
+                            "pph21_bulanan" => $data['pph21'],
+                            "pot_bpjs" => $data['bpjs'],
+                            "pot_tawun" => $data['tawun'],
                             "updatedWith" => $this->session->userdata('nama')
                         );
                         $insert = $this->model_Generategajiguru->insert($data, 'tb_pendapatan_guru');

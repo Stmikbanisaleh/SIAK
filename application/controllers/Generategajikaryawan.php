@@ -124,7 +124,7 @@ class Generategajikaryawan extends CI_Controller
             $refresh = $this->db->query("delete from tb_pendapatan_karyawan where tahun  = '" . $year . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
                 $getgaji = $this->db->query("Select a.id_karyawan,a.bpjs,a.tarif+a.honor as gaji ,a.tunj_pembinaan, a.tunj_keluarga, a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,a.tunj_pegawai_tetap, b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , 
-                d.jht, d.inval, d.infaq_masjid as infaq_masjid , d.toko  as toko, d.tawun as tawun , d.bpjs as bpjs,  d.anggota_koperasi  as agt_koperasi, d.kas_bon as kas_bon,d.bmt,d.ijin_telat ,d.koperasi , d.lain as lain, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
+                d.jht, d.inval,d.ltq, d.infaq_masjid as infaq_masjid , d.toko  as toko, d.tawun as tawun , d.bpjs as bpjs,  d.anggota_koperasi  as agt_koperasi, d.kas_bon as kas_bon,d.bmt,d.ijin_telat ,d.koperasi , d.lain as lain, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
                 from tarifkaryawan a 
                 join biodata_karyawan b on a.id_karyawan = b.nip
                 join msjabatan c on b.jabatan = c.ID
@@ -145,6 +145,7 @@ class Generategajikaryawan extends CI_Controller
                             "pot_tawun" => $data['tawun'],
                             "pot_bpjs" => $data['bpjs'],
                             "pot_kas_bon" => $data['kas_bon'],
+                            "pot_ltq" => $data['ltq'],
                             "pot_bmt" => $data['bmt'],
                             "pot_inval" => $data['inval'],
                             "pot_ijin_telat" => $data['ijin_telat'],

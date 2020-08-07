@@ -93,15 +93,22 @@ class Pendapatanlain extends CI_Controller
 			'id'  => $this->input->post('e_id')
 		);
 		$data = array(
-			'nip'  => $this->input->post('e_nip'),
-			'thr'  => $this->input->post('e_thr_v'),
-			'lain' => $this->input->post('e_tjlain_v'),
-			'tj_malam_lembur' => $this->input->post('e_tj_malam_lembur_v'),
-			'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
-			'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
-			'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
-			'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
-			'updatedAt' => date('Y-m-d H:i:s')
+				'thr'  => $this->input->post('e_thr_v'),
+				'tunjangan'  => $this->input->post('e_tjkinerja_v'),
+				'lain' => $this->input->post('e_tjlain_v'),
+				'jam1' => $this->input->post('e_jam1'),
+				'tarif1' => $this->input->post('e_tarif1_v'),
+				'jam2' => $this->input->post('e_jam2'),
+				'tarif2' => $this->input->post('e_tarif2_v'),
+				'jam3' => $this->input->post('e_jam3'),
+				'tarif3' => $this->input->post('e_tarif3_v'),
+				'jam4' => $this->input->post('e_jam4'),
+				'tarif4' => $this->input->post('e_tarif4_v'),
+				'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
+				'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
+				'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
+				'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
+				'updatedAt' => date('Y-m-d H:i:s')
 		);
 		$action = $this->model_pendapatanlain->update($data_id, $data, 'tbpendapatanlainguru');
 		echo json_encode($action);

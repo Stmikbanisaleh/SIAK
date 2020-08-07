@@ -1137,34 +1137,63 @@
 			success: function(data) {
 				$('#e_id_potong').val(data[0].id_potong);
 				$('#e_id_karyawan').val(data[0].id_karyawan);
-				$('#e_infaq_masjid').val(data[0].infaq_masjid);
-				$('#e_anggota_koperasi').val(data[0].anggota_koperasi);
-				$('#e_anggota_koperasi_v').val(data[0].anggota_koperasi);
+
+				var a = ConvertFormatRupiah(data[0].infaq_masjid, 'Rp. ');
+				$('#e_infaq_masjid').val(a);
 				$('#e_infaq_masjid_v').val(data[0].infaq_masjid);
-				$('#e_kas_bon').val(data[0].kas_bon);
+				
+				var b = ConvertFormatRupiah(data[0].anggota_koperasi, 'Rp. ');
+				$('#e_anggota_koperasi').val(b);
+				$('#e_anggota_koperasi_v').val(data[0].anggota_koperasi);
+
+				var c = ConvertFormatRupiah(data[0].kas_bon, 'Rp. ');
+				$('#e_kas_bon').val(c);
 				$('#e_kas_bon_v').val(data[0].kas_bon);
-				$('#e_ijin_telat').val(data[0].ijin_telat);
+
+				var d = ConvertFormatRupiah(data[0].ijin_telat, 'Rp. ');
+				$('#e_ijin_telat').val(d);
 				$('#e_ijin_telat_v').val(data[0].ijin_telat);
-				$('#e_bmt').val(data[0].bmt);
+
+				var f = ConvertFormatRupiah(data[0].bmt, 'Rp. ');
+				$('#e_bmt').val(f);
 				$('#e_bmt_v').val(data[0].bmt);
-				$('#e_koperasi').val(data[0].koperasi);
+
+				var g = ConvertFormatRupiah(data[0].koperasi, 'Rp. ');
+				$('#e_koperasi').val(g);
 				$('#e_koperasi_v').val(data[0].koperasi);
-				$('#e_inval').val(data[0].inval);
+
+				var h = ConvertFormatRupiah(data[0].inval, 'Rp. ');
+				$('#e_inval').val(h);
 				$('#e_inval_v').val(data[0].inval);
-				$('#e_jht').val(data[0].jht);
-				$('#e_jht_v').val(data[0].jht);
-				$('#e_toko').val(data[0].toko);
+
+				var i = ConvertFormatRupiah(data[0].toko, 'Rp. ');
+				$('#e_toko').val(i);
 				$('#e_toko_v').val(data[0].toko);
-				$('#e_lain').val(data[0].lain);
+
+				var j = ConvertFormatRupiah(data[0].lain, 'Rp. ');
+				$('#e_lain').val(j);
 				$('#e_lain_v').val(data[0].lain);
-				$('#e_pph21').val(data[0].pph21);
+
+				var k = ConvertFormatRupiah(data[0].pph21, 'Rp. ');
+				$('#e_pph21').val(k);
 				$('#e_pph21_v').val(data[0].pph21);
-				$('#e_tawun').val(data[0].tawun);
+		
+				var l = ConvertFormatRupiah(data[0].tawun, 'Rp. ');
+				$('#e_tawun').val(l);
 				$('#e_tawun_v').val(data[0].tawun);
-				$('#e_ltq').val(data[0].ltq);
-				$('#e_ltq_v').val(data[0].ltq);
-				$('#e_bpjs').val(data[0].bpjs);
+
+				var m = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
+				$('#e_bpjs').val(m);
 				$('#e_bpjs_v').val(data[0].bpjs);
+	
+				var n = ConvertFormatRupiah(data[0].ltq, 'Rp. ');
+				$('#e_ltq').val(n);
+				$('#e_ltq_v').val(data[0].ltq);
+
+				var o = ConvertFormatRupiah(data[0].jht, 'Rp. ');
+				$('#e_jht').val(o);
+				$('#e_jht_v').val(data[0].jht);
+				
 			}
 		});
     });
@@ -1228,4 +1257,22 @@
 			}
 		})
 	})
+
+	function ConvertFormatRupiah(angka, prefix) {
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if (ribuan) {
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+
+		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
+
 </script>
