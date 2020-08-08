@@ -495,7 +495,7 @@
 						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
 					</tr>
 			</table>
-		</div>
+		</div> 
 		<div class="footerslip">
             <br><br><br>
 			<table>  
