@@ -529,10 +529,10 @@
 									<input type="text" id="e_bpjs" required name="e_bpjs" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_bpjs_v" required name="e_bpjs_v" />
 									<script language="JavaScript">
-										var rupiah6 = document.getElementById('bpjs');
+										var rupiah6 = document.getElementById('e_bpjs');
 										rupiah6.addEventListener('keyup', function(e) {
 											rup6 = this.value.replace(/\D/g, '');
-											$('#bpjs_v').val(rup6);
+											$('#e_bpjs_v').val(rup6);
 											rupiah6.value = formatRupiah4(this.value, 'Rp. ');
 										});
 									</script>
@@ -772,13 +772,13 @@
 				$('#e_tunj_pembinaan').val(g);
 				$('#e_tunj_pembinaan_v').val(data[0].tunj_pembinaan);
 
-				var h = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
-				$('#e_bpjs').val(h);
+				var h = ConvertFormatRupiah(data[0].transport, 'Rp. ');
+				$('#e_transport').val(h);
 				$('#e_transport_v').val(data[0].bpjs);
 
 				var i = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
-				$('#e_transport').val(i);
-				$('#e_bpjs_v').val(data[0].bpjs);
+				$('#e_bpjs').val(i);
+				$('#e_bpjs_v').val(data[0].transport);
 
 				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
 				$('#e_no_rekening').val(data[0].no_rekening);
