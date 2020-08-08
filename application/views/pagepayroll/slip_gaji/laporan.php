@@ -32,7 +32,7 @@
 	margin-right:5px;
 	margin-bottom:5px;
 	background-clip: padding-box;
-    /* height:550px; */
+    height:550px;
     /* background-color:red; */
    }
 
@@ -44,7 +44,7 @@
 	margin-bottom:5px;
 	float: right;
 	background-clip: padding-box;
-    /* height:550px; */
+    height:550px;
     /* background-color:blue; */
    }
 
