@@ -12,7 +12,7 @@
 <!-- Modal Input Data -->
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content"> 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="smaller lighter blue no-margin">Form Input <?= $page_name ?></h3>
