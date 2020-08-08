@@ -189,7 +189,7 @@
 		$label_tunj[20] = 'T. Internasional';
 		$label_tunj[21] = 'T. Aksel';
 		$label_tunj[22] = 'Walas';
-		$label_tunj[23] = 'Convert';
+		$label_tunj[23] = 'T. Masa Kerja';
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
 			$label_tunj[24] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 		}else{
@@ -247,8 +247,8 @@
 		$label_pot[2] = 'Anggota Koperasi';
 		$label_pot[3] = 'Kasbon';
 		$label_pot[4] = 'Izin / Telat';
-		$label_pot[5] = 'Koperasi';
-		$label_pot[6] = 'BMT';
+		$label_pot[5] = 'Koperasi (Gemat';
+		$label_pot[6] = 'Pinjaman Koperasi';
 		$label_pot[7] = 'Taawun';
 		$label_pot[8] = 'PPh21';
 		$label_pot[9] = 'BPJS';
@@ -278,11 +278,11 @@
 		}
 
 		$array_data_sliptemp = array();
-		if($cek_row_tunj>=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
+		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
 
 			$seq = 1;
 			for($a = 1; $a<= 26; $a++){ //Looping sejumlah elemen tunjangan
-				if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
+				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
 					$data_temp = array(
 						'label_tunj' 	=> $label_tunj[$a],
 						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
@@ -291,7 +291,7 @@
 					);
 	
 					for($b=$seq; $b <= 16; $b++){ //looping sejumlah element potongan
-						if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
+						// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
 							$data_temp = array(
 								'label_tunj' 	=> $label_tunj[$a],
 								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
@@ -300,15 +300,15 @@
 							);
 							$seq = $b+1;
 							$b = 16;
-						}
+						// }
 					}
 					array_push($array_data_sliptemp, $data_temp);
-				}
+				// }
 			}
 		}else{
 			$seq = 1;
 			for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
-				if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
+				// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
 					$data_temp = array(
 						'label_tunj' 	=> '',
 						'tunj_nilai' 	=> '',
@@ -317,7 +317,7 @@
 					);
 	
 					for($a=$seq; $a <= 26; $a++){ //Looping sejumlah elemen tunjangan
-						if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
+						// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
 							$data_temp = array(
 								'label_tunj' 	=> $label_tunj[$a],
 								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
@@ -326,10 +326,10 @@
 							);
 							$seq = $a+1;
 							$a = 26;
-						}
+						// }
 					}
 					array_push($array_data_sliptemp, $data_temp);
-				}
+				// }
 			}
 		}
 ?>
