@@ -66,10 +66,10 @@ class Generategajiguru extends CI_Controller
             $refresh = $this->db->query("delete from tb_pendapatan_guru where tahun  = '" . $tahun . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
                 $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
-                a.tunjangan_internasional, a.tunjangan_keluarga, a.tunjangan_walas, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
+                a.convert,a.tunjangan_internasional, a.tunjangan_keluarga, a.tunjangan_walas, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
                 a.tunjangan_pegawai_tetap, a.tunjangan_masakerja, a.tunjangan_jabatan,b.GuruNama,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,
-                e.bpjs,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval,e.ltq, e.toko, e.lain,e.tawun, e.pph21,e.bpjs as pot_bpjs
-                d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4
+                a.tunjangan_bpjs,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval,e.ltq, e.toko, e.lain,e.tawun, e.pph21,e.bpjs as pot_bpjs,
+                d.tunjangan,d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4
                 from tarifguru a
                 join tbguru b on a.IdGuru = b.IdGuru
                 left join htguru c on a.IdGuru = c.IdGuru
@@ -89,6 +89,7 @@ class Generategajiguru extends CI_Controller
                             "tahun" => $tahun,
                             "bulan" => $bulan,
                             "gaji" => $data['gaji'],
+                            "tunj_penilaian_kinerja" => $data['tunjangan'],
                             "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
                             "effective_date" => $tahun.'-'.$bulan.'-'.$lastday,
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
@@ -99,6 +100,8 @@ class Generategajiguru extends CI_Controller
                             "tunj_walas" => $data['tunjangan_walas'],
                             "tunj_khusus1" => $data['tunj_khusus1'],
                             "tunj_khusus2" => $data['tunj_khusus2'],
+                            "honor_berkala" => $data['tunjangan_masakerja'],
+                            "convert" => $data['convert'],
                             "ket_tunj_khusus1" => $data['ket_tunj_khusus1'],
                             "ket_tunj_khusus2" => $data['ket_tunj_khusus2'],
                             "attribute_1" => $data['jam1'],
@@ -109,7 +112,7 @@ class Generategajiguru extends CI_Controller
                             "attribute_6" => $data['tarif3'],
                             "attribute_7" => $data['jam4'],
                             "attribute_8" => $data['tarif4'],
-                            "tunj_bpjs" => $data['bpjs'],
+                            "tunj_bpjs" => $data['tunjangan_bpjs'],
                             "tunj_lain" => $data['tunj_lain'],
                             "thr"  => $data['thr'],
                             "pph21_bulanan" => $data['pph21'],
