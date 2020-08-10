@@ -8,7 +8,7 @@ class Lap_rekapbayarsiswa extends CI_Controller
         parent::__construct();
         $this->load->model('kasir/model_rekapbayarsiswa');
         $this->load->library('mainfunction');
-        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }

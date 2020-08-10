@@ -8,7 +8,7 @@ class Bayarlain extends CI_Controller {
         parent::__construct();
 		$this->load->model('kasir/model_bayar');
 		$this->load->library('Configfunction');
-		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }

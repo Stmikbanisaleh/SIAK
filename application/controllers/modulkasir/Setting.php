@@ -8,7 +8,7 @@ class Setting extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_profile');
-        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }
@@ -21,7 +21,7 @@ class Setting extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 
             $mytahun = $this->model_profile->gettahun()->result_array();
             $mysemester = $this->model_profile->getsemester()->result_array();
@@ -46,7 +46,7 @@ class Setting extends CI_Controller
 
     public function simpan2()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
             if ($this->input->post('password1') != $this->input->post('password2')) {
                 echo json_decode(0);
             } else {
@@ -67,7 +67,7 @@ class Setting extends CI_Controller
 
     public function update()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 
             $data_id = array(
                 'id'  => $this->input->post('e_id')

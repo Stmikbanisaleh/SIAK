@@ -43,7 +43,7 @@ class Dashboard extends CI_Controller
     
     public function index()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
             $my_akdmk = $this->model_dashboard->th_akdmk()->result_array();
             $max_akdmk = $this->model_dashboard->max_th_akdmk()->row();
             $th_akdmk = '';
@@ -135,7 +135,7 @@ class Dashboard extends CI_Controller
             foreach ($data as $value) {
                 $data = [
                     'kodekaryawan' => $value['nip'],
-                    'nama' => $value['nama'],
+                    'namakasir' => $value['nama'],
                 ];
             }
             $this->session->set_userdata($data);
