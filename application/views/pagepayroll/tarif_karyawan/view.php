@@ -103,7 +103,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Convert </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja (convert) </label>
 								<div class="col-sm-9">
 									<input type="text" id="convert" required name="convert" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="convert_v" required name="convert_v" />
@@ -377,7 +377,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Convert </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja (convert) </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_convert" required name="e_convert" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_convert_v" required name="e_convert_v" />
@@ -774,11 +774,11 @@
 
 				var h = ConvertFormatRupiah(data[0].transport, 'Rp. ');
 				$('#e_transport').val(h);
-				$('#e_transport_v').val(data[0].bpjs);
+				$('#e_transport_v').val(data[0].transport);
 
 				var i = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
 				$('#e_bpjs').val(i);
-				$('#e_bpjs_v').val(data[0].transport);
+				$('#e_bpjs_v').val(data[0].bpjs);
 
 				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
 				$('#e_no_rekening').val(data[0].no_rekening);

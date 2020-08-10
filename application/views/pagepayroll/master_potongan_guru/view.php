@@ -170,7 +170,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> BMT</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Pinjaman Koperasi</label>
 								<div class="col-sm-9">
 								<input type="text" id="bmt" required name="bmt" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="bmt_v" required name="bmt_v"/>
@@ -203,7 +203,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Koperasi</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gemart</label>
 								<div class="col-sm-9">
 								<input type="text" id="koperasi" required name="koperasi" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="koperasi_v" required name="koperasi_v"/>
@@ -236,7 +236,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Diinval</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Di Inval</label>
 								<div class="col-sm-9">
 								<input type="text" id="inval" required name="inval" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="inval_v" required name="inval_v"/>
@@ -335,7 +335,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPH 21</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPh 21</label>
 								<div class="col-sm-9">
 								<input type="text" id="pph21" required name="pph21" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="pph21_v" required name="pph21_v"/>
@@ -642,7 +642,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> BMT</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pinjaman Koperasi</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_bmt" required name="e_bmt" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_bmt_v" required name="e_bmt_v"/>
@@ -675,7 +675,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Koperasi</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Gemart</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_koperasi" required name="e_koperasi" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_koperasi_v" required name="e_koperasi_v"/>
@@ -807,7 +807,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPH 21</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">PPh 21</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_pph21" required name="e_pph21" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_pph21_v" required name="e_pph21_v"/>
@@ -840,7 +840,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tawun</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Ta'wun</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_tawun" required name="e_tawun" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_tawun_v" required name="e_tawun_v"/>
