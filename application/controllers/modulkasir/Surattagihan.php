@@ -9,7 +9,7 @@ class Surattagihan extends CI_Controller {
         $this->load->model('akunting/model_surattagihan');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
-        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }
