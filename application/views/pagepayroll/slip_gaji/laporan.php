@@ -112,28 +112,13 @@
 
 		//Pendapatan
 		$pend_gaji_pokok = $row['gaji'];
-		$pend_pajak = $row['tunj_pajak'];
 		$pend_tunjabatan = $row['tunj_jabatan'];
-		$pend_tunjsansos = $row['tunj_sansos'];
-		$pend_strukturalkhusus = $row['tunj_struktural_khusus'];
 		$pend_transportasi = $row['tunj_transport'];
 		$pend_pegawai_tetap = $row['tunj_tetap'];
 		$pend_tunj_pembinaan = $row['tunj_pembinaan'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
-		$pend_rapel = $row['rapel'];
-		$pend_premi = $row['premi'];
-		$pend_peralihan = $row['tunj_peralihan'];
-		$pend_utility = $row['tunj_utility'];
-		$pend_honorarium = $row['honorarium_imb'];
-		$pend_asuransi = $row['asuransi_jamsostek']+$row['asuransi_lainnya'];
-        $pend_bonus = $row['bonus'];
         $pend_thr = $row['thr'];
-        $pend_cuti = $row['cuti_jubelium'];
 		$tunj_bpjs = $row['tunj_bpjs'];
-		$tunj_international = $row['tunj_international'];
-		$tunj_aksel = $row['tunj_aksel'];
-		$tunj_walas = $row['tunj_walas'];
-		$tunj_convert = $row['convert'];
 		$tunj_honor_berkala = $row['honor_berkala'];
 		$tunj_penilaian_kinerja = $row['tunj_penilaian_kinerja'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
@@ -268,16 +253,18 @@
 
 
 		$total = $jumlah_pend-$jumlah_pot;
+		$row_pendapatan = 28; //Need change value to follow max row pendapatan
+		$row_potongan = 16; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
-		for($a = 1; $a<= 26; $a++){
+		for($a = 1; $a<= $row_pendapatan; $a++){
 			if($tunj_nilai[$a] > 0){
 				$cek_row_tunj++;
 			}
 		}
 
 		$cek_row_pot = 0;
-		for($b=1; $b <= 16; $b++){
+		for($b=1; $b <= $row_potongan; $b++){
 			if($pot_nilai[$b] > 0){
 				$cek_row_pot++;
 			}
@@ -287,7 +274,7 @@
 		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
 
 			$seq = 1;
-			for($a = 1; $a<= 28; $a++){ //Looping sejumlah elemen tunjangan
+			for($a = 1; $a<= $row_pendapatan; $a++){ //Looping sejumlah elemen tunjangan
 				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
 					$data_temp = array(
 						'label_tunj' 	=> $label_tunj[$a],
@@ -296,7 +283,7 @@
 						'pot_nilai' 	=> ''
 					);
 	
-					for($b=$seq; $b <= 16; $b++){ //looping sejumlah element potongan
+					for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
 						// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
 							$data_temp = array(
 								'label_tunj' 	=> $label_tunj[$a],
@@ -305,39 +292,40 @@
 								'pot_nilai' 	=> (int)$pot_nilai[$b]
 							);
 							$seq = $b+1;
-							$b = 16;
-						// }
-					}
-					array_push($array_data_sliptemp, $data_temp);
-				// }
-			}
-		}else{
-			$seq = 1;
-			for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
-				// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
-					// $data_temp = array(
-					// 	'label_tunj' 	=> '',
-					// 	'tunj_nilai' 	=> '',
-					// 	'label_pot' 	=> $label_pot[$b],
-					// 	'pot_nilai' 	=> (int)$pot_nilai[$b]
-					// );
-	
-					for($a=$seq; $a <= 26; $a++){ //Looping sejumlah elemen tunjangan
-						// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
-							$data_temp = array(
-								'label_tunj' 	=> $label_tunj[$a],
-								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
-								'label_pot' 	=> $label_pot[$b],
-								'pot_nilai' 	=> (int)$pot_nilai[$b]
-							);
-							$seq = $a+1;
-							$a = 26;
+							$b = $row_potongan;
 						// }
 					}
 					array_push($array_data_sliptemp, $data_temp);
 				// }
 			}
 		}
+		// else{
+		// 	$seq = 1;
+		// 	for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
+		// 		// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
+		// 			// $data_temp = array(
+		// 			// 	'label_tunj' 	=> '',
+		// 			// 	'tunj_nilai' 	=> '',
+		// 			// 	'label_pot' 	=> $label_pot[$b],
+		// 			// 	'pot_nilai' 	=> (int)$pot_nilai[$b]
+		// 			// );
+	
+		// 			for($a=$seq; $a <= 26; $a++){ //Looping sejumlah elemen tunjangan
+		// 				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
+		// 					$data_temp = array(
+		// 						'label_tunj' 	=> $label_tunj[$a],
+		// 						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+		// 						'label_pot' 	=> $label_pot[$b],
+		// 						'pot_nilai' 	=> (int)$pot_nilai[$b]
+		// 					);
+		// 					$seq = $a+1;
+		// 					$a = 26;
+		// 				// }
+		// 			}
+		// 			array_push($array_data_sliptemp, $data_temp);
+		// 		// }
+		// 	}
+		// }
 		
 ?>
 <?php
