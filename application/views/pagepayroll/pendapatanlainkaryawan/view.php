@@ -291,7 +291,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Lain Lanin</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Lain Lain</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_tjlain" required name="e_tjlain" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_tjlain_v" required name="e_tjlain_v"/>
