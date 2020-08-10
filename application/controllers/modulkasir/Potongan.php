@@ -8,7 +8,7 @@ class Potongan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('kasir/model_potongan');
-		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }
@@ -21,7 +21,7 @@ class Potongan extends CI_Controller
 
 	public function index()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 
 			$mysiswa = $this->model_potongan->viewOrdering('mssiswa', 'ID', 'asc')->result_array();
 			$mykelas = $this->model_potongan->viewOrdering('tbkelas', 'id_kelas', 'asc')->result_array();
@@ -40,7 +40,7 @@ class Potongan extends CI_Controller
 
 	public function tampil()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 
 			$my_data = $this->db->query("SELECT sd.*, ss.NMSISWA, jk.nama as Kelass ,
 			CONCAT(FORMAT(sd.pot_spp,0),'%') as pot_spp2,
@@ -59,7 +59,7 @@ class Potongan extends CI_Controller
 
 	public function simpan()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$where = array(
 				'NIS'	=> $this->input->post('nama'),
 				'Kelas' => $this->input->post('kelas')
@@ -120,7 +120,7 @@ class Potongan extends CI_Controller
 
 	public function tampil_byid()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$data = array(
 				'idsaldo'  => $this->input->post('id'),
 			);
@@ -133,7 +133,7 @@ class Potongan extends CI_Controller
 
 	public function delete()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$data_id = array(
 				'idsaldo'  => $this->input->post('id')
 			);

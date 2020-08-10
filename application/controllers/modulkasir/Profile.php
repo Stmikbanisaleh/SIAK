@@ -8,7 +8,7 @@ class Profile extends CI_Controller
     {
         parent::__construct();
         $this->load->model('kasir/model_profile');
-        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('modulkasir/dashboard/login');
         }
@@ -21,7 +21,7 @@ class Profile extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 
             $mytahun = $this->model_profile->gettahun()->result_array();
             $mysemester = $this->model_profile->getsemester()->result_array();
@@ -44,7 +44,7 @@ class Profile extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
             $where = array('
 			nip' => $this->session->userdata('kodekaryawan'));
             $mydata = $this->model_profile->viewWhereOrdering('tbpengawas', $where, 'nip', 'asc')->result_array();
@@ -64,7 +64,7 @@ class Profile extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username') != null && $this->session->userdata('namakasir') != null) {
 
             $config['upload_path']          = './assets/gambar';
             $config['allowed_types']        = 'gif|jpg|png';
@@ -109,7 +109,7 @@ class Profile extends CI_Controller
 
     public function tampil_byid()
     {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username') != null && $this->session->userdata('namakasir') != null) {
 
             $data = array(
                 'id_pengawas'  => $this->input->post('id'),
@@ -123,7 +123,7 @@ class Profile extends CI_Controller
 
     public function tampil()
     {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username') != null && $this->session->userdata('namakasir') != null) {
 
             $my_data = $this->model_karyawan->view_karyawan()->result_array();
             echo json_encode($my_data);
@@ -134,7 +134,7 @@ class Profile extends CI_Controller
 
     public function update()
     {
-        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
             $data_id = array(
                 'nip'  => $this->input->post('e_id')
             );
@@ -160,7 +160,7 @@ class Profile extends CI_Controller
 
     public function delete()
     {
-        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username') != null && $this->session->userdata('namakasir') != null) {
 
             $data_id = array(
                 'id_pengawas'  => $this->input->post('id')

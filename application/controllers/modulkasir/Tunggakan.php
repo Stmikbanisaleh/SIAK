@@ -8,7 +8,7 @@ class Tunggakan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('kasir/model_tunggakan');
-		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('nama'))) {
+		if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
 			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
 			redirect('modulkasir/dashboard/login');
 		}
@@ -21,7 +21,7 @@ class Tunggakan extends CI_Controller
 
 	public function index()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$my_tahun = $this->model_tunggakan->gettahun('tbakadmk2')->result_array();
 			$my_tahun2 = $this->model_tunggakan->gettahun2('tbakadmk2')->result_array();
 			$data = array(
@@ -38,7 +38,7 @@ class Tunggakan extends CI_Controller
 
 	public function tampil()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$this->load->library('Configfunction');
 			$IdTA = $this->configfunction->getidta();
 			$IdTA = $IdTA[0]['ID'];
@@ -61,7 +61,7 @@ class Tunggakan extends CI_Controller
 
 	public function generate()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null) {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
 			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
