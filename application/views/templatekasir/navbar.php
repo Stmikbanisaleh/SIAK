@@ -25,7 +25,7 @@
 				<!-- <img class="nav-user-photo" src="<?= base_url() ?>assets/gambar/<?php echo $result->gambar; ?>" /> -->
 				<span class="user-info">
 					<small>Selamat Datang,</small>
-					<?php echo $this->session->userdata('nama'); ?>
+					<?php echo $this->session->userdata('namakasir'); ?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>
