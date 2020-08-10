@@ -75,11 +75,44 @@
 									<input type="text" id="tjkinerja" required name="tjkinerja" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tjkinerja_v" required name="tjkinerja_v" />
 									<script language="JavaScript">
-										var rupiah4 = document.getElementById('tjkinerja');
-										rupiah4.addEventListener('keyup', function(e) {
+										var rupiah44 = document.getElementById('tjkinerja');
+										rupiah44.addEventListener('keyup', function(e) {
 											rup4 = this.value.replace(/\D/g, '');
 											$('#tjkinerja_v').val(rup4);
-											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+											rupiah44.value = formatRupiah4(this.value, 'Rp. ');
+										});
+
+										function formatRupiah4(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan4) {
+												separator = sisa ? '.' : '';
+												rupiah4 += separator + ribuan4.join('.');
+											}
+
+											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Inval</label>
+								<div class="col-sm-9">
+									<input type="text" id="inval" required name="inval" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="inval_v" required name="inval_v" />
+									<script language="JavaScript">
+										var rupiah444 = document.getElementById('inval');
+										rupiah444.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#inval_v').val(rup4);
+											rupiah444.value = formatRupiah4(this.value, 'Rp. ');
 										});
 
 										function formatRupiah4(angka, prefix) {
@@ -108,11 +141,11 @@
 									<input type="text" id="tjlain" required name="tjlain" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tjlain_v" required name="tjlain_v" />
 									<script language="JavaScript">
-										var rupiah5 = document.getElementById('tjlain');
-										rupiah5.addEventListener('keyup', function(e) {
+										var rupiah51 = document.getElementById('tjlain');
+										rupiah51.addEventListener('keyup', function(e) {
 											rup5 = this.value.replace(/\D/g, '');
 											$('#tjlain_v').val(rup5);
-											rupiah5.value = formatRupiah5(this.value, 'Rp. ');
+											rupiah51.value = formatRupiah5(this.value, 'Rp. ');
 										});
 
 										function formatRupiah5(angka, prefix) {
@@ -148,11 +181,11 @@
 									<input type="text" id="tunj_khusus1" name="tunj_khusus1" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tunj_khusus1_v" name="tunj_khusus1_v" />
 									<script language="JavaScript">
-										var rupiah9 = document.getElementById('tunj_khusus1');
-										rupiah9.addEventListener('keyup', function(e) {
+										var rupiah91 = document.getElementById('tunj_khusus1');
+										rupiah91.addEventListener('keyup', function(e) {
 											rup6 = this.value.replace(/\D/g, '');
 											$('#tunj_khusus1_v').val(rup6);
-											rupiah9.value = formatRupiah9(this.value, 'Rp. ');
+											rupiah91.value = formatRupiah9(this.value, 'Rp. ');
 										});
 
 										function formatRupiah9(angka, prefix) {
@@ -296,11 +329,11 @@
 									<input type="text" id="tarif3" name="tarif3" placeholder="Tarif Perjam(3) " class="form-control" />
 									<input type="hidden" id="tarif3_v" required name="tarif3_v" />
 									<script language="JavaScript">
-										var rupiah7 = document.getElementById('tarif3');
-										rupiah7.addEventListener('keyup', function(e) {
+										var rupiah712 = document.getElementById('tarif3');
+										rupiah712.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#tarif3_v').val(rup3);
-											rupiah7.value = formatRupiah3(this.value, 'Rp. ');
+											rupiah712.value = formatRupiah3(this.value, 'Rp. ');
 										});
 
 										function formatRupiah3(angka, prefix) {
@@ -332,11 +365,11 @@
 									<input type="text" id="tarif4" name="tarif4" placeholder="Tarif Perjam(4) " class="form-control" />
 									<input type="hidden" id="tarif4_v" required name="tarif4_v" />
 									<script language="JavaScript">
-										var rupiah8 = document.getElementById('tarif4');
-										rupiah8.addEventListener('keyup', function(e) {
+										var rupiah811 = document.getElementById('tarif4');
+										rupiah811.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#tarif4_v').val(rup3);
-											rupiah8.value = formatRupiah3(this.value, 'Rp. ');
+											rupiah811.value = formatRupiah3(this.value, 'Rp. ');
 										});
 
 										function formatRupiah3(angka, prefix) {
@@ -446,6 +479,38 @@
 											rup4 = this.value.replace(/\D/g, '');
 											$('#e_tjkinerja_v').val(rup4);
 											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+										});
+
+										function formatRupiah4(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah4 = split[0].substr(0, sisa),
+												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan4) {
+												separator = sisa ? '.' : '';
+												rupiah4 += separator + ribuan4.join('.');
+											}
+
+											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
+										}
+									</script>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Inval</label>
+								<div class="col-sm-9">
+									<input type="text" id="e_inval" required name="e_inval" placeholder="Rp. 10.000" class="form-control" />
+									<input type="hidden" id="e_inval_v" required name="e_inval_v" />
+									<script language="JavaScript">
+										var rupiah4444 = document.getElementById('e_inval');
+										rupiah4444.addEventListener('keyup', function(e) {
+											rup4 = this.value.replace(/\D/g, '');
+											$('#e_inval_v').val(rup4);
+											rupiah4444.value = formatRupiah4(this.value, 'Rp. ');
 										});
 
 										function formatRupiah4(angka, prefix) {
@@ -936,6 +1001,10 @@
 				var j = ConvertFormatRupiah(data[0].tarif4, 'Rp. ');
 				$('#e_tarif4').val(j);
 				$('#e_tarif4_v').val(data[0].tarif4);
+				
+				var k = ConvertFormatRupiah(data[0].inval, 'Rp. ');
+				$('#e_inval').val(k);
+				$('#e_inval_v').val(data[0].inval);
 			}
 		});
     });

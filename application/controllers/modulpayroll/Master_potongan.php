@@ -58,6 +58,10 @@ class Master_potongan extends CI_Controller
 				'ltq'  => $this->input->post('ltq_v'),
 				'bpjs'  => $this->input->post('bpjs_v'),
 				'pph21'  => $this->input->post('pph21_v'),
+				'ket_lain2'  => $this->input->post('ket_lain2'),
+				'ket_lain3'  => $this->input->post('ket_lain3'),
+				'lain2'  => $this->input->post('lain2_v'),
+				'lain3'  => $this->input->post('lain3_v'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			
@@ -111,6 +115,10 @@ class Master_potongan extends CI_Controller
 				'pph21'  => $this->input->post('e_pph21_v'),
 				'bpjs'  => $this->input->post('e_bpjs_v'),
 				'ltq'  => $this->input->post('e_ltq_v'),
+				'ket_lain2'  => $this->input->post('e_ket_lain2'),
+				'ket_lain3'  => $this->input->post('e_ket_lain3'),
+				'lain2'  => $this->input->post('e_lain2_v'),
+				'lain3'  => $this->input->post('e_lain3_v'),
 				'periode'  => $this->input->post('e_periode'),
 			);
 

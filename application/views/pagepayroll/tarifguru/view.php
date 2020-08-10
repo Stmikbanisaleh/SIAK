@@ -74,11 +74,11 @@
 									<input type="text" id="tunjangan_jabatan" required name="tunjangan_jabatan" placeholder="Rp. 10.000" class="form-control" />
 									<input type="hidden" id="tunjangan_jabatan_v" required name="tunjangan_jabatan_v" />
 									<script language="JavaScript">
-										var rupiah2 = document.getElementById('tunjangan_jabatan');
-										rupiah2.addEventListener('keyup', function(e) {
+										var rupiah222 = document.getElementById('tunjangan_jabatan');
+										rupiah222.addEventListener('keyup', function(e) {
 											rup2 = this.value.replace(/\D/g, '');
 											$('#tunjangan_jabatan_v').val(rup2);
-											rupiah2.value = formatRupiah2(this.value, 'Rp. ');
+											rupiah222.value = formatRupiah2(this.value, 'Rp. ');
 										});
 
 										function formatRupiah2(angka, prefix) {
@@ -107,11 +107,11 @@
 									<input type="text" id="tunjangan_masa_kerja" required name="tunjangan_masa_kerja" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_masa_kerja_v" required name="tunjangan_masa_kerja_v" />
 									<script language="JavaScript">
-										var rupiah3 = document.getElementById('tunjangan_masa_kerja');
-										rupiah3.addEventListener('keyup', function(e) {
+										var rupiah333 = document.getElementById('tunjangan_masa_kerja');
+										rupiah333.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#tunjangan_masa_kerja_v').val(rup3);
-											rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+											rupiah333.value = formatRupiah3(this.value, 'Rp. ');
 										});
 
 										function formatRupiah3(angka, prefix) {
@@ -134,7 +134,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Convert </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja (Convert) </label>
 								<div class="col-sm-9">
 									<input type="text" id="convert" required name="convert" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="convert_v" required name="convert_v" />
@@ -204,11 +204,11 @@
 									<input type="text" id="tunjangan_aksel" required name="tunjangan_aksel" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_aksel_v" required name="tunjangan_aksel_v" />
 									<script language="JavaScript">
-										var rupiah10 = document.getElementById('tunjangan_aksel');
-										rupiah10.addEventListener('keyup', function(e) {
+										var rupiah101 = document.getElementById('tunjangan_aksel');
+										rupiah101.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#tunjangan_aksel_v').val(rup1);
-											rupiah10.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah101.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -237,44 +237,11 @@
 									<input type="text" id="tunjangan_internasional" required name="tunjangan_internasional" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_internasional_v" required name="tunjangan_internasional_v" />
 									<script language="JavaScript">
-										var rupiah11 = document.getElementById('tunjangan_internasional');
-										rupiah11.addEventListener('keyup', function(e) {
+										var rupiah111 = document.getElementById('tunjangan_internasional');
+										rupiah111.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#tunjangan_internasional_v').val(rup1);
-											rupiah11.value = formatRupiah1(this.value, 'Rp. ');
-										});
-
-										function formatRupiah1(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah11 = split[0].substr(0, sisa),
-												ribuan11 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan11) {
-												separator = sisa ? '.' : '';
-												rupiah11 += separator + ribuan11.join('.');
-											}
-
-											rupiah11 = split[1] != undefined ? rupiah11 + ',' + split[1] : rupiah11;
-											return prefix == undefined ? rupiah11 : (rupiah11 ? 'Rp. ' + rupiah11 : '');
-										}
-									</script>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Walikelas </label>
-								<div class="col-sm-9">
-									<input type="text" id="tunjangan_walas" required name="tunjangan_walas" placeholder="Rp. 10.0000" class="form-control" />
-									<input type="hidden" id="tunjangan_walas_v" required name="tunjangan_walas_v" />
-									<script language="JavaScript">
-										var rupiah12 = document.getElementById('tunjangan_walas');
-										rupiah12.addEventListener('keyup', function(e) {
-											rup1 = this.value.replace(/\D/g, '');
-											$('#tunjangan_walas_v').val(rup1);
-											rupiah12.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah111.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -303,11 +270,11 @@
 									<input type="text" id="tunjangan_bpjs" required name="tunjangan_bpjs" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_bpjs_v" required name="tunjangan_bpjs_v" />
 									<script language="JavaScript">
-										var rupiah13 = document.getElementById('tunjangan_bpjs');
-										rupiah13.addEventListener('keyup', function(e) {
+										var rupiah131 = document.getElementById('tunjangan_bpjs');
+										rupiah131.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#tunjangan_bpjs_v').val(rup1);
-											rupiah13.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah131.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -336,11 +303,11 @@
 									<input type="text" id="tunjangan_pegawai_tetap" required name="tunjangan_pegawai_tetap" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_pegawai_tetap_v" required name="tunjangan_pegawai_tetap_v" />
 									<script language="JavaScript">
-										var rupiah14 = document.getElementById('tunjangan_pegawai_tetap');
-										rupiah14.addEventListener('keyup', function(e) {
+										var rupiah1412 = document.getElementById('tunjangan_pegawai_tetap');
+										rupiah1412.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#tunjangan_pegawai_tetap_v').val(rup1);
-											rupiah14.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah1412.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -368,11 +335,11 @@
 									<input type="text" id="tunjangan_keluarga" required name="tunjangan_keluarga" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tunjangan_keluarga_v" required name="tunjangan_keluarga_v" />
 									<script language="JavaScript">
-										var rupiah15 = document.getElementById('tunjangan_keluarga');
-										rupiah15.addEventListener('keyup', function(e) {
+										var rupiah1521 = document.getElementById('tunjangan_keluarga');
+										rupiah1521.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#tunjangan_keluarga_v').val(rup1);
-											rupiah15.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah1521.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -554,16 +521,16 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Convert </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja (convert) </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_convert" required name="e_convert" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_convert_v" required name="e_convert_v" />
 									<script language="JavaScript">
-										var rupiah16 = document.getElementById('convert');
-										rupiah16.addEventListener('keyup', function(e) {
+										var rupiah1611 = document.getElementById('e_convert');
+										rupiah1611.addEventListener('keyup', function(e) {
 											rup1 = this.value.replace(/\D/g, '');
 											$('#e_convert_v').val(rup1);
-											rupiah16.value = formatRupiah1(this.value, 'Rp. ');
+											rupiah1611.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -591,11 +558,11 @@
 									<input type="text" id="e_transport" required name="e_transport" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_transport_v" required name="e_transport_v" />
 									<script language="JavaScript">
-										var rupiah4 = document.getElementById('transport');
-										rupiah4.addEventListener('keyup', function(e) {
+										var rupiah41 = document.getElementById('e_transport');
+										rupiah41.addEventListener('keyup', function(e) {
 											rup4 = this.value.replace(/\D/g, '');
 											$('#e_transport_v').val(rup4);
-											rupiah4.value = formatRupiah4(this.value, 'Rp. ');
+											rupiah41.value = formatRupiah4(this.value, 'Rp. ');
 										});
 
 										function formatRupiah4(angka, prefix) {
@@ -662,39 +629,6 @@
 											rup1 = this.value.replace(/\D/g, '');
 											$('#e_tunjangan_internasional_v').val(rup1);
 											rupiah11.value = formatRupiah1(this.value, 'Rp. ');
-										});
-
-										function formatRupiah1(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah11 = split[0].substr(0, sisa),
-												ribuan11 = split[0].substr(sisa).match(/\d{3}/gi);
-
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan11) {
-												separator = sisa ? '.' : '';
-												rupiah11 += separator + ribuan11.join('.');
-											}
-
-											rupiah11 = split[1] != undefined ? rupiah11 + ',' + split[1] : rupiah11;
-											return prefix == undefined ? rupiah11 : (rupiah11 ? 'Rp. ' + rupiah11 : '');
-										}
-									</script>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Walikelas </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_tunjangan_walas" required name="e_tunjangan_walas" placeholder="Rp. 10.0000" class="form-control" />
-									<input type="hidden" id="e_tunjangan_walas_v" required name="e_tunjangan_walas_v" />
-									<script language="JavaScript">
-										var rupiah12 = document.getElementById('e_tunjangan_walas');
-										rupiah12.addEventListener('keyup', function(e) {
-											rup1 = this.value.replace(/\D/g, '');
-											$('#e_tunjangan_walas_v').val(rup1);
-											rupiah12.value = formatRupiah1(this.value, 'Rp. ');
 										});
 
 										function formatRupiah1(angka, prefix) {
@@ -936,10 +870,6 @@
 				var h = ConvertFormatRupiah(data[0].tunjangan_internasional, 'Rp. ');
 				$('#e_tunjangan_internasional').val(h);
 				$('#e_tunjangan_internasional_v').val(data[0].tunjangan_internasional);
-
-				var i = ConvertFormatRupiah(data[0].tunjangan_walas, 'Rp. ');
-				$('#e_tunjangan_walas').val(i);
-				$('#e_tunjangan_walas_v').val(data[0].tunjangan_walas);
 
 				var j = ConvertFormatRupiah(data[0].tunjangan_bpjs, 'Rp. ');
 				$('#e_tunjangan_bpjs').val(j);
