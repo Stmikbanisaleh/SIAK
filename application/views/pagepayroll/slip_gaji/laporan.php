@@ -134,10 +134,12 @@
 		$tunj_aksel = $row['tunj_aksel'];
 		$tunj_walas = $row['tunj_walas'];
 		$tunj_convert = $row['convert'];
+		$tunj_honor_berkala = $row['honor_berkala'];
+		$tunj_penilaian_kinerja = $row['tunj_penilaian_kinerja'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
 		$tunj_khusus2 = $row['tunj_khusus2'];
 		$pend_lain = $row['tunj_lain'];
-		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_international+$tunj_aksel+$tunj_walas+$tunj_convert+$tunj_khusus1+$tunj_khusus2;
+		$jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_international+$tunj_aksel+$tunj_walas+$tunj_convert+$tunj_honor_berkala+$tunj_penilaian_kinerja+$tunj_khusus1+$tunj_khusus2;
 
 		
 		$tunj_nilai[1] = $pend_gaji_pokok;
@@ -163,9 +165,11 @@
 		$tunj_nilai[21] = $tunj_aksel;
 		$tunj_nilai[22] = $tunj_walas;
 		$tunj_nilai[23] = $tunj_convert;
-		$tunj_nilai[24] = $tunj_khusus1;
-		$tunj_nilai[25] = $tunj_khusus2;
-		$tunj_nilai[26] = $pend_lain;
+		$tunj_nilai[24] = $tunj_honor_berkala;
+		$tunj_nilai[25] = $tunj_penilaian_kinerja;
+		$tunj_nilai[26] = $tunj_khusus1;
+		$tunj_nilai[27] = $tunj_khusus2;
+		$tunj_nilai[28] = $pend_lain;
 
 		$label_tunj[1] = 'Honor';
 		$label_tunj[2] = 'T. Pajak';
@@ -190,17 +194,19 @@
 		$label_tunj[21] = 'T. Aksel';
 		$label_tunj[22] = 'Walas';
 		$label_tunj[23] = 'T. Masa Kerja';
+		$label_tunj[24] = 'Honor Berkala';
+		$label_tunj[25] = 'T. Penilaian Kinerja';
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
-			$label_tunj[24] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$label_tunj[26] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 		}else{
-			$label_tunj[24] = 'Tunj. Khusus';
+			$label_tunj[26] = 'Tunj. Khusus';
 		}
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
-			$label_tunj[25] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$label_tunj[27] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
 		}else{
-			$label_tunj[25] = 'Tunj. Khusus';
+			$label_tunj[27] = 'Tunj. Khusus';
 		}
-		$label_tunj[26] = 'Lain-lain';
+		$label_tunj[28] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -281,14 +287,14 @@
 		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
 
 			$seq = 1;
-			for($a = 1; $a<= 26; $a++){ //Looping sejumlah elemen tunjangan
+			for($a = 1; $a<= 28; $a++){ //Looping sejumlah elemen tunjangan
 				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
-					// $data_temp = array(
-					// 	'label_tunj' 	=> $label_tunj[$a],
-					// 	'tunj_nilai' 	=> (int)$tunj_nilai[$a],
-					// 	'label_pot' 	=> '',
-					// 	'pot_nilai' 	=> ''
-					// );
+					$data_temp = array(
+						'label_tunj' 	=> $label_tunj[$a],
+						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+						'label_pot' 	=> '',
+						'pot_nilai' 	=> ''
+					);
 	
 					for($b=$seq; $b <= 16; $b++){ //looping sejumlah element potongan
 						// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
@@ -332,6 +338,7 @@
 				// }
 			}
 		}
+		
 ?>
 <?php
 	if($flag == 1){
