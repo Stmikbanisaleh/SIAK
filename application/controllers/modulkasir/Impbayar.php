@@ -126,9 +126,9 @@ class Impbayar extends CI_Controller
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('T')->setAutoSize(true);
 
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('T' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('T' . $row, $ThnMasuk, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('T')->setAutoSize(true);
+					$objPHPExcel->getActiveSheet(0)->getStyle('U' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('U' . $row, $ThnMasuk, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('U')->setAutoSize(true);
 					$row++;
 					$no++;
 				}
