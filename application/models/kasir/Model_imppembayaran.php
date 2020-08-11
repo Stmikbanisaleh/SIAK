@@ -11,7 +11,7 @@ class Model_imppembayaran extends CI_model
 
     public function getidtarif()
     {
-        return $this->db->query("select a.idtarif,a.nominal as tarif, a.kodejnsbayar,a.ThnMasuk,b.DESCRTBPS,c.DESCRTBJS,d.namajenisbayar 
+        return $this->db->query("select b.KDTBPS, a.idtarif,a.nominal as tarif, a.kodejnsbayar,a.ThnMasuk,b.DESCRTBPS,c.DESCRTBJS,d.namajenisbayar 
         from tarif_berlaku a
         join tbps b on  b.KDTBPS = a.kodesekolah
         join tbjs c on c.KDTBJS = b.KDTBJS

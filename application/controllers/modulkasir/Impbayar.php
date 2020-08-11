@@ -80,14 +80,16 @@ class Impbayar extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'ID TARIF');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'KODE PEMBAYARAN');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'NAMA JENIS BAYAR');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'SEKOLAH');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'JURUSAN');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'TAHUN MASUK');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'KODE SEKOLAH');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'SEKOLAH');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'JURUSAN');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U1', 'TAHUN MASUK');
 				foreach ($data as $dataExcel) {
 					$idtarif = $dataExcel['idtarif'];
 					$tarif = $dataExcel['tarif'];
 					$ThnMasuk = $dataExcel['ThnMasuk'];
 					$kodejnsbayar = $dataExcel['kodejnsbayar'];
+					$TBJS = $dataExcel['KDTBPS'];
 					$DESCRTBPS = $dataExcel['DESCRTBPS'];
 					$DESCRTBJS = $dataExcel['DESCRTBJS'];
 					$namajenisbayar = $dataExcel['namajenisbayar'];
@@ -112,12 +114,17 @@ class Impbayar extends CI_Controller
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('Q')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('R' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('R' . $row, $DESCRTBPS, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('R' . $row, $TBJS, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('R')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('S' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('S' . $row, $DESCRTBJS, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('S' . $row, $DESCRTBPS, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('S')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('T' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('T' . $row, $DESCRTBJS, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('T')->setAutoSize(true);
+
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('T' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('T' . $row, $ThnMasuk, PHPExcel_Cell_DataType::TYPE_STRING);
