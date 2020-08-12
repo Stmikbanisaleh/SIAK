@@ -131,13 +131,12 @@ class Slip_gaji extends CI_Controller
 	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl){
         
 		$this->load->library('pdf');
-		
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
 			'ket'		=> 'K',
-			'tgl'		=> $tgl
+			'tgl'		=> $tgl,
 		);
 		// $this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
