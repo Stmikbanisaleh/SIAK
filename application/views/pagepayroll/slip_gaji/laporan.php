@@ -270,14 +270,14 @@
 		$row_potongan = 12 + $nil13 + $nil14 + $nil15; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
-		for($a = 1; $a<= $row_pendapatan; $a++){
+		for($a = 0; $a<= $row_pendapatan; $a++){
 			if($tunj_nilai[$a] > 0){
 				$cek_row_tunj++;
 			}
 		}
 
 		$cek_row_pot = 0;
-		for($b=1; $b <= $row_potongan; $b++){
+		for($b=0; $b <= $row_potongan; $b++){
 			if($pot_nilai[$b] > 0){
 				$cek_row_pot++;
 			}
