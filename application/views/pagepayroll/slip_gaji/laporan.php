@@ -518,6 +518,7 @@
 			<table>  
 				<tr>
 					<td width="220px; text-align:center;"> </td>
+					<?php  $tgl = $this->mainfunction->tgl_indo(date('Y-m-d')); ?>
 					<td width="100px; text-align:center;"><?= $tgl ?></td>
 				</tr>
 				<tr>
