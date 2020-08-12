@@ -127,9 +127,9 @@
             <small id="emailHelp" class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Karyawan / Guru</label>
+            <label for="exampleInputEmail1">Guru</label>
             <select class="form-control" name="employee" id="employee">
-                <option value="none">--Pilih Karyawan / Guru--</option>
+                <option value="none">--Pilih Guru--</option>
                 <?php
                     foreach($my_karyawan as $row){
                 ?>

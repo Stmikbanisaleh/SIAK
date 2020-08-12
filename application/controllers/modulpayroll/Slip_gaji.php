@@ -55,12 +55,15 @@ class Slip_gaji extends CI_Controller
 	public function karyawan()
 	{
 		$my_karyawan = $this->model_slipgaji->view('biodata_karyawan')->result_array();
+		$this->load->model('payroll/model_honorguru');
+		$myunit = $this->model_honorguru->view_unit2();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/slip_gaji/view_karyawan',
 			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji Karyawan</li>',
 			'page_name' 	=> 'Slip Gaji',
 			'js' 			=> 'js_file',
-			'my_karyawan'	=> $my_karyawan
+			'my_karyawan'	=> $my_karyawan,
+			'myunit'		=>  $myunit
 		);
 		$this->render_view($data); //Memanggil function render_view
 		
@@ -77,7 +80,8 @@ class Slip_gaji extends CI_Controller
 				$my_gaji = $this->model_slipgaji->view_gaji($tabel,
 															$this->input->post('blnawal'),
 															$this->input->post('blnakhir'),
-															$this->input->post('tahun'));
+															$this->input->post('tahun'),
+															$this->input->post('unit'));
 			}else{
 				$where = array(
 					'employee_number'	=> $this->input->post('employee'),
@@ -86,7 +90,8 @@ class Slip_gaji extends CI_Controller
 																$this->input->post('blnawal'),
 																$this->input->post('blnakhir'),
 																$this->input->post('employee'),
-																$this->input->post('tahun')
+																$this->input->post('tahun'),
+																$this->input->post('unit')
 															);
 			}
 		}else{
