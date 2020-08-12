@@ -163,7 +163,7 @@ class Slip_gaji extends CI_Controller
 	}
 
 	public function laporan_excel_karyawan($my_gaji, $bulan, $tahun){
-		
+		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
@@ -175,6 +175,7 @@ class Slip_gaji extends CI_Controller
 	}
 
 	public function laporan_excel_guru($my_gaji, $bulan, $tahun){
+		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
