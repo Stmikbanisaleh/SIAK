@@ -164,31 +164,31 @@
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
 			$label_tunj[12] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 		}else{
-			$label_tunj[12] = 'Tunj. Khusus';
+			$label_tunj[12] = '';
 		}
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
 			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
 		}else{
-			$label_tunj[13] = 'Tunj. Khusus';
+			$label_tunj[13] = '';
 		}
 
 		if($row['ket_tunj_khusus3'] != 0 || $row['ket_tunj_khusus3'] != '' ||$row['ket_tunj_khusus3'] != '0'){
 			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
 		}else{
-			$label_tunj[14] = 'Tunj. Khusus';
+			$label_tunj[14] = '';
 		}
 
 		if($row['ket_tunj_khusus4'] != 0 || $row['ket_tunj_khusus4'] != '' ||$row['ket_tunj_khusus4'] != '0'){
 			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
 		}else{
-			$label_tunj[15] = 'Tunj. Khusus';
+			$label_tunj[15] = '';
 		}
 
 		if($row['ket_tunj_khusus5'] != 0 || $row['ket_tunj_khusus5'] != '' ||$row['ket_tunj_khusus5'] != '0'){
 			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
 		}else{
-			$label_tunj[16] = 'Tunj. Khusus';
+			$label_tunj[16] = '';
 		}
 
 		$label_tunj[17] = 'Lain-lain';
