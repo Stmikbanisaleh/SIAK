@@ -123,8 +123,8 @@ class Generategajikaryawan extends CI_Controller
             $bulan = $this->input->post('bln');
             $refresh = $this->db->query("delete from tb_pendapatan_karyawan where tahun  = '" . $year . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
-                $getgaji = $this->db->query("Select a.convert,a.id_karyawan,a.bpjs,a.tarif+a.honor as gaji ,a.tunj_pembinaan, a.tunj_keluarga, a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,a.tunj_pegawai_tetap, b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , 
-                d.jht, d.inval,d.ltq, d.bpjs as pot_bpjs,d.infaq_masjid as infaq_masjid , d.toko  as toko, d.tawun as tawun ,  d.anggota_koperasi  as agt_koperasi, d.kas_bon as kas_bon,d.bmt,d.ijin_telat ,d.koperasi , d.lain as lain, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
+                $getgaji = $this->db->query("Select a.convert,a.id_karyawan,a.bpjs,a.tarif+a.honor as gaji ,a.tunj_pembinaan, a.tunj_keluarga, a.tunjangan_jabatan, a.transport,a.tunjangan_masakerja,a.tunj_pegawai_tetap, b.nama,b.npwp,c.NAMAJABATAN, b.tgl_mulai_kerja , d.ket_lain1,d.ket_lain2, d.ket_lain3,
+                d.inval,d.ltq, d.bpjs as pot_bpjs,d.infaq_masjid as infaq_masjid , d.toko  as toko, d.tawun as tawun ,  d.anggota_koperasi  as agt_koperasi, d.kas_bon as kas_bon,d.bmt,d.ijin_telat ,d.koperasi , d.lain1, d.lain2,d.lain3, d.pph21 ,d.periode,e.tunjangan as tunj_kinerja,e.thr,(e.lain + a.tunjangan_masakerja ) as tunj_lain,e.tunj_khusus1,e.tunj_khusus2,e.ket_tunj_khusus1,e.ket_tunj_khusus2
                 from tarifkaryawan a 
                 join biodata_karyawan b on a.id_karyawan = b.nip
                 join msjabatan c on b.jabatan = c.ID
@@ -138,8 +138,12 @@ class Generategajikaryawan extends CI_Controller
                             "employee_number" => $data['id_karyawan'],
                             "nama"    => $data['nama'],
                             "npwp" => $data['npwp'],
-                            "pot_lain" => $data['lain'],
-                            "pot_iuran_jht" => $data['jht'],
+                            "ket_pot_lain1" => $data['ket_lain1'],
+                            "ket_pot_lain2" => $data['ket_lain2'],
+                            "ket_pot_lain3" => $data['ket_lain3'],
+                            "pot_lain1" => $data['lain1'],
+                            "pot_lain2" => $data['lain2'],
+                            "pot_lain3" => $data['lain3'],
                             "pot_infaq_masjid" => $data['infaq_masjid'],
                             "pot_toko" => $data['toko'],
                             "pot_tawun" => $data['tawun'],
@@ -156,7 +160,7 @@ class Generategajikaryawan extends CI_Controller
                             "effective_date" => $year.'-'.$bulan.'-'.$lastday,
                             "bulan" => $bulan,
                             "tahun" => $year,
-                            "convert" => $data['convert'],
+                            "tunj_masa_kerja" => $data['convert'],
                             "awal_kerja" => $data['tgl_mulai_kerja'],
                             "gaji" => $data['gaji'],
                             "jumlah_jam" => "",
@@ -169,7 +173,6 @@ class Generategajikaryawan extends CI_Controller
                             "ket_tunj_khusus2" => $data['ket_tunj_khusus2'],
                             "tunj_lain" => $data['tunj_lain'],
                             "tunj_tetap" => $data['tunj_pegawai_tetap'],
-                            "tunj_utility" => $data['tunj_kinerja'],
                             "tunj_keluarga" => $data['tunj_keluarga'],
                             "tunj_transport" => $data['transport'],
                             "thr"  => $data['thr'],

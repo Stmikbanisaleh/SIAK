@@ -112,13 +112,13 @@
                                     </select>
                                 </div>
                             </div>
-
+<!-- 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="file" required name="file" placeholder="" class="form-control" />
                                 </div>
-                            </div>
+                            </div> -->
 
                     </div>
                 </div>
@@ -213,12 +213,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="e_file" name="e_file" placeholder="" class="form-control" />
                                 </div>
-                            </div>
+                            </div> -->
                     </div>
                 </div>
             </div>
