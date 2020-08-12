@@ -194,11 +194,11 @@
 		if($row['pot_lain1'] > 0 ){
 			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
 			$pot_nilai[13] = $pot_lain1;
-			$nil14 = 1;
+			$nil13 = 1;
 
 		}else{
 			$label_pot[13] = '';
-			$nil14 = 0;
+			$nil13 = 0;
 		}
 
 		if($row['pot_lain2'] > 0){
