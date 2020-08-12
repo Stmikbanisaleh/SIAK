@@ -1004,8 +1004,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Pot Lain - lain 1</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_lain" required name="e_lain" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_lain_v" required name="e_lain_v"/>
+								<input type="text" id="e_lain"  name="e_lain" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_lain_v"  name="e_lain_v"/>
 								<script language="JavaScript">
 										var rupiah111 = document.getElementById('e_lain');
 										rupiah111.addEventListener('keyup', function(e) {
@@ -1033,7 +1033,7 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Keterangan Lain lain 2</label>
 								<div class="col-sm-9">
@@ -1044,8 +1044,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nominal Lain - Lain 2</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_lain2" required name="e_lain2" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_lain2_v" required name="e_lain2_v"/>
+								<input type="text" id="e_lain2"  name="e_lain2" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_lain2_v"  name="e_lain2_v"/>
 								<script language="JavaScript">
 										var rupiah161 = document.getElementById('e_lain2');
 										rupiah161.addEventListener('keyup', function(e) {
@@ -1084,8 +1084,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nominal Lain - Lain 3</label>
 								<div class="col-sm-9">
-								<input type="text" id="e_lain3" required name="e_lain3" placeholder="Rp. 10.000" class="form-control" />
-                                <input type="hidden" id="e_lain3_v" required name="e_lain3_v"/>
+								<input type="text" id="e_lain3"  name="e_lain3" placeholder="Rp. 10.000" class="form-control" />
+                                <input type="hidden" id="e_lain3_v"  name="e_lain3_v"/>
 								<script language="JavaScript">
 										var rupiah171 = document.getElementById('e_lain3');
 										rupiah171.addEventListener('keyup', function(e) {
