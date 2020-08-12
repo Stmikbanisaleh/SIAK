@@ -82,9 +82,10 @@ class Model_slipgaji extends CI_model
         if(!empty($unit)){
             return $this->db->query("SELECT * FROM ".$table." tp
                                 JOIN tbguru b ON tp.employee_number = b.IdGuru
+                                JOIN tbps ps ON b.GuruBase = ps.KDSK
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                 AND YEAR(tp.effective_date) = '".$tahun."'
-                                AND b.GuruBase = $unit
+                                AND ps.KDUNIT = $unit
                                 AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT * FROM ".$table." tp
@@ -102,9 +103,10 @@ class Model_slipgaji extends CI_model
             return $this->db->query("SELECT
                                     * FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
+                                    JOIN tbps ps ON b.GuruBase = ps.KDSK
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
-                                    AND b.GuruBase = $unit
+                                    AND ps.KDUNIT = $unit
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
         }else{

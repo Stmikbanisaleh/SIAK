@@ -39,7 +39,7 @@ class Slip_gaji extends CI_Controller
 	{
 		$my_karyawan = $this->model_slipgaji->viewOrdering('tbguru', 'GuruNama', 'ASC')->result_array();
 		$this->load->model('payroll/model_honorguru');
-		$myunit = $this->model_honorguru->view_unit();
+		$myunit = $this->model_honorguru->view_unit2();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/slip_gaji/view_guru',
 			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji Guru</li>',
