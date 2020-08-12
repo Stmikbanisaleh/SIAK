@@ -159,7 +159,7 @@ class Slip_gaji extends CI_Controller
 			'tgl'		=> $tgl
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
-		$this->pdf->load_view('pagepayroll/slip_gaji/laporan', $data);
+		$this->pdf->load_view('pagepayroll/slip_gaji/laporanguru', $data);
 	}
 
 	public function laporan_excel_karyawan($my_gaji, $bulan, $tahun){

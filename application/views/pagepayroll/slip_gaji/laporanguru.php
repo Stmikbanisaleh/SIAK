@@ -115,18 +115,15 @@
 		$pend_tunjabatan = $row['tunj_jabatan'];
 		$pend_transportasi = $row['tunj_transport'];
 		$pend_pegawai_tetap = $row['tunj_tetap'];
-		$pend_tunj_pembinaan = $row['tunj_pembinaan'];
+		$pend_inval = $row['inval'];
 		$pend_tunj_bpjs = $row['tunj_bpjs'];
-		$pend_honor_berkala = $row['honor_berkala'];
-		$tunj_masa_kerja = $row['tunj_masa_kerja'];
+		$pend_tunj_international = $row['tunj_international'];
+		$tunj_masa_kerja = $row['convert'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
         $pend_thr = $row['thr'];
-		$pend_lembur = $row['tunj_malam_lembur'];
+		$pend_tunj_aksel = $row['tunj_aksel'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
 		$tunj_khusus2 = $row['tunj_khusus2'];
-		$tunj_khusus3 = $row['tunj_khusus3'];
-		$tunj_khusus4 = $row['tunj_khusus4'];
-		$tunj_khusus5 = $row['tunj_khusus5'];
 		$pend_lain = $row['tunj_lain'];
 		// $jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_international+$tunj_aksel+$tunj_walas+$tunj_convert+$tunj_honor_berkala+$tunj_penilaian_kinerja+$tunj_khusus1+$tunj_khusus2;
 
@@ -135,32 +132,29 @@
 		$tunj_nilai[2] = $pend_tunjabatan;
 		$tunj_nilai[3] = $pend_transportasi;
 		$tunj_nilai[4] = $pend_pegawai_tetap;
-		$tunj_nilai[5] = $pend_tunj_pembinaan;
+		$tunj_nilai[5] = $pend_inval;
 		$tunj_nilai[6] = $pend_tunj_bpjs;
-		$tunj_nilai[7] = $pend_honor_berkala;
+		$tunj_nilai[7] = $pend_tunj_international;
 		$tunj_nilai[8] = $tunj_masa_kerja;
 		$tunj_nilai[9] = $pend_tunj_keluarga;
 		$tunj_nilai[10] = $pend_thr;
-		$tunj_nilai[11] = $pend_lembur;
+		$tunj_nilai[11] = $pend_tunj_aksel;
 		$tunj_nilai[12] = $tunj_khusus1;
 		$tunj_nilai[13] = $tunj_khusus2;
-		$tunj_nilai[14] = $tunj_khusus3;
-		$tunj_nilai[15] = $tunj_khusus4;
-		$tunj_nilai[16] = $tunj_khusus5;
-		$tunj_nilai[17] = $pend_lain;
+		$tunj_nilai[14] = $pend_lain;
 
 		$label_tunj[1] = 'Honor';
 		$label_tunj[2] = 'T. Jabatan';
 		$label_tunj[3] = 'Transportasi';
 		$label_tunj[4] = 'T. Tetap';
-		$label_tunj[5] = 'T. Pembinaan';
+		$label_tunj[5] = 'Inval';
 		$label_tunj[6] = 'BPJS';
-		$label_tunj[7] = 'Honor Berkala';
+		$label_tunj[7] = 'T. Internasional';
 		$label_tunj[8] = 'T. Masa Kerja';
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
-		$label_tunj[11] = 'Lembur';
-		$label_tunj[17] = 'Lain-lain';
+		$label_tunj[11] = 'Aksel';
+		$label_tunj[14] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -175,9 +169,6 @@
         $pot_bpjs = $row['pot_bpjs'];
 		$pot_ltq = $row['pot_ltq'];
 		$pot_pph21 = $row['pph21_bulanan'];
-		$pot_lain1 = $row['pot_lain1'];
-		$pot_lain2 = $row['pot_lain2'];
-		$pot_lain3 = $row['pot_lain3'];
 		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
 		
 		$label_pot[1] = 'Infaq Masjid';
@@ -220,38 +211,8 @@
 			$label_tunj[13] = '';
 		}
 
-		if($row['ket_tunj_khusus3'] != 0 || $row['ket_tunj_khusus3'] != '' ||$row['ket_tunj_khusus3'] != '0'){
-			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
-		}else{
-			$label_tunj[14] = '';
-		}
-
-		if($row['ket_tunj_khusus4'] != 0 || $row['ket_tunj_khusus4'] != '' ||$row['ket_tunj_khusus4'] != '0'){
-			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
-		}else{
-			$label_tunj[15] = '';
-		}
-
-		if($row['ket_tunj_khusus5'] != 0 || $row['ket_tunj_khusus5'] != '' ||$row['ket_tunj_khusus5'] != '0'){
-			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
-		}else{
-			$label_tunj[16] = '';
-		}
-
-			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
-			$pot_nilai[13] = $pot_lain1;
-			$nil13 = 1;
-
-			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
-			$pot_nilai[14] = $pot_lain2;
-			$nil14 = 1;
-
-			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
-			$pot_nilai[15] = $pot_lain3;
-			$nil15 = 1;
-
-		$row_pendapatan = 17; //Need change value to follow max row pendapatan
-		$row_potongan = 15; //Need change value to follow max row potongan
+		$row_pendapatan = 14; //Need change value to follow max row pendapatan
+		$row_potongan = 12; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){
