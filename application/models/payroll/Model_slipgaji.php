@@ -61,7 +61,8 @@ class Model_slipgaji extends CI_model
     public function view_gaji($table, $bulan_awal, $bulan_akhir, $tahun)
     {
         return $this->db->query("SELECT
-                                * FROM ".$table." tp
+                                *,b.jumlah_jam FROM ".$table." tp
+                                join msjabatan b, on tp.jabatan = b.ID
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                 AND YEAR(tp.effective_date) = '".$tahun."'
                                 AND tp.isDeleted != 1");
@@ -70,7 +71,8 @@ class Model_slipgaji extends CI_model
     public function view_gaji_byemp($table, $bulan_awal, $bulan_akhir, $emp, $tahun)
     {
         return $this->db->query("SELECT
-                                    * FROM ".$table." tp
+                                    *,b.jumlah_jam FROM ".$table." tp
+                                    join msjabatan b, on tp.jabatan = b.ID
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
                                     AND YEAR(tp.effective_date) = '".$tahun."'
