@@ -160,6 +160,53 @@
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
 		$label_tunj[11] = 'T. Honor Berkala';
+		// $label_tunj[17] = 'Lain-lain';
+
+		//Potongan
+		$pot_infaq_masjid = $row['pot_infaq_masjid'];
+        $pot_anggota_koperasi = $row['pot_anggota_koperasi'];
+        $pot_kas_bon = $row['pot_kas_bon'];
+        $pot_ijin_telat = $row['pot_ijin_telat'];
+        $pot_gemart = $row['pot_koperasi'];
+		$pot_bmt = $row['pot_bmt'];
+		$pot_inval = $row['pot_inval'];
+		$pot_toko = $row['pot_toko'];
+		$pot_taawun = $row['pot_tawun'];
+        $pot_bpjs = $row['pot_bpjs'];
+		$pot_ltq = $row['pot_ltq'];
+		$pot_pph21 = $row['pph21_bulanan'];
+		$pot_lain1 = $row['pot_lain1'];
+		$pot_lain2 = $row['pot_lain2'];
+		$pot_lain3 = $row['pot_lain3'];
+		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
+		
+		$label_pot[1] = 'Infaq Masjid';
+		$label_pot[2] = 'Anggota Koperasi';
+		$label_pot[3] = 'Kasbon';
+		$label_pot[4] = 'Izin / Telat';
+		$label_pot[5] = 'Gemart';
+		$label_pot[6] = 'BMT';
+		$label_pot[7] = 'Inval';
+		$label_pot[8] = 'Toko Al Hamra';
+		$label_pot[9] = 'Taawun';
+		$label_pot[10] = 'BPJS';
+		$label_pot[11] = 'LTQ';
+		$label_pot[12] = 'PPh21';
+
+		$pot_nilai[1] = $pot_infaq_masjid;
+		$pot_nilai[2] = $pot_anggota_koperasi;
+		$pot_nilai[3] = $pot_kas_bon;
+		$pot_nilai[4] = $pot_ijin_telat;
+		$pot_nilai[5] = $pot_gemart;
+		$pot_nilai[6] = $pot_bmt;
+		$pot_nilai[7] = $pot_inval;
+		$pot_nilai[8] = $pot_toko;
+		$pot_nilai[9] = $pot_taawun;
+		$pot_nilai[10] = $pot_bpjs;
+		$pot_nilai[11] = $pot_ltq;
+		$pot_nilai[12] = $pot_pph21;
+	
+
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
 			$label_tunj[12] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
@@ -219,58 +266,6 @@
 			$nil15 = 0;
 		}
 
-
-		$label_tunj[17] = 'Lain-lain';
-
-		//Potongan
-		$pot_infaq_masjid = $row['pot_infaq_masjid'];
-        $pot_anggota_koperasi = $row['pot_anggota_koperasi'];
-        $pot_kas_bon = $row['pot_kas_bon'];
-        $pot_ijin_telat = $row['pot_ijin_telat'];
-        $pot_gemart = $row['pot_koperasi'];
-		$pot_bmt = $row['pot_bmt'];
-		$pot_inval = $row['pot_inval'];
-		$pot_toko = $row['pot_toko'];
-		$pot_taawun = $row['pot_tawun'];
-        $pot_bpjs = $row['pot_bpjs'];
-		$pot_ltq = $row['pot_ltq'];
-		$pot_pph21 = $row['pph21_bulanan'];
-		$pot_lain1 = $row['pot_lain1'];
-		$pot_lain2 = $row['pot_lain2'];
-		$pot_lain3 = $row['pot_lain3'];
-		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
-		
-		$pot_nilai[1] = $pot_infaq_masjid;
-		$pot_nilai[2] = $pot_anggota_koperasi;
-		$pot_nilai[3] = $pot_kas_bon;
-		$pot_nilai[4] = $pot_ijin_telat;
-		$pot_nilai[5] = $pot_gemart;
-		$pot_nilai[6] = $pot_bmt;
-		$pot_nilai[7] = $pot_inval;
-		$pot_nilai[8] = $pot_toko;
-		$pot_nilai[9] = $pot_taawun;
-		$pot_nilai[10] = $pot_bpjs;
-		$pot_nilai[11] = $pot_ltq;
-		$pot_nilai[12] = $pot_pph21;
-	
-
-		
-
-		$label_pot[1] = 'Infaq Masjid';
-		$label_pot[2] = 'Anggota Koperasi';
-		$label_pot[3] = 'Kasbon';
-		$label_pot[4] = 'Izin / Telat';
-		$label_pot[5] = 'Gemart';
-		$label_pot[6] = 'BMT';
-		$label_pot[7] = 'Inval';
-		$label_pot[8] = 'Toko Al Hamra';
-		$label_pot[9] = 'Taawun';
-		$label_pot[10] = 'BPJS';
-		$label_pot[11] = 'LTQ';
-		$label_pot[12] = 'PPh21';
-
-
-		
 		$row_pendapatan = 17; //Need change value to follow max row pendapatan
 		$row_potongan = 12 + $nil13 + $nil14 + $nil15; //Need change value to follow max row potongan
 
@@ -287,6 +282,7 @@
 				$cek_row_pot++;
 			}
 		}
+	
 
 		$array_data_sliptemp = array();
 		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
