@@ -191,6 +191,25 @@
 			$label_tunj[16] = '';
 		}
 
+		if($row['pot_lain1'] != 0 || $row['pot_lain1'] != '' ||$row['pot_lain1'] != '0'){
+			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
+		}else{
+			$label_pot[13] = '';
+		}
+
+		if($row['pot_lain2'] != 0 || $row['pot_lain2'] != '' ||$row['pot_lain2'] != '0'){
+			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
+		}else{
+			$label_pot[14] = '';
+		}
+
+		if($row['pot_lain3'] != 0 || $row['pot_lain3'] != '' ||$row['pot_lain3'] != '0'){
+			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
+		}else{
+			$label_pot[15] = '';
+		}
+
+
 		$label_tunj[17] = 'Lain-lain';
 
 		//Potongan
@@ -241,24 +260,6 @@
 		$label_pot[10] = 'BPJS';
 		$label_pot[11] = 'LTQ';
 		$label_pot[12] = 'PPh21';
-
-		if($row['pot_lain1'] != 0 || $row['pot_lain1'] != '' ||$row['pot_lain1'] != '0'){
-			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
-		}else{
-			$label_pot[13] = '';
-		}
-
-		if($row['ket_pot_lain2'] != 0 || $row['ket_pot_lain2'] != '' ||$row['ket_pot_lain2'] != '0'){
-			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
-		}else{
-			$label_pot[14] = '';
-		}
-
-		if($row['pot_lain3'] != 0 || $row['pot_lain3'] != '' ||$row['pot_lain3'] != '0'){
-			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
-		}else{
-			$label_pot[15] = '';
-		}
 
 
 		
