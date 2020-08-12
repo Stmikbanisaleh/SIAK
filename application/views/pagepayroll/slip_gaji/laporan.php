@@ -194,24 +194,29 @@
 		if($row['pot_lain1'] > 0 ){
 			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
 			$pot_nilai[13] = $pot_lain1;
+			$nil14 = 1;
 
 		}else{
 			$label_pot[13] = '';
+			$nil14 = 0;
 		}
 
 		if($row['pot_lain2'] > 0){
 			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
 			$pot_nilai[14] = $pot_lain2;
-
+			$nil14 = 1;
 		}else{
 			$label_pot[14] = '';
+			$nil14 = 0;
 		}
 
 		if($row['pot_lain3'] > 0){
 			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
 			$pot_nilai[15] = $pot_lain3;
+			$nil15 = 1;
 		}else{
 			$label_pot[15] = '';
+			$nil15 = 0;
 		}
 
 
@@ -267,7 +272,7 @@
 
 		
 		$row_pendapatan = 17; //Need change value to follow max row pendapatan
-		$row_potongan = 15; //Need change value to follow max row potongan
+		$row_potongan = 12 + $nil13 + $nil14 + $nil15; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){

@@ -52,8 +52,14 @@ class Pendapatanlainkaryawan extends CI_Controller
 					'tj_malam_lembur' => $this->input->post('tj_malam_lembur_v'),
 					'tunj_khusus1' => $this->input->post('tunj_khusus1_v'),
 					'tunj_khusus2' => $this->input->post('tunj_khusus2_v'),
+					'tunj_khusus3' => $this->input->post('tunj_khusus3_v'),
+					'tunj_khusus4' => $this->input->post('tunj_khusus4_v'),
+					'tunj_khusus5' => $this->input->post('tunj_khusus5_v'),
 					'ket_tunj_khusus1' => $this->input->post('ket_tunj_khusus1'),
 					'ket_tunj_khusus2' => $this->input->post('ket_tunj_khusus2'),
+					'ket_tunj_khusus3' => $this->input->post('ket_tunj_khusus3'),
+					'ket_tunj_khusus4' => $this->input->post('ket_tunj_khusus4'),
+					'ket_tunj_khusus5' => $this->input->post('ket_tunj_khusus5'),
 					// 'periode' => $this->input->post('periode'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
@@ -100,8 +106,14 @@ class Pendapatanlainkaryawan extends CI_Controller
 			'tj_malam_lembur' => $this->input->post('e_tj_malam_lembur_v'),
 			'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
 			'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
+			'tunj_khusus3' => $this->input->post('e_tunj_khusus3_v'),
+			'tunj_khusus4' => $this->input->post('e_tunj_khusus4_v'),
+			'tunj_khusus5' => $this->input->post('e_tunj_khusus5_v'),
 			'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
 			'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
+			'ket_tunj_khusus3' => $this->input->post('e_ket_tunj_khusus3'),
+			'ket_tunj_khusus4' => $this->input->post('e_ket_tunj_khusus4'),
+			'ket_tunj_khusus5' => $this->input->post('e_ket_tunj_khusus5'),
 			'updatedAt' => date('Y-m-d H:i:s')
 		);
 		$action = $this->model_pendapatanlainkaryawan->update($data_id, $data, 'tbpendapatanlainkaryawan');
