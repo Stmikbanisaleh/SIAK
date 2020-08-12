@@ -142,12 +142,13 @@
 		$tunj_nilai[9] = $pend_tunj_keluarga;
 		$tunj_nilai[10] = $pend_thr;
 		$tunj_nilai[11] = $pend_lembur;
-		$tunj_nilai[12] = $tunj_khusus1;
-		$tunj_nilai[13] = $tunj_khusus2;
-		$tunj_nilai[14] = $tunj_khusus3;
-		$tunj_nilai[15] = $tunj_khusus4;
-		$tunj_nilai[16] = $tunj_khusus5;
-		$tunj_nilai[17] = $pend_lain;
+		$tunj_nilai[12] = $pend_lain;
+		$tunj_nilai[13] = $tunj_khusus1;
+		$tunj_nilai[14] = $tunj_khusus2;
+		$tunj_nilai[15] = $tunj_khusus3;
+		$tunj_nilai[16] = $tunj_khusus4;
+		$tunj_nilai[17] = $tunj_khusus5;
+		
 
 		$label_tunj[1] = 'Honor';
 		$label_tunj[2] = 'T. Jabatan';
@@ -160,7 +161,7 @@
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
 		$label_tunj[11] = 'Lembur';
-		$label_tunj[17] = 'Lain-lain';
+		$label_tunj[12] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -209,49 +210,71 @@
 
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
-			$label_tunj[12] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$nill_t13 = 1;
 		}else{
-			$label_tunj[12] = '';
+			$label_tunj[13] = '';
+			$nill_t13 = 0;
 		}
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
-			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$nill_t14 = 1;
 		}else{
-			$label_tunj[13] = '';
+			$label_tunj[14] = '';
+			$nill_t14 = 0;
 		}
 
 		if($row['ket_tunj_khusus3'] != 0 || $row['ket_tunj_khusus3'] != '' ||$row['ket_tunj_khusus3'] != '0'){
-			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
+			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
+			$nill_t15 = 1;
 		}else{
-			$label_tunj[14] = '';
+			$label_tunj[15] = '';
+			$nill_t15 = 0;
 		}
 
 		if($row['ket_tunj_khusus4'] != 0 || $row['ket_tunj_khusus4'] != '' ||$row['ket_tunj_khusus4'] != '0'){
-			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
+			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
+			$nill_t16 = 1;
 		}else{
-			$label_tunj[15] = '';
+			$label_tunj[16] = '';
+			$nill_t16 = 0;
 		}
 
 		if($row['ket_tunj_khusus5'] != 0 || $row['ket_tunj_khusus5'] != '' ||$row['ket_tunj_khusus5'] != '0'){
-			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
+			$label_tunj[17] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
+			$nill_t17 = 1;
 		}else{
-			$label_tunj[16] = '';
+			$label_tunj[17] = '';
+			$nill_t17 = 0;
 		}
 
+		if($pot_lain1>0){
 			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
 			$pot_nilai[13] = $pot_lain1;
 			$nil13 = 1;
+		}else{
+			$nil13 = 0;
+		}
 
+		if($pot_lain2>0){
 			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
 			$pot_nilai[14] = $pot_lain2;
 			$nil14 = 1;
+		}else{
+			$nil14 = 0;
+		}
 
+		if($pot_lain3>0){
 			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
 			$pot_nilai[15] = $pot_lain3;
 			$nil15 = 1;
+		}else{
+			$nil15 = 0;
+		}
 
 		$row_pendapatan = 17; //Need change value to follow max row pendapatan
-		$row_potongan = 15; //Need change value to follow max row potongan
+		$row_potongan = 12+$nil13+$nil14+$nil15; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){
