@@ -160,7 +160,7 @@
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
 		$label_tunj[11] = 'T. Honor Berkala';
-		// $label_tunj[17] = 'Lain-lain';
+		$label_tunj[17] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
