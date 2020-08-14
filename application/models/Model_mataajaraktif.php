@@ -53,12 +53,14 @@ class Model_mataajaraktif extends CI_model{
     }
 
     public function viewWhereOrdering($table,$data,$order,$ordering){
+        $this->db->where('isdeleted !=', 1);
         $this->db->where($data);
         $this->db->order_by($order,$ordering);
         return $this->db->get($table);
     }
     
     public function view_where($table,$data){
+        $this->db->where('isdeleted !=', 1);
         $this->db->where($data);
         return $this->db->get($table);
     }
