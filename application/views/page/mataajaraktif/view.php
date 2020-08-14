@@ -163,7 +163,6 @@
                 <th>Tahun</th>
                 <th>Semester</th>
                 <th>Program Sekolah</th>
-                <th>Kelas</th>
                 <th>Action</th>
             </tr>
         </thead>
