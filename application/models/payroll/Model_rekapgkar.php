@@ -54,7 +54,7 @@ class Model_rekapgkar extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_rekapkaryawan($tahun, $bulan_awal, $bulan_akhir)
+    public function view_rekapkaryawan($tahun, $bulan_awal, $bulan_akhir, $unit)
     {
         return $this->db->query("select
                                     MONTH(awal_kerja) bulan_awal,
@@ -64,8 +64,11 @@ class Model_rekapgkar extends CI_model
                                 FROM
                                     tb_pendapatan_karyawan tp
                                     JOIN tarifkaryawan tk ON tp.employee_number = tk.id_karyawan
+                                    JOIN biodata_karyawan bk ON bk.nik = tp.employee_number
+                                    JOIN tbps ps ON bk.unit_kerja = ps.KDSK
                                 WHERE
                                     tp.isDeleted != 1
+                                    AND ps.KDUNIT = $unit
                                     AND MONTH(effective_date) >= $bulan_awal
                                     AND MONTH(effective_date) <= $bulan_akhir
                                     AND YEAR(effective_date) = $tahun");
