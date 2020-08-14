@@ -58,23 +58,47 @@ class Model_slipgaji extends CI_model
         return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
     }
 
-    public function view_gaji($table, $bulan_awal, $bulan_akhir, $tahun)
+    public function view_gaji($table, $bulan_awal, $bulan_akhir, $tahun, $unit)
     {
-        return $this->db->query("SELECT
-                                * FROM ".$table." tp
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                AND YEAR(tp.effective_date) = '".$tahun."'
-                                AND tp.isDeleted != 1");
+        if(!empty($unit)){
+            return $this->db->query("SELECT
+                                    tp.* FROM ".$table." tp
+                                    JOIN biodata_karyawan bk ON bk.nik = tp.employee_number
+                                    JOIN tbps ps ON bk.unit_kerja = ps.KDSK
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    AND ps.KDUNIT = $unit
+                                    AND tp.isDeleted != 1");
+        }else{
+            return $this->db->query("SELECT
+                                    * FROM ".$table." tp
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    AND tp.isDeleted != 1");
+        }
     }
 
     public function view_gaji_byemp($table, $bulan_awal, $bulan_akhir, $emp, $tahun)
     {
-        return $this->db->query("SELECT
-                                    * FROM ".$table." tp
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND tp.employee_number = '".$emp."'
-                                    AND YEAR(tp.effective_date) = '".$tahun."'
-                                    AND tp.isDeleted != 1");
+        if(!empty($unit)){
+            return $this->db->query("SELECT
+                                        tp.* FROM ".$table." tp
+                                        JOIN biodata_karyawan bk ON bk.nik = tp.employee_number
+                                        JOIN tbps ps ON bk.unit_kerja = ps.KDSK
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                        AND tp.employee_number = '".$emp."'
+                                        AND YEAR(tp.effective_date) = '".$tahun."'
+                                        AND ps.KDUNIT = $unit
+                                        AND tp.isDeleted != 1");
+        }else{
+            return $this->db->query("SELECT
+                                        * FROM ".$table." tp
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                        AND tp.employee_number = '".$emp."'
+                                        AND YEAR(tp.effective_date) = '".$tahun."'
+                                        AND tp.isDeleted != 1");
+        }
+        
     }
 
     public function view_gaji_guru($table, $bulan_awal, $bulan_akhir, $tahun, $unit)
@@ -84,7 +108,7 @@ class Model_slipgaji extends CI_model
                                 JOIN tbguru b ON tp.employee_number = b.IdGuru
                                 WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                 AND YEAR(tp.effective_date) = '".$tahun."'
-                                AND b.GuruBase = $unit
+                                AND ps.KDUNIT = $unit
                                 AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT * FROM ".$table." tp
@@ -102,9 +126,10 @@ class Model_slipgaji extends CI_model
             return $this->db->query("SELECT
                                     * FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
+                                    JOIN tbps ps ON b.GuruBase = ps.KDSK
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
-                                    AND b.GuruBase = $unit
+                                    AND ps.KDUNIT = $unit
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
         }else{

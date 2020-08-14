@@ -117,10 +117,12 @@
 		$pend_pegawai_tetap = $row['tunj_tetap'];
 		$pend_inval = $row['inval'];
 		$pend_tunj_bpjs = $row['tunj_bpjs'];
+		$pend_honor_berkala = $row['honor_berkala'];
 		$pend_tunj_international = $row['tunj_international'];
 		$tunj_masa_kerja = $row['convert'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
-        $pend_thr = $row['thr'];
+		$pend_thr = $row['thr'];
+		$pend_tunj_penilaian_kinerja = $row['tunj_penilaian_kinerja'];
 		$pend_tunj_aksel = $row['tunj_aksel'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
 		$tunj_khusus2 = $row['tunj_khusus2'];
@@ -134,13 +136,15 @@
 		$tunj_nilai[4] = $pend_pegawai_tetap;
 		$tunj_nilai[5] = $pend_inval;
 		$tunj_nilai[6] = $pend_tunj_bpjs;
-		$tunj_nilai[7] = $pend_tunj_international;
-		$tunj_nilai[8] = $tunj_masa_kerja;
-		$tunj_nilai[9] = $pend_tunj_keluarga;
-		$tunj_nilai[10] = $pend_thr;
-		$tunj_nilai[11] = $pend_tunj_aksel;
-		$tunj_nilai[12] = $tunj_khusus1;
-		$tunj_nilai[13] = $tunj_khusus2;
+		$tunj_nilai[7] = $pend_honor_berkala;
+		$tunj_nilai[8] = $pend_tunj_international;
+		$tunj_nilai[9] = $tunj_masa_kerja;
+		$tunj_nilai[10] = $pend_tunj_keluarga;
+		$tunj_nilai[11] = $pend_thr;
+		$tunj_nilai[12] = $pend_tunj_penilaian_kinerja;
+		$tunj_nilai[13] = $pend_tunj_aksel;
+		$tunj_nilai[15] = $tunj_khusus1;
+		$tunj_nilai[16] = $tunj_khusus2;
 		$tunj_nilai[14] = $pend_lain;
 
 		$label_tunj[1] = 'Honor';
@@ -149,11 +153,13 @@
 		$label_tunj[4] = 'T. Tetap';
 		$label_tunj[5] = 'Inval';
 		$label_tunj[6] = 'BPJS';
-		$label_tunj[7] = 'T. Internasional';
-		$label_tunj[8] = 'T. Masa Kerja';
-		$label_tunj[9] = 'T. Keluarga';
-		$label_tunj[10] = 'THR';
-		$label_tunj[11] = 'Aksel';
+		$label_tunj[7] = 'Honor Berkala';
+		$label_tunj[8] = 'T. Internasional';
+		$label_tunj[9] = 'T. Masa Kerja';
+		$label_tunj[10] = 'T. Keluarga';
+		$label_tunj[11] = 'THR';
+		$label_tunj[12] = 'THR';
+		$label_tunj[13] = 'Aksel';
 		$label_tunj[14] = 'Lain-lain';
 
 		//Potongan
@@ -200,18 +206,18 @@
 
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
-			$label_tunj[12] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 		}else{
-			$label_tunj[12] = '';
+			$label_tunj[15] = '';
 		}
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
-			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
 		}else{
-			$label_tunj[13] = '';
+			$label_tunj[16] = '';
 		}
 
-		$row_pendapatan = 14; //Need change value to follow max row pendapatan
+		$row_pendapatan = 16; //Need change value to follow max row pendapatan
 		$row_potongan = 12; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
@@ -441,7 +447,7 @@
 					<tr>
 						<td width="125px;">Gaji kotor</td>
 						<td width="44px;" style="text-align:right"> </td>
-						<td width="227px;" style="text-align:right" colspan=""><?= number_format($jumlah_pend) ?></td>
+						<td width="227px;" style="text-align:right" colspan=""><?= number_format((int)$jumlah_pend) ?></td>
 					</tr>
 					<tr>
 						<td width="125px;">Total Potongan</td>
@@ -454,7 +460,7 @@
 					<tr>
 						<td width="125px;">Gaji bersih</td>
 						<td width="141px;"> </td>
-						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($total) ?></td>
+						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
 					</tr>
 			</table>
 		</div> 

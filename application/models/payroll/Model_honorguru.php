@@ -87,4 +87,14 @@ class Model_honorguru extends CI_model
         GROUP BY ps.KDSK, ps.DESCRTBPS
         ORDER BY ps.KDSK");
     }
+
+    public function view_unit2()
+    {
+        return $this->db->query("SELECT ps.KDUNIT id, ps.DESCRTBPS
+        FROM tbguru tg
+        JOIN tbps ps ON ps.KDSK = tg.GuruBase
+        JOIN tbjs js ON ps.KDTBJS = js.KDTBJS
+        GROUP BY ps.KDUNIT
+        ORDER BY ps.KDSK");
+    }
 }

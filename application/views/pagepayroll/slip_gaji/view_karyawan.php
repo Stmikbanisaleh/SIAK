@@ -140,6 +140,20 @@
             </select>
             <small  class="form-text text-muted">Pilih karyawan atau guru yang akan ditampilkan (Tidak wajib diisi).</small>
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
+            <select class="form-control" required name="unit" id="unit">
+                <!-- <option value="0">--Pilih--</option> -->
+                <?php
+                    foreach($myunit->result_array() as $row){
+                ?>
+                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['DESCRTBPS']."]"?></option>
+                <?php
+                    }
+                ?>
+            </select>
+            <small id="emailHelp" class="form-text text-muted">Periode bulan honor guru.</small>
+        </div>
         <!-- <div class="form-group">
             <label for="exampleInputEmail1">Tipe Gaji</label> -->
             <input type="hidden" id="tipe_gaji" name="tipe_gaji" value="K">
