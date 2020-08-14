@@ -82,7 +82,7 @@ class Model_jadwal extends CI_model
 
     public function getmapelaktif($data)
     {
-        return  $this->db->query("select a.ID,b.id_mapel , b.nama from trmka a join mspelajaran b on a.KDMKTRMKA = b.id_mapel where PSTRMKA ='".$data."' and b.isdeleted !=1 ");
+        return  $this->db->query("select a.ID,b.id_mapel , b.nama from trmka a join mspelajaran b on a.KDMKTRMKA = b.id_mapel where PSTRMKA ='".$data."' and b.isdeleted !=1  and a.isdeleted != 1");
         
     }
 
