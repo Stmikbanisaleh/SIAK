@@ -194,6 +194,7 @@ class Jadwal extends CI_Controller
         );
        
         $action = $this->model_jadwal->delete($data_id, 'tbjadwal');
+        $deletekrs = $this->model_jadwal->delete($data_id, 'tbkrs');
         echo json_encode($action);
     }
 }
