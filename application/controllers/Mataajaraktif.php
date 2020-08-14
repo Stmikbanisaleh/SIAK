@@ -43,7 +43,6 @@ class Mataajaraktif extends CI_Controller
 		$tampil_thnakad = $this->configfunction->getthnakd();
 		$data = array(
 			'KDMKTRMKA'  => $this->input->post('kodemataajar'),
-			'SMTTRMKA'  => $this->input->post('semester'),
 			'PSTRMKA'  => $this->input->post('programsekolahs'),
 			'THNAKDTRMKA'  => $tampil_thnakad[0]['THNAKAD'],
 			'GANGENTRMKA'  => $tampil_thnakad[0]['SEMESTER'],
@@ -100,7 +99,6 @@ class Mataajaraktif extends CI_Controller
 		
 		$data = array(
 			'KDMKTRMKA'  => $this->input->post('e_kodemataajar'),
-			'SMTTRMKA'  => $this->input->post('e_semester'),
 			'PSTRMKA'  => $this->input->post('e_programsekolah'),
 			'IDUSER'  => $this->session->userdata('nip'),
 			'updatedAt' => date('Y-m-d H:i:s'),

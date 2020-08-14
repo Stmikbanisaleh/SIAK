@@ -12,7 +12,6 @@ class Model_mataajaraktif extends CI_model{
         mspelajaran.kode,
         trmka.IDKRKTRMKA,
         trmka.KDMKTRMKA,
-        trmka.SMTTRMKA,
         trmka.PSTRMKA,
         trmka.THNAKDTRMKA,
         trmka.GANGENTRMKA,

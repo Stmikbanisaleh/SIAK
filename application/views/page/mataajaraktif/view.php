@@ -73,17 +73,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="semester" id="semester">
-                                        <option value=>--Pilih Kelas --</option>
-                                        <?php foreach ($mykelas as $value) { ?>
-                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,17 +123,6 @@
                                         <option value=>--Pilih Mata Ajar --</option>
                                         <?php foreach ($mypelajaran as $value) { ?>
                                             <option value=<?= $value['id_mapel'] ?>><?= $value['kode'] ?> - <?= $value['nama'] ?> </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="e_semester" id="e_semester">
-                                        <option value=>--Pilih Kelas --</option>
-                                        <?php foreach ($mykelas as $value) { ?>
-                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -243,7 +221,6 @@
                                 '<td>' + data[i].THNAKDTRMKA + '</td>' +
                                 '<td>' + data[i].GANGENTRMKA + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
-                                '<td class="text-center">' + data[i].SMTTRMKA + '</td>' +
                                 '<td class="text-center">' +
                                 '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                                 '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -416,7 +393,6 @@
                         '<td>' + data[i].THNAKDTRMKA + '</td>' +
                         '<td>' + data[i].GANGENTRMKA + '</td>' +
                         '<td>' + data[i].DESCRTBPS + '</td>' +
-                        '<td class="text-right">' + data[i].SMTTRMKA + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].ID + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -467,7 +443,6 @@
                 $('#e_id').val(data[0].ID);
                 $('#e_programsekolah').val(data[0].PSTRMKA);
                 $('#e_kodemataajar').val(data[0].KDMKTRMKA);
-                $('#e_semester').val(data[0].SMTTRMKA);
             }
         });
     });
