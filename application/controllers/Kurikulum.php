@@ -52,7 +52,7 @@ class Kurikulum extends CI_Controller {
             $data = array(
                 'kode'  => $this->input->post('kodematajar'),
                 'nama'  => $this->input->post('namamataajar'),
-                'semester'  => $this->input->post('semester'),
+                // 'semester'  => $this->input->post('semester'),
                 'ps'  => $this->input->post('programsekolah'),
                 'jam'  => $this->input->post('jam'),
                 'createdAt' => date('Y-m-d H:i:s'),

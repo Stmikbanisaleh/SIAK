@@ -41,7 +41,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
 								<div class="col-sm-6">
 									<select class="form-control" name="semester" id="semester">
@@ -51,7 +51,7 @@
 										<?php } ?>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah</label>
 								<div class="col-sm-9">
@@ -115,7 +115,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas</label>
 								<div class="col-sm-6">
 									<select class="form-control" name="e_semester" id="e_semester">
@@ -125,7 +125,7 @@
 										<?php } ?>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah</label>
 								<div class="col-sm-9">
@@ -256,9 +256,9 @@
 				e_namamataajar: {
 					required: true
 				},
-				e_semester: {
-					required: true,
-				}
+				// e_semester: {
+				// 	required: true,
+				// }
 			},
 			messages: {
 
@@ -373,7 +373,7 @@
 				$('#e_kodematajar').val(data[0].kode);
 				$('#e_namamataajar').val(data[0].nama);
 				$('#e_jam').val(data[0].jam);
-				$('#e_semester').val(data[0].semester);
+				// $('#e_semester').val(data[0].semester);
 				$('#e_programsekolah').val(data[0].ps);
 				$('#e_nama').val(data[0].nama);
 			}
