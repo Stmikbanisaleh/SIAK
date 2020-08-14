@@ -104,12 +104,13 @@ class Model_slipgaji extends CI_model
     public function view_gaji_guru($table, $bulan_awal, $bulan_akhir, $tahun, $unit)
     {
         if(!empty($unit)){
-            return $this->db->query("SELECT * FROM ".$table." tp
-                                JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                AND YEAR(tp.effective_date) = '".$tahun."'
-                                AND ps.KDUNIT = $unit
-                                AND tp.isDeleted != 1");
+            return $this->db->query("SELECT 
+                                        tp.*, (SELECT ps.DESCRTBPS FROM tbps ps WHERE ps.KDUNIT = $unit and ps.KDSK = b.GuruBase LIMIT 1) as DESCRTBPS
+                                    FROM ".$table." tp
+                                    JOIN tbguru b ON tp.employee_number = b.IdGuru
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT * FROM ".$table." tp
                                 JOIN tbguru b ON tp.employee_number = b.IdGuru
@@ -124,12 +125,11 @@ class Model_slipgaji extends CI_model
     {
         if(!empty($unit)){
             return $this->db->query("SELECT
-                                    * FROM ".$table." tp
+                                        tp.*, (SELECT ps.DESCRTBPS FROM tbps ps WHERE ps.KDUNIT = $unit and ps.KDSK = b.GuruBase LIMIT 1) as DESCRTBPS
+                                    FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    JOIN tbps ps ON b.GuruBase = ps.KDSK
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND tp.employee_number = '".$emp."'
-                                    AND ps.KDUNIT = $unit
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
         }else{
