@@ -7,7 +7,11 @@ class Generatekaryawan extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('model_generatekaryawan');
+		$this->load->model('model_generatekaryawan');
+		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('dashboard/login');
+        }
     }
 
     function render_view($data)

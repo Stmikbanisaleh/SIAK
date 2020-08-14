@@ -9,6 +9,10 @@ class Inval extends CI_Controller
 		parent::__construct();
 		$this->load->model('payroll/model_guru');
 		$this->load->model('payroll/model_jabatan');
+		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('dashboard/login');
+        }
 	}
 
 	function render_view($data)

@@ -8,6 +8,10 @@ class Setting extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_profile');
+        if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('dashboard/login');
+        }
     }
 
     function render_view($data)

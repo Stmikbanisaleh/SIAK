@@ -9,6 +9,10 @@ class Impbayarpsb extends CI_Controller
 		parent::__construct();
 		$this->load->model('kasir/model_imppembayaran');
 		$this->load->model('kasir/model_tarif');
+		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('dashboard/login');
+        }
 	}
 
 	function render_view($data)

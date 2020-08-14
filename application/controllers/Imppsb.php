@@ -8,6 +8,10 @@ class Imppsb extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_imppsb');
+		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
+            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+            redirect('dashboard/login');
+        }
 	}
 
     public function index()
