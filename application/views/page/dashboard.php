@@ -6,9 +6,9 @@
 				<i class="ace-icon fa fa-users"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'guru/index'; ?>"><?php $guru = $this->db->query('select count(id) as total from tbguru where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbguru where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'guru/index'; ?>">Jumlah Guru</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Guru</a></div>
 			</div>
 		</div>
 
@@ -17,9 +17,9 @@
 				<i class="ace-icon fa fa-users"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'siswa/index'; ?>"><?php $guru = $this->db->query('select count(id) as total from mssiswa where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from mssiswa where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'siswa/index'; ?>">Jumlah Siswa</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Siswa</a></div>
 			</div>
 		</div>
 
@@ -28,9 +28,9 @@
 				<i class="ace-icon fa fa-users"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'karyawan/index'; ?>"><?php $guru = $this->db->query('select count(id_pengawas) as total from tbpengawas where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id_pengawas) as total from tbpengawas where isdeleted != 1')->result_array();
 																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'karyawan/index'; ?>">Jumlah Karyawan</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Karyawan</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-red">
@@ -38,9 +38,9 @@
 				<i class="ace-icon fa fa-users"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'kelulusan/index'; ?>"><?php $guru = $this->db->query('select count(IDRKP) as total from rkpaktvsiswa where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(IDRKP) as total from rkpaktvsiswa where isdeleted != 1')->result_array();
 																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'kelulusan/index'; ?>">Jumlah Lulusan</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Lulusan</a></div>
 			</div>
 		</div>
 
@@ -49,9 +49,9 @@
 				<i class="ace-icon fa fa-calendar"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'jadwal/index'; ?>"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'jadwal/index'; ?>">Jumlah Jadwal Aktif</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
 			</div>
 		</div>
 
@@ -60,9 +60,9 @@
 				<i class="ace-icon fa fa-book"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'kurikulum/index'; ?>"><?php $guru = $this->db->query('select count(id_krs) as total from tbkrs where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id_krs) as total from tbkrs where isdeleted != 1')->result_array();
 																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'kurikulum/index'; ?>">Jumlah Kurikulum</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Kurikulum</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-blue2">
@@ -70,9 +70,9 @@
 				<i class="ace-icon fa fa-book"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'mataajaraktif/index'; ?>"><?php $guru = $this->db->query('select count(ID) as total from trmka where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(ID) as total from trmka where isdeleted != 1')->result_array();
 																												echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'mataajaraktif/index'; ?>">Jumlah Mata ajar Aktif</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Mata ajar Aktif</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-blue2">
@@ -80,9 +80,9 @@
 				<i class="ace-icon fa fa-home"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'ruangan/index'; ?>"><?php $guru = $this->db->query('select count(ID) as total from msruang where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(ID) as total from msruang where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'ruangan/index'; ?>">Jumlah Ruangan</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Ruangan</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-blue2">
@@ -90,9 +90,9 @@
 				<i class="ace-icon fa fa-calendar"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'jadwal/index'; ?>"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'jadwal/index'; ?>">Jumlah Jadwal Aktif</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
 			</div>
 		</div>
 		<div class="infobox infobox-blue2">
@@ -100,9 +100,9 @@
 				<i class="ace-icon fa fa-calendar"></i>
 			</div>
 			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="<?php echo base_url() . 'jadwal/index'; ?>"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
+				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
 																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="<?php echo base_url() . 'jadwal/index'; ?>">Jumlah Jadwal Aktif</a></div>
+				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
 			</div>
 		</div>
 	</div>
@@ -111,7 +111,7 @@
 			<div class="widget-header widget-header-flat widget-header-small">
 				<h5 class="widget-title">
 					<i class="ace-icon fa fa-signal"></i>
-					Tahun Akademik
+					Jumlah Siswa
 				</h5>
 			</div>
 
@@ -129,14 +129,14 @@
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
+									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
 									 or PS = 05 or PS = 06 or PS = 07 or PS = 08 or PS = 09
 									 or PS = 10 or PS = 11 or PS = 12
 									 or PS = 13 or PS = 14 or PS = 15
 									 or PS = 16 or PS = 17'
 									 )->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">TK</a></div>
+									<div class="infobox-content"><a href="#">TK</a></div>
 								</div>
 							</div>
 						</div>
@@ -147,9 +147,9 @@
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
+									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">SD</a></div>
+									<div class="infobox-content"><a href="#">SD</a></div>
 								</div>
 							</div>
 						</div>
@@ -160,9 +160,9 @@
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
+									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad2/index'; ?>">SMP</a></div>
+									<div class="infobox-content"><a href="#">SMP</a></div>
 								</div>
 							</div>
 						</div>
@@ -173,9 +173,9 @@
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
+									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad3/index'; ?>">SMA</a></div>
+									<div class="infobox-content"><a href="#">SMA</a></div>
 								</div>
 							</div>
 						</div>
@@ -186,9 +186,9 @@
 									<span class="sparkline" data-values="196,111,111,177,154,94,111,111,111"></span>
 								</div>
 								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
+									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
 																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="<?php echo base_url() . 'tahun_akad1/index'; ?>">QUBA</a></div>
+									<div class="infobox-content"><a href="#">QUBA</a></div>
 								</div>
 							</div>
 						</div>

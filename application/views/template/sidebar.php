@@ -54,7 +54,75 @@ if ($jabatan == 19) { ?>
 				</li>
 			</ul>
 		</li>
+	</ul>
+<?php } else if ($jabatan == '100') { ?>
+	<ul class="nav nav-list">
+		<li class="">
+			<a href="<?= base_url(); ?>dashboard">
+				<i class="menu-icon fa fa-tachometer"></i>
+				<span class="menu-text"> Dashboard </span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+		<!-- Menu Selain PSB -->
+		<li class="">
+			<a href="javascript:void(0);" class="dropdown-toggle">
+				<i class="menu-icon fa fa-calendar"></i>
+				<span class="menu-text">
+					Jadwal
+				</span>
 
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+
+				<li class="">
+					<a href="<?= base_url() . 'jadwal'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Jadwal
+					</a>
+				</li>
+
+			</ul>
+		</li>
+
+		<li class="">
+			<a href="javascript:void(0);" class="dropdown-toggle">
+				<i class="menu-icon fa fa-book"></i>
+				<span class="menu-text">
+					Kurikulum
+				</span>
+
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+
+				<li class="">
+					<a href="<?= base_url() . 'kurikulum'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Kurikulum
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'mataajaraktif'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Mata Ajar Aktif
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+			</ul>
+		</li>
 	</ul>
 <?php } else { ?>
 	<ul class="nav nav-list">
@@ -238,14 +306,14 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'generategajiguru'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Generate Gaji Guru 
+						Generate Gaji Guru
 					</a>
 				</li>
 
 				<li class="">
 					<a href="<?= base_url() . 'generategajikaryawan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Generate Gaji Karyawan 
+						Generate Gaji Karyawan
 					</a>
 				</li>
 
@@ -265,7 +333,7 @@ if ($jabatan == 19) { ?>
 
 			<ul class="submenu">
 				<li class="">
-				<a href="<?= base_url() . 'impbayarpsb'; ?>">
+					<a href="<?= base_url() . 'impbayarpsb'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Import Pembayaran Formulir
 					</a>
@@ -273,13 +341,13 @@ if ($jabatan == 19) { ?>
 				</li>
 
 				<li class="">
-				<a href="<?= base_url() . 'imppsb'; ?>">
+					<a href="<?= base_url() . 'imppsb'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Import PSB Online
 					</a>
 					<b class="arrow"></b>
 				</li>
-			
+
 				<li class="">
 					<a href="<?= base_url() . 'pengambilanformulir'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
