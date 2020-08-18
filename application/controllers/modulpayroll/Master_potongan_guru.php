@@ -8,11 +8,6 @@ class Master_potongan_guru extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_masterpotongan_guru');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,15 +17,19 @@ class Master_potongan_guru extends CI_Controller
 
 	public function index()
 	{
-		$myguru = $this->model_masterpotongan_guru->viewOrdering('tbguru','GuruNama','asc')->result_array();
-		$data = array(
-			'page_content' 	=> '../pagepayroll/master_potongan_guru/view',
-			'ribbon' 		=> '<li class="active">Master Potongan Guru</li>',
-			'page_name' 	=> 'Master Potongan Guru',
-			'js' 			=> 'js_file',
-			'myguru'		=> $myguru
-		);
-		$this->render_view($data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$myguru = $this->model_masterpotongan_guru->viewOrdering('tbguru', 'GuruNama', 'asc')->result_array();
+			$data = array(
+				'page_content' 	=> '../pagepayroll/master_potongan_guru/view',
+				'ribbon' 		=> '<li class="active">Master Potongan Guru</li>',
+				'page_name' 	=> 'Master Potongan Guru',
+				'js' 			=> 'js_file',
+				'myguru'		=> $myguru
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function tampil()
@@ -59,13 +58,13 @@ class Master_potongan_guru extends CI_Controller
 				'bpjs'  => $this->input->post('bpjs_v'),
 			);
 			$cek = $this->model_masterpotongan_guru->cek($data['IdGUru'])->num_rows();
-			if($cek > 0){
+			if ($cek > 0) {
 				echo 401;
 			} else {
 				$result = $this->model_masterpotongan_guru->insert($data, 'tbgurupot');
 				if ($result) {
 					echo $result;
-				} 
+				}
 			}
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -73,18 +72,18 @@ class Master_potongan_guru extends CI_Controller
 	}
 
 	public function tampil_byid()
-    {
-        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-            $data = array(
-                'id_potong'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_masterpotongan_guru->view_where('tbgurupot', $data)->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('pagekasir/login'); //Memanggil function render_view
-        }
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$data = array(
+				'id_potong'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_masterpotongan_guru->view_where('tbgurupot', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('pagekasir/login'); //Memanggil function render_view
+		}
 	}
-	
+
 	public function update()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
@@ -107,7 +106,7 @@ class Master_potongan_guru extends CI_Controller
 				'ltq'  => $this->input->post('e_ltq_v'),
 			);
 
-			$my_data = $this->model_masterpotongan_guru->update($data,$dataupdate,'tbgurupot');
+			$my_data = $this->model_masterpotongan_guru->update($data, $dataupdate, 'tbgurupot');
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -115,12 +114,12 @@ class Master_potongan_guru extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id_potong'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id_potong'  => $this->input->post('id')
 		);
 		$action = $this->model_masterpotongan_guru->delete($data_id, 'tbgurupot');
-		if($action){
+		if ($action) {
 			echo json_encode($action);
 		}
 	}

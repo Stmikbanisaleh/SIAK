@@ -8,11 +8,6 @@ class Biodata_karyawan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_karyawan');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,30 +17,40 @@ class Biodata_karyawan extends CI_Controller
 
 	public function index()
 	{
-		$my_jabatan = $this->model_karyawan->view('msjabatan')->result_array();
-		$my_pembayaran = $this->model_karyawan->view('jnspembayaran')->result_array();
-		$mspendidikan = $this->model_karyawan->view('mspendidikan')->result_array();
-		$myagama = $this->model_karyawan->view('tbagama')->result_array();
-		$myunit = $this->model_karyawan->view('sekolah')->result_array();
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
-		$data = array(
-			'page_content' 	=> '../pagepayroll/biodata_karyawan/view',
-			'ribbon' 		=> '<li class="active">Master Biodata Karyawan</li>',
-			'page_name' 	=> 'Master Biodata Karyawan',
-			'js' 			=> 'js_file',
-			'my_jabatan' 	=> $my_jabatan,
-			'my_pembayaran'	=> $my_pembayaran,
-			'my_pendidikan'	=> $mspendidikan,
-			'myagama'	=> $myagama,
-			'myunit' => $myunit
-		);
-		$this->render_view($data); //Memanggil function render_view
+			$my_jabatan = $this->model_karyawan->view('msjabatan')->result_array();
+			$my_pembayaran = $this->model_karyawan->view('jnspembayaran')->result_array();
+			$mspendidikan = $this->model_karyawan->view('mspendidikan')->result_array();
+			$myagama = $this->model_karyawan->view('tbagama')->result_array();
+			$myunit = $this->model_karyawan->view('sekolah')->result_array();
+
+			$data = array(
+				'page_content' 	=> '../pagepayroll/biodata_karyawan/view',
+				'ribbon' 		=> '<li class="active">Master Biodata Karyawan</li>',
+				'page_name' 	=> 'Master Biodata Karyawan',
+				'js' 			=> 'js_file',
+				'my_jabatan' 	=> $my_jabatan,
+				'my_pembayaran'	=> $my_pembayaran,
+				'my_pendidikan'	=> $mspendidikan,
+				'myagama'	=> $myagama,
+				'myunit' => $myunit
+			);
+			$this->render_view($data); //Memanggil function render_view
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
+
 
 	public function tampil()
 	{
-		$my_data = $this->model_karyawan->view_karyawan()->result_array();
-		echo json_encode($my_data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$my_data = $this->model_karyawan->view_karyawan()->result_array();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function simpan()
@@ -137,7 +142,7 @@ class Biodata_karyawan extends CI_Controller
 				'status'  => $this->input->post('e_status')
 			);
 
-			$my_data = $this->model_karyawan->update($data,$dataupdate,'biodata_karyawan');
+			$my_data = $this->model_karyawan->update($data, $dataupdate, 'biodata_karyawan');
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -145,16 +150,16 @@ class Biodata_karyawan extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id_karyawan'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id_karyawan'  => $this->input->post('id')
 		);
 		$data_id2 = array(
-            'nip'  => $this->input->post('id')
-        );
+			'nip'  => $this->input->post('id')
+		);
 		$action = $this->model_karyawan->delete($data_id, 'tarifkaryawan');
-		if($action){
-			$action2= $this->model_karyawan->delete($data_id2, 'biodata_karyawan');
+		if ($action) {
+			$action2 = $this->model_karyawan->delete($data_id2, 'biodata_karyawan');
 			echo json_encode($action);
 		}
 	}

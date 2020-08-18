@@ -8,11 +8,6 @@ class Cuti extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_cuti');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,15 +17,20 @@ class Cuti extends CI_Controller
 
 	public function index()
 	{
-		$my_karyawan = $this->model_cuti->view('biodata_karyawan')->result_array();
-		$data = array(
-			'page_content' 	=> '../pagepayroll/cuti/view',
-			'ribbon' 		=> '<li class="active">Master Cuti</li>',
-			'page_name' 	=> 'Master Cuti',
-			'js' 			=> 'js_file',
-			'my_karyawan'	=> $my_karyawan
-		);
-		$this->render_view($data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+			$my_karyawan = $this->model_cuti->view('biodata_karyawan')->result_array();
+			$data = array(
+				'page_content' 	=> '../pagepayroll/cuti/view',
+				'ribbon' 		=> '<li class="active">Master Cuti</li>',
+				'page_name' 	=> 'Master Cuti',
+				'js' 			=> 'js_file',
+				'my_karyawan'	=> $my_karyawan
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function simpan()
@@ -45,7 +45,7 @@ class Cuti extends CI_Controller
 			$result = $this->model_cuti->insert($data, 'tbkehadiran');
 			if ($result) {
 				echo $result;
-			} 
+			}
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
@@ -58,14 +58,13 @@ class Cuti extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
 		);
 		$action = $this->model_cuti->delete($data_id, 'tbkehadiran');
-		if($action){
+		if ($action) {
 			echo json_encode($action);
 		}
 	}
-
 }

@@ -8,11 +8,6 @@ class Pendapatanlain extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_pendapatanlain');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,15 +17,19 @@ class Pendapatanlain extends CI_Controller
 
 	public function index()
 	{
-		$myguru = $this->model_pendapatanlain->viewOrdering('tbguru','GuruNama','asc')->result_array();
-		$data = array(
-			'page_content' 	=> '../pagepayroll/pendapatanlain/view',
-			'ribbon' 		=> '<li class="active">Master Pendapatan Lain Guru </li>',
-			'page_name' 	=> 'Master Pendapatan Lain Guru',
-			'js' 			=> 'js_file',
-			'myguru'		=> $myguru
-		);
-		$this->render_view($data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$myguru = $this->model_pendapatanlain->viewOrdering('tbguru', 'GuruNama', 'asc')->result_array();
+			$data = array(
+				'page_content' 	=> '../pagepayroll/pendapatanlain/view',
+				'ribbon' 		=> '<li class="active">Master Pendapatan Lain Guru </li>',
+				'page_name' 	=> 'Master Pendapatan Lain Guru',
+				'js' 			=> 'js_file',
+				'myguru'		=> $myguru
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function tampil()
@@ -64,13 +63,13 @@ class Pendapatanlain extends CI_Controller
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			$hasil = $this->model_pendapatanlain->cek_guru($this->input->post('id_guru'), $periode)->num_rows();
-			if($hasil>0){
+			if ($hasil > 0) {
 				echo 401;
-			}else{
+			} else {
 				$result = $this->model_pendapatanlain->insert($data, 'tbpendapatanlainguru');
 				if ($result) {
 					echo $result;
-				} 
+				}
 			}
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -78,12 +77,12 @@ class Pendapatanlain extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
 		);
 		$action = $this->model_pendapatanlain->delete($data_id, 'tbpendapatanlainguru');
-		if($action){
+		if ($action) {
 			echo json_encode($action);
 		}
 	}
@@ -94,38 +93,38 @@ class Pendapatanlain extends CI_Controller
 			'id'  => $this->input->post('e_id')
 		);
 		$data = array(
-				'thr'  => $this->input->post('e_thr_v'),
-				'tunjangan'  => $this->input->post('e_tjkinerja_v'),
-				'lain' => $this->input->post('e_tjlain_v'),
-				'jam1' => $this->input->post('e_jam1'),
-				'tarif1' => $this->input->post('e_tarif1_v'),
-				'jam2' => $this->input->post('e_jam2'),
-				'tarif2' => $this->input->post('e_tarif2_v'),
-				'jam3' => $this->input->post('e_jam3'),
-				'tarif3' => $this->input->post('e_tarif3_v'),
-				'jam4' => $this->input->post('e_jam4'),
-				'tarif4' => $this->input->post('e_tarif4_v'),
-				'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
-				'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
-				'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
-				'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
-				'updatedAt' => date('Y-m-d H:i:s')
+			'thr'  => $this->input->post('e_thr_v'),
+			'tunjangan'  => $this->input->post('e_tjkinerja_v'),
+			'lain' => $this->input->post('e_tjlain_v'),
+			'jam1' => $this->input->post('e_jam1'),
+			'tarif1' => $this->input->post('e_tarif1_v'),
+			'jam2' => $this->input->post('e_jam2'),
+			'tarif2' => $this->input->post('e_tarif2_v'),
+			'jam3' => $this->input->post('e_jam3'),
+			'tarif3' => $this->input->post('e_tarif3_v'),
+			'jam4' => $this->input->post('e_jam4'),
+			'tarif4' => $this->input->post('e_tarif4_v'),
+			'ket_tunj_khusus1' => $this->input->post('e_ket_tunj_khusus1'),
+			'tunj_khusus1' => $this->input->post('e_tunj_khusus1_v'),
+			'ket_tunj_khusus2' => $this->input->post('e_ket_tunj_khusus2'),
+			'tunj_khusus2' => $this->input->post('e_tunj_khusus2_v'),
+			'updatedAt' => date('Y-m-d H:i:s')
 		);
 		$action = $this->model_pendapatanlain->update($data_id, $data, 'tbpendapatanlainguru');
 		echo json_encode($action);
 	}
 
 	public function tampil_byid()
-    {
-        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
-            $data = array(
-                'id'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_pendapatanlain->view_where('tbpendapatanlainguru', $data)->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('pagepayroll/login'); //Memanggil function render_view
-        }
+			$data = array(
+				'id'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_pendapatanlain->view_where('tbpendapatanlainguru', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Memanggil function render_view
+		}
 	}
 }

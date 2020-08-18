@@ -8,11 +8,6 @@ class Rekap_gajiguru extends CI_Controller
 		parent::__construct();
 		$this->load->model('payroll/model_rekapgguru');
 		$this->load->model('payroll/model_rekapgkar');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			
-		} else {
-			$this->load->view('pagepayroll/login'); //Memanggil function render_view
-		}
 	}
 
 	function render_view($data)

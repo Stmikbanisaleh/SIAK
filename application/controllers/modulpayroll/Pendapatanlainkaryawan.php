@@ -8,11 +8,6 @@ class Pendapatanlainkaryawan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_pendapatanlainkaryawan');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,15 +17,20 @@ class Pendapatanlainkaryawan extends CI_Controller
 
 	public function index()
 	{
-		$mykaryawan = $this->model_pendapatanlainkaryawan->viewOrdering('biodata_karyawan','nama','asc')->result_array();
-		$data = array(
-			'page_content' 	=> '../pagepayroll/pendapatanlainkaryawan/view',
-			'ribbon' 		=> '<li class="active">Master Pendapatan Lain Karyawan </li>',
-			'page_name' 	=> 'Master Pendapatan Lain Karyawan',
-			'js' 			=> 'js_file',
-			'mykaryawan'		=> $mykaryawan
-		);
-		$this->render_view($data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+			$mykaryawan = $this->model_pendapatanlainkaryawan->viewOrdering('biodata_karyawan', 'nama', 'asc')->result_array();
+			$data = array(
+				'page_content' 	=> '../pagepayroll/pendapatanlainkaryawan/view',
+				'ribbon' 		=> '<li class="active">Master Pendapatan Lain Karyawan </li>',
+				'page_name' 	=> 'Master Pendapatan Lain Karyawan',
+				'js' 			=> 'js_file',
+				'mykaryawan'		=> $mykaryawan
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function tampil()
@@ -43,8 +43,8 @@ class Pendapatanlainkaryawan extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$hasil = $this->model_pendapatanlainkaryawan->view_where('tbpendapatanlainkaryawan', ['nip' => $this->input->post('nip')])->num_rows();
-			if($hasil<1){
-				$periode = date("m",strtotime($this->input->post('periode')));
+			if ($hasil < 1) {
+				$periode = date("m", strtotime($this->input->post('periode')));
 				$data = array(
 					'nip'  => $this->input->post('nip'),
 					'thr'  => $this->input->post('thr_v'),
@@ -64,15 +64,15 @@ class Pendapatanlainkaryawan extends CI_Controller
 					'createdAt' => date('Y-m-d H:i:s')
 				);
 				$hasil = $this->model_pendapatanlainkaryawan->cek_karyawan($this->input->post('nip'), $periode)->num_rows();
-				if($hasil>0){
+				if ($hasil > 0) {
 					echo 401;
-				}else{
+				} else {
 					$result = $this->model_pendapatanlainkaryawan->insert($data, 'tbpendapatanlainkaryawan');
 					if ($result) {
 						echo $result;
-					} 
+					}
 				}
-			}else{
+			} else {
 				echo json_encode(401);
 			}
 		} else {
@@ -81,17 +81,17 @@ class Pendapatanlainkaryawan extends CI_Controller
 	}
 
 	public function tampil_byid()
-    {
-        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
-            $data = array(
-                'id'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_pendapatanlainkaryawan->view_where('tbpendapatanlainkaryawan', $data)->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('pagepayroll/login'); //Memanggil function render_view
-        }
+			$data = array(
+				'id'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_pendapatanlainkaryawan->view_where('tbpendapatanlainkaryawan', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Memanggil function render_view
+		}
 	}
 
 	public function update()
@@ -121,12 +121,12 @@ class Pendapatanlainkaryawan extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
 		);
 		$action = $this->model_pendapatanlainkaryawan->delete($data_id, 'tbpendapatanlainkaryawan');
-		if($action){
+		if ($action) {
 			echo json_encode($action);
 		}
 	}

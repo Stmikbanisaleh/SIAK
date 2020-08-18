@@ -8,11 +8,6 @@ class Master_potongan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('payroll/model_mastpotongan');
-		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
-			// continue;
-		} else {
-			$this->load->view('pagepayroll/login'); //Redirect login
-		}
 	}
 
 	function render_view($data)
@@ -22,15 +17,20 @@ class Master_potongan extends CI_Controller
 
 	public function index()
 	{
-		$mykaryawan = $this->model_mastpotongan->view('biodata_karyawan')->result_array();
-		$data = array(
-			'page_content' 	=> '../pagepayroll/master_potongan/view',
-			'ribbon' 		=> '<li class="active">Master Potongan Karyawan</li>',
-			'page_name' 	=> 'Master Potongan Karyawan',
-			'js' 			=> 'js_file',
-			'mykaryawan'		=> $mykaryawan
-		);
-		$this->render_view($data);
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+
+			$mykaryawan = $this->model_mastpotongan->view('biodata_karyawan')->result_array();
+			$data = array(
+				'page_content' 	=> '../pagepayroll/master_potongan/view',
+				'ribbon' 		=> '<li class="active">Master Potongan Karyawan</li>',
+				'page_name' 	=> 'Master Potongan Karyawan',
+				'js' 			=> 'js_file',
+				'mykaryawan'		=> $mykaryawan
+			);
+			$this->render_view($data);
+		} else {
+			$this->load->view('pagepayroll/login'); //Redirect login
+		}
 	}
 
 	public function tampil()
@@ -64,36 +64,35 @@ class Master_potongan extends CI_Controller
 				'lain3'  => $this->input->post('lain3_v'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			
+
 			$hasil = $this->model_mastpotongan->cek_karyawan($this->input->post('id_karyawan'), $this->input->post('periode'))->num_rows();
-			if($hasil>0){
+			if ($hasil > 0) {
 				echo 401;
-			}else{
+			} else {
 				$result = $this->model_mastpotongan->insert($data, 'tbkaryawanpot');
 				if ($result) {
 					echo $result;
-				} 
+				}
 			}
-			
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
 	}
 
 	public function tampil_byid()
-    {
-        if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
-            $data = array(
-                'id_potong'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_mastpotongan->view_where('tbkaryawanpot', $data)->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('pagekasir/login'); //Memanggil function render_view
-        }
+			$data = array(
+				'id_potong'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_mastpotongan->view_where('tbkaryawanpot', $data)->result();
+			echo json_encode($my_data);
+		} else {
+			$this->load->view('pagekasir/login'); //Memanggil function render_view
+		}
 	}
-	
+
 	public function update()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
@@ -123,7 +122,7 @@ class Master_potongan extends CI_Controller
 				'periode'  => $this->input->post('e_periode'),
 			);
 
-			$my_data = $this->model_mastpotongan->update($data,$dataupdate,'tbkaryawanpot');
+			$my_data = $this->model_mastpotongan->update($data, $dataupdate, 'tbkaryawanpot');
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -131,12 +130,12 @@ class Master_potongan extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id_potong'  => $this->input->post('id')
+	{
+		$data_id = array(
+			'id_potong'  => $this->input->post('id')
 		);
 		$action = $this->model_mastpotongan->delete($data_id, 'tbkaryawanpot');
-		if($action){
+		if ($action) {
 			echo json_encode($action);
 		}
 	}

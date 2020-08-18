@@ -86,7 +86,7 @@ class Mataajaraktif extends CI_Controller
     {
         $ps = $this->input->post('ps');
         $data = array('ps' => $ps);
-        $my_data = $this->model_mataajaraktif->viewWhereOrdering('mspelajaran', $data, 'id_mapel', 'asc')->result_array();
+        $my_data = $this->model_mataajaraktif->viewWhereOrdering('mspelajaran', $data, 'nama', 'asc')->result_array();
         echo "<option value='0'>--Pilih Mapel --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['id_mapel'] . "'>[" . $value['nama'] .'-'. $value['kode']."] </option>";
