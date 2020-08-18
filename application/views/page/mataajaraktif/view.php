@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="programsekolahs" id="programsekolahs">
+                                    <select class="form-control"  required name="programsekolahs" id="programsekolahs">
                                         <option value=>--Pilih Program --</option>
                                         <?php foreach ($myps as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Mata ajar </label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="kodemataajar" id="kodemataajar">
+                                    <select class="form-control" required name="kodemataajar" id="kodemataajar">
                                         <option value="0">-- Pilih Mata Ajar --</option>
                                     </select>
                                 </div>
@@ -107,7 +107,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
                                 <div class="col-sm-6">
                                     <input type="hidden" id="e_id" name="e_id" />
-                                    <select class="form-control" name="e_programsekolah" id="e_programsekolah">
+                                    <select class="form-control" required name="e_programsekolah" id="e_programsekolah">
                                         <option value=>--Pilih Program --</option>
                                         <?php foreach ($myps as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] ?></option>
@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Mata ajar </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="e_kodemataajar" id="e_kodemataajar">
+                                    <select class="form-control" required name="e_kodemataajar" id="e_kodemataajar">
                                         <option value=>--Pilih Mata Ajar --</option>
                                         <?php foreach ($mypelajaran as $value) { ?>
                                             <option value=<?= $value['id_mapel'] ?>><?= $value['kode'] ?> - <?= $value['nama'] ?> </option>
