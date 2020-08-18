@@ -199,6 +199,7 @@
                                         <option value="operator">Operator</option>
                                         <option value="kasir">Kasir</option>
                                         <option value="akunting">Akunting</option>
+                                        <option value="payroll">Payroll</option>
                                     </select>
                                 </div>
                             </div>
