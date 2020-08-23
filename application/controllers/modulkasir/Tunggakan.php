@@ -67,17 +67,17 @@ class Tunggakan extends CI_Controller
 			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' ");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' and tipe_generate = 'Y' ");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
-											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."'  and tipe_generate = 'Y' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 				if (count($calonsiswa) > 0) {
 					foreach ($calonsiswa as $value) {
 						$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SPP','SRG','KGT','GDG')");
+					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SPP')");
 						$n = $tarif->num_rows();
 						if ($tarif) {
 							$v = $tarif->result_array();
@@ -95,7 +95,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SRG','SPP','KGT','GDG') ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SPP') ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
@@ -119,9 +119,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' and tipe_generate = 'Y' ")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."'");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."' and tipe_generate = 'Y'");
 								}
 								$data = array(
 									'NIS' => $vnis,
@@ -130,6 +130,7 @@ class Tunggakan extends CI_Controller
 									'TA' => $thn,
 									'Bayar' => $nominal->bayar,
 									'Sisa' => $vsisa,
+									'tipe_generate' => 'Y',
 									'Kelas' => $t_kelas,
 									'createdAt' => date('Y-m-d H:i:s')
 								);

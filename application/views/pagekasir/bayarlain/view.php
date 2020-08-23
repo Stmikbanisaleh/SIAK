@@ -190,7 +190,7 @@
                 <th>Sekolah</th>
                 <th>Kelas</th>
                 <th>Jenis Pembayaran</th>
-                <th>Tarif</th>
+                <th>Tarif Dasar</th>
                 <th>Bayar</th>
                 <th>TA</th>
                 <th>Action</th>
