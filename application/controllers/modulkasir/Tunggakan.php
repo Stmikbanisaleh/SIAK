@@ -22,6 +22,7 @@ class Tunggakan extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
+			$my_siswa = $this->model_tunggakan->view('mssiswa')->result_array();
 			$my_tahun = $this->model_tunggakan->gettahun('tbakadmk2')->result_array();
 			$my_tahun2 = $this->model_tunggakan->gettahun2('tbakadmk2')->result_array();
 			$data = array(
@@ -29,7 +30,8 @@ class Tunggakan extends CI_Controller
 				'ribbon' 		=> '<li class="active">Tunggakan</li><li>Sample</li>',
 				'page_name' 	=> 'Tunggakan',
 				'my_tahun'		=> $my_tahun,
-				'my_tahun2'		=> $my_tahun2
+				'my_tahun2'		=> $my_tahun2,
+				'my_siswa'      => $my_siswa
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -58,6 +60,31 @@ class Tunggakan extends CI_Controller
 			$this->load->view('pagekasir/login'); //Memanggil function render_view
 		}
 	}
+
+	public function update()
+    {
+        $data_id = array(
+            'idsaldo'  => $this->input->post('e_id')
+        );
+        $data = array(
+            'TotalTagihan'  => $this->input->post('e_tot_tagihan_v'),
+			'Bayar'  => $this->input->post('e_bayar_v'),
+			'Sisa'  => $this->input->post('e_sisa_v'),
+			'tipe_generate'  => 'N',
+            'updatedAt' => date('Y-m-d H:i:s'),
+        );
+        $action = $this->model_tunggakan->update($data_id, $data, 'saldopembayaran_sekolah');
+        echo json_encode($action);
+    }
+
+	public function tampil_byid()
+    {
+        $data = array(
+            'idsaldo'  => $this->input->post('id'),
+        );
+        $my_data = $this->model_tunggakan->view_where('saldopembayaran_sekolah', $data)->result();
+        echo json_encode($my_data);
+    }
 
 	public function generate()
 	{

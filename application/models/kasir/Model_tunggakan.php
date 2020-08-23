@@ -2,6 +2,11 @@
 
 class Model_tunggakan extends CI_model
 {
+    public function view($table)
+    {
+        $this->db->where('isdeleted !=' ,1);
+        return $this->db->get($table);
+    }
 
     public function view_visi($table)
     {
