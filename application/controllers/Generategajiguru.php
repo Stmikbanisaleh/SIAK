@@ -81,6 +81,7 @@ class Generategajiguru extends CI_Controller
                         // $jam = $this->model
                         $lastday = $this->getLastDateOfMonth($tahun, $bulan);
                         $pot_lain = $data['infaq_masjid']+$data['anggota_koperasi']+$data['kas_bon']+$data['ijin_telat']+$data['koperasi']+$data['bmt']+$data['inval']+$data['toko']+$data['lain']+$data['tawun'];
+                        $tahun = $this->input->post('tahun');
                         $data = array(
                             "employee_number" => $data['IdGuru'],
                             "nama"    => $data['GuruNama'],
