@@ -30,7 +30,7 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
                                 WHERE `status`='T'
-                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('GDG','KGT','FRM','SRG')");
+                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('FRM')");
 
                                 //AND TA='$ta' -- Coment for this
     }
