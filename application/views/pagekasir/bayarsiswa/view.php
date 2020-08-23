@@ -113,7 +113,10 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <input type="hidden" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
+            <input type="hidden" id="seragam" name="seragam" placeholder="Seragam" class="form-control" />
+            <input type="hidden" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
+            <!-- <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
                         Gedung
@@ -139,8 +142,8 @@
                         <input type="hidden" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
                         Seragam
@@ -193,7 +196,7 @@
                         <input type="hidden" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
