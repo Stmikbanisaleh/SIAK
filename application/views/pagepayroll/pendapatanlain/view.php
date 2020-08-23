@@ -655,7 +655,7 @@
 									<input type="text" id="e_tarif1" name="e_tarif1" placeholder="Tarif Perjam(1) " class="form-control" />
 									<input type="hidden" id="e_tarif1_v" name="e_tarif1_v" />
 									<script language="JavaScript">
-										var rupiah31 = document.getElementById('tarif1');
+										var rupiah31 = document.getElementById('e_tarif1');
 										rupiah31.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#e_tarif1_v').val(rup3);
@@ -691,7 +691,7 @@
 									<input type="text" id="e_tarif2" name="e_tarif2" placeholder="Tarif Perjam(2) " class="form-control" />
 									<input type="hidden" id="e_tarif2_v"  name="e_tarif2_v" />
 									<script language="JavaScript">
-										var rupiah6 = document.getElementById('tarif2');
+										var rupiah6 = document.getElementById('e_tarif2');
 										rupiah6.addEventListener('keyup', function(e) {
 											rup3 = this.value.replace(/\D/g, '');
 											$('#e_tarif2_v').val(rup3);
@@ -760,7 +760,7 @@
 									<input type="number" id="e_jam4" name="e_jam4" placeholder="Jam" class="form-control" />
 								</div>
 								<div class="col-sm-6">
-									<input type="text" id="e_tarif4" name="tarif4" placeholder="Tarif Perjam(4) " class="form-control" />
+									<input type="text" id="e_tarif4" name="e_tarif4" placeholder="Tarif Perjam(4) " class="form-control" />
 									<input type="hidden" id="e_tarif4_v" required name="e_tarif4_v" />
 									<script language="JavaScript">
 										var rupiah8 = document.getElementById('e_tarif4');
