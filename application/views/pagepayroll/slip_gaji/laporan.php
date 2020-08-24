@@ -358,7 +358,7 @@
 ?>
 	<div class="<?php echo $content; ?>">
 		<div>
-			<center><font size="1"><b>PERGURUAN ISLAM GEMA TERPADU</b><font></center>
+			<center><font size="1"><b>SEKOLAH ISLAM TERPADU GEMA NURANI</b><font></center>
 			<center><font size="1">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
 			<hr></hr>
 		</div>

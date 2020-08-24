@@ -136,6 +136,13 @@
 				</a>
 			</li>
 			<li class="">
+				<a href="<?= base_url() . 'modulkasir/rincian_bayar'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Rincian Bayar
+				</a>
+				<b class="arrow"></b>
+			</li>
+			<li class="">
 				<a href="<?= base_url() . 'modulkasir/surattagihan'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Surat Tagihan
