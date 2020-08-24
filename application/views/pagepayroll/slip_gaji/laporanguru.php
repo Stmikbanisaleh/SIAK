@@ -176,6 +176,10 @@
 		$pot_ltq = $row['pot_ltq'];
 		$pot_pph21 = $row['pph21_bulanan'];
 		$pot_lain = $row['pot_lain'];
+		$ket_pot_khusus = $row['ket_pot_khusus'];
+		$pot_khusus = $row['pot_khusus'];
+		
+
 		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
 		
 		$label_pot[1] = 'Infaq Masjid';
@@ -192,6 +196,7 @@
 		$label_pot[12] = 'PPh21';
 		$label_pot[13] = 'Lain-lain';
 
+
 		$pot_nilai[1] = $pot_infaq_masjid;
 		$pot_nilai[2] = $pot_anggota_koperasi;
 		$pot_nilai[3] = $pot_kas_bon;
@@ -205,23 +210,35 @@
 		$pot_nilai[11] = $pot_ltq;
 		$pot_nilai[12] = $pot_pph21;
 		$pot_nilai[13] = $pot_lain;
-	
+		$pot_nilai[14] = $pot_khusus;
 
+	
+		if($row['ket_pot_khusus'] != 0 || $row['ket_pot_khusus'] != '' ||$row['ket_pot_khusus'] != '0'){
+			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_khusus'].')';
+			$pot_khusus = $row['pot_khusus'];
+			$nill_pot14 = 1;
+		}else{
+			$label_pot[14] = '';
+			$nill_pot14 = 0;
+		}
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
 			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 		}else{
 			$label_tunj[15] = '';
+			$nill_t15 = 0;
 		}
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
 			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
 		}else{
 			$label_tunj[16] = '';
+			$nill_t16 = 0;
 		}
 
-		$row_pendapatan = 16; //Need change value to follow max row pendapatan
-		$row_potongan = 13; //Need change value to follow max row potongan
+		
+		$row_pendapatan = 14 + $nill_t15 + $nill_t16; //Need change value to follow max row pendapatan
+		$row_potongan = 13 + $nill_pot14; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){
