@@ -741,7 +741,9 @@ class Rekap_gajiguru extends CI_Controller
 			$pend_khusus1 = $row['tunj_khusus1'];
 			$pend_khusus2 = $row['tunj_khusus2'];
 			$pend_lain = $row['tunj_lain'];
-			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_pembinaan+$pend_bpjs+$pend_thr+$pend_internasional+$pend_aksel+$pend_walas+$pend_keluarga+$nominal_inval+$pend_khusus1+$pend_khusus2+$pend_lain;
+			// $gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_pembinaan+$pend_bpjs+$pend_thr+$pend_internasional+$pend_aksel+$pend_walas+$pend_keluarga+$nominal_inval+$pend_khusus1+$pend_khusus2+$pend_lain;
+			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_bpjs+$pend_thr+$pend_internasional+$pend_aksel+$pend_walas+$pend_keluarga+$nominal_inval+$pend_khusus1+$pend_khusus2+$pend_lain;
+			
 			$var_e = $gaji_kotor;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -765,7 +767,8 @@ class Rekap_gajiguru extends CI_Controller
 			$pot_pph21 = $row['pph21_bulanan'];
 			$pot_jht = $row['pot_iuran_jht'];
 			$pot_lain = $row['pot_lain'];
-			$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_lain;
+			$pot_khusus = $row['pot_khusus'];
+			$jumlah_pot = $pot_khusus+$pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_lain;
 			$var_e = $gaji_kotor-$jumlah_pot;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
@@ -777,7 +780,7 @@ class Rekap_gajiguru extends CI_Controller
 			$jml_pend_tunjabatan = $jml_pend_tunjabatan+$pend_tunjabatan;
 			$jml_pend_transportasi = $jml_pend_transportasi+$pend_transportasi;
 			$jml_pend_pegawai_tetap = $jml_pend_pegawai_tetap+$pend_pegawai_tetap;
-			$jml_pend_pembinaan = $jml_pend_pembinaan+$pend_pembinaan;
+			// $jml_pend_pembinaan = $jml_pend_pembinaan+$pend_pembinaan;
 			$jml_tunj_bpjs = $jml_tunj_bpjs+$pend_bpjs;
 			$jml_pend_thr = $jml_pend_thr+$pend_thr;
 			$jml_pend_internasional = $jml_pend_internasional+$pend_internasional;

@@ -69,7 +69,7 @@ class Generategajiguru extends CI_Controller
                 a.convert,a.tunjangan_internasional, a.tunjangan_keluarga, a.tunjangan_walas, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
                 a.tunjangan_pegawai_tetap, a.tunjangan_masakerja, a.tunjangan_jabatan,b.GuruNama,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,
                 a.tunjangan_bpjs,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval,e.ltq, e.toko, e.lain,e.tawun, e.pph21,e.bpjs as pot_bpjs,
-                d.tunjangan,d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4
+                d.tunjangan,d.jam1, d.tarif1,d.jam2,d.tarif2,d.jam3,d.tarif3, d.jam4, d.tarif4, e.ket_khusus1 as ket_pot_khusus,e.tunj_khusus1 as pot_khusus
                 from tarifguru a
                 join tbguru b on a.IdGuru = b.IdGuru
                 left join htguru c on a.IdGuru = c.IdGuru
@@ -117,6 +117,8 @@ class Generategajiguru extends CI_Controller
                             "tunj_lain" => $data['tunj_lain'],
                             "thr"  => $data['thr'],
                             "pph21_bulanan" => $data['pph21'],
+                            "ket_pot_khusus" => $data['ket_pot_khusus'],
+                            "pot_khusus" => $data['pot_khusus'],
                             "pot_lain" => $data['lain'],
                             "pot_ltq" => $data['ltq'],
                             "pot_inval" => $data['inval'],
