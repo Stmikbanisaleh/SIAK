@@ -224,6 +224,7 @@
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
 			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$nill_t15 = 1;
 		}else{
 			$label_tunj[15] = '';
 			$nill_t15 = 0;
@@ -231,6 +232,7 @@
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
 			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$nill_t16 = 1;
 		}else{
 			$label_tunj[16] = '';
 			$nill_t16 = 0;
