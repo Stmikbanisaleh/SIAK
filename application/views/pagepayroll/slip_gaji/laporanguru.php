@@ -175,6 +175,7 @@
         $pot_bpjs = $row['pot_bpjs'];
 		$pot_ltq = $row['pot_ltq'];
 		$pot_pph21 = $row['pph21_bulanan'];
+		$pot_lain = $row['pot_lain'];
 		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
 		
 		$label_pot[1] = 'Infaq Masjid';
@@ -189,6 +190,7 @@
 		$label_pot[10] = 'BPJS';
 		$label_pot[11] = 'LTQ';
 		$label_pot[12] = 'PPh21';
+		$label_pot[13] = 'Lain-lain';
 
 		$pot_nilai[1] = $pot_infaq_masjid;
 		$pot_nilai[2] = $pot_anggota_koperasi;
@@ -202,6 +204,7 @@
 		$pot_nilai[10] = $pot_bpjs;
 		$pot_nilai[11] = $pot_ltq;
 		$pot_nilai[12] = $pot_pph21;
+		$pot_nilai[13] = $pot_lain;
 	
 
 
@@ -218,7 +221,7 @@
 		}
 
 		$row_pendapatan = 16; //Need change value to follow max row pendapatan
-		$row_potongan = 12; //Need change value to follow max row potongan
+		$row_potongan = 13; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){
