@@ -264,34 +264,6 @@
 				// }
 			}
 		}
-		// else{
-		// 	$seq = 1;
-		// 	for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
-		// 		// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
-		// 			// $data_temp = array(
-		// 			// 	'label_tunj' 	=> '',
-		// 			// 	'tunj_nilai' 	=> '',
-		// 			// 	'label_pot' 	=> $label_pot[$b],
-		// 			// 	'pot_nilai' 	=> (int)$pot_nilai[$b]
-		// 			// );
-	
-		// 			for($a=$seq; $a <= 26; $a++){ //Looping sejumlah elemen tunjangan
-		// 				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
-		// 					$data_temp = array(
-		// 						'label_tunj' 	=> $label_tunj[$a],
-		// 						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
-		// 						'label_pot' 	=> $label_pot[$b],
-		// 						'pot_nilai' 	=> (int)$pot_nilai[$b]
-		// 					);
-		// 					$seq = $a+1;
-		// 					$a = 26;
-		// 				// }
-		// 			}
-		// 			array_push($array_data_sliptemp, $data_temp);
-		// 		// }
-		// 	}
-		// }
-		
 ?>
 <?php
 	if($flag == 1){

@@ -56,6 +56,8 @@ class Master_potongan_guru extends CI_Controller
 				'pph21'  => $this->input->post('pph21_v'),
 				'ltq'  => $this->input->post('ltq_v'),
 				'bpjs'  => $this->input->post('bpjs_v'),
+				'ket_khusus1'  => $this->input->post('ket_khusus1'),
+				'tunj_khusus1'  => $this->input->post('tunj_khusus1_v'),
 			);
 			$cek = $this->model_masterpotongan_guru->cek($data['IdGUru'])->num_rows();
 			if ($cek > 0) {
@@ -104,8 +106,9 @@ class Master_potongan_guru extends CI_Controller
 				'pph21'  => $this->input->post('e_pph21_v'),
 				'bpjs'  => $this->input->post('e_bpjs_v'),
 				'ltq'  => $this->input->post('e_ltq_v'),
+				'ket_khusus1'  => $this->input->post('e_ket_khusus1'),
+				'tunj_khusus1'  => $this->input->post('e_tunj_khusus1_v'),
 			);
-
 			$my_data = $this->model_masterpotongan_guru->update($data, $dataupdate, 'tbgurupot');
 			echo json_encode($my_data);
 		} else {
