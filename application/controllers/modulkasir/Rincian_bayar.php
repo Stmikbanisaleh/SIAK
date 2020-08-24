@@ -60,7 +60,8 @@ class Rincian_bayar extends CI_Controller {
                 'nama'              => $getsiswa->NMSISWA,
                 'sekolah'           => $sekolah->SINGKTBPS,
                 'kelas'             => $kelas->nama,
-                'tgl'               => $tgl
+                'tgl'               => $tgl,
+                'ta'                => $this->input->post('th_akad')
             );
 
 

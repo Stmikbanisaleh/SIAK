@@ -78,6 +78,8 @@
                 <tr>
                     <td>Sekolah</td>
                     <td>: <?php echo $sekolah; ?></td>
+                    <td>Tahun Akademik</td>
+                    <td>: <?php echo $ta; ?></td>
                 </tr>
             </table>
             <br>
