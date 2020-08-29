@@ -34,7 +34,7 @@ class Jadwal extends CI_Controller
         $data = array('KDTBPS' => $ps);
         $sekolah = $this->model_jadwal->viewWhereOrdering('tbps', $data, 'id', 'asc')->result_array();
         $data = array('GuruBase' => $sekolah[0]['KDSK']);
-        $my_data = $this->model_jadwal->viewWhereOrdering('tbguru', $data, 'id', 'asc')->result_array();
+        $my_data = $this->model_jadwal->viewWhereOrdering('tbguru', $data, 'GuruNama', 'asc')->result_array();
         echo "<option value='0'>--Pilih Guru --</option>";
         foreach ($my_data as $value) {
             echo "<option value='" . $value['IdGuru'] . "'>[" . $value['GuruNama'] . "] </option>";
