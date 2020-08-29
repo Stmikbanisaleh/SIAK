@@ -175,4 +175,24 @@ class Tunggakan extends CI_Controller
 			$this->load->view('pagekasir/login'); //Memanggil function render_view
 		}
 	}
+
+	public function generate2()
+	{
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
+			$thnmasuk = $this->input->post('thnmasuk');
+			$thn = $this->input->post('thnakad');
+			$getsiswa = $this->db->query("select Nopembayaran from detail_bayar_sekolah where kodejnsbayar NOT IN ('FRM','SPP','KMT','CTR')")->result_array();
+			if (count($getsiswa) > 0) {
+				foreach ($getsiswa as $value){	
+					$this->db->query("delete from detail_bayar_sekolah where Nopembayaran = '$value[Nopembayaran]'");
+					$this->db->query("delete from pembayaran_sekolah where Nopembayaran = '$value[Nopembayaran]'");
+				}
+				echo json_encode(true);
+			} else {
+				echo json_encode(false);
+			}
+		} else {
+			$this->load->view('pagekasir/login'); //Memanggil function render_view
+		}
+	}
 }
