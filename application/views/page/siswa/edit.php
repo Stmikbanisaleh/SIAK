@@ -115,7 +115,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Ayah </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NmBapak ?>" required name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->NmBapak ?>" name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
 
@@ -139,7 +139,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nama Ibu </label>
                 <div class="col-sm-9">
-                    <input type="text" value="<?= $mysiswa->NmIbu ?>" required name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
+                    <input type="text" value="<?= $mysiswa->NmIbu ?>" name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
 
