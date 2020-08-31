@@ -52,12 +52,14 @@ class Pembuatannis extends CI_Controller
 
     public function index()
     {
-        $myjurusan = $this->model_pembuatan->getjurusan()->result_array();
+		$myjurusan = $this->model_pembuatan->getjurusan()->result_array();
+        $mytahun = $this->model_pembuatan->gettahun()->result_array();
         $data = array(
             'page_content'  => 'pembuatannis/view',
             'ribbon'        => '<li class="active">Pembuatan NIS</li>',
             'page_name'     => 'Pembuatan NIS',
-            'myjurusan'        => $myjurusan,
+			'myjurusan'        => $myjurusan,
+            'mytahun'        => $mytahun,
         );
         $this->render_view($data); //Memanggil function render_view
     }
@@ -71,9 +73,10 @@ class Pembuatannis extends CI_Controller
     public function proses()
     {
         $kode = $this->input->post('kode');
-        $tahunmasuk = $this->input->post('tahunmasuk');
+		$tahunmasuk = $this->input->post('tahunmasuk');
+        $format = $this->input->post('format');
         $jurusan = $this->input->post('jurusan');
-        $data = $this->model_pembuatan->proses($jurusan, $tahunmasuk)->result_array();
+		$data = $this->model_pembuatan->proses($jurusan, $tahunmasuk)->result_array();
         if ($data) {
             foreach ($data as $value) {
                 $datas = array(
@@ -144,9 +147,9 @@ class Pembuatannis extends CI_Controller
                                 $v_no = $v_ni2;
                             }
                         }
-                        $password = hash('sha512', md5($tahunmasuk . $kode . $v_no));
+                        $password = hash('sha512', md5($format . $kode . $v_no));
                         $update = $this->db->query("update mssiswa set
-						NOINDUK ='" . $tahunmasuk . $kode . $v_no . "',
+						NOINDUK ='" . $format . $kode . $v_no . "',
 						STATUSCALONSISWA='4', PASSWORD = '" . $password . "'
                         WHERE Noreg='" . $value['NOREG'] . "'");
                         $no + 1;

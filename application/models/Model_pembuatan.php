@@ -7,7 +7,7 @@ class Model_pembuatan extends CI_model
     {
         return  $this->db->query("SELECT*
 		FROM calon_siswa
-		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa) AND is_tdklulus = 1
+		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa) AND is_tdklulus = 0
 		Order by  Namacasis ASC ");
     }
     public function getnis($thn, $kode)
@@ -19,8 +19,14 @@ class Model_pembuatan extends CI_model
     {
         return $this->db->query("SELECT * FROM mssiswa WHERE TAHUN=$thn AND PS=$kode AND NOINDUK is null
 		Order by NOREG ASC");
-    }
+	}
 
+	public function gettahun()
+    {
+        return $this->db->query("SELECT distinct(TAHUN) as TAHUN FROM tbakadmk2
+		Order by TAHUN DESC");
+	}
+	
     public function getdata()
     {
         return $this->db->query("SELECT a.Noreg,a.thnmasuk,b.Nopembayaran,a.Namacasis, 
