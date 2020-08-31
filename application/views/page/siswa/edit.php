@@ -12,7 +12,7 @@
                 </div>
 			</div>
 			<div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Sekolah</label>
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Keterangan Lulus</label>
                 <div class="col-sm-3">
                     <select class="form-control" name="aktif" id="aktif">
                         <option value="">-- Pilih Sekolah --</option>
