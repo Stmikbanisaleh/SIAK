@@ -17,7 +17,7 @@ class Model_mssiswa extends CI_model
             $where = "WHERE PS = '".$ps."' Order by createdAt desc";
         } 
         return  $this->db->query("SELECT mssiswa.*,tbagama.DESCRTBAGAMA,tbps.DESCRTBPS,tbjs.DESCRTBJS from mssiswa 
-        join tbagama on mssiswa.agama = tbagama.KDTBAGAMA
+        left join tbagama on mssiswa.agama = tbagama.KDTBAGAMA
         join tbps on mssiswa.PS = tbps.KDTBPS
         join tbjs on tbps.KDTBJS = tbjs.KDTBJS
         $where");
