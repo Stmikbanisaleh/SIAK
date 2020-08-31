@@ -10,6 +10,21 @@
                         <i class="ace-icon fa fa-check-square-o blue"></i>
                     </span>
                 </div>
+			</div>
+			<div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Sekolah</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="aktif" id="aktif">
+                        <option value="">-- Pilih Sekolah --</option>
+                            <?php if ($mysiswa->is_tdklulus == 1) {
+								echo "<option value='1' selected>Tidak Lulus</option>";
+								echo "<option value='0'>Lulus</option>";
+                            } else {
+								echo "<option value='0' selected>Lulus</option>";
+								echo "<option value='1'>Tidak Lulus</option>";
+                            } ?>
+                    </select>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Nama Siswa</label>

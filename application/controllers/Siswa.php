@@ -362,7 +362,8 @@ class Siswa extends CI_Controller
                 'Aslsekkecamatan' => $this->input->post('kecamatan2'),
                 'AlamatASalSek' => $this->input->post('alamat3'),
                 'NoIjazah' => $this->input->post('noijazah'),
-                'thnmasuk' => $this->input->post('thnmassuk'),
+				'thnmasuk' => $this->input->post('thnmassuk'),
+                'is_tdklulus' => $this->input->post('aktif'),
                 'NilaiNem' => $this->input->post('nem'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
