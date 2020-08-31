@@ -8,7 +8,7 @@ class Model_pembuatan extends CI_model
         return  $this->db->query("SELECT*
 		FROM calon_siswa
 		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa) AND is_tdklulus = 1
-		Order by  NOREG ASC ");
+		Order by  Namacasis ASC ");
     }
     public function getnis($thn, $kode)
     {
