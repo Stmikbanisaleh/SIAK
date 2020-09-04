@@ -22,7 +22,7 @@ class Model_siswa extends CI_model
         (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND `STATUS`='4')AS agama,
         (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =calon_siswa.kodesekolah)AS kodesekolah,
         (SELECT (SELECT y.DESCRTBJS FROM tbjs y WHERE y.KDTBJS = z.KDTBJS) FROM tbps z WHERE z.KDTBPS=calon_siswa.kodesekolah) AS NamaJurusan,
-        (SELECT (SELECT (SELECT y.nama FROM tbkelas y WHERE y.id_kelas=x.Kelas) FROM baginaikkelas x WHERE x.NIS=z.NOINDUK) FROM mssiswa z WHERE z.Noreg=calon_siswa.Noreg)AS Kelas,
+        calon_siswa.is_tdklulus AS lulus,
         calon_siswa.AlamatRumah,
         calon_siswa.TelpRumah,
         calon_siswa.TelpHp
