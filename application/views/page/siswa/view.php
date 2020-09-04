@@ -343,7 +343,7 @@
 				<th>Nama</th>
 				<th>Agama</th>
 				<th>Sekolah</th>
-				<th>Kelulusan</th>
+				<th>Kelulusan </th>
 				<th>Alamat</th>
 				<th>Telp Rumah</th>
 				<th>HP</th>

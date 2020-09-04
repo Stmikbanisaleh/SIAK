@@ -9,6 +9,7 @@ class Model_siswa extends CI_model
         return  $this->db->query("SELECT THNAKAD as ThnAkademik, ID,SEMESTER,TAHUN as thn, INDEK FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2) and KDSEKOLAH = '$ps'");
     }
 
+	
     public function getsiswa($noreg, $ta, $sekolah)
     {
         if(empty($noreg)){
