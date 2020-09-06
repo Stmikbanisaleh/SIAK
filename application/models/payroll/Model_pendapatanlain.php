@@ -72,9 +72,9 @@ class Model_pendapatanlain extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_count($field, $table, $data_id)
+    public function view_count($table, $data_id)
     {
-        return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
+        return $this->db->query("select IdGuru from " . $table . " where IdGuru = '" . $data_id . "'")->num_rows();
     }
 
     public function view_gaji($table, $bulan_awal, $bulan_akhir)

@@ -26,11 +26,16 @@ class Model_mastpotongan extends CI_model
     {
         $this->db->where($data);
         return $this->db->get($table);
-    }
+	}
 
+	public function getnip($data)
+    {
+        return $this->db->query("Select id_biodata from biodata_karyawan where nip = $data ")->result_array();
+	}
+	
     public function view_count($table, $data_id)
     {
-        return $this->db->query("select IdGuru from " . $table . " where IdGuru = '" . $data_id . "' and isdeleted != 1")->num_rows();
+        return $this->db->query("select id_karyawan from " . $table . " where id_karyawan = '" . $data_id . "'")->num_rows();
     }
 
     public function insert($data, $table)

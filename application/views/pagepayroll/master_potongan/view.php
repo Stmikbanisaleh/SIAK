@@ -13,7 +13,50 @@
 	<br>
 	<br>
 </div>
-
+<div id="my-modal2" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Import <?= $page_name; ?></h3>
+			</div>
+			<?php if ($this->session->flashdata('message')) { ?>
+                                            <div class="alert alert-danger"> <?= $this->session->flashdata('message') ?> </div>
+                                        <?php } ?>
+            <form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+                                <div class="col-sm-6">
+                                    <input type="file" id="file" required name="file" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
+                                <div class="col-sm-9">
+                                    <a href="<?php echo base_url() . 'assets/potongan_karyawan.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Import
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 <!-- Modal Import Data -->
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -694,7 +737,6 @@
 									</script>
 								</div>
                             </div>
-                            
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ijin / Telat</label>
@@ -1391,4 +1433,37 @@
 		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 	}
 
+	if ($("#formImport").length > 0) {
+            $("#formImport").validate({
+                errorClass: "my-error-class",
+                validClass: "my-valid-class",
+                submitHandler: function(form) {
+                    formdata = new FormData(form);
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url('modulpayroll/master_potongan/import') ?>",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            if (data == 1 || data == true) {
+								$('#my-modal2').modal('hide');
+                                document.getElementById("formImport").reset();
+                                swalInputSuccess();
+                            } else if (data == 401) {
+                                document.getElementById("formImport").reset();
+                                swalIdDouble();
+                            } else {
+                                document.getElementById("formImport").reset();
+                                swalInputFailed();
+                                window.location.href='<?php echo base_url("modulpayroll/master_potongan"); ?>';
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        }
 </script>

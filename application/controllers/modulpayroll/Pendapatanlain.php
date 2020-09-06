@@ -15,6 +15,125 @@ class Pendapatanlain extends CI_Controller
 		$this->template->load('templatepayroll', $data); //Display Page
 	}
 
+
+	public function import()
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$files = $_FILES;
+			$file = $files['file'];
+			$fname = $file['tmp_name'];
+			$file = $_FILES['file']['name'];
+			$fname = $_FILES['file']['tmp_name'];
+			$ext = explode('.', $file);
+			/** Include path **/
+			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+			/** PHPExcel_IOFactory */
+			include 'PHPExcel/IOFactory.php';
+			$objPHPExcel = PHPExcel_IOFactory::load($fname);
+			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+			$data_exist = [];
+			$empty_message = [];
+			foreach ($allDataInSheet as $ads) {
+				if (array_filter($ads)) {
+					array_push($data_exist, $ads);
+				}
+			}
+			foreach ($data_exist as $keys => $value) {
+				if ($keys == '0') {
+					continue;
+				} else {
+					// if (empty($value[0])) {
+					// 	array_push($empty_message, "No at row "  . $keys . " Id Guru harus di isi");
+					// }
+					// if (empty($value[1])) {
+					// 	array_push($empty_message, "No at row "  . $keys . " Lain Lain harus di isi, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[2])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Tunjangan Penilaian Kinerja harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[3])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "THR harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[4])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Inval harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[6])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nilai Tunj Khusus 1 harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[8])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nilai Tunj Khusus 2 harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[9])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 1 harus di isi, Tulis 0 jika tidak ada");
+					// }
+					// if (empty($value[10])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 1 harus di isi, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[11])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 2 harus di isi, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[12])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 2, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[13])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 3, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[14])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 3 harus di isi, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[15])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 4, Tulis 0 jika tidak ada ");
+					// }
+					// if (empty($value[16])) {
+					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 4 harus di isi, Tulis 0 jika tidak ada ");
+					// }
+					if (!empty($empty_message)) {
+						$ret['msg'] = $empty_message;
+						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
+						$result = 2;
+					} else {
+						$arrayCustomerQuote = array(
+							'IdGuru' => $value[0],
+							'lain' => $value[1],
+							'tunjangan' => $value[2],
+							'thr' => $value[3],
+							'inval' => $value[4],
+							'ket_tunj_khusus1' => $value[5],
+							'tunj_khusus1' => $value[6],
+							'ket_tunj_khusus2' => $value[7],
+							'tunj_khusus2' => $value[8],
+							'jam1' => $value[9],
+							'tarif1' => $value[10],
+							'jam2' => $value[11],
+							'tarif2' => $value[12],
+							'jam3' => $value[13],
+							'tarif3' => $value[14],
+							'jam4' => $value[15],
+							'tarif4' => $value[16],
+							'createdAt' => date('Y-m-d H:i:s'),
+							'isdeleted' => 0
+						);
+						$data_id = array(
+							'IdGuru' => $value[0]
+						);
+						$cek = $this->model_pendapatanlain->view_count('tbpendapatanlainguru',$value[0]);
+						if($cek > 0 ){
+							$result = $this->model_pendapatanlain->update($data_id, $arrayCustomerQuote, 'tbpendapatanlainguru');
+						} else {
+							$result = $this->model_pendapatanlain->insert($arrayCustomerQuote, 'tbpendapatanlainguru');
+						}
+						$result = 1;
+
+					}
+				}
+			}
+			echo json_encode($result);
+		} else {
+			$result = 0;
+			echo json_encode($result);
+		}
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
