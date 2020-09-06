@@ -1125,6 +1125,7 @@
 								$('#my-modal2').modal('hide');
                                 document.getElementById("formImport").reset();
                                 swalInputSuccess();
+								show_data();
                             } else if (data == 401) {
                                 document.getElementById("formImport").reset();
                                 swalIdDouble();
