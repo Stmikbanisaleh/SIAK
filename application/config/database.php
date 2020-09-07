@@ -80,6 +80,7 @@ $db['default'] = array(
 	'password' => 'imam6325',
 	// 'database' => 'u9415859_testing',
 	'database' => 'u9415859_siak_prod',
+	// 'database' => 'u9415859_prod_v3',
 	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',

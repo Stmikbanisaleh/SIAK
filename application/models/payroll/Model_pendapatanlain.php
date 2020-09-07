@@ -26,8 +26,7 @@ class Model_pendapatanlain extends CI_model
         return $this->db->query("SELECT * FROM tbpendapatanlainguru where IdGuru ='".$idguru."' and MONTH(periode) = '".$periode."'");
     }
 
-
-    public function viewOrdering($table, $order, $ordering)
+	public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);

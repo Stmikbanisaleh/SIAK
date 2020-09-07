@@ -19,7 +19,12 @@ class Model_pendapatanlainkaryawan extends CI_model
         return $this->db->query("SELECT a.IDRD,b.GuruNama, CONCAT('Rp. ',FORMAT(a.TARIF * a.JMLJAM,2)) as tarif2 ,DATE_FORMAT(a.TGLAWAL, '%d-%b-%Y') as TGLAWAL ,DATE_FORMAT(a.TGLAKHIR, '%d-%b-%Y') as TGLAKHIR,a.JMLJAM,CONCAT('Rp. ',FORMAT(a.TARIF,2)) as tarif from htguru a
         JOIN tbguru b on b.IdGuru = a.IdGuru
         ");
-    }
+	}
+	
+	public function getnip($data)
+    {
+        return $this->db->query("Select id_biodata from biodata_karyawan where nip = $data ")->result_array();
+	}
 
     public function cek_karyawan($nip,$periode)
     {
@@ -72,11 +77,15 @@ class Model_pendapatanlainkaryawan extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_count($field, $table, $data_id)
-    {
-        return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
-    }
+    // public function view_count($field, $table, $data_id)
+    // {
+    //     return $this->db->query("select ".$field." from " . $table . " where ".$field." = '". $data_id . "' and isdeleted != 1")->num_rows();
+    // }
 
+	public function view_count($table, $data_id)
+    {
+		return $this->db->query("select nip from " . $table . " where nip = '" . $data_id . "'")->num_rows();
+    }
     public function view_gaji($table, $bulan_awal, $bulan_akhir)
     {
         return $this->db->query("SELECT

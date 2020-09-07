@@ -42,49 +42,49 @@ class Pendapatanlain extends CI_Controller
 				if ($keys == '0') {
 					continue;
 				} else {
-					// if (empty($value[0])) {
+					// if ($value[0] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . " Id Guru harus di isi");
 					// }
-					// if (empty($value[1])) {
+					// if ($value[1] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . " Lain Lain harus di isi, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[2])) {
+					// if ($value[2] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Tunjangan Penilaian Kinerja harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[3])) {
+					// if ($value[3] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "THR harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[4])) {
+					// if ($value[4] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Inval harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[6])) {
+					// if ($value[6] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nilai Tunj Khusus 1 harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[8])) {
+					// if ($value[8] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nilai Tunj Khusus 2 harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[9])) {
+					// if ($value[9] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 1 harus di isi, Tulis 0 jika tidak ada");
 					// }
-					// if (empty($value[10])) {
+					// if ($value[10] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 1 harus di isi, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[11])) {
+					// if ($value[11] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 2 harus di isi, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[12])) {
+					// if ($value[12] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 2, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[13])) {
+					// if ($value[13] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 3, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[14])) {
+					// if ($value[14] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 3 harus di isi, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[15])) {
+					// if ($value[15] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Jumlah Jam 4, Tulis 0 jika tidak ada ");
 					// }
-					// if (empty($value[16])) {
+					// if ($value[16] == "") {
 					// 	array_push($empty_message, "No at row "  . $keys . "Nominal Tambahan 4 harus di isi, Tulis 0 jika tidak ada ");
 					// }
 					if (!empty($empty_message)) {
