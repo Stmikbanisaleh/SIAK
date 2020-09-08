@@ -36,10 +36,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
+                                <!-- <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label> -->
                                 
 								<div class="col-sm-9">
-									<input type="text" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
 									<script language="JavaScript">
 										var rupiah1 = document.getElementById('tarif_karyawan');
@@ -344,9 +344,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
+								<!-- <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label> -->
 								<div class="col-sm-9">
-									<input type="text" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
 									<script language="JavaScript">
 										var rupiah10 = document.getElementById('e_tarif_karyawan');
