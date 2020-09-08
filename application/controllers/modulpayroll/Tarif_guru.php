@@ -34,6 +34,17 @@ class Tarif_guru extends CI_Controller
 		}
 	}
 
+	public function honor_berkala()
+	{
+        $idkaryawan = $this->input->post('id');
+        $datakaryawan = $this->model_tarifguru->getmasakerja($idkaryawan)->result_array();
+        if($datakaryawan){
+            $masakerja = $datakaryawan[0]['masakerja'];
+            $honor = $this->model_tarifguru->gethonor($masakerja)->result_array();
+		    echo $honor[0]['honor_berkala'];
+        }
+	}
+
 	public function tampil()
 	{
 		$my_data = $this->model_tarifguru->view_guru()->result_array();

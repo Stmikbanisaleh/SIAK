@@ -112,7 +112,10 @@ class Mssiswa extends CI_Controller
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AL2', 'No HP Ayah');
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AM2', 'Email Ayah');
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AN2', 'No HP Ibu');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AO2', 'Email Ibu');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AO2', 'Email Ibu');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AP2', 'Kelas');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('AQ2', 'Golongan');
+				
                 foreach ($data as $dataExcel) {
                     // print_r($dataExcel['NOINDUK']);exit;
                             // Set to the excel
@@ -270,14 +273,21 @@ class Mssiswa extends CI_Controller
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('AO' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
                     $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AO' . $row, $dataExcel['EMAIL'], PHPExcel_Cell_DataType::TYPE_STRING);
-                    $objPHPExcel->getActiveSheet(0)->getColumnDimension('AO')->setAutoSize(true);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AO')->setAutoSize(true);
+					
+					$objPHPExcel->getActiveSheet(0)->getStyle('AP' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AP' . $row, $dataExcel['Kelas'], PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->getColumnDimension('AP')->setAutoSize(true);
 
+					$objPHPExcel->getActiveSheet(0)->getStyle('AQ' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AQ' . $row, $dataExcel['Gol'], PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->getColumnDimension('AQ')->setAutoSize(true);
                     $row++;
                     $no++;
                 }
 
                 header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-                header('Content-Disposition: attachment; filename=report.xls');
+                header('Content-Disposition: attachment; filename=export_siswa.xls');
                 header('Cache-Control: max-age=0');
                 ob_end_clean();
                 ob_start();

@@ -24,7 +24,7 @@ class Model_mssiswa extends CI_model
     }
     public function exportsiswa($PS, $tahun)
     {
-        return  $this->db->query("SELECT * FROM mssiswa where PS = $PS and TAHUN = $tahun ");
+        return  $this->db->query("SELECT a.*,b.Kelas, b.GolKelas as Gol FROM mssiswa a join baginaikkelas b on a.NOINDUK = b.NIS where PS = $PS and TAHUN = $tahun ");
     }
 
     public function thnakad2(){

@@ -13,6 +13,11 @@ class Model_tarifguru extends CI_model
         return $this->db->query("select a.*,b.tarif,CONCAT('Rp. ',FORMAT(b.tarif,2)) Nominal2,c.nama_pembayaran,b.id as idt from tbguru a join tarifguru b on a.IdGuru = b.IdGuru join jnspembayaran c on b.cara_pembayaran = c.id ");
     }
 
+	public function  getmasakerja($id)
+    {
+        return $this->db->query("SELECT FLOOR(DATEDIFF(NOW(),awal_kerja)/365) as masakerja  from tbguru where id = '".$id."' ");
+	}
+	
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
