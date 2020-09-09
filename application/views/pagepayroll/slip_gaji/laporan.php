@@ -111,13 +111,14 @@
 		}
 
 		//Pendapatan
-		$pend_gaji_pokok = $row['gaji'];
+		$pend_gaji_pokok = $row['gaji']+$row['honor_berkala'];
 		$pend_tunjabatan = $row['tunj_jabatan'];
 		$pend_transportasi = $row['tunj_transport'];
 		$pend_pegawai_tetap = $row['tunj_tetap'];
 		$pend_tunj_pembinaan = $row['tunj_pembinaan'];
 		$pend_tunj_bpjs = $row['tunj_bpjs'];
-		$pend_honor_berkala = $row['honor_berkala'];
+		// $pend_honor_berkala = $row['honor_berkala'];
+		$pend_honor_berkala = 0;
 		$tunj_masa_kerja = $row['tunj_masa_kerja'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
         $pend_thr = $row['thr'];
@@ -432,6 +433,10 @@
 								if($rows['tunj_nilai'] == 0 || $rows['tunj_nilai'] == ''){
 									continue;
 								}
+							}
+							
+							if($rows['label_tunj'] == 'Honor Berkala'){
+								continue;
 							}
 					?>
 					
