@@ -114,7 +114,7 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl)
 	{
-
+		ini_set('memory_limit', '300M');
 		$this->load->library('pdf');
 		$data = array(
 			'mygaji'      	=> $my_gaji,
@@ -133,6 +133,7 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_guru($my_gaji, $bulan, $tahun)
 	{
+		ini_set('memory_limit', '300M');
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$this->load->library('pdf');
 
