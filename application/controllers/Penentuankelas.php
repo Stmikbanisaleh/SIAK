@@ -221,7 +221,6 @@ class Penentuankelas extends CI_Controller
                     }else{
                         $kdsk = $hasil_kdsk->kdsk;
                     }
-                        
                         if($kdsk == 1){
                             $kls = 1;
                         }else if($kdsk == 2){
@@ -396,7 +395,6 @@ class Penentuankelas extends CI_Controller
             $file = $_FILES['file']['name'];
             $fname = $_FILES['file']['tmp_name'];
 
-
             $ext = explode('.', $file);
             /** Include path **/
             set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
@@ -417,45 +415,31 @@ class Penentuankelas extends CI_Controller
                 } else {
                     $where = array(
                         'NIS' => $value[8]
-                    );
+					);
 					$result = $this->model_penentuan->view_where_noisdelete($where, 'baginaikkelas')->num_rows();
-                    if($result > 0){
-                        $arrayCustomerQuote = array(
-                            'Thnmasuk' => $value[0],
-                            'Ruangan' => $value[1],
-                            'kelas' => $value[2],
-                            'Naikkelas' => $value[3],
-                            'GolKelas' => $value[4],
-                            'Jurusan' => $value[5],
-                            'Kodesekolah' => $value[6],
-                            'TA' => $value[7],
-                            'userentri' => $this->session->userdata('nip'),
-                            'NIS' => $value[8],
-                            'tglentri' => date('Y-m-d H:i:s')
-                        );
+					$arrayCustomerQuote = array(
+						'Thnmasuk' => $value[0],
+						'Ruangan' => $value[1],
+						'kelas' => $value[2],
+						'Naikkelas' => $value[3],
+						'GolKelas' => $value[4],
+						'Jurusan' => $value[5],
+						'Kodesekolah' => $value[6],
+						'TA' => $value[7],
+						'userentri' => $this->session->userdata('nip'),
+						'NIS' => $value[8],
+						'tglentri' => date('Y-m-d H:i:s')
+					);
+					if($result > 0){
                         $result = $this->model_penentuan->update($arrayCustomerQuote, $where, 'baginaikkelas');
                     }else{
-                        $arrayCustomerQuote = array(
-                            'Thnmasuk' => $value[0],
-                            'Ruangan' => $value[1],
-                            'kelas' => $value[2],
-                            'Naikkelas' => $value[3],
-                            'GolKelas' => $value[4],
-                            'Jurusan' => $value[5],
-                            'Kodesekolah' => $value[6],
-                            'TA' => $value[7],
-                            'userentri' => $this->session->userdata('nip'),
-                            'NIS' => $value[8],
-                            'tglentri' => date('Y-m-d H:i:s')
-                        );
                         $result = $this->model_penentuan->insert($arrayCustomerQuote, 'baginaikkelas');
                     }
                 }
-            }
+			}
             if ($result) {
                 $result = 1;
             }
-
             echo json_encode($result);
         } else {
             echo json_encode($result);
