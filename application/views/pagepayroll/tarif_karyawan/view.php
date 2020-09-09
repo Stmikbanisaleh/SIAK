@@ -35,38 +35,39 @@
 									</select>
 								</div>
 							</div>
-							<!-- <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
-								<div class="col-sm-9"> -->
-							<input type="hidden" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
-							<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
-							<script language="JavaScript">
-								var rupiah1 = document.getElementById('tarif_karyawan');
-								rupiah1.addEventListener('keyup', function(e) {
-									rup1 = this.value.replace(/\D/g, '');
-									$('#tarif_karyawan_v').val(rup1);
-									rupiah1.value = formatRupiah1(this.value, 'Rp. ');
-								});
+							<div class="form-group">
+                                <!-- <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label> -->
+                                
+								<div class="col-sm-9">
+									<input type="hidden" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
+									<script language="JavaScript">
+										var rupiah1 = document.getElementById('tarif_karyawan');
+										rupiah1.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#tarif_karyawan_v').val(rup1);
+											rupiah1.value = formatRupiah1(this.value, 'Rp. ');
+										});
 
-								function formatRupiah1(angka, prefix) {
-									var number_string = angka.replace(/[^,\d]/g, '').toString(),
-										split = number_string.split(','),
-										sisa = split[0].length % 3,
-										rupiah1 = split[0].substr(0, sisa),
-										ribuan1 = split[0].substr(sisa).match(/\d{3}/gi);
+										function formatRupiah1(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah1 = split[0].substr(0, sisa),
+												ribuan1 = split[0].substr(sisa).match(/\d{3}/gi);
 
-									// tambahkan titik jika yang di input sudah menjadi angka ribuan
-									if (ribuan1) {
-										separator = sisa ? '.' : '';
-										rupiah1 += separator + ribuan1.join('.');
-									}
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan1) {
+												separator = sisa ? '.' : '';
+												rupiah1 += separator + ribuan1.join('.');
+											}
 
-									rupiah1 = split[1] != undefined ? rupiah1 + ',' + split[1] : rupiah1;
-									return prefix == undefined ? rupiah1 : (rupiah1 ? 'Rp. ' + rupiah1 : '');
-								}
-							</script>
-							<!-- </div>
-							</div> -->
+											rupiah1 = split[1] != undefined ? rupiah1 + ',' + split[1] : rupiah1;
+											return prefix == undefined ? rupiah1 : (rupiah1 ? 'Rp. ' + rupiah1 : '');
+										}
+									</script>
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Jabatan </label>
@@ -342,9 +343,9 @@
 									</select>
 								</div>
 							</div>
-							<!-- <div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
-								<div class="col-sm-9"> -->
+							<div class="form-group">
+								<!-- <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label> -->
+								<div class="col-sm-9">
 									<input type="hidden" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
 									<script language="JavaScript">
