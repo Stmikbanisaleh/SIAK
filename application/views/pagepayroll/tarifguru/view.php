@@ -36,7 +36,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Guru (24 Jam) </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Guru </label>
 								<div class="col-sm-9">
 									<input type="text" id="tarif_guru" required name="tarif_guru" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="tarif_guru_v" required name="tarif_guru_v" />
@@ -423,7 +423,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Guru (24 Jam) </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Guru </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_tarif_guru" required name="e_tarif_guru" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_tarif_guru_v" required name="e_tarif_guru_v" />

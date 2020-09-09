@@ -334,7 +334,7 @@
 					<td>:</td>
 					<td>
 					<?php
-						echo $row['status'];
+						echo $row['desc_unit'];
 					?>
 					</td>
 				</tr>

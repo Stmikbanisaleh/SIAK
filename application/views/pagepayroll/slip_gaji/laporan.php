@@ -428,6 +428,11 @@
 						foreach($array_data_sliptemp as $rows){
 							$jumlah_pend = $jumlah_pend+(int)$rows['tunj_nilai'];
 							$jumlah_pot = $jumlah_pot+(int)$rows['pot_nilai'];
+							iF($rows['label_tunj'] == 'T. Keluarga' || $rows['label_tunj'] == 'T. Tetap'){
+								if($rows['tunj_nilai'] == 0 || $rows['tunj_nilai'] == ''){
+									continue;
+								}
+							}
 					?>
 					
 						<tr>

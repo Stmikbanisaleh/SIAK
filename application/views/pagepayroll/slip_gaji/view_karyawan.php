@@ -127,27 +127,13 @@
             <small id="emailHelp" class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Karyawan / Guru</label>
-            <select class="form-control" name="employee" id="employee">
-                <option value="none">--Pilih Karyawan / Guru--</option>
-                <?php
-                    foreach($my_karyawan as $row){
-                ?>
-                    <option value="<?= $row['nip'] ?>"><?= $row['nama']  ?></option>
-                <?php
-                    }
-                ?>
-            </select>
-            <small  class="form-text text-muted">Pilih karyawan atau guru yang akan ditampilkan (Tidak wajib diisi).</small>
-        </div>
-        <div class="form-group">
             <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
             <select class="form-control" required name="unit" id="unit">
-                <option value="0">--Pilih--</option>
+                <option value="0">[Pilih Semua]</option>
                 <?php
-                    foreach($myunit->result_array() as $row){
+                    foreach($myunit as $row){
                 ?>
-                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['DESCRTBPS']."]"?></option>
+                    <option value="<?= $row['id'] ?>"><?php echo "[".$row['deskripsi']."]"?></option>
                 <?php
                     }
                 ?>

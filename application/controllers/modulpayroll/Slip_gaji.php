@@ -37,7 +37,9 @@ class Slip_gaji extends CI_Controller
 	{
 		$my_karyawan = $this->model_slipgaji->viewOrdering('tbguru', 'GuruNama', 'ASC')->result_array();
 		$this->load->model('payroll/model_honorguru');
-		$myunit = $this->model_honorguru->view_unit2();
+		// $myunit = $this->model_honorguru->view_unit2();
+		$myunit = $this->model_honorguru->view('sekolah')->result_array();
+		// echo json_encode($myunit);exit;
 		$data = array(
 			'page_content' 	=> '../pagepayroll/slip_gaji/view_guru',
 			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji Guru</li>',
@@ -54,7 +56,8 @@ class Slip_gaji extends CI_Controller
 	{
 		$my_karyawan = $this->model_slipgaji->view('biodata_karyawan')->result_array();
 		$this->load->model('payroll/model_honorguru');
-		$myunit = $this->model_honorguru->view_unit2();
+		// $myunit = $this->model_honorguru->view_unit2();
+		$myunit = $this->model_honorguru->view('sekolah')->result_array();
 		$data = array(
 			'page_content' 	=> '../pagepayroll/slip_gaji/view_karyawan',
 			'ribbon' 		=> '<li class="active">Slip Gaji</li><li>Slip Gaji Karyawan</li>',
@@ -75,50 +78,22 @@ class Slip_gaji extends CI_Controller
 		$tabel = '';
 		if ($this->input->post('tipe_gaji') == 'K') {
 			$tabel = 'tb_pendapatan_karyawan';
-			if ($this->input->post('employee') == 'none') {
-				$my_gaji = $this->model_slipgaji->view_gaji(
-					$tabel,
-					$this->input->post('blnawal'),
-					$this->input->post('blnakhir'),
-					$this->input->post('tahun'),
-					$this->input->post('unit')
-				);
-			} else {
-				$where = array(
-					'employee_number'	=> $this->input->post('employee'),
-				);
-				$my_gaji = $this->model_slipgaji->view_gaji_byemp(
-					$tabel,
-					$this->input->post('blnawal'),
-					$this->input->post('blnakhir'),
-					$this->input->post('employee'),
-					$this->input->post('tahun'),
-					$this->input->post('unit')
-				);
-			}
+			$my_gaji = $this->model_slipgaji->view_gaji(
+				$tabel,
+				$this->input->post('blnawal'),
+				$this->input->post('blnakhir'),
+				$this->input->post('tahun'),
+				$this->input->post('unit')
+			);
 		} else {
 			$tabel = 'tb_pendapatan_guru';
-			if ($this->input->post('employee') == 'none') {
-				$my_gaji = $this->model_slipgaji->view_gaji_guru(
-					$tabel,
-					$this->input->post('blnawal'),
-					$this->input->post('blnakhir'),
-					$this->input->post('tahun'),
-					$this->input->post('unit')
-				);
-			} else {
-				$where = array(
-					'employee_number'	=> $this->input->post('employee'),
-				);
-				$my_gaji = $this->model_slipgaji->view_gaji_byemp_guru(
-					$tabel,
-					$this->input->post('blnawal'),
-					$this->input->post('blnakhir'),
-					$this->input->post('employee'),
-					$this->input->post('tahun'),
-					$this->input->post('unit')
-				);
-			}
+			$my_gaji = $this->model_slipgaji->view_gaji_guru(
+				$tabel,
+				$this->input->post('blnawal'),
+				$this->input->post('blnakhir'),
+				$this->input->post('tahun'),
+				$this->input->post('unit')
+			);
 		}
 
 
