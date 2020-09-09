@@ -65,7 +65,7 @@ class Generategajiguru extends CI_Controller
             $tahun = $this->input->post('tahun');
             $refresh = $this->db->query("delete from tb_pendapatan_guru where tahun  = '" . $tahun . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
-                $getgaji = $this->db->query("Select b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
+                $getgaji = $this->db->query("Select d.inval as invalan,b.status, b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
                 a.convert,a.tunjangan_internasional, a.tunjangan_keluarga, a.tunjangan_walas, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
                 a.tunjangan_pegawai_tetap, a.tunjangan_masakerja, a.tunjangan_jabatan,b.GuruNama,b.GuruNPWP, c.JMLJAM, c.TARIF,c.HONOR,c.TAMBAHANJAM,c.TAMBAHANHADIR,d.thr,
                 a.tunjangan_bpjs,e.infaq_masjid,e.anggota_koperasi, e.kas_bon, e.ijin_telat, e.koperasi, e.bmt, e.inval,e.ltq, e.toko, e.lain,e.tawun, e.pph21,e.bpjs as pot_bpjs,
@@ -86,9 +86,10 @@ class Generategajiguru extends CI_Controller
                             "employee_number" => $data['IdGuru'],
                             "nama"    => $data['GuruNama'],
                             "npwp" => $data['NPWP'],
-                            "status" => "",
+                            "status" => $data['status'],
                             "tahun" => $tahun,
-                            "bulan" => $bulan,
+							"bulan" => $bulan,
+                            "inval" => $data['invalan'],
                             "gaji" => $data['gaji'],
                             "tunj_penilaian_kinerja" => $data['tunjangan'],
                             "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
