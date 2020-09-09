@@ -127,20 +127,6 @@
             <small id="emailHelp" class="form-text text-muted">Periode Akhir bulan gaji.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Karyawan / Guru</label>
-            <select class="form-control" name="employee" id="employee">
-                <option value="none">--Pilih Karyawan / Guru--</option>
-                <?php
-                    foreach($my_karyawan as $row){
-                ?>
-                    <option value="<?= $row['nip'] ?>"><?= $row['nama']  ?></option>
-                <?php
-                    }
-                ?>
-            </select>
-            <small  class="form-text text-muted">Pilih karyawan atau guru yang akan ditampilkan (Tidak wajib diisi).</small>
-        </div>
-        <div class="form-group">
             <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
             <select class="form-control" required name="unit" id="unit">
                 <option value="0">--Pilih--</option>
@@ -154,15 +140,6 @@
             </select>
             <small id="emailHelp" class="form-text text-muted">Periode bulan honor guru.</small>
         </div>
-        <!-- <div class="form-group">
-            <label for="exampleInputEmail1">Tipe Gaji</label> -->
-            <input type="hidden" id="tipe_gaji" name="tipe_gaji" value="K">
-            <!-- <select class="form-control" required name="tipe_gaji" id="tipe_gaji">
-                <option value="K">Karyawan</option>
-                <option value="G">Guru</option>
-            </select>
-            <small  class="form-text text-muted">Periode Akhir bulan gaji.</small> -->
-        <!-- </div> -->
         <div class="form-group">
             <label for="exampleInputEmail1">Jenis Laporan</label>
             <select class="form-control" required name="tipe_laporan" id="tipe_laporan">
@@ -171,10 +148,6 @@
             </select>
             <small  class="form-text text-muted">Tipe file output.</small>
         </div>
-        <!-- <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
         <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
             <a class="ace-icon fa fa-search bigger-120"></a>Periksa
         </button>

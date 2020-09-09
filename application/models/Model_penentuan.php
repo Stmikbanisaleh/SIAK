@@ -129,8 +129,8 @@ class Model_penentuan extends CI_model
 
     function update($where, $data, $table)
     {
-        $this->db->where($where);
-        return $this->db->update($table, $data);
+        $this->db->where($data);
+        return $this->db->update($table, $where);
     }
 
     function delete($where, $table)
