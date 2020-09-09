@@ -23,7 +23,7 @@ class Biodata_karyawan extends CI_Controller
 			$my_pembayaran = $this->model_karyawan->view('jnspembayaran')->result_array();
 			$mspendidikan = $this->model_karyawan->view('mspendidikan')->result_array();
 			$myagama = $this->model_karyawan->view('tbagama')->result_array();
-			$myunit = $this->model_karyawan->view('sekolah')->result_array();
+			$myunit = $this->model_karyawan->viewOrdering('sekolah','deskripsi','asc')->result_array();
 
 			$data = array(
 				'page_content' 	=> '../pagepayroll/biodata_karyawan/view',

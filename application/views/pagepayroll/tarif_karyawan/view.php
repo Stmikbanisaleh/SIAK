@@ -12,7 +12,7 @@
 <!-- Modal Input Data -->
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
-		<div class="modal-content"> 
+		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="smaller lighter blue no-margin">Form Input <?= $page_name ?></h3>
@@ -23,51 +23,50 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formTambah">
 							<div class="text-center"> TARIF KARYAWAN </div>
-                            <hr>
-                            <div class="form-group">
+							<hr>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Karyawan </label>
 								<div class="col-sm-9">
 									<select class="form-control" required name="karyawan" id="karyawan">
 										<option value="">-- Pilih karyawan --</option>
 										<?php foreach ($my_karyawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?php echo "[".$value['nip']."] - ".$value['nama'] ?></option>
+											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
-                                
-								<div class="col-sm-9">
-									<input type="text" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
-									<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
-									<script language="JavaScript">
-										var rupiah1 = document.getElementById('tarif_karyawan');
-										rupiah1.addEventListener('keyup', function(e) {
-											rup1 = this.value.replace(/\D/g, '');
-											$('#tarif_karyawan_v').val(rup1);
-											rupiah1.value = formatRupiah1(this.value, 'Rp. ');
-										});
+								<div class="col-sm-9"> -->
+							<input type="hidden" id="tarif_karyawan" required name="tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+							<input type="hidden" id="tarif_karyawan_v" required name="tarif_karyawan_v" />
+							<script language="JavaScript">
+								var rupiah1 = document.getElementById('tarif_karyawan');
+								rupiah1.addEventListener('keyup', function(e) {
+									rup1 = this.value.replace(/\D/g, '');
+									$('#tarif_karyawan_v').val(rup1);
+									rupiah1.value = formatRupiah1(this.value, 'Rp. ');
+								});
 
-										function formatRupiah1(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah1 = split[0].substr(0, sisa),
-												ribuan1 = split[0].substr(sisa).match(/\d{3}/gi);
+								function formatRupiah1(angka, prefix) {
+									var number_string = angka.replace(/[^,\d]/g, '').toString(),
+										split = number_string.split(','),
+										sisa = split[0].length % 3,
+										rupiah1 = split[0].substr(0, sisa),
+										ribuan1 = split[0].substr(sisa).match(/\d{3}/gi);
 
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan1) {
-												separator = sisa ? '.' : '';
-												rupiah1 += separator + ribuan1.join('.');
-											}
+									// tambahkan titik jika yang di input sudah menjadi angka ribuan
+									if (ribuan1) {
+										separator = sisa ? '.' : '';
+										rupiah1 += separator + ribuan1.join('.');
+									}
 
-											rupiah1 = split[1] != undefined ? rupiah1 + ',' + split[1] : rupiah1;
-											return prefix == undefined ? rupiah1 : (rupiah1 ? 'Rp. ' + rupiah1 : '');
-										}
-									</script>
-								</div>
-							</div>
+									rupiah1 = split[1] != undefined ? rupiah1 + ',' + split[1] : rupiah1;
+									return prefix == undefined ? rupiah1 : (rupiah1 ? 'Rp. ' + rupiah1 : '');
+								}
+							</script>
+							<!-- </div>
+							</div> -->
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Jabatan </label>
@@ -181,21 +180,21 @@
 											rupiah5.value = formatRupiah4(this.value, 'Rp. ');
 
 											function formatRupiah4(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah4 = split[0].substr(0, sisa),
-												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+												var number_string = angka.replace(/[^,\d]/g, '').toString(),
+													split = number_string.split(','),
+													sisa = split[0].length % 3,
+													rupiah4 = split[0].substr(0, sisa),
+													ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
 
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan4) {
-												separator = sisa ? '.' : '';
-												rupiah4 += separator + ribuan4.join('.');
+												// tambahkan titik jika yang di input sudah menjadi angka ribuan
+												if (ribuan4) {
+													separator = sisa ? '.' : '';
+													rupiah4 += separator + ribuan4.join('.');
+												}
+
+												rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+												return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
 											}
-
-											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
-											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
-										}
 										});
 									</script>
 								</div>
@@ -214,21 +213,21 @@
 											rupiah7.value = formatRupiah4(this.value, 'Rp. ');
 
 											function formatRupiah4(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah4 = split[0].substr(0, sisa),
-												ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
+												var number_string = angka.replace(/[^,\d]/g, '').toString(),
+													split = number_string.split(','),
+													sisa = split[0].length % 3,
+													rupiah4 = split[0].substr(0, sisa),
+													ribuan4 = split[0].substr(sisa).match(/\d{3}/gi);
 
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan4) {
-												separator = sisa ? '.' : '';
-												rupiah4 += separator + ribuan4.join('.');
+												// tambahkan titik jika yang di input sudah menjadi angka ribuan
+												if (ribuan4) {
+													separator = sisa ? '.' : '';
+													rupiah4 += separator + ribuan4.join('.');
+												}
+
+												rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
+												return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
 											}
-
-											rupiah4 = split[1] != undefined ? rupiah4 + ',' + split[1] : rupiah4;
-											return prefix == undefined ? rupiah4 : (rupiah4 ? 'Rp. ' + rupiah4 : '');
-										}
 										});
 									</script>
 								</div>
@@ -247,21 +246,21 @@
 											rupiah8.value = formatRupiah49(this.value, 'Rp. ');
 
 											function formatRupiah49(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah8 = split[0].substr(0, sisa),
-												ribuan8 = split[0].substr(sisa).match(/\d{3}/gi);
+												var number_string = angka.replace(/[^,\d]/g, '').toString(),
+													split = number_string.split(','),
+													sisa = split[0].length % 3,
+													rupiah8 = split[0].substr(0, sisa),
+													ribuan8 = split[0].substr(sisa).match(/\d{3}/gi);
 
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan8) {
-												separator = sisa ? '.' : '';
-												rupiah8 += separator + ribuan8.join('.');
+												// tambahkan titik jika yang di input sudah menjadi angka ribuan
+												if (ribuan8) {
+													separator = sisa ? '.' : '';
+													rupiah8 += separator + ribuan8.join('.');
+												}
+
+												rupiah8 = split[1] != undefined ? rupiah8 + ',' + split[1] : rupiah8;
+												return prefix == undefined ? rupiah8 : (rupiah8 ? 'Rp. ' + rupiah8 : '');
 											}
-
-											rupiah8 = split[1] != undefined ? rupiah8 + ',' + split[1] : rupiah8;
-											return prefix == undefined ? rupiah8 : (rupiah8 ? 'Rp. ' + rupiah8 : '');
-										}
 										});
 									</script>
 								</div>
@@ -330,23 +329,23 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEditTarif">
-                            
-                            <input type="hidden" id="e_id" required name="e_id" />
-                            <div class="form-group">
+
+							<input type="hidden" id="e_id" required name="e_id" />
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Karyawan </label>
 								<div class="col-sm-9">
 									<select class="form-control" required name="e_karyawan" id="e_karyawan">
 										<option value="">-- Pilih karyawan --</option>
 										<?php foreach ($my_karyawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?php echo "[".$value['nip']."] - ".$value['nama'] ?></option>
+											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+								<div class="col-sm-9"> -->
+									<input type="hidden" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
 									<script language="JavaScript">
 										var rupiah10 = document.getElementById('e_tarif_karyawan');
@@ -373,8 +372,8 @@
 											return prefix == undefined ? rupiah10 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
 										}
 									</script>
-								</div>
-							</div>
+								<!-- </div>
+							</div> -->
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Masa Kerja (convert) </label>
@@ -474,7 +473,7 @@
 									</script>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Pegawai Tetap </label>
 								<div class="col-sm-9">
@@ -552,10 +551,10 @@
 							</div>
 
 							<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening </label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="e_no_rekening" id="e_no_rekening" placeholder="No rekening / Akun"></textarea>
-									</div>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="e_no_rekening" id="e_no_rekening" placeholder="No rekening / Akun"></textarea>
+								</div>
 							</div>
 					</div>
 				</div>
@@ -605,51 +604,51 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		show_data();
-        $('#datatable_tabletools').DataTable();
-        $("#karyawan").change(function() {
-            var id = $('#karyawan').val();
-            $.ajax({
-                type: "POST",
-                url: '<?php echo site_url('modulpayroll/tarif_karyawan/honor_berkala') ?>',
-                data: {
-                    id: id
-                }
-            }).done(function(data) {
-				var a = ConvertFormatRupiah(data, 'Rp. ');
-                $("#tarif_karyawan").val(a);
-                $("#tarif_karyawan_v").val(data);
-            });
-		});
-		
+		$('#datatable_tabletools').DataTable();
 		$("#karyawan").change(function() {
-            var id = $('#karyawan').val();
-            $.ajax({
-                type: "POST",
-                url: '<?php echo site_url('modulpayroll/tarif_karyawan/convert') ?>',
-                data: {
-                    id: id
-                }
-            }).done(function(data) {
+			var id = $('#karyawan').val();
+			$.ajax({
+				type: "POST",
+				url: '<?php echo site_url('modulpayroll/tarif_karyawan/honor_berkala') ?>',
+				data: {
+					id: id
+				}
+			}).done(function(data) {
 				var a = ConvertFormatRupiah(data, 'Rp. ');
-                $("#convert").val(a);
-                $("#convert_v").val(data);
-            });
-        });
+				$("#tarif_karyawan").val(a);
+				$("#tarif_karyawan_v").val(data);
+			});
+		});
+
+		$("#karyawan").change(function() {
+			var id = $('#karyawan').val();
+			$.ajax({
+				type: "POST",
+				url: '<?php echo site_url('modulpayroll/tarif_karyawan/convert') ?>',
+				data: {
+					id: id
+				}
+			}).done(function(data) {
+				var a = ConvertFormatRupiah(data, 'Rp. ');
+				$("#convert").val(a);
+				$("#convert_v").val(data);
+			});
+		});
 
 		$("#e_karyawan").change(function() {
-            var id = $('#e_karyawan').val();
-            $.ajax({
-                type: "POST",
-                url: '<?php echo site_url('modulpayroll/tarif_karyawan/honor_berkala') ?>',
-                data: {
-                    id: id
-                }
-            }).done(function(data) {
+			var id = $('#e_karyawan').val();
+			$.ajax({
+				type: "POST",
+				url: '<?php echo site_url('modulpayroll/tarif_karyawan/honor_berkala') ?>',
+				data: {
+					id: id
+				}
+			}).done(function(data) {
 				var a = ConvertFormatRupiah(data, 'Rp. ');
-                $("#e_tarif_karyawan").val(a);
-                $("#e_tarif_karyawan_v").val(data);
-            });
-        });
+				$("#e_tarif_karyawan").val(a);
+				$("#e_tarif_karyawan_v").val(data);
+			});
+		});
 	});
 
 	//function show all Data
@@ -672,7 +671,7 @@
 						'<td>' + data[i].tarif + '</td>' +
 						'<td>' + data[i].transport + '</td>' +
 						'<td>' + data[i].honor + '</td>' +
-                        '<td>' + data[i].hc + '</td>' +
+						'<td>' + data[i].hc + '</td>' +
 						'<td>' + data[i].tunj_pegawai_tetap + '</td>' +
 						'<td >' +
 						'<button  href="#my-modal-edit_tarif" class="btn btn-xs btn-success item_edit_tarif" title="Edit" data-id="' + data[i].id + '">' +
@@ -790,65 +789,65 @@
 	});
 
 	if ($("#formEditTarif").length > 0) {
-        $("#formEditTarif").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('modulpayroll/tarif_karyawan/updatetarif') ?>",
-                    type: "POST",
-                    data: $('#formEditTarif').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEditTarif").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEditTarif').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Kode Tarif Sudah Terdaftar');
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
+		$("#formEditTarif").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('modulpayroll/tarif_karyawan/updatetarif') ?>",
+					type: "POST",
+					data: $('#formEditTarif').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEditTarif").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEditTarif').modal('hide');
+						} else if (response == 401) {
+							swalIdDouble('Kode Tarif Sudah Terdaftar');
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
 	}
 
 	if ($("#formEdit").length > 0) {
-        $("#formEdit").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatebiodata') ?>",
-                    type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEdit").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Kode Tarif Sudah Terdaftar');
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
+		$("#formEdit").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatebiodata') ?>",
+					type: "POST",
+					data: $('#formEdit').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
+						} else if (response == 401) {
+							swalIdDouble('Kode Tarif Sudah Terdaftar');
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
 	}
-	
+
 	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
 		Swal.fire({
@@ -895,5 +894,4 @@
 		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
 		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 	}
-
 </script>
