@@ -406,6 +406,7 @@
 						if($ket!='K'){
 							$tambahan = ($row['attribute_1']*$row['attribute_2'])+($row['attribute_3']*$row['attribute_4'])+($row['attribute_5']*$row['attribute_6'])+($row['attribute_7']*$row['attribute_8']);
 							$jumlah_pend = $jumlah_pend+$tambahan;
+							if($tambahan != 0 || $tambahan){
 					?>
 						<?php
 							if($row['attribute_1']!='' || $row['attribute_2']!=''){
@@ -422,9 +423,10 @@
 						</tr>
 						<?php
 							}
+							}
 						?>
 						<?php
-							if($row['attribute_5']!='' || $row['attribute_7']!=''){
+							if($row['attribute_5']!=0 || $row['attribute_7']!=0){
 						?>
 						<tr>
 							<td></td>
