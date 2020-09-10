@@ -169,6 +169,7 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
+				<th>ID Jabatan</th>
 				<th>Nama Jabatan</th>
 				<th>Keterangan</th>
 				<th>Jumlah Jam Kerja</th>
@@ -341,6 +342,7 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].ID + '</td>' +
 						'<td>' + data[i].NAMAJABATAN + '</td>' +
 						'<td>' + data[i].KET + '</td>' +
 						'<td>' + data[i].jumlah_jam + '</td>' +

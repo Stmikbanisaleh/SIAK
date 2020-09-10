@@ -15,6 +15,69 @@ class Biodata_karyawan extends CI_Controller
 		$this->template->load('templatepayroll', $data); //Display Page
 	}
 
+	public function import()
+	{
+		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
+			$files = $_FILES;
+			$file = $files['file'];
+			$fname = $file['tmp_name'];
+			$file = $_FILES['file']['name'];
+			$fname = $_FILES['file']['tmp_name'];
+			$ext = explode('.', $file);
+			/** Include path **/
+			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+			/** PHPExcel_IOFactory */
+			include 'PHPExcel/IOFactory.php';
+			$objPHPExcel = PHPExcel_IOFactory::load($fname);
+			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+			$data_exist = [];
+
+			foreach ($allDataInSheet as $ads) {
+				if (array_filter($ads)) {
+					array_push($data_exist, $ads);
+				}
+			}
+			foreach ($data_exist as $key => $value) {
+				if ($key == '0') {
+					continue;
+				} else {
+					$arrayCustomerQuote = array(
+						'nip' => $value[0],
+						'nik' => $value[1],
+						'npwp' => $value[2],
+						'nama' => $value[3],
+						'jabatan' => $value[4],
+						'jenis_kelamin' => $value[5],
+						'agama' => $value[6],
+						'email' => $value[7],
+						'no_telp' => $value[8],
+						'unit_kerja' => $value[9],
+						'alamat' => $value[10],
+						'pendidikan' => $value[11],
+						'status' => $value[12],
+						'tgl_mulai_kerja' => $value[13],
+						'createdAt'	=> date('Y-m-d H:i:s')
+					);
+					$data = array(
+						"nip" => $value[0],
+					);
+					$cek = $this->model_karyawan->cek($value[0])->num_rows();
+					if ($cek > 0) {
+						$result = $this->model_karyawan->update($data,  $arrayCustomerQuote, 'biodata_karyawan');
+					} else {
+						$result = $this->model_karyawan->insert($arrayCustomerQuote, 'biodata_karyawan');
+					}
+				}
+			}
+			if ($result) {
+				$result = 1;
+			}
+			echo json_encode($result);
+		} else {
+			echo json_encode(500);
+		}
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {

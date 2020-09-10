@@ -4,6 +4,11 @@
 			<a class="ace-icon fa fa-plus bigger-120"></a> Tambah Data
 		</button>
 	</div>
+	<div class="col-xs-1">
+		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+			<a class="ace-icon fa fa-upload bigger-120"></a> Import Data
+		</button>
+	</div>
 	<br>
 	<br>
 </div>
@@ -12,7 +17,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import <?=$page_name ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Import <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -25,7 +30,6 @@
 									<input type="file" id="file" required name="file" class="form-control" />
 								</div>
 							</div>
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
 								<div class="col-sm-9">
@@ -79,14 +83,14 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
 								<div class="col-sm-9">
-									<input type="text" id="npwp"  name="npwp" placeholder="NPWP" class="form-control" />
+									<input type="text" id="npwp" name="npwp" placeholder="NPWP" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
 								<div class="col-sm-9">
-									<input type="text" id="nik"  name="nik" placeholder="NIK KTP" class="form-control" />
+									<input type="text" id="nik" name="nik" placeholder="NIK KTP" class="form-control" />
 								</div>
 							</div>
 
@@ -112,10 +116,10 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="program_sekolah" id="program_sekolah">
-										<option value="">-- Pilih Program --</option>
+										<option value="">-- Pilih Unit --</option>
 										<?php foreach ($myprogram as $value) { ?>
 											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
 										<?php } ?>
@@ -185,13 +189,6 @@
 									<input type="date" class="form-control" name="awal_kerja" id="awal_kerja" placeholder="" />
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Tahun Masa Kerja </label>
-								<div class="col-sm-9">
-									<input type="number" class="form-control" name="Tahunmasakerja" id="Tahunmasakerja" placeholder="Masukan dalam jumlah Tahun" />
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
@@ -240,14 +237,14 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_npwp"  name="e_npwp" placeholder="NPWP" class="form-control" />
+									<input type="text" id="e_npwp" name="e_npwp" placeholder="NPWP" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
 								<div class="col-sm-9">
-									<input type="text" required id="e_nik"  name="e_nik" placeholder="NIK KTP" class="form-control" />
+									<input type="text" required id="e_nik" name="e_nik" placeholder="NIK KTP" class="form-control" />
 								</div>
 							</div>
 
@@ -273,10 +270,10 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_program_sekolah" id="e_program_sekolah">
-										<option value="">-- Pilih Program --</option>
+										<option value="">-- Pilih Unit --</option>
 										<?php foreach ($myprogram as $value) { ?>
 											<option value=<?= $value['id'] ?>> <?= $value['deskripsi']; ?></option>
 										<?php } ?>
@@ -344,12 +341,6 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Awal Kerja </label>
 								<div class="col-sm-9">
 									<input type="date" class="form-control" name="e_awal_kerja" id="e_awal_kerja" placeholder="" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Tahun Masa Kerja </label>
-								<div class="col-sm-9">
-									<input type="number" class="form-control" name="e_Tahunmasakerja" id="e_Tahunmasakerja" placeholder="Masukan dalam jumlah Tahun" />
 								</div>
 							</div>
 					</div>
@@ -426,21 +417,21 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
 								<div class="col-sm-9">
-                                    <input type="text" id="e_tahunmasuk" required name="e_tahunmasuk" placeholder="Tahun Masuk" class="form-control" />
+									<input type="text" id="e_tahunmasuk" required name="e_tahunmasuk" placeholder="Tahun Masuk" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Lulus </label>
 								<div class="col-sm-9">
-                                    <input type="text" id="e_tahunlulus" required name="e_tahunlulus" placeholder="Tahun Masuk" class="form-control" />
+									<input type="text" id="e_tahunlulus" required name="e_tahunlulus" placeholder="Tahun Masuk" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Ijazah </label>
 								<div class="col-sm-9">
-                                    <input type="text" id="e_noijazah" required name="e_noijazah" placeholder="43A830.12" class="form-control" />
+									<input type="text" id="e_noijazah" required name="e_noijazah" placeholder="43A830.12" class="form-control" />
 								</div>
 							</div>
 
@@ -479,6 +470,7 @@
 		</div>
 	</div>
 </div>
+<br>
 <div class="table-responsive">
 	<table id="datatable_tabletools" class="display">
 		<thead>
@@ -721,9 +713,9 @@
 				$('#e_awal_kerja').val(data[0].awal_kerja);
 			}
 		});
-    });
-    
-    $('#show_data').on('click', '.item_riwayatpendidikan', function() {
+	});
+
+	$('#show_data').on('click', '.item_riwayatpendidikan', function() {
 		var id = $(this).data('id');
 		$('#modalRiwayatpendidikan').modal('show');
 		$.ajax({
@@ -800,13 +792,9 @@
 						'<td >' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].IdGuru + '">' +
 						'<i class="ace-icon fa fa-pencil-square-o bigger-120"> Edit</i>' +
-						'</button> ' + '<br>' + '<br>' + 
+						'</button> ' + '<br>' + '<br>' +
 						'<button class="btn btn-xs btn-success item_riwayatpendidikan" title="Riwayatp" data-id="' + data[i].IdGuru + '">' +
 						'Riwayat Pendidikan' +
-                        '</button>' + '<br>' + '<br>' + 
-						'<button class="btn btn-xs btn-warning item_riwayatjabatan" title="Riwayatp" data-id="' + data[i].IdGuru + '">' +
-						'Riwayat Jabatan' +
-						'</button>' +
 						'</td>' +
 						'</tr>';
 					no++;

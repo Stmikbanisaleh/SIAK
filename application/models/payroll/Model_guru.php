@@ -6,6 +6,11 @@ class Model_guru extends CI_model
     {
         $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
+	}
+	
+	public function cek($id)
+    {
+        return $this->db->query("SELECT IdGuru from tbguru where IdGuru = '". $id ."'");
     }
 
     public function getsekolah()

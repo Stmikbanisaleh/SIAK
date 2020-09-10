@@ -20,7 +20,7 @@ class Biodataguru extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_guru->view('sekolah')->result_array();
+			$my_data = $this->model_guru->viewOrdering('sekolah','deskripsi','asc')->result_array();
 			$myagama = $this->model_guru->view('tbagama')->result_array();
 			$mypendidikan = $this->model_guru->view('mspendidikan')->result_array();
 			$data = array(
@@ -51,7 +51,7 @@ class Biodataguru extends CI_Controller
 				'GuruTelp'  => $this->input->post('telepon'),
 				'GuruAlamat'  => $this->input->post('alamat'),
 				'GuruBase' => $this->input->post('program_sekolah'),
-				'password'  => hash('sha512',md5($this->input->post('IdGuru'))),
+				'password'  => hash('sha512', md5($this->input->post('IdGuru'))),
 				'GuruJeniskelamin'  => $this->input->post('jenis_kelamin'),
 				'GuruPendidikanAkhir'  => $this->input->post('pendidikan_terakhir'),
 				'GuruAgama'  => $this->input->post('agama'),
@@ -140,22 +140,31 @@ class Biodataguru extends CI_Controller
 						'GuruTelp' => $value[3],
 						'GuruAlamat' => $value[4],
 						'GuruBase' => $value[5],
-						'password' => hash('sha512',md5($value[0])),
+						'password' => hash('sha512', md5($value[0])),
 						'GuruJenisKelamin' => $value[6],
 						'GuruPendidikanAkhir' => $value[7],
 						'GuruAgama' => $value[8],
 						'GuruEmail' => $value[9],
 						'GuruTglLahir' => $value[10],
 						'GuruTempatLahir' => $value[11],
+						'awal_kerja' => $value[12],
+						'status' => $value[13],
 						'createdAt'	=> date('Y-m-d H:i:s')
 					);
-					$result = $this->model_guru->insert($arrayCustomerQuote, 'tbguru');
+					$data = array(
+						"IdGuru" => $value[0],
+					);
+					$cek = $this->model_guru->cek($value[0])->num_rows();
+					if ($cek > 0) {
+						$result = $this->model_guru->update($data,  $arrayCustomerQuote, 'tbguru');
+					} else {
+						$result = $this->model_guru->insert($arrayCustomerQuote, 'tbguru');
+					}
 				}
 			}
 			if ($result) {
 				$result = 1;
 			}
-
 			echo json_encode($result);
 		} else {
 			echo json_encode($result);
@@ -194,7 +203,6 @@ class Biodataguru extends CI_Controller
 
 			$my_data = $this->model_guru->view_guru('tbguru')->result_array();
 			echo json_encode($my_data);
-
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

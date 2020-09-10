@@ -7,6 +7,11 @@ class Model_karyawan extends CI_model
         return $this->db->get($table);
     }
 
+	public function cek($id)
+    {
+        return $this->db->query("SELECT nip from biodata_karyawan where nip = '".$id."'");
+	}
+	
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);
