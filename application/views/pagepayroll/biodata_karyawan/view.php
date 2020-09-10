@@ -20,7 +20,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import <?=$page_name ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Import <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -36,7 +36,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
 								<div class="col-sm-9">
-									<a href="<?php echo base_url() . 'modulpayroll/biodata_karyawan/karyawan.xls'?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+									<a href="<?php echo base_url() . 'assets/guru.xls' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
 								</div>
 							</div>
 					</div>
@@ -356,16 +356,16 @@
 								</div>
 
 								<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
-								<div class="col-sm-9">
-									<select required class="form-control" name="e_unit_kerja" id="e_unit_kerja">
-										<option value="">-- Pilih Unit Kerja --</option>
-										<?php foreach ($myunit as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['deskripsi'] ?></option>
-										<?php } ?>
-									</select>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Unit Kerja </label>
+									<div class="col-sm-9">
+										<select required class="form-control" name="e_unit_kerja" id="e_unit_kerja">
+											<option value="">-- Pilih Unit Kerja --</option>
+											<?php foreach ($myunit as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['deskripsi'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
 								</div>
-							</div>
 					</div>
 				</div>
 			</div>
@@ -575,10 +575,10 @@
 							</div>
 
 							<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening </label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" name="e_no_rekening" id="e_no_rekening" placeholder="No rekening / Akun"></textarea>
-									</div>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Rekening </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="e_no_rekening" id="e_no_rekening" placeholder="No rekening / Akun"></textarea>
+								</div>
 							</div>
 					</div>
 				</div>
@@ -777,65 +777,65 @@
 	});
 
 	if ($("#formEditTarif").length > 0) {
-        $("#formEditTarif").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatetarif') ?>",
-                    type: "POST",
-                    data: $('#formEditTarif').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEditTarif").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEditTarif').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Kode Tarif Sudah Terdaftar');
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
+		$("#formEditTarif").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatetarif') ?>",
+					type: "POST",
+					data: $('#formEditTarif').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEditTarif").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEditTarif').modal('hide');
+						} else if (response == 401) {
+							swalIdDouble('Kode Tarif Sudah Terdaftar');
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
 	}
 
 	if ($("#formEdit").length > 0) {
-        $("#formEdit").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatebiodata') ?>",
-                    type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEdit").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble('Kode Tarif Sudah Terdaftar');
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
+		$("#formEdit").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/updatebiodata') ?>",
+					type: "POST",
+					data: $('#formEdit').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
+						} else if (response == 401) {
+							swalIdDouble('Kode Tarif Sudah Terdaftar');
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
 	}
-	
+
 	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
 		Swal.fire({
@@ -867,37 +867,37 @@
 	});
 
 	if ($("#formImport").length > 0) {
-            $("#formImport").validate({
-                errorClass: "my-error-class",
-                validClass: "my-valid-class",
-                submitHandler: function(form) {
-                    formdata = new FormData(form);
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('modulpayroll/biodata_karyawan/import') ?>",
-                        data: formdata,
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        async: false,
-                        success: function(data) {
-                            console.log(data);
-                            if (data == 1 || data == true) {
-                                document.getElementById("formImport").reset();
-								swalInputSuccess();
-								$('#my-modal2').modal('hide');
-								
-                            } else if (data == 401) {
-                                document.getElementById("formImport").reset();
-                                swalIdDouble();
-                            } else {
-                                document.getElementById("formImport").reset();
-                                swalInputFailed();
-                            }
-                        }
-                    });
-                    return false;
-                }
-            });
-        }
+		$("#formImport").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				formdata = new FormData(form);
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('modulpayroll/biodata_karyawan/import') ?>",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(data) {
+						console.log(data);
+						if (data == 1 || data == true) {
+							document.getElementById("formImport").reset();
+							swalInputSuccess();
+							$('#my-modal2').modal('hide');
+
+						} else if (data == 401) {
+							document.getElementById("formImport").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formImport").reset();
+							swalInputFailed();
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
 </script>
