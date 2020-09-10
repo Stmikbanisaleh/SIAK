@@ -39,8 +39,7 @@ $Kelas = $row->Kelas;
     <th width="30%"></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
-        Kecamatan Rajeg, Kabupaten Tangerang 15540</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Raya Kaliabang Tengah No.75B, RT.003/RW.006, Kaliabang Tengah, Kec. Bekasi Utara, Kota Bks, Jawa Barat 17125</th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
   </tr>
   <tr>
