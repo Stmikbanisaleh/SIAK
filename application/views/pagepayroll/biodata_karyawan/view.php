@@ -36,7 +36,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
 								<div class="col-sm-9">
-									<a href="<?php echo base_url() . 'modulpayroll/biodata_karyawan/karyawan'?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+									<a href="<?php echo base_url() . 'modulpayroll/biodata_karyawan/karyawan.xls'?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
 								</div>
 							</div>
 					</div>
