@@ -111,13 +111,13 @@
 		}
 
 		//Pendapatan
-		$pend_gaji_pokok = $row['gaji'];
+		$pend_gaji_pokok = $row['gaji']+$row['honor_berkala'];
 		$pend_tunjabatan = $row['tunj_jabatan'];
 		$pend_transportasi = $row['tunj_transport'];
 		$pend_pegawai_tetap = $row['tunj_tetap'];
 		$pend_inval = $row['inval'];
 		$pend_tunj_bpjs = $row['tunj_bpjs'];
-		$pend_honor_berkala = $row['honor_berkala'];
+		$pend_honor_berkala = 0;
 		$pend_tunj_international = $row['tunj_international'];
 		$tunj_masa_kerja = $row['convert'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
@@ -366,6 +366,15 @@
 						foreach($array_data_sliptemp as $rows){
 							$jumlah_pend = $jumlah_pend+(int)$rows['tunj_nilai'];
 							$jumlah_pot = $jumlah_pot+(int)$rows['pot_nilai'];
+							iF($rows['label_tunj'] == 'T. Keluarga' || $rows['label_tunj'] == 'T. Tetap'){
+								if($rows['tunj_nilai'] == 0 || $rows['tunj_nilai'] == ''){
+									continue;
+								}
+							}
+							
+							if($rows['label_tunj'] == 'Honor Berkala'){
+								continue;
+							}
 					?>
 					
 						<tr>
@@ -397,6 +406,7 @@
 						if($ket!='K'){
 							$tambahan = ($row['attribute_1']*$row['attribute_2'])+($row['attribute_3']*$row['attribute_4'])+($row['attribute_5']*$row['attribute_6'])+($row['attribute_7']*$row['attribute_8']);
 							$jumlah_pend = $jumlah_pend+$tambahan;
+							if($tambahan != 0 || $tambahan){
 					?>
 						<?php
 							if($row['attribute_1']!='' || $row['attribute_2']!=''){
@@ -413,9 +423,10 @@
 						</tr>
 						<?php
 							}
+							}
 						?>
 						<?php
-							if($row['attribute_5']!='' || $row['attribute_7']!=''){
+							if($row['attribute_5']!=0 || $row['attribute_7']!=0){
 						?>
 						<tr>
 							<td></td>

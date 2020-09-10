@@ -71,8 +71,9 @@ class Model_slipgaji extends CI_model
                                     AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT
-                                    tp.*, 'Semua' as desc_unit
+                                    tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = bk.unit_kerja LIMIT 1) as desc_unit
                                     FROM ".$table." tp
+                                    JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
                                     WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
@@ -114,11 +115,13 @@ class Model_slipgaji extends CI_model
                                     AND tp.status = $unit
                                     AND tp.isDeleted != 1");
         }else{
-            return $this->db->query("SELECT *, 'Semua' as desc_unit FROM ".$table." tp
-                                JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                AND YEAR(tp.effective_date) = '".$tahun."'
-                                AND tp.isDeleted != 1");
+            return $this->db->query("SELECT 
+                                        tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = tp.status LIMIT 1) as desc_unit
+                                    FROM ".$table." tp
+                                    JOIN tbguru b ON tp.employee_number = b.IdGuru
+                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    AND tp.isDeleted != 1");
         }
         
     }
