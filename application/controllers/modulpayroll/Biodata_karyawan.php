@@ -56,6 +56,7 @@ class Biodata_karyawan extends CI_Controller
 						'pendidikan' => $value[11],
 						'status' => $value[12],
 						'tgl_mulai_kerja' => $value[13],
+						'tgl_lhr' => $value[14],
 						'createdAt'	=> date('Y-m-d H:i:s')
 					);
 					$data = array(

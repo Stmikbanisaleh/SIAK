@@ -815,29 +815,29 @@ rupiah1.addEventListener('keyup', function(e) {
     rupiah1.value = formatRupiah3(this.value, 'Rp. ');
 });
 
-rupiah2.addEventListener('keyup', function(e) {
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rup3 = this.value.replace(/\D/g, '');
-    $('#gedung').val(rup3);
-    rupiah2.value = formatRupiah3(this.value, 'Rp. ');
-});
+// rupiah2.addEventListener('keyup', function(e) {
+//     // tambahkan 'Rp.' pada saat form di ketik
+//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+//     rup3 = this.value.replace(/\D/g, '');
+//     $('#gedung').val(rup3);
+//     rupiah2.value = formatRupiah3(this.value, 'Rp. ');
+// });
 
-rupiah3.addEventListener('keyup', function(e) {
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rup3 = this.value.replace(/\D/g, '');
-    $('#seragam').val(rup3);
-    rupiah3.value = formatRupiah3(this.value, 'Rp. ');
-});
+// rupiah3.addEventListener('keyup', function(e) {
+//     // tambahkan 'Rp.' pada saat form di ketik
+//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+//     rup3 = this.value.replace(/\D/g, '');
+//     $('#seragam').val(rup3);
+//     rupiah3.value = formatRupiah3(this.value, 'Rp. ');
+// });
 
-rupiah4.addEventListener('keyup', function(e) {
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rup3 = this.value.replace(/\D/g, '');
-    $('#kegiatan').val(rup3);
-    rupiah4.value = formatRupiah3(this.value, 'Rp. ');
-});
+// rupiah4.addEventListener('keyup', function(e) {
+//     // tambahkan 'Rp.' pada saat form di ketik
+//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+//     rup3 = this.value.replace(/\D/g, '');
+//     $('#kegiatan').val(rup3);
+//     rupiah4.value = formatRupiah3(this.value, 'Rp. ');
+// });
 
 function formatRupiah3(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
