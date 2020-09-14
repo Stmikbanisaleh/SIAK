@@ -113,7 +113,6 @@
 											$('#tunjangan_masa_kerja_v').val(rup3);
 											rupiah333.value = formatRupiah3(this.value, 'Rp. ');
 										});
-
 										function formatRupiah3(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
