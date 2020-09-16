@@ -88,7 +88,7 @@ class Biodata_karyawan extends CI_Controller
 			$my_pembayaran = $this->model_karyawan->view('jnspembayaran')->result_array();
 			$mspendidikan = $this->model_karyawan->view('mspendidikan')->result_array();
 			$myagama = $this->model_karyawan->view('tbagama')->result_array();
-			$myunit = $this->model_karyawan->viewOrdering('sekolah','deskripsi','asc')->result_array();
+			$myunit = $this->model_karyawan->viewOrdering('sekolah', 'deskripsi', 'asc')->result_array();
 
 			$data = array(
 				'page_content' 	=> '../pagepayroll/biodata_karyawan/view',
@@ -139,16 +139,11 @@ class Biodata_karyawan extends CI_Controller
 				'tgl_mulai_kerja'  => $this->input->post('tgl_mulai'),
 				'createdAt' => date('Y-m-d H:i:s')
 			);
-			$count_id = $this->model_karyawan->view_count('biodata_karyawan', $data['nik']);
-			if ($count_id < 1) {
-				$result = $this->model_karyawan->insert($data, 'biodata_karyawan');
-				if ($result) {
-					echo $result;
-				} else {
-					echo 'insert gagal';
-				}
+			$result = $this->model_karyawan->insert($data, 'biodata_karyawan');
+			if ($result) {
+				echo $result;
 			} else {
-				echo json_encode(401);
+				echo 'insert gagal';
 			}
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login

@@ -56,6 +56,11 @@ class Model_tarif_karyawan extends CI_model
         $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
+	}
+	
+	public function viewOrderingCustome()
+    {
+        return $this->db->query("SELECT a.*,b.NAMAJABATAN as namajabat from biodata_karyawan a join msjabatan b on a.jabatan = b.ID ");
     }
 
     public function viewWhereOrdering($table, $data, $order, $ordering)

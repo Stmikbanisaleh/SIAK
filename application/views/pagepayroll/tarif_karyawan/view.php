@@ -30,7 +30,7 @@
 									<select class="form-control" required name="karyawan" id="karyawan">
 										<option value="">-- Pilih karyawan --</option>
 										<?php foreach ($my_karyawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] ?></option>
+											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] .  "- [". $value['namajabat']."]." ?></option>
 										<?php } ?>
 									</select>
 								</div>
