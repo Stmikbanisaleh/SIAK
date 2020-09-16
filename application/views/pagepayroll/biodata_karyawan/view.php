@@ -610,7 +610,7 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>NIP (Pegawai)</th>
+				<th>Unit Kerja</th>
 				<th>NIK (KTP)</th>
 				<th>Nama</th>
 				<th>Email</th>
@@ -644,7 +644,7 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td class="text-center">' + data[i].nip + '</td>' +
+						'<td class="text-center">' + data[i].unitkerja + '</td>' +
 						'<td class="text-center">' + data[i].nik + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].email + '</td>' +

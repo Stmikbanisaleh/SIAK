@@ -36,9 +36,10 @@ class Model_karyawan extends CI_model
 
     public function view_karyawan()
     {
-        return  $this->db->query('select a.*,b.*,c.* from biodata_karyawan a 
+        return  $this->db->query('select a.*,b.*,c.*,d.deskripsi as unitkerja from biodata_karyawan a 
         left join tbagama b on a.agama = b.KDTBAGAMA
-        left join mspendidikan c on a.pendidikan = c.IDMSPENDIDIKAN
+		left join mspendidikan c on a.pendidikan = c.IDMSPENDIDIKAN
+		left join sekolah d on a.unit_kerja = d.id
         ');
     }
 
