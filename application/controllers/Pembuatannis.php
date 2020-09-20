@@ -105,23 +105,16 @@ class Pembuatannis extends CI_Controller
                     'NMASLSKL' => $value['AsalSekolah'],
                     'ALMASLSKL'  => $value['AlamatASalSek'],
                     'KELURAHANSEKOLAHASAL'  => $value['ASlKelurahan'],
-                    // ''  => $value['Aslsekkecamatan'],
-                    // ''  => $value['aslsekkabupaten'],
-                    // ''  => $value['aslsekpropinsi'],
                     'STTBASLSKL'  => $value['NoIjazah'],
                     'NILSTTBASLSKL'  => $value['NilaiJazah'],
-                    // ''  => $value['NoNem'],
                     'NILNEMASLSKL'  => $value['NilaiNem'],
-                    // ''  => $value['potoijazah'],
-                    // ''  => $value['potonem'],
-                    // ''  => $value['potocalsis'],
                     'TAHUN'  => $value['thnmasuk'],
                     'STATUSCALONSISWA'  => 4,
                     'createdAt' => $value['tglentri'],
                     'IDUSER' => $value['userentri'],
                     'JK'  => $value['Jk']
                 );
-                $insert = $this->model_pembuatan->insert($datas, 'mssiswa');
+				$insert = $this->model_pembuatan->insert($datas, 'mssiswa');
                 if ($insert) {
                     $siswa = $this->model_pembuatan->generate($tahunmasuk, $jurusan)->result_array();
                     $no = 1;

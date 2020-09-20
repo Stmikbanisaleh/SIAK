@@ -18,7 +18,7 @@
 			<select class="form-control" required name="jurusan" id="jurusan">
 				<option>-- Pilih Jurusan --</option>
 				<?php foreach ($myjurusan as $value) { ?>
-					<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBJS'] . ' - ' . $value['DESCRTBPS'] ?></option>
+					<option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . ' - ' . $value['DESCRTBJS'] ?></option>
 				<?php } ?>
 			</select>
 		</div>

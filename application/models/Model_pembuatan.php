@@ -7,13 +7,13 @@ class Model_pembuatan extends CI_model
     {
         return  $this->db->query("SELECT*
 		FROM calon_siswa
-		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa) AND is_tdklulus = 0
+		WHERE kodesekolah='$jurusan' AND thnmasuk='$tahun' AND Noreg NOT IN(SELECT Noreg FROM mssiswa where PS = '$jurusan') AND is_tdklulus = 0
 		Order by  Namacasis ASC ");
     }
     public function getnis($thn, $kode)
     {
         return $this->db->query("SELECT RIGHT(NOINDUK,3)AS ni FROM mssiswa WHERE TAHUN=$thn AND PS=$kode
-        Order by NOINDUK DESC LIMIT 1");
+        Order by NOINDUK DESC LIMIT 1");	
     }
     public function generate($thn, $kode)
     {
