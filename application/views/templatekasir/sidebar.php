@@ -117,6 +117,13 @@
 				</a>
 				<b class="arrow"></b>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulkasir/status_bayarsiswa'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Status Pembayaran Siswa
+				</a>
+				<b class="arrow"></b>
+			</li>
 		</ul>
 	</li>
 	<li class="">

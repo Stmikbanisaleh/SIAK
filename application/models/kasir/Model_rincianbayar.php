@@ -25,7 +25,25 @@ class Model_rincianbayar extends CI_model
                                             AND pms.TA = tb.ta
                                             AND pms.NIS = bk.NIS
                                             AND pms.Kelas = bk.Kelas
-                                            AND pms.kodesekolah = tb.kodesekolah), 0) jumlah_bayar
+                                            AND pms.kodesekolah = tb.kodesekolah), 0) jumlah_bayar,
+                                            (SELECT 
+                                                msp.nominal
+                                            FROM pembayaran_sekolah pms
+                                            JOIN detail_bayar_sekolah dbs ON dbs.Nopembayaran = pms.Nopembayaran
+                                            JOIN mapping_status_pembayaran msp ON msp.id = dbs.id_status_pembayaran
+                                            WHERE pms.NIS = ms.NOINDUK
+                                                AND dbs.kodejnsbayar = tb.Kodejnsbayar
+                                                AND pms.TA = tb.TA
+                                            LIMIT 1) nominal_lunas_nf,
+                                                                                    (SELECT 
+                                                msp.status
+                                            FROM pembayaran_sekolah pms
+                                            JOIN detail_bayar_sekolah dbs ON dbs.Nopembayaran = pms.Nopembayaran
+                                            JOIN mapping_status_pembayaran msp ON msp.id = dbs.id_status_pembayaran
+                                            WHERE pms.NIS = ms.NOINDUK
+                                                AND dbs.kodejnsbayar = tb.Kodejnsbayar
+                                                AND pms.TA = tb.TA
+                                            LIMIT 1) status_lunas
                                         FROM tarif_berlaku tb
                                         INNER JOIN baginaikkelas bk ON bk.TA = tb.TA
                                         INNER JOIN mssiswa ms ON bk.NIS = ms.NOINDUK

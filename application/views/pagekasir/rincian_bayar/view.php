@@ -30,7 +30,7 @@
             <select class="form-control" name="kelas" id="kelas">
                 <option value="0">--Pilih Kelas--</option>
                 <?php foreach ($my_kelas as $value) { ?>
-                    <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                    <option value=<?= $value['id_kelas'].'-'.$value['nama'] ?>><?= $value['nama'] ?></option>
                 <?php } ?>
             </select>
         </div>
