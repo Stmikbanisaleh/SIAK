@@ -39,6 +39,9 @@ class Rincian_bayar extends CI_Controller {
         $explode = explode('-', $this->input->post('siswa'));
         $nis = $explode[0];
         $nama = $explode[1];
+        $kelas = explode('-', $this->input->post('kelas'));
+        $id_kelas = $kelas[0];
+        $nama_kelas = $kelas[1];
         $where = array(
             'NOINDUK' => $nis
         );
@@ -50,18 +53,19 @@ class Rincian_bayar extends CI_Controller {
         $sekolah = $this->Model_rincianbayar->view_where('tbps', $where)->row();
 
         $where = array(
-            'id_kelas' => $this->input->post('kelas')
+            'id_kelas' => $id_kelas
         );
         $kelas = $this->Model_rincianbayar->view_where('tbkelas', $where)->row();
 
-        $rincian_bayar = $this->Model_rincianbayar->getrincianbayar($nis, $getsiswa->PS, $this->input->post('kelas'), $this->input->post('th_akad'))->result_array();
+        $rincian_bayar = $this->Model_rincianbayar->getrincianbayar($nis, $getsiswa->PS, $id_kelas, $this->input->post('th_akad'))->result_array();
         $data = array(
                 'myrincian'         => $rincian_bayar,
                 'nama'              => $getsiswa->NMSISWA,
                 'sekolah'           => $sekolah->SINGKTBPS,
                 'kelas'             => $kelas->nama,
                 'tgl'               => $tgl,
-                'ta'                => $this->input->post('th_akad')
+                'ta'                => $this->input->post('th_akad'),
+                'nama_kelas'        => $nama_kelas
             );
 
 

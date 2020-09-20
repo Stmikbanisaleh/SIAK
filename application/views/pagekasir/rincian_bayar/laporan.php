@@ -16,13 +16,13 @@
                 width : 50px;
             }
             .widht3{
-                width : 75px;
+                width : 80px;
             }
             .widht4{
                 width : 125px;
             }
             .widht5{
-                width : 270px;
+                width : 185px;
             }
             .aligntextcenter{
                 text-align : center;
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td>Kelas</td>
-                    <td>: <?php echo $kelas; ?></td>
+                    <td>: <?php echo $nama_kelas; ?></td>
                     <td>Jam Cetak</td>
                     <td>: <?php echo date("H:i:s"); ?></td>
                 </tr>
@@ -91,6 +91,7 @@
                     <td class="widht4 aligntextcenter std">Nominal</td>
                     <td class="widht4 aligntextcenter std">Dibayar</td>
                     <td class="widht4 aligntextcenter std">Belum Dibayar</td>
+                    <td class="widht3 aligntextcenter std">Stutas Pembayaran</td>
                 </tr>
             </table>
             <hr>
@@ -102,13 +103,28 @@
                     $jml_bayar = 0;
                     $jml_total = 0;
                     foreach($myrincian as $row){
+                    $status_lunas = $row['status_lunas'];
+                    $nilailunas = $row['jumlah_bayar'];
+
+                    if($status_lunas == 'L'){
+                        $status_lunas = 'Lunas';
+                    }else{
+                        $status_lunas = 'Belum Lunas';
+                    }
+
+                    if($nilailunas > 0){
+                        $jumlah_lunas = $nilailunas-$row['jumlah_bayar'];
+                    }else{
+                        $jumlah_lunas = $row['Nominal']-$row['jumlah_bayar'];
+                    }
                 ?>
                 <tr class="str">
                     <td class="widht1 aligntextcenter std"><?php echo $no; ?></td>
                     <td class="widht5 std"><?php echo $row['namajenisbayar']; ?></td>
                     <td class="widht4 aligntextright std"><?php echo 'Rp. '.number_format($row['Nominal']) ?></td>
                     <td class="widht4 aligntextright std"><?php echo 'Rp. '.number_format($row['jumlah_bayar']) ?></td>
-                    <td class="widht4 aligntextright std"><?php echo 'Rp. '.number_format($row['total']) ?></td>
+                    <td class="widht4 aligntextright std"><?php echo 'Rp. '.number_format($jumlah_lunas) ?></td>
+                    <td class="widht3 aligntextcenter std"><?php echo $status_lunas; ?></td>
                 </tr>
                 <?php
                     $jml_nominal = $jml_nominal+$row['Nominal'];
