@@ -414,7 +414,9 @@ class Penentuankelas extends CI_Controller
                     continue;
                 } else {
                     $where = array(
-                        'NIS' => $value[8]
+						'NIS' => $value[8],
+						'kelas' => $value[2],
+						'TA'	=> $value[7]
 					);
 					$result = $this->model_penentuan->view_where_noisdelete($where, 'baginaikkelas')->num_rows();
 					$arrayCustomerQuote = array(

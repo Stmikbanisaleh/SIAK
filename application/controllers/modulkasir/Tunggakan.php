@@ -25,6 +25,7 @@ class Tunggakan extends CI_Controller
 			$my_siswa = $this->model_tunggakan->view('mssiswa')->result_array();
 			$my_tahun = $this->model_tunggakan->gettahun('tbakadmk2')->result_array();
 			$myps = $this->model_tunggakan->getsekolah()->result_array();
+			$my_kelas = $this->model_tunggakan->view('tbkelas')->result_array();
 			$my_tahun2 = $this->model_tunggakan->gettahun2('tbakadmk2')->result_array();
 			$data = array(
 				'page_content' 	=> '../pagekasir/tunggakan/view',
@@ -33,7 +34,8 @@ class Tunggakan extends CI_Controller
 				'my_tahun'		=> $my_tahun,
 				'my_tahun2'		=> $my_tahun2,
 				'my_siswa'      => $my_siswa,
-				'myps'			=> $myps
+				'myps'			=> $myps,
+				'my_kelas'		=> $my_kelas
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -94,20 +96,21 @@ class Tunggakan extends CI_Controller
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
 			$ps = $this->input->post('ps');
+			$kelass = $this->input->post('kelas');
 			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk' and ps = '$ps'")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps'");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps' and Kelas = '$kelass'");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
-											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."'  and tipe_generate = 'Y' and ps = '$ps' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."'  and tipe_generate = 'Y' and ps = '$ps' and Kelas = '$kelass'  )AND PS = '$ps' AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 				if (count($calonsiswa) > 0) {
 					foreach ($calonsiswa as $value) {
 						$tarif = $this->db->query("SELECT
 					SUM(tarif_berlaku.Nominal)AS total
 					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk='$value[TAHUN]' and TA = '".$thn."' AND Kodejnsbayar IN('SPP')");
+					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk=(SELECT substring(bn.TA, 6, 8)-bn.Kelas from baginaikkelas bn where bn.NIS = '".$value['NOINDUK']."' limit 1) and TA = '".$thn."' AND Kodejnsbayar IN('SPP')");
 						$n = $tarif->num_rows();
 						if ($tarif) {
 							$v = $tarif->result_array();
@@ -117,7 +120,7 @@ class Tunggakan extends CI_Controller
 						baginaikkelas.NIS
 						FROM baginaikkelas
 						JOIN mssiswa ON baginaikkelas.NIS = mssiswa.NOINDUK
-						WHERE baginaikkelas.TA='" . $thn . "'  AND mssiswa.NOREG='" . $value['NOREG'] . "' ");
+						WHERE baginaikkelas.TA='" . $thn . "'  AND mssiswa.NOREG='" . $value['NOREG'] . "' and Kelas = '$kelass' " );
 							if (count($naikkelas->result_array()) > 0) {
 								$kelas = $naikkelas->result_array();
 								$vkelas = $kelas[0]['Kelas'];
@@ -125,7 +128,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SPP') and kodesekolah = '$ps' ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SPP') and kodesekolah = '$ps' and Kelas = '$kelass' ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
@@ -149,9 +152,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps'")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps' and Kelas = '$kelass'")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."' and tipe_generate = 'Y' and ps ='$ps'");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."' and tipe_generate = 'Y' and ps ='$ps' and Kelas = '$kelass' ");
 								}
 								$data = array(
 									'NIS' => $vnis,
@@ -165,7 +168,6 @@ class Tunggakan extends CI_Controller
 									'Kelas' => $t_kelas,
 									'createdAt' => date('Y-m-d H:i:s')
 								);
-								// print_r($data);
 								$insert = $this->model_tunggakan->insert($data, 'saldopembayaran_sekolah');
 							}
 						}
