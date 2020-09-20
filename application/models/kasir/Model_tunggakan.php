@@ -6,6 +6,11 @@ class Model_tunggakan extends CI_model
     {
         $this->db->where('isdeleted !=' ,1);
         return $this->db->get($table);
+	}
+	
+	public function getsekolah()
+    {
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
     }
 
     public function view_visi($table)

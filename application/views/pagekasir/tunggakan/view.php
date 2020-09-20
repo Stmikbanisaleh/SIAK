@@ -41,8 +41,19 @@
                                         <?php } ?>
                                     </select>
                                 </div>
+							</div>
+							
+							<div class="form-group">
+                                <div class="col-xs-12">
+                                    Unit Sekolah
+                                    <select required class="form-control" name="ps" id="ps">
+                                        <option>--Pilih Unit Sekolah--</option>
+                                        <?php foreach ($myps as $value) { ?>
+                                            <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'].' - '. $value['DESCRTBJS'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
-
                      
                         </div>
                     </div>

@@ -24,6 +24,7 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$my_siswa = $this->model_tunggakan->view('mssiswa')->result_array();
 			$my_tahun = $this->model_tunggakan->gettahun('tbakadmk2')->result_array();
+			$myps = $this->model_tunggakan->getsekolah()->result_array();
 			$my_tahun2 = $this->model_tunggakan->gettahun2('tbakadmk2')->result_array();
 			$data = array(
 				'page_content' 	=> '../pagekasir/tunggakan/view',
@@ -31,7 +32,8 @@ class Tunggakan extends CI_Controller
 				'page_name' 	=> 'Tunggakan',
 				'my_tahun'		=> $my_tahun,
 				'my_tahun2'		=> $my_tahun2,
-				'my_siswa'      => $my_siswa
+				'my_siswa'      => $my_siswa,
+				'myps'			=> $myps
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -91,14 +93,15 @@ class Tunggakan extends CI_Controller
 		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null) {
 			$thnmasuk = $this->input->post('thnmasuk');
 			$thn = $this->input->post('thnakad');
-			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk'")->result_array();
+			$ps = $this->input->post('ps');
+			$getsiswa = $this->db->query("select NOINDUK from mssiswa where TAHUN ='$thnmasuk' and ps = '$ps'")->result_array();
 			if (count($getsiswa) > 0) {
 				foreach ($getsiswa as $value){	
-					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' and tipe_generate = 'Y' ");
+					$this->db->query("delete from saldopembayaran_sekolah where NIS = '$value[NOINDUK]' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps'");
 				}
 				$calonsiswa = $this->db->query("SELECT NOINDUK,PS, TAHUN, NOREG FROM mssiswa WHERE TAHUN = '$thnmasuk' AND NOT EXISTS (SELECT a.Noreg
 											FROM saldopembayaran_sekolah a where
-											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."'  and tipe_generate = 'Y' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
+											a.Noreg = mssiswa.NOREG and a.TA ='".$thn."'  and tipe_generate = 'Y' and ps = '$ps' ) AND PS IS NOT NULL AND TAHUN IS NOT NULL ORDER BY PS,NOREG")->result_array();
 				if (count($calonsiswa) > 0) {
 					foreach ($calonsiswa as $value) {
 						$tarif = $this->db->query("SELECT
@@ -122,7 +125,7 @@ class Tunggakan extends CI_Controller
 								$kdsk = "select KDSK from tbps WHERE kdtbps = '" . $value['PS'] . "'";
 								$kdsk = $this->db->query($kdsk)->row();
 								$nominal = $this->db->query("select sum(Totalbayar) as bayar from pembayaran_sekolah join detail_bayar_sekolah on pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran WHERE NIS = '" . $value['NOINDUK'] . "'
-							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SPP') ")->row();
+							and TA= '" . $thn . "' AND detail_bayar_sekolah.kodejnsbayar IN('SPP') and kodesekolah = '$ps' ")->row();
 								if ($kdsk == NULL) {
 									$kdsk = '';
 								} else {
@@ -146,9 +149,9 @@ class Tunggakan extends CI_Controller
 								}
 								$vsisa = $vtotal - $nominal->bayar;
 								//jika ada datanya di delete lalu di insert
-								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' and tipe_generate = 'Y' ")->result_array();
+								$checkdata = $this->db->query("select count(*) as total from saldopembayaran_sekolah where NIS = '$vnis' and TA = '".$thn."' and tipe_generate = 'Y' and ps = '$ps'")->result_array();
 								if (count($checkdata) > 0) {
-									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."' and tipe_generate = 'Y'");
+									$this->db->query("delete from saldopembayaran_sekolah where NIS = '".$vnis."' and TA = '".$thn."' and tipe_generate = 'Y' and ps ='$ps'");
 								}
 								$data = array(
 									'NIS' => $vnis,
@@ -156,6 +159,7 @@ class Tunggakan extends CI_Controller
 									'TotalTagihan' => $vtotal,
 									'TA' => $thn,
 									'Bayar' => $nominal->bayar,
+									'ps' => $ps,
 									'Sisa' => $vsisa,
 									'tipe_generate' => 'Y',
 									'Kelas' => $t_kelas,
