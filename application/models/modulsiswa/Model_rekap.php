@@ -125,7 +125,6 @@ class Model_rekap extends CI_model
                                     saldopembayaran_sekolah.idsaldo,
                                     saldopembayaran_sekolah.NIS,
                                     saldopembayaran_sekolah.Noreg,
-                                    saldopembayaran_sekolah.Kdjnsbayar,
                                     saldopembayaran_sekolah.idtarif,
                                     saldopembayaran_sekolah.TotalTagihan TotalTagihan,
                                     saldopembayaran_sekolah.Bayar Bayar,

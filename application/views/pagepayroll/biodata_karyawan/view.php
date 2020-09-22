@@ -616,7 +616,7 @@
 				<th>Email</th>
 				<th>No. Telp</th>
 				<th>Pendidikan Terakhir</th>
-				<th>Alamat</th>
+				<th>Awal Kerja</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -650,7 +650,7 @@
 						'<td>' + data[i].email + '</td>' +
 						'<td>' + data[i].no_telp + '</td>' +
 						'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
-						'<td>' + data[i].alamat + '</td>' +
+						'<td>' + data[i].tgl_mulai_kerja + '</td>' +
 						'<td >' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].nip + '">' +
 						'<i class="ace-icon fa fa-book bigger-120"> Edit Biodata </i>' +

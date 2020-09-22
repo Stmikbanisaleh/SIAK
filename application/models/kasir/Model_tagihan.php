@@ -19,7 +19,6 @@ class Model_tagihan extends CI_model
 		saldopembayaran_sekolah.NIS,
 		saldopembayaran_sekolah.Noreg,
 		(SELECT z.NMSISWA FROM mssiswa z WHERE z.Noreg = saldopembayaran_sekolah.Noreg)AS nama,
-		saldopembayaran_sekolah.Kdjnsbayar,
 		saldopembayaran_sekolah.idtarif,
 		saldopembayaran_sekolah.TotalTagihan,
         CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.TotalTagihan,2)) as TotalTagihan2,

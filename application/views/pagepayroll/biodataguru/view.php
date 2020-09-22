@@ -481,7 +481,7 @@
 				<th>Kode Dapodik</th>
 				<th>Nama</th>
 				<th>Telp</th>
-				<th>Alamat</th>
+				<th>Awal Kerja</th>
 				<th>Jenis Kelamin</th>
 				<th>Pendidikan Terakhir</th>
 				<th>Action</th>
@@ -786,7 +786,7 @@
 						'<td>' + data[i].GuruNoDapodik + '</td>' +
 						'<td>' + data[i].GuruNama + '</td>' +
 						'<td>' + data[i].GuruTelp + '</td>' +
-						'<td>' + data[i].GuruAlamat + '</td>' +
+						'<td>' + data[i].awal_kerja + '</td>' +
 						'<td>' + data[i].GuruJeniskelamin + '</td>' +
 						'<td>' + data[i].NMMSPENDIDIKAN + '</td>' +
 						'<td >' +
