@@ -39,7 +39,7 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIS / NO Induk </label>
                                 <div class="col-xs-9">
                                     <select class="form-control" name="nik2" id="nik2">
                                         <option value="">--Pilih NIK / No Induk--</option>
@@ -48,7 +48,20 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>
+							</div>
+							
+							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
+                                <div class="col-xs-9">
+                                    <select class="form-control" name="kelas" id="kelas">
+                                        <option value="">--Pilih Kelas --</option>
+                                        <?php foreach ($mykelas as $value) { ?>
+                                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+							</div>
+							
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Siswa </label>
                                 <div class="col-xs-9">
