@@ -298,7 +298,16 @@ class Mssiswa extends CI_Controller
         }
     }
 
-    public function import()
+    public function tampil()
+    {
+        if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+            $my_data = $this->model_mssiswa->viewOrdering('mssiswa', 'id', 'asc')->result();
+            echo json_encode($my_data);
+        } else {
+            $this->load->view('page/login'); //Memanggil function render_view
+        }
+	}
+	public function import2()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $files = $_FILES;
@@ -314,7 +323,6 @@ class Mssiswa extends CI_Controller
             $objPHPExcel = PHPExcel_IOFactory::load($fname);
             $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
             $data_exist = [];
-
             foreach ($allDataInSheet as $ads) {
                 if (array_filter($ads)) {
                     array_push($data_exist, $ads);
@@ -324,19 +332,37 @@ class Mssiswa extends CI_Controller
                 if ($key == '0') {
                     continue;
                 } else {
-                    $arrayCustomerQuote2 = array(
-                        'Noreg' => $value[0],
-                        // 'PASSWORD' => hash('sha512',md5($value[0])),
-                        'Namacasis' => $value[2],
-                        'tptlhr' => $value[3],
-                        'tgllhr' => $value[4],
-                        'agama' => $value[6],
-                        'thnmasuk' => $value[7],
-                        'kodesekolah' => $value[8],
-                        'TelpHp' => $value[11],
+					$data_id = array(
+						'NOINDUK'  => $value[0]
+					);
+                    $arrayCustomerQuote = array(
+						'NOINDUK' => $value[0],
+                        'PASSWORD' => hash('sha512', md5($value[0])),
+                        'NOREG' => $value[1],
+                        'NMSISWA' => $value[2],
+                        'TPLHR' => $value[3],
+                        'TGLHR' => $value[4],
+                        'JK' => $value[5],
+                        'AGAMA' => $value[6],
+                        'TAHUN' => $value[7],
+                        'PS' => $value[8],
+                        'KDWARGA' => $value[9],
+                        'EMAIL' => $value[10],
+                        'TELP' => $value[11],
+                        'ALAMATRUMAH' => $value[12],
+                        'KELURAHAN' => $value[13],
+                        'KECAMATAN' => $value[14],
+                        'NMBAPAK'   => $value[15],
+						'NMIBU' => $value[16],
+                        'VA' => $value[17],
                         'createdAt'    => date('Y-m-d H:i:s')
-                    );
-                    $result = $this->model_mssiswa->insert($arrayCustomerQuote2, 'calon_siswa');
+					);
+					$cek = $this->model_mssiswa->view_where_noisdelete($data_id, 'mssiswa')->num_rows();
+					if($cek > 0) {
+						$result = $this->model_mssiswa->update($data_id, $arrayCustomerQuote, 'mssiswa');
+					} else {
+						$result = $this->model_mssiswa->insert($arrayCustomerQuote, 'mssiswa');
+					}
                 }
             }
             if ($result) {
@@ -347,18 +373,75 @@ class Mssiswa extends CI_Controller
         } else {
             echo json_encode($result);
         }
-    }
+	}
 
-    public function tampil()
+	public function import()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-            $my_data = $this->model_mssiswa->viewOrdering('mssiswa', 'id', 'asc')->result();
-            echo json_encode($my_data);
-        } else {
-            $this->load->view('page/login'); //Memanggil function render_view
-        }
-    }
+            $files = $_FILES;
+            $file = $files['file'];
+            $fname = $file['tmp_name'];
+            $file = $_FILES['file']['name'];
+            $fname = $_FILES['file']['tmp_name'];
+            $ext = explode('.', $file);
+            /** Include path **/
+            set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+            /** PHPExcel_IOFactory */
+            include 'PHPExcel/IOFactory.php';
+            $objPHPExcel = PHPExcel_IOFactory::load($fname);
+            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+            $data_exist = [];
+            foreach ($allDataInSheet as $ads) {
+                if (array_filter($ads)) {
+                    array_push($data_exist, $ads);
+                }
+            }
+            foreach ($data_exist as $key => $value) {
+                if ($key == '0') {
+                    continue;
+                } else {
+					$data_id = array(
+						'NOINDUK'  => $value[0]
+					);
+                    $arrayCustomerQuote = array(
+                        'PASSWORD' => hash('sha512', md5($value[17])),
+                        'NOREG' => $value[1],
+                        'NMSISWA' => $value[2],
+                        'TPLHR' => $value[3],
+                        'TGLHR' => $value[4],
+                        'JK' => $value[5],
+                        'AGAMA' => $value[6],
+                        'TAHUN' => $value[7],
+                        'PS' => $value[8],
+                        'KDWARGA' => $value[9],
+                        'EMAIL' => $value[10],
+                        'TELP' => $value[11],
+                        'ALAMATRUMAH' => $value[12],
+                        'KELURAHAN' => $value[13],
+                        'KECAMATAN' => $value[14],
+                        'NMBAPAK'   => $value[15],
+						'NMIBU' => $value[16],
+                        'NOINDUK' => $value[17],
+                        'createdAt'    => date('Y-m-d H:i:s')
+					);
+					$cek = $this->model_mssiswa->view_where_noisdelete($data_id, 'mssiswa')->num_rows();
+					if($cek > 0) {
+						$result = $this->model_mssiswa->update($data_id, $arrayCustomerQuote, 'mssiswa');
+					} else {
+						$result = $this->model_mssiswa->insert($arrayCustomerQuote, 'mssiswa');
+					}
+                }
+            }
+            if ($result) {
+                $result = 1;
+            }
 
+            echo json_encode($result);
+        } else {
+            echo json_encode($result);
+        }
+	}
+	
     public function tampil_byid()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
