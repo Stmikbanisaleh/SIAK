@@ -9,8 +9,8 @@ class Model_penentuan extends CI_model
         $v_thnmasuk = "WHERE thnmasuk='" . $ThnAkademik . "' AND kodesekolah='" . $jenis. "'";
         return  $this->db->query(
 			"SELECT a.*,b.NAMA_REV as v_Jk, c.DESCRTBAGAMA as v_agama,
-			(SELECT (SELECT Y.nama FROM tbkelas Y WHERE Y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=a.NOINDUK AND z.Thnmasuk='".$ThnAkademik."')AS Kelas,
-			(SELECT z.GolKelas FROM baginaikkelas z WHERE z.NIS=a.NOINDUK AND z.Thnmasuk='".$ThnAkademik."')AS GolKelas 
+			(SELECT (SELECT Y.nama FROM tbkelas Y WHERE Y.id_kelas=z.Kelas) FROM baginaikkelas z WHERE z.NIS=a.NOINDUK AND z.Thnmasuk='".$ThnAkademik."'  Order by idbagiNaikKelas desc  limit 1 )AS Kelas,
+			(SELECT z.GolKelas FROM baginaikkelas z WHERE z.NIS=a.NOINDUK AND z.Thnmasuk='".$ThnAkademik."' Order by idbagiNaikKelas desc  limit 1)AS GolKelas 
          FROM mssiswa a 
 		 join msrev b on a.JK = b.KETERANGAN 
 		 join tbagama c on a.AGAMA = c.KDTBAGAMA
