@@ -364,7 +364,7 @@
         });
     }
 
-	f ($("#formImport2").length > 0) {
+	if ($("#formImport2").length > 0) {
         $("#formImport2").validate({
             errorClass: "my-error-class",
             validClass: "my-valid-class",
