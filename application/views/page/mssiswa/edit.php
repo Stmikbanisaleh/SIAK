@@ -6,7 +6,7 @@
 				<label class="col-xs-3 control-label no-padding-right" for="form-field-1"> NIS </label>
 				<div class="col-xs-9">
 					<span class="input-icon">
-						<input type="text" name="nis" readonly value="<?= $mysiswa->NOINDUK; ?>" id="nis" />
+						<input type="text" name="nis" value="<?= $mysiswa->NOINDUK; ?>" id="nis" />
 						<i class="ace-icon fa fa-check-square-o blue"></i>
 					</span>
 				</div>
@@ -23,19 +23,19 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-4">NIK / KTP</label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->NIK; ?>" required class="col-xs-10 col-sm-5" id="nik" name="nik" />
+					<input type="text" value="<?= $mysiswa->NIK; ?>" class="col-xs-10 col-sm-5" id="nik" name="nik" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-4">Nama Siswa</label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->NMSISWA; ?>" required class="col-xs-10 col-sm-5" id="nama" name="nama" />
+					<input type="text" value="<?= $mysiswa->NMSISWA; ?>" class="col-xs-10 col-sm-5" id="nama" name="nama" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Agama </label>
 				<div class="col-sm-3">
-					<select class="form-control" required name="agama" id="agama">
+					<select class="form-control"  name="agama" id="agama">
 						<option value="">-- Pilih Agama --</option>
 						<?php foreach ($myagama as $value) { ?>
 							<?php if ($mysiswa->AGAMA == $value['KDTBAGAMA']) {
@@ -51,7 +51,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Jenis Kelamin </label>
 				<div class="col-sm-3">
-					<select required class="form-control" name="jk" id="jk">
+					<select  class="form-control" name="jk" id="jk">
 						<option value="">-- Pilih Jenis Kelamin --</option>
 						<?php foreach ($myjeniskelamin as $value) { ?>
 							<?php if ($mysiswa->JK == $value['KETERANGAN']) {
@@ -68,7 +68,7 @@
 				<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Tanggal Lahir </label>
 				<div class="col-sm-9">
 					<span class="input-icon">
-						<input type="date" name="tglhr" id="tglhr" required value="<?= $mysiswa->TGLHR ?>" />
+						<input type="date" name="tglhr" id="tglhr"  value="<?= $mysiswa->TGLHR ?>" />
 						<i class="ace-icon fa fa-calendar blue"></i>
 					</span>
 				</div>
@@ -113,25 +113,25 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tempat Lahir</label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->TPLHR ?>" required name="tempat" id="tempat" placeholder="Bekasi" />
+					<input type="text" value="<?= $mysiswa->TPLHR ?>" name="tempat" id="tempat" placeholder="Bekasi" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">E-mail</label>
 				<div class="col-sm-9">
-					<input type="email" value="<?= $mysiswa->EMAIL ?>" required name="email" id="email" placeholder="E-mail" />
+					<input type="email" value="<?= $mysiswa->EMAIL ?>"  name="email" id="email" placeholder="E-mail" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field">Anak Ke</label>
 				<div class="col-sm-9">
-					<input type="number" value="<?= $mysiswa->ANAKKE ?>" required name="anakke" id="anakke" placeholder="1" />
+					<input type="number" value="<?= $mysiswa->ANAKKE ?>"  name="anakke" id="anakke" placeholder="1" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field">Status Anak</label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->STATUSANAK ?>" required name="statusanak" id="statusanak" placeholder="Kandung" />
+					<input type="text" value="<?= $mysiswa->STATUSANAK ?>"  name="statusanak" id="statusanak" placeholder="Kandung" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -171,7 +171,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Ayah </label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->NMBAPAK ?>" required name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
+					<input type="text" value="<?= $mysiswa->NMBAPAK ?>"  name="ayah" id="ayah" placeholder="Nama Ayah" class="col-xs-10 col-sm-5" />
 				</div>
 			</div>
 
@@ -220,7 +220,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nama Ibu </label>
 				<div class="col-sm-9">
-					<input type="text" value="<?= $mysiswa->NMIBU ?>" required name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
+					<input type="text" value="<?= $mysiswa->NMIBU ?>"  name="ibu" id="ibu" placeholder="Nama Ibu" class="col-xs-10 col-sm-5" />
 				</div>
 			</div>
 

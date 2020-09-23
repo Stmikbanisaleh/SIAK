@@ -531,6 +531,7 @@ class Mssiswa extends CI_Controller
             //photoijazah
             //photonem
             $data = array(
+				'NOINDUK' => $this->input->post('nis'),
                 'NOREG'  => $this->input->post('noreg'),
                 'NIK' => $this->input->post('nik'),
                 'STATUSANAK' => $this->input->post('statusanak'),

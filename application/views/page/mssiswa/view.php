@@ -12,7 +12,7 @@
 		</button>
 		
 	</div>
-	
+	&nbsp;
 	&nbsp;
 	<div class="col-xs-1">
         <button href="#my-modal4" role="button" data-toggle="modal" class="btn btn-xs btn-success">
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Export Excel FIle </label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="ps" id="ps">
+                                    <select class="form-control" required name="ps" id="ps">
                                         <option value="">-- Pilih Program --</option>
                                         <?php foreach ($mysekolah as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS']  ?></option>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="tahun" id="tahun">
+                                    <select class="form-control" required name="tahun" id="tahun">
                                         <option value="">-- Pilih tahun akademik --</option>
                                         <?php foreach ($thakad as $value) { ?>
                                             <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN']  ?></option>
