@@ -32,6 +32,15 @@
                                     <input type="text" class="form-control" name="nmjenisbayar" id="nmjenisbayar" placeholder="Nama Jenis Bayar">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Wajib Bayar </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="wajib_bayar" id="wajib_bayar">
+                                        <option value="Y">Wajib Bayar</option>
+                                        <option value="N">Tidak Wajib Bayar</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,6 +84,15 @@
                                     <input type="text" class="form-control" name="e_nmjenisbayar" id="e_nmjenisbayar" placeholder="Nama Jenis Bayar"></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Wajib Bayar </label>
+                                <div class="col-xs-6">
+                                    <select class="form-control" name="e_wajib_bayar" id="e_wajib_bayar">
+                                        <option value="Y">Wajib Bayar</option>
+                                        <option value="N">Tidak Wajib Bayar</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,6 +126,7 @@
                 <th class="col-md-1">No</th>
                 <th>Kode Jenis Bayar</th>
                 <th>Nama Jenis Bayar</th>
+                <th>Status Wajib Bayar</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -232,10 +251,17 @@
                 var i = 0;
                 var no = 1;
                 for (i = 0; i < data.length; i++) {
+                    
+                    if(data[i].wajib_bayar != 'Y'){
+                        wjb_bayar = 'Tidak Wajib Wajib Bayar';
+                    }else{
+                        var wjb_bayar = 'Wajib Bayar';
+                    }
                     html += '<tr>' +
                         '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].Kodejnsbayar + '</td>' +
                         '<td>' + data[i].namajenisbayar + '</td>' +
+                        '<td>' + wjb_bayar + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Kodejnsbayar + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -287,6 +313,7 @@
                 $('#e_id').val(data[0].Kodejnsbayar);
                 $('#e_kdjenisbayar').val(data[0].Kodejnsbayar);
                 $('#e_nmjenisbayar').val(data[0].namajenisbayar);
+                $('#e_wajib_bayar').val(data[0].wajib_bayar);
             }
         });
     });

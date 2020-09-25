@@ -108,6 +108,7 @@ class Jenispembayaran extends CI_Controller
             $data = array(
                 'Kodejnsbayar'  => $this->input->post('kdjenisbayar'),
                 'namajenisbayar'  => $this->input->post('nmjenisbayar'),
+                'wajib_bayar'  => $this->input->post('wajib_bayar'),
                 'createdAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_jenis->insert($data, 'jenispembayaran');
@@ -126,6 +127,7 @@ class Jenispembayaran extends CI_Controller
         $data = array(
             'Kodejnsbayar'  => $this->input->post('e_kdjenisbayar'),
             'namajenisbayar'  => $this->input->post('e_nmjenisbayar'),
+            'wajib_bayar'  => $this->input->post('e_wajib_bayar'),
             'updatedAt' => date('Y-m-d H:i:s'),
         );
         $action = $this->model_jenis->update($data_id, $data, 'jenispembayaran');

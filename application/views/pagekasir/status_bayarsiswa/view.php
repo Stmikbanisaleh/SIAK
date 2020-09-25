@@ -88,7 +88,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal </label>
                                 <div class="col-sm-6">
                                     <input type="text" id="e_nominal" name="e_nominal" placeholder="Rp.1000.000" class="form-control" />
-                                    <input type="text" class="form-control" name="e_nominal_v" placeholder="Rp.1000.000" id="e_nominal_v" />
+                                    <input type="hidden" class="form-control" name="e_nominal_v" placeholder="Rp.1000.000" id="e_nominal_v" />
                                     <script language="JavaScript">
                                         var rupiah6 = document.getElementById('e_nominal');
                                         rupiah6.addEventListener('keyup', function(e) {
@@ -119,12 +119,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status </label>
                                 <div class="col-sm-3">
-                                <input type="text" id="e_nis" name="e_nis" placeholder="NISN" class="form-control" />
-                                <input type="text" id="e_kodejnsbayar" name="e_kodejnsbayar" placeholder="Kode Jenis Bayar" class="form-control" />
-                                <input type="text" id="e_kelas" name="e_kelas" placeholder="Kelas" class="form-control" />
-                                <input type="text" id="e_ta" name="e_ta" placeholder="Tahun Ajaran" class="form-control" />
+                                <input type="hidden" id="e_nis" name="e_nis" placeholder="NISN" class="form-control" />
+                                <input type="hidden" id="e_kodejnsbayar" name="e_kodejnsbayar" placeholder="Kode Jenis Bayar" class="form-control" />
+                                <input type="hidden" id="e_kelas" name="e_kelas" placeholder="Kelas" class="form-control" />
+                                <input type="hidden" id="e_ta" name="e_ta" placeholder="Tahun Ajaran" class="form-control" />
                                 </div>
                             </div>
                         </div>
