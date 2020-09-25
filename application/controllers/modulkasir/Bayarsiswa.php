@@ -25,8 +25,8 @@ class Bayarsiswa extends CI_Controller {
         $my_tahun = $this->model_surattagihan->gettahun('tbakadmk2')->result_array();
         $data = array(
          'page_content' 	=> '../pagekasir/bayarsiswa/view',
-         'ribbon' 		=> '<li class="active">Pembayaran Siswa</li>',
-         'page_name' 	=> 'Pembayaran Siswa',
+         'ribbon' 		=> '<li class="active">Pembayaran SPP</li>',
+         'page_name' 	=> 'Pembayaran SPP',
          'my_siswa'      => $my_siswa,
          'my_kelas'     => $my_kelas,
          'my_tahun'     => $my_tahun

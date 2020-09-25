@@ -113,7 +113,7 @@
 			<li class="">
 				<a href="<?= base_url() . 'modulkasir/bayarsiswa'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Pembayaran Siswa
+					Pembayaran SPP
 				</a>
 				<b class="arrow"></b>
 			</li>
