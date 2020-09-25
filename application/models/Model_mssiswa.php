@@ -34,6 +34,12 @@ class Model_mssiswa extends CI_model
     public function getsekolah()
     {
         return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
+	}
+	
+	public function view_where_noisdelete($data, $table)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
     }
 
     public function viewOrdering($table, $order, $ordering)

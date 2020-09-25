@@ -21,6 +21,7 @@ class Bayarlain extends CI_Controller {
 	public function index() {
 		$this->load->library("Configfunction");
 		$mysiswa = $this->model_bayar->view('mssiswa')->result_array();
+		$mykelas = $this->model_bayar->view('tbkelas')->result_array();
 		$ta = $this->configfunction->getthnakd();
         $data = array(
         			'page_content' 	=> '../pagekasir/bayarlain/view',
@@ -28,6 +29,7 @@ class Bayarlain extends CI_Controller {
 					'page_name' 	=> 'Pembayaran Lain-Lain',
 					'mysiswa'		=> $mysiswa,
 					'ta'			=> $ta[0]['THNAKAD'],
+					'mykelas'		=> $mykelas
         		);
         $this->render_view($data); //Memanggil function render_view
 	}
@@ -36,7 +38,6 @@ class Bayarlain extends CI_Controller {
     {
 		$noreg = $this->input->post('nik');
 		$result = $this->model_bayar->getsiswa1($noreg)->result();
-		// print_r($this->db->last_query());exit;
         echo json_encode($result);
 	}
 
@@ -51,7 +52,7 @@ class Bayarlain extends CI_Controller {
 		$result = $this->model_bayar->getsiswa2($ta[0]['THNAKAD'],$siswa)->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
-            echo "<option value='" . $value['Kodejnsbayar'] . "'>[".$value['sekolah']."] - [".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
+            echo "<option value='" . $value['idtarif'] . "'>[".$value['sekolah']."] - [T.MASUK - ".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
         }
 	}
 
@@ -69,19 +70,19 @@ class Bayarlain extends CI_Controller {
     {
 		$nis= $this->input->post('nik2');
 		$ket= $this->input->post('ket');
+		$kelas= $this->input->post('kelas');
 		$ThnAkademik = $this->input->post('thnakad');
-		$getkelas = $this->db->query("SELECT*,
-		(SELECT z.Kelas FROM baginaikkelas z WHERE z.NIS = mssiswa.NOINDUK ORDER BY Kelas DESC LIMIT 1)AS Kelas2
+		$getkelas = $this->db->query("SELECT *
 		FROM mssiswa WHERE NOINDUK='$nis' OR Noreg='$nis'")->result_array();
 		$kdsekolah = $getkelas[0]['PS'];
 		if($kdsekolah){
-			$gettarif = $this->db->query("SELECT * FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='$ket'
+			$gettarif = $this->db->query("SELECT * FROM tarif_berlaku WHERE `status`='T' AND idtarif ='$ket'
 			 AND kodesekolah='$kdsekolah' AND TA='$ThnAkademik'")->result_array();
 			 if(!empty($gettarif)){
 				$data = array(
 					'NIS'  => $nis,
 					'Noreg'  => $getkelas[0]['NOREG'],
-					'Kelas'  => $getkelas[0]['Kelas2'],
+					'Kelas'  => $kelas,
 					'tglentri'  => date('Y-m-d'),
 					'useridd'  => $this->session->userdata('kodekaryawan'),
 					'TotalBayar'  => $this->input->post('nominal_v'),
@@ -94,7 +95,7 @@ class Bayarlain extends CI_Controller {
 
 				$data2 = array(
 					'Nopembayaran' => $id,
-					'kodejnsbayar' => $this->input->post('ket'),
+					'kodejnsbayar' => $gettarif[0]['Kodejnsbayar'],
 					'idtarif'	=>	$gettarif[0]['idtarif'],
 					'nominalbayar' => $this->input->post('nominal_v')
 				);

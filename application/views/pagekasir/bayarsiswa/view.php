@@ -22,7 +22,7 @@
                     <select class="form-control" name="kelas" id="kelas">
                         <option>--Pilih Kelas--</option>
                         <?php foreach ($my_kelas as $value) { ?>
-                            <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
+							<option value=<?= $value['id_kelas'] ?>><?= $value['nama']  ?></option>
                         <?php } ?>
                     </select>
                 </div>

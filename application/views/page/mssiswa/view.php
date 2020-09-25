@@ -2,7 +2,22 @@
     <div class="col-xs-1">
         <button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
             <a class="ace-icon fa fa-download bigger-120"></a>Export Data
-        </button>
+		</button>
+		
+	</div>
+	&nbsp;
+	<div class="col-xs-1">
+        <button href="#my-modal3" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+            <a class="ace-icon fa fa-upload bigger-120"></a>Import Data Custom
+		</button>
+		
+	</div>
+	&nbsp;
+	&nbsp;
+	<div class="col-xs-1">
+        <button href="#my-modal4" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+            <a class="ace-icon fa fa-upload bigger-120"></a>Import Data 
+		</button>
     </div>
     <br>
     <br>
@@ -42,7 +57,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Export Excel FIle </label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="ps" id="ps">
+                                    <select class="form-control" required name="ps" id="ps">
                                         <option value="">-- Pilih Program --</option>
                                         <?php foreach ($mysekolah as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] .'-'.$value['DESCRTBJS']  ?></option>
@@ -53,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="tahun" id="tahun">
+                                    <select class="form-control" required name="tahun" id="tahun">
                                         <option value="">-- Pilih tahun akademik --</option>
                                         <?php foreach ($thakad as $value) { ?>
                                             <option value=<?= $value['TAHUN'] ?>><?= $value['TAHUN']  ?></option>
@@ -61,6 +76,90 @@
                                     </select>
                                 </div>
                             </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+                    <i class="ace-icon fa fa-save"></i>
+                    Export
+                </button>
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Batal
+                </button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div id="my-modal3" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+								<div class="col-sm-6">
+									<input type="file" id="file" required name="file" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Catatan </label>
+								<div class="col-sm-9">
+									<a href="<?php echo base_url() . 'assets/siswa.xls'; ?>" for="form-field-1"> Sample Download </label></a>
+								</div>
+							</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+                    <i class="ace-icon fa fa-save"></i>
+                    Export
+                </button>
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Batal
+                </button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div id="my-modal4" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport2">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+								<div class="col-sm-6">
+									<input type="file" id="file" required name="file" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Catatan </label>
+								<div class="col-sm-9">
+									<a href="<?php echo base_url() . 'assets/siswa.xls'; ?>" for="form-field-1"> Digunankan untuk melengkapi data siswa , dan merubah VA menjadi NIS </label></a>
+								</div>
+							</div>
                     </div>
                 </div>
             </div>
@@ -231,6 +330,74 @@
     </tbody>
 </table>
 <script>
+	 if ($("#formImport").length > 0) {
+        $("#formImport").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                formdata = new FormData(form);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('mssiswa/import') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#my-modal2').modal('hide');
+                        if (data == 1 || data == true) {
+                            document.getElementById("formImport").reset();
+                            swalInputSuccess();
+                            show_data();
+                        } else if (data == 401) {
+                            document.getElementById("formImport").reset();
+                            swalIdDouble();
+                        } else {
+                            document.getElementById("formImport").reset();
+                            swalInputFailed();
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    }
+
+	if ($("#formImport2").length > 0) {
+        $("#formImport2").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            submitHandler: function(form) {
+                formdata = new FormData(form);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('mssiswa/import2') ?>",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#my-modal2').modal('hide');
+                        if (data == 1 || data == true) {
+                            document.getElementById("formImport2").reset();
+                            swalInputSuccess();
+                            show_data();
+                        } else if (data == 401) {
+                            document.getElementById("formImport2").reset();
+                            swalIdDouble();
+                        } else {
+                            document.getElementById("formImport2").reset();
+                            swalInputFailed();
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    }
+
     if ($("#formExport").length > 0) {
         $("#formExport").validate({
             errorClass: "my-error-class",

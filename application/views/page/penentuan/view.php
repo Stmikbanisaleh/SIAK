@@ -103,7 +103,6 @@
                 <th>Jenis Kelamin</th>
                 <th>Agama</th>
                 <th>Kelas</th>
-                <th>Kelas Saat ini</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -244,7 +243,6 @@
                                 '<td>' + data[i].v_Jk + '</td>' +
                                 '<td>' + data[i].v_agama + '</td>' +
                                 '<td>' + data[i].Kelas + '.' + data[i].GolKelas + '</td>' +
-                                '<td>' + data[i].Kelas_naik + '</td>' +
                                 '</tr>';
                             no++;
                         }
