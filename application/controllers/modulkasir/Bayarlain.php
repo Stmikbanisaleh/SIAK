@@ -38,7 +38,6 @@ class Bayarlain extends CI_Controller {
     {
 		$noreg = $this->input->post('nik');
 		$result = $this->model_bayar->getsiswa1($noreg)->result();
-		// print_r($this->db->last_query());exit;
         echo json_encode($result);
 	}
 
@@ -53,7 +52,7 @@ class Bayarlain extends CI_Controller {
 		$result = $this->model_bayar->getsiswa2($ta[0]['THNAKAD'],$siswa)->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
-            echo "<option value='" . $value['idtarif'] . "'>[".$value['sekolah']."] - [".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
+            echo "<option value='" . $value['idtarif'] . "'>[".$value['sekolah']."] - [T.MASUK - ".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
         }
 	}
 
@@ -96,7 +95,7 @@ class Bayarlain extends CI_Controller {
 
 				$data2 = array(
 					'Nopembayaran' => $id,
-					'kodejnsbayar' => $this->input->post('ket'),
+					'kodejnsbayar' => $gettarif[0]['Kodejnsbayar'],
 					'idtarif'	=>	$gettarif[0]['idtarif'],
 					'nominalbayar' => $this->input->post('nominal_v')
 				);

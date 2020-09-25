@@ -298,9 +298,11 @@
                             swalInputSuccess();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Input Duplikat Gagal!');
+							swalIdDouble('Input Duplikat Gagal!');
+							document.getElementById("formTambah").reset();
                         } else {
-                            swalInputFailedakd();
+							swalInputFailedakd();
+							document.getElementById("formTambah").reset();
                         }
                     }
                 });

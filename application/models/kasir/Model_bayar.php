@@ -17,20 +17,19 @@ class Model_bayar extends CI_model
         return $this->db->query("SELECT
                                 tarif_berlaku.idtarif,
                                 kodesekolah,
-                                ThnMasuk,
+                                ThnMasuk as TA,
                                 (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =tarif_berlaku.kodesekolah)AS sekolah,
                                 (SELECT z.namajenisbayar FROM jenispembayaran z WHERE z.Kodejnsbayar=tarif_berlaku.Kodejnsbayar)AS namajenisbayar,
                                 tarif_berlaku.Kodejnsbayar,
                                 tarif_berlaku.ThnMasuk,
                                 tarif_berlaku.Nominal,
                                 CONCAT('Rp. ',FORMAT(tarif_berlaku.Nominal,2)) Nominal2,
-                                tarif_berlaku.TA,
                                 tarif_berlaku.tglentri,
                                 tarif_berlaku.userridd,
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
                                 WHERE `status`='T'
-                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('FRM')");
+                                AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('FRM','SPP')");
 
                                 //AND TA='$ta' -- Coment for this
     }
