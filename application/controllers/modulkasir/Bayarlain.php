@@ -113,8 +113,10 @@ class Bayarlain extends CI_Controller {
         $this->load->library('pdf');
         $tampil_thnakad = $this->configfunction->getthnakd();
         $thnakad = $tampil_thnakad[0]['THNAKAD'];
+		$myconfig = $this->model_bayar->view('sys_config')->row();
         $data = array(
             'ThnAkademik'         => $thnakad,
+			'myconfig'		=> $myconfig
 		);
 
         $this->pdf->setPaper('A4', 'potrait');
