@@ -56,16 +56,37 @@ class Status_bayarsiswa extends CI_Controller {
 
         $id_mapping = $nis.$kelas.'-'.$ta.'-'.$kodejnsbayar;
         $hasil_detail_bayar = $this->model_status_bayarsiswa->view_detail_bayar($nis, $kodejnsbayar, $kelas, $ta)->result_array();
-        $data = array(
-            'id'  => $id_mapping,
-            'nominal'  => $nominal,
-            'status'  => 'L',
-            'userinput'  => $this->session->userdata('kodekaryawan'),
-            'createdAt' => date('Y-m-d H:i:s'),
-            'updatedAt' => date('Y-m-d H:i:s'),
+        
+
+        $data_id = array(
+            'id'  => $id_mapping
         );
         $hasil = false;
-        $action = $this->model_status_bayarsiswa->insert($data, 'mapping_status_pembayaran');
+        $cek = $this->model_status_bayarsiswa->view_where('mapping_status_pembayaran', $data_id)->result_array();
+
+        if(count($cek)>0){
+            $data = array(
+                'nominal'  => $nominal,
+                'status'  => 'L',
+                'userinput'  => $this->session->userdata('kodekaryawan'),
+                'createdAt' => date('Y-m-d H:i:s'),
+                'updatedAt' => date('Y-m-d H:i:s'),
+            );
+            $where_id = array(
+                'id'  => $id_mapping
+            );
+            $action = $this->model_status_bayarsiswa->update($where_id, $data, 'mapping_status_pembayaran');
+        }else{
+            $data = array(
+                'id'  => $id_mapping,
+                'nominal'  => $nominal,
+                'status'  => 'L',
+                'userinput'  => $this->session->userdata('kodekaryawan'),
+                'createdAt' => date('Y-m-d H:i:s'),
+                'updatedAt' => date('Y-m-d H:i:s'),
+            );
+            $action = $this->model_status_bayarsiswa->insert($data, 'mapping_status_pembayaran');
+        }
 
         if($action){
             $hasil = true;

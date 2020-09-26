@@ -84,15 +84,6 @@ class Model_status_bayarsiswa extends CI_model
                                         AND dbs.kodejnsbayar = tb.Kodejnsbayar
                                         AND tb.TA = pms.TA), 0) nominal_bayar,
                                     (SELECT 
-                                        msp.id
-                                    FROM pembayaran_sekolah pms
-                                    JOIN detail_bayar_sekolah dbs ON dbs.Nopembayaran = pms.Nopembayaran
-                                    JOIN mapping_status_pembayaran msp ON msp.id = dbs.id_status_pembayaran
-                                    WHERE pms.NIS = ms.NOINDUK
-                                        AND dbs.kodejnsbayar = tb.Kodejnsbayar
-                                        AND pms.TA = tb.TA
-                                    LIMIT 1) id_status_pembayaran,
-                                    (SELECT 
                                         msp.status
                                     FROM pembayaran_sekolah pms
                                     JOIN detail_bayar_sekolah dbs ON dbs.Nopembayaran = pms.Nopembayaran
@@ -134,10 +125,12 @@ class Model_status_bayarsiswa extends CI_model
                                 JOIN tbps ps ON ps.KDTBPS = ms.ps
                                 JOIN tarif_berlaku tb ON ps.KDTBPS = tb.kodesekolah
                                 JOIN jenispembayaran jp ON jp.Kodejnsbayar = tb.Kodejnsbayar
+                                JOIN baginaikkelas bn ON bn.nis = ms.NOINDUK
                                 WHERE ms.NOINDUK = "'.$nis.'"
-                                AND ms.TAHUN = (SELECT substring(bn.TA, 6, 8)-bn.Kelas from baginaikkelas bn where bn.nis = ms.NOINDUK limit 1)
+                                AND tb.TA = bn.TA
+                                AND jp.wajib_bayar = "Y"
                                 '.$where_thnakad.'
-                                AND tb.ThnMasuk = ms.TAHUN
+                                AND tb.ThnMasuk = (SELECT substring(bnk.TA, 6, 8)-bnk.Kelas from baginaikkelas bnk where bnk.nis = ms.NOINDUK AND bn.TA = bnk.TA limit 1)
                                 ORDER BY tb.TA DESC, jp.namajenisbayar ASC');
     }
 

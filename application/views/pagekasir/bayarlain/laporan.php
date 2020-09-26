@@ -33,14 +33,12 @@ $Kelas = $row->Kelas;
 ?>
 <table width="100%" cellpadding="0" cellspacing="0">
   <tr>
-    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;">YAYASAN GEMA NURANI<br>
-        SD- SMP - SMA - GEMA NURANI </span></th>
+    <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 14px;"><?php echo strtoupper($myconfig->name_school) ?> </span></th>
     <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 20px;"><b>BUKTI PEMBAYARAN SISWA</b></th>
     <th width="30%"></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Jl. Rajawali Pulo No. 2, Kampung Nagreg, RT.04/02, Desa Rajeg Mulya
-        Kecamatan Rajeg, Kabupaten Tangerang 15540</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;"><?= $myconfig->address ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
   </tr>
   <tr>

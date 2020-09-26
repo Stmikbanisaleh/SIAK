@@ -103,17 +103,17 @@
 				</a>
 				<b class="arrow"></b>
 			</li> -->
-			<li class="">
+			<!-- <li class="">
 				<a href="<?= base_url() . 'modulkasir/tagihanpembayaran'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Tagihan Siswa
 				</a>
 				<b class="arrow"></b>
-			</li>
+			</li> -->
 			<li class="">
 				<a href="<?= base_url() . 'modulkasir/bayarsiswa'; ?>">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Pembayaran Siswa
+					Pembayaran SPP
 				</a>
 				<b class="arrow"></b>
 			</li>
