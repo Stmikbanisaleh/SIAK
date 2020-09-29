@@ -20,7 +20,8 @@ class Model_mssiswa extends CI_model
         left join tbagama on mssiswa.agama = tbagama.KDTBAGAMA
         join tbps on mssiswa.PS = tbps.KDTBPS
         join tbjs on tbps.KDTBJS = tbjs.KDTBJS
-        $where");
+		$where");
+		
     }
     public function exportsiswa($PS, $tahun)
     {
