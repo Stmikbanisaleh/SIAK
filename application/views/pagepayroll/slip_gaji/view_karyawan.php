@@ -3,6 +3,7 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Tahun</label>
             <input type="number" id="tahun" required name="tahun" placeholder="Tahun" class="form-control" />
+            <input type="hidden" id="tipe_gaji" required name="tipe_gaji" placeholder="Tipe Gaji" class="form-control" value="K"/>
             <small id="emailHelp" class="form-text text-muted">Masukan tahun periode gaji.</small>
         </div>
         <div class="form-group">
