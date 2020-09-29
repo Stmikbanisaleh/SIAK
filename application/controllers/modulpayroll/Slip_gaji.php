@@ -96,7 +96,6 @@ class Slip_gaji extends CI_Controller
 			);
 		}
 
-
 		if ($this->input->post('tipe_laporan') == 'P') {
 			if ($this->input->post('tipe_gaji') == 'K') {
 				$this->laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl);
