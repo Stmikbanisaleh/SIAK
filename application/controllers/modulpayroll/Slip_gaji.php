@@ -95,13 +95,16 @@ class Slip_gaji extends CI_Controller
 				$this->input->post('unit')
 			);
 		}
-
-
+		// print_r($this->input->post());
+		// print_r($this->db->last_query());
+		// print_r($this->input->post('tipe_gaji'));exit;
 		if ($this->input->post('tipe_laporan') == 'P') {
 			if ($this->input->post('tipe_gaji') == 'K') {
 				$this->laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl);
+				// print_r('jembut');exit;
 			} else {
 				$this->laporan_pdf_guru($my_gaji, $bulan, $tahun, $tgl);
+				// print_r('jembut');exit;
 			}
 		} else {
 			if ($this->input->post('tipe_gaji') == 'K') {

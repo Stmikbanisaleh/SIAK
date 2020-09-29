@@ -65,7 +65,7 @@ class Model_slipgaji extends CI_model
                                     tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = bk.unit_kerja LIMIT 1) as desc_unit
                                     FROM ".$table." tp
                                     JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND bk.unit_kerja = $unit
                                     AND tp.isDeleted != 1");
@@ -74,7 +74,7 @@ class Model_slipgaji extends CI_model
                                     tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = bk.unit_kerja LIMIT 1) as desc_unit
                                     FROM ".$table." tp
                                     JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
                                     AND YEAR(tp.effective_date) = '".$tahun."'
                                     AND tp.isDeleted != 1");
         }
@@ -87,17 +87,17 @@ class Model_slipgaji extends CI_model
                                         tp.* FROM ".$table." tp
                                         JOIN biodata_karyawan bk ON bk.nik = tp.employee_number
                                         JOIN tbps ps ON bk.unit_kerja = ps.KDSK
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
                                         AND tp.employee_number = '".$emp."'
-                                        AND YEAR(tp.effective_date) = '".$tahun."'
+                                        AND YEAR(tp.effective_date) = ".$tahun."
                                         AND ps.KDUNIT = $unit
                                         AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT
                                         * FROM ".$table." tp
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                        AND tp.employee_number = '".$emp."'
-                                        AND YEAR(tp.effective_date) = '".$tahun."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
+                                        AND tp.employee_number = ".$emp."
+                                        AND YEAR(tp.effective_date) = ".$tahun."
                                         AND tp.isDeleted != 1");
         }
         
@@ -110,8 +110,8 @@ class Model_slipgaji extends CI_model
                                         tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = tp.status LIMIT 1) as desc_unit
                                     FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
+                                    AND YEAR(tp.effective_date) = ".$tahun."
                                     AND tp.status = $unit
                                     AND tp.isDeleted != 1");
         }else{
@@ -119,8 +119,8 @@ class Model_slipgaji extends CI_model
                                         tp.*, (SELECT deskripsi FROM sekolah se WHERE se.id = tp.status LIMIT 1) as desc_unit
                                     FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
+                                    AND YEAR(tp.effective_date) = ".$tahun."
                                     AND tp.isDeleted != 1");
         }
         
@@ -133,17 +133,17 @@ class Model_slipgaji extends CI_model
                                         tp.*, (SELECT ps.DESCRTBPS FROM tbps ps WHERE ps.KDUNIT = $unit and ps.KDSK = b.GuruBase LIMIT 1) as DESCRTBPS
                                     FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND tp.employee_number = '".$emp."'
-                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
+                                    AND tp.employee_number = ".$emp."
+                                    AND YEAR(tp.effective_date) = ".$tahun."
                                     AND tp.isDeleted != 1");
         }else{
             return $this->db->query("SELECT
                                     * FROM ".$table." tp
                                     JOIN tbguru b ON tp.employee_number = b.IdGuru
-                                    WHERE MONTH(tp.effective_date) BETWEEN '".$bulan_awal."' AND '".$bulan_akhir."'
-                                    AND tp.employee_number = '".$emp."'
-                                    AND YEAR(tp.effective_date) = '".$tahun."'
+                                    WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
+                                    AND tp.employee_number = ".$emp."
+                                    AND YEAR(tp.effective_date) = ".$tahun."
                                     AND tp.isDeleted != 1");
         }
     }
