@@ -1,4 +1,6 @@
 <!-- Button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -10,7 +12,7 @@
 </div>
 
 <!-- Modal Input Data -->
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -30,7 +32,7 @@
 									<select class="form-control" required name="karyawan" id="karyawan">
 										<option value="">-- Pilih karyawan --</option>
 										<?php foreach ($my_karyawan as $value) { ?>
-											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] .  "- [". $value['namajabat']."]." ?></option>
+											<option value=<?= $value['nip'] ?>><?php echo "[" . $value['nip'] . "] - " . $value['nama'] .  "- [" . $value['namajabat'] . "]." ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -345,34 +347,34 @@
 							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala </label>
 								<div class="col-sm-9"> -->
-									<input type="hidden" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
-									<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
-									<script language="JavaScript">
-										var rupiah10 = document.getElementById('e_tarif_karyawan');
-										rupiah10.addEventListener('keyup', function(e) {
-											rup10 = this.value.replace(/\D/g, '');
-											$('#e_tarif_karyawan_v').val(rup10);
-											rupiah10.value = formatRupiah10(this.value, 'Rp. ');
-										});
+							<input type="hidden" id="e_tarif_karyawan" required name="e_tarif_karyawan" placeholder="Rp. 10.0000" class="form-control" />
+							<input type="hidden" id="e_tarif_karyawan_v" required name="e_tarif_karyawan_v" />
+							<script language="JavaScript">
+								var rupiah10 = document.getElementById('e_tarif_karyawan');
+								rupiah10.addEventListener('keyup', function(e) {
+									rup10 = this.value.replace(/\D/g, '');
+									$('#e_tarif_karyawan_v').val(rup10);
+									rupiah10.value = formatRupiah10(this.value, 'Rp. ');
+								});
 
-										function formatRupiah10(angka, prefix) {
-											var number_string = angka.replace(/[^,\d]/g, '').toString(),
-												split = number_string.split(','),
-												sisa = split[0].length % 3,
-												rupiah10 = split[0].substr(0, sisa),
-												ribuan10 = split[0].substr(sisa).match(/\d{3}/gi);
+								function formatRupiah10(angka, prefix) {
+									var number_string = angka.replace(/[^,\d]/g, '').toString(),
+										split = number_string.split(','),
+										sisa = split[0].length % 3,
+										rupiah10 = split[0].substr(0, sisa),
+										ribuan10 = split[0].substr(sisa).match(/\d{3}/gi);
 
-											// tambahkan titik jika yang di input sudah menjadi angka ribuan
-											if (ribuan10) {
-												separator = sisa ? '.' : '';
-												rupiah10 += separator + ribuan10.join('.');
-											}
+									// tambahkan titik jika yang di input sudah menjadi angka ribuan
+									if (ribuan10) {
+										separator = sisa ? '.' : '';
+										rupiah10 += separator + ribuan10.join('.');
+									}
 
-											rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
-											return prefix == undefined ? rupiah10 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
-										}
-									</script>
-								<!-- </div>
+									rupiah10 = split[1] != undefined ? rupiah10 + ',' + split[1] : rupiah10;
+									return prefix == undefined ? rupiah10 : (rupiah10 ? 'Rp. ' + rupiah10 : '');
+								}
+							</script>
+							<!-- </div>
 							</div> -->
 
 							<div class="form-group">
@@ -604,6 +606,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		show_data();
+		$('#karyawan').select2({
+			width: '100%',
+			placeholder: "Select an Option",
+			allowClear: true
+		});
+
 		$('#datatable_tabletools').DataTable();
 		$("#karyawan").change(function() {
 			var id = $('#karyawan').val();

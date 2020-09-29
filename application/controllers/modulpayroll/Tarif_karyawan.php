@@ -34,55 +34,116 @@ class Tarif_karyawan extends CI_Controller
 			$this->load->view('pagepayroll/login'); //Memanggil function render_view
 		}
 	}
-    
+
 	public function tampil()
 	{
 		$my_data = $this->model_tarif_karyawan->view_karyawan()->result_array();
 		echo json_encode($my_data);
 	}
 
-    public function honor_berkala()
+	public function honor_berkala()
 	{
-        $idkaryawan = $this->input->post('id');
-        $datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
-        if($datakaryawan){
-            $masakerja = $datakaryawan[0]['masakerja'];
-            $honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
-		    echo $honor[0]['honor_berkala'];
-        }
+		$idkaryawan = $this->input->post('id');
+		$datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
+		if ($datakaryawan) {
+			$masakerja = $datakaryawan[0]['masakerja'];
+			$unit_kerja = $datakaryawan[0]['unit_kerja'];
+			if ($unit_kerja == 1 || $unit_kerja == 9 || $unit_kerja == 10 || $unit_kerja == 11) {
+				$honor = $this->model_tarif_karyawan->gethonortk($masakerja)->result_array();
+			} else {
+				$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
+			}
+			echo $honor[0]['honor_berkala'];
+		}
+	}
+
+	public function edit_honor_berkala($idkaryawan)
+	{
+		$datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
+		if ($datakaryawan) {
+			$masakerja = $datakaryawan[0]['masakerja'];
+			$unit_kerja = $datakaryawan[0]['unit_kerja'];
+			if ($unit_kerja == 1 || $unit_kerja == 9 || $unit_kerja == 10 || $unit_kerja == 11) {
+				$honor = $this->model_tarif_karyawan->gethonortk($masakerja)->result_array();
+			} else {
+				$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
+			}
+			$return = $honor[0]['honor_berkala'];
+			return $return;
+		}
 	}
 
 	public function convert()
 	{
-        $idkaryawan = $this->input->post('id');
-        $datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
-        if($datakaryawan){
+		$idkaryawan = $this->input->post('id');
+		$datakaryawan = $this->model_tarif_karyawan->getmasakerja($idkaryawan)->result_array();
+		if ($datakaryawan) {
 			$masakerja = $datakaryawan[0]['masakerja'];
-			if($masakerja >= 10){
+			if ($masakerja >= 10) {
 				$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
 				$convert = $honor[0]['honor_berkala'] / 2;
 			} else {
 				$convert = 0;
 			}
-		    echo $convert;
-        }
+			echo $convert;
+		}
+	}
+
+	private function getunitkerjapayrol($id)
+	{
+		$unit_kerja = $this->db->query("SELECT unit_kerja from biodata_karyawan where nip = '" . $id . "'")->result_array();
+		$unit = $unit_kerja[0]['unit_kerja'];
+		return $unit;
+	}
+
+	private function getjabatan($id)
+	{
+		$jabatan = $this->db->query("SELECT jabatan from biodata_karyawan where nip = '" . $id . "'")->result_array();
+		$unit = $jabatan[0]['jabatan'];
+		return $unit;
 	}
 
 	public function gethonorjam($id)
 	{
 		$pendidikan = $this->model_tarif_karyawan->getpendidikan($id)->result_array();
-		$datakaryawan = $this->model_tarif_karyawan->getjenjang($pendidikan[0]['pendidikan'])->result_array();
-        $jabatan = $this->model_tarif_karyawan->getjabatanjam($id)->result_array();
-        if($datakaryawan){
+
+		$jabatan = $this->model_tarif_karyawan->getjabatanjam($id)->result_array();
+		$unit = $this->getunitkerjapayrol($id);
+		$jabatanku = $this->getjabatan($id);
+
+		if ($jabatanku == 109) {
+			if ($unit == 1 || $unit == 11 || $unit == 9 || $unit == 10 || $unit == 12) {
+				$datakaryawan = $this->model_tarif_karyawan->getjenjangtk($pendidikan[0]['pendidikan'])->result_array();
+				$nominal = $datakaryawan[0]['nominal'];
+				$jabatan = $jabatan[0]['jumlah_jam'];
+				if ($nominal > 0) {
+					$convert = (int)$nominal * (int)$jabatan;
+				} else {
+					$convert = 0;
+				}
+				return $convert;
+			} else {
+				$datakaryawan = $this->model_tarif_karyawan->getjenjanggeneral($pendidikan[0]['pendidikan'])->result_array();
+				$nominal = $datakaryawan[0]['nominal'];
+				$jabatan = $jabatan[0]['jumlah_jam'];
+				if ($nominal > 0) {
+					$convert = (int)$nominal * (int)$jabatan;
+				} else {
+					$convert = 0;
+				}
+				return $convert;
+			}
+		} else {
+			$datakaryawan = $this->model_tarif_karyawan->getjenjanggeneral($pendidikan[0]['pendidikan'])->result_array();
 			$nominal = $datakaryawan[0]['nominal'];
 			$jabatan = $jabatan[0]['jumlah_jam'];
-			if($nominal > 0){
+			if ($nominal > 0) {
 				$convert = (int)$nominal * (int)$jabatan;
 			} else {
 				$convert = 0;
 			}
-		    return $convert;
-        }
+			return $convert;
+		}
 	}
 
 
@@ -92,13 +153,13 @@ class Tarif_karyawan extends CI_Controller
 			$data = array(
 				'id'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_tarif_karyawan->view_where('tarifkaryawan',$data)->result();
+			$my_data = $this->model_tarif_karyawan->view_where('tarifkaryawan', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
 		}
 	}
-	
+
 	public function simpan()
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
@@ -124,14 +185,14 @@ class Tarif_karyawan extends CI_Controller
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 
-			$hasil = $this->model_tarif_karyawan->view_where('tarifkaryawan',['id_karyawan' => $this->input->post('karyawan')])->num_rows();
-			if($hasil>0){
+			$hasil = $this->model_tarif_karyawan->view_where('tarifkaryawan', ['id_karyawan' => $this->input->post('karyawan')])->num_rows();
+			if ($hasil > 0) {
 				echo 401;
-			}else{
+			} else {
 				$result = $this->model_tarif_karyawan->insert($datatarif, 'tarifkaryawan');
 				if ($result) {
 					echo $result;
-				} 
+				}
 			}
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -150,9 +211,9 @@ class Tarif_karyawan extends CI_Controller
 			$hc = (int)$honor + (int)$convert;
 			$idkaryawan = $this->input->post('e_karyawan');
 			$honorjam = $this->gethonorjam($idkaryawan);
-
+			$hcs = $this->edit_honor_berkala($idkaryawan);
 			$dataupdate = array(
-				'tarif'  => $this->input->post('e_tarif_karyawan_v'),
+				'tarif'  => $hcs,
 				'tunjangan_jabatan'  => $this->input->post('e_tunjangan_jabatan_v'),
 				'tunjangan_masakerja' => $hc,
 				'transport'  => $this->input->post('e_transport_v'),
@@ -165,7 +226,7 @@ class Tarif_karyawan extends CI_Controller
 				'bpjs'  => $this->input->post('e_bpjs_v'),
 				'no_rekening'  => $this->input->post('e_no_rekening'),
 			);
-			$my_data = $this->model_tarif_karyawan->update($data,$dataupdate,'tarifkaryawan');
+			$my_data = $this->model_tarif_karyawan->update($data, $dataupdate, 'tarifkaryawan');
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pagepayroll/login'); //Redirect login
@@ -173,13 +234,13 @@ class Tarif_karyawan extends CI_Controller
 	}
 
 	public function delete()
-    {
-        $data_id = array(
-            'id'  => $this->input->post('id')
-        );
-        $action = $this->model_tarifguru->delete($data_id, 'tarifguru');
-        if($action){
-            echo json_encode($action);
-        }
-    }
+	{
+		$data_id = array(
+			'id'  => $this->input->post('id')
+		);
+		$action = $this->model_tarifguru->delete($data_id, 'tarifguru');
+		if ($action) {
+			echo json_encode($action);
+		}
+	}
 }

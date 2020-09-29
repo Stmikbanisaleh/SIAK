@@ -10,12 +10,17 @@ class Model_tarif_karyawan extends CI_model
 
     public function  getmasakerja($id)
     {
-        return $this->db->query("SELECT FLOOR(DATEDIFF(NOW(),tgl_mulai_kerja)/365) as masakerja  from biodata_karyawan where nip = '".$id."' ");
+        return $this->db->query("SELECT FLOOR(DATEDIFF(NOW(),tgl_mulai_kerja)/365) as masakerja ,unit_kerja from biodata_karyawan where nip = '".$id."' ");
     }
 
     public function  getpendidikan($id)
     {
         return $this->db->query("SELECT pendidikan from biodata_karyawan a join msjabatan b on a.jabatan = b.ID where nip = '".$id."'");
+	}
+	
+	public function  getunitkerja($id)
+    {
+        return $this->db->query("SELECT unit_kerja from biodata_karyawan a  where nip = '".$id."'");
     }
 
     public function  gethonor($masakerja)
@@ -23,6 +28,26 @@ class Model_tarif_karyawan extends CI_model
         return $this->db->query("SELECT honor_berkala from master_honor_berkala where masa_kerja = ".$masakerja." ");
     }
 
+	public function  gethonortk($masakerja)
+    {
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala_tk where masa_kerja = ".$masakerja." ");
+	}
+
+	public function  gethonorsd($masakerja)
+    {
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala_sd where masa_kerja = ".$masakerja." ");
+	}
+	
+	public function  gethonorsmp($masakerja)
+    {
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala_smp where masa_kerja = ".$masakerja." ");
+    }
+	
+	public function  gethonorsma($masakerja)
+    {
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala_sma where masa_kerja = ".$masakerja." ");
+	}
+	
     public function  getjabatanjam($id)
     {
         return $this->db->query("SELECT b.jumlah_jam from biodata_karyawan a join msjabatan b on a.jabatan = b.ID where nip = '".$id."'   ");
@@ -33,9 +58,14 @@ class Model_tarif_karyawan extends CI_model
         return $this->db->query("SELECT nominal from master_honor where jenjang_alias = ".$id." ");
     }
 
-    public function  getjenjang($id)
+    public function  getjenjanggeneral($id)
     {
         return $this->db->query("SELECT nominal from master_honor where jenjang_alias = ".$id." ");
+	}
+	
+	public function  getjenjangtk($id)
+    {
+        return $this->db->query("SELECT nominal from master_honor_obtk where jenjang_alias = ".$id." ");
     }
 
     public function view_karyawan()

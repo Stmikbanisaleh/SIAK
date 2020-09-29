@@ -5,10 +5,6 @@
                 <a class="ace-icon fa fa-cloud-download bigger-120"></a>
                 Import
             </button>
-            <button type="submit" id="btn_export" class="btn btn-sm btn-light pull-left">
-                <a class="ace-icon fa fa-cloud-upload bigger-120"></a>
-                Export
-            </button>
         </p>
     </div>
 </div>
