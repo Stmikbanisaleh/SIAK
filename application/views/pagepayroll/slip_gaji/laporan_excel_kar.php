@@ -80,13 +80,18 @@
    }
 
    td{
-	   font-size:6px;
+	   font-size:14px;
 	   
    }
 </style>
 </head>
 <body>
-
+<?php
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("pragma:no-cache");
+header("Expires:0");
+?>
 <?php
 	$baris = $mygaji->num_rows();
 	$flag = 1;
@@ -115,17 +120,19 @@
 		$pend_tunjabatan = $row['tunj_jabatan'];
 		$pend_transportasi = $row['tunj_transport'];
 		$pend_pegawai_tetap = $row['tunj_tetap'];
-		$pend_inval = $row['inval'];
+		$pend_tunj_pembinaan = $row['tunj_pembinaan'];
 		$pend_tunj_bpjs = $row['tunj_bpjs'];
+		// $pend_honor_berkala = $row['honor_berkala'];
 		$pend_honor_berkala = 0;
-		$pend_tunj_international = $row['tunj_international'];
-		$tunj_masa_kerja = $row['convert'];
+		$tunj_masa_kerja = $row['tunj_masa_kerja'];
 		$pend_tunj_keluarga = $row['tunj_keluarga'];
-		$pend_thr = $row['thr'];
-		$pend_tunj_penilaian_kinerja = $row['tunj_penilaian_kinerja'];
-		$pend_tunj_aksel = $row['tunj_aksel'];
+        $pend_thr = $row['thr'];
+		$pend_lembur = $row['tunj_malam_lembur'];
 		$tunj_khusus1 = $row['tunj_khusus1'];
 		$tunj_khusus2 = $row['tunj_khusus2'];
+		$tunj_khusus3 = $row['tunj_khusus3'];
+		$tunj_khusus4 = $row['tunj_khusus4'];
+		$tunj_khusus5 = $row['tunj_khusus5'];
 		$pend_lain = $row['tunj_lain'];
 		// $jumlah_pend = $pend_gaji_pokok+$pend_pajak+$pend_tunjabatan+$pend_tunjsansos+$pend_strukturalkhusus+$pend_transportasi+$pend_pegawai_tetap+$pend_tunj_pembinaan+$pend_tunj_keluarga+$pend_rapel+$pend_premi+$pend_peralihan+$pend_utility+$pend_honorarium+$pend_asuransi+$pend_bonus+$pend_thr+$pend_cuti+$tunj_bpjs+$pend_lain+$tunj_international+$tunj_aksel+$tunj_walas+$tunj_convert+$tunj_honor_berkala+$tunj_penilaian_kinerja+$tunj_khusus1+$tunj_khusus2;
 
@@ -134,33 +141,33 @@
 		$tunj_nilai[2] = $pend_tunjabatan;
 		$tunj_nilai[3] = $pend_transportasi;
 		$tunj_nilai[4] = $pend_pegawai_tetap;
-		$tunj_nilai[5] = $pend_inval;
+		$tunj_nilai[5] = $pend_tunj_pembinaan;
 		$tunj_nilai[6] = $pend_tunj_bpjs;
 		$tunj_nilai[7] = $pend_honor_berkala;
-		$tunj_nilai[8] = $pend_tunj_international;
-		$tunj_nilai[9] = $tunj_masa_kerja;
-		$tunj_nilai[10] = $pend_tunj_keluarga;
-		$tunj_nilai[11] = $pend_thr;
-		$tunj_nilai[12] = $pend_tunj_penilaian_kinerja;
-		$tunj_nilai[13] = $pend_tunj_aksel;
-		$tunj_nilai[15] = $tunj_khusus1;
-		$tunj_nilai[16] = $tunj_khusus2;
-		$tunj_nilai[14] = $pend_lain;
+		$tunj_nilai[8] = $tunj_masa_kerja;
+		$tunj_nilai[9] = $pend_tunj_keluarga;
+		$tunj_nilai[10] = $pend_thr;
+		$tunj_nilai[11] = $pend_lembur;
+		$tunj_nilai[12] = $pend_lain;
+		$tunj_nilai[13] = $tunj_khusus1;
+		$tunj_nilai[14] = $tunj_khusus2;
+		$tunj_nilai[15] = $tunj_khusus3;
+		$tunj_nilai[16] = $tunj_khusus4;
+		$tunj_nilai[17] = $tunj_khusus5;
+		
 
 		$label_tunj[1] = 'Honor';
 		$label_tunj[2] = 'T. Jabatan';
 		$label_tunj[3] = 'Transportasi';
 		$label_tunj[4] = 'T. Tetap';
-		$label_tunj[5] = 'Inval';
+		$label_tunj[5] = 'T. Pembinaan';
 		$label_tunj[6] = 'BPJS';
 		$label_tunj[7] = 'Honor Berkala';
-		$label_tunj[8] = 'T. Internasional';
-		$label_tunj[9] = 'T. Masa Kerja';
-		$label_tunj[10] = 'T. Keluarga';
-		$label_tunj[11] = 'THR';
-		$label_tunj[12] = 'T. Penilaian Kinerja';
-		$label_tunj[13] = 'Aksel';
-		$label_tunj[14] = 'Lain-lain';
+		$label_tunj[8] = 'T. Masa Kerja';
+		$label_tunj[9] = 'T. Keluarga';
+		$label_tunj[10] = 'THR';
+		$label_tunj[11] = 'Lembur';
+		$label_tunj[12] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -175,11 +182,9 @@
         $pot_bpjs = $row['pot_bpjs'];
 		$pot_ltq = $row['pot_ltq'];
 		$pot_pph21 = $row['pph21_bulanan'];
-		$pot_lain = $row['pot_lain'];
-		$ket_pot_khusus = $row['ket_pot_khusus'];
-		$pot_khusus = $row['pot_khusus'];
-		
-
+		$pot_lain1 = $row['pot_lain1'];
+		$pot_lain2 = $row['pot_lain2'];
+		$pot_lain3 = $row['pot_lain3'];
 		// $jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_bmt+$pot_tawun+$pot_pph21+$pot_bpjs+$pot_ltq+$pot_pensiun_27+$pot_pensiun_32+$pot_iuran_pensiun+$pot_iuran_jht+$pot_inval+$pot_toko+$pot_lain;
 		
 		$label_pot[1] = 'Infaq Masjid';
@@ -194,8 +199,6 @@
 		$label_pot[10] = 'BPJS';
 		$label_pot[11] = 'LTQ';
 		$label_pot[12] = 'PPh21';
-		$label_pot[13] = 'Lain-lain';
-
 
 		$pot_nilai[1] = $pot_infaq_masjid;
 		$pot_nilai[2] = $pot_anggota_koperasi;
@@ -209,38 +212,75 @@
 		$pot_nilai[10] = $pot_bpjs;
 		$pot_nilai[11] = $pot_ltq;
 		$pot_nilai[12] = $pot_pph21;
-		$pot_nilai[13] = $pot_lain;
-		$pot_nilai[14] = $pot_khusus;
-
 	
-		if($row['ket_pot_khusus'] != 0 || $row['ket_pot_khusus'] != '' ||$row['ket_pot_khusus'] != '0'){
-			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_khusus'].')';
-			$pot_khusus = $row['pot_khusus'];
-			$nill_pot14 = 1;
-		}else{
-			$label_pot[14] = '';
-			$nill_pot14 = 0;
-		}
+
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
-			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$nill_t13 = 1;
+		}else{
+			$label_tunj[13] = '';
+			$nill_t13 = 0;
+		}
+
+		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
+			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$nill_t14 = 1;
+		}else{
+			$label_tunj[14] = '';
+			$nill_t14 = 0;
+		}
+
+		if($row['ket_tunj_khusus3'] != 0 || $row['ket_tunj_khusus3'] != '' ||$row['ket_tunj_khusus3'] != '0'){
+			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
 			$nill_t15 = 1;
 		}else{
 			$label_tunj[15] = '';
 			$nill_t15 = 0;
 		}
 
-		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
-			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+		if($row['ket_tunj_khusus4'] != 0 || $row['ket_tunj_khusus4'] != '' ||$row['ket_tunj_khusus4'] != '0'){
+			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
 			$nill_t16 = 1;
 		}else{
 			$label_tunj[16] = '';
 			$nill_t16 = 0;
 		}
 
-		
-		$row_pendapatan = 14 + $nill_t15 + $nill_t16; //Need change value to follow max row pendapatan
-		$row_potongan = 13 + $nill_pot14; //Need change value to follow max row potongan
+		if($row['ket_tunj_khusus5'] != 0 || $row['ket_tunj_khusus5'] != '' ||$row['ket_tunj_khusus5'] != '0'){
+			$label_tunj[17] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
+			$nill_t17 = 1;
+		}else{
+			$label_tunj[17] = '';
+			$nill_t17 = 0;
+		}
+
+		if($pot_lain1>0){
+			$label_pot[13] = 'Pot. Khusus ('.$row['ket_pot_lain1'].')';
+			$pot_nilai[13] = $pot_lain1;
+			$nil13 = 1;
+		}else{
+			$nil13 = 0;
+		}
+
+		if($pot_lain2>0){
+			$label_pot[14] = 'Pot. Khusus ('.$row['ket_pot_lain2'].')';
+			$pot_nilai[14] = $pot_lain2;
+			$nil14 = 1;
+		}else{
+			$nil14 = 0;
+		}
+
+		if($pot_lain3>0){
+			$label_pot[15] = 'Pot. Khusus ('.$row['ket_pot_lain3'].')';
+			$pot_nilai[15] = $pot_lain3;
+			$nil15 = 1;
+		}else{
+			$nil15 = 0;
+		}
+
+		$row_pendapatan = 17; //Need change value to follow max row pendapatan
+		$row_potongan = 12+$nil13+$nil14+$nil15; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
 		for($a = 1; $a<= $row_pendapatan; $a++){
@@ -323,6 +363,39 @@
 					}
 			}
 		}
+
+		// print_r($array_data_sliptemp);
+		// exit;
+
+		// print_r($array_data_sliptemp);exit;
+		// else{
+		// 	$seq = 1;
+		// 	for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
+		// 		// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
+		// 			// $data_temp = array(
+		// 			// 	'label_tunj' 	=> '',
+		// 			// 	'tunj_nilai' 	=> '',
+		// 			// 	'label_pot' 	=> $label_pot[$b],
+		// 			// 	'pot_nilai' 	=> (int)$pot_nilai[$b]
+		// 			// );
+	
+		// 			for($a=$seq; $a <= 26; $a++){ //Looping sejumlah elemen tunjangan
+		// 				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
+		// 					$data_temp = array(
+		// 						'label_tunj' 	=> $label_tunj[$a],
+		// 						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+		// 						'label_pot' 	=> $label_pot[$b],
+		// 						'pot_nilai' 	=> (int)$pot_nilai[$b]
+		// 					);
+		// 					$seq = $a+1;
+		// 					$a = 26;
+		// 				// }
+		// 			}
+		// 			array_push($array_data_sliptemp, $data_temp);
+		// 		// }
+		// 	}
+		// }
+		
 ?>
 <?php
 	if($flag == 1){
@@ -333,18 +406,16 @@
 ?>
 	<div class="<?php echo $content; ?>">
 		<div>
-			<center><font size="1"><b><?php echo strtoupper($myconfig->name_school) ?></b><font></center>
-			<center><font size="1">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
-			<hr></hr>
+			<center><font size="3"><b><?php echo strtoupper($myconfig->name_school) ?></b><font></center>
+			<center><font size="3">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
 		</div>
-		
+        <br>
 		<div class="informasi">
 			<table style="width:100%; float:left;">
-				<tr>
+				<tr style="border-top:1px solid black">
 					<td style="width: 35px;">NIK</td>
-					<td style="width: 5px;">:</td>
-					<td style=""><?= $row['employee_number']?></td>
-					<td style="text-align:right">Periode 
+					<td style="width: 5px;" colspan="4">: <?= $row['employee_number']?></td>
+					<td style="text-align:right;" colspan="3">Periode 
 					<?php
 					$bulan = $this->mainfunction->periode_bulan(date('m', strtotime($row['effective_date'])));
 					 echo $bulan.' '.$tahun
@@ -352,26 +423,24 @@
 				</tr>
 				<tr style="width:70%">
 					<td>Nama</td>
-					<td>:</td>
-					<td><?= $row['nama'] ?></td>
+					<td colspan="4">: <?= $row['nama'] ?></td>
 				</tr>
 				<?php
 				if($ket=='K'){
 				?>
-				<tr style="width:70%">
+				<tr style="width:100%" style="border-bottom:1px solid black">
 					<td>Jabatan</td>
-					<td>:</td>
-					<td><?= $row['jabatan']."&nbsp;&nbsp; (".$row['jumlah_jam'].")" ?></td>
+					<td colspan="7">: <?= $row['jabatan']."&nbsp;&nbsp; (".$row['jumlah_jam'].")" ?></td>
 				</tr>
 				<?php
 				}else{
 				?>
-				<tr style="width:70%">
+				<tr style="width:70%" style="border-bottom:1px solid black">
 					<td>Unit Kerja</td>
 					<td>:</td>
 					<td>
 					<?php
-						echo $row['desc_unit'];
+						echo $row['status'];
 					?>
 					</td>
 				</tr>
@@ -379,7 +448,6 @@
 				}
 				?>
 			</table>
-			<hr style="margin-top:40px;"></hr>
 		</div>
 		<div class="isidata">
 			<div class="tablekiri">
@@ -389,12 +457,11 @@
 						<td colspan="4">Potongan-potongan</td>
 					</tr>
 					<tr>
-						<td width="9px;">No</td>
-						<td width="120px;">Keterangan</td>
-						<td width="45px;" style="text-align : right;">Nominal (Rp)</td>
-						<td width="20px;"> </td>
-						<td width="118px;">Keterangan</td>
-						<td width="70px;" style="text-align : right;">Nominal (Rp)</td>
+						<td width="9px;" style="text-align : center;">No</td>
+						<td width="120px;" style="text-align : center;">Keterangan</td>
+						<td width="45px;" style="text-align : center;" colspan="2">Nominal (Rp)</td>
+						<td width="118px;" style="text-align : center;" colspan="2">Keterangan</td>
+						<td width="70px;" style="text-align : center;" colspan="2">Nominal (Rp)</td>
                     </tr>
 					<?php
 						$no = 1;
@@ -406,20 +473,19 @@
 					?>
 					
 						<tr>
-							<td><?= $no ?></td>
+							<td style="text-align : center;"><?= $no ?></td>
 							<td><?= $rows['label_tunj'] ?></td>
-							<td style="text-align:right">
+							<td style="text-align:right; padding-right:10px;" colspan="2">
 								<?php
 									if($rows['tunj_nilai'] != ''){
 										echo number_format($rows['tunj_nilai']);
 									}
 								?>
 							</td>
-							<td></td>
-							<td><?= $rows['label_pot'] ?></td>
-							<td style="text-align:right">
+							<td colspan="2"><?= $rows['label_pot'] ?></td>
+							<td style="text-align:right" colspan="2">
 							<?php
-									if($rows['pot_nilai'] != ''){
+									if($rows['pot_nilai'] != '' || $rows['pot_nilai'] != 0){
 										echo number_format($rows['pot_nilai']);
 									}
 								?>
@@ -434,7 +500,6 @@
 						if($ket!='K'){
 							$tambahan = ($row['attribute_1']*$row['attribute_2'])+($row['attribute_3']*$row['attribute_4'])+($row['attribute_5']*$row['attribute_6'])+($row['attribute_7']*$row['attribute_8']);
 							$jumlah_pend = $jumlah_pend+$tambahan;
-							if($tambahan != 0 || $tambahan){
 					?>
 						<?php
 							if($row['attribute_1']!='' || $row['attribute_2']!=''){
@@ -451,10 +516,9 @@
 						</tr>
 						<?php
 							}
-							}
 						?>
 						<?php
-							if($row['attribute_5']!=0 || $row['attribute_7']!=0){
+							if($row['attribute_5']!='' || $row['attribute_7']!=''){
 						?>
 						<tr>
 							<td></td>
@@ -475,46 +539,35 @@
 					
 				</table>
 			</div>
-			<hr style="margin-top:1px;"></hr>
 			<table>
-					<tr>
-						<td width="125px;">Gaji kotor</td>
-						<td width="44px;" style="text-align:right"> </td>
-						<td width="227px;" style="text-align:right" colspan=""><?= number_format((int)$jumlah_pend) ?></td>
+					<tr  style="border-top:1px solid black">
+						<td width="125px;" colspan="6">Gaji kotor</td>
+						<td width="227px;" style="text-align:right" colspan="2"><?= number_format($jumlah_pend) ?></td>
 					</tr>
-					<tr>
-						<td width="125px;">Total Potongan</td>
-						<td width="44px;" style="text-align:right"> </td>
-						<td width="165px;" style="text-align:right" colspan=""><?= number_format((int)$jumlah_pot) ?></td>
+					<tr  style="border-bottom:1px solid black">
+						<td width="125px;" colspan="6">Total Potongan</td>
+						<td width="165px;" style="text-align:right" colspan="2"><?= number_format((int)$jumlah_pot) ?></td>
 					</tr>
 			</table>
-			<hr style="margin-top:1px;"></hr>
 			<table>
 					<tr>
-						<td width="125px;">Gaji bersih</td>
-						<td width="141px;"> </td>
-						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
+						<td width="125px;" colspan="6">Gaji bersih</td>
+						<td width="68px;" style="text-align:right" colspan="2">Rp_ <?php echo number_format($total) ?></td>
 					</tr>
 			</table>
 		</div> 
+        <br><br>
 		<div class="footerslip">
-            <br><br><br>
+            <br><br>
 			<table>  
 				<tr>
-					<td width="220px; text-align:center;"> </td>
-					<td width="100px; text-align:center;"><?= $tgl ?></td>
+					<td width="220px; text-align:center;" colspan="5"> </td>
+					<?php  $tgl = $this->mainfunction->tgl_indo(date('Y-m-d')); ?>
+					<td width="100px; text-align:center;" style="text-align:center" colspan="3"><?= $tgl ?></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">Penerima</td>
-				</tr>
-				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
-				</tr>
-				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="220px; text-align:center;" colspan="5"></td>
+					<td width="100px; text-align:center;" style="text-align:center" colspan="3">Penerima</td>
 				</tr>
 				<tr>
 					<td width="220px; text-align:center;"></td>
@@ -525,8 +578,16 @@
 					<td width="100px; text-align:center;"></td>
 				</tr>
 				<tr>
+					<td width="220px; text-align:center;" colspan="5"></td>
+					<td width="100px; text-align:center;"  style="text-align:center"colspan="3">(.......................................)</td>
+				</tr>
+                <tr>
 					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">(.......................................)</td>
+					<td width="100px; text-align:center;"></td>
+				</tr>
+                <tr>
+					<td width="220px; text-align:center;"></td>
+					<td width="100px; text-align:center;"></td>
 				</tr>
 			</table>
 		</div>

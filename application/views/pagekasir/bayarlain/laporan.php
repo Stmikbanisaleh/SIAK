@@ -42,7 +42,7 @@ $Kelas = $row->Kelas;
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
   </tr>
   <tr>
-    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Telp. (021) 59391134</th>
+    <th align="left"><span style="font-family:Rockwell;font-size: 12px;">Telp. <?php echo strtoupper($myconfig->no_telp) ?></th>
     <th align="left"><span style="font-family:Rockwell;font-size: 12px;"></th>
   </tr>
 </table>

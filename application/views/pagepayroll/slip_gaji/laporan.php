@@ -293,34 +293,76 @@
 	
 
 		$array_data_sliptemp = array();
+		$array_index_pend = 0;
+		$array_index_pot = 0;
+		$array_data_sliptemp[0] = array(
+			'label_tunj' 	=> '',
+			'tunj_nilai' 	=> '',
+			'label_pot' 	=> '',
+			'pot_nilai' 	=> ''
+		);
 		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
 
 			$seq = 1;
 			for($a = 1; $a<= $row_pendapatan; $a++){ //Looping sejumlah elemen tunjangan
-				// if($tunj_nilai[$a] > 0){ // Jika terdapat tunjangan dengan nilai lebih dari 0
-					$data_temp = array(
-						'label_tunj' 	=> $label_tunj[$a],
-						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
-						'label_pot' 	=> '',
-						'pot_nilai' 	=> ''
-					);
-	
-					for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
-						// if($pot_nilai[$b] > 0){ //jika terdapat potongan dengan nilai lebih dari 0
-							$data_temp = array(
+					$v_label_tunj = '';
+					$v_tunj_nilai = 0;
+
+					if($label_tunj[$a] == 'Honor Berkala'){
+						continue;
+					}
+					if(count($array_data_sliptemp)>$array_index_pend	){
+						$v_label_pot = $array_data_sliptemp[$array_index_pend]['label_pot'];
+						$v_pot_nilai = $array_data_sliptemp[$array_index_pend]['pot_nilai'];
+					}else{
+						$v_label_pot = '';
+						$v_pot_nilai = 0;
+					}
+					iF($label_tunj[$a] == 'T. Keluarga' || $label_tunj[$a] == 'T. Tetap'){
+						if((int)$tunj_nilai[$a] != 0 || (int)$tunj_nilai[$a] != ''){
+							$array_data_sliptemp[$array_index_pend] = array(
 								'label_tunj' 	=> $label_tunj[$a],
 								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+								'label_pot' 	=> $v_label_pot,
+								'pot_nilai' 	=> $v_pot_nilai
+							);
+							$array_index_pend++;
+							$v_label_tunj = $label_tunj[$a];
+							$v_tunj_nilai = (int)$tunj_nilai[$a];
+						}
+					}else{
+						$array_data_sliptemp[$array_index_pend] = array(
+							'label_tunj' 	=> $label_tunj[$a],
+							'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+							'label_pot' 	=> $v_label_pot,
+							'pot_nilai' 	=> $v_pot_nilai
+						);
+						$array_index_pend++;
+						$v_label_tunj = $label_tunj[$a];
+						$v_tunj_nilai = (int)$tunj_nilai[$a];
+
+					}
+
+					for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
+							$array_pot = array(
+								'label_tunj' 	=> $v_label_tunj,
+								'tunj_nilai' 	=> $v_tunj_nilai,
 								'label_pot' 	=> $label_pot[$b],
 								'pot_nilai' 	=> (int)$pot_nilai[$b]
 							);
 							$seq = $b+1;
 							$b = $row_potongan;
 						// }
+						$array_data_sliptemp[$array_index_pot] = $array_pot;
+						$array_index_pot++;
 					}
-					array_push($array_data_sliptemp, $data_temp);
-				// }
 			}
 		}
+
+		// print_r($array_data_sliptemp);
+		// exit;
+
+		// print_r($array_data_sliptemp);exit;
 		// else{
 		// 	$seq = 1;
 		// 	for($b = 1; $b<= 16; $b++){ //looping sejumlah element potongan
@@ -359,7 +401,7 @@
 ?>
 	<div class="<?php echo $content; ?>">
 		<div>
-			<center><font size="1"><b>SEKOLAH ISLAM TERPADU GEMA NURANI</b><font></center>
+			<center><font size="1"><b><?php echo strtoupper($myconfig->name_school) ?></b><font></center>
 			<center><font size="1">TANDA BUKTI PENERIMAAN GAJI / HONOR<font></center>
 			<hr></hr>
 		</div>
@@ -429,15 +471,6 @@
 						foreach($array_data_sliptemp as $rows){
 							$jumlah_pend = $jumlah_pend+(int)$rows['tunj_nilai'];
 							$jumlah_pot = $jumlah_pot+(int)$rows['pot_nilai'];
-							iF($rows['label_tunj'] == 'T. Keluarga' || $rows['label_tunj'] == 'T. Tetap'){
-								if($rows['tunj_nilai'] == 0 || $rows['tunj_nilai'] == ''){
-									continue;
-								}
-							}
-							
-							if($rows['label_tunj'] == 'Honor Berkala'){
-								continue;
-							}
 					?>
 					
 						<tr>
@@ -454,7 +487,7 @@
 							<td><?= $rows['label_pot'] ?></td>
 							<td style="text-align:right">
 							<?php
-									if($rows['pot_nilai'] != ''){
+									if($rows['pot_nilai'] != '' || $rows['pot_nilai'] != 0){
 										echo number_format($rows['pot_nilai']);
 									}
 								?>

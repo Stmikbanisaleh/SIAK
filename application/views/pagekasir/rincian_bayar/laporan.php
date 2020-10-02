@@ -52,9 +52,9 @@
     </head>
     <body>
         <div class="headers">
-            <center><font size="4"><b>SEKOLAH ISLAM TERPADU GEMA NURANI</b><font></center>
-            <center><font size="2">Jl. Raya Kaliabang Tengah No.75B, RT.003/RW.006, Kaliabang Tengah,<font></center>
-            <center><font size="2">Kec. Bekasi Utara, Kota Bks, Jawa Barat 17125<font></center>
+            <center><font size="4"><b><?php echo strtoupper($myconfig->name_school) ?></b><font></center>
+            <center><font size="2"><?php echo explode('Kec', $myconfig->address)[0] ?><font></center>
+            <center><font size="2"><?php echo 'Kec'.explode('Kec', $myconfig->address)[1] ?><font></center>
             
         </div>
         <div class="content">

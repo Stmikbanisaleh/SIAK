@@ -46,11 +46,14 @@ class Kartubayar extends CI_Controller {
         $pilihan_pertama = $this->input->post('pilihan_pertama');  
         $dari = $this->input->post('dari'); 
         $sampai = $this->input->post('sampai');
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
         $data = array(
             'tgl'         => $tgl,
             'siswa'         => $nis,
             'dari'        => $dari,
-            'sampai'      => $sampai
+            'sampai'      => $sampai,
+			'myconfig'		=> $myconfig
 
         );
         $this->pdf->setPaper('FOLIO', 'potrait');

@@ -169,7 +169,7 @@
                 <tr>
                     <th width="30%" align="left"><span style="font-family:Rockwell;font-size: 10px;"></th>
                     <th width="40%" rowspan="3"><span style="font-family:Rockwell;font-size: 16px;"><b>KARTU PEMBAYARAN</b><br>
-                            <b>SMP MUTIARA INSAN NUSANTARA</b>
+                            <b><?php echo strtoupper($myconfig->name_school) ?></b>
                     </th>
                     <th width="30%"></th>
                 </tr>
