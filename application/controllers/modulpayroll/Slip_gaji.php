@@ -117,6 +117,8 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_karyawan($my_gaji, $bulan, $tahun, $tgl)
 	{
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
 		ini_set('memory_limit', '300M');
 		$this->load->library('pdf');
 		$data = array(
@@ -125,6 +127,7 @@ class Slip_gaji extends CI_Controller
 			'tahun'		=> $tahun,
 			'ket'		=> 'K',
 			'tgl'		=> $tgl,
+			'myconfig'		=> $myconfig
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		// $customPaper = array(0,0,254,396);
@@ -136,6 +139,8 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_pdf_guru($my_gaji, $bulan, $tahun)
 	{
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
 		ini_set('memory_limit', '300M');
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$this->load->library('pdf');
@@ -145,7 +150,8 @@ class Slip_gaji extends CI_Controller
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
 			'ket'		=> 'G',
-			'tgl'		=> $tgl
+			'tgl'		=> $tgl,
+			'myconfig'		=> $myconfig
 		);
 		$this->pdf->setPaper('FOLIO', 'potrait');
 		$this->pdf->load_view('pagepayroll/slip_gaji/laporanguru', $data);
@@ -154,28 +160,35 @@ class Slip_gaji extends CI_Controller
 
 	public function laporan_excel_karyawan($my_gaji, $bulan, $tahun)
 	{
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
+		print_r($myconfig);exit;
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
 			'ket'		=> 'K',
-			'tgl'		=> $tgl
+			'tgl'		=> $tgl,
+			'myconfig'		=> $myconfig
 		);
-		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+		$this->template->load('pagepayroll/slip_gaji/laporan_excel_kar', $data);
 	}
 
 	public function laporan_excel_guru($my_gaji, $bulan, $tahun)
 	{
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$data = array(
 			'mygaji'      	=> $my_gaji,
 			'bulan'		=> $bulan,
 			'tahun'		=> $tahun,
 			'ket'		=> 'G',
-			'tgl'		=> $tgl
+			'tgl'		=> $tgl,
+			'myconfig'		=> $myconfig
 		);
 
-		$this->template->load('pagepayroll/slip_gaji/laporan_excel', $data);
+		$this->template->load('pagepayroll/slip_gaji/laporan_excel_guru', $data);
 	}
 }

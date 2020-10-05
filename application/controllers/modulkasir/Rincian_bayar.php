@@ -36,6 +36,8 @@ class Rincian_bayar extends CI_Controller {
     public function laporan_pdf(){
         $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
         $this->load->library('pdf');
+		$this->load->model('kasir/model_bayar');
+		$myconfig = $this->model_bayar->view('sys_config')->row();
         $explode = explode('-', $this->input->post('siswa'));
         $nis = $explode[0];
         $nama = $explode[1];
@@ -65,7 +67,8 @@ class Rincian_bayar extends CI_Controller {
                 'kelas'             => $kelas->nama,
                 'tgl'               => $tgl,
                 'ta'                => $this->input->post('th_akad'),
-                'nama_kelas'        => $nama_kelas
+                'nama_kelas'        => $nama_kelas,
+                'myconfig'		=> $myconfig
             );
 
 
