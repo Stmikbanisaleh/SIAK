@@ -169,46 +169,46 @@ class Master_potongan extends CI_Controller
 					if (empty($value[0])) {
 						array_push($empty_message, "No at row "  . $keys . " Kode Karyawan harus di isi");
 					}
-					if (empty($value[1])) {
+					if (empty($value[2])) {
 						array_push($empty_message, "No at row "  . $keys . " Infaq harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[2])) {
+					if (empty($value[3])) {
 						array_push($empty_message, "No at row "  . $keys . "Anggota koperasi harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[3])) {
+					if (empty($value[4])) {
 						array_push($empty_message, "No at row "  . $keys . "Kas Bon harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[4])) {
+					if (empty($value[5])) {
 						array_push($empty_message, "No at row "  . $keys . "Ijin Telat harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[5])) {
+					if (empty($value[6])) {
 						array_push($empty_message, "No at row "  . $keys . "Pinjaman Koperasi / BMT harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[6])) {
+					if (empty($value[7])) {
 						array_push($empty_message, "No at row "  . $keys . "Gemart / Koperasi harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[7])) {
+					if (empty($value[8])) {
 						array_push($empty_message, "No at row "  . $keys . "Inval harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[8])) {
+					if (empty($value[9])) {
 						array_push($empty_message, "No at row "  . $keys . "Toko al Hamra harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[9])) {
+					if (empty($value[10])) {
 						array_push($empty_message, "No at row "  . $keys . "Ta'wun harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[10])) {
+					if (empty($value[11])) {
 						array_push($empty_message, "No at row "  . $keys . "BPJS harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[11])) {
+					if (empty($value[12])) {
 						array_push($empty_message, "No at row "  . $keys . "LTQ harus di isi, Tulis 0 jika tidak ada ");
 					}
 					if (empty($value[13])) {
 						array_push($empty_message, "No at row "  . $keys . "Lain 1 harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[15])) {
+					if (empty($value[16])) {
 						array_push($empty_message, "No at row "  . $keys . "Lain 2 harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[17])) {
+					if (empty($value[18])) {
 						array_push($empty_message, "No at row "  . $keys . "Lain 3 harus di isi, Tulis 0 jika tidak ada ");
 					}
 					if (!empty($empty_message)) {
@@ -219,23 +219,23 @@ class Master_potongan extends CI_Controller
 						$getid = $this->model_mastpotongan->getnip($value[0]);
 						$arrayCustomerQuote = array(
 							'id_karyawan' => $getid[0]['id_biodata'],
-							'infaq_masjid' => $value[1],
-							'anggota_koperasi' => $value[2],
-							'kas_bon' => $value[3],
-							'ijin_telat' => $value[4],
-							'bmt' => $value[5],
-							'koperasi' => $value[6],
-							'inval' => $value[7],
-							'toko' => $value[8],
-							'tawun' => $value[9],
-							'bpjs' => $value[10],
-							'ltq' => $value[11],
-							'ket_lain1' => $value[12],
-							'lain1' => $value[13],
-							'ket_lain2' => $value[14],
-							'lain2' => $value[15],
-							'ket_lain3' => $value[16],
-							'lain3' => $value[17],
+							'infaq_masjid' => $value[2],
+							'anggota_koperasi' => $value[3],
+							'kas_bon' => $value[4],
+							'ijin_telat' => $value[5],
+							'bmt' => $value[6],
+							'koperasi' => $value[7],
+							'inval' => $value[8],
+							'toko' => $value[9],
+							'tawun' => $value[10],
+							'bpjs' => $value[11],
+							'ltq' => $value[12],
+							'ket_lain1' => $value[13],
+							'lain1' => $value[14],
+							'ket_lain2' => $value[15],
+							'lain2' => $value[16],
+							'ket_lain3' => $value[17],
+							'lain3' => $value[18],
 							'jht' => 0,
 							'pph21' => 0,
 						);
