@@ -163,28 +163,28 @@ class Pendapatanlainkaryawan extends CI_Controller
 					if (empty($value[0])) {
 						array_push($empty_message, "No at row "  . $keys . " NIP harus di isi");
 					}
-					if (empty($value[1])) {
+					if (empty($value[2])) {
 						array_push($empty_message, "No at row "  . $keys . " Pendapatan Lain harus di isi, Tulis 0 jika tidak ada ");
 					}
-					if (empty($value[2])) {
+					if (empty($value[3])) {
 						array_push($empty_message, "No at row "  . $keys . " Tunjangan Lembur harus di isi, Tulis 0 jika tidak ada");
 					}
-					if (empty($value[3])) {
+					if (empty($value[4])) {
 						array_push($empty_message, "No at row "  . $keys . "THR harus di isi, Tulis 0 jika tidak ada");
 					}
-					if ($value[5] == "") {
+					if ($value[6] == "") {
 						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 1 harus di isi, Tulis 0 jika tidak ada");
 					}
-					if ($value[7] == "") {
+					if ($value[8] == "") {
 						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 2 harus di isi, Tulis 0 jika tidak ada");
 					}
-					if ($value[9] == "") {
+					if ($value[10] == "") {
 						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 3 harus di isi, Tulis 0 jika tidak ada");
 					}
-					if ($value[11] == "") {
+					if ($value[12] == "") {
 						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 4 harus di isi, Tulis 0 jika tidak ada");
 					}
-					if ($value[13] == "") {
+					if ($value[14] == "") {
 						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 5 harus di isi, Tulis 0 jika tidak ada");
 					}
 					if (!empty($empty_message)) {
@@ -195,19 +195,19 @@ class Pendapatanlainkaryawan extends CI_Controller
 						$getid = $this->model_pendapatanlainkaryawan->getnip($value[0]);
 						$arrayCustomerQuote = array(
 							'nip' => $getid[0]['id_biodata'],
-							'lain' => $value[1],
-							'tj_malam_lembur' => $value[2],
-							'thr' => $value[3],
-							'ket_tunj_khusus1' => $value[4],
-							'tunj_khusus1' => $value[5],
-							'ket_tunj_khusus2' => $value[6],
-							'tunj_khusus2' => $value[7],
-							'ket_tunj_khusus3' => $value[8],
-							'tunj_khusus3' => $value[9],
-							'ket_tunj_khusus4' => $value[10],
-							'tunj_khusus4' => $value[11],
-							'ket_tunj_khusus5' => $value[12],
-							'tunj_khusus5' => $value[13],
+							'lain' => $value[2],
+							'tj_malam_lembur' => $value[3],
+							'thr' => $value[4],
+							'ket_tunj_khusus1' => $value[5],
+							'tunj_khusus1' => $value[6],
+							'ket_tunj_khusus2' => $value[7],
+							'tunj_khusus2' => $value[8],
+							'ket_tunj_khusus3' => $value[9],
+							'tunj_khusus3' => $value[10],
+							'ket_tunj_khusus4' => $value[11],
+							'tunj_khusus4' => $value[12],
+							'ket_tunj_khusus5' => $value[13],
+							'tunj_khusus5' => $value[14],
 							'createdAt' => date('Y-m-d H:i:s'),
 							'isdeleted' => 0,
 						);
