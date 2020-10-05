@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Masuk </label>
                                 <div class="col-sm-3">
-                                    <input type="number" maxlength="4" id="tahun" name="tahun" placeholder="2020" class="form-control" />
+                                    <input type="number" maxlength="4" required id="tahun" name="tahun" placeholder="2020" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tahun Akademik </label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="tahunakad" name="tahunakad" placeholder="2020/2021" class="form-control" />
+                                    <input type="text" id="tahunakad" maxlength="9" required name="tahunakad" placeholder="2020/2021" class="form-control" />
                                 </div>
                             </div>
                         </div>
