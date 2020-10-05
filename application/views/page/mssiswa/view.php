@@ -8,17 +8,17 @@
 	&nbsp;
 	<div class="col-xs-1">
         <button href="#my-modal3" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-            <a class="ace-icon fa fa-upload bigger-120"></a>Import Data Custom
+            <a class="ace-icon fa fa-upload bigger-120"></a>Import Data
 		</button>
 		
 	</div>
 	&nbsp;
 	&nbsp;
-	<div class="col-xs-1">
+	<!-- <div class="col-xs-1">
         <button href="#my-modal4" role="button" data-toggle="modal" class="btn btn-xs btn-success">
             <a class="ace-icon fa fa-upload bigger-120"></a>Import Data 
 		</button>
-    </div>
+    </div> -->
     <br>
     <br>
     <form class="form-horizontal" role="form" id="formSearch">
@@ -115,7 +115,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Catatan </label>
 								<div class="col-sm-9">
-									<a href="<?php echo base_url() . 'assets/siswa.xls'; ?>" for="form-field-1"> Sample Download </label></a>
+									<a href="<?php echo base_url() . 'assets/siswa.xlsx'; ?>" for="form-field-1"> Sample Download </label></a>
 								</div>
 							</div>
                     </div>
