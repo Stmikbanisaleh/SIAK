@@ -404,6 +404,7 @@ class Mssiswa extends CI_Controller
 						'NOINDUK'  => $value[0]
 					);
                     $arrayCustomerQuote = array(
+                        'NOINDUK' => $value[0],
                         'PASSWORD' => hash('sha512', md5($value[17])),
                         'NOREG' => $value[1],
                         'NMSISWA' => $value[2],
@@ -420,8 +421,19 @@ class Mssiswa extends CI_Controller
                         'KELURAHAN' => $value[13],
                         'KECAMATAN' => $value[14],
                         'NMBAPAK'   => $value[15],
-						'NMIBU' => $value[16],
-                        'NOINDUK' => $value[17],
+						'NIKBAPAK' => $value[16],
+                        'NMIBU'   => $value[17],
+						'NIKIBU'   => $value[18],
+                        'KDPOS'   => $value[19],
+                        'ANAKKE'   => $value[20],
+						'BERATBADAN'  => $value[21],
+						'TINGGIBADAN' => $value[22],
+						'STATUSANAK' => $value[23],
+						'JMLSAUDARA' => $value[24],
+						'JARAK' => $value[25],
+						'KENDARAAN' => $value[26],
+						'PEKERJAANORTU' => $value[27],
+						'PEKERJAANORTU2' => $value[28],
                         'createdAt'    => date('Y-m-d H:i:s')
 					);
 					$cek = $this->model_mssiswa->view_where_noisdelete($data_id, 'mssiswa')->num_rows();
