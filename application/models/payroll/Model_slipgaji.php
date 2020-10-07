@@ -122,7 +122,7 @@ class Model_slipgaji extends CI_model
                                     WHERE MONTH(tp.effective_date) BETWEEN ".$bulan_awal." AND ".$bulan_akhir."
                                     AND YEAR(tp.effective_date) = ".$tahun."
                                     AND tp.isDeleted != 1");
-        }
+		}
         
     }
 

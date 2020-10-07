@@ -96,7 +96,6 @@ class Slip_gaji extends CI_Controller
 			);
 		}
 		// print_r($this->input->post());
-		// print_r($this->db->last_query());
 		// print_r($this->input->post('tipe_gaji'));exit;
 		if ($this->input->post('tipe_laporan') == 'P') {
 			if ($this->input->post('tipe_gaji') == 'K') {
