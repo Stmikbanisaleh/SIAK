@@ -20,7 +20,7 @@ class Rekap_gajikaryawan extends CI_Controller
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$my_sekolah = $this->model_rekapgkar->view_sekolah()->result_array();
 			$this->load->model('payroll/model_honorguru');
-			$myunit = $this->model_honorguru->view_unit2();
+			$myunit = $this->model_rekapgkar->view_unit()->result_array();
 			$data = array(
 				'page_content' 	=> '../pagepayroll/rekap_gajikaryawan/view',
 				'ribbon' 		=> '<li class="active">Rekap Gaji Karyawan</li><li>Rekap Gaji Karyawan</li>',
