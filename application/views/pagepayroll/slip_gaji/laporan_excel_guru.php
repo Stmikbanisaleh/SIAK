@@ -289,27 +289,27 @@ header("Expires:0");
 						$v_pot_nilai = 0;
 					}
 					iF($label_tunj[$a] == 'T. Keluarga' || $label_tunj[$a] == 'T. Tetap'){
-						if((int)$tunj_nilai[$a] != 0 || (int)$tunj_nilai[$a] != ''){
+						if($tunj_nilai[$a] != 0 || $tunj_nilai[$a] != ''){
 							$array_data_sliptemp[$array_index_pend] = array(
 								'label_tunj' 	=> $label_tunj[$a],
-								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+								'tunj_nilai' 	=> $tunj_nilai[$a],
 								'label_pot' 	=> $v_label_pot,
 								'pot_nilai' 	=> $v_pot_nilai
 							);
 							$array_index_pend++;
 							$v_label_tunj = $label_tunj[$a];
-							$v_tunj_nilai = (int)$tunj_nilai[$a];
+							$v_tunj_nilai = $tunj_nilai[$a];
 						}
 					}else{
 						$array_data_sliptemp[$array_index_pend] = array(
 							'label_tunj' 	=> $label_tunj[$a],
-							'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+							'tunj_nilai' 	=> $tunj_nilai[$a],
 							'label_pot' 	=> $v_label_pot,
 							'pot_nilai' 	=> $v_pot_nilai
 						);
 						$array_index_pend++;
 						$v_label_tunj = $label_tunj[$a];
-						$v_tunj_nilai = (int)$tunj_nilai[$a];
+						$v_tunj_nilai = $tunj_nilai[$a];
 
 					}
 
@@ -318,7 +318,7 @@ header("Expires:0");
 								'label_tunj' 	=> $v_label_tunj,
 								'tunj_nilai' 	=> $v_tunj_nilai,
 								'label_pot' 	=> $label_pot[$b],
-								'pot_nilai' 	=> (int)$pot_nilai[$b]
+								'pot_nilai' 	=> $pot_nilai[$b]
 							);
 							$seq = $b+1;
 							$b = $row_potongan;
@@ -400,8 +400,8 @@ header("Expires:0");
 						$jumlah_pend = 0;
 						$jumlah_pot = 0;
 						foreach($array_data_sliptemp as $rows){
-							$jumlah_pend = $jumlah_pend+(int)$rows['tunj_nilai'];
-							$jumlah_pot = $jumlah_pot+(int)$rows['pot_nilai'];
+							$jumlah_pend = $jumlah_pend+$rows['tunj_nilai'];
+							$jumlah_pot = $jumlah_pot+$rows['pot_nilai'];
 					?>
 					
 						<tr>
@@ -410,7 +410,7 @@ header("Expires:0");
 							<td style="text-align:right; padding-right:10px;" colspan="2">
 								<?php
 									if($rows['tunj_nilai'] != ''){
-										echo number_format($rows['tunj_nilai']);
+										echo $rows['tunj_nilai'];
 									}
 								?>
 							</td>
@@ -418,7 +418,7 @@ header("Expires:0");
 							<td style="text-align:right" colspan="2">
 							<?php
 									if($rows['pot_nilai'] != ''){
-										echo number_format($rows['pot_nilai']);
+										echo $rows['pot_nilai'];
 									}
 								?>
 							</td>
@@ -426,7 +426,7 @@ header("Expires:0");
 					<?php
 						$no++;
 						}
-						$total = (int)$jumlah_pend-(int)$jumlah_pot;
+						$total = $jumlah_pend-$jumlah_pot;
 					?>
 					<?php
 						if($ket!='K'){
@@ -476,11 +476,11 @@ header("Expires:0");
 			<table>
 					<tr style="border-top:1px solid black">
 						<td width="125px;" colspan="6">Gaji kotor</td>
-						<td width="227px;" style="text-align:right" colspan="2"><?= number_format((int)$jumlah_pend) ?></td>
+						<td width="227px;" style="text-align:right" colspan="2"><?= number_format($jumlah_pend) ?></td>
 					</tr>
 					<tr style="border-bottom:1px solid black">
 						<td width="125px;" colspan="6">Total Potongan</td>
-						<td width="165px;" style="text-align:right" colspan="2"><?= number_format((int)$jumlah_pot) ?></td>
+						<td width="165px;" style="text-align:right" colspan="2"><?= number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
 			<table>
