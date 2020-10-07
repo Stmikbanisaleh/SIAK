@@ -162,7 +162,6 @@ class Slip_gaji extends CI_Controller
 	{
 		$this->load->model('kasir/model_bayar');
 		$myconfig = $this->model_bayar->view('sys_config')->row();
-		print_r($myconfig);exit;
 		$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 		$data = array(
 			'mygaji'      	=> $my_gaji,
