@@ -79,7 +79,7 @@
 				<div class="col-sm-3">
 					<select class="form-control" name="sekolah" id="sekolah">
 						<option value="">-- Pilih Sekolah --</option>
-						<?php foreach ($mysekolah as $value) { ?>
+						<?php foreach ($mysekolah as $value){ ?>
 							<?php if ($mysiswa->kodesekolah == $value['kodesekolah']) {
 								echo "<option value='" . $value['kodesekolah'] . "' selected>" . $value['sekolah']  . "-" . $value['NamaJurusan'] .  "</option>";
 							} else {
