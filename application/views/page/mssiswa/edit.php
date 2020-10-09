@@ -81,6 +81,7 @@
 						<option value="">-- Pilih Sekolah --</option>
 						<?php foreach ($mysekolah as $value) { ?>
 							<?php if ($mysiswa->PS == $value['KDTBPS']) {
+								
 								echo "<option value='" . $value['KDTBPS'] . "' selected>" . $value['DESCRTBPS']  . "-" . $value['DESCRTBJS'] .  "</option>";
 							} else {
 								echo "<option value='" . $value['KDTBPS'] . "'>" . $value['DESCRTBPS'] . "-" . $value['DESCRTBJS'] . "</option>";
