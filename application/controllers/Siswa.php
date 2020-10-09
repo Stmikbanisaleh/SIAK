@@ -378,6 +378,7 @@ class Siswa extends CI_Controller
         }
     }
 
+
     public function delete()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -385,6 +386,7 @@ class Siswa extends CI_Controller
             $data_id = array(
                 'ID'  => $this->input->post('id')
             );
+            
             $data = array(
                 'isdeleted'  => 1,
             );
