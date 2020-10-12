@@ -52,6 +52,13 @@ if ($jabatan == 19) { ?>
 						Import Pembayaran Formulir
 					</a>
 				</li>
+				<li class="">
+					<a href="<?= base_url() . 'siswa'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Biodata Siswa
+					</a>
+					<b class="arrow"></b>
+				</li>
 			</ul>
 		</li>
 	</ul>
