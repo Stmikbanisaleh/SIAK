@@ -94,10 +94,10 @@
 							} else if (data == 401) {
 								document.getElementById("formImport").reset();
 								swalIdDouble();
-							} else {
+							}else {
 								document.getElementById("formImport").reset();
 								swalInputFailed();
-								window.location.href = '<?php echo base_url("modulkasir/impbayar"); ?>';
+								// window.location.href = '<?php echo base_url("modulkasir/impbayar"); ?>';
 							}
 						}
 					});

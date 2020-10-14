@@ -266,36 +266,27 @@
 			'label_pot' 	=> '',
 			'pot_nilai' 	=> ''
 		);
+		// print_r($label_tunj);exit;
 		if($cek_row_tunj>=$cek_row_pot || $cek_row_tunj<=$cek_row_pot){//Masuk kondisi baris tunjangan lebih banyak dari potongan
 
 			$seq = 1;
 			for($a = 1; $a<= $row_pendapatan; $a++){ //Looping sejumlah elemen tunjangan
-					$v_label_tunj = '';
-					$v_tunj_nilai = 0;
+					
+				$v_label_tunj = '';
+				$v_tunj_nilai = 0;
 
-					if($label_tunj[$a] == 'Honor Berkala'){
-						continue;
-					}
-					if(count($array_data_sliptemp)>$array_index_pend	){
+				if($label_tunj[$a] == 'Honor Berkala'){
+					continue;
+				}
+				if(count($array_data_sliptemp)>$array_index_pend	){
 						$v_label_pot = $array_data_sliptemp[$array_index_pend]['label_pot'];
 						$v_pot_nilai = $array_data_sliptemp[$array_index_pend]['pot_nilai'];
-					}else{
-						$v_label_pot = '';
-						$v_pot_nilai = 0;
-					}
-					iF($label_tunj[$a] == 'T. Keluarga' || $label_tunj[$a] == 'T. Tetap'){
-						if((int)$tunj_nilai[$a] != 0 || (int)$tunj_nilai[$a] != ''){
-							$array_data_sliptemp[$array_index_pend] = array(
-								'label_tunj' 	=> $label_tunj[$a],
-								'tunj_nilai' 	=> (int)$tunj_nilai[$a],
-								'label_pot' 	=> $v_label_pot,
-								'pot_nilai' 	=> $v_pot_nilai
-							);
-							$array_index_pend++;
-							$v_label_tunj = $label_tunj[$a];
-							$v_tunj_nilai = (int)$tunj_nilai[$a];
-						}
-					}else{
+				}else{
+					$v_label_pot = '';
+					$v_pot_nilai = 0;
+				}
+				iF($label_tunj[$a] == 'T. Keluarga' || $label_tunj[$a] == 'T. Tetap'){
+					if((int)$tunj_nilai[$a] != 0 || (int)$tunj_nilai[$a] != ''){
 						$array_data_sliptemp[$array_index_pend] = array(
 							'label_tunj' 	=> $label_tunj[$a],
 							'tunj_nilai' 	=> (int)$tunj_nilai[$a],
@@ -305,24 +296,43 @@
 						$array_index_pend++;
 						$v_label_tunj = $label_tunj[$a];
 						$v_tunj_nilai = (int)$tunj_nilai[$a];
-
 					}
+				}else{
+					$array_data_sliptemp[$array_index_pend] = array(
+						'label_tunj' 	=> $label_tunj[$a],
+						'tunj_nilai' 	=> (int)$tunj_nilai[$a],
+						'label_pot' 	=> $v_label_pot,
+						'pot_nilai' 	=> $v_pot_nilai
+					);
+					$array_index_pend++;
+					$v_label_tunj = $label_tunj[$a];
+					$v_tunj_nilai = (int)$tunj_nilai[$a];
 
-					for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
-							$array_pot = array(
-								'label_tunj' 	=> $v_label_tunj,
-								'tunj_nilai' 	=> $v_tunj_nilai,
-								'label_pot' 	=> $label_pot[$b],
-								'pot_nilai' 	=> (int)$pot_nilai[$b]
-							);
-							$seq = $b+1;
-							$b = $row_potongan;
-						// }
-						$array_data_sliptemp[$array_index_pot] = $array_pot;
-						$array_index_pot++;
-					}
+				}
+				// if(count($array_data_sliptemp)==14){
+				// 	echo count($array_data_sliptemp);
+				// 	echo $array_index_pend;
+				// 	echo $label_tunj[$a];
+				// 	echo $a;
+				// 	print_r($array_data_sliptemp);exit;
+				// }
+				
+				for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
+						$array_pot = array(
+							'label_tunj' 	=> $v_label_tunj,
+							'tunj_nilai' 	=> $v_tunj_nilai,
+							'label_pot' 	=> $label_pot[$b],
+							'pot_nilai' 	=> (int)$pot_nilai[$b]
+						);
+						$seq = $b+1;
+						$b = $row_potongan;
+
+					$array_data_sliptemp[$array_index_pot] = $array_pot;
+					$array_index_pot++;
+				}
 			}
 		}
+		// print_r($array_data_sliptemp);exit;
 ?>
 <?php
 	if($flag == 1){
@@ -500,33 +510,41 @@
 		<div class="footerslip">
             <br><br><br>
 			<table>  
-				<tr>
-					<td width="220px; text-align:center;"> </td>
-					<td width="100px; text-align:center;"><?= $tgl ?></td>
+			<tr>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<?php  $tgl = $this->mainfunction->tgl_indo(date('Y-m-d')); ?>
+					<td width="80px; text-align:center;"><?= $tgl ?></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">Penerima</td>
+					<td width="80px; text-align:center;">Penerima</td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;">Direktur Keuangan</td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">(.......................................)</td>
+					<td width="80px; text-align:center;">(.......................................)</td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;">(<?php echo $myconfig->keuangan ?>)</td>
 				</tr>
 			</table>
 		</div>

@@ -162,7 +162,7 @@ class Impbayar extends CI_Controller
 
 	public function import()
 	{
-		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('nama') != null )  {
+		if ($this->session->userdata('kodekaryawan') != null && $this->session->userdata('namakasir') != null )  {
 			$files = $_FILES;
 			$file = $files['file'];
 			$fname = $file['tmp_name'];

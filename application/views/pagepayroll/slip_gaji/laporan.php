@@ -187,7 +187,7 @@
 		$label_pot[3] = 'Kasbon';
 		$label_pot[4] = 'Izin / Telat';
 		$label_pot[5] = 'Gemart';
-		$label_pot[6] = 'BMT';
+		$label_pot[6] = 'Pinjaman Koperasi';
 		$label_pot[7] = 'Inval';
 		$label_pot[8] = 'Toko Al Hamra';
 		$label_pot[9] = 'Taawun';
@@ -308,7 +308,7 @@
 					$v_label_tunj = '';
 					$v_tunj_nilai = 0;
 
-					if($label_tunj[$a] == 'Honor Berkala'){
+					if($label_tunj[$a] == 'Honor Berkala' || $label_tunj[$a] == 'Lembur'){
 						continue;
 					}
 					if(count($array_data_sliptemp)>$array_index_pend	){
@@ -559,7 +559,7 @@
 					<tr>
 						<td width="125px;">Gaji bersih</td>
 						<td width="141px;"> </td>
-						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($total) ?></td>
+						<td width="131px;" style="text-align:right">Rp_ <?php echo number_format($total) ?></td>
 					</tr>
 			</table>
 		</div> 
@@ -567,33 +567,40 @@
             <br><br><br>
 			<table>  
 				<tr>
-					<td width="220px; text-align:center;"> </td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
 					<?php  $tgl = $this->mainfunction->tgl_indo(date('Y-m-d')); ?>
-					<td width="100px; text-align:center;"><?= $tgl ?></td>
+					<td width="80px; text-align:center;"><?= $tgl ?></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">Penerima</td>
+					<td width="80px; text-align:center;">Penerima</td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;">Direktur Keuangan</td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;"></td>
+					<td width="80px; text-align:center;"></td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;"></td>
 				</tr>
 				<tr>
-					<td width="220px; text-align:center;"></td>
-					<td width="100px; text-align:center;">(.......................................)</td>
+					<td width="80px; text-align:center;">(.......................................)</td>
+					<td width="225px;"> <td>
+					<td width="80px; text-align:center;">(<?php echo $myconfig->keuangan ?>)</td>
 				</tr>
 			</table>
 		</div>

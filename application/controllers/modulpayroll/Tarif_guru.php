@@ -30,7 +30,7 @@ class Tarif_guru extends CI_Controller
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
-			$this->load->view('pagepayroll/login'); //Memanggil function render_view
+			$this->load->view('pagepayroll/login'); //Memanggil function render_vieww
 		}
 	}
 
