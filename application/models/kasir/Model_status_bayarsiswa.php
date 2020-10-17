@@ -73,7 +73,8 @@ class Model_status_bayarsiswa extends CI_model
                                     WHERE pms.NIS = ms.NOINDUK
                                         AND dbs.kodejnsbayar = tb.Kodejnsbayar
                                         AND pms.TA = tb.TA
-                                    LIMIT 1), "-") kelas,
+                                    LIMIT 1), "-") kelas_old,
+                                    bn.kelas,
                                     tb.TA,
                                     FORMAT(tb.Nominal, 0) tarif_berlaku,
                                     FORMAT((SELECT
@@ -131,6 +132,7 @@ class Model_status_bayarsiswa extends CI_model
                                 AND jp.wajib_bayar = "Y"
                                 '.$where_thnakad.'
                                 AND tb.ThnMasuk = bn.Thnmasuk
+                                GROUP BY bn.Thnmasuk, bn.TA, bn.Kelas, ms.NOINDUK, tb.idtarif
                                 ORDER BY tb.TA DESC, jp.namajenisbayar ASC');
     }
 
