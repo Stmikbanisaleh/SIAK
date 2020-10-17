@@ -304,18 +304,21 @@
 						'label_pot' 	=> $v_label_pot,
 						'pot_nilai' 	=> $v_pot_nilai
 					);
+					// if(count($array_data_sliptemp)==14){
+					// 	echo count($array_data_sliptemp);
+					// 	echo $array_index_pend;
+					// 	echo $array_index_pot;
+					// 	echo $label_tunj[$a];
+					// 	echo $a;
+					// 	echo $seq;
+					// 	echo $array_index_pot;
+					// 	print_r($array_data_sliptemp);exit;
+					// }
 					$array_index_pend++;
 					$v_label_tunj = $label_tunj[$a];
 					$v_tunj_nilai = (int)$tunj_nilai[$a];
 
 				}
-				// if(count($array_data_sliptemp)==14){
-				// 	echo count($array_data_sliptemp);
-				// 	echo $array_index_pend;
-				// 	echo $label_tunj[$a];
-				// 	echo $a;
-				// 	print_r($array_data_sliptemp);exit;
-				// }
 				
 				for($b=$seq; $b <= $row_potongan; $b++){ //looping sejumlah element potongan
 						$array_pot = array(
@@ -330,9 +333,14 @@
 					$array_data_sliptemp[$array_index_pot] = $array_pot;
 					$array_index_pot++;
 				}
+				// echo "<br>";
+				// echo "a".$a."-".$v_label_tunj."-".$array_index_pend."<br>";
+				// echo "b".$seq."-".$v_label_pot."-".$array_index_pot."<br>";
+				// echo "=====<br>";
 			}
 		}
-		// print_r($array_data_sliptemp);exit;
+		// exit;
+		print_r($array_data_sliptemp);exit;
 ?>
 <?php
 	if($flag == 1){

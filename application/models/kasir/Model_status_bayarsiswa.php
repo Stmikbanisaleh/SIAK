@@ -130,7 +130,7 @@ class Model_status_bayarsiswa extends CI_model
                                 AND tb.TA = bn.TA
                                 AND jp.wajib_bayar = "Y"
                                 '.$where_thnakad.'
-                                AND tb.ThnMasuk = (SELECT substring(bnk.TA, 6, 8)-bnk.Kelas from baginaikkelas bnk where bnk.nis = ms.NOINDUK AND bn.TA = bnk.TA limit 1)
+                                AND tb.ThnMasuk = bn.Thnmasuk
                                 ORDER BY tb.TA DESC, jp.namajenisbayar ASC');
     }
 
