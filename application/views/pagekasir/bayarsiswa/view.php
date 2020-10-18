@@ -337,7 +337,7 @@
 </div>
 <hr>
 <br>
-<div class="table-responsive">
+<!-- <div class="table-responsive">
     <table id="table_id3" class="display">
         <thead>
             <tr>
@@ -357,7 +357,7 @@
 
         </tbody>
     </table>
-</div>
+</div> -->
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -367,7 +367,7 @@
         });
         $('#table_id').DataTable();
         $('#table_id2').DataTable();
-        $('#table_id3').DataTable();
+        // $('#table_id3').DataTable();
     });
 </script>
 
@@ -555,49 +555,49 @@
                     }
                 });
 
-                $.ajax({
-                    type: 'POST',
-                    url: '<?php echo site_url('modulkasir/bayarsiswa/search_pemb_sekolah_q2') ?>',
-                    data: $('#formSearch').serialize(),
-                    async: true,
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
-                            'Periksa');
-                        var html = '';
-                        var i = 0;
-                        var no = 1;
-                        for (i = 0; i < data.length; i++) {
-                            html += '<tr>' +
-                                '<td class="text-center">' + no + '</td>' +
-                                '<td>' + data[i].NIS + '</td>' +
-                                '<td>' + data[i].Kelas + '</td>' +
-                                '<td>' + data[i].tglentri + '</td>' +
-                                '<td>' + data[i].namajenisbayar + '</td>' +
-                                '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
-                                '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
-                                '<td>' + formatRupiah(data[i].sisa) + '</td>' +
-                                '<td>' + data[i].useridd + '</td>' +
-                                '<td>' + data[i].TA + '</td>' +
-                                '</tr>';
-                            no++;
-                        }
-                        $("#table_id3").dataTable().fnDestroy();
-                        var a = $('#show_data3').html(html);
-                        //                    $('#mydata').dataTable();
-                        if (a) {
-                            $('#table_id3').dataTable({
-                                "bPaginate": true,
-                                "bLengthChange": false,
-                                "bFilter": true,
-                                "bInfo": false,
+                // $.ajax({
+                //     type: 'POST',
+                //     url: '<?php echo site_url('modulkasir/bayarsiswa/search_pemb_sekolah_q2') ?>',
+                //     data: $('#formSearch').serialize(),
+                //     async: true,
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+                //             'Periksa');
+                //         var html = '';
+                //         var i = 0;
+                //         var no = 1;
+                //         for (i = 0; i < data.length; i++) {
+                //             html += '<tr>' +
+                //                 '<td class="text-center">' + no + '</td>' +
+                //                 '<td>' + data[i].NIS + '</td>' +
+                //                 '<td>' + data[i].Kelas + '</td>' +
+                //                 '<td>' + data[i].tglentri + '</td>' +
+                //                 '<td>' + data[i].namajenisbayar + '</td>' +
+                //                 '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
+                //                 '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
+                //                 '<td>' + formatRupiah(data[i].sisa) + '</td>' +
+                //                 '<td>' + data[i].useridd + '</td>' +
+                //                 '<td>' + data[i].TA + '</td>' +
+                //                 '</tr>';
+                //             no++;
+                //         }
+                //         $("#table_id3").dataTable().fnDestroy();
+                //         var a = $('#show_data3').html(html);
+                //         //                    $('#mydata').dataTable();
+                //         if (a) {
+                //             $('#table_id3').dataTable({
+                //                 "bPaginate": true,
+                //                 "bLengthChange": false,
+                //                 "bFilter": true,
+                //                 "bInfo": false,
 
-                            });
+                //             });
 
-                        }
-                        /* END TABLETOOLS */
-                    }
-                });
+                //         }
+                //         /* END TABLETOOLS */
+                //     }
+                // });
 
             }
         })
