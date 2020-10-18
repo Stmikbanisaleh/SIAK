@@ -86,7 +86,7 @@ class Tunggakan extends CI_Controller
         $data = array(
             'idsaldo'  => $this->input->post('id'),
         );
-        $my_data = $this->model_tunggakan->view_where('saldopembayaran_sekolah', $data)->result();
+		$my_data = $this->model_tunggakan->view_where('saldopembayaran_sekolah', $data)->result();
         echo json_encode($my_data);
     }
 
@@ -108,9 +108,18 @@ class Tunggakan extends CI_Controller
 				if (count($calonsiswa) > 0) {
 					foreach ($calonsiswa as $value) {
 						$tarif = $this->db->query("SELECT
-					SUM(tarif_berlaku.Nominal)AS total
-					FROM tarif_berlaku
-					WHERE kodesekolah='$value[PS]' AND `status`='T' AND ThnMasuk=(SELECT substring(bn.TA, 6, 8)-bn.Kelas from baginaikkelas bn where bn.NIS = '".$value['NOINDUK']."' limit 1) and TA = '".$thn."' AND Kodejnsbayar IN('SPP')");
+													SUM(tb.Nominal)AS total
+													FROM tarif_berlaku tb
+													JOIN baginaikkelas bn ON bn.NIS = '$value[NOINDUK]'
+													WHERE tb.kodesekolah='$value[PS]'
+													AND tb.kodesekolah = bn.Kodesekolah
+													AND tb.status = 'T' 
+													AND tb.TA = bn.TA
+													AND tb.ThnMasuk = bn.Thnmasuk
+													AND tb.ThnMasuk = '$thnmasuk'
+													AND tb.ta = '$thn'
+													AND bn.Kelas = '$kelass'
+													AND tb.Kodejnsbayar = 'SPP'");
 						$n = $tarif->num_rows();
 						if ($tarif) {
 							$v = $tarif->result_array();

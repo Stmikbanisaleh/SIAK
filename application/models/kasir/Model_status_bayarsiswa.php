@@ -128,6 +128,7 @@ class Model_status_bayarsiswa extends CI_model
                                 JOIN jenispembayaran jp ON jp.Kodejnsbayar = tb.Kodejnsbayar
                                 JOIN baginaikkelas bn ON bn.nis = ms.NOINDUK
                                 WHERE ms.NOINDUK = "'.$nis.'"
+                                AND jp.Kodejnsbayar NOT IN ("FRM")
                                 AND tb.TA = bn.TA
                                 AND jp.wajib_bayar = "Y"
                                 '.$where_thnakad.'
