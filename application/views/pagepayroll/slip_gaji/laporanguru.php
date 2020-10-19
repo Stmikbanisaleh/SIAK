@@ -418,17 +418,26 @@
 						$no = 1;
 						$jumlah_pend = 0;
 						$jumlah_pot = 0;
+						$pembanding_pend = array("NA");
 						foreach($array_data_sliptemp as $rows){
-							$jumlah_pend = $jumlah_pend+(int)$rows['tunj_nilai'];
+							$ltunj = $rows['label_tunj'];
+							$ntunj = $rows['tunj_nilai'];
+							foreach($pembanding_pend as $abc){
+								if($rows['label_tunj']==$abc){
+									$ltunj = "";
+									$ntunj = "";
+								}
+							}
+							$jumlah_pend = $jumlah_pend+(int)$ntunj;
 							$jumlah_pot = $jumlah_pot+(int)$rows['pot_nilai'];
 					?>
 					
 						<tr>
 							<td><?= $no ?></td>
-							<td><?= $rows['label_tunj'] ?></td>
+							<td><?= $ltunj ?></td>
 							<td style="text-align:right">
 								<?php
-									if($rows['tunj_nilai'] != ''){
+									if($ntunj != ''){
 										echo number_format($rows['tunj_nilai']);
 									}
 								?>
@@ -450,6 +459,8 @@
 						// 	unset($array_data_sliptemp[$key]);
 						// }
 						$no++;
+						
+						array_push($pembanding_pend, $rows['label_tunj']);
 						}
 						$total = (int)$jumlah_pend-(int)$jumlah_pot;
 					?>
@@ -515,8 +526,8 @@
 			<table>
 					<tr>
 						<td width="125px;">Gaji bersih</td>
-						<td width="141px;"> </td>
-						<td width="68px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
+						<td width="44px;"> </td>
+						<td width="230px;" style="text-align:right">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
 					</tr>
 			</table>
 		</div> 
