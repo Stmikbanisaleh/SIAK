@@ -340,7 +340,7 @@
 			}
 		}
 		// exit;
-		print_r($array_data_sliptemp);exit;
+		// print_r($array_data_sliptemp);exit;
 ?>
 <?php
 	if($flag == 1){
@@ -444,6 +444,11 @@
 							</td>
 						</tr>
 					<?php
+						// unset($rows['tunj_nilai']);
+						// foreach (array_keys($array_data_sliptemp, $rows['label_tunj']) as $key) {
+						// 	echo $rows['label_tunj'];
+						// 	unset($array_data_sliptemp[$key]);
+						// }
 						$no++;
 						}
 						$total = (int)$jumlah_pend-(int)$jumlah_pot;
