@@ -148,7 +148,7 @@ class Pengambilanformulir extends CI_Controller
                     'Namacasis' => strtoupper($this->input->post('nama')),
                     'email' => $this->input->post('email'),
                     'TelpHp' => strtoupper($this->input->post('telp')),
-                    'thnmasuk' => $tahun,
+                    'thnmasuk' => substr($this->input->post('tahunakademik'), 0, 4),
                     'kodesekolah'  => $this->input->post('sekolah'),
                     'tglentri' => $this->input->post('tanggal'),
                     'userentri' => $this->session->userdata('nip'),
