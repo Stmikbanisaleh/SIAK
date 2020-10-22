@@ -33,8 +33,9 @@ class Model_pembuatan extends CI_model
         DATE_FORMAT(b.tglentri,'%d-%m-%Y')tglbayar,b.useridd,b.TotalBayar,CONCAT('Rp. ',FORMAT(b.TotalBayar,2)) as totalbayar2,
         c.DESCRTBPS, d.DESCRTBJS from pembayaran_sekolah b 
         join calon_siswa a on b.Noreg = a.Noreg
+        join detail_bayar_sekolah e on b.Nopembayaran = e.Nopembayaran
         join tbps c on b.kodesekolah = c.KDTBPS
-        join tbjs d on c.KDTBJS = d.KDTBJS WHERE b.Noreg NOT IN(SELECT Noreg FROM mssiswa) Order by b.Nopembayaran desc
+        join tbjs d on c.KDTBJS = d.KDTBJS WHERE b.Noreg NOT IN(SELECT Noreg FROM mssiswa) and e.kodejnsbayar = 'FRM' Order by b.Nopembayaran desc
         ");
     }
 
