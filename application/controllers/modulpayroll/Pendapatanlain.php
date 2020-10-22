@@ -218,6 +218,7 @@ class Pendapatanlain extends CI_Controller
 			'jam1' => $this->input->post('e_jam1'),
 			'tarif1' => $this->input->post('e_tarif1_v'),
 			'jam2' => $this->input->post('e_jam2'),
+			'inval' => $this->input->post('e_inval_v'),
 			'tarif2' => $this->input->post('e_tarif2_v'),
 			'jam3' => $this->input->post('e_jam3'),
 			'tarif3' => $this->input->post('e_tarif3_v'),
