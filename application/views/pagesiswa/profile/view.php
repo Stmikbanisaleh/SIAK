@@ -39,7 +39,7 @@
 							</div>
 
 							<div class="col-xs-12 col-sm-9">
-								<div class="center">
+								<!-- <div class="center">
 									<span class="btn btn-app btn-sm btn-light no-hover">
 										<span class="line-height-1 bigger-170 blue"> 1,411 </span>
 
@@ -81,7 +81,7 @@
 										<br />
 										<span class="line-height-1 smaller-90"> Contacts </span>
 									</span>
-								</div>
+								</div> -->
 
 								<div class="space-12"></div>
 
@@ -146,7 +146,6 @@
 											<span class="editable" id="login"><?php echo $result[0]['NMIBU']; ?></span>
 										</div>
 									</div>
-									<br>
 									<br>
 								</div>
 

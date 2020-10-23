@@ -20,20 +20,35 @@ class Dashboard extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nis') != null) {
-            $idthnakademik = $this->configfunction->getidthnakd();
-            $th_akademik = $idthnakademik[0]['ID'];
-            $visit = $this->model_siswa->count_visit()->result();
-            $click = $this->model_siswa->count_click()->result();
-            $guru = $this->model_siswa->count_guru()->result();
+            $idthnakademik = $this->configfunction->getthnakd2();
+            $th_akademik = $idthnakademik[0]['THNAKAD'];
+            // $visit = $this->model_siswa->count_visit()->result();
+            // $click = $this->model_siswa->count_click()->result();
+            // $guru = $this->model_siswa->count_guru()->result();
             $siswa = $this->model_siswa->count_siswa($th_akademik)->result();
+            $kelas = $this->model_siswa->kelas_siswa($th_akademik, $this->session->userdata('nis'))->row();
+            if(!empty($kelas)){
+                $kelas_siswa = $Kelas->kelas;
+                $kd_sekolah = $Kelas->PS;
+            }else{
+                $kelas_siswa = 0;
+                $kd_sekolah = 0;
+            }
+            $jml_siswa = $this->model_siswa->jumlah_siswa_bykelas($th_akademik, $kd_sekolah, $kelas_siswa)->row();
+            $spp_siswa = $this->model_siswa->nominal_spp($th_akademik, $kd_sekolah, $kelas_siswa, $this->session->userdata('nis'))->row();
+            if(!empty($spp_siswa)){
+                $tarif_spp = $spp_siswa->Nominal;
+            }else{
+                $tarif_spp = 0;
+            }
             $data = array(
                 'page_content'     => 'dashboard',
                 'ribbon'         => '',
                 'page_name'     => 'Home',
-                'visit'         => $visit,
-                'click'         => $click,
-                'guru'          => $guru,
-                'siswa'         => $siswa
+                'kelas'         => $kelas,
+                'jml_siswa'         => $jml_siswa,
+                'tarif_spp'     => $tarif_spp
+
             );
             $this->render_view($data); //Memanggil function render_view
         } else {

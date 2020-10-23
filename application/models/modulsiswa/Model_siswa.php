@@ -72,4 +72,63 @@ class Model_siswa extends CI_model
     {
         return $this->db->query("SELECT COUNT(DISTINCT NIS) pengguna FROM tbkrs WHERE periode=$th_akademik");
     }
+
+    public function cek_kelas($th_akademik, $nis)
+    {
+        return $this->db->query("SELECT
+                                    b.Kelas
+                                FROM
+                                mssiswa m
+                                JOIN baginaikkelas b ON b.NIS = m.NOINDUK
+                                WHERE m.NOINDUK = '$nis'
+                                AND b.TA = '$th_akademik'
+                                ORDER BY b.TA DESC
+                                LIMIT 1");
+    }
+
+    public function kelas_siswa($th_akademik, $nis)
+    {
+        return $this->db->query("SELECT
+                                    b.Kelas, m.PS
+                                FROM
+                                mssiswa m
+                                JOIN baginaikkelas b ON b.NIS = m.NOINDUK
+                                WHERE m.NOINDUK = '$nis'
+                                AND b.TA = '$th_akademik'
+                                ORDER BY b.TA DESC
+                                LIMIT 1");
+    }
+
+    public function jumlah_siswa_bykelas($th_akademik, $kodesekolah, $kelas)
+    {
+        return $this->db->query("SELECT
+                                    count(m.NOINDUK) jml_siswa
+                                FROM
+                                mssiswa m
+                                JOIN baginaikkelas b ON b.NIS = m.NOINDUK
+                                AND m.TAHUN = b.Thnmasuk
+                                AND b.Kodesekolah = m.PS
+                                AND m.ps = '$kodesekolah'
+                                AND b.TA = '$th_akademik'
+                                AND b.Kelas = '$kelas'");
+    }
+
+    public function nominal_spp($th_akademik, $kodesekolah, $kelas, $nis)
+    {
+        return $this->db->query("SELECT
+                                    tb.Nominal
+                                FROM
+                                mssiswa m
+                                JOIN baginaikkelas b ON b.NIS = m.NOINDUK
+                                JOIN tarif_berlaku tb ON b.Thnmasuk = tb.ThnMasuk
+                                AND tb.TA = b.TA
+                                AND tb.kodesekolah = m.PS
+                                AND tb.Kodejnsbayar ='SPP'
+                                AND m.TAHUN = b.Thnmasuk
+                                AND b.Kodesekolah = m.PS
+                                AND m.ps = '$kodesekolah'
+                                AND b.TA = '$th_akademik'
+                                AND b.Kelas = '$kelas'
+                                AND m.NOINDUK = '$nis'");
+    }
 }
