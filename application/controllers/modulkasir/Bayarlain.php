@@ -52,7 +52,7 @@ class Bayarlain extends CI_Controller {
 		$result = $this->model_bayar->getsiswa2($ta[0]['THNAKAD'],$siswa)->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
         foreach ($result as $value) {
-            echo "<option value='" . $value['idtarif'] . "'>[".$value['sekolah']."] - [T.MASUK - ".$value['TA']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
+            echo "<option value='" . $value['idtarif'] . "'> [T.MASUK - ".$value['TA']."]  - [TA - ".$value['tea']."]  - [".$value['namajenisbayar']."] - [".$value['Nominal2']."] </option>";
         }
 	}
 
