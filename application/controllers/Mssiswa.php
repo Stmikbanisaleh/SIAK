@@ -345,7 +345,7 @@ class Mssiswa extends CI_Controller
                         'JK' => $value[5],
                         'AGAMA' => $value[6],
                         'TAHUN' => $value[7],
-                        'PS' => $value[8],
+                        // 'PS' => $value[8],
                         'KDWARGA' => $value[9],
                         'EMAIL' => $value[10],
                         'TELP' => $value[11],
