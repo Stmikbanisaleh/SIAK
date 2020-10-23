@@ -38,7 +38,7 @@ class Profile extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nis') != null) {
 
             $data = array(
                 'page_content'     => '../pagesiswa/profile/view',
