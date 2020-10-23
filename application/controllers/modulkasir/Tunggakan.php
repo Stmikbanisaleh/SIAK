@@ -51,7 +51,7 @@ class Tunggakan extends CI_Controller
 			$my_data = $this->db->query("SELECT
 			saldopembayaran_sekolah.idsaldo,NIS,
 			saldopembayaran_sekolah.Noreg,
-			(SELECT z.NMSISWA FROM mssiswa z WHERE z.NOREG = saldopembayaran_sekolah.Noreg) AS Namacasis,
+			(SELECT z.NMSISWA FROM mssiswa z WHERE z.NOREG = saldopembayaran_sekolah.Noreg limit 1) AS Namacasis,
 			saldopembayaran_sekolah.TotalTagihan,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.TotalTagihan,2)) as totaltagihan2,
 			saldopembayaran_sekolah.Bayar,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Bayar,2)) as bayar2,
 			saldopembayaran_sekolah.Sisa,CONCAT('Rp. ',FORMAT(saldopembayaran_sekolah.Sisa,2)) as sisa2,
