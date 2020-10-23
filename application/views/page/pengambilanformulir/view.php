@@ -24,9 +24,9 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No Registrasi </label>
                                 <div class="col-sm-6">
                                     <?php
-                                    $tahun = date("Y");
+                                    $tahun = date('Y');
                                     $noreg = $this->db->query("SELECT
-                                    RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa WHERE thnmasuk='$tahun' ORDER BY Noreg DESC")->row();
+                                    RIGHT(calon_siswa.Noreg+1,4)AS Noreg FROM calon_siswa ORDER BY Noreg DESC")->row();
                                     if (empty($noreg)) {
                                         $no = '0001';
                                     } else {
