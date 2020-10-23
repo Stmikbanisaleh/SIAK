@@ -169,6 +169,7 @@ class Configfunction
     {
         $result = $this->CI->db->query('SELECT THNAKAD FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2)')->result_array();
         return $result;
+        
     }
 
     public function getidta()
