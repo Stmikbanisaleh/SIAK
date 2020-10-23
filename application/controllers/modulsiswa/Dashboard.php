@@ -28,8 +28,8 @@ class Dashboard extends CI_Controller
             $siswa = $this->model_siswa->count_siswa($th_akademik)->result();
             $kelas = $this->model_siswa->kelas_siswa($th_akademik, $this->session->userdata('nis'))->row();
             if(!empty($kelas)){
-                $kelas_siswa = $Kelas->kelas;
-                $kd_sekolah = $Kelas->PS;
+                $kelas_siswa = $kelas->Kelas;
+                $kd_sekolah = $kelas->PS;
             }else{
                 $kelas_siswa = 0;
                 $kd_sekolah = 0;

@@ -1,95 +1,3 @@
-<!-- <div class="row">
-	<div class="space-6"></div>
-
-	<div class="col-sm-12 infobox-container">
-		<div class="infobox infobox-green">
-			<div class="infobox-icon ">
-				<i class="ace-icon fa fa-users"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">Siswa</span>
-				<div class="infobox-content">Jumlah Siswa</div>
-			</div>
-
-			<div class="stat stat-success"><?=$siswa[0]->pengguna?></div>
-		</div>
-
-		<div class="infobox infobox-blue">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-eye"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">Visit</span>
-				<div class="infobox-content">Jumlah Pengunjung</div>
-			</div>
-
-			
-			<div class="stat stat-success"><?=$visit[0]->visit?></div>
-		</div>
-
-		<div class="infobox infobox-pink">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-book"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">Klik</span>
-				<div class="infobox-content">Jumlah Klik</div>
-			</div>
-			<div class="stat stat-success"><?=$click[0]->klik?></div>
-		</div>
-
-		<div class="infobox infobox-red">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-credit-card"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">Guru</span>
-				<div class="infobox-content">Jumlah Guru</div>
-			</div>
-
-			<div class="stat stat-success"><?=$guru[0]->guru?></div>
-		</div>
-	</div>
-
-	
-	</div>
-</div> -->
-
-<!-- <div class="hr hr32 hr-dotted"></div> -->
-<!-- <div class="container">     -->
-	<!-- <div class="row">
-		<div class="panel panel-default col-md-7">
-		<div class="panel-heading">  <h4 >User Profile</h4></div>
-		<div class="panel-body">
-			<div class="col-md-2 col-xs-12 col-sm-6 col-lg-3">
-				<img class="col-md-11" alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-
-			</div>
-			<div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
-				<div class="container" >
-					<h2>Ima Rahmayanti</h2>
-					<p><b>SD-REGULER</b></p>
-				
-				</div>
-					<hr>
-						<ul class="container details" >
-							<li><p><span class="glyphicon" style="width:130px;">NIS</span>: 2021334572</p></li>
-							<li><p><span class="glyphicon" style="width:130px;">Jenis Kelamin</span>: Perempuan</p></li>
-							<li><p><span class="glyphicon" style="width:130px;">Tempat, Tgl Lahir</span>: Cianjur, 21 Januari 2020</p></li>
-							<li><p><span class="glyphicon" style="width:130px;">Phone</span>: 0857123333</p></li>
-							<li><p><span class="glyphicon" style="width:130px;">Email</span>: somerandom@email.com</p></li>
-						</ul>
-					<hr>
-				<div class="col-sm-5 col-xs-6 tital " >Date Of Joining: 15 Jun 2016</div>
-			</div>
-		</div>
-	</div> -->
-<!-- </div> -->
-<!-- /.row -->
 <div class="row">
 	<div class="col-lg-3 col-md-6">
 		<div class="panel panel-primary">
@@ -102,7 +10,7 @@
 						<div class="huge">
 						<?php
 							if(!empty($kelas)){
-								echo $Kelas->kelas;
+								echo $kelas->Kelas;
 							}else{
 								echo "Belum mendapat kelas";
 							}
@@ -215,50 +123,6 @@
 							</div>
 
 							<div class="col-xs-12 col-sm-9">
-								<!-- <div class="center">
-									<span class="btn btn-app btn-sm btn-light no-hover">
-										<span class="line-height-1 bigger-170 blue"> 1,411 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Views </span>
-									</span>
-
-									<span class="btn btn-app btn-sm btn-yellow no-hover">
-										<span class="line-height-1 bigger-170"> 32 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Followers </span>
-									</span>
-
-									<span class="btn btn-app btn-sm btn-pink no-hover">
-										<span class="line-height-1 bigger-170"> 4 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Projects </span>
-									</span>
-
-									<span class="btn btn-app btn-sm btn-grey no-hover">
-										<span class="line-height-1 bigger-170"> 23 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Reviews </span>
-									</span>
-
-									<span class="btn btn-app btn-sm btn-success no-hover">
-										<span class="line-height-1 bigger-170"> 7 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Albums </span>
-									</span>
-
-									<span class="btn btn-app btn-sm btn-primary no-hover">
-										<span class="line-height-1 bigger-170"> 55 </span>
-
-										<br />
-										<span class="line-height-1 smaller-90"> Contacts </span>
-									</span>
-								</div> -->
-
 								<div class="space-12"></div>
 
 								<div class="profile-user-info profile-user-info-striped">
@@ -336,15 +200,6 @@
 					<!-- PAGE CONTENT ENDS -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->
-			<div class="row">
-				
-				<!-- <div class="card border-info mb-3">
-				<div class="card-body text-success">
-					<h5 class="card-title">SEKOLAH ISLAM TERPADU GEMA NURANI</h5> 
-					<p class="card-text">Selamat datang pada halaman dashboard siswa. </p>
-				</div>
-				</div> -->
-			</div>
 		</div><!-- /.page-content -->
 	</div>
 	</div><!-- /.main-content -->
