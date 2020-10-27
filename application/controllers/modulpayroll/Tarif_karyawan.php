@@ -66,7 +66,12 @@ class Tarif_karyawan extends CI_Controller
 			if ($unit_kerja == 1 || $unit_kerja == 9 || $unit_kerja == 10 || $unit_kerja == 11) {
 				$honor = $this->model_tarif_karyawan->gethonortk($masakerja)->result_array();
 			} else {
-				$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
+				if(!empty($masakerja)){
+					$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
+				} else {
+					$honor = $this->model_tarif_karyawan->gethonor(date('Y-m-d'))->result_array();
+				}
+
 			}
 			$return = $honor[0]['honor_berkala'];
 			return $return;
