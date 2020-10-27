@@ -29,9 +29,17 @@ class Model_pendapatanlainkaryawan extends CI_model
     public function cek_karyawan($nip,$periode)
     {
         return $this->db->query("SELECT * FROM tbpendapatanlainkaryawan where nip ='".$nip."' and MONTH(periode) = '".$periode."'");
+	}
+	
+	public function getformat()
+    {
+        return $this->db->query("SELECT b.nip, b.nama, a.lain, a.tj_malam_lembur, a.thr,
+		 a.ket_tunj_khusus1, a.tunj_khusus1, a.ket_tunj_khusus2, a.tunj_khusus2,a.ket_tunj_khusus3,
+		 a.tunj_khusus3, a.ket_tunj_khusus4, a.tunj_khusus4, a.ket_tunj_khusus5, a.tunj_khusus5 
+		FROM tbpendapatanlainkaryawan a join biodata_karyawan b on a.nip = b.nip order by b.nama asc");
     }
 
-
+	
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->where('isdeleted !=', 1);

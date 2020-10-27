@@ -230,4 +230,109 @@ class Pendapatanlainkaryawan extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+
+	public function downloadsample()
+	{
+		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+		include 'PHPExcel/IOFactory.php';
+		$objPHPExcel = new PHPExcel();
+		$idtarif = $this->model_pendapatanlainkaryawan->getformat()->result_array();
+		$data = $idtarif;
+		$no = 1;
+		$row = 2;
+		if (count($data) > 0) {
+			if ($data) {
+				$key = array_keys($data[0]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'NIP');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Nama Karyawan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Tunjangan Lain');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Tunjangan Malam / Lembur');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'THR');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Keterangan Tunj Khusus 1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Nominal Khusus 1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Keterangan Tunj Khusus 2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Nominal Khusus 2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Keterangan Tunj Khusus 3');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Nominal Khusus 3');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'Keterangan Tunj Khusus 4');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M1', 'Nominal Khusus 4');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Keterangan Tunj Khusus 5');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'Nominal Khusus 5');
+
+				foreach ($data as $dataExcel) {
+					
+					$objPHPExcel->getActiveSheet(0)->getStyle('A' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $row, $dataExcel['nip'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('A')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('B' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B' . $row, $dataExcel['nama'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('B')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C' . $row, $dataExcel['lain'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('C')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('D' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D' . $row, $dataExcel['tj_malam_lembur'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('D')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E' . $row, $dataExcel['thr'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $dataExcel['ket_tunj_khusus1'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('G' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $dataExcel['tunj_khusus1'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $dataExcel['ket_tunj_khusus2'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $dataExcel['tunj_khusus2'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('J' . $row, $dataExcel['ket_tunj_khusus3'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('K' . $row, $dataExcel['tunj_khusus3'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('L' . $row, $dataExcel['ket_tunj_khusus4'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('L')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('M' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('M' . $row, $dataExcel['tunj_khusus4'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('M')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('N' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('N' . $row, $dataExcel['ket_tunj_khusus5'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('N')->setAutoSize(true);
+
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('O' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('O' . $row, $dataExcel['tunj_khusus5'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('O')->setAutoSize(true);
+
+					$row++;
+					$no++;
+				}
+				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+				header('Content-Disposition: attachment; filename=template_pendapatanlain_karyawan.xls');
+				header('Cache-Control: max-age=0');
+				ob_end_clean();
+				ob_start();
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+				$objWriter->save('php://output');
+			}
+		}
+	}
 }
