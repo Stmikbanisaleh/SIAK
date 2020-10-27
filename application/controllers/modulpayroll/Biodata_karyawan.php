@@ -190,6 +190,7 @@ class Biodata_karyawan extends CI_Controller
 				'jabatan'  => $this->input->post('e_jabatan'),
 				'jenis_kelamin'  => $this->input->post('e_jenis_kelamin'),
 				'agama'  => $this->input->post('e_agama'),
+				'nip'  => $this->input->post('e_nip'),
 				'email'  => $this->input->post('e_email'),
 				'npwp'  => $this->input->post('e_npwp'),
 				'no_telp'  => $this->input->post('e_telp'),
