@@ -20,7 +20,7 @@ class Tarif_karyawan extends CI_Controller
 	{
 		if ($this->session->userdata('username_payroll') != null && $this->session->userdata('nama') != null) {
 			$my_pembayaran = $this->model_tarif_karyawan->view('jnspembayaran')->result_array();
-			$mykaryawan = $this->model_tarif_karyawan->viewOrderingCustomer()->result_array();
+			$mykaryawan = $this->model_tarif_karyawan->viewOrderingCustome()->result_array();
 			$data = array(
 				'page_content' 	=> '../pagepayroll/tarif_karyawan/view',
 				'ribbon' 		=> '<li class="active">Master Tarif Karyawan</li>',
