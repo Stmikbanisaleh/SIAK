@@ -43,7 +43,7 @@ class Status_bayarsiswa extends CI_Controller {
     public function view_list_status()
     {
         $result = $this->model_status_bayarsiswa->view_list_status($this->input->post('siswa'), $this->input->post('thnakad'))->result_array();
-        // echo $this->db->last_query();exit;
+        echo $this->db->last_query();exit;
         echo json_encode($result);
     }
 

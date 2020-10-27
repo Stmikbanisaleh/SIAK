@@ -121,7 +121,6 @@ class Master_potongan extends CI_Controller
 				'lain3'  => $this->input->post('e_lain3_v'),
 				'periode'  => $this->input->post('e_periode'),
 			);
-
 			$my_data = $this->model_mastpotongan->update($data, $dataupdate, 'tbkaryawanpot');
 			echo json_encode($my_data);
 		} else {

@@ -18,7 +18,7 @@ class Profile extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nama') != null) {
+        if ($this->session->userdata('username_siswa') != null && $this->session->userdata('nis') != null) {
             $where = array('
 			NOINDUK' => $this->session->userdata('nis'));
             $mydata = $this->model_profile->viewWhereOrdering('mssiswa', $where, 'NOINDUK', 'asc')->result_array();
