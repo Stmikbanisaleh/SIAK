@@ -12,6 +12,7 @@ class Configfunction
         $url = "//graph.facebook.com/$id/picture?width=$w&height=$h";
         return $url;
     }
+    
     function jump($page)
     {
         echo "<script>location=('$page');</script>";
