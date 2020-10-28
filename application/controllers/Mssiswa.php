@@ -559,7 +559,7 @@ class Mssiswa extends CI_Controller
                 'AGAMA'  => $this->input->post('agama'),
                 'JK'  => $this->input->post('jk'),
                 'TGLHR'  => $this->input->post('tglhr'),
-                'PS'  => $this->input->post('sekolah'),
+                // 'PS'  => $this->input->post('sekolah'),
                 'TPLHR'  => $this->input->post('tempat'),
                 'NMBAPAK' => $this->input->post('ayah'),
                 'GAJIORTU'  => $this->input->post('penghasilan'),

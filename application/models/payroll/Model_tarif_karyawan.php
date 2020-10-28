@@ -25,12 +25,12 @@ class Model_tarif_karyawan extends CI_model
 
     public function  gethonor($masakerja)
     {
-        return $this->db->query("SELECT honor_berkala from master_honor_berkala where masa_kerja = ".$masakerja." ");
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala where masa_kerja = '".$masakerja."' ");
     }
 
 	public function  gethonortk($masakerja)
     {
-        return $this->db->query("SELECT honor_berkala from master_honor_berkala_tk where masa_kerja = ".$masakerja." ");
+        return $this->db->query("SELECT honor_berkala from master_honor_berkala_tk where masa_kerja = '".$masakerja."' ");
 	}
 
 	public function  gethonorsd($masakerja)

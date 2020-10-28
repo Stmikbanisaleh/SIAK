@@ -36,8 +36,16 @@ class Model_mastpotongan extends CI_model
     public function view_count($table, $data_id)
     {
         return $this->db->query("select id_karyawan from " . $table . " where id_karyawan = '" . $data_id . "'")->num_rows();
-    }
+	}
 
+	public function getformat()
+    {
+        return $this->db->query("SELECT a.nip, a.nama , b.infaq_masjid , b.anggota_koperasi, b.kas_bon, 
+		b.ijin_telat, b.bmt, b.koperasi, b.inval, b.toko, b.tawun, b.bpjs,b.ltq, b.ket_lain1, b.lain1, 
+		b.ket_lain2, b.lain2, b.ket_lain3 , b.lain3 
+		from biodata_karyawan a join tbkaryawanpot b on a.nip = b.id_karyawan order by a.nama asc");
+	}
+	
     public function insert($data, $table)
     {
         $result = $this->db->insert($table, $data);

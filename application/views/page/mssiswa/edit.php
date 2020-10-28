@@ -6,7 +6,7 @@
 				<label class="col-xs-3 control-label no-padding-right" for="form-field-1"> NIS </label>
 				<div class="col-xs-9">
 					<span class="input-icon">
-						<input type="text" name="nis" value="<?= $mysiswa->NOINDUK; ?>" id="nis" />
+						<input type="text" readonly name="nis" value="<?= $mysiswa->NOINDUK; ?>" id="nis" />
 						<i class="ace-icon fa fa-check-square-o blue"></i>
 					</span>
 				</div>
@@ -77,7 +77,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-5">Sekolah</label>
 				<div class="col-sm-3">
-					<select class="form-control" name="sekolah" id="sekolah">
+					<select class="form-control" readonly name="sekolah" id="sekolah">
 						<option value="">-- Pilih Sekolah --</option>
 						<?php foreach ($mysekolah as $value) { ?>
 							<?php if ($mysiswa->PS == $value['KDTBPS']) {

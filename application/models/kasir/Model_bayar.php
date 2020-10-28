@@ -18,6 +18,7 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.idtarif,
                                 kodesekolah,
                                 ThnMasuk as TA,
+                                TA as tea,
                                 (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS =tarif_berlaku.kodesekolah)AS sekolah,
                                 (SELECT z.namajenisbayar FROM jenispembayaran z WHERE z.Kodejnsbayar=tarif_berlaku.Kodejnsbayar)AS namajenisbayar,
                                 tarif_berlaku.Kodejnsbayar,

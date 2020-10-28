@@ -22,6 +22,7 @@ class Pdf extends Dompdf{
         parent::__construct();
         $this->filename = "laporan.pdf";
     }
+    
     /**
      * Get an instance of CodeIgniter
      *
