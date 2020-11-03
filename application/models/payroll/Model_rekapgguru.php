@@ -54,7 +54,7 @@ class Model_rekapgguru extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_rekapguru($tahun, $bulan_awal, $bulan_akhir)
+    public function view_rekapguru($tahun, $bulan_awal, $bulan_akhir, $unit)
     {
         return $this->db->query("select
                                     tp.*,
@@ -68,7 +68,8 @@ class Model_rekapgguru extends CI_model
                                 tp.isDeleted != 1
                                 AND MONTH(effective_date) >= $bulan_awal
                                 AND MONTH(effective_date) <= $bulan_akhir
-                                AND YEAR(effective_date) = $tahun");
+                                AND YEAR(effective_date) = $tahun
+                                AND tp.status = $unit");
     }
 
     public function view_count($field, $table, $data_id)

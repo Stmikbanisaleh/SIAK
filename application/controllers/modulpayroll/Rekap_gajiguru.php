@@ -462,7 +462,8 @@ class Rekap_gajiguru extends CI_Controller
 		$bulan_awal = $this->input->post('blnawal');
 		$bulan_akhir = $this->input->post('blnakhir');
 		$tahun = $this->input->post('tahun');
-		$my_data = $this->model_rekapgguru->view_rekapguru($tahun, $bulan_awal, $bulan_akhir)->result_array();
+		$unit = $this->input->post('unit');
+		$my_data = $this->model_rekapgguru->view_rekapguru($tahun, $bulan_awal, $bulan_akhir, $unit)->result_array();
 		
 		$no = 1;
 		$baris = 8;

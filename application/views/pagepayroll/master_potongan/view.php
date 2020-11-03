@@ -1459,7 +1459,7 @@
                             } else {
                                 document.getElementById("formImport").reset();
                                 swalInputFailed();
-                                window.location.href='<?php echo base_url("modulpayroll/master_potongan"); ?>';
+                                // window.location.href='<?php echo base_url("modulpayroll/master_potongan"); ?>';
                             }
                         }
                     });
