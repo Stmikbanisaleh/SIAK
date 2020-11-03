@@ -100,7 +100,7 @@
                 <?php
                     foreach($my_sekolah as $row){
                 ?>
-                <option value="<?= $row['id'] ?>"><?= $row['deskripsi'] ?></option>
+                <option value="<?= $row['id'] ?>"><?= "[".$row['deskripsi']."]" ?></option>
                 <?php
                     }
                 ?>

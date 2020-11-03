@@ -38,7 +38,8 @@ class Rekap_gajiguru extends CI_Controller
 		$bulan_awal = $this->input->post('blnawal');
 		$bulan_akhir = $this->input->post('blnakhir');
 		$tahun = $this->input->post('tahun');
-		$my_data = $this->model_rekapgguru->view_rekapguru($tahun, $bulan_awal, $bulan_akhir)->result_array();
+		$unit = $this->input->post('unit');
+		$my_data = $this->model_rekapgguru->view_rekapguru($tahun, $bulan_awal, $bulan_akhir, $unit)->result_array();
 		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
 		include 'PHPExcel/IOFactory.php';
 		$objPHPExcel = new PHPExcel();
@@ -56,9 +57,11 @@ class Rekap_gajiguru extends CI_Controller
 		$tahun = $this->input->post('tahun');
 
 		$desc_sekolah = '';
+		$desc_alamat = '';
 		$my_sekolah = $this->model_rekapgkar->view_sekolah_one($this->input->post('unit'))->row();
 		if(!empty($my_sekolah)){
 			$desc_sekolah = $my_sekolah->deskripsi;
+			$desc_alamat = $my_sekolah->address;
 		}
 		// print $desc_sekolah;exit;
 
@@ -71,7 +74,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', 'Unit ');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', $desc_sekolah);
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C4', 'Alamat ');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D4', 'Jl. Raya Kaliabang Tengah No.75B, RT.003/RW.006, Kaliabang Tengah, Kec. Bekasi Utara, Kota Bks, Jawa Barat 17125');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D4', $desc_alamat);
 		//*****************************************************************************************************//
 										//-------------------Header Page---------------------//
 		//*****************************************************************************************************//
@@ -418,6 +421,7 @@ class Rekap_gajiguru extends CI_Controller
 		$objPHPExcel->getActiveSheet()->setCellValue($var_d, $var_e);
 
 		//-----------End Header Content Header PPh 21 Sebulan-------------//
+		
 
 		//-----------Add Variable ----------------//
 		$jml_pend_gaji_pokok = 0;
@@ -803,7 +807,8 @@ class Rekap_gajiguru extends CI_Controller
 			$pend_khusus1 = $row['tunj_khusus1'];
 			$pend_khusus2 = $row['tunj_khusus2'];
 			$pend_tambahan = $tambahan;
-			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_inval+$pend_bpjs+$pend_honor_berkala+$pend_thr+$pend_internasional+$pend_masa_kerja+$$pend_keluarga+$pend_thr+$pend_penilaian_kinerja+$pend_aksel+$pend_lain+$pend_khusus1+$pend_khusus2+$pend_tambahan;
+			$gaji_kotor = 0;
+			$gaji_kotor = $pend_gaji_pokok+$pend_tunjabatan+$pend_transportasi+$pend_pegawai_tetap+$pend_inval+$pend_bpjs+$pend_honor_berkala+$pend_thr+$pend_internasional+$pend_masa_kerja+$pend_keluarga+$pend_thr+$pend_penilaian_kinerja+$pend_aksel+$pend_lain+$pend_khusus1+$pend_khusus2+$pend_tambahan;
 			
 			$var_e = $gaji_kotor;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
