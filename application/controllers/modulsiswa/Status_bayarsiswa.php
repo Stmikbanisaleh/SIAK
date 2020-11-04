@@ -9,14 +9,10 @@ class Status_bayarsiswa extends CI_Controller {
         $this->load->model('kasir/model_status_bayarsiswa');
         $this->load->library('mainfunction');
         $this->load->library('Configfunction');
-        if (empty($this->session->userdata('kodekaryawan')) && empty($this->session->userdata('namakasir'))) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('modulkasir/dashboard/login');
-        }
     }
 
     function render_view($data) {
-        $this->template->load('templatekasir', $data); //Display Page
+        $this->template->load('templatesiswa', $data); //Display Page
     }
 
     public function index() {
@@ -24,7 +20,7 @@ class Status_bayarsiswa extends CI_Controller {
         $my_kelas = $this->model_surattagihan->view('tbkelas')->result_array();
         $my_tahun = $this->model_surattagihan->gettahun('tbakadmk2')->result_array();
         $data = array(
-         'page_content' 	=> '../pagekasir/status_bayarsiswa/view',
+         'page_content' 	=> '../pagesiswa/status_bayarsiswa/view',
          'ribbon' 		=> '<li class="active">Status Pembayaran Siswa</li>',
          'page_name' 	=> 'Pembayaran Siswa',
          'my_siswa'      => $my_siswa,

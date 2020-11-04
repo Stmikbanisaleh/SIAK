@@ -552,7 +552,7 @@ header("Expires:0");
 			<table>
 					<tr>
 						<td width="125px;" colspan="6">Gaji bersih</td>
-						<td width="68px;" style="text-align:right" colspan="2">Rp <?php $total ?></td>
+						<td width="68px;" style="text-align:right" colspan="2">Rp <?= $total ?></td>
 					</tr>
 			</table>
 		</div> 
