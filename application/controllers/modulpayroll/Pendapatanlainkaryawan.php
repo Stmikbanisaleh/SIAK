@@ -160,41 +160,14 @@ class Pendapatanlainkaryawan extends CI_Controller
 				if ($keys == '0') {
 					continue;
 				} else {
-					if (empty($value[0])) {
-						array_push($empty_message, "No at row "  . $keys . " NIP harus di isi");
-					}
-					if (empty($value[2])) {
-						array_push($empty_message, "No at row "  . $keys . " Pendapatan Lain harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[3])) {
-						array_push($empty_message, "No at row "  . $keys . " Tunjangan Lembur harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[4])) {
-						array_push($empty_message, "No at row "  . $keys . "THR harus di isi, Tulis 0 jika tidak ada");
-					}
-					if ($value[6] == "") {
-						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 1 harus di isi, Tulis 0 jika tidak ada");
-					}
-					if ($value[8] == "") {
-						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 2 harus di isi, Tulis 0 jika tidak ada");
-					}
-					if ($value[10] == "") {
-						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 3 harus di isi, Tulis 0 jika tidak ada");
-					}
-					if ($value[12] == "") {
-						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 4 harus di isi, Tulis 0 jika tidak ada");
-					}
-					if ($value[14] == "") {
-						array_push($empty_message, "No at row "  . $keys . "Nominal Tunjangan Khusus 5 harus di isi, Tulis 0 jika tidak ada");
-					}
 					if (!empty($empty_message)) {
 						$ret['msg'] = $empty_message;
 						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
 						$result = 2;
 					} else {
-						$getid = $this->model_pendapatanlainkaryawan->getnip($value[0]);
+						// $getid = $this->model_pendapatanlainkaryawan->getnip($value[0]);
 						$arrayCustomerQuote = array(
-							'nip' => $getid[0]['id_biodata'],
+							'nip' => $value[0],
 							'lain' => $value[2],
 							'tj_malam_lembur' => $value[3],
 							'thr' => $value[4],
@@ -214,7 +187,7 @@ class Pendapatanlainkaryawan extends CI_Controller
 						$data_id = array(
 							'nip' => $value[0]
 						);
-						$cek = $this->model_pendapatanlainkaryawan->view_count('tbpendapatanlainkaryawan',$getid[0]['id_biodata']);
+						$cek = $this->model_pendapatanlainkaryawan->view_count('tbpendapatanlainkaryawan',$value[0]);
 						if($cek > 0 ){
 							$result = $this->model_pendapatanlainkaryawan->update($data_id, $arrayCustomerQuote, 'tbpendapatanlainkaryawan');
 						} else {

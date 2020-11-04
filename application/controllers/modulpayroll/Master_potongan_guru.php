@@ -99,46 +99,6 @@ class Master_potongan_guru extends CI_Controller
 				if ($keys == '0') {
 					continue;
 				} else {
-					if (empty($value[0])) {
-						array_push($empty_message, "No at row "  . $keys . " Kode Guru harus di isi");
-					}
-					if (empty($value[1])) {
-						array_push($empty_message, "No at row "  . $keys . " Infaq harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[2])) {
-						array_push($empty_message, "No at row "  . $keys . "Anggota koperasi harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[3])) {
-						array_push($empty_message, "No at row "  . $keys . "Kas Bon harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[4])) {
-						array_push($empty_message, "No at row "  . $keys . "Ijin Telat harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[5])) {
-						array_push($empty_message, "No at row "  . $keys . "Pinjaman Koperasi / BMT harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[6])) {
-						array_push($empty_message, "No at row "  . $keys . "Gemart / Koperasi harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[7])) {
-						array_push($empty_message, "No at row "  . $keys . "Inval harus di isi, Tulis 0 jika tidak ada");
-					}
-					if (empty($value[8])) {
-						array_push($empty_message, "No at row "  . $keys . "Toko al Hamra harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[9])) {
-						array_push($empty_message, "No at row "  . $keys . "Ta'wun harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[10])) {
-						array_push($empty_message, "No at row "  . $keys . "BPJS harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[11])) {
-						array_push($empty_message, "No at row "  . $keys . "LTQ harus di isi, Tulis 0 jika tidak ada ");
-					}
-					if (empty($value[13])) {
-						array_push($empty_message, "No at row "  . $keys . "Lain 1 harus di isi, Tulis 0 jika tidak ada ");
-					}
-					
 					if (!empty($empty_message)) {
 						$ret['msg'] = $empty_message;
 						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
@@ -147,21 +107,22 @@ class Master_potongan_guru extends CI_Controller
 						
 						$arrayCustomerQuote = array(
 							'IdGuru' => $value[0],
-							'infaq_masjid' => $value[1],
-							'anggota_koperasi' => $value[2],
-							'kas_bon' => $value[3],
-							'ijin_telat' => $value[4],
-							'bmt' => $value[5],
-							'koperasi' => $value[6],
-							'inval' => $value[7],
-							'toko' => $value[8],
-							'tawun' => $value[9],
-							'bpjs' => $value[10],
-							'ltq' => $value[11],
-							'ket_khusus1' => $value[12],
-							'tunj_khusus1' => $value[13],
+							'infaq_masjid' => $value[2],
+							'anggota_koperasi' => $value[3],
+							'kas_bon' => $value[4],
+							'ijin_telat' => $value[5],
+							'bmt' => $value[6],
+							'koperasi' => $value[7],
+							'inval' => $value[8],
+							'toko' => $value[9],
+							'tawun' => $value[10],
+							'bpjs' => $value[11],
+							'ltq' => $value[12],
+							'ket_khusus1' => $value[13],
+							'tunj_khusus1' => $value[14],
 							'pph21' => 0,
 						);
+
 						$data_id = array(
 							'IdGuru' => $value[0]
 						);
@@ -234,6 +195,110 @@ class Master_potongan_guru extends CI_Controller
 		$action = $this->model_masterpotongan_guru->delete($data_id, 'tbgurupot');
 		if ($action) {
 			echo json_encode($action);
+		}
+	}
+
+	public function downloadsample()
+	{
+		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+		include 'PHPExcel/IOFactory.php';
+		$objPHPExcel = new PHPExcel();
+		$idtarif = $this->model_masterpotongan_guru->getformat()->result_array();
+		$data = $idtarif;
+		$no = 1;
+		$row = 2;
+		if (count($data) > 0) {
+			if ($data) {
+				$key = array_keys($data[0]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'ID Guru');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Nama Guru');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Infaq Masjid');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Anggota Koperasi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'Kas Bon');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Ijin Telat');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'BMT / Pinjaman Koperasi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Gemart');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Inval');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Toko Al Hamra');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Ta awun');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'BPJS');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M1', 'LTQ');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Ket Pot Khusus 1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'Pot Khusus 1');
+
+				foreach ($data as $dataExcel) {
+					
+					$objPHPExcel->getActiveSheet(0)->getStyle('A' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $row, $dataExcel['IdGuru'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('A')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('B' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B' . $row, $dataExcel['GuruNama'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('B')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('C' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C' . $row, $dataExcel['infaq_masjid'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('C')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('D' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D' . $row, $dataExcel['anggota_koperasi'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('D')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E' . $row, $dataExcel['kas_bon'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $dataExcel['ijin_telat'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('G' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $dataExcel['bmt'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $dataExcel['koperasi'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $dataExcel['inval'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('J' . $row, $dataExcel['toko'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('K' . $row, $dataExcel['tawun'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('L' . $row, $dataExcel['bpjs'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('L')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('M' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('M' . $row, $dataExcel['ltq'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('M')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('N' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('N' . $row, $dataExcel['ket_khusus1'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('N')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('O' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('O' . $row, $dataExcel['tunj_khusus1'], PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('O')->setAutoSize(true);
+					$row++;
+					$no++;
+
+				}
+				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+				header('Content-Disposition: attachment; filename=template_potongan_guru.xls');
+				header('Cache-Control: max-age=0');
+				ob_end_clean();
+				ob_start();
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+				$objWriter->save('php://output');
+			}
 		}
 	}
 }

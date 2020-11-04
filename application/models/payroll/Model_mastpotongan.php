@@ -30,7 +30,7 @@ class Model_mastpotongan extends CI_model
 
 	public function getnip($data)
     {
-        return $this->db->query("Select id_biodata from biodata_karyawan where nip = $data ")->result_array();
+        return $this->db->query("Select nip from biodata_karyawan where nip = '$data'")->result_array();
 	}
 	
     public function view_count($table, $data_id)

@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
                                 <div class="col-sm-9">
-                                    <a href="<?php echo base_url() . 'assets/pendapatan_lain_guru.xls'; ?>" for="form-field-1"> Download Sample Format </label></a>
+                                    <a href="<?php echo base_url() . 'modulpayroll/pendapatanlain/downloadsample'; ?>" for="form-field-1"> Download Sample Format </label></a>
                                 </div>
                             </div>
                         </div>

@@ -33,6 +33,14 @@ class Model_pendapatanlain extends CI_model
         return $this->db->get($table);
     }
 
+	public function getformat()
+    {
+        return $this->db->query("SELECT b.IdGuru, b.GuruNama, a.lain, a.tunjangan, a.jam1,
+		a.tarif1, a.jam2, a.tarif2, a.jam3,a.tarif3,a.thr,a.inval,
+		a.jam4, a.tarif4, a.ket_tunj_khusus1, a.tunj_khusus1, a.ket_tunj_khusus2, a.tunj_khusus2 
+	    FROM tbpendapatanlainguru a join tbguru b on a.IdGuru = b.IdGuru order by b.GuruNama asc");
+	}
+	
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);

@@ -36,6 +36,13 @@ class Model_masterpotongan_guru extends CI_model
         return $this->db->query("select IdGuru from " . $table . " where IdGuru = '" . $data_id . "'")->num_rows();
     }
 
+	public function getformat()
+    {
+        return $this->db->query("SELECT a.IdGuru, a.GuruNama , b.infaq_masjid , b.anggota_koperasi, b.kas_bon, 
+		b.ijin_telat, b.bmt, b.koperasi, b.inval, b.toko, b.tawun, b.bpjs,b.ltq, b.ket_khusus1, b.tunj_khusus1
+		from tbguru a join tbgurupot b on a.IdGuru = b.IdGuru order by a.GuruNama asc");
+	}
+
     public function insert($data, $table)
     {
         $result = $this->db->insert($table, $data);
