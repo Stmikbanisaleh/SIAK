@@ -833,7 +833,7 @@ class Rekap_gajiguru extends CI_Controller
 			$pot_pph21 = $row['pph21_bulanan'];
 			$pot_lain = $row['pot_lain'];
 			$pot_khusus = $row['pot_khusus'];
-			$jumlah_pot = $pot_khusus+$pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_lain+$pot_khusus;
+			$jumlah_pot = $pot_infaq_masjid+$pot_anggota_koperasi+$pot_kas_bon+$pot_ijin_telat+$pot_koperasi+$pot_inval+$pot_toko+$pot_taawun+$pot_bpjs+$pot_ltq+$pot_bmt+$pot_pph21+$pot_lain+$pot_khusus;
 			$var_e = $gaji_kotor-$jumlah_pot;
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
