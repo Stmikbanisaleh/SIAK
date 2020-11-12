@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
@@ -6,7 +6,7 @@
     </div>
     <br>
     <br>
-</div>
+</div> -->
 
 <div id="modalTambah" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
@@ -231,9 +231,9 @@
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
                         '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
-                        '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                        '</button>' +
+                        // '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+                        // '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+                        // '</button>' +
                         '</td>' +
                         '</tr>';
                     no++;

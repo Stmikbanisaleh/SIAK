@@ -199,14 +199,14 @@ class Model_laporan extends CI_model
             WHERE kode_jurnal='".$kd_jurnal."'");
     }
 
-    public function get_saldoawalbukbes($tgl_awal, $tgl_akhir, $jurnal)
+    public function get_saldoawalbukbes($tgl_awal, $tgl_akhir)
     {
         return  $this->db->query("SELECT
             SUM(Nilai)AS nml
             FROM
             transaksi_buk
             INNER JOIN jurnal ON transaksi_buk.no_rek = jurnal.kode_jurnal
-            WHERE Tgl_bukti <'".$tgl_awal."' AND jurnal.kode_jurnal='".$jurnal."'");
+            WHERE Tgl_bukti <'".$tgl_awal."'");
     }
 
     public function get_transbuk($id)

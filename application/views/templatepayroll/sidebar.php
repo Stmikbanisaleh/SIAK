@@ -114,6 +114,20 @@
 				</a>
 				<b class="arrow"></b>
 			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/pendapatankaryawan'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Pendapatan Karyawan
+				</a>
+				<b class="arrow"></b>
+			</li>
+			<li class="">
+				<a href="<?= base_url() . 'modulpayroll/pendapatanguru'; ?>">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Pendapatan Guru
+				</a>
+				<b class="arrow"></b>
+			</li>
 		</ul>
 	</li>
 	<li class="">

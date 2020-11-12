@@ -63,7 +63,7 @@
 			</div>
 			<div class="col-xs-3">
 				Nomor Bukti
-				<input type="number" id="no_bukti" required name="no_bukti" placeholder="Nomor Bukti" class="form-control" />
+				<input type="text" maxlength="15" id="no_bukti" required name="no_bukti" placeholder="Nomor Bukti" class="form-control" />
 			</div>
 			<div class="col-xs-1">
 				<br>
