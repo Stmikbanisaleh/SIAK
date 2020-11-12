@@ -141,7 +141,7 @@
 
                     <!--Mendapatkan total Mutasi kredit-->
                     <?php
-                        $qu = "SELECT sum(Nilai) as mtkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
+                        $qu = "SELECT sum(Nilai) as mtkredit,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti <='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='".$r['no_rek']."' AND DK='K'  ";
                         $mtk = $this->model_laporan->view_byquery($qu)->row();
                         ?>
 
