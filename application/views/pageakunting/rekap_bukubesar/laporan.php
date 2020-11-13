@@ -134,7 +134,8 @@
              <!--Mendapatkan total Mutasi debet-->
              <?php
                 $qu = "SELECT sum(Nilai) as mtdebet,Tgl_bukti FROM transaksi_buk WHERE Tgl_bukti >='" . $tahun . "-" . $bln_awal . "-01' AND Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  no_rek='" . $r['no_rek'] . "' AND DK='D' ";
-                $mtd = $this->model_laporan->view_byquery($qu)->row();
+				$mtd = $this->model_laporan->view_byquery($qu)->row();
+		
                 ?>
 
 

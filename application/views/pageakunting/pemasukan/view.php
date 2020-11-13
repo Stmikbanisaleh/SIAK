@@ -136,6 +136,7 @@
                 <th>Nama Jenis Bayar</th>
                 <th>Kode Rekening</th>
                 <th>Nama Rekening</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -263,6 +264,9 @@
                         '<td>' + data[i].kode_jurnal + '</td>' +
                         '<td>' + data[i].nama_jurnal + '</td>' +
                         '<td>' +
+                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Kodejnsbayar + '">' +
+                        '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+                        '</button> &nbsp' +
                         '</button>' +
                         '</td>' +
                         '</tr>';
