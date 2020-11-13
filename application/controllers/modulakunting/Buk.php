@@ -80,7 +80,7 @@ class Buk extends CI_Controller
                 transaksi_buk.Ket,
                 transaksi_buk.Nilai,
                 transaksi_buk.DK) 
-                VALUES('".$r['rek']."','".$datee."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                VALUES('".$r['rek']."','".$r['Tgl_bukti']."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
                 $query="SELECT COUNT(*)as jmlh,
                 Debet01,

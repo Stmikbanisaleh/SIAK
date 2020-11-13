@@ -50,7 +50,7 @@ class Model_trx_keluar extends CI_model
 									LEFT JOIN jurnal ON jnstransaksi.no_jurnal = jurnal.no_jurnal
                                     WHERE jnstransaksi.isdeleted != 1
                                     AND jurnal.isdeleted != 1
-									Order by JnsTransaksi desc");
+									Order by jnstransaksi.NamaTransaksi asc");
     }
 
     public function view_dk($status)
