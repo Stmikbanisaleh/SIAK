@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-xs-1">
+    <!-- <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
             <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
         </button>
-    </div>
+    </div> -->
     <br>
     <br>
 </div>
@@ -136,7 +136,6 @@
                 <th>Nama Jenis Bayar</th>
                 <th>Kode Rekening</th>
                 <th>Nama Rekening</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -264,11 +263,6 @@
                         '<td>' + data[i].kode_jurnal + '</td>' +
                         '<td>' + data[i].nama_jurnal + '</td>' +
                         '<td>' +
-                        '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].Kodejnsbayar + '">' +
-                        '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
-                        '</button> &nbsp' +
-                        '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Kodejnsbayar + '">' +
-                        '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
                         '</button>' +
                         '</td>' +
                         '</tr>';

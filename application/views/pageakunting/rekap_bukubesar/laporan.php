@@ -189,12 +189,11 @@
              <?php
                 if ($bln_awal == 1) {
                     $qu = "SELECT sum(tb.Nilai-tb.Nilai) as nerdebet,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='" . $r['no_rek'] . "' AND tb.DK='D' AND j.JR NOT IN(3,4)";
-                    $nrd = $this->model_laporan->view_byquery($qu)->row();
+					$nrd = $this->model_laporan->view_byquery($qu)->row();
                 } else {
                     $qu = "SELECT sum(tb.Nilai) as nerdebet,tb.Tgl_bukti,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti <='" . $tahun . "-" . $bln_akhir . "-31' AND  tb.no_rek='" . $r['no_rek'] . "' AND tb.DK='D' AND j.JR NOT IN(3,4)";
-                    // $has = mysql_query($qu);
-                    // $nrd = mysql_fetch_assoc($has);
-                    $nrd = $this->model_laporan->view_byquery($qu)->row();
+					$nrd = $this->model_laporan->view_byquery($qu)->row();
+					
                 }
 
                 ?>
