@@ -148,6 +148,14 @@
 		});
 	}
 
+	function swalImportFailed($message){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal. harap periksa data',
+		  text: $message,
+		});
+	}
+
 
 </script>
 

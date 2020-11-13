@@ -78,22 +78,41 @@ class Model_rekapgkar extends CI_model
 
     public function view_rekapkaryawan($tahun, $bulan_awal, $bulan_akhir, $unit)
     {
-        return $this->db->query("select
-                                    tk.id_karyawan, MONTH(awal_kerja) bulan_awal,
-                                    MONTH(akhir_kerja) bulan_akhir,
-                                    tk.no_rekening,
-                                    tp.*
-                                FROM
-                                    tb_pendapatan_karyawan tp
-                                    JOIN tarifkaryawan tk ON tp.employee_number = tk.id_karyawan
-                                    JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
-                                    JOIN sekolah ps ON bk.unit_kerja = ps.id
-                                WHERE
-                                    tp.isDeleted != 1
-                                    AND ps.id = $unit
-                                    AND MONTH(tp.effective_date) >= $bulan_awal
-                                    AND MONTH(tp.effective_date) <= $bulan_akhir
-                                    AND YEAR(tp.effective_date) = $tahun");
+		if($unit == 0){
+			return $this->db->query("select
+			tk.id_karyawan, MONTH(awal_kerja) bulan_awal,
+			MONTH(akhir_kerja) bulan_akhir,
+			tk.no_rekening,
+			tp.*
+		FROM
+			tb_pendapatan_karyawan tp
+			JOIN tarifkaryawan tk ON tp.employee_number = tk.id_karyawan
+			JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
+			JOIN sekolah ps ON bk.unit_kerja = ps.id
+		WHERE
+			tp.isDeleted != 1
+			AND MONTH(tp.effective_date) >= $bulan_awal
+			AND MONTH(tp.effective_date) <= $bulan_akhir
+			AND YEAR(tp.effective_date) = $tahun");
+		} else {
+			return $this->db->query("select
+			tk.id_karyawan, MONTH(awal_kerja) bulan_awal,
+			MONTH(akhir_kerja) bulan_akhir,
+			tk.no_rekening,
+			tp.*
+		FROM
+			tb_pendapatan_karyawan tp
+			JOIN tarifkaryawan tk ON tp.employee_number = tk.id_karyawan
+			JOIN biodata_karyawan bk ON bk.nip = tp.employee_number
+			JOIN sekolah ps ON bk.unit_kerja = ps.id
+		WHERE
+			tp.isDeleted != 1
+			AND ps.id = $unit
+			AND MONTH(tp.effective_date) >= $bulan_awal
+			AND MONTH(tp.effective_date) <= $bulan_akhir
+			AND YEAR(tp.effective_date) = $tahun");
+		}
+       
     }
 
     public function view_sekolah()
