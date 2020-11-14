@@ -56,7 +56,8 @@ class Model_rekapgguru extends CI_model
 
     public function view_rekapguru($tahun, $bulan_awal, $bulan_akhir, $unit)
     {
-        return $this->db->query("select
+		if($unit == 0){
+			return $this->db->query("select
                                     tp.*,
                                     tg.no_rekening,
                                     MONTH(awal_kerja) bulan_awal,
@@ -69,7 +70,24 @@ class Model_rekapgguru extends CI_model
                                 AND MONTH(effective_date) >= $bulan_awal
                                 AND MONTH(effective_date) <= $bulan_akhir
                                 AND YEAR(effective_date) = $tahun
-                                AND tp.status = $unit");
+                                ");
+		} else {
+			return $this->db->query("select
+			tp.*,
+			tg.no_rekening,
+			MONTH(awal_kerja) bulan_awal,
+			MONTH(akhir_kerja) bulan_akhir
+		FROM
+		tb_pendapatan_guru tp
+		JOIN tarifguru tg ON tp.employee_number = tg.IdGuru
+		WHERE
+		tp.isDeleted != 1
+		AND MONTH(effective_date) >= $bulan_awal
+		AND MONTH(effective_date) <= $bulan_akhir
+		AND YEAR(effective_date) = $tahun
+		AND tp.status = $unit");
+		}
+        
     }
 
     public function view_count($field, $table, $data_id)

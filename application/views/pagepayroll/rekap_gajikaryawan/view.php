@@ -46,7 +46,7 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Unit Kerja / Sekolah</label>
             <select class="form-control" required name="unit" id="unit">
-                <!-- <option value="0">--Pilih--</option> -->
+                <option value="0">--Pilih Semua--</option>
                 <?php
                     foreach($myunit as $row){
                 ?>
