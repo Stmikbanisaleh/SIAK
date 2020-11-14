@@ -24,7 +24,8 @@ class Pemasukan extends CI_Controller {
 
 	public function index()
 	{
-		$myjurnal = $this->model_pemasukan->view('jurnal')->result_array();
+		// $myjurnal = $this->model_pemasukan->view('jurnal')->result_array();
+		$myjurnal = $this->model_pemasukan->view_jurnal()->result_array();
 		$data = array(
 			'page_content' 	=> '../pageakunting/pemasukan/view',
 			'ribbon' 		=> '<li class="active">Jenis Pemasukan</li><li>Sample</li>',

@@ -24,6 +24,11 @@ class Model_pemasukan extends CI_model
         return $this->db->get($table);
     }
 
+    public function view_jurnal()
+    {
+        return $this->db->query("SELECT no_jurnal, kode_jurnal, nama_jurnal FROM jurnal WHERE JR = '3' ORDER BY nama_jurnal");
+    }
+
     public function view_where($table, $data)
     {
         $this->db->where($data);
