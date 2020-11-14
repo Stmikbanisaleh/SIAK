@@ -66,7 +66,7 @@ class Model_trx_keluar extends CI_model
 										DATE_FORMAT(Tgl_bukti,'%d-%m-%Y')Tgl_bukti,
 										No_bukti,
 										Ket,
-										Nilai,
+                                        CONCAT('Rp. ',FORMAT(Nilai,2)) Nilai,
 										DK,
 										Jurnal
 										FROM transaksi_buk	

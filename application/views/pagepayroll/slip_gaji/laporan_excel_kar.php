@@ -192,7 +192,7 @@ header("Expires:0");
 		$label_pot[3] = 'Kasbon';
 		$label_pot[4] = 'Izin / Telat';
 		$label_pot[5] = 'Gemart';
-		$label_pot[6] = 'BMT';
+		$label_pot[6] = 'Pinjaman Koperasi';
 		$label_pot[7] = 'Inval';
 		$label_pot[8] = 'Toko Al Hamra';
 		$label_pot[9] = 'Taawun';
