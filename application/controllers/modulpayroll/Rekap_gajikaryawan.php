@@ -54,12 +54,11 @@ class Rekap_gajikaryawan extends CI_Controller
 		$bln_akhir = $this->mainfunction->periode_bulan($this->input->post('blnakhir'));
 		$tahun = $this->input->post('tahun');
 
-		// $desc_sekolah = '';
-		// $my_sekolah = $this->model_rekapgkar->view_sekolah_one($this->input->post('unit'))->row();
-		// if(!empty($my_sekolah)){
-		// 	$desc_sekolah = $my_sekolah->deskripsi;
-		// }
-		// print $desc_sekolah;exit;
+		$desc_sekolah = '';
+		$my_sekolah = $this->model_rekapgkar->view_sekolah_one($this->input->post('unit'))->row();
+		if(!empty($my_sekolah)){
+			$desc_sekolah = $my_sekolah->deskripsi;
+		}
 
 		$this->load->model('model_biodata');
 		$my_data = $this->model_biodata->viewOrdering('sys_config', 'id', 'asc')->row();
@@ -67,10 +66,11 @@ class Rekap_gajikaryawan extends CI_Controller
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'GAJI PEGAWAI ' . strtoupper($my_data->name_school));
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', 'Periode ');
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', $bln_awal . ' - ' . $bln_akhir . ' ' . $tahun);
-		// $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', 'Unit ');
-		// $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', $desc_sekolah);
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', 'Alamat ');
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', 'Jl. Raya Kaliabang Tengah No.75B, RT.003/RW.006, Kaliabang Tengah, Kec. Bekasi Utara, Kota Bks, Jawa Barat 17125');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', 'Unit');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', $desc_sekolah);
+
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C4', 'Alamat ');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D4', $my_data->address);
 		//*****************************************************************************************************//
 		//-------------------Header Page---------------------//
 		//*****************************************************************************************************//

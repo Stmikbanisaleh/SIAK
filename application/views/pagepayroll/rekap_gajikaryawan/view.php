@@ -55,7 +55,7 @@
                     }
                 ?>
             </select>
-            <small id="emailHelp" class="form-text text-muted">Periode bulan honor guru.</small>
+            <small id="emailHelp" class="form-text text-muted">Unit kerja</small>
         </div>
         <!-- <div class="form-group">
             <label for="exampleInputEmail1">Unit</label>
