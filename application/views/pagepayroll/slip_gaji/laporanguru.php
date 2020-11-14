@@ -159,7 +159,7 @@
 		$label_tunj[10] = 'T. Keluarga';
 		$label_tunj[11] = 'THR';
 		$label_tunj[12] = 'T. Penilaian Kinerja';
-		$label_tunj[13] = 'Aksel';
+		$label_tunj[13] = 'T. Aksel';
 		$label_tunj[14] = 'Lain-lain';
 
 		//Potongan
