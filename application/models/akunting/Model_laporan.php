@@ -220,18 +220,20 @@ class Model_laporan extends CI_model
     public function get_pemb_siswa($p_awal, $p_akhir)
     {
         return  $this->db->query("SELECT
-            (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=pembayaran_sekolah.kodesekolah)AS kodesekolah,
-                jenispembayaran.namajenisbayar,
-                detail_bayar_sekolah.nominalbayar,
-                pembayaran_sekolah.TA,
-                (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
-                DATE_FORMAT(tglentri,'%d-%m-%Y')tglentri,pembayaran_sekolah.Nopembayaran
-            FROM
-                pembayaran_sekolah
-                INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
-                INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
-                WHERE tglentri BETWEEN '$p_awal' AND '$p_akhir'
-            ORDER BY UNIX_TIMESTAMP(tglentri) asc");
+                                    (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS=mssiswa.PS)AS kodesekolah,
+                                        jenispembayaran.namajenisbayar,
+                                        detail_bayar_sekolah.nominalbayar,
+                                        pembayaran_sekolah.TA,
+                                        (SELECT z.nama FROM tbkelas z WHERE z.id_kelas=pembayaran_sekolah.Kelas)AS Kelas,
+                                        DATE_FORMAT(tglentri,'%d-%m-%Y')tglentri,pembayaran_sekolah.Nopembayaran,
+                                                        mssiswa.NMSISWA,
+                                                        mssiswa.NOINDUK
+                                    FROM
+                                        pembayaran_sekolah
+                                        INNER JOIN detail_bayar_sekolah ON pembayaran_sekolah.Nopembayaran = detail_bayar_sekolah.Nopembayaran
+                                        INNER JOIN jenispembayaran ON detail_bayar_sekolah.kodejnsbayar = jenispembayaran.Kodejnsbayar
+                                                        JOIN mssiswa ON pembayaran_sekolah.NIS = mssiswa.NOINDUK
+                                        WHERE tglentri BETWEEN '$p_awal' AND '$p_akhir'");
     }
 
 }

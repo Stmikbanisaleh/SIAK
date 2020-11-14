@@ -48,17 +48,21 @@ class Lap_bayarsiswa extends CI_Controller
                 $key = array_keys($data[0]);
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'No');
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', 'Nomor Bukti');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'Sekolah');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', 'Jenis Pembayaran');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', 'Nominal');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', 'Kelas');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', 'Tanggal');
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', 'Tahun Pelajaran');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'NIS');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', 'Nama Siswa');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', 'Sekolah');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', 'Jenis Pembayaran');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', 'Nominal');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', 'Kelas');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', 'Tanggal');
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('K2', 'Tahun Pelajaran');
 
                 foreach ($data as $dataExcel) {
                     $total +=  $dataExcel['nominalbayar'];
                     $nobukti = $dataExcel['Nopembayaran'];
                     $sekolah = $dataExcel['kodesekolah'];
+                    $noinduk = $dataExcel['NOINDUK'];
+                    $nmsiswa = $dataExcel['NMSISWA'];
                     $jenisbayar = $dataExcel['namajenisbayar'];
                     $nominalbayar = $dataExcel['nominalbayar'];
                     $kelas = $dataExcel['Kelas'];
@@ -74,28 +78,36 @@ class Lap_bayarsiswa extends CI_Controller
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('C')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('D' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D' . $row, $sekolah, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D' . $row, $noinduk, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('D')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('E' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E' . $row, $jenisbayar, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('E' . $row, $nmsiswa, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('F' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $nominalbayar, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('F' . $row, $sekolah, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('G' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $kelas, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('G' . $row, $jenisbayar, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $tanggal, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $nominalbayar, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setAutoSize(true);
 
                     $objPHPExcel->getActiveSheet(0)->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $ta, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $kelas, PHPExcel_Cell_DataType::TYPE_STRING);
                     $objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setAutoSize(true);
+
+                    $objPHPExcel->getActiveSheet(0)->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('J' . $row, $tanggal, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setAutoSize(true);
+
+                    $objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                    $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('K' . $row, $ta, PHPExcel_Cell_DataType::TYPE_STRING);
+                    $objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setAutoSize(true);
                     $row++;
                     $no++;
                 }
