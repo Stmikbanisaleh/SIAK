@@ -5,8 +5,8 @@
 		<div class="form-group">
 			<div class="col-xs-3">
 				Jenis Transaksi
-				<select class="form-control tahun" name="jenis" id="tahun">
-					<option value="0">--Pilih Jenis Transaksi--</option>
+				<select class="form-control tahun" required name="jenis" id="tahun">
+					<option value="">--Pilih Jenis Transaksi--</option>
 					<?php foreach ($mytrx as $value) { ?>
 						<option value=<?= $value['kode_jurnal'] ?>><?= $value['NamaTransaksi'] . "-" . $value['kode_jurnal'] ?></option>
 					<?php } ?>
