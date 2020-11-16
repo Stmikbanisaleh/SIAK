@@ -186,6 +186,11 @@ class Model_laporan extends CI_model
     public function nr_nilatransbuk($tgl_awal, $tgl_akhir, $norek)
     {
         return  $this->db->query("SELECT sum(tb.Nilai) as ruladebet,tb.Tgl_bukti,tb.no_rek,tb.DK,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti BETWEEN '".$tgl_awal."' AND last_day('".$tgl_akhir."') AND tb.no_rek= 1001 AND tgl_bukti != '0000-00-00' AND DK='D'");
+	}
+	
+	public function nr_nilatransbuk2($tgl_awal, $tgl_akhir, $norek)
+    {
+        return  $this->db->query("SELECT sum(tb.Nilai) as ruladebet,tb.Tgl_bukti,tb.no_rek,tb.DK,j.JR FROM transaksi_buk tb JOIN jurnal j ON j.kode_jurnal = tb.no_rek WHERE tb.Tgl_bukti BETWEEN '".$tgl_awal."' AND last_day('".$tgl_akhir."') AND tb.no_rek= $norek AND tgl_bukti != '0000-00-00' AND DK='D'");
     }
 
     public function get_jurnalbycode($kd_jurnal)
