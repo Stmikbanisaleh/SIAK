@@ -152,8 +152,7 @@
 			
             foreach ($myrekening4 as $r) {
 				$mytransaksibuk = $this->model_laporan->view_transaksibuk($r['id'])->result_array();
-                $mynilatransbuk = $this->model_laporan->nr_nilatransbuk2($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-31", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
-				
+                $mynilatransbuk = $this->model_laporan->nr_nilatransbuk2($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-1", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
 				$rld = $mynilatransbuk;
                 ?>
                 <tr>
