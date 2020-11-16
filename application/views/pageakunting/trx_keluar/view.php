@@ -14,8 +14,8 @@
 			</div>
 			<div class="col-xs-2">
 				Debet / Kredit
-				<select class="form-control tahun" name="dk" id="dk">
-					<option value="0">--Pilih D/K--</option>
+				<select class="form-control tahun" required name="dk" id="dk">
+					<option value="">--Pilih D/K--</option>
 					<?php foreach ($dk as $value) { ?>
 						<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 					<?php } ?>
