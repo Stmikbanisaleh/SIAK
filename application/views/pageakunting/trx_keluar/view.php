@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<form class="form-horizontal" role="form" id="formTambah">
 		<div class="form-group">
@@ -129,6 +131,11 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$('select').select2({
+            width: '100%',
+            placeholder: "-- Pilih -- ",
+            allowClear: true
+        });
 	});
 
 	if ($("#formTambah").length > 0) {
