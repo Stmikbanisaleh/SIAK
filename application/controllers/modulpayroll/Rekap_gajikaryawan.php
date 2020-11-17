@@ -493,7 +493,7 @@ class Rekap_gajikaryawan extends CI_Controller
 
 			//Nama Pegawai
 			$var_d = 'D' . $baris;
-			$var_e = $row['employee_number'];
+			$var_e = $row['nip'];
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
 			$objPHPExcel->getActiveSheet()->getStyle($var_d)->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);

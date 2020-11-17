@@ -82,7 +82,8 @@ class Model_rekapgkar extends CI_model
 			return $this->db->query("select
 			tk.id_karyawan, MONTH(awal_kerja) bulan_awal,
 			MONTH(akhir_kerja) bulan_akhir,
-			tk.no_rekening,
+            tk.no_rekening,
+            bk.nip,
 			tp.*
 		FROM
 			tb_pendapatan_karyawan tp
@@ -99,6 +100,7 @@ class Model_rekapgkar extends CI_model
 			tk.id_karyawan, MONTH(awal_kerja) bulan_awal,
 			MONTH(akhir_kerja) bulan_akhir,
 			tk.no_rekening,
+            bk.nip,
 			tp.*
 		FROM
 			tb_pendapatan_karyawan tp
