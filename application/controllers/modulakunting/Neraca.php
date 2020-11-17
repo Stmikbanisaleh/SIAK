@@ -36,7 +36,7 @@ class Neraca extends CI_Controller {
         $blnakhir = $this->format_bulan($this->input->post('blnakhir'));        
         $tahun = $this->input->post('tahun');
         $myrekening = $this->model_laporan->view_rekeninglist_dyn(1)->result_array();
-        $myrekening4 = $this->model_laporan->view_rekeninglist_dyn(4)->result_array();
+        $myrekening4 = $this->model_laporan->view_rekeninglist_dyn(2)->result_array();
         $data = array(
             'v_awal'      => $blnawal,
             'v_akhir'     => $blnakhir,
