@@ -227,7 +227,7 @@
 			success: function(data) {
 				$('#item_posting').hide();
 				$('#info').html('<div class="alert alert-info">' +
-					'This alert needs your attention, but its not super important.' +
+					'Sukses Posting' +
 					'</div>');
 			}
 		});
