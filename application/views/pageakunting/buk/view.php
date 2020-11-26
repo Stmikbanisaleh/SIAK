@@ -19,9 +19,10 @@
 		</div>
 		<td>
 			<div class="col-xs-3">
-				<select class="form-control" name="nopembayaran" id="nopembayaran">
+			<input type="text" id="nopembayaran" required name="nopembayaran" placeholder="No Pembayaran" class="form-control" />
+				<!-- <select class="form-control" name="nopembayaran" id="nopembayaran">
 					<option value="0">--Pilih Program--</option>
-				</select>
+				</select> -->
 			</div>
 			<div class="col-xs-1">
 				<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">

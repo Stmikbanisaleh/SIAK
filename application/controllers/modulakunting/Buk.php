@@ -44,7 +44,7 @@ class Buk extends CI_Controller
             $cp = "WHERE bukti = '" . $nopembayaran."'";
         }
 
-        $my_data = $this->model_buk->view_buk($cp)->result_array();
+		$my_data = $this->model_buk->view_buk($cp)->result_array();
         echo json_encode($my_data);
     }
 
