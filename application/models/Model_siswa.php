@@ -6,7 +6,7 @@ class Model_siswa extends CI_model
 	public function getta($ps)
 	{
 		// return  $this->db->query("SELECT  *,LEFT(tahunakademik.ThnAkademik,4)as thn FROM tahunakademik ORDER BY IdTA DESC"); --Last USe Remake By Dedi 29 Mar 2020
-		return  $this->db->query("SELECT THNAKAD as ThnAkademik, ID,SEMESTER,TAHUN as thn, INDEK FROM tbakadmk2 WHERE INDEK=(SELECT MAX(INDEK) FROM tbakadmk2) and KDSEKOLAH = '$ps'");
+		return  $this->db->query("SELECT DISTINCT THNAKAD as ThnAkademik, ID,SEMESTER,TAHUN as thn, INDEK FROM tbakadmk3 where  KDSEKOLAH = '$ps' group by THNAKAD ");
 	}
 
 
