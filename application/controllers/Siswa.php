@@ -61,73 +61,7 @@ class Siswa extends CI_Controller
             $this->load->view('page/login'); //Memanggil function render_view
         }
     }
-    // public function import()
-    // {
-    //     if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-    //         $files = $_FILES;
-    //         $file = $files['file'];
-    //         $fname = $file['tmp_name'];
-    //         $file = $_FILES['file']['name'];
-    //         $fname = $_FILES['file']['tmp_name'];
-    //         $ext = explode('.', $file);
-    //         /** Include path **/
-    //         set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-    //         /** PHPExcel_IOFactory */
-    //         include 'PHPExcel/IOFactory.php';
-    //         $objPHPExcel = PHPExcel_IOFactory::load($fname);
-    //         $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-    //         $data_exist = [];
 
-    //         foreach ($allDataInSheet as $ads) {
-    //             if (array_filter($ads)) {
-    //                 array_push($data_exist, $ads);
-    //             }
-    //         }
-    //         foreach ($data_exist as $key => $value) {
-    //             if ($key == '0') {
-    //                 continue;
-    //             } else {
-    //                 $arrayCustomerQuote = array(
-    //                     'NOINDUK' => $value[0],
-    //                     'PASSWORD' => hash('sha512', md5($value[0])),
-    //                     'NOREG' => $value[1],
-    //                     'NMSISWA' => $value[2],
-    //                     'TPLHR' => $value[3],
-    //                     'TGLHR' => $value[4],
-    //                     'JK' => $value[5],
-    //                     'AGAMA' => $value[6],
-    //                     'TAHUN' => $value[7],
-    //                     'PS' => $value[8],
-    //                     'KDWARGA' => $value[9],
-    //                     'EMAIL' => $value[10],
-    //                     'TELP' => $value[11],
-    //                     'createdAt'    => date('Y-m-d H:i:s')
-    //                 );
-    //                 // $arrayCustomerQuote2 = array(
-    //                 //     'Noreg' => $value[0],
-    //                 //     // 'PASSWORD' => hash('sha512',md5($value[0])),
-    //                 //     'Namacasis' => $value[2],
-    //                 //     'tptlhr' => $value[3],
-    //                 //     'tgllhr' => $value[4],
-    //                 //     'agama' => $value[6],
-    //                 //     'thnmasuk' => $value[7],
-    //                 //     'kodesekolah' => $value[8],
-    //                 //     'TelpHp' => $value[11],
-    //                 //     'createdAt'    => date('Y-m-d H:i:s')
-    //                 // );
-    //                 $result = $this->model_siswa->insert($arrayCustomerQuote, 'mssiswa');
-    //                 // $result = $this->model_siswa->insert($arrayCustomerQuote2, 'calon_siswa');
-    //             }
-    //         }
-    //         if ($result) {
-    //             $result = 1;
-    //         }
-
-    //         echo json_encode($result);
-    //     } else {
-    //         echo json_encode($result);
-    //     }
-    // }
     public function import()
     {
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -153,27 +87,7 @@ class Siswa extends CI_Controller
                 if ($key == '0') {
                     continue;
                 } else {
-                    // $arrayCustomerQuote = array(
-                    //     'NOINDUK' => $value[0],
-                    //     'PASSWORD' => hash('sha512', md5($value[0])),
-                    //     'NOREG' => $value[1],
-                    //     'NMSISWA' => $value[2],
-                    //     'TPLHR' => $value[3],
-                    //     'TGLHR' => $value[4],
-                    //     'JK' => $value[5],
-                    //     'AGAMA' => $value[6],
-                    //     'TAHUN' => $value[7],
-                    //     'PS' => $value[8],
-                    //     'KDWARGA' => $value[9],
-                    //     'EMAIL' => $value[10],
-                    //     'TELP' => $value[11],
-                    //     'ALAMATRUMAH' => $value[12],
-                    //     'KELURAHAN' => $value[13],
-                    //     'KECAMATAN' => $value[14],
-                    //     'NMBAPAK'   => $value[15],
-                    //     'NMIBU' => $value[16],
-                    //     'createdAt'    => date('Y-m-d H:i:s')
-                    // );
+                
                     $arrayCustomerQuote2 = array(
                         'Noreg' => $value[0],
                         // 'PASSWORD' => hash('sha512',md5($value[0])),
