@@ -152,7 +152,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Malam / Lembur</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Inval</label>
 								<div class="col-sm-9">
 								<input type="text" id="tj_malam_lembur" required name="tj_malam_lembur" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="tj_malam_lembur_v" required name="tj_malam_lembur_v"/>
@@ -494,7 +494,7 @@
                             </div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tunjangan Malam / Lembur</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Inval</label>
 								<div class="col-sm-9">
 								<input type="text" id="e_tj_malam_lembur" required name="e_tj_malam_lembur" placeholder="Rp. 10.000" class="form-control" />
                                 <input type="hidden" id="e_tj_malam_lembur_v" required name="e_tj_malam_lembur_v"/>
