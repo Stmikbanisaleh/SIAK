@@ -80,7 +80,7 @@
 		Swal.fire({
 		  icon: 'error',
 		  title: 'Gagal',
-		  text: 'Tambah Data gagal!',
+		  text: 'Tambah Data gagal!, Harap hubungi administrator',
 		});
 	}
 
@@ -128,7 +128,7 @@
 		Swal.fire({
 		  icon: 'error',
 		  title: 'Gagal',
-		  text: 'Ubah Data gagal!',
+		  text: 'Ubah Data gagal!, Harap hubungi administrator',
 		});
 	}
 

@@ -147,12 +147,13 @@
                 </th>
             </tr>
             <?php
-            $no = 1;
-            $totbiaya = 0;
+			$no = 1;
+			$totbiaya = 0;
+			
             foreach ($myrekening4 as $r) {
-                $mytransaksibuk = $this->model_laporan->view_transaksibuk($r['id'])->result_array();
-                $mynilatransbuk = $this->model_laporan->nr_nilatransbuk($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-31", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
-                $rld = $mynilatransbuk;
+				$mytransaksibuk = $this->model_laporan->view_transaksibuk($r['id'])->result_array();
+                $mynilatransbuk = $this->model_laporan->view_transaksibuk($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-1", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
+				$rld = $mynilatransbuk;
                 ?>
                 <tr>
                     <th align="left"><span style="font-family:Rockwell;font-size: 10px;">

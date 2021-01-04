@@ -1,6 +1,83 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <!-- End Select2 -->
+<div id="modalEdit" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">Form Edit Data <?= $page_name; ?></h3>
+            </div>
+            <form class="form-horizontal" role="form" id="formEdit">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">  Nominal Bayar Sebelumnya </label>
+                                <div class="col-sm-6">
+                                    <input type="hidden" name="e_id" id="e_id" />
+                                    <input type="text" class="form-control" name="e_tagihan" id="e_tagihan" readonly />
+									<input type="hidden" id="e_tagihan_v" required name="e_tagihan_v" />
+									<script language="JavaScript">
+										var rupiah1 = document.getElementById('e_tagihan');
+										rupiah1.addEventListener('keyup', function(e) {
+											rup1 = this.value.replace(/\D/g, '');
+											$('#e_tagihan_v').val(rup1);
+											rupiah1.value = ConvertFormatRupiah(this.value, 'Rp. ');
+										});
+									</script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nominal Bayar Dirubah </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="e_bayar"  id="e_bayar" />
+									<input type="hidden" id="e_bayar_v" required name="e_bayar_v" />
+									<script language="JavaScript">
+										var rupiah3333 = document.getElementById('e_bayar');
+										rupiah3333.addEventListener('keyup', function(e) {
+											rup2 = this.value.replace(/\D/g, '');
+											$('#e_bayar_v').val(rup2);
+											rupiah3333.value = formatRupiah3333(this.value, 'Rp. ');
+										});
+
+										function formatRupiah3333(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3333 = split[0].substr(0, sisa),
+												ribuan3 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan3) {
+												separator = sisa ? '.' : '';
+												rupiah3333 += separator + ribuan3.join('.');
+											}
+
+											rupiah3333 = split[1] != undefined ? rupiah3333 + ',' + split[1] : rupiah3333;
+											return prefix == undefined ? rupiah3333 : (rupiah3333 ? 'Rp. ' + rupiah3333 : '');
+										}
+									</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_edit" class="btn btn-sm btn-success pull-left">
+                        <i class="ace-icon fa fa-save"></i>
+                        Ubah
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 
 <div class="row">
     <div class="col-xs-4">
@@ -116,87 +193,6 @@
             <input type="hidden" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
             <input type="hidden" id="seragam" name="seragam" placeholder="Seragam" class="form-control" />
             <input type="hidden" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
-            <!-- <div class="form-group">
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        Gedung
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="tghn_gedung">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="dbyr_gedung">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <input type="text" id="gedung_v" name="gedung_v" placeholder="Gedung" class="form-control" />
-                        <input type="hidden" id="gedung" name="gedung" placeholder="Gedung" class="form-control" />
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="form-group">
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        Seragam
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="tghn_seragam">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="dbyr_seragam">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <input type="text" id="seragam_v" name="seragam_v" placeholder="Seragam" class="form-control" />
-                        <input type="hidden" id="seragam" name="seragam" placeholder="Seragam" class="form-control" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        Kegiatan
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="tghn_kegiatan">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <div id="dbyr_kegiatan">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="input-group">
-                        <input type="text" id="kegiatan_v" name="kegiatan_v" placeholder="Kegiatan" class="form-control" />
-                        <input type="hidden" id="kegiatan" name="kegiatan" placeholder="Kegiatan" class="form-control" />
-                    </div>
-                </div>
-            </div> -->
             <div class="form-group">
                 <div class="col-xs-3">
                     <div class="input-group">
@@ -337,28 +333,6 @@
 </div>
 <hr>
 <br>
-<!-- <div class="table-responsive">
-    <table id="table_id3" class="display">
-        <thead>
-            <tr>
-                <th class="col-md-1">No</th>
-                <th>No Induk</th>
-                <th>Kelas</th>
-                <th>Tanggal</th>
-                <th>Keterangan</th>
-                <th>Tagihan</th>
-                <th>Bayar</th>
-                <th>Sisa</th>
-                <th>Petugas</th>
-                <th>Tahun Akademik</th>
-            </tr>
-        </thead>
-        <tbody id="show_data3">
-
-        </tbody>
-    </table>
-</div> -->
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("#thnakad").change(function() {
@@ -367,7 +341,6 @@
         });
         $('#table_id').DataTable();
         $('#table_id2').DataTable();
-        // $('#table_id3').DataTable();
     });
 </script>
 
@@ -514,9 +487,13 @@
                         var no = 1;
                         for (i = 0; i < data.length; i++) {
                             if(data[i].pemb_buk == '0'){
-                                var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
-                                                    '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                                    '</a>' ;
+								var button_hapus = 	'<button  href="#my-modal-edit" class="btn btn-xs btn-success item_edit" title="Edit" data-id="' + data[i].Nopembayaran + '">' +
+															'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+															'</button> &nbsp'+
+															'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
+                                                            '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+															'</a></button> &nbsp';
+														
                             }else{
                                 var button_hapus = '';
                             }
@@ -529,7 +506,7 @@
                                 '<td>' + formatRupiah(data[i].TotalBayar) + '</td>' +
                                 '<td>' + data[i].useridd + '</td>' +
                                 '<td>' + data[i].TA + '</td>' +
-                                '<td>' +
+                                '<td class="text-center">' +
                                 '<a target="_blank"  href="<?php echo  base_url() . 'modulkasir/bayarsiswa/print2?noreg=' ?>' + data[i].NIS + '&no=' + data[i].Nopembayaran + '&kls=' + data[i].Kelas + '" class="btn btn-xs btn-info" title="Print" data-id="' + data[i].NIS + '">' +
                                 '<i class="ace-icon fa fa-print bigger-120"></i>' +
                                 '</a> &nbsp' +
@@ -554,51 +531,6 @@
                         /* END TABLETOOLS */
                     }
                 });
-
-                // $.ajax({
-                //     type: 'POST',
-                //     url: '<?php echo site_url('modulkasir/bayarsiswa/search_pemb_sekolah_q2') ?>',
-                //     data: $('#formSearch').serialize(),
-                //     async: true,
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         $('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
-                //             'Periksa');
-                //         var html = '';
-                //         var i = 0;
-                //         var no = 1;
-                //         for (i = 0; i < data.length; i++) {
-                //             html += '<tr>' +
-                //                 '<td class="text-center">' + no + '</td>' +
-                //                 '<td>' + data[i].NIS + '</td>' +
-                //                 '<td>' + data[i].Kelas + '</td>' +
-                //                 '<td>' + data[i].tglentri + '</td>' +
-                //                 '<td>' + data[i].namajenisbayar + '</td>' +
-                //                 '<td>' + formatRupiah(data[i].Nominal) + '</td>' +
-                //                 '<td>' + formatRupiah(data[i].nominalbayar) + '</td>' +
-                //                 '<td>' + formatRupiah(data[i].sisa) + '</td>' +
-                //                 '<td>' + data[i].useridd + '</td>' +
-                //                 '<td>' + data[i].TA + '</td>' +
-                //                 '</tr>';
-                //             no++;
-                //         }
-                //         $("#table_id3").dataTable().fnDestroy();
-                //         var a = $('#show_data3').html(html);
-                //         //                    $('#mydata').dataTable();
-                //         if (a) {
-                //             $('#table_id3').dataTable({
-                //                 "bPaginate": true,
-                //                 "bLengthChange": false,
-                //                 "bFilter": true,
-                //                 "bInfo": false,
-
-                //             });
-
-                //         }
-                //         /* END TABLETOOLS */
-                //     }
-                // });
-
             }
         })
     }
@@ -756,9 +688,13 @@
                                 var no = 1;
                                 for (i = 0; i < data.length; i++) {
                                     if(data[i].pemb_buk == '0'){
-                                        var button_hapus = '<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
+										var button_hapus = '<button class="btn btn-xs btn-success item_edit" title="Edit" data-id="' + data[i].Nopembayaran + '">'+
+                                                            '<i class="ace-icon fa fa-edit-o bigger-120"></i>' +
+                                                            '</a>' +
+										'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].Nopembayaran + '">'+
                                                             '<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-                                                            '</a>' ;
+															'</a>' ;
+															
                                     }else{
                                         var button_hapus = '';
                                     }
@@ -800,7 +736,64 @@
                 });
             }
         })
-    })
+	})
+	
+	  //get data for update record
+	  $('#table_id2').on('click', '.item_edit', function() {
+        document.getElementById("formEdit").reset();
+        var id = $(this).data('id');
+        $('#modalEdit').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('modulkasir/bayarsiswa/tampil_byid') ?>",
+            async: true,
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+				$('#e_id').val(data[0].Nopembayaran);
+				
+				var TotalBayar = ConvertFormatRupiah(data[0].TotalBayar, 'Rp. ');
+				$('#e_tagihan').val(TotalBayar);
+				$('#e_tagihan_v').val(data[0].TotalBayar);
+            }
+        });
+    });
+	
+	if ($("#formEdit").length > 0) {
+        $("#formEdit").validate({
+            errorClass: "my-error-class",
+            validClass: "my-valid-class",
+            rules: {
+
+            },
+            messages: {
+
+            },
+            submitHandler: function(form) {
+                $('#btn_edit').html('Sending..');
+                $.ajax({
+                    url: "<?php echo base_url('modulkasir/bayarsiswa/update') ?>",
+                    type: "POST",
+                    data: $('#formEdit').serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+                            'Ubah');
+                        if (response == true) {
+                            document.getElementById("formEdit").reset();
+                            swalEditSuccess();
+                            $('#modalEdit').modal('hide');
+                        } else {
+                            swalEditFailed();
+                        }
+                    }
+                });
+            }
+        })
+	}
+	
 </script>
 <script language="JavaScript">
 var rupiah1 = document.getElementById('spp_v');
@@ -814,30 +807,6 @@ rupiah1.addEventListener('keyup', function(e) {
     $('#spp').val(rup3);
     rupiah1.value = formatRupiah3(this.value, 'Rp. ');
 });
-
-// rupiah2.addEventListener('keyup', function(e) {
-//     // tambahkan 'Rp.' pada saat form di ketik
-//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-//     rup3 = this.value.replace(/\D/g, '');
-//     $('#gedung').val(rup3);
-//     rupiah2.value = formatRupiah3(this.value, 'Rp. ');
-// });
-
-// rupiah3.addEventListener('keyup', function(e) {
-//     // tambahkan 'Rp.' pada saat form di ketik
-//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-//     rup3 = this.value.replace(/\D/g, '');
-//     $('#seragam').val(rup3);
-//     rupiah3.value = formatRupiah3(this.value, 'Rp. ');
-// });
-
-// rupiah4.addEventListener('keyup', function(e) {
-//     // tambahkan 'Rp.' pada saat form di ketik
-//     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-//     rup3 = this.value.replace(/\D/g, '');
-//     $('#kegiatan').val(rup3);
-//     rupiah4.value = formatRupiah3(this.value, 'Rp. ');
-// });
 
 function formatRupiah3(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -855,5 +824,24 @@ function formatRupiah3(angka, prefix) {
     rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
     return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
 }
+
+
+function ConvertFormatRupiah(angka, prefix) {
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if (ribuan) {
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+
+		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
+
 </script>
 <!-- End Select2

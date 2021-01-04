@@ -1,10 +1,12 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<form class="form-horizontal" role="form" id="formTambah">
 		<div class="form-group">
 			<div class="col-xs-3">
 				Jenis Transaksi
-				<select class="form-control tahun" name="jenis" id="tahun">
-					<option value="0">--Pilih Jenis Transaksi--</option>
+				<select class="form-control tahun" required name="jenis" id="tahun">
+					<option value="">--Pilih Jenis Transaksi--</option>
 					<?php foreach ($mytrx as $value) { ?>
 						<option value=<?= $value['kode_jurnal'] ?>><?= $value['NamaTransaksi'] . "-" . $value['kode_jurnal'] ?></option>
 					<?php } ?>
@@ -12,8 +14,8 @@
 			</div>
 			<div class="col-xs-2">
 				Debet / Kredit
-				<select class="form-control tahun" name="dk" id="dk">
-					<option value="0">--Pilih D/K--</option>
+				<select class="form-control tahun" required name="dk" id="dk">
+					<option value="">--Pilih D/K--</option>
 					<?php foreach ($dk as $value) { ?>
 						<option value=<?= $value['KETERANGAN'] ?>><?= $value['NAMA_REV'] ?></option>
 					<?php } ?>
@@ -129,6 +131,11 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$('select').select2({
+            width: '100%',
+            placeholder: "-- Pilih -- ",
+            allowClear: true
+        });
 	});
 
 	if ($("#formTambah").length > 0) {

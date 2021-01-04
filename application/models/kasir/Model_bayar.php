@@ -10,7 +10,7 @@ class Model_bayar extends CI_model
     }
 
     public function getsiswa($noreg){
-        return $this->db->query("SELECT PS,NMSISWA FROM mssiswa WHERE NOINDUK = '".$noreg."'");
+        return $this->db->query("SELECT PS,NMSISWA, TAHUN FROM mssiswa WHERE NOINDUK = '".$noreg."'");
     }
 
     public function getsiswa2($ta,$ps){
@@ -29,7 +29,7 @@ class Model_bayar extends CI_model
                                 tarif_berlaku.userridd,
                                 tarif_berlaku.`status`
                                 FROM tarif_berlaku 
-                                WHERE `status`='T'
+                                WHERE `status`='T' AND ThnMasuk = '$ta'
                                 AND kodesekolah='$ps' AND isdeleted != 1 AND Kodejnsbayar NOT IN('FRM','SPP')");
 
                                 //AND TA='$ta' -- Coment for this

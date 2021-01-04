@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -17,9 +19,10 @@
 		</div>
 		<td>
 			<div class="col-xs-3">
-				<select class="form-control" name="nopembayaran" id="nopembayaran">
+			<input type="text" id="nopembayaran" required name="nopembayaran" placeholder="No Pembayaran" class="form-control" />
+				<!-- <select class="form-control" name="nopembayaran" id="nopembayaran">
 					<option value="0">--Pilih Program--</option>
-				</select>
+				</select> -->
 			</div>
 			<div class="col-xs-1">
 				<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
@@ -113,7 +116,11 @@
 				$("#nopembayaran").html(data);
 			});
 		});
-
+		$('select').select2({
+            width: '100%',
+            placeholder: "-- Pilih -- ",
+            allowClear: true
+        });
 	});
 
 	if ($("#formSearch").length > 0) {
@@ -221,7 +228,7 @@
 			success: function(data) {
 				$('#item_posting').hide();
 				$('#info').html('<div class="alert alert-info">' +
-					'This alert needs your attention, but its not super important.' +
+					'Sukses Posting' +
 					'</div>');
 			}
 		});

@@ -161,7 +161,7 @@
 		$label_tunj[8] = 'T. Masa Kerja';
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
-		$label_tunj[11] = 'Lembur';
+		$label_tunj[11] = 'Inval';
 		$label_tunj[12] = 'Lain-lain';
 
 		//Potongan
@@ -188,7 +188,7 @@
 		$label_pot[4] = 'Izin / Telat';
 		$label_pot[5] = 'Gemart';
 		$label_pot[6] = 'Pinjaman Koperasi';
-		$label_pot[7] = 'Inval';
+		$label_pot[7] = 'Diinval';
 		$label_pot[8] = 'Toko Al Hamra';
 		$label_pot[9] = 'Taawun';
 		$label_pot[10] = 'BPJS';
@@ -307,8 +307,8 @@
 			for($a = 1; $a<= $row_pendapatan; $a++){ //Looping sejumlah elemen tunjangan
 					$v_label_tunj = '';
 					$v_tunj_nilai = 0;
-
-					if($label_tunj[$a] == 'Honor Berkala' || $label_tunj[$a] == 'Lembur'){
+					// if($label_tunj[$a] == 'Honor Berkala' || $label_tunj[$a] == 'Lembur'){ //OLD
+					if($label_tunj[$a] == 'Honor Berkala'){
 						continue;
 					}
 					if(count($array_data_sliptemp)>$array_index_pend	){

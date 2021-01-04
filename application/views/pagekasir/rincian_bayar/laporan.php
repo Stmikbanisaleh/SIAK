@@ -106,7 +106,7 @@
                     $status_lunas = $row['status_lunas'];
                     $nilailunas = $row['jumlah_bayar'];
 
-                    if($status_lunas == 'L'){
+                    if($status_lunas == 'L' || $row['Nominal'] <= $row['jumlah_bayar']){
                         $status_lunas = 'Lunas';
                     }else{
                         $status_lunas = 'Belum Lunas';

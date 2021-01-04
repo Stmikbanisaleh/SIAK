@@ -159,6 +159,15 @@ class Model_bayarsiswa extends CI_model
                                     FROM saldopembayaran_sekolah
                                     WHERE NIS='$siswa' OR saldopembayaran_sekolah.Noreg='$siswa'
                                     ORDER BY Kelas DESC");
+	}
+	
+	public function getDataDelete($nopembayaran){
+        return $this->db->query("SELECT
+                                    NIS,
+									Kelas,
+									TA 
+									from pembayaran_sekolah
+                                    where Nopembayaran = $nopembayaran");
     }
 
     public function pemb_sekolah($siswa, $kelas){
