@@ -201,6 +201,13 @@ if ($jabatan == 19) { ?>
 			<ul class="submenu">
 
 				<li class="">
+					<a href="<?= base_url() . 'generatepasswordsiswa'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Reset Password Siswa
+					</a>
+				</li>
+
+				<li class="">
 					<a href="<?= base_url() . 'biodata'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Biodata sekolah

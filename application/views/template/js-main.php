@@ -123,6 +123,13 @@
 		  text: 'Hapus Data Berhasil',
 		});
 	}
+	function swalGenerateSuccess(message){
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Sukses',
+		  text: message,
+		});
+	}
 
 
 </script>
