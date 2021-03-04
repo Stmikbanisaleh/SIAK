@@ -147,13 +147,13 @@ header("Expires:0");
 		$tunj_nilai[8] = $tunj_masa_kerja;
 		$tunj_nilai[9] = $pend_tunj_keluarga;
 		$tunj_nilai[10] = $pend_thr;
-		$tunj_nilai[11] = $pend_lembur;
-		$tunj_nilai[12] = $pend_lain;
-		$tunj_nilai[13] = $tunj_khusus1;
-		$tunj_nilai[14] = $tunj_khusus2;
-		$tunj_nilai[15] = $tunj_khusus3;
-		$tunj_nilai[16] = $tunj_khusus4;
-		$tunj_nilai[17] = $tunj_khusus5;
+		// $tunj_nilai[11] = $pend_lembur;
+		$tunj_nilai[11] = $pend_lain;
+		$tunj_nilai[12] = $tunj_khusus1;
+		$tunj_nilai[13] = $tunj_khusus2;
+		$tunj_nilai[14] = $tunj_khusus3;
+		$tunj_nilai[15] = $tunj_khusus4;
+		$tunj_nilai[16] = $tunj_khusus5;
 		
 
 		$label_tunj[1] = 'Honor';
@@ -166,8 +166,8 @@ header("Expires:0");
 		$label_tunj[8] = 'T. Masa Kerja';
 		$label_tunj[9] = 'T. Keluarga';
 		$label_tunj[10] = 'THR';
-		$label_tunj[11] = 'Lembur';
-		$label_tunj[12] = 'Lain-lain';
+		// $label_tunj[11] = 'Lembur';
+		$label_tunj[11] = 'Lain-lain';
 
 		//Potongan
 		$pot_infaq_masjid = $row['pot_infaq_masjid'];
@@ -193,7 +193,7 @@ header("Expires:0");
 		$label_pot[4] = 'Izin / Telat';
 		$label_pot[5] = 'Gemart';
 		$label_pot[6] = 'Pinjaman Koperasi';
-		$label_pot[7] = 'Inval';
+		$label_pot[7] = 'Di Inval';
 		$label_pot[8] = 'Toko Al Hamra';
 		$label_pot[9] = 'Taawun';
 		$label_pot[10] = 'BPJS';
@@ -216,42 +216,42 @@ header("Expires:0");
 
 
 		if($row['ket_tunj_khusus1'] != 0 || $row['ket_tunj_khusus1'] != '' ||$row['ket_tunj_khusus1'] != '0'){
-			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
+			$label_tunj[12] = 'Tunj. Khusus ('.$row['ket_tunj_khusus1'].')';
 			$nill_t13 = 1;
 		}else{
-			$label_tunj[13] = '';
+			$label_tunj[12] = '';
 			$nill_t13 = 0;
 		}
 
 		if($row['ket_tunj_khusus2'] != 0 || $row['ket_tunj_khusus2'] != '' ||$row['ket_tunj_khusus2'] != '0'){
-			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
+			$label_tunj[13] = 'Tunj. Khusus ('.$row['ket_tunj_khusus2'].')';
 			$nill_t14 = 1;
 		}else{
-			$label_tunj[14] = '';
+			$label_tunj[13] = '';
 			$nill_t14 = 0;
 		}
 
 		if($row['ket_tunj_khusus3'] != 0 || $row['ket_tunj_khusus3'] != '' ||$row['ket_tunj_khusus3'] != '0'){
-			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
+			$label_tunj[14] = 'Tunj. Khusus ('.$row['ket_tunj_khusus3'].')';
 			$nill_t15 = 1;
 		}else{
-			$label_tunj[15] = '';
+			$label_tunj[14] = '';
 			$nill_t15 = 0;
 		}
 
 		if($row['ket_tunj_khusus4'] != 0 || $row['ket_tunj_khusus4'] != '' ||$row['ket_tunj_khusus4'] != '0'){
-			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
+			$label_tunj[15] = 'Tunj. Khusus ('.$row['ket_tunj_khusus4'].')';
 			$nill_t16 = 1;
 		}else{
-			$label_tunj[16] = '';
+			$label_tunj[15] = '';
 			$nill_t16 = 0;
 		}
 
 		if($row['ket_tunj_khusus5'] != 0 || $row['ket_tunj_khusus5'] != '' ||$row['ket_tunj_khusus5'] != '0'){
-			$label_tunj[17] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
+			$label_tunj[16] = 'Tunj. Khusus ('.$row['ket_tunj_khusus5'].')';
 			$nill_t17 = 1;
 		}else{
-			$label_tunj[17] = '';
+			$label_tunj[16] = '';
 			$nill_t17 = 0;
 		}
 
@@ -279,7 +279,7 @@ header("Expires:0");
 			$nil15 = 0;
 		}
 
-		$row_pendapatan = 17; //Need change value to follow max row pendapatan
+		$row_pendapatan = 16; //Need change value to follow max row pendapatan
 		$row_potongan = 12+$nil13+$nil14+$nil15; //Need change value to follow max row potongan
 
 		$cek_row_tunj = 0;
@@ -552,7 +552,7 @@ header("Expires:0");
 			<table>
 					<tr>
 						<td width="125px;" colspan="6">Gaji bersih</td>
-						<td width="68px;" style="text-align:right" colspan="2">Rp <?= $total ?></td>
+						<td width="68px;" style="text-align:right" colspan="2">Rp.  <?php echo number_format($total) ?></td>
 					</tr>
 			</table>
 		</div> 
