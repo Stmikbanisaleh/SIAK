@@ -542,11 +542,11 @@ header("Expires:0");
 			<table>
 					<tr  style="border-top:1px solid black">
 						<td width="125px;" colspan="6">Gaji kotor</td>
-						<td width="227px;" style="text-align:right" colspan="2"><?= $jumlah_pend ?></td>
+						<td width="227px;" style="text-align:right" colspan="2">Rp.  <?php echo number_format($jumlah_pend) ?></td>
 					</tr>
 					<tr  style="border-bottom:1px solid black">
 						<td width="125px;" colspan="6">Total Potongan</td>
-						<td width="165px;" style="text-align:right" colspan="2"><?= $jumlah_pot ?></td>
+						<td width="165px;" style="text-align:right" colspan="2">Rp.  <?php echo number_format($jumlah_pot) ?></td>
 					</tr>
 			</table>
 			<table>
