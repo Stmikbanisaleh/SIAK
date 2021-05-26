@@ -176,6 +176,21 @@
                                     </select>
                                 </div>
                             </div>
+							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
+                                <div class="col-xs-6">
+                                    <div class="checkbox">
+                                        <?php 
+                                        foreach ($myhari as $value) { ?>
+                                            <label>
+                                                <input value="<?= $value['nama'] ?>" id="e_hari" name="e_hari[]" type="checkbox" class="ace" />
+                                                <span class="lbl"><?= $value['nama'] ?> </span>
+                                            </label>
+                                        <?php 
+                                     } ?>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
                                 <div class="col-xs-6">
@@ -662,10 +677,9 @@
             },
             success: function(data) {
                 $('#e_id').val(data[0].id);
-                $('#e_programsekolahs').val(data[0].ps);
-                $('#e_hari').val(data[0].hari);
-                $('#e_ruang').val(data[0].id_ruang);
-                $('#e_kelas').val(data[0].nmklstrjdk);
+                $('#e_programsekolahs').val(data[0].ps).select2();
+                $('#e_ruang').val(data[0].id_ruang).select2();
+                $('#e_kelas').val(data[0].nmklstrjdk).select2();
                 $('#e_jam').val(data[0].JAM);
                 show_data_guru(data[0].ps, function(a) {
                     $('#e_guru').val(data[0].id_guru);

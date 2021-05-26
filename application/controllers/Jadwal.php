@@ -173,7 +173,7 @@ class Jadwal extends CI_Controller
             'id_mapel'  => $this->input->post('e_mataajar'),
             'id_ruang'  => $this->input->post('e_ruang'),
             'id_guru'  => $this->input->post('e_guru'),
-            'hari'  => $this->input->post('e_hari'),
+            'hari'  => implode(",",$this->input->post('e_hari')),
             'jam'  => $this->input->post('e_jam'),
             'nmklstrjdk'  => $this->input->post('e_kelas'),
             'updatedAt' => date('Y-m-d H:i:s'),
