@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<!-- End Select2 -->
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -48,7 +51,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Sekolah </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="programsekolahs" id="programsekolahs">
+                                    <select required class="form-control" name="programsekolahs" id="programsekolahs">
                                         <option value="0">Status</option>
                                         <?php foreach ($myps as $value) { ?>
                                             <option value=<?= $value['KDTBPS'] ?>><?= $value['DESCRTBPS'] . '-' . $value['DESCRTBJS'] ?></option>
@@ -59,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Guru </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="guru" id="guru">
+                                    <select required class="form-control" name="guru" id="guru">
                                         <option value="0">-- Status --</option>
                                     </select>
                                 </div>
@@ -67,7 +70,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mata Ajar </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="mataajar" id="mataajar">
+                                    <select required class="form-control" name="mataajar" id="mataajar">
                                         <option value="0">-- Status --</option>
                                     </select>
                                 </div>
@@ -75,18 +78,22 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="hari" id="hari">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myhari as $value) { ?>
-                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <div class="checkbox">
+                                        <?php 
+                                        foreach ($myhari as $value) { ?>
+                                            <label>
+                                                <input value="<?= $value['nama'] ?>" id="hari" name="hari[]" type="checkbox" class="ace" />
+                                                <span class="lbl"><?= $value['nama'] ?> </span>
+                                            </label>
+                                        <?php 
+                                     } ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
                                 <div class="col-xs-6">
-                                    <select class="form-control" name="ruang" id="ruang">
+                                    <select required class="form-control" name="ruang" id="ruang">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($myruang as $value) { ?>
                                             <option value=<?= $value['ID'] ?>><?= $value['RUANG'] ?></option>
@@ -97,7 +104,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
                                 <div class="col-sm-3">
-                                    <select class="form-control" name="kelas" id="kelas">
+                                    <select required class="form-control" name="kelas" id="kelas">
                                         <option value="0">-- Status --</option>
                                         <?php foreach ($mykelas as $value) { ?>
                                             <option value=<?= $value['id_kelas'] ?>><?= $value['nama'] ?></option>
@@ -108,7 +115,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jam Ke </label>
                                 <div class="col-sm-3">
-                                    <input type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
+                                    <input required type="number" class="form-control" name="jam" id="jam" placeholder="8.30"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -166,17 +173,6 @@
                                 <div class="col-xs-6">
                                     <select class="form-control" name="e_mataajar" id="e_mataajar">
                                         <option value="0">-- Pilih Mata Ajar --</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hari </label>
-                                <div class="col-xs-6">
-                                    <select class="form-control" name="e_hari" id="e_hari">
-                                        <option value="0">-- Pilih Hari --</option>
-                                        <?php foreach ($myhari as $value) { ?>
-                                            <option value=<?= $value['nama'] ?>><?= $value['nama'] ?></option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -544,6 +540,11 @@
     }
 </script>
 <script type="text/javascript">
+    $('select').select2({
+        width: '100%',
+        placeholder: "Select an Option",
+        allowClear: true
+    });
     $(document).ready(function() {
         show_data();
         $('#table_id').DataTable();
@@ -646,8 +647,8 @@
         });
     });
 
-        //get data for update record
-        $('#show_data').on('click', '.item_update', function() {
+    //get data for update record
+    $('#show_data').on('click', '.item_update', function() {
         document.getElementById("formEdit").reset();
         var id = $(this).data('id');
         $('#modalUpdate').modal('show');
@@ -666,11 +667,11 @@
                 $('#e_ruang').val(data[0].id_ruang);
                 $('#e_kelas').val(data[0].nmklstrjdk);
                 $('#e_jam').val(data[0].JAM);
-                show_data_guru(data[0].ps, function(a){
+                show_data_guru(data[0].ps, function(a) {
                     $('#e_guru').val(data[0].id_guru);
                 });
 
-                show_data_mataajar(data[0].ps, function(a){
+                show_data_mataajar(data[0].ps, function(a) {
                     $('#e_mataajar').val(data[0].id_mapel);
                 });
             }
@@ -724,7 +725,7 @@
             callback()
         });
 
-        
+
     }
 
     function show_data_mataajar(id, callback) {
