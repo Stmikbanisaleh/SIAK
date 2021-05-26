@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
     <div class="col-xs-6">
         <!-- PAGE CONTENT BEGINS -->
@@ -57,11 +59,15 @@
                 <th>Nama Kelas</th>
                 <th>Jam</th>
                 <th>Nama Siswa</th>
-                <th>UTS</th>
+                <th>UTS 1</th>
+                <th>UTS 2</th>
                 <th>UAS</th>
+                <th>UAS 2</th>
                 <th>Action</th>
             </tr>
         <tbody>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -81,7 +87,9 @@
         tbjadwal.JAM,
         mssiswa.NMSISWA,
         trnilai.UTSTRNIL,
+        trnilai.UTSTRNIL2,
         trnilai.UASTRNIL,
+        trnilai.UASTRNIL2,
         tbjadwal.id,
         tbkrs.id_krs,
         mssiswa.NOINDUK,
@@ -111,7 +119,9 @@
                         <input name="idjadwal" id="idjadwal<?= $no ?>" type="hidden" value="<?= $value['id'] ?>" />
                         <input name="idnilai<?= $no ?>" id="idnilai<?= $no ?>" type="hidden" value="<?= $value['idnilai'] ?>">
                         <td><input name="nilai<?= $no ?>" id="nilai<?= $no ?>" type="text" readonly value="<?= $value['UTSTRNIL'] ?>"></td>
+                        <td><input name="nilai2<?= $no ?>" id="nilai2<?= $no ?>" type="text" readonly value="<?= $value['UTSTRNIL2'] ?>"></td>
                         <td><input name="nilaiuas<?= $no ?>" id="nilaiuas<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UASTRNIL'] ?>"></td>
+                        <td><input name="nilaiuas2<?= $no ?>" id="nilaiuas2<?= $no ?>" maxlength="3" max="100" type="text" value="<?= $value['UASTRNIL'] ?>"></td>
                         <td style="text-align:center">
                             <button class="btn btn-xs btn-success" id="simpan<?= $no ?>" title="">
                                 Simpan
@@ -124,8 +134,10 @@
                         $("#uts<?= $no ?>").keypress(function(event) {
                             if (event.keyCode == 13) {
                                 var nilai = $("#nilai<?= $no ?>").val();
+                                var nilai2 = $("#nilai2<?= $no ?>").val();
                                 var nis = $("#nis<?= $no ?>").val();
                                 var uas = $("#nilaiuas<?= $no ?>").val();
+                                var uas2 = $("#nilaiuas2<?= $no ?>").val();
                                 var idjadwal = $("#idjadwal<?= $no ?>").val();
                                 var id_krs = $("#id_krs<?= $no ?>").val();
                                 var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
@@ -134,7 +146,7 @@
                                 $.ajax({
                                     type: "POST",
                                     url: '<?php echo site_url('modulguru/uas/simpannilai') ?>',
-                                    data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas,
+                                    data: "nilai=" + nilai + "&nilai2=" + nilai2 + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas + "&nilaiuas2=" + uas2,
                                     cache: false,
                                     success: function(data) {
                                         $("#pes<?= $no ?>").html("Tersimpan").show();
@@ -146,8 +158,10 @@
                         });
                         $("#simpan<?= $no ?>").click(function(event) {
                             var nilai = $("#nilai<?= $no ?>").val();
+                            var nilai2 = $("#nilai2<?= $no ?>").val();
                             var nis = $("#nis<?= $no ?>").val();
                             var uas = $("#nilaiuas<?= $no ?>").val();
+                            var uas2 = $("#nilaiuas2<?= $no ?>").val();
                             var idjadwal = $("#idjadwal<?= $no ?>").val();
                             var id_krs = $("#id_krs<?= $no ?>").val();
                             var NMKLSTRJDK = $("#NMKLSTRJDK<?= $no ?>").val();
@@ -156,7 +170,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: '<?php echo site_url('modulguru/uas/simpannilai') ?>',
-                                data: "nilai=" + nilai + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas,
+                                data: "nilai=" + nilai + "&nilai2=" + nilai2 + "&nis=" + nis + "&idjadwal=" + idjadwal + "&id_krs=" + id_krs + "&NMKLSTRJDK=" + NMKLSTRJDK + "&id_mapel=" + id_mapel + "&idnilai=" + idnilai + "&nilaiuas=" + uas + "&nilaiuas2=" + uas2,
                                 cache: false,
                                 success: function(data) {
                                     $("#pes<?= $no ?>").html("Tersimpan").show();
@@ -175,6 +189,11 @@
     </table>
 </div>
 <script type="text/javascript">
+  $('select').select2({
+        width: '100%',
+        placeholder: "Select an Option",
+        allowClear: true
+    });
     if ($("#formTambah").length > 0) {
         $("#formTambah").validate({
             errorClass: "my-error-class",

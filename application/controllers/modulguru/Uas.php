@@ -29,11 +29,13 @@ class Uas extends CI_Controller
             'KDMKTRNIL' => $this->input->post('id_mapel'),
             'KLSTRNIL'  => $this->input->post('NMKLSTRJDK'),
             'UASTRNIL'  => $this->input->post('nilaiuas'),
+            'UASTRNIL2'  => $this->input->post('nilaiuas2'),
             'USERUASTRNIL'         => $this->session->userdata('idguru'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
         $data_update = array(
             'UASTRNIL'  => $this->input->post('nilaiuas'),
+            'UASTRNIL2'  => $this->input->post('nilaiuas2'),
             'TGLUASTRNIL'  => date('Y-m-d H:i:s'),
             'USERUASTRNIL'  => $this->session->userdata('idguru'),
             'updatedAt' => date('Y-m-d H:i:s'),

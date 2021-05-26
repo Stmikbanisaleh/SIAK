@@ -23,6 +23,11 @@ class Model_uts extends CI_model
         tbjadwal.id_guru = '" . $session . "' and tbjadwal.isdeleted != 1 order by tbjadwal.id desc");
     }
 
+	public function getsekolah()
+    {
+        return  $this->db->query("SELECT a.id, a.KDTBPS, a.DESCRTBPS, a.SINGKTBPS, b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS");
+    }
+
     public function getuts($mapel)
     {
         return $this->db->query("SELECT
@@ -61,9 +66,13 @@ class Model_uts extends CI_model
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);
-        $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
+    }
+
+	public function viewWhereOrderingCustom($ps)
+    {
+        return $this->db->query("select a.*,b.DESCRTBPS, b.SINGKTBPS from trmka  a JOIN tbps b on a.PSTRMKA = b.KDTBPS where a.PSTRMKA = $ps");
     }
 
     public function view_where($table, $data)

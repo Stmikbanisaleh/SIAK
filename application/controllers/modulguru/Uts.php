@@ -16,6 +16,7 @@ class Uts extends CI_Controller
 
     }
 
+
     public function simpannilai()
     {
         $data_id = array(
@@ -29,11 +30,13 @@ class Uts extends CI_Controller
             'KDMKTRNIL' => $this->input->post('id_mapel'),
             'KLSTRNIL'  => $this->input->post('NMKLSTRJDK'),
             'UTSTRNIL'  => $this->input->post('nilai'),
+            'UTSTRNIL2'  => $this->input->post('nilai2'),
             'USERUTSTRNIL'         => $this->session->userdata('idguru'),
             'createdAt' => date('Y-m-d H:i:s'),
         );
         $data_update = array(
             'UTSTRNIL'  => $this->input->post('nilai'),
+            'UTSTRNIL2'  => $this->input->post('nilai2'),
             'TGLUTSTRNIL'  => date('Y-m-d H:i:s'),
             'USERUTSTRNIL'  => $this->session->userdata('idguru'),
             'updatedAt' => date('Y-m-d H:i:s'),
@@ -52,12 +55,14 @@ class Uts extends CI_Controller
         $session = $this->session->userdata('idguru');
         $nodapodik = $this->model_uts->views($session)->result_array();
         $mypelajaran = $this->model_uts->getmapel($session)->result_array();
+        $myps = $this->model_uts->getsekolah()->result_array();
         $data = array(
             'page_content'     => '../pageguru/uts/view',
             'ribbon'         => '<li class="active">Nilai Uts</li>',
             'page_name'     => 'Nilai Uts',
             'mypelajaran'     => $mypelajaran,
-            'guru'  => $nodapodik
+            'guru'  => $nodapodik,
+			'myps' => $myps
         );
         $this->render_view($data); //Memanggil function render_view
     }
