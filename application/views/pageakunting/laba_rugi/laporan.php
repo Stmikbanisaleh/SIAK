@@ -83,8 +83,8 @@
                     $v_uang = 0;
                     foreach ($myrekening as $r) {
                         $mytransaksibuk = $this->model_laporan->view_transaksibuk($r['id'])->result_array();
-                        $mynilatransbuk = $this->model_laporan->view_nilatransbuk($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-01", $r['no_rek'])->result_array();
-                        $rld = $mynilatransbuk;
+                        $mynilatransbuk = $this->model_laporan->view_nilatransbuk($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
+						$rld = $mynilatransbuk;
                         ?>
                         <tr>
                             <th align="left"><span style="font-family:Rockwell;font-size: 10px;">

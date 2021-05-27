@@ -43,8 +43,8 @@ class Lap_bukubesar extends CI_Controller {
             $v_kode_jurnal = $data_jurnal['0']['kode_jurnal'];
             $v_nama_jurnal = $data_jurnal['0']['nama_jurnal'];
 
-        $data_nsa = $this->model_laporan->get_saldoawalbukbes($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-01", $this->input->post('coa'))->result_array();
-            $nml = $data_nsa[0]['nml']; //Nilai saldo awal
+        $data_nsa = $this->model_laporan->get_saldoawalbukbes($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $this->input->post('coa'))->result_array();
+		$nml = $data_nsa[0]['nml']; //Nilai saldo awal
         $data = array(
             'v_awal'      => $blnawal,
             'v_akhir'     => $blnakhir,

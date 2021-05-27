@@ -74,7 +74,6 @@ class Model_jadwal extends CI_model
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);
-        $this->db->where('isdeleted !=', 1);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
     }

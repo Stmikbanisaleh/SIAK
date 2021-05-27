@@ -152,9 +152,9 @@ class Trx_jurnal extends CI_Controller
     {
         $period_awal = $this->input->post('periode_awal');
         $period_akhir = $this->input->post('periode_akhir');
-        // print_r($this->input->post());exit;
 
         $hasil_pembsek = $this->model_trx_jurnal->get_pembayaransekolah($period_awal, $period_akhir)->result_array();
+
         $kd_jurnal = $this->model_trx_jurnal->get_kode_jurnal();
         if(count($hasil_pembsek) > 0){
             foreach($hasil_pembsek AS $row){

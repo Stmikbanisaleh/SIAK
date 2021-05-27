@@ -69,7 +69,7 @@ class Buk extends CI_Controller
         $v_bln=date_format($date,"m");
         $f_bln = $v_bln;
         $s_bln = ltrim($f_bln, '0');
-        $query="SELECT * FROM detail_akuntansi";   
+        $query="SELECT * FROM detail_akuntansi where tgl_input between '".$datee."' AND '".$datee2."' ";   
 			$hasil = $this->model_buk->dyn_query($query)->result_array();
             $no=1;
             foreach ($hasil as $r) {
@@ -80,7 +80,7 @@ class Buk extends CI_Controller
                 transaksi_buk.Ket,
                 transaksi_buk.Nilai,
                 transaksi_buk.DK) 
-                VALUES('".$r['rek']."','".$r['Tgl_bukti']."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
+                VALUES('".$r['rek']."','".$r['tgl_input']."','".$r['no_akuntansi']."','".$r['urai']."','".$r['nilai']."','".$r['dk']."')";
                 $this->model_buk->dyn_query($sql);
                 $query="SELECT COUNT(*)as jmlh,
                 Debet01,

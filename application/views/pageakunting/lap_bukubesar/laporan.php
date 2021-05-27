@@ -106,7 +106,7 @@
   </tr>
   <?php
 
-  $mynilatransbuk = $this->model_laporan->view_nilatransbukbes($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-01", $this->input->post('coa'))->result_array();
+  $mynilatransbuk = $this->model_laporan->view_nilatransbukbes($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $this->input->post('coa'))->result_array();
   // print_r($this->db->last_query());exit;
   $no = 1;
   $totnilai = 0;
