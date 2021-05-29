@@ -87,6 +87,7 @@ INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
 WHERE tglentri between '$a1' AND '$a2'
 ORDER BY tglentri
 ";
+
 $myrekening = $this->model_laporan->view_byquery($sql)->result_array();
     $no = 1;
      $v_uang = 0;
