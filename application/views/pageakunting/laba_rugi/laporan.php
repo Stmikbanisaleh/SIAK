@@ -84,7 +84,6 @@
                     foreach ($myrekening as $r) {
                         $mytransaksibuk = $this->model_laporan->view_transaksibuk($r['id'])->result_array();
                         $mynilatransbuk = $this->model_laporan->view_nilatransbuk($this->input->post('tahun'). "-" . $this->input->post('blnawal') . "-01", $this->input->post('tahun'). "-" . $this->input->post('blnakhir') . "-31", $r['no_rek'])->result_array();
-						print_r($this->db->last_query());exit;
                         $rld = $mynilatransbuk;
                         ?>
                         <tr>
