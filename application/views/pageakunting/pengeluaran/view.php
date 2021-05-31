@@ -9,7 +9,7 @@
 	<br>
 	<br>
 </div>
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -64,7 +64,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="modalEdit" class="modal fade" tabindex="-1">
+<div id="modalEdit" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
