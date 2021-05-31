@@ -154,7 +154,6 @@ class Trx_jurnal extends CI_Controller
         $period_akhir = $this->input->post('periode_akhir');
 
         $hasil_pembsek = $this->model_trx_jurnal->get_pembayaransekolah($period_awal, $period_akhir)->result_array();
-
         $kd_jurnal = $this->model_trx_jurnal->get_kode_jurnal();
         if(count($hasil_pembsek) > 0){
             foreach($hasil_pembsek AS $row){
@@ -199,20 +198,20 @@ class Trx_jurnal extends CI_Controller
                             'UserId' => $this->session->userdata('nip')
                         );
                         $insert = $this->model_trx_jurnal->insert($datainsert2,'detail_akuntansi');
-                        if($insert){
-                            $datainsert3 = array(
-                                'no_akuntansi' => $row['Nopembayaran'],
-                                'no' => $datanya[0]['NodetailBayar'],
-                                'rek' => $kd_jurnal,
-                                'urai' => date('YmdHis'),
-                                'dk'   => 'D',
-                                'kurs' => 'ID',
-                                'nilai' => $datanya[0]['nominalbayar'],
-                                'tgl_input' => $datanya[0]['tglentri'],
-                                'UserId' => $this->session->userdata('nip')
-                            );
-                            $insert = $this->model_trx_jurnal->insert($datainsert3,'detail_akuntansi');
-                        }
+                        // if($insert){
+                        //     $datainsert3 = array(
+                        //         'no_akuntansi' => $row['Nopembayaran'],
+                        //         'no' => $datanya[0]['NodetailBayar'],
+                        //         'rek' => $kd_jurnal,
+                        //         'urai' => date('YmdHis'),
+                        //         'dk'   => 'D',
+                        //         'kurs' => 'ID',
+                        //         'nilai' => $datanya[0]['nominalbayar'],
+                        //         'tgl_input' => $datanya[0]['tglentri'],
+                        //         'UserId' => $this->session->userdata('nip')
+                        //     );
+                        //     $insert = $this->model_trx_jurnal->insert($datainsert3,'detail_akuntansi');
+                        // }
                     }
                 }
             }
