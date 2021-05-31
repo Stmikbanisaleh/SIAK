@@ -77,7 +77,6 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
 							<input type="hidden" class="form-control" name="e_id" id="e_id" />
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Transaksi </label>
 								<div class="col-sm-6">
