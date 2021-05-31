@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -86,7 +88,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rekening </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_no_jurnal" id="e_pendidikan_terakhir">
+									<select class="form-control" name="e_no_jurnal" id="e_no_jurnal">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($myjurnal as $value) { ?>
 											<option id='<?= $value['no_jurnal'] ?>' value=<?= $value['no_jurnal'] ?>><?= $value['kode_jurnal'] . " - " . $value['nama_jurnal'] ?></option>
@@ -324,6 +326,11 @@
 	}
 
 	$(document).ready(function() {
+		$('select').select2({
+			width: '100%',
+			placeholder: "Select an Option",
+			allowClear: true
+		});
 		show_data();
 		$('#datatable_tabletools').DataTable();
 	});
@@ -376,6 +383,7 @@
 				$('#e_JnsTransaksi').val(data[0].JnsTransaksi);
 				document.getElementById(data[0].no_jurnal).selected = "true";
 				$('#e_NamaTransaksi').val(data[0].NamaTransaksi);
+				$('#e_no_jurnal').val(data[0].no_jurnal).select2();
 			}
 		});
 	});
