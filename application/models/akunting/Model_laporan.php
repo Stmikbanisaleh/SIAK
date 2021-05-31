@@ -157,7 +157,7 @@ class Model_laporan extends CI_model
 		return  $this->db->query("SELECT sum(tb.Nilai) as ruladebet,tb.Tgl_bukti,tb.no_rek,tb.DK,j.JR
             FROM transaksi_buk tb
             JOIN jurnal j ON j.kode_jurnal = tb.no_rek
-            WHERE tb.Tgl_bukti BETWEEN " . $tgl_awal . " AND last_day('" . $tgl_akhir . "') 
+            WHERE tb.Tgl_bukti BETWEEN '" . $tgl_awal . "' AND last_day('" . $tgl_akhir . "') 
             AND tgl_bukti != '0000-00-00'
             AND  tb.no_rek= " . $norek);
 	}
