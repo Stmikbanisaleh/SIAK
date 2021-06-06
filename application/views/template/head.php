@@ -1,8 +1,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
 <title>Dashboard - Operator</title>
-    <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
+<link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
+<link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 <meta name="description" content="overview &amp; stats" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -28,12 +28,18 @@
 
 <style type="text/css">
 	.my-error-class {
-    color:#FF0000;  /* red */
-}
-.my-valid-class {
-    color:#00CC00; /* green */
-}
-</style>
+		color: #FF0000;
+		/* red */
+	}
+
+	.my-valid-class {
+		color: #00CC00;
+		/* green */
+	}
+</style>`
+<!-- Calendar-->
+<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/jquery-ui.custom.min.css" />
+<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/fullcalendar.min.css" />
 
 <!--[if lte IE 9]>
   <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-ie.min.css" />

@@ -33,6 +33,9 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-skins.min.css" />
 <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-rtl.min.css" />
 
+<!-- Calendar-->
+<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/jquery-ui.custom.min.css" />
+<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/fullcalendar.min.css" />
 <style type="text/css">
 	.my-error-class {
     color:#FF0000;  /* red */

@@ -1,217 +1,3 @@
-<!-- <div class="row">
-	<div class="space-6"></div>
-
-	<div class="col-sm-7 infobox-container">
-		<div class="infobox infobox-green">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-comments"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">32</span>
-				<div class="infobox-content">comments + 2 reviews</div>
-			</div>
-
-			<div class="stat stat-success">8%</div>
-		</div>
-
-		<div class="infobox infobox-blue">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-twitter"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">11</span>
-				<div class="infobox-content">new followers</div>
-			</div>
-
-			<div class="badge badge-success">
-				+32%
-				<i class="ace-icon fa fa-arrow-up"></i>
-			</div>
-		</div>
-
-		<div class="infobox infobox-pink">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-shopping-cart"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">8</span>
-				<div class="infobox-content">new orders</div>
-			</div>
-			<div class="stat stat-important">4%</div>
-		</div>
-
-		<div class="infobox infobox-red">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-flask"></i>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">7</span>
-				<div class="infobox-content">experiments</div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-orange2">
-			<div class="infobox-chart">
-				<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-data-number">6,251</span>
-				<div class="infobox-content">pageviews</div>
-			</div>
-
-			<div class="badge badge-success">
-				7.2%
-				<i class="ace-icon fa fa-arrow-up"></i>
-			</div>
-		</div>
-
-		<div class="infobox infobox-blue2">
-			<div class="infobox-progress">
-				<div class="easy-pie-chart percentage" data-percent="42" data-size="46">
-					<span class="percent">42</span>%
-				</div>
-			</div>
-
-			<div class="infobox-data">
-				<span class="infobox-text">traffic used</span>
-
-				<div class="infobox-content">
-					<span class="bigger-110">~</span>
-					58GB remaining
-				</div>
-			</div>
-		</div>
-
-		<div class="space-6"></div>
-
-		<div class="infobox infobox-green infobox-small infobox-dark">
-			<div class="infobox-progress">
-				<div class="easy-pie-chart percentage" data-percent="61" data-size="39">
-					<span class="percent">61</span>%
-				</div>
-			</div>
-
-			<div class="infobox-data">
-				<div class="infobox-content">Task</div>
-				<div class="infobox-content">Completion</div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-blue infobox-small infobox-dark">
-			<div class="infobox-chart">
-				<span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
-			</div>
-
-			<div class="infobox-data">
-				<div class="infobox-content">Earnings</div>
-				<div class="infobox-content">$32,000</div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-grey infobox-small infobox-dark">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-download"></i>
-			</div>
-
-			<div class="infobox-data">
-				<div class="infobox-content">Downloads</div>
-				<div class="infobox-content">1,205</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="vspace-12-sm"></div>
-
-	<div class="col-sm-5">
-		<div class="widget-box">
-			<div class="widget-header widget-header-flat widget-header-small">
-				<h5 class="widget-title">
-					<i class="ace-icon fa fa-signal"></i>
-					Traffic Sources
-				</h5>
-
-				<div class="widget-toolbar no-border">
-					<div class="inline dropdown-hover">
-						<button class="btn btn-minier btn-primary">
-							This Week
-							<i class="ace-icon fa fa-angle-down icon-on-right bigger-110"></i>
-						</button>
-
-						<ul class="dropdown-menu dropdown-menu-right dropdown-125 dropdown-lighter dropdown-close dropdown-caret">
-							<li class="active">
-								<a href="javascript:void(0);" class="blue">
-									<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
-									This Week
-								</a>
-							</li>
-
-							<li>
-								<a href="javascript:void(0);">
-									<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-									Last Week
-								</a>
-							</li>
-
-							<li>
-								<a href="javascript:void(0);">
-									<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-									This Month
-								</a>
-							</li>
-
-							<li>
-								<a href="javascript:void(0);">
-									<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-									Last Month
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="widget-body">
-				<div class="widget-main">
-					<div id="piechart-placeholder"></div>
-
-					<div class="hr hr8 hr-double"></div>
-
-					<div class="clearfix">
-						<div class="grid3">
-							<span class="grey">
-								<i class="ace-icon fa fa-facebook-square fa-2x blue"></i>
-								&nbsp; likes
-							</span>
-							<h4 class="bigger pull-right">1,255</h4>
-						</div>
-
-						<div class="grid3">
-							<span class="grey">
-								<i class="ace-icon fa fa-twitter-square fa-2x purple"></i>
-								&nbsp; tweets
-							</span>
-							<h4 class="bigger pull-right">941</h4>
-						</div>
-
-						<div class="grid3">
-							<span class="grey">
-								<i class="ace-icon fa fa-pinterest-square fa-2x red"></i>
-								&nbsp; pins
-							</span>
-							<h4 class="bigger pull-right">1,050</h4>
-						</div>
-					</div> 
-				</div>
-			</div>
-		</div>
-	</div>
-</div> -->
-
 <!-- <div class="hr hr32 hr-dotted"></div> -->
 <div class="row">
 	<form class="form-horizontal" role="form" id="formSearch" action="<?= base_url() ?>modulkasir/dashboard" method="POST">
@@ -233,10 +19,22 @@
 	</form>
 </div>
 <hr>
-<div class="col-md-10">
+<div class="col-md-11">
 	<canvas id="lineChart"></canvas>
 </div>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- PAGE CONTENT BEGINS -->
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="space"></div>
+				<div id="calendar"></div>
+			</div>
+		</div>
 
+		<!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
 <script>
 	//line
 	var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -363,4 +161,196 @@ function formatRupiah3(angka, prefix) {
     rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
     return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
 }
+
+//calendar
+
+jQuery(function($) {
+
+/* initialize the external events
+	-----------------------------------------------------------------*/
+
+$('#external-events div.external-event').each(function() {
+
+	// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+	// it doesn't need to have a start or end
+	var eventObject = {
+		title: $.trim($(this).text()) // use the element's text as the event title
+	};
+
+	// store the Event Object in the DOM element so we can get to it later
+	$(this).data('eventObject', eventObject);
+
+	// make the event draggable using jQuery UI
+	$(this).draggable({
+		zIndex: 999,
+		revert: true, // will cause the event to go back to its
+		revertDuration: 0 //  original position after the drag
+	});
+
+});
+
+
+
+
+/* initialize the calendar
+-----------------------------------------------------------------*/
+
+var date = new Date();
+var d = date.getDate();
+var m = date.getMonth();
+var y = date.getFullYear();
+
+
+var calendar = $('#calendar').fullCalendar({
+	//isRTL: true,
+	//firstDay: 1,// >> change first day of week 
+
+	buttonHtml: {
+		prev: '<i class="ace-icon fa fa-chevron-left"></i>',
+		next: '<i class="ace-icon fa fa-chevron-right"></i>'
+	},
+
+	header: {
+		left: 'prev,next today',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
+	},
+	events: <?php echo json_encode($calendar); ?>,
+	
+	// [{
+	// 		title: 'All Day Event',
+	// 		start: new Date(y, m, 1),
+	// 		className: 'label-important'
+	// 	},
+	// 	{
+	// 		title: 'Long Event',
+	// 		start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
+	// 		end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+	// 		className: 'label-success'
+	// 	},
+	// 	{
+	// 		title: 'Some Event',
+	// 		start: new Date(y, m, d - 3, 16, 0),
+	// 		allDay: false,
+	// 		className: 'label-info'
+	// 	}
+	// ],
+
+	/**eventResize: function(event, delta, revertFunc) {
+
+		alert(event.title + " end is now " + event.end.format());
+
+		if (!confirm("is this okay?")) {
+			revertFunc();
+		}
+
+	},*/
+
+	editable: true,
+	droppable: true, // this allows things to be dropped onto the calendar !!!
+	drop: function(date) { // this function is called when something is dropped
+
+		// retrieve the dropped element's stored Event Object
+		var originalEventObject = $(this).data('eventObject');
+		var $extraEventClass = $(this).attr('data-class');
+
+
+		// we need to copy it, so that multiple events don't have a reference to the same object
+		var copiedEventObject = $.extend({}, originalEventObject);
+
+		// assign it the date that was reported
+		copiedEventObject.start = date;
+		copiedEventObject.allDay = false;
+		if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+
+		// render the event on the calendar
+		// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+		$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+		// is the "remove after drop" checkbox checked?
+		if ($('#drop-remove').is(':checked')) {
+			// if so, remove the element from the "Draggable Events" list
+			$(this).remove();
+		}
+
+	},
+	selectable: true,
+	selectHelper: true,
+	select: function(start, end, allDay) {
+
+		bootbox.prompt("New Event Title:", function(title) {
+			if (title !== null) {
+				calendar.fullCalendar('renderEvent', {
+						title: title,
+						start: start,
+						end: end,
+						allDay: allDay,
+						className: 'label-info'
+					},
+					true // make the event "stick"
+				);
+			}
+		});
+
+
+		calendar.fullCalendar('unselect');
+	},
+	eventClick: function(calEvent, jsEvent, view) {
+
+		//display a modal
+		var modal =
+			'<div class="modal fade">\
+	  <div class="modal-dialog">\
+	   <div class="modal-content">\
+		 <div class="modal-body">\
+		   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
+		   <form class="no-margin">\
+			  <label>Change event name &nbsp;</label>\
+			  <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
+			 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
+		   </form>\
+		 </div>\
+		 <div class="modal-footer">\
+			<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
+			<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
+		 </div>\
+	  </div>\
+	 </div>\
+	</div>';
+
+
+		var modal = $(modal).appendTo('body');
+		// modal.find('form').on('submit', function(ev) {
+		// 	ev.preventDefault();
+
+		// 	calEvent.title = $(this).find("input[type=text]").val();
+		// 	calendar.fullCalendar('updateEvent', calEvent);
+		// 	modal.modal("hide");
+		// });
+		// modal.find('button[data-action=delete]').on('click', function() {
+		// 	calendar.fullCalendar('removeEvents', function(ev) {
+		// 		return (ev._id == calEvent._id);
+		// 	})
+		// 	modal.modal("hide");
+		// });
+
+		// modal.modal('show').on('hidden', function() {
+		// 	modal.remove();
+		// });
+
+
+		//console.log(calEvent.id);
+		//console.log(jsEvent);
+		//console.log(view);
+
+		// change the border color just for fun
+		//$(this).css('border-color', 'red');
+
+	}
+
+});
+
+
+})
+
 </script>

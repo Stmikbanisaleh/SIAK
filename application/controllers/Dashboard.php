@@ -16,10 +16,24 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$calendar = $this->db->query("select * from calendar ")->result_array();
+			$data = array();
+			foreach ($calendar as $row) {
+				$datanya = array(
+					'start' => $row['startdate'],
+					'end'	=> $row['endate'],
+					'title' => $row['description'],
+					'className' => 'label-info',
+				);
+				array_push($data, $datanya);
+			}
+
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li>',
 				'page_name' 	=> 'Dashboard',
+				'calendar'		=> $data,
+				
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -30,13 +44,13 @@ class Dashboard extends CI_Controller
 	public function login()
 	{
 		$email = $this->input->post('email');
-		$password = hash('sha512',md5($this->input->post('password')));
-		$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '".$password."' and level ='operator' and isdeleted != 1 and status = 1");
+		$password = hash('sha512', md5($this->input->post('password')));
+		$query = $this->db->query("select * from tbpengawas where nip ='" . $email . "' and password = '" . $password . "' and level ='operator' and isdeleted != 1 and status = 1");
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
 			$this->load->library('Configfunction');
 			foreach ($data as $value) {
-				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'),$this->input->ip_address());
+				$insert_log = $this->configfunction->insertlog($value['nama'], $value['nip'], date('Y-m-d H:i:s'), $this->input->ip_address());
 				$data = [
 					'username' => $value['username'],
 					'nama' => $value['nama'],

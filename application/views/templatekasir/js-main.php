@@ -42,6 +42,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
 
+<script src="<?= base_url() ?>assets/template/js/jquery-ui.custom.min.js"></script>
+<script src="<?= base_url() ?>assets/template/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<?= base_url() ?>assets/template/js/moment.min.js"></script>
+<script src="<?= base_url() ?>assets/template/js/fullcalendar.min.js"></script>
+<script src="<?= base_url() ?>assets/template/js/bootbox.js"></script>
 <!-- Select2 -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script> -->
 
