@@ -44,7 +44,7 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
-						'<td>' + data[i].Noreg + '</td>' +
+						'<td>' + data[i].NIS + '</td>' +
 						'<td>' + data[i].Kelas + '</td>' +
 						'<td>' + data[i].namajenisbayar + '</td>' +
 						'<td>' + data[i].Nominal2 + '</td>' +

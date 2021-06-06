@@ -51,7 +51,7 @@ class Setting extends CI_Controller
                 echo json_decode(0);
             } else {
                 $data_id = array(
-                    'username' => $this->session->userdata('username')
+                    'nip' => $this->session->userdata('nip')
                 );
                 $data = array(
                     'password'  => hash('sha512',md5($this->input->post('password1'))),

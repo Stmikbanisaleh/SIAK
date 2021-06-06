@@ -1,14 +1,11 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
-    <!-- <div class="col-xs-1">
-        <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
-            <a class="ace-icon fa fa-plus bigger-120"></a>Tambah Data
-        </button>
-    </div> -->
     <br>
     <br>
 </div>
 
-<div id="modalTambah" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,7 +60,7 @@
     </div><!-- /.modal-dialog -->
 </div>
 
-<div id="modalEdit" class="modal fade" tabindex="-1">
+<div id="modalEdit" class="modal fade" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -242,6 +239,11 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('select').select2({
+            width: '100%',
+            placeholder: "Select an Option",
+            allowClear: true
+        });
         show_data();
         $('#table_id').DataTable();
     });
@@ -312,7 +314,7 @@
                 $('#e_id').val(data[0].Kodejnsbayar);
                 $('#e_Kodejnsbayar').val(data[0].Kodejnsbayar);
                 $('#e_namajenisbayar').val(data[0].namajenisbayar);
-                $('#e_no_jurnal').val(data[0].no_jurnal);
+                $('#e_no_jurnal').val(data[0].no_jurnal).select2();
             }
         });
     });

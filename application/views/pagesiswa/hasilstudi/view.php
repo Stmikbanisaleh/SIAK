@@ -15,8 +15,10 @@
                 <th>Nama Kelas</th>
                 <th>Jam</th>
                 <th>Nama Matapelajaran</th>
-                <th>UTS</th>
-                <th>UAS</th>
+                <th>UTS 1</th>
+                <th>UTS 2</th>
+                <th>UAS 1</th>
+                <th>UAS 2</th>
             </tr>
         </thead>
         <tbody id="show_data">
@@ -48,7 +50,9 @@
                         '<td>' + data[i].JAM + '</td>' +
                         '<td>' + data[i].nama_mapel + '</td>' +
                         '<td>' + data[i].UTSTRNIL + '</td>' +
+                        '<td>' + data[i].UTSTRNIL2 + '</td>' +
                         '<td>' + data[i].UASTRNIL + '</td>' +
+                        '<td>' + data[i].UASTRNIL2 + '</td>' +
                         '</tr>';
                     no++;
                 }

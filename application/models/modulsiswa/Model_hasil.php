@@ -10,7 +10,10 @@ class Model_hasil extends CI_model
         tbjadwal.NMKLSTRJDK,
         tbjadwal.JAM,
         mssiswa.NMSISWA,
-        trnilai.UTSTRNIL,UASTRNIL,
+        trnilai.UTSTRNIL,
+        trnilai.UTSTRNIL2,
+        trnilai.UASTRNIL,
+        trnilai.UASTRNIL2,
         mssiswa.NOINDUK,
         tbjadwal.id_mapel,
         (SELECT z.nama FROM mspelajaran z WHERE z.id_mapel= tbjadwal.id_mapel)AS nama_mapel
