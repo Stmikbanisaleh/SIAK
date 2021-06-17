@@ -188,9 +188,12 @@ class Jadwal extends CI_Controller
         $data_id = array(
             'id'  => $this->input->post('id')
         );
+        $data_id2 = array(
+            'id_jadwal'  => $this->input->post('id')
+        );
        
         $action = $this->model_jadwal->delete($data_id, 'tbjadwal');
-        $deletekrs = $this->model_jadwal->delete($data_id, 'tbkrs');
+        $this->model_jadwal->delete($data_id2, 'tbkrs');
         echo json_encode($action);
     }
 }
