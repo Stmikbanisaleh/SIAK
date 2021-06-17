@@ -279,6 +279,14 @@ if ($jabatan == 19) { ?>
 
 					<b class="arrow"></b>
 				</li>
+				<li class="">
+					<a href="<?= base_url() . 'calendar'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Calendar
+					</a>
+
+					<b class="arrow"></b>
+				</li>
 
 			</ul>
 		</li>
@@ -492,6 +500,14 @@ if ($jabatan == 19) { ?>
 						Jadwal
 					</a>
 				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'siswaperjadwal'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Siswa Per Jadwal
+					</a>
+				</li>
+
 
 			</ul>
 		</li>
