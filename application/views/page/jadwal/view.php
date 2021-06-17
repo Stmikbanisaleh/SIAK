@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
                                 <div class="col-xs-6">
                                     <select required class="form-control" name="ruang" id="ruang">
@@ -100,7 +100,7 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
                                 <div class="col-sm-3">
@@ -191,7 +191,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Ruang </label>
                                 <div class="col-xs-6">
                                     <select class="form-control" name="e_ruang" id="e_ruang">
@@ -201,7 +201,7 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kelas </label>
                                 <div class="col-sm-3">
@@ -297,10 +297,10 @@
                 <th class="col-md-1">No</th>
                 <th>Guru</th>
                 <th>Mata Ajar</th>
-                <th>Ruang</th>
+                <!-- <th>Ruang</th> -->
                 <th>Kelas</th>
                 <th>Hari</th>
-                <th>Jam Ke</th>
+                <!-- <th>Jam Ke</th> -->
                 <th>Program Sekolah</th>
                 <th>Action</th>
             </tr>
@@ -448,10 +448,10 @@
                                 '<td class="text-center">' + no + '</td>' +
                                 '<td>' + data[i].GuruNama + '</td>' +
                                 '<td>' + data[i].nama + '-' + data[i].kode + '</td>' +
-                                '<td>' + data[i].RUANG + '</td>' +
+                                // '<td>' + data[i].RUANG + '</td>' +
                                 '<td>' + data[i].NMKLSTRJDK + '</td>' +
                                 '<td>' + data[i].hari + '</td>' +
-                                '<td>' + data[i].JAM + '</td>' +
+                                // '<td>' + data[i].JAM + '</td>' +
                                 '<td>' + data[i].DESCRTBPS + '</td>' +
                                 '<td class="text-center">' +
                                 '<button  href="#my-modal-edit" class="btn btn-xs btn-successs item_edit" title="Upload" data-id="' + data[i].id + '">' +
