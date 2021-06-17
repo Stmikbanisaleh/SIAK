@@ -205,14 +205,12 @@ class Bayarsiswa extends CI_Controller
 		$action = false;
 		$action = $this->model_bayarsiswa->delete($data_id, 'detail_bayar_sekolah');
 		if ($action) {
-			$hasil = $this->model_bayarsiswa->delete($data_id, 'pembayaran_sekolah');
-			if ($hasil) {
-				$dataDelete = $this->model_bayarsiswa->getDataDelete($this->input->post('id'))->result_array();
+			$dataDelete = $this->model_bayarsiswa->getDataDelete($this->input->post('id'))->result_array();
 				$nis = $dataDelete[0]['NIS'];
 				$kelas = $dataDelete[0]['Kelas'];
 				$thnakad = $dataDelete[0]['TA'];
 				$updateSaldo = $this->updateSaldo($thnakad, $nis, $kelas);
-			}
+				$this->model_bayarsiswa->delete($data_id, 'pembayaran_sekolah');
 			echo json_encode($updateSaldo);
 		} else {
 			echo json_encode($action);

@@ -424,7 +424,7 @@
                             $('#Noreg').val(data[0].Noreg);
                             $('#Kelas').val(data[0].Kelas);
                             $('#sisa').val(Number(data[0].Sisa2));
-                            $('#kodesekolah').val(data[0].kodesekolah);
+                            $('#kodesekolah').val(data[0].PS);
                             /* END TABLETOOLS */
                         }
 
