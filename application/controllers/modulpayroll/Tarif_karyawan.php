@@ -220,10 +220,11 @@ class Tarif_karyawan extends CI_Controller
 			$dataupdate = array(
 				'tarif'  => $hcs,
 				'tunjangan_jabatan'  => $this->input->post('e_tunjangan_jabatan_v'),
+				'tarif'  => $this->input->post('e_honorconvert_v'),
 				'tunjangan_masakerja' => $hc,
 				'transport'  => $this->input->post('e_transport_v'),
 				'convert'  => $this->input->post('e_convert_v'),
-				'honor'  => $honorjam,
+				'honor'  => $this->input->post('e_honor_v'),
 				'cara_pembayaran'  => $this->input->post('e_nama_pembayaran'),
 				'tunj_pegawai_tetap'  => $this->input->post('e_tunj_pegawai_tetap_v'),
 				'tunj_keluarga'  => $this->input->post('e_tunj_keluarga_v'),

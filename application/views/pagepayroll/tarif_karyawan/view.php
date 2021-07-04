@@ -383,10 +383,76 @@
 									<input type="text" id="e_convert" required name="e_convert" placeholder="Rp. 10.0000" class="form-control" />
 									<input type="hidden" id="e_convert_v" required name="e_convert_v" />
 									<script language="JavaScript">
-										var rupiah100 = document.getElementById('e_convert');
-										rupiah100.addEventListener('keyup', function(e) {
+										var rupiah1001 = document.getElementById('e_convert');
+										rupiah1001.addEventListener('keyup', function(e) {
 											rup100 = this.value.replace(/\D/g, '');
 											$('#e_convert_v').val(rup100);
+											rupiah1001.value = formatRupiah10(this.value, 'Rp. ');
+										});
+
+										function formatRupiah10(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah1001 = split[0].substr(0, sisa),
+												ribuan100 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan100) {
+												separator = sisa ? '.' : '';
+												rupiah1001 += separator + ribuan100.join('.');
+											}
+
+											rupiah1001 = split[1] != undefined ? rupiah1001 + ',' + split[1] : rupiah1001;
+											return prefix == undefined ? rupiah1001 : (rupiah100 ? 'Rp. ' + rupiah1001 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor Berkala (convert) </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_honorconvert" required name="e_honorconvert" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_honorconvert_v" required name="e_honorconvert_v" />
+									<script language="JavaScript">
+										var rupiah100 = document.getElementById('e_honorconvert');
+										rupiah100.addEventListener('keyup', function(e) {
+											rup100 = this.value.replace(/\D/g, '');
+											$('#e_honorconvert_v').val(rup100);
+											rupiah100.value = formatRupiah10(this.value, 'Rp. ');
+										});
+
+										function formatRupiah10(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah100 = split[0].substr(0, sisa),
+												ribuan100 = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan100) {
+												separator = sisa ? '.' : '';
+												rupiah100 += separator + ribuan100.join('.');
+											}
+
+											rupiah100 = split[1] != undefined ? rupiah100 + ',' + split[1] : rupiah100;
+											return prefix == undefined ? rupiah100 : (rupiah100 ? 'Rp. ' + rupiah100 : '');
+										}
+									</script>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Honor </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_honor" required name="e_honor" placeholder="Rp. 10.0000" class="form-control" />
+									<input type="hidden" id="e_honor_v" required name="e_honor_v" />
+									<script language="JavaScript">
+										var rupiah100 = document.getElementById('e_honor');
+										rupiah100.addEventListener('keyup', function(e) {
+											rup100 = this.value.replace(/\D/g, '');
+											$('#e_honor_v').val(rup100);
 											rupiah100.value = formatRupiah10(this.value, 'Rp. ');
 										});
 
@@ -786,6 +852,14 @@
 				var i = ConvertFormatRupiah(data[0].bpjs, 'Rp. ');
 				$('#e_bpjs').val(i);
 				$('#e_bpjs_v').val(data[0].bpjs);
+
+				var j = ConvertFormatRupiah(data[0].tarif, 'Rp. ');
+				$('#e_honorconvert').val(j);
+				$('#e_honorconvert_v').val(data[0].tarif);
+
+				var k = ConvertFormatRupiah(data[0].honor, 'Rp. ');
+				$('#e_honor').val(k);
+				$('#e_honor_v').val(data[0].honor);
 
 				$('#e_nama_pembayaran').val(data[0].cara_pembayaran);
 				$('#e_no_rekening').val(data[0].no_rekening);
