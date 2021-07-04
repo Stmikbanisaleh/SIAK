@@ -69,7 +69,8 @@ class Tarif_karyawan extends CI_Controller
 				if(!empty($masakerja)){
 					$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
 				} else {
-					$honor = $this->model_tarif_karyawan->gethonor(date('Y-m-d'))->result_array();
+					$masakerja = 0;
+					$honor = $this->model_tarif_karyawan->gethonor($masakerja)->result_array();
 				}
 
 			}
@@ -210,7 +211,6 @@ class Tarif_karyawan extends CI_Controller
 			$data = array(
 				'id_karyawan'  => $this->input->post('e_karyawan'),
 			);
-
 			$honor = $this->input->post('e_tarif_karyawan_v');
 			$convert = $this->input->post('e_convert_v');
 			$hc = (int)$honor + (int)$convert;
