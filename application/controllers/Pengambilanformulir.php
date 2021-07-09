@@ -20,89 +20,89 @@ class Pengambilanformulir extends CI_Controller
     }
 
     public function import()
-	{
-		if ($this->session->userdata('nip') != null && $this->session->userdata('nama') != null) {
-			$files = $_FILES;
-			$file = $files['file'];
-			$fname = $file['tmp_name'];
-			$file = $_FILES['file']['name'];
-			$fname = $_FILES['file']['tmp_name'];
-			$ext = explode('.', $file);
-			/** Include path **/
-			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-			/** PHPExcel_IOFactory */
-			include 'PHPExcel/IOFactory.php';
-			$objPHPExcel = PHPExcel_IOFactory::load($fname);
-			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-			$data_exist = [];
-			$empty_message = [];
+    {
+        if ($this->session->userdata('nip') != null && $this->session->userdata('nama') != null) {
+            $files = $_FILES;
+            $file = $files['file'];
+            $fname = $file['tmp_name'];
+            $file = $_FILES['file']['name'];
+            $fname = $_FILES['file']['tmp_name'];
+            $ext = explode('.', $file);
+            /** Include path **/
+            set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+            /** PHPExcel_IOFactory */
+            include 'PHPExcel/IOFactory.php';
+            $objPHPExcel = PHPExcel_IOFactory::load($fname);
+            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+            $data_exist = [];
+            $empty_message = [];
 
-			foreach ($allDataInSheet as $ads) {
-				if (array_filter($ads)) {
-					array_push($data_exist, $ads);
-				}
-			}
-			foreach ($data_exist as $keys => $value) {
-				if ($keys == '0') {
-					continue;
-				} else {
-					if (!$value[0]) {
-						array_push($empty_message, "No at row "  . $keys . " NIS harus di isi");
-					}
-					if (!$value[1]) {
-						array_push($empty_message, "No at row "  . $keys . " NOREG harus di isi");
-					}
-					if (!$value[3]) {
-						array_push($empty_message, "No at row "  . $keys . "Nama harus di isi");
-					}
-					if (!$value[4]) {
-						array_push($empty_message, "No at row "  . $keys . " Tgl Terima harus di isi");
-					}
-					if (!$value[5]) {
-						array_push($empty_message, "No at row "  . $keys . " Kode Sekolah harus di isi");
-					}
-					if (!$value[6]) {
-						array_push($empty_message, "No at row "  . $keys . "Tahun Pendidikan harus di isi");
-					}
+            foreach ($allDataInSheet as $ads) {
+                if (array_filter($ads)) {
+                    array_push($data_exist, $ads);
+                }
+            }
+            foreach ($data_exist as $keys => $value) {
+                if ($keys == '0') {
+                    continue;
+                } else {
+                    if (!$value[0]) {
+                        array_push($empty_message, "No at row "  . $keys . " NIS harus di isi");
+                    }
+                    if (!$value[1]) {
+                        array_push($empty_message, "No at row "  . $keys . " NOREG harus di isi");
+                    }
+                    if (!$value[3]) {
+                        array_push($empty_message, "No at row "  . $keys . "Nama harus di isi");
+                    }
+                    if (!$value[4]) {
+                        array_push($empty_message, "No at row "  . $keys . " Tgl Terima harus di isi");
+                    }
+                    if (!$value[5]) {
+                        array_push($empty_message, "No at row "  . $keys . " Kode Sekolah harus di isi");
+                    }
+                    if (!$value[6]) {
+                        array_push($empty_message, "No at row "  . $keys . "Tahun Pendidikan harus di isi");
+                    }
 
-					if (!$value[7]) {
-						array_push($empty_message, "No at row "  . $keys . "kode Pembayaran harus di isi");
-					}
+                    if (!$value[7]) {
+                        array_push($empty_message, "No at row "  . $keys . "kode Pembayaran harus di isi");
+                    }
 
-					if (!$value[8]) {
-						array_push($empty_message, "No at row "  . $keys . "ID Tarif harus di isi");
-					}
+                    if (!$value[8]) {
+                        array_push($empty_message, "No at row "  . $keys . "ID Tarif harus di isi");
+                    }
 
-					if (!$value[9]) {
-						array_push($empty_message, "No at row "  . $keys . " Nominal harus di isi");
-					}
+                    if (!$value[9]) {
+                        array_push($empty_message, "No at row "  . $keys . " Nominal harus di isi");
+                    }
 
-					if (!empty($empty_message)) {
-						$ret['msg'] = $empty_message;
-						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
-						$result = 2;
-					} else {
-                    $data_calon = array(
-                        'Noreg' => $this->input->post('noreg'),
-                        'Namacasis' => strtoupper($this->input->post('nama')),
-                        'email' => $this->input->post('email'),
-                        'TelpHp' => strtoupper($this->input->post('telp')),
-                        'thnmasuk' => $tahun,
-                        'kodesekolah'  => $this->input->post('sekolah'),
-                        'tglentri' => $this->input->post('tanggal'),
-                        'userentri' => $this->session->userdata('nip')
-                    );
-                    $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
-					}
-				}
+                    if (!empty($empty_message)) {
+                        $ret['msg'] = $empty_message;
+                        $this->session->set_flashdata('message', '' . json_encode($ret['msg']));
+                        $result = 2;
+                    } else {
+                        $data_calon = array(
+                            'Noreg' => $this->input->post('noreg'),
+                            'Namacasis' => strtoupper($this->input->post('nama')),
+                            'email' => $this->input->post('email'),
+                            'TelpHp' => strtoupper($this->input->post('telp')),
+                            'thnmasuk' => $tahun,
+                            'kodesekolah'  => $this->input->post('sekolah'),
+                            'tglentri' => $this->input->post('tanggal'),
+                            'userentri' => $this->session->userdata('nip')
+                        );
+                        $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
+                    }
+                }
             }
             echo json_encode($insertcalon);
-		} else {
-			$result = 0;
-			echo json_encode($result);
-		}
+        } else {
+            $result = 0;
+            echo json_encode($result);
+        }
     }
-    
+
     public function index()
     {
         $this->load->library('Configfunction');
@@ -124,39 +124,40 @@ class Pengambilanformulir extends CI_Controller
     {
         $tahun = date("Y");
         $idtarifq = $this->model_pengambilanformulir->getidtarif($this->input->post('sekolah'))->result_array();
-        $data = array(
-            'Noreg'  => $this->input->post('noreg'),
-            'tglentri'  => $this->input->post('tanggal'),
-            'useridd'  => $this->session->userdata('nip'),
-            'TotalBayar'  => $this->input->post('nominal_v'),
+        $data_calon = array(
+            'Noreg' => $this->input->post('noreg'),
+            'Namacasis' => strtoupper($this->input->post('nama')),
+            'email' => $this->input->post('email'),
+            'TelpHp' => strtoupper($this->input->post('telp')),
+            'thnmasuk' => substr($this->input->post('tahunakademik'), 0, 4),
             'kodesekolah'  => $this->input->post('sekolah'),
+            'tglentri' => $this->input->post('tanggal'),
+            'userentri' => $this->session->userdata('nip'),
+            'TA' => $this->input->post('tahunakademik'),
             'createdAt' => date('Y-m-d H:i:s')
         );
-        $insert = $this->model_pengambilanformulir->insert($data, 'pembayaran_sekolah');
+        $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
         $id_result = $this->db->insert_id();
-        if ($insert) {
-            $data_detail = array(
-                'Nopembayaran' => $id_result,
-                'kodejnsbayar' => 'FRM',
-                'idtarif'      => $idtarifq[0]['idtarif'],
-                'nominalbayar' => $this->input->post('nominal_v')
+        if ($insertcalon) {
+            $data = array(
+                'Noreg'  => $this->input->post('noreg'),
+                'tglentri'  => $this->input->post('tanggal'),
+                'useridd'  => $this->session->userdata('nip'),
+                'TotalBayar'  => $this->input->post('nominal_v'),
+                'kodesekolah'  => $this->input->post('sekolah'),
+                'TA' => $this->input->post('tahunakademik'),
+                'createdAt' => date('Y-m-d H:i:s')
             );
-            $insert_detail = $this->model_pengambilanformulir->insert($data_detail, 'detail_bayar_sekolah');
-            if ($insert_detail) {
-                $data_calon = array(
-                    'Noreg' => $this->input->post('noreg'),
-                    'Namacasis' => strtoupper($this->input->post('nama')),
-                    'email' => $this->input->post('email'),
-                    'TelpHp' => strtoupper($this->input->post('telp')),
-                    'thnmasuk' => substr($this->input->post('tahunakademik'), 0, 4),
-                    'kodesekolah'  => $this->input->post('sekolah'),
-                    'tglentri' => $this->input->post('tanggal'),
-                    'userentri' => $this->session->userdata('nip'),
-                      'TA' => $this->input->post('tahunakademik'),
-
+            $insert = $this->model_pengambilanformulir->insert($data, 'pembayaran_sekolah');
+            if ($insert) {
+                $data_detail = array(
+                    'Nopembayaran' => $id_result,
+                    'kodejnsbayar' => 'FRM',
+                    'idtarif'      => $idtarifq[0]['idtarif'],
+                    'nominalbayar' => $this->input->post('nominal_v')
                 );
-                $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
-                echo json_encode($insertcalon);
+                $insert_detail = $this->model_pengambilanformulir->insert($data_detail, 'detail_bayar_sekolah');
+                echo json_encode($insert_detail);
             }
         }
     }

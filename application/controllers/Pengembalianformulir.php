@@ -23,7 +23,8 @@ class Pengembalianformulir extends CI_Controller
     {
         $nis = $this->input->post('noreg');
         $jenis = $this->input->post('sekolah');
-        $result = $this->model_pengembalianformulir->getdata($nis, $jenis)->result();
+        $ta = $this->input->post('ta');
+        $result = $this->model_pengembalianformulir->getdata($nis, $jenis, $ta)->result();
         echo json_encode($result);
     }
 
@@ -39,6 +40,7 @@ class Pengembalianformulir extends CI_Controller
         // print_r($mytbpk);exit;
         $myagama = $this->model_pengembalianformulir->viewWhereOrdering('msrev',$data2, 'ID', 'asc')->result_array();
         $myjob = $this->model_pengembalianformulir->viewOrdering('mspekerjaan','IDMSPEKERJAAN','desc')->result_array();
+        $myta = $this->model_pengembalianformulir->getTa()->result_array();
         $data = array(
             'page_content'     => 'pengembalianformulir/view',
             'ribbon'         => '<li class="active">Dashboard</li><li>Master Pengembalian Formulir</li>',
@@ -48,7 +50,8 @@ class Pengembalianformulir extends CI_Controller
             'myrev'     => $myrev,
             'myagama'   => $myagama,
             'myjob'     => $myjob,
-            'mytbpk'     => $mytbpk
+            'mytbpk'     => $mytbpk,
+            'myta'      => $myta
         );
         $this->render_view($data); //Memanggil function render_view
     }

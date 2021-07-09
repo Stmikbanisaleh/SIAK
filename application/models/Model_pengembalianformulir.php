@@ -28,19 +28,34 @@ class Model_pengembalianformulir extends CI_model
         return  $this->db->query("SELECT * FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='FRM' AND kodesekolah='$sekolah' and isdeleted != 1");
     }
 
-    public function getdata($nis, $jenis)
+    public function getdata($nis, $jenis, $ta)
     {
-        $where = "WHERE Noreg='" . $nis . "' AND kodesekolah='" . $jenis . "'";
-        return  $this->db->query("SELECT
-		calon_siswa.Noreg,
-		calon_siswa.Namacasis,
-		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.Jk AND z.`STATUS`=1)AS Jk,
-		(SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND z.`STATUS`=4)AS agama,
-		(SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = calon_siswa.kodesekolah)AS kodesekolah,
-        (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=calon_siswa.kodesekolah)AS NamaJurusan,
-		DATE_FORMAT(tgllhr,'%d-%m-%Y')tgllhr,
-		calon_siswa.tptlhr
-		FROM calon_siswa $where");
+        if($nis == "" || $nis == null){
+            $where = "WHERE kodesekolah='" . $jenis . "' AND calon_siswa.TA='" . $ta . "'";
+            return  $this->db->query("SELECT
+            calon_siswa.Noreg,
+            calon_siswa.Namacasis,
+            (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.Jk AND z.`STATUS`=1)AS Jk,
+            (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND z.`STATUS`=4)AS agama,
+            (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = calon_siswa.kodesekolah)AS kodesekolah,
+            (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=calon_siswa.kodesekolah)AS NamaJurusan,
+            DATE_FORMAT(tgllhr,'%d-%m-%Y')tgllhr,
+            calon_siswa.tptlhr
+            FROM calon_siswa $where");
+        } else {
+            $where = "WHERE Noreg='" . $nis . "' AND kodesekolah='" . $jenis . "' AND calon_siswa.TA='" . $ta . "'";
+            return  $this->db->query("SELECT
+            calon_siswa.Noreg,
+            calon_siswa.Namacasis,
+            (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.Jk AND z.`STATUS`=1)AS Jk,
+            (SELECT z.NAMA_REV FROM msrev z WHERE z.KETERANGAN=calon_siswa.agama AND z.`STATUS`=4)AS agama,
+            (SELECT z.DESCRTBPS FROM tbps z WHERE z.KDTBPS = calon_siswa.kodesekolah)AS kodesekolah,
+            (SELECT b.DESCRTBJS FROM tbps a JOIN tbjs b ON a.KDTBJS = b.KDTBJS WHERE a.KDTBPS=calon_siswa.kodesekolah)AS NamaJurusan,
+            DATE_FORMAT(tgllhr,'%d-%m-%Y')tgllhr,
+            calon_siswa.tptlhr
+            FROM calon_siswa $where");
+        }
+       
     }
 
     public function getsekolah($ThnAkademik)
@@ -59,6 +74,12 @@ class Model_pengembalianformulir extends CI_model
         tarif_berlaku.`status`
         FROM tarif_berlaku WHERE `status`='T' AND Kodejnsbayar='FRM' AND TA='$ThnAkademik'
         ");
+    }
+
+    
+    public function getta()
+    {
+        return $this->db->query("select distinct TA from calon_siswa");
     }
 
     public function viewOrdering($table, $order, $ordering)

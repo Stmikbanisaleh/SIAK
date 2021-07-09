@@ -1,12 +1,19 @@
 <div class="row">
     <form class="form-horizontal" role="form" id="formSearch">
         <div class="col-xs-3">
-            <input type="text" required class="form-control" name="noreg" id="noreg" placeholder="No Registrasi"></textarea>
+            <input type="text" class="form-control" name="noreg" id="noreg" placeholder="No Registrasi"></textarea>
         </div>
         <div class="col-xs-3">
             <select class="form-control" name="sekolah" id="sekolah">
                 <?php foreach ($mysekolah as $value) { ?>
                     <option value=<?= $value['kodesekolah'] ?>> <?= $value['sekolah'] . "-" . $value['NamaJurusan']; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="ta" id="ta">
+                <?php foreach ($myta as $value) { ?>
+                    <option value=<?= $value['TA'] ?>> <?= $value['TA']; ?></option>
                 <?php } ?>
             </select>
         </div>
