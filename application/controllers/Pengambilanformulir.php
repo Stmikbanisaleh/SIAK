@@ -137,7 +137,6 @@ class Pengambilanformulir extends CI_Controller
             'createdAt' => date('Y-m-d H:i:s')
         );
         $insertcalon = $this->model_pengambilanformulir->insert($data_calon, 'calon_siswa');
-        $id_result = $this->db->insert_id();
         if ($insertcalon) {
             $data = array(
                 'Noreg'  => $this->input->post('noreg'),
@@ -149,6 +148,7 @@ class Pengambilanformulir extends CI_Controller
                 'createdAt' => date('Y-m-d H:i:s')
             );
             $insert = $this->model_pengambilanformulir->insert($data, 'pembayaran_sekolah');
+            $id_result = $this->db->insert_id();
             if ($insert) {
                 $data_detail = array(
                     'Nopembayaran' => $id_result,
