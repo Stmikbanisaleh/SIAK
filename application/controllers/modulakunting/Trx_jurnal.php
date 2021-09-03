@@ -122,8 +122,8 @@ class Trx_jurnal extends CI_Controller
                             'tgl_input' => date('Y-m-d'),
                             'UserId' => $this->session->userdata('nip')
                         );
-                        $insert = $this->model_trx_jurnal->insert($datainsert2,'detail_akuntansi');
-                        if($insert){
+                        $insert = $this->model_trx_jurnal->insert($datainsert2, 'detail_akuntansi');
+                        if ($insert) {
                             $datainsert3 = array(
                                 'no_akuntansi' => $nopem,
                                 'no' => 0,
@@ -135,8 +135,8 @@ class Trx_jurnal extends CI_Controller
                                 'tgl_input' => date('Y-m-d'),
                                 'UserId' => $this->session->userdata('nip')
                             );
-                             $insert = $this->model_trx_jurnal->insert($datainsert3,'detail_akuntansi');
-                             echo $a="Data Berhasil di Simpan";
+                            $insert = $this->model_trx_jurnal->insert($datainsert3, 'detail_akuntansi');
+                            echo $a = "Data Berhasil di Simpan";
                         }
                     }
                 }
@@ -154,8 +154,8 @@ class Trx_jurnal extends CI_Controller
         $period_akhir = $this->input->post('periode_akhir');
         $hasil_pembsek = $this->model_trx_jurnal->get_pembayaransekolah($period_awal, $period_akhir)->result_array();
         $kd_jurnal = $this->model_trx_jurnal->get_kode_jurnal();
-        if(count($hasil_pembsek) > 0){
-            foreach($hasil_pembsek AS $row){
+        if (count($hasil_pembsek) > 0) {
+            foreach ($hasil_pembsek as $row) {
                 //Insert into akuntansi
                 $mydata = array(
                     'bukti' => $row['Nopembayaran'],
@@ -182,7 +182,7 @@ class Trx_jurnal extends CI_Controller
                     INNER JOIN tbps ON pembayaran_sekolah.kodesekolah = tbps.KDTBPS
                     INNER JOIN tbjs ON tbps.KDTBJS = tbjs.KDTBJS
                     INNER JOIN mssiswa ON pembayaran_sekolah.Noreg = mssiswa.Noreg
-                    WHERE pembayaran_sekolah.Nopembayaran='".$row['Nopembayaran']."'
+                    WHERE pembayaran_sekolah.Nopembayaran='" . $row['Nopembayaran'] . "'
                     ORDER BY pembayaran_sekolah.Nopembayaran")->result_array();
                     if ($datanya) {
                         $datainsert2 = array(
@@ -196,26 +196,24 @@ class Trx_jurnal extends CI_Controller
                             'tgl_input' => $datanya[0]['tglentri'],
                             'UserId' => $this->session->userdata('nip')
                         );
-                        $insert = $this->model_trx_jurnal->insert($datainsert2,'detail_akuntansi');
-                        if($insert){
-                            $datainsert3 = array(
-                                'no_akuntansi' => $row['Nopembayaran'],
-                                'no' => $datanya[0]['NodetailBayar'],
-                                'rek' => $kd_jurnal,
-                                'urai' => date('YmdHis'),
-                                'dk'   => 'D',
-                                'kurs' => 'ID',
-                                'nilai' => $datanya[0]['nominalbayar'],
-                                'tgl_input' => $datanya[0]['tglentri'],
-                                'UserId' => $this->session->userdata('nip')
-                            );
-                            $insert = $this->model_trx_jurnal->insert($datainsert3,'detail_akuntansi');
-                        }
+                        $insert = $this->model_trx_jurnal->insert($datainsert2, 'detail_akuntansi');
+                        $datainsert3 = array(
+                            'no_akuntansi' => $row['Nopembayaran'],
+                            'no' => $datanya[0]['NodetailBayar'],
+                            'rek' => $kd_jurnal,
+                            'urai' => date('YmdHis'),
+                            'dk'   => 'D',
+                            'kurs' => 'ID',
+                            'nilai' => $datanya[0]['nominalbayar'],
+                            'tgl_input' => $datanya[0]['tglentri'],
+                            'UserId' => $this->session->userdata('nip')
+                        );
+                        $insert = $this->model_trx_jurnal->insert($datainsert3, 'detail_akuntansi');
                     }
                 }
             }
             echo json_encode($insert);
-        }else{
+        } else {
             echo json_encode(401); //Tidak ada data yang di proses
         }
     }
