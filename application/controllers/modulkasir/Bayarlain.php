@@ -97,7 +97,8 @@ class Bayarlain extends CI_Controller {
 					'Nopembayaran' => $id,
 					'kodejnsbayar' => $gettarif[0]['Kodejnsbayar'],
 					'idtarif'	=>	$gettarif[0]['idtarif'],
-					'nominalbayar' => $this->input->post('nominal_v')
+					'nominalbayar' => $this->input->post('nominal_v'),
+					'createdAt' => date('Y-m-d H:i:s'),
 				);
 				$action = $this->model_bayar->insert($data2, 'detail_bayar_sekolah');
 				echo json_encode($action);

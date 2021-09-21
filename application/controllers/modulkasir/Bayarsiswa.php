@@ -105,14 +105,17 @@ class Bayarsiswa extends CI_Controller
 			// print_r(json_encode($this->input->post('sisa')));exit;
 			$nis = $this->input->post('NIS');
 			$kelas = $this->input->post('Kelas');
+			$psku = $this->db->query("select ps from mssiswa where NOINDUK = '$nis'")->result_array();
+			$psku = $psku[0]['ps'];
 			$data = array(
 				'NIS'           => $this->input->post('NIS'),
 				'Noreg'         => $this->input->post('Noreg'),
 				'Kelas'         => $this->input->post('Kelas'),
 				'tglentri'      => date('Y-m-d H:i:s'),
+				'createdAt'      => date('Y-m-d H:i:s'),
 				'useridd'       => $this->session->userdata('kodekaryawan'),
 				'TotalBayar'    => $tot,
-				'kodesekolah'   => $this->input->post('kodesekolah'),
+				'kodesekolah'   => $psku,
 				'TA'            => $thnakad,
 			);
 			$action = $this->db->insert('pembayaran_sekolah', $data);
@@ -126,39 +129,6 @@ class Bayarsiswa extends CI_Controller
 					'createdAt' => date('Y-m-d H:i:s'),
 				);
 				$action = $this->db->insert('detail_bayar_sekolah', $ins1);
-			}
-
-
-			if ($this->input->post('gedung') > 0) {
-				$ins2 = array(
-					'Nopembayaran'           => $id,
-					'kodejnsbayar'         => 'GDG',
-					'idtarif'      => $this->input->post('idtarif_gdg'),
-					'nominalbayar'       => $this->input->post('gedung'),
-					'createdAt' => date('Y-m-d H:i:s'),
-				);
-				$action = $this->db->insert('detail_bayar_sekolah', $ins2);
-			}
-
-			if ($this->input->post('seragam') > 0) {
-				$ins3 = array(
-					'Nopembayaran'           => $id,
-					'kodejnsbayar'         => 'SRG',
-					'idtarif'      => $this->input->post('idtarif_srg'),
-					'nominalbayar'       => $this->input->post('seragam'),
-					'createdAt' => date('Y-m-d H:i:s'),
-				);
-				$action = $this->db->insert('detail_bayar_sekolah', $ins3);
-			}
-
-			if ($this->input->post('kegiatan') > 0) {
-				$ins4 = array(
-					'Nopembayaran'           => $id,
-					'kodejnsbayar'         => 'KGT',
-					'idtarif'      => $this->input->post('idtarif_kgt'),
-					'nominalbayar'       => $this->input->post('kegiatan'),
-				);
-				$action = $this->db->insert('detail_bayar_sekolah', $ins4);
 			}
 
 			$query = "SELECT TotalTagihan FROM saldopembayaran_sekolah WHERE NIS=" . $this->input->post('NIS') . "  AND Kelas=" . $this->input->post('Kelas');
