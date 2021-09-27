@@ -215,8 +215,8 @@
 			rules: {
 				JnsTransaksi: {
 					required: true,
-					maxlength: 3,
-					minlength: 2,
+					maxlength: 4,
+					minlength: 3,
 				},
 				no_jurnal: {
 					required: true,
