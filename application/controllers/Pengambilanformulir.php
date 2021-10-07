@@ -106,7 +106,7 @@ class Pengambilanformulir extends CI_Controller
     public function index()
     {
         $this->load->library('Configfunction');
-        $tampil_thnakad = $this->configfunction->getthnakd();
+        $tampil_thnakad = $this->configfunction->getthnpsb();
         $mysekolah = $this->model_pengambilanformulir->getsekolah($tampil_thnakad[0]['THNAKAD'])->result_array();
         $my_thnakad3 = $this->model_pengambilanformulir->get_thnakad3()->result_array();
         $data = array(
