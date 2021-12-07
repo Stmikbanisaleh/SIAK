@@ -10,7 +10,9 @@ class Model_tarifguru extends CI_model
 
     public function view_guru()
     {
-        return $this->db->query("select a.*,b.tarif,CONCAT('Rp. ',FORMAT(b.tarif,2)) Nominal2,c.nama_pembayaran,b.id as idt from tbguru a join tarifguru b on a.IdGuru = b.IdGuru join jnspembayaran c on b.cara_pembayaran = c.id ");
+        return $this->db->query("select a.*,b.tarif,CONCAT('Rp. ',FORMAT(b.tarif,2)) Nominal2,c.nama_pembayaran,b.id as idt from tbguru a 
+        LEFT join tarifguru b on a.IdGuru = b.IdGuru 
+        LEFT join jnspembayaran c on b.cara_pembayaran = c.id ");
     }
 
 	public function  getmasakerja($id)

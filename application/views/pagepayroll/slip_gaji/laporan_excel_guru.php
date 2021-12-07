@@ -410,7 +410,7 @@ header("Expires:0");
 							<td style="text-align:right; padding-right:10px;" colspan="2">
 								<?php
 									if($rows['tunj_nilai'] != ''){
-										echo $rows['tunj_nilai'];
+										echo str_replace(",",".",number_format($rows['tunj_nilai']));
 									}
 								?>
 							</td>
@@ -418,7 +418,7 @@ header("Expires:0");
 							<td style="text-align:right" colspan="2">
 							<?php
 									if($rows['pot_nilai'] != ''){
-										echo $rows['pot_nilai'];
+										echo str_replace(",",".",number_format($rows['pot_nilai']));
 									}
 								?>
 							</td>
@@ -476,17 +476,17 @@ header("Expires:0");
 			<table>
 					<tr style="border-top:1px solid black">
 						<td width="125px;" colspan="6">Gaji kotor</td>
-						<td width="227px;" style="text-align:right" colspan="2"><?= number_format($jumlah_pend) ?></td>
+						<td width="227px;" style="text-align:right" colspan="2"><?= str_replace(",",".",number_format($jumlah_pend)) ?></td>
 					</tr>
 					<tr style="border-bottom:1px solid black">
 						<td width="125px;" colspan="6">Total Potongan</td>
-						<td width="165px;" style="text-align:right" colspan="2"><?= number_format($jumlah_pot) ?></td>
+						<td width="165px;" style="text-align:right" colspan="2"><?= str_replace(",",".",number_format($jumlah_pot)) ?></td>
 					</tr>
 			</table>
 			<table>
 					<tr>
 						<td width="125px;" colspan="6">Gaji bersih</td>
-						<td width="68px;" style="text-align:right" colspan="2">Rp_ <?php echo number_format($jumlah_pend-$jumlah_pot) ?></td>
+						<td width="68px;" style="text-align:right" colspan="2">Rp. <?php echo str_replace(",",".",number_format($jumlah_pend-$jumlah_pot)) ?></td>
 					</tr>
 			</table>
 		</div> 

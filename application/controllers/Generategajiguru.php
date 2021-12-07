@@ -54,8 +54,8 @@ class Generategajiguru extends CI_Controller
 
     public function getLastDateOfMonth($year, $month)
     {
-        $date = $year.'-'.$month.'-01';  //make date of month
-        return date('t', strtotime($date)); 
+        $date = $year . '-' . $month . '-01';  //make date of month
+        return date('t', strtotime($date));
     }
 
     public function generate()
@@ -63,7 +63,7 @@ class Generategajiguru extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
             $bulan = $this->input->post('bulan');
             $tahun = $this->input->post('tahun');
-			$refresh = $this->db->query("delete from tb_pendapatan_guru where tahun  = '" . $tahun . "' and bulan = '" . $bulan . "' ");
+            $refresh = $this->db->query("delete from tb_pendapatan_guru where tahun  = '" . $tahun . "' and bulan = '" . $bulan . "' ");
             if ($refresh) {
                 $getgaji = $this->db->query("Select d.inval as invalan,b.GuruBase as status, b.GuruNama,a.IdGuru,b.GuruNPWP  as NPWP,a.tarif as gaji, a.transport, a.tunjangan_aksel,
                 a.convert,a.tunjangan_internasional, a.tunjangan_keluarga, a.tunjangan_walas, d.tunj_khusus1, d.tunj_khusus2, d.ket_tunj_khusus1,d.ket_tunj_khusus2,d.lain as tunj_lain,
@@ -80,7 +80,7 @@ class Generategajiguru extends CI_Controller
                     foreach ($getgaji as $data) {
                         // $jam = $this->model
                         $lastday = $this->getLastDateOfMonth($tahun, $bulan);
-                        $pot_lain = $data['infaq_masjid']+$data['anggota_koperasi']+$data['kas_bon']+$data['ijin_telat']+$data['koperasi']+$data['bmt']+$data['inval']+$data['toko']+$data['lain']+$data['tawun'];
+                        $pot_lain = $data['infaq_masjid'] + $data['anggota_koperasi'] + $data['kas_bon'] + $data['ijin_telat'] + $data['koperasi'] + $data['bmt'] + $data['inval'] + $data['toko'] + $data['lain'] + $data['tawun'];
                         $tahun = $this->input->post('tahun');
                         $data = array(
                             "employee_number" => $data['IdGuru'],
@@ -88,12 +88,12 @@ class Generategajiguru extends CI_Controller
                             "npwp" => $data['NPWP'],
                             "status" => $data['status'],
                             "tahun" => $tahun,
-							"bulan" => $bulan,
+                            "bulan" => $bulan,
                             "inval" => $data['invalan'],
                             "gaji" => $data['gaji'],
                             "tunj_penilaian_kinerja" => $data['tunjangan'],
                             "tunj_tetap" => $data['tunjangan_pegawai_tetap'],
-                            "effective_date" => $tahun.'-'.$bulan.'-'.$lastday,
+                            "effective_date" => $tahun . '-' . $bulan . '-' . $lastday,
                             "tunj_jabatan" => $data['tunjangan_jabatan'],
                             "tunj_transport" => $data['transport'],
                             "tunj_international" => $data['tunjangan_internasional'],
@@ -136,15 +136,13 @@ class Generategajiguru extends CI_Controller
                             "updatedWith" => $this->session->userdata('nama')
                         );
                         $insert = $this->model_Generategajiguru->insert($data, 'tb_pendapatan_guru');
-                        if ($insert) {
-                            $log = array(
-                                "username" => $this->session->userdata('nama'),
-                                "nip" => $this->session->userdata('nip'),
-                                "waktu" => date('Y-m-d H:i:s')
-                            );
-                            $insertlog = $this->model_Generategajiguru->insert($log, 'generate_log2');
-                        }
                     }
+                    $log = array(
+                        "username" => $this->session->userdata('nama'),
+                        "nip" => $this->session->userdata('nip'),
+                        "waktu" => date('Y-m-d H:i:s')
+                    );
+                    $insertlog = $this->model_Generategajiguru->insert($log, 'generate_log2');
                 }
             }
             echo json_encode($insert);
